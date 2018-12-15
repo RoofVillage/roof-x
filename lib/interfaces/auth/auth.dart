@@ -5,7 +5,7 @@ import 'package:roof/services/public/index.dart';
 import 'package:roof/util/static_key.dart';
 import 'package:roof/util/icon_map.dart';
 import 'package:roofui_kit/util/roofui_decorated_text.dart';
-import 'package:roofui_kit/navigation/a/index.dart';
+import 'package:roofui_kit/scaffold/index.dart';
 
 import 'data/public_activity_data.dart';
 import 'widgets/list.dart';
@@ -39,24 +39,11 @@ class _AuthState extends State<Auth> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Container(
-            // margin: EdgeInsets.all(30.0),
-            // padding: EdgeInsets.all(5.0),
-            decoration:
-                BoxDecoration(border: Border.all(color: Colors.blueAccent)),
-            child: Center(
-                child: Column(
-              // Stretch the cards in horizontal axis
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                RoofUINavBarA(
-                    centerIconReference: CustomIconMap.logoFull,
-                    leftIconReference: StandardizedIconMap.cashSack,
-                    rightIconReference: StandardizedIconMap.cashSack),
-                Expanded(child: AuthList(data: data))
-              ],
-            ))));
+    return RoofUIScaffoldA(
+        body: AuthList(data: data),
+        centerIconReference: CustomIconMap.logoFull,
+        leftIconReference: StandardizedIconMap.cashSack,
+        rightIconReference: StandardizedIconMap.cashSack);
   }
 
   List<PublicActivityData> _formattedDataFromResponse(

@@ -5,7 +5,7 @@ import '../data/public_activity_data.dart';
 class AuthList extends StatelessWidget {
   final List<PublicActivityData> data;
 
-  AuthList({this.data = const []});
+  AuthList({Key key, this.data = const []}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

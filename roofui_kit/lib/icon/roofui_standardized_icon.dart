@@ -8,7 +8,8 @@ class RoofUIStandardizedIcon extends StatelessWidget {
   final Color color;
 
   RoofUIStandardizedIcon(
-      {this.iconReference, this.color = RoofUIColor.neutralColorG});
+      {Key key, this.iconReference, this.color = RoofUIColor.neutralColorG})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

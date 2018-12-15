@@ -6,7 +6,7 @@ import 'package:roofui_kit/util/roofui_icon_reference.dart';
 class NavCenterIcon extends StatelessWidget {
   final IconReference iconReference;
 
-  NavCenterIcon({this.iconReference});
+  NavCenterIcon({Key key, this.iconReference}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
