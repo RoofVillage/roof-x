@@ -9,7 +9,6 @@ class Routes {
     runApp(new MaterialApp(
       title: 'Roof',
       routes: _routes,
-      initialRoute: _routePath(_Route.auth),
       theme: ThemeData(fontFamily: 'Azo'),
       home: Auth(),
     ));

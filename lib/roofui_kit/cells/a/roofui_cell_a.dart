@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:roof/roofui_kit/roofui_distance.dart';
+import 'package:roof/util/decorated_text.dart';
 
 import 'widgets/title_label.dart';
 import 'widgets/detail_label.dart';
@@ -7,7 +8,7 @@ import 'widgets/divider.dart';
 import 'widgets/icon.dart';
 
 class RoofUICellA extends StatelessWidget {
-  final String titleText;
+  final WeightDecoratedText titleText;
   final String detailText;
   final String iconPath;
   final VoidCallback onPressed;
@@ -65,7 +66,7 @@ class RoofUICellA extends StatelessWidget {
   }
 
   List<Widget> _relevantLabels() {
-    List<Widget> list = [TitleLabel(text: titleText)];
+    List<Widget> list = [TitleLabel(decoratedText: titleText)];
     if (detailText != null && detailText.trim().isNotEmpty) {
       list.add(DetailLabel(text: detailText));
     }

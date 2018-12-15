@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:roof/services/public/index.dart';
 import 'package:roof/util/static_key.dart';
 import 'package:roof/util/icon_path.dart';
+import 'package:roof/util/decorated_text.dart';
 import 'data/public_activity_data.dart';
 
 import 'widgets/list.dart';
@@ -48,32 +49,54 @@ class _AuthState extends State<Auth> {
       Map<String, Object> response) {
     final List publicActivity = response[StaticKey.publicActivity];
     return publicActivity.map((obj) {
-      var title;
+      var decoratedTitle = WeightDecoratedText();
       var description;
       switch (obj[StaticKey.activityType]) {
         case StaticKey.completion:
-          title = obj[StaticKey.name];
+          decoratedTitle.addSection(text: obj[StaticKey.who]);
+          decoratedTitle.addSection(text: "completed", thin: true);
+          decoratedTitle.addSection(text: obj[StaticKey.name]);
+          decoratedTitle.addSection(text: "at", thin: true);
+          decoratedTitle.addSection(text: obj[StaticKey.roof]);
           description = obj[StaticKey.note];
           break;
         case StaticKey.expense:
-          title = obj[StaticKey.roof];
+          decoratedTitle.addSection(text: obj[StaticKey.who]);
+          decoratedTitle.addSection(text: "split an expense at", thin: true);
+          decoratedTitle.addSection(text: obj[StaticKey.roof]);
           description = obj[StaticKey.note];
           break;
         case StaticKey.transfer:
-          title = obj[StaticKey.roof];
+          decoratedTitle.addSection(text: obj[StaticKey.payer]);
+          decoratedTitle.addSection(text: "paid", thin: true);
+          decoratedTitle.addSection(text: obj[StaticKey.receiver]);
+          decoratedTitle.addSection(text: "at", thin: true);
+          decoratedTitle.addSection(text: obj[StaticKey.roof]);
           description = obj[StaticKey.note];
           break;
         case StaticKey.landlordTransfer:
-          title = obj[StaticKey.name];
+          decoratedTitle.addSection(text: obj[StaticKey.who]);
+          decoratedTitle.addSection(text: "at", thin: true);
+          decoratedTitle.addSection(text: obj[StaticKey.home]);
+          decoratedTitle.addSection(text: "paid", thin: true);
+          decoratedTitle.addSection(text: obj[StaticKey.name]);
+          decoratedTitle.addSection(text: "to", thin: true);
+          decoratedTitle.addSection(text: obj[StaticKey.landlord]);
           description = obj[StaticKey.home];
           break;
         case StaticKey.maintenance:
-          title = obj[StaticKey.name];
+          decoratedTitle.addSection(text: obj[StaticKey.who]);
+          decoratedTitle.addSection(text: "resolved", thin: true);
+          decoratedTitle.addSection(text: obj[StaticKey.name]);
+          decoratedTitle.addSection(text: "at", thin: true);
+          decoratedTitle.addSection(text: obj[StaticKey.home]);
           description = obj[StaticKey.note];
           break;
       }
       return PublicActivityData(
-          title: title, description: description, iconPath: IconPath.cashSack);
+          title: decoratedTitle,
+          description: description,
+          iconPath: IconPath.cashSack);
     }).toList();
   }
 }

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:roof/util/decorated_text.dart';
 
 class PublicActivityData {
-  final String title;
+  final WeightDecoratedText title;
   final String description;
   final String iconPath;
 
