@@ -17,7 +17,6 @@ class TitleLabel extends StatelessWidget {
       fontSize: RoofUIFontSize.medium,
       fontWeight: RoofUIFontWeight.thin);
 
-  // final List<Tuple2<String>> textParts;
   const TitleLabel({Key key, @required this.decoratedText}) : super(key: key);
 
   @override

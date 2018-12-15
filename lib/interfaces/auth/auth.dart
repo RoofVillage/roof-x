@@ -32,7 +32,7 @@ class _AuthState extends State<Auth> {
         data = _formattedDataFromResponse(response);
       });
     }).catchError((err) {
-      print("No bueno");
+      print('No bueno');
     });
   }
 
@@ -54,41 +54,41 @@ class _AuthState extends State<Auth> {
       switch (obj[StaticKey.activityType]) {
         case StaticKey.completion:
           decoratedTitle.addSection(text: obj[StaticKey.who]);
-          decoratedTitle.addSection(text: "completed", thin: true);
+          decoratedTitle.addSection(text: 'completed', thin: true);
           decoratedTitle.addSection(text: obj[StaticKey.name]);
-          decoratedTitle.addSection(text: "at", thin: true);
+          decoratedTitle.addSection(text: 'at', thin: true);
           decoratedTitle.addSection(text: obj[StaticKey.roof]);
           description = obj[StaticKey.note];
           break;
         case StaticKey.expense:
           decoratedTitle.addSection(text: obj[StaticKey.who]);
-          decoratedTitle.addSection(text: "split an expense at", thin: true);
+          decoratedTitle.addSection(text: 'split an expense at', thin: true);
           decoratedTitle.addSection(text: obj[StaticKey.roof]);
           description = obj[StaticKey.note];
           break;
         case StaticKey.transfer:
           decoratedTitle.addSection(text: obj[StaticKey.payer]);
-          decoratedTitle.addSection(text: "paid", thin: true);
+          decoratedTitle.addSection(text: 'paid', thin: true);
           decoratedTitle.addSection(text: obj[StaticKey.receiver]);
-          decoratedTitle.addSection(text: "at", thin: true);
+          decoratedTitle.addSection(text: 'at', thin: true);
           decoratedTitle.addSection(text: obj[StaticKey.roof]);
           description = obj[StaticKey.note];
           break;
         case StaticKey.landlordTransfer:
           decoratedTitle.addSection(text: obj[StaticKey.who]);
-          decoratedTitle.addSection(text: "at", thin: true);
+          decoratedTitle.addSection(text: 'at', thin: true);
           decoratedTitle.addSection(text: obj[StaticKey.home]);
-          decoratedTitle.addSection(text: "paid", thin: true);
+          decoratedTitle.addSection(text: 'paid', thin: true);
           decoratedTitle.addSection(text: obj[StaticKey.name]);
-          decoratedTitle.addSection(text: "to", thin: true);
+          decoratedTitle.addSection(text: 'to', thin: true);
           decoratedTitle.addSection(text: obj[StaticKey.landlord]);
           description = obj[StaticKey.home];
           break;
         case StaticKey.maintenance:
           decoratedTitle.addSection(text: obj[StaticKey.who]);
-          decoratedTitle.addSection(text: "resolved", thin: true);
+          decoratedTitle.addSection(text: 'resolved', thin: true);
           decoratedTitle.addSection(text: obj[StaticKey.name]);
-          decoratedTitle.addSection(text: "at", thin: true);
+          decoratedTitle.addSection(text: 'at', thin: true);
           decoratedTitle.addSection(text: obj[StaticKey.home]);
           description = obj[StaticKey.note];
           break;

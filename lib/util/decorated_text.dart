@@ -78,12 +78,6 @@ abstract class _DecoratedText {
   }
 }
 
-abstract class _TextSection {
-  final String text;
-
-  _TextSection({@required this.text});
-}
-
 class _StyleTextSection extends _TextSection {
   final TextStyle style;
 
@@ -94,4 +88,10 @@ class _WeightTextSection extends _TextSection {
   final bool thin;
 
   _WeightTextSection({String text, @required this.thin}) : super(text: text);
+}
+
+abstract class _TextSection {
+  final String text;
+
+  _TextSection({@required this.text});
 }

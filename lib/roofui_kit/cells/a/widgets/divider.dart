@@ -5,7 +5,7 @@ class CellDivider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 0.5,
+      height: 1,
       decoration: BoxDecoration(color: RoofUIColor.neutralColorGradientC),
     );
   }
