@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:roof/roofui_kit/cells/a/index.dart';
+import 'package:roofui_kit/cell/a/index.dart';
 import '../data/public_activity_data.dart';
 
 class AuthList extends StatelessWidget {
@@ -16,7 +16,7 @@ class AuthList extends StatelessWidget {
           return RoofUICellA(
               titleText: dataItem.title,
               detailText: dataItem.description,
-              iconPath: dataItem.iconPath);
+              iconReference: dataItem.iconReference);
         });
   }
 }

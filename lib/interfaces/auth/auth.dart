@@ -3,10 +3,11 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:roof/services/public/index.dart';
 import 'package:roof/util/static_key.dart';
-import 'package:roof/util/icon_path.dart';
-import 'package:roof/util/decorated_text.dart';
-import 'data/public_activity_data.dart';
+import 'package:roof/util/icon_map.dart';
+import 'package:roofui_kit/util/roofui_decorated_text.dart';
+import 'package:roofui_kit/navigation/a/index.dart';
 
+import 'data/public_activity_data.dart';
 import 'widgets/list.dart';
 
 // Create a stateful widget
@@ -39,10 +40,23 @@ class _AuthState extends State<Auth> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Roof'),
-        ),
-        body: AuthList(data: data));
+        body: Container(
+            // margin: EdgeInsets.all(30.0),
+            // padding: EdgeInsets.all(5.0),
+            decoration:
+                BoxDecoration(border: Border.all(color: Colors.blueAccent)),
+            child: Center(
+                child: Column(
+              // Stretch the cards in horizontal axis
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                RoofUINavBarA(
+                    centerIconReference: CustomIconMap.logoFull,
+                    leftIconReference: StandardizedIconMap.cashSack,
+                    rightIconReference: StandardizedIconMap.cashSack),
+                Expanded(child: AuthList(data: data))
+              ],
+            ))));
   }
 
   List<PublicActivityData> _formattedDataFromResponse(
@@ -96,7 +110,7 @@ class _AuthState extends State<Auth> {
       return PublicActivityData(
           title: decoratedTitle,
           description: description,
-          iconPath: IconPath.cashSack);
+          iconReference: StandardizedIconMap.cashSack);
     }).toList();
   }
 }

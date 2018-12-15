@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:roof/roofui_kit/roofui_distance.dart';
-import 'package:roof/util/decorated_text.dart';
+import 'package:roofui_kit/util/roofui_distance.dart';
+import 'package:roofui_kit/util/roofui_decorated_text.dart';
+import 'package:roofui_kit/icon/index.dart';
+import 'package:roofui_kit/util/roofui_icon_reference.dart';
 
 import 'widgets/title_label.dart';
 import 'widgets/detail_label.dart';
 import 'widgets/divider.dart';
-import 'widgets/icon.dart';
 
 class RoofUICellA extends StatelessWidget {
   final WeightDecoratedText titleText;
   final String detailText;
-  final String iconPath;
+  final StandardizedIconReference iconReference;
   final VoidCallback onPressed;
 
   RoofUICellA(
       {Key key,
       @required this.titleText,
-      @required this.iconPath,
+      @required this.iconReference,
       @required this.detailText,
       this.onPressed})
       : super(key: key);
@@ -47,7 +48,8 @@ class RoofUICellA extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
-                                  CellIcon(path: iconPath),
+                                  RoofUIStandardizedIcon(
+                                      iconReference: iconReference),
 
                                   ///This child should expand to occupy remaining space.
                                   Expanded(

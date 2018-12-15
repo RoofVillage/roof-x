@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:roof/roofui_kit/roofui_color.dart';
-import 'package:roof/roofui_kit/roofui_font_size.dart';
-import 'package:roof/roofui_kit/roofui_font_weight.dart';
+import 'package:roofui_kit/util/roofui_color.dart';
+import 'package:roofui_kit/util/roofui_font_size.dart';
+import 'package:roofui_kit/util/roofui_font_weight.dart';
 
 class DetailLabel extends StatelessWidget {
   final String text;
@@ -10,7 +10,7 @@ class DetailLabel extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(text,
         style: TextStyle(
-            color: RoofUIColor.neutralColorGradientG,
+            color: RoofUIColor.neutralColorG,
             fontSize: RoofUIFontSize.medium,
             fontWeight: RoofUIFontWeight.thin));
   }

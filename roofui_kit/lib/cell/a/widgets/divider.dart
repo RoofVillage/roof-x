@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:roof/roofui_kit/roofui_color.dart';
+import 'package:roofui_kit/util/roofui_color.dart';
 
 class CellDivider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 1,
-      decoration: BoxDecoration(color: RoofUIColor.neutralColorGradientC),
+      decoration: BoxDecoration(color: RoofUIColor.neutralColorC),
     );
   }
 }
