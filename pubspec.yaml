@@ -38,6 +38,11 @@ flutter:
   assets:
     - images/cash_sack.svg
     - images/logo_full.svg
+    - images/action.svg
+    - images/balances.svg
+    - images/balances.svg
+    - images/info.svg
+    - images/blank.svg
 
   fonts:
     - family: Azo

@@ -53,6 +53,7 @@ class _AuthListState extends State<AuthList> {
     return publicActivity.map((obj) {
       var decoratedTitle = WeightDecoratedText();
       var description;
+      var iconReference;
       switch (obj[StaticKey.activityType]) {
         case StaticKey.completion:
           decoratedTitle.addSection(text: obj[StaticKey.who]);
@@ -61,12 +62,14 @@ class _AuthListState extends State<AuthList> {
           decoratedTitle.addSection(text: 'at', thin: true);
           decoratedTitle.addSection(text: obj[StaticKey.roof]);
           description = obj[StaticKey.note];
+          iconReference = StandardizedIconMap.action;
           break;
         case StaticKey.expense:
           decoratedTitle.addSection(text: obj[StaticKey.who]);
           decoratedTitle.addSection(text: 'split an expense at', thin: true);
           decoratedTitle.addSection(text: obj[StaticKey.roof]);
           description = obj[StaticKey.note];
+          iconReference = StandardizedIconMap.balances;
           break;
         case StaticKey.transfer:
           decoratedTitle.addSection(text: obj[StaticKey.payer]);
@@ -75,6 +78,7 @@ class _AuthListState extends State<AuthList> {
           decoratedTitle.addSection(text: 'at', thin: true);
           decoratedTitle.addSection(text: obj[StaticKey.roof]);
           description = obj[StaticKey.note];
+          iconReference = StandardizedIconMap.cashSack;
           break;
         case StaticKey.landlordTransfer:
           decoratedTitle.addSection(text: obj[StaticKey.who]);
@@ -85,6 +89,7 @@ class _AuthListState extends State<AuthList> {
           decoratedTitle.addSection(text: 'to', thin: true);
           decoratedTitle.addSection(text: obj[StaticKey.landlord]);
           description = obj[StaticKey.home];
+          iconReference = StandardizedIconMap.cashSack;
           break;
         case StaticKey.maintenance:
           decoratedTitle.addSection(text: obj[StaticKey.who]);
@@ -93,12 +98,13 @@ class _AuthListState extends State<AuthList> {
           decoratedTitle.addSection(text: 'at', thin: true);
           decoratedTitle.addSection(text: obj[StaticKey.home]);
           description = obj[StaticKey.note];
+          iconReference = StandardizedIconMap.action;
           break;
       }
       return PublicActivityData(
           title: decoratedTitle,
           description: description,
-          iconReference: StandardizedIconMap.cashSack);
+          iconReference: iconReference);
     }).toList();
   }
 }

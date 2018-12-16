@@ -44,13 +44,20 @@ class RoofUINavBarA extends StatelessWidget {
         children: <Widget>[
           Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                RoofUIStandardizedIcon(iconReference: leftIconReference),
-                NavCenterIcon(iconReference: centerIconReference),
-                RoofUIStandardizedIcon(iconReference: rightIconReference),
-              ])
+              children: _relevantElements())
         ],
       )),
     );
+  }
+
+  List<Widget> _relevantElements() {
+    List<Widget> list = [
+      RoofUIStandardizedIcon(iconReference: leftIconReference)
+    ];
+    if (centerIconReference != null) {
+      list.add(NavCenterIcon(iconReference: centerIconReference));
+    }
+    list.add(RoofUIStandardizedIcon(iconReference: rightIconReference));
+    return list;
   }
 }

@@ -10,7 +10,6 @@ class Auth extends StatelessWidget {
     return RoofUIScaffoldA(
         body: AuthList(),
         centerIconReference: CustomIconMap.logoFull,
-        leftIconReference: StandardizedIconMap.cashSack,
-        rightIconReference: StandardizedIconMap.cashSack);
+        rightIconReference: StandardizedIconMap.info);
   }
 }

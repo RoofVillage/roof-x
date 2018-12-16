@@ -33,7 +33,10 @@ class WeightDecoratedText extends _DecoratedText {
   }
 
   RichText generateWidget(
-      {@required TextStyle defaultStyle, @required TextStyle thinStyle}) {
+      {@required TextStyle defaultStyle,
+      @required TextStyle thinStyle,
+      double textScaleFactor = 1,
+      num tex}) {
     final children = _sections.map((section) {
       return TextSpan(
           text: section.text,
@@ -41,7 +44,9 @@ class WeightDecoratedText extends _DecoratedText {
               (section as _WeightTextSection).thin ? thinStyle : defaultStyle);
     }).toList();
     return super._generateWidgetFromChildren(
-        children: children, defaultStyle: defaultStyle);
+        children: children,
+        defaultStyle: defaultStyle,
+        textScaleFactor: textScaleFactor);
   }
 }
 
@@ -53,9 +58,12 @@ abstract class _DecoratedText {
   _DecoratedText({this.text});
 
   RichText _generateWidgetFromChildren(
-      {List<TextSpan> children, TextStyle defaultStyle}) {
+      {List<TextSpan> children,
+      TextStyle defaultStyle,
+      double textScaleFactor}) {
     final spacedChildren = _addSpaces(children);
     final richTextWidget = RichText(
+        textScaleFactor: textScaleFactor,
         text:
             TextSpan(text: "", style: defaultStyle, children: spacedChildren));
     return richTextWidget;

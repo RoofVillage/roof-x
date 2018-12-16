@@ -22,6 +22,8 @@ class TitleLabel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return decoratedText.generateWidget(
-        defaultStyle: _defaultStyle, thinStyle: _thinStyle);
+        defaultStyle: _defaultStyle,
+        thinStyle: _thinStyle,
+        textScaleFactor: MediaQuery.of(context).textScaleFactor);
   }
 }
