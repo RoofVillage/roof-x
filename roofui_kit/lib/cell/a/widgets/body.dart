@@ -14,6 +14,7 @@ class Body extends StatelessWidget {
 
   final _verticalPadding = RoofUIDistance.b;
   final _imagePaddingRight = RoofUIDistance.b;
+  final _detailPaddingTop = RoofUIDistance.a;
 
   Body(
       {Key key,
@@ -48,7 +49,9 @@ class Body extends StatelessWidget {
   List<Widget> _relevantLabels() {
     List<Widget> list = [TitleLabel(decoratedText: titleText)];
     if (detailText != null && detailText.trim().isNotEmpty) {
-      list.add(DetailLabel(text: detailText));
+      list.add(Container(
+          padding: EdgeInsets.only(top: _detailPaddingTop),
+          child: DetailLabel(text: detailText)));
     }
     return list;
   }
