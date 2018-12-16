@@ -17,6 +17,7 @@ dependencies:
     sdk: flutter
   roofui_kit:
     path: roofui_kit
+  flutter_redux: ^0.5.2
   http: ^0.12.0
   flutter_svg: ^0.7.0+1
 
