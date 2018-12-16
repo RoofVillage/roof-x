@@ -6,7 +6,7 @@ class RoofUIScaffoldA extends StatelessWidget {
   final IconReference centerIconReference;
   final StandardizedIconReference leftIconReference;
   final StandardizedIconReference rightIconReference;
-  final StatelessWidget body;
+  final Widget body;
 
   RoofUIScaffoldA(
       {Key key,
