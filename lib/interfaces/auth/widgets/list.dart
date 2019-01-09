@@ -38,9 +38,10 @@ class _AuthListState extends State<AuthList> {
   Future fetchData() async {
     // dynamically typed.
     Activity().request(pageSize: 50).then((response) {
+      final formattedData = _formattedDataFromResponse(response);
       // Schedules a `build`
       setState(() {
-        _data = _formattedDataFromResponse(response);
+        _data = formattedData;
       });
     }).catchError((err) {
       print('No bueno');
