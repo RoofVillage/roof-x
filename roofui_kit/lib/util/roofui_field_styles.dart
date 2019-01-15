@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:roofui_kit/util/roofui_color.dart';
 import 'package:roofui_kit/util/roofui_distance.dart';
 import 'package:roofui_kit/util/roofui_corner_radiuses.dart';
+import 'package:roofui_kit/util/roofui_font_size.dart';
 
 class FieldStyle {
   final String fieldNameText;
@@ -28,13 +29,22 @@ class FieldStyle {
       labelText: fieldNameText,
       hintText: placeholderText,
       border: OutlineInputBorder(),
-      enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: RoofUIColor.neutralColorD), borderRadius: BorderRadius.all(RoofUICornerRadius.small)),
-      focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: RoofUIColor.neutralColorF), borderRadius: BorderRadius.all(RoofUICornerRadius.small)),
+      enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: RoofUIColor.neutralColorD),
+          borderRadius: BorderRadius.all(RoofUICornerRadius.small)),
+      focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: RoofUIColor.neutralColorF),
+          borderRadius: BorderRadius.all(RoofUICornerRadius.small)),
       hintStyle: TextStyle(color: RoofUIColor.neutralColorD),
     );
   }
 
   static EdgeInsets standardFieldPadding() {
     return EdgeInsets.fromLTRB(0, RoofUIDistance.c, 0, RoofUIDistance.c);
+  }
+
+  static TextStyle labelStyle() {
+    return TextStyle(
+        fontSize: RoofUIFontSize.medium, color: RoofUIColor.neutralColorG);
   }
 }

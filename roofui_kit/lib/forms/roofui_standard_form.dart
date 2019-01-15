@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:roofui_kit/util/roofui_distance.dart';
+import 'package:roofui_kit/util/roofui_form_styles.dart';
 import 'package:roofui_kit/forms/widgets/index.dart';
 import 'package:roofui_kit/fields/text/index.dart';
 import 'package:roofui_kit/fields/textArea/index.dart';
@@ -72,13 +72,14 @@ class _StandardFormState extends State<StandardForm> {
     if (subtitleText != null) headerObjects.add(subtitle);
 
     Widget header = Container(
-        margin: EdgeInsets.fromLTRB(0, RoofUIDistance.c, 0, RoofUIDistance.c),
+        margin: FormStyle.formHeaderMargin(),
         child: Column(children: headerObjects));
 
     List<Widget> formObjects = [];
     if (headerObjects.length > 0) formObjects.add(header);
 
-    List<Widget> fieldWidgets = generateFieldWidgets(fields: fields, autofocus: autofocus);
+    List<Widget> fieldWidgets =
+        generateFieldWidgets(fields: fields, autofocus: autofocus);
 
     for (Widget fieldWidget in fieldWidgets) {
       formObjects.add(fieldWidget);
@@ -86,8 +87,7 @@ class _StandardFormState extends State<StandardForm> {
 
     return Form(
         child: Padding(
-            padding: EdgeInsets.fromLTRB(RoofUIDistance.c, RoofUIDistance.b,
-                RoofUIDistance.c, RoofUIDistance.b),
+            padding: FormStyle.formMargin(),
             child: Column(
               crossAxisAlignment: centered
                   ? CrossAxisAlignment.center
@@ -105,7 +105,12 @@ class StandardForm extends StatefulWidget {
   final bool autofocus;
 
   StandardForm(
-      {Key key, this.fields, this.titleText, this.subtitleText, this.centered = false, this.autofocus = false});
+      {Key key,
+      this.fields,
+      this.titleText,
+      this.subtitleText,
+      this.centered = false,
+      this.autofocus = false});
 
   @override
   _StandardFormState createState() => _StandardFormState(

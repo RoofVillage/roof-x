@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:roofui_kit/util/roofui_field_styles.dart';
-import 'package:roofui_kit/fields/label/index.dart';
+import 'package:roofui_kit/fields/widgets/index.dart';
 
 class _RoofUITextFieldState extends State<RoofUITextField> {
   String fieldNameText;
