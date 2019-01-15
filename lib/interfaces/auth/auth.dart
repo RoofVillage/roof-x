@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:roof/util/icon_map.dart';
 import 'package:roofui_kit/scaffold/index.dart';
-import 'package:roofui_kit/fields/text/index.dart';
-import 'package:roofui_kit/fields/textArea/index.dart';
 import 'package:roofui_kit/forms/roofui_standard_form.dart';
 
 import 'widgets/list.dart';
@@ -14,20 +12,22 @@ class Auth extends StatelessWidget {
         centered: true,
         titleText: "Log in",
         subtitleText: "So you can use this sexy app",
+        autofocus: true,
         fields: [
-          RoofUITextField(
-            fieldNameText: "Email address",
-            placeholderText: "bitch@roof.io",
-          ),
-          RoofUITextField(
-            fieldNameText: "Password",
-            placeholderText: "••••••••",
-            isPassword: true,
-          ),
-          RoofUITextArea(
-            fieldNameText: "Note",
-            placeholderText: "Write a lot"
-          )
+          {
+            "type": "text",
+            "fieldNameText": "Email address",
+            "placeholderText": "shooomie@emailz.io"
+          },
+          {
+            "type": "password", 
+            "fieldNameText": "Password"
+          },
+          {
+            "type": "textArea",
+            "fieldNameText": "Note",
+            "placeholderText": "Say something loooong"
+          }
         ]);
 
     return RoofUIScaffoldA(

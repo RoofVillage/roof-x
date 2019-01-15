@@ -9,27 +9,35 @@ class RoofUITextArea extends StatelessWidget {
   final String placeholderText;
   final String initialValueText;
   final TextInputAction textInputAction;
+  final bool autofocus;
 
   const RoofUITextArea(
-      {this.fieldNameText, this.placeholderText, this.initialValueText, this.textInputAction = TextInputAction.done});
+      {this.fieldNameText,
+      this.placeholderText,
+      this.initialValueText,
+      this.autofocus = false,
+      this.textInputAction = TextInputAction.next});
 
   Widget build(BuildContext context) {
+    List<Widget> fieldChildren = [];
+    if (fieldNameText != null)
+      fieldChildren.add(RoofUIFieldLabel(labelText: fieldNameText));
+    fieldChildren.add(Container(
+        margin: EdgeInsets.fromLTRB(0, RoofUIDistance.a, 0, 0),
+        child: TextFormField(
+          textInputAction: textInputAction,
+          key: this.key,
+          maxLines: 3,
+          initialValue: initialValueText,
+          decoration:
+              FieldStyle.textAreaDecoration(placeholderText: placeholderText),
+        )));
+
     return Container(
-        margin: FieldStyle.standardFieldPadding(),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-            RoofUIFieldLabel(labelText: fieldNameText),
-            Container(margin: EdgeInsets.fromLTRB(0, RoofUIDistance.a, 0, 0),
-            child: TextFormField(
-              textInputAction: textInputAction,
-              key: this.key,
-              maxLines: 3,
-              initialValue: initialValueText,
-              decoration:
-                  FieldStyle.textAreaDecoration(placeholderText: placeholderText),
-            ))
-          ]),
-        );
+      margin: FieldStyle.standardFieldPadding(),
+      child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: fieldChildren),
+    );
   }
 }
