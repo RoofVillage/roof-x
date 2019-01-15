@@ -2,31 +2,32 @@ import 'package:flutter/material.dart';
 import 'package:roofui_kit/util/roofui_field_styles.dart';
 import 'package:roofui_kit/fields/label/index.dart';
 
-class RoofUITextField extends StatelessWidget {
-  final String fieldNameText;
-  final String placeholderText;
-  final String initialValueText;
-  final TextInputAction textInputAction;
-  final bool isPassword;
-  final bool autofocus;
+class _RoofUITextFieldState extends State<RoofUITextField> {
+  String fieldNameText;
+  String placeholderText;
+  String initialValueText;
+  bool isPassword;
+  bool autofocus;
+  TextInputAction textInputAction;
 
-  const RoofUITextField(
+  _RoofUITextFieldState(
       {this.fieldNameText,
       this.placeholderText,
       this.initialValueText,
-      this.isPassword = false,
-      this.autofocus = false,
-      this.textInputAction = TextInputAction.next});
+      this.isPassword,
+      this.autofocus,
+      this.textInputAction});
 
   Widget build(BuildContext context) {
     List<Widget> fieldChildren = [];
+
     if (fieldNameText != null)
       fieldChildren.add(RoofUIFieldLabel(labelText: fieldNameText));
+
     fieldChildren.add(TextFormField(
       autofocus: autofocus,
       obscureText: isPassword,
       textInputAction: textInputAction,
-      key: this.key,
       initialValue: initialValueText,
       decoration: FieldStyle.inputDecorationA(placeholderText: placeholderText),
     ));
@@ -39,4 +40,30 @@ class RoofUITextField extends StatelessWidget {
       ),
     );
   }
+}
+
+class RoofUITextField extends StatefulWidget {
+  final String fieldNameText;
+  final String placeholderText;
+  final String initialValueText;
+  final bool isPassword;
+  final bool autofocus;
+  final TextInputAction textInputAction;
+
+  const RoofUITextField(
+      {this.fieldNameText,
+      this.placeholderText,
+      this.initialValueText,
+      this.isPassword = false,
+      this.autofocus = false,
+      this.textInputAction});
+
+  @override
+  _RoofUITextFieldState createState() => _RoofUITextFieldState(
+      fieldNameText: fieldNameText,
+      placeholderText: placeholderText,
+      initialValueText: initialValueText,
+      isPassword: isPassword,
+      autofocus: autofocus,
+      textInputAction: textInputAction);
 }
