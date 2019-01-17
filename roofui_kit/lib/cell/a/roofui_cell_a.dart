@@ -10,7 +10,7 @@ class RoofUICellA extends StatelessWidget {
   final WeightDecoratedText titleText;
   final String detailText;
   final StandardizedIconReference iconReference;
-  final VoidCallback onPressed;
+  final VoidCallback onTap;
 
   final _horizontalPadding = RoofUIDistance.b;
   final _minHeight = RoofUIDistance.f;
@@ -20,7 +20,7 @@ class RoofUICellA extends StatelessWidget {
       @required this.titleText,
       @required this.iconReference,
       @required this.detailText,
-      this.onPressed})
+      this.onTap})
       : super(key: key);
 
   @override
@@ -28,22 +28,25 @@ class RoofUICellA extends StatelessWidget {
     // Allows a minHeight.
     return ConstrainedBox(
         constraints: BoxConstraints(minHeight: _minHeight),
-        child: Container(
-            // Everything in the cell is relative to the horizontal padding.
-            child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: _horizontalPadding),
+        child: GestureDetector(
+            onTap: this.onTap,
+            child: Container(
+                // Everything in the cell is relative to the horizontal padding.
+                child: Padding(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: _horizontalPadding),
 
-                ///This column contains the body of the cell, and the divider;
-                child: Column(
+                    ///This column contains the body of the cell, and the divider;
+                    child: Column(
 
-                    ///Maximizes space between body and divider
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Body(
-                          iconReference: iconReference,
-                          titleText: titleText,
-                          detailText: detailText),
-                      CellDivider()
-                    ]))));
+                        ///Maximizes space between body and divider
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Body(
+                              iconReference: iconReference,
+                              titleText: titleText,
+                              detailText: detailText),
+                          CellDivider()
+                        ])))));
   }
 }
