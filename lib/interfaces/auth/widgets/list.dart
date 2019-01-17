@@ -6,8 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:roofui_kit/cell/a/index.dart';
 import 'package:roofui_kit/util/roofui_decorated_text.dart';
 import 'package:roof/util/icon_map.dart';
+import 'package:roof/util/bloc_provider.dart';
 
 import '../data/public_activity_data.dart';
+import '../bloc/auth_bloc.dart';
 
 class AuthList extends StatefulWidget {
   @override
@@ -27,25 +29,33 @@ class _AuthListState extends State<AuthList> {
         itemCount: _data.length,
         itemBuilder: (BuildContext context, int index) {
           final dataItem = _data[index];
-          return RoofUICellA(
-              titleText: dataItem.title,
-              detailText: dataItem.description,
-              iconReference: dataItem.iconReference);
+          final AuthBloc authBloc = BlocProvider.of<AuthBloc>(context);
+
+          return StreamBuilder<PublicActivityData>(
+            stream: authBloc.outData,
+            initialData: dataItem,
+            builder: (context, snapshot) {
+              if (!snapshot.hasData) {
+                return Container();
+              }
+
+              return RoofUICellA(
+                  titleText: snapshot.data.title,
+                  detailText: snapshot.data.description,
+                  iconReference: snapshot.data.iconReference);
+            },
+          );
         });
   }
 
   // Function to get the JSON data
   Future fetchData() async {
     // dynamically typed.
-    Activity().request(pageSize: 50).then((response) {
-      final formattedData = _formattedDataFromResponse(response);
-      // Schedules a `build`
-      setState(() {
-        _data = formattedData;
-      });
-    }).catchError((err) {
-      print('No bueno');
-    });
+    final response = await Activity().request(pageSize: 50);
+    final formattedData = _formattedDataFromResponse(response);
+
+    // Schedules a `build`
+    setState(() => _data = formattedData);
   }
 
   List<PublicActivityData> _formattedDataFromResponse(
