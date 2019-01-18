@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'scaffold/index.dart';
+import 'scaffold/roofui_scaffold_a.dart';
 
 void main() {
   runApp(new MaterialApp(

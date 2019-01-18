@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+
 import 'package:roofui_kit/util/roofui_icon_reference.dart';
-import 'package:roofui_kit/navigation/a/index.dart';
+import 'package:roofui_kit/navigation/a/roofui_nav_bar_a.dart';
 
 class RoofUIScaffoldA extends StatelessWidget {
-  final IconReference centerIconReference;
-  final StandardizedIconReference leftIconReference;
-  final StandardizedIconReference rightIconReference;
+  final RoofUINavigationIconReference centerIconReference;
+  final RoofUINavigationIconReference leftIconReference;
+  final RoofUINavigationIconReference rightIconReference;
   final Widget body;
 
   RoofUIScaffoldA(

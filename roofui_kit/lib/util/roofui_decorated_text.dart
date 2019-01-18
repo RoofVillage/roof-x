@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
-class StyleDecoratedText extends _DecoratedText {
+class RoofUIStyleDecoratedText extends _DecoratedText {
   final TextStyle defaultStyle;
 
-  StyleDecoratedText({String text, this.defaultStyle}) : super(text: text);
+  RoofUIStyleDecoratedText({String text, this.defaultStyle})
+      : super(text: text);
 
   addSection({@required String text, TextStyle style}) {
     final section = _StyleTextSection(text: text, style: style ?? defaultStyle);
@@ -22,10 +23,10 @@ class StyleDecoratedText extends _DecoratedText {
   }
 }
 
-class WeightDecoratedText extends _DecoratedText {
+class RoofUIWeightDecoratedText extends _DecoratedText {
   final TextStyle thinStyle;
 
-  WeightDecoratedText({String text, this.thinStyle}) : super(text: text);
+  RoofUIWeightDecoratedText({String text, this.thinStyle}) : super(text: text);
 
   addSection({@required String text, bool thin = false}) {
     final section = _WeightTextSection(text: text, thin: thin);

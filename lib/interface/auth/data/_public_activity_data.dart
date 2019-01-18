@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
+
 import 'package:roofui_kit/util/roofui_decorated_text.dart';
 import 'package:roofui_kit/util/roofui_icon_reference.dart';
+import 'package:roofui_kit/stream/roofui_streamable_data.dart';
 
-abstract class Streamable {
-  final String id = "";
-}
-
-class PublicActivityData implements Streamable {
-  final String id;
-  final WeightDecoratedText title;
+class PublicActivityData implements RoofUIStreamableData {
+  String id;
+  final RoofUIWeightDecoratedText title;
   final String description;
-  final StandardizedIconReference iconReference;
+  final RoofUISmallIconReference iconReference;
 
   PublicActivityData(
-      {@required this.id,
+      {this.id,
       @required this.title,
       @required this.description,
       @required this.iconReference});

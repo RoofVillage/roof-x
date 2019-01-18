@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_svg/flutter_svg.dart';
+
 import 'package:roofui_kit/util/roofui_color.dart';
 import 'package:roofui_kit/util/roofui_icon_reference.dart';
 
 class NavCenterIcon extends StatelessWidget {
-  final IconReference iconReference;
+  final RoofUIIconReference iconReference;
 
   NavCenterIcon({Key key, this.iconReference}) : super(key: key);
 

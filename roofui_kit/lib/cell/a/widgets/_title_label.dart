@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+
 import 'package:roofui_kit/util/roofui_decorated_text.dart';
 import 'package:roofui_kit/util/roofui_color.dart';
 import 'package:roofui_kit/util/roofui_font_weight.dart';
 import 'package:roofui_kit/util/roofui_font_size.dart';
 
 class TitleLabel extends StatelessWidget {
-  final WeightDecoratedText decoratedText;
+  final RoofUIWeightDecoratedText decoratedText;
 
   final _defaultStyle = const TextStyle(
       color: RoofUIColor.neutralColorG,

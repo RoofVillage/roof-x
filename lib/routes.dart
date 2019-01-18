@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'interfaces/auth/index.dart';
+import 'interface/auth/auth.dart';
 
 class Routes {
   Routes() {

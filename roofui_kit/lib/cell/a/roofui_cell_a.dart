@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+
 import 'package:roofui_kit/util/roofui_distance.dart';
 import 'package:roofui_kit/util/roofui_decorated_text.dart';
 import 'package:roofui_kit/util/roofui_icon_reference.dart';
 
-import 'widgets/body.dart';
-import 'widgets/divider.dart';
+import './widgets/_body.dart';
+import './widgets/_divider.dart';
 
 class RoofUICellA extends StatelessWidget {
-  final WeightDecoratedText titleText;
+  final RoofUIWeightDecoratedText titleText;
   final String detailText;
-  final StandardizedIconReference iconReference;
+  final RoofUISmallIconReference iconReference;
   final VoidCallback onTap;
 
   final _horizontalPadding = RoofUIDistance.b;

@@ -2,14 +2,10 @@ import 'package:roofui_kit/util/roofui_icon_reference.dart';
 
 class StandardizedIconMap {
   static final cashSack =
-      StandardizedIconReference(path: 'images/cash_sack.svg');
-  static final balances =
-      StandardizedIconReference(path: 'images/balances.svg');
-  static final action = StandardizedIconReference(path: 'images/action.svg');
-  static final info = StandardizedIconReference(path: 'images/info.svg');
-}
-
-class CustomIconMap {
-  static final IconReference logoFull =
-      IconReference(path: 'images/logo_full.svg', height: 32, width: 67);
+      RoofUISmallIconReference(path: 'images/cash_sack.svg');
+  static final balances = RoofUISmallIconReference(path: 'images/balances.svg');
+  static final action = RoofUISmallIconReference(path: 'images/action.svg');
+  static final info = RoofUINavigationIconReference(path: 'images/info.svg');
+  static final logoFull = RoofUINavigationIconReference(
+      path: 'images/logo_full.svg', customWidth: 67);
 }

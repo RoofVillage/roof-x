@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+
 import 'package:roofui_kit/util/roofui_distance.dart';
-import 'package:roofui_kit/icon/index.dart';
+import 'package:roofui_kit/icon/roofui_standardized_icon.dart';
 import 'package:roofui_kit/util/roofui_decorated_text.dart';
 import 'package:roofui_kit/util/roofui_icon_reference.dart';
 
-import 'title_label.dart';
-import 'detail_label.dart';
+import './_title_label.dart';
+import './_detail_label.dart';
 
 class Body extends StatelessWidget {
-  final WeightDecoratedText titleText;
+  final RoofUIWeightDecoratedText titleText;
   final String detailText;
-  final StandardizedIconReference iconReference;
+  final RoofUISmallIconReference iconReference;
 
   final _verticalPadding = RoofUIDistance.b;
   final _imagePaddingRight = RoofUIDistance.b;

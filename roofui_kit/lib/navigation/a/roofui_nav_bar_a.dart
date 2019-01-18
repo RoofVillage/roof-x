@@ -1,17 +1,18 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+
 import 'package:roofui_kit/util/roofui_color.dart';
 import 'package:roofui_kit/util/roofui_icon_reference.dart';
 import 'package:roofui_kit/util/roofui_distance.dart';
-import 'package:roofui_kit/icon/index.dart';
+import 'package:roofui_kit/icon/roofui_standardized_icon.dart';
 
-import 'widgets/center_icon.dart';
+import './widgets/_center_icon.dart';
 
 class RoofUINavBarA extends StatelessWidget {
-  final IconReference centerIconReference;
-  final StandardizedIconReference leftIconReference;
-  final StandardizedIconReference rightIconReference;
+  final RoofUINavigationIconReference centerIconReference;
+  final RoofUINavigationIconReference leftIconReference;
+  final RoofUINavigationIconReference rightIconReference;
 
   final double _heightRatioToDevice = 0.5 * 0.25;
   final double _minHeight = RoofUIDistance.g;
@@ -51,13 +52,16 @@ class RoofUINavBarA extends StatelessWidget {
   }
 
   List<Widget> _relevantElements() {
+    final blank = RoofUINavigationIconReference(path: "images/blank.svg");
+
     List<Widget> list = [
-      RoofUIStandardizedIcon(iconReference: leftIconReference)
+      RoofUIStandardizedIcon(iconReference: leftIconReference ?? blank)
     ];
     if (centerIconReference != null) {
       list.add(NavCenterIcon(iconReference: centerIconReference));
     }
-    list.add(RoofUIStandardizedIcon(iconReference: rightIconReference));
+    list.add(
+        RoofUIStandardizedIcon(iconReference: rightIconReference ?? blank));
     return list;
   }
 }
