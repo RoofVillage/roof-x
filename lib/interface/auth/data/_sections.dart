@@ -36,14 +36,10 @@ final Map<Section, RoofUIStreamableSectionData> sectionDataMap = {
   Section.maintenance: _maintenanceSectionData
 };
 
-enum Section implements iii {
+enum Section {
   completions,
   expenses,
   transfers,
   landlordTransfers,
   maintenance
-}
-
-class iii<T> {
-  List<T> values;
 }

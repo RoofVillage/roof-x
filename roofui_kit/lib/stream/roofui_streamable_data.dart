@@ -65,7 +65,8 @@ class RoofUIStreamableTableData extends RoofUIStreamableData {
     _sortWithRowData(rowData);
   }
 
-  void replaceLocation(TableLocation location, RoofUIStreamableData rowData) {
+  void replaceTableLocation(
+      TableLocation location, RoofUIStreamableData rowData) {
     final sectionData = this.sectionData[location.sectionIndex];
     sectionData.replaceIndex(location.rowIndex, rowData);
   }
@@ -77,7 +78,7 @@ class RoofUIStreamableTableData extends RoofUIStreamableData {
     sectionData.addRowData(rowData);
   }
 
-  void removeAtLocation(TableLocation location) {
+  void removeAtTableLocation(TableLocation location) {
     final sectionData = this.sectionData[location.sectionIndex];
     sectionData.removeRowDataAtIndex(location.rowIndex);
   }
@@ -112,7 +113,7 @@ class RoofUIStreamableTableData extends RoofUIStreamableData {
     sectionData.forEach((sectionData) => sectionData.sort());
   }
 
-  TableLocation locationOfRowData(RoofUIStreamableData rowData) {
+  TableLocation tableLocationOfRowData(RoofUIStreamableData rowData) {
     for (int i = 0; i < sectionData.length; i++) {
       final sectionData = this.sectionData[i];
       final dataIndex = sectionData.indexOfRowData(rowData);

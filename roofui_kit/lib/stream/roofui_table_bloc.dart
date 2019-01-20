@@ -43,21 +43,21 @@ class RoofUITableBloc implements RoofUIBlocBase {
 
   void updateRowData(List<RoofUIStreamableData> rowData) {
     //Store locations before sorting.
-    final Map<String, TableLocation> originalLocations = {};
+    final Map<String, TableLocation> originalTableLocations = {};
 
     //Update each rowData.
     rowData.forEach((data) {
       //Find where the row currently is in the table.
-      final originalLocation = _tableData.locationOfRowData(data);
+      final originalLocation = _tableData.tableLocationOfRowData(data);
 
       //If the location cant be found, exit gracefully.
       if (originalLocation == null) return;
 
       //Replace the old occurance of the data with the new version.
-      _tableData.replaceLocation(originalLocation, data);
+      _tableData.replaceTableLocation(originalLocation, data);
 
       //Save the original location.
-      originalLocations[data.id] = originalLocation;
+      originalTableLocations[data.id] = originalLocation;
     });
 
     //The correct order might have changed so sort again.
@@ -65,33 +65,35 @@ class RoofUITableBloc implements RoofUIBlocBase {
 
     //Only update the rows or sections that changed.
     final List<int> sectionIndexesToUpdate = [];
-    final List<TableLocation> locationsToUpdate = [];
+    final List<TableLocation> tableLocationsToUpdate = [];
     rowData.forEach((data) {
       //Find where the new location of the data is.
-      final newLocation = _tableData.locationOfRowData(data);
-      final originalLocation = originalLocations[data.id];
+      final newTableLocation = _tableData.tableLocationOfRowData(data);
+      final originalTableLocation = originalTableLocations[data.id];
 
       //If the data's section changed, both sections need updating.
-      if (originalLocation.sectionIndex != newLocation.sectionIndex) {
-        sectionIndexesToUpdate
-            .addAll([originalLocation.sectionIndex, newLocation.sectionIndex]);
+      if (originalTableLocation.sectionIndex != newTableLocation.sectionIndex) {
+        sectionIndexesToUpdate.addAll([
+          originalTableLocation.sectionIndex,
+          newTableLocation.sectionIndex
+        ]);
       }
 
       //If the data's section didn't change but the row did, the section needs updating.
-      else if (originalLocation.rowIndex != newLocation.rowIndex) {
-        sectionIndexesToUpdate.add(newLocation.rowIndex);
+      else if (originalTableLocation.rowIndex != newTableLocation.rowIndex) {
+        sectionIndexesToUpdate.add(newTableLocation.rowIndex);
       }
 
       //If the data's section nor row changed, the row needs updating.
       else {
-        locationsToUpdate.add(newLocation);
+        tableLocationsToUpdate.add(newTableLocation);
       }
     });
 
     _postDataToSectionIndexes(sectionIndexesToUpdate);
 
     //Post messages to rows. Convert to set to remove duplicated.
-    locationsToUpdate.toSet().forEach((location) {
+    tableLocationsToUpdate.toSet().forEach((location) {
       //Dont notify the row if the section has already been notified.
       if (sectionIndexesToUpdate.contains(location.sectionIndex)) return;
       final rowData = _tableData.rowDataAt(location);
@@ -113,7 +115,7 @@ class RoofUITableBloc implements RoofUIBlocBase {
     final List<int> sectionIndexesToUpdate = [];
     rowData.forEach((data) {
       //Find where the new location of the data is.
-      final newLocation = _tableData.locationOfRowData(data);
+      final newLocation = _tableData.tableLocationOfRowData(data);
       sectionIndexesToUpdate.add(newLocation.sectionIndex);
     });
 
@@ -124,13 +126,13 @@ class RoofUITableBloc implements RoofUIBlocBase {
     //Remove each rowData from the table.
     rowData.forEach((data) {
       //Get the location of the row being removed
-      final location = _tableData.locationOfRowData(data);
+      final location = _tableData.tableLocationOfRowData(data);
 
       //If the location cant be found, exit gracefully;
       if (location == null) return;
 
       //Remove the data.
-      _tableData.removeAtLocation(location);
+      _tableData.removeAtTableLocation(location);
 
       //Mark the row as hidden.
       data.hidden = true;
