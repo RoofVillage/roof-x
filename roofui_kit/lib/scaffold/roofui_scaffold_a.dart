@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 
-import 'package:roofui_kit/util/roofui_icon_reference.dart';
+import 'package:roofui_kit/util/roofui_asset_reference.dart';
 import 'package:roofui_kit/navigation/a/roofui_nav_bar_a.dart';
 
 class RoofUIScaffoldA extends StatelessWidget {
-  final RoofUINavigationIconReference centerIconReference;
-  final RoofUINavigationIconReference leftIconReference;
-  final RoofUINavigationIconReference rightIconReference;
+  final RoofUINavigationAssetReference centerAssetReference;
+  final RoofUINavigationAssetReference leftAssetReference;
+  final RoofUINavigationAssetReference rightAssetReference;
   final Widget body;
 
   RoofUIScaffoldA(
       {Key key,
       this.body,
-      this.centerIconReference,
-      this.leftIconReference,
-      this.rightIconReference})
+      this.centerAssetReference,
+      this.leftAssetReference,
+      this.rightAssetReference})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -25,9 +25,9 @@ class RoofUIScaffoldA extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
         RoofUINavBarA(
-            centerIconReference: centerIconReference,
-            leftIconReference: leftIconReference,
-            rightIconReference: rightIconReference),
+            centerAssetReference: centerAssetReference,
+            leftAssetReference: leftAssetReference,
+            rightAssetReference: rightAssetReference),
         Expanded(
             /*
               Wrap in MediaQuery to remove the top padding that the Scaffold will assume is necessary.

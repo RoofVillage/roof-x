@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:roofui_kit/util/roofui_distance.dart';
 import 'package:roofui_kit/icon/roofui_standardized_icon.dart';
 import 'package:roofui_kit/util/roofui_decorated_text.dart';
-import 'package:roofui_kit/util/roofui_icon_reference.dart';
+import 'package:roofui_kit/util/roofui_asset_reference.dart';
 
 import './_title_label.dart';
 import './_detail_label.dart';
@@ -11,7 +11,7 @@ import './_detail_label.dart';
 class Body extends StatelessWidget {
   final RoofUIWeightDecoratedText titleText;
   final String detailText;
-  final RoofUISmallIconReference iconReference;
+  final RoofUISmallAssetReference assetReference;
 
   final _verticalPadding = RoofUIDistance.b;
   final _imagePaddingRight = RoofUIDistance.b;
@@ -20,7 +20,7 @@ class Body extends StatelessWidget {
   Body(
       {Key key,
       @required this.titleText,
-      @required this.iconReference,
+      @required this.assetReference,
       @required this.detailText})
       : super(key: key);
 
@@ -35,7 +35,7 @@ class Body extends StatelessWidget {
             children: <Widget>[
               Container(
                   padding: EdgeInsets.only(right: _imagePaddingRight),
-                  child: RoofUIStandardizedIcon(iconReference: iconReference)),
+                  child: RoofUIStandardizedIcon(assetReference: assetReference)),
 
               ///This child should expand to occupy remaining space.
               Expanded(

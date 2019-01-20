@@ -3,16 +3,16 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 
 import 'package:roofui_kit/util/roofui_color.dart';
-import 'package:roofui_kit/util/roofui_icon_reference.dart';
+import 'package:roofui_kit/util/roofui_asset_reference.dart';
 import 'package:roofui_kit/util/roofui_distance.dart';
 import 'package:roofui_kit/icon/roofui_standardized_icon.dart';
 
-import './widgets/_center_icon.dart';
+import './widget/_center_icon.dart';
 
 class RoofUINavBarA extends StatelessWidget {
-  final RoofUINavigationIconReference centerIconReference;
-  final RoofUINavigationIconReference leftIconReference;
-  final RoofUINavigationIconReference rightIconReference;
+  final RoofUINavigationAssetReference centerAssetReference;
+  final RoofUINavigationAssetReference leftAssetReference;
+  final RoofUINavigationAssetReference rightAssetReference;
 
   final double _heightRatioToDevice = 0.5 * 0.25;
   final double _minHeight = RoofUIDistance.g;
@@ -22,9 +22,9 @@ class RoofUINavBarA extends StatelessWidget {
 
   RoofUINavBarA(
       {Key key,
-      this.centerIconReference,
-      this.leftIconReference,
-      this.rightIconReference})
+      this.centerAssetReference,
+      this.leftAssetReference,
+      this.rightAssetReference})
       : super(key: key);
 
   @override
@@ -52,16 +52,16 @@ class RoofUINavBarA extends StatelessWidget {
   }
 
   List<Widget> _relevantElements() {
-    final blank = RoofUINavigationIconReference(path: "images/blank.svg");
+    final blank = RoofUINavigationAssetReference(path: "images/blank.svg");
 
     List<Widget> list = [
-      RoofUIStandardizedIcon(iconReference: leftIconReference ?? blank)
+      RoofUIStandardizedIcon(assetReference: leftAssetReference ?? blank)
     ];
-    if (centerIconReference != null) {
-      list.add(NavCenterIcon(iconReference: centerIconReference));
+    if (centerAssetReference != null) {
+      list.add(NavCenterIcon(assetReference: centerAssetReference));
     }
     list.add(
-        RoofUIStandardizedIcon(iconReference: rightIconReference ?? blank));
+        RoofUIStandardizedIcon(assetReference: rightAssetReference ?? blank));
     return list;
   }
 }

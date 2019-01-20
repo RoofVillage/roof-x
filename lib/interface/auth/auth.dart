@@ -5,7 +5,7 @@ import 'package:roofui_kit/stream/roofui_bloc_provider.dart';
 
 import 'package:roof/util/icon_map.dart';
 
-import './widgets/_list.dart';
+import './widget/_list.dart';
 import './bloc/_auth_bloc.dart';
 
 // Create a stateful widget
@@ -16,7 +16,7 @@ class Auth extends StatelessWidget {
           bloc: AuthBloc(),
           child: AuthList(),
         ),
-        centerIconReference: StandardizedIconMap.logoFull,
-        rightIconReference: StandardizedIconMap.info);
+        centerAssetReference: StandardizedIconMap.logoFull,
+        rightAssetReference: StandardizedIconMap.info);
   }
 }

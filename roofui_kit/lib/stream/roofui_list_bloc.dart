@@ -8,12 +8,10 @@ class RoofUIListBloc implements RoofUIBlocBase {
   List<RoofUIStreamableData> _list;
 
   //The stream responsible for communicating changes to the entire list;
-  StreamController<List<RoofUIStreamableData>> _listController =
-      StreamController<List<RoofUIStreamableData>>();
+  final _listController = StreamController<List<RoofUIStreamableData>>();
 
   //The stream responsible for communicating changes to items within the list;
-  StreamController<RoofUIStreamableData> _updateController =
-      StreamController<RoofUIStreamableData>.broadcast();
+  final _updateController = StreamController<RoofUIStreamableData>.broadcast();
 
   //Set the lists first value.
   set initialList(List<RoofUIStreamableData> initialList) {
@@ -32,26 +30,50 @@ class RoofUIListBloc implements RoofUIBlocBase {
     _init();
   }
 
-  _init() async {
-    await populateInitialList();
+  Future<List<RoofUIStreamableData>> createList() async {
+    return [];
+  }
+
+  void updateData(RoofUIStreamableData data) {
+    final dataIndex = _indexOfDataWithId(data.id);
+    if (dataIndex == -1) return;
+
+    _list.replaceRange(dataIndex, dataIndex + 1, [data]);
+    _inData.add(data);
+  }
+
+  void insertData(RoofUIStreamableData data) {
+    _list.add(data);
+    _inData.add(data);
+  }
+
+  void removeData(RoofUIStreamableData data) {
+    final dataIndex = _indexOfDataWithId(data.id);
+    if (dataIndex == -1) return;
+
+    _list.removeAt(dataIndex);
+    data.hidden = true;
+    _inData.add(data);
+  }
+
+  ///Pass in the data that needs to be updated in the list.
+  void updateList(List<RoofUIStreamableData> list) {
+    _list = list;
+    _inList.add(list);
   }
 
   @override
-  dispose() {
+  void dispose() {
     _listController.close();
     _updateController.close();
   }
 
-  ///Pass in the data that needs to be updated in the list.
-  updateData(RoofUIStreamableData data) {
-    final oldDataIndex = _list.indexWhere((item) => item.id == data.id);
-    if (oldDataIndex == -1) return;
-
-    _list.replaceRange(oldDataIndex, oldDataIndex + 1, [data]);
-    _inData.add(data);
+  void _init() async {
+    initialList = await createList();
   }
 
-  Future populateInitialList() async {
-    initialList = [];
+  int _indexOfDataWithId(String id) {
+    final dataIndex = _list.indexWhere((item) => item.id == id);
+    return dataIndex;
   }
 }

@@ -19,7 +19,6 @@ dependencies:
     path: roofui_kit
   flutter_redux: ^0.5.2
   http: ^0.12.0
-  flutter_svg: ^0.7.0+1
 
 dev_dependencies:
   flutter_test:
@@ -36,12 +35,12 @@ flutter:
   uses-material-design: true
 
   assets:
-    - images/cash_sack.svg
-    - images/logo_full.svg
-    - images/action.svg
-    - images/balances.svg
-    - images/info.svg
-    - images/blank.svg
+    - assets/cash_sack.svg
+    - assets/logo_full.svg
+    - assets/action.svg
+    - assets/balances.svg
+    - assets/info.svg
+    - assets/blank.svg
 
   fonts:
     - family: Azo

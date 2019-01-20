@@ -2,27 +2,42 @@ import 'dart:async';
 
 import 'package:roofui_kit/util/roofui_decorated_text.dart';
 
-import 'package:roofui_kit/stream/roofui_list_bloc.dart';
+import 'package:roofui_kit/stream/roofui_table_bloc.dart';
+import 'package:roofui_kit/stream/roofui_streamable_data.dart';
 
 import 'package:roof/service/public/activity.dart';
 import 'package:roof/util/static_key.dart';
 import 'package:roof/util/icon_map.dart';
 
 import '../data/_public_activity_data.dart';
+import '../data/_sections.dart';
 
-class AuthBloc extends RoofUIListBloc {
+class AuthBloc extends RoofUITableBloc {
   @override
-  Future populateInitialList() async {
-    final response = await Activity().request(pageSize: 20);
-    final formattedData = _formattedDataFromResponse(response);
-    initialList = formattedData;
+  Future<RoofUIStreamableTableData> createTableData() async {
+    //Grab public activity from the server.
+    final response = await Activity().request(pageSize: 50);
+
+    //Format it the activity into streamable data.
+    final streamableData = _streamableDataFromResponse(response);
+
+    ///Make table data;
+    final tableData = RoofUIStreamableTableData(sectionData: [
+      sectionDataMap[Section.completions],
+      sectionDataMap[Section.expenses],
+      sectionDataMap[Section.transfers],
+      sectionDataMap[Section.landlordTransfers],
+      sectionDataMap[Section.maintenance]
+    ], rowData: streamableData);
+
+    return tableData;
   }
 
-  List<PublicActivityData> _formattedDataFromResponse(
+  List<PublicActivityData> _streamableDataFromResponse(
       Map<String, Object> response) {
     final List publicActivity = response[StaticKey.publicActivity];
 
-    return publicActivity.map((json) {
+    final data = publicActivity.map((json) {
       switch (json[StaticKey.activityType]) {
         case StaticKey.completion:
           return _dataForCompletion(json);
@@ -36,6 +51,8 @@ class AuthBloc extends RoofUIListBloc {
           return _dataForMaintenance(json);
       }
     }).toList();
+
+    return data;
   }
 
   PublicActivityData _dataForCompletion(Map<String, Object> json) {
@@ -55,7 +72,8 @@ class AuthBloc extends RoofUIListBloc {
     return PublicActivityData(
         title: decoratedTitle,
         description: note,
-        iconReference: StandardizedIconMap.action);
+        assetReference: StandardizedIconMap.action,
+        type: PublicActivityType.completion);
   }
 
   PublicActivityData _dataForExpense(Map<String, Object> json) {
@@ -72,7 +90,8 @@ class AuthBloc extends RoofUIListBloc {
     return PublicActivityData(
         title: decoratedTitle,
         description: note,
-        iconReference: StandardizedIconMap.balances);
+        assetReference: StandardizedIconMap.balances,
+        type: PublicActivityType.expense);
   }
 
   PublicActivityData _dataForTransfer(Map<String, Object> json) {
@@ -92,7 +111,8 @@ class AuthBloc extends RoofUIListBloc {
     return PublicActivityData(
         title: decoratedTitle,
         description: note,
-        iconReference: StandardizedIconMap.cashSack);
+        assetReference: StandardizedIconMap.cashSack,
+        type: PublicActivityType.transfer);
   }
 
   PublicActivityData _dataForLandlordTransfer(Map<String, Object> json) {
@@ -115,7 +135,8 @@ class AuthBloc extends RoofUIListBloc {
     return PublicActivityData(
         title: decoratedTitle,
         description: note,
-        iconReference: StandardizedIconMap.cashSack);
+        assetReference: StandardizedIconMap.cashSack,
+        type: PublicActivityType.landlordTransfer);
   }
 
   PublicActivityData _dataForMaintenance(Map<String, Object> json) {
@@ -135,6 +156,7 @@ class AuthBloc extends RoofUIListBloc {
     return PublicActivityData(
         title: decoratedTitle,
         description: note,
-        iconReference: StandardizedIconMap.action);
+        assetReference: StandardizedIconMap.action,
+        type: PublicActivityType.maintenance);
   }
 }

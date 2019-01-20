@@ -16,6 +16,8 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_svg: ^0.7.0+1
+  flutter_collection: ^1.14.11
+  uuid: ^1.0.3
 
 dev_dependencies:
   flutter_test:
