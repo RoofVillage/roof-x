@@ -1,10 +1,10 @@
-export './data/index.dart';
+export 'data/index.dart';
 
 import 'dart:async';
-import 'package:stream/bloc_base.dart';
+import 'package:stream/index.dart';
 
-import './data/index.dart';
-import './util/index.dart';
+import 'data/index.dart';
+import 'util/index.dart';
 
 class StreamTableBloc implements BlocBase {
   StreamableTableData _tableData;

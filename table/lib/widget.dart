@@ -1,9 +1,9 @@
-export './data/index.dart';
+export 'data/index.dart';
 
 import 'package:flutter/material.dart';
-import 'package:stream/bloc_provider.dart';
+import 'package:stream/index.dart';
 
-import './bloc.dart';
+import 'bloc.dart';
 
 abstract class StreamTable<
     T extends StreamTableBloc,
