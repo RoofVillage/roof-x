@@ -7,20 +7,20 @@
 
 // import './../../widget/form.dart';
 
-// class SignUp extends StatelessWidget with RForm<RoofUIFormFieldData> {
+// class SignUp extends StatelessWidget with RForm<RoofFormFieldData> {
 //   Widget build(BuildContext context) {
-//     return RoofUIForm<SignupBloc, RoofUIFormFieldData>(buildItem: buildItem);
+//     return RoofForm<SignupBloc, RoofFormFieldData>(buildItem: buildItem);
 //   }
 // }
 
 // ////temp
-// class RoofUIFormA extends StatelessWidget {
+// class RoofFormA extends StatelessWidget {
 //   final String title;
 //   final String subtitle;
-//   final List<RoofUIFieldRow> fieldRows;
-//   final List<RoofUIFormButton> buttons;
+//   final List<RoofFieldRow> fieldRows;
+//   final List<RoofFormButton> buttons;
 
-//   RoofUIFormA({this.title, this.subtitle, this.fieldRows, this.buttons});
+//   RoofFormA({this.title, this.subtitle, this.fieldRows, this.buttons});
 
 //   @override
 //   Widget build(BuildContext context) {
@@ -28,20 +28,20 @@
 //   }
 // }
 
-// class RoofUIFormData {
+// class RoofFormData {
 //   String title;
 //   String subtitle;
-//   List<RoofUIFieldRow> fieldRows;
-//   List<RoofUIFormButton> buttons;
+//   List<RoofFieldRow> fieldRows;
+//   List<RoofFormButton> buttons;
 // }
 
-// class RoofUIFieldRow {
-//   RoofUIField fields;
-//   RoofUIFieldRowLayoutType layoutType;
+// class RoofFieldRow {
+//   RoofField fields;
+//   RoofFieldRowLayoutType layoutType;
 // }
 
-// class RoofUIFormButton {}
+// class RoofFormButton {}
 
-// class RoofUIField {}
+// class RoofField {}
 
-// enum RoofUIFieldRowLayoutType { even, weight }
+// enum RoofFieldRowLayoutType { even, weight }

@@ -17,6 +17,12 @@ dependencies:
     path: ./../services
   stream:
     path: ./../stream
+  bottomSheet:
+    path: ./../bottomSheet
+  buttons:
+    path: ./../buttons
+  fields:
+    path: ./../fields
   icon_library:
     path: ./../icon_library
   decorated_text:
