@@ -1,0 +1,19 @@
+name: spec
+description: Roof's visual language and component widgets.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  icon_library:
+    path: ./../icon_library
+  decorated_text:
+    path: ./../decorated_text
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
