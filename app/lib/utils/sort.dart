@@ -1,4 +1,4 @@
-import 'package:table/data/index.dart';
+import 'package:table/index.dart';
 
 class Sort {
   static int revCron(TimeSortableStreamableTableRowData a,

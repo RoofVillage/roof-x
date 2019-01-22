@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:icon_library/index.dart';
 
-import 'package:spec/nav_bars/a/index.dart';
+import 'package:spec/nav_bars/index.dart';
 
 class RoofScaffoldA extends StatelessWidget {
   final NavigationIconReference centerIconReference;

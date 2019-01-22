@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:stream/bloc_provider.dart';
+import 'package:stream/index.dart';
 
-import './_bloc.dart';
-import './_root.dart';
+import '_bloc.dart';
+import '_root.dart';
 
 void main() {
   runApp(MaterialApp(

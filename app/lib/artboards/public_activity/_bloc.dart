@@ -1,11 +1,9 @@
 import 'dart:async';
-
-import 'package:table/bloc.dart';
-
+import 'package:table/index.dart';
 import 'package:decorated_text/index.dart';
-
 import 'package:services/index.dart';
 import 'package:icon_library/index.dart';
+
 import 'package:app/utils/static_key.dart';
 
 import 'data/index.dart';
@@ -21,11 +19,11 @@ class Bloc extends StreamTableBloc {
 
     ///Make table data;
     final tableData = StreamableTableData(sectionData: [
-      sectionDataMap[Section.completions],
-      sectionDataMap[Section.expenses],
-      sectionDataMap[Section.transfers],
-      sectionDataMap[Section.landlordTransfers],
-      sectionDataMap[Section.maintenance]
+      Sections.dataForSection(Section.completions),
+      Sections.dataForSection(Section.expenses),
+      Sections.dataForSection(Section.transfers),
+      Sections.dataForSection(Section.landlordTransfers),
+      Sections.dataForSection(Section.maintenance),
     ], rowData: streamableData);
 
     return tableData;

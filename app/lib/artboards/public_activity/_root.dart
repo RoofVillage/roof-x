@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-
-import 'package:table/widget.dart';
-
-import 'package:spec/cells/a/index.dart';
-import 'package:spec/table_section_headers/a/index.dart';
+import 'package:table/index.dart';
+import 'package:spec/index.dart';
 
 import '_bloc.dart';
 import 'data/index.dart';

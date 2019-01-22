@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:stream/bloc_provider.dart';
+import 'package:stream/index.dart';
 
-import './screens/public_activity/index.dart';
+import './artboards/public_activity/index.dart';
 
-import './_bloc.dart';
-import './data/index.dart';
+import '_bloc.dart';
+import 'data/index.dart';
 
 class Root extends StatelessWidget {
   Widget build(BuildContext context) {

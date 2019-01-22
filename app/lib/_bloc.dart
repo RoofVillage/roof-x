@@ -1,7 +1,8 @@
 import 'dart:async';
-import 'package:stream/bloc_base.dart';
 
-import './data/index.dart';
+import 'package:stream/index.dart';
+
+import 'data/index.dart';
 
 class AppBloc extends BlocBase {
   StreamableAppStateData _appStateData;

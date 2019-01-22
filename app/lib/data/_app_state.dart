@@ -1,4 +1,4 @@
-import 'package:stream/streamable_data.dart';
+import 'package:stream/index.dart';
 
 class StreamableAppStateData extends StreamableData {
   bool isInSession;

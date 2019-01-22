@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-
-import 'package:spec/scaffolds/a/index.dart';
-import 'package:stream/bloc_provider.dart';
-
+import 'package:spec/index.dart';
+import 'package:stream/index.dart';
 import 'package:icon_library/index.dart';
 
 import '_bloc.dart';
