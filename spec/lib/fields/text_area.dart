@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:spec/object_padding.dart';
 import 'package:spec/distance.dart';
 import 'package:spec/fields/widgets/_field_label.dart';
-
 import 'package:spec/color.dart';
 import 'package:spec/corner_radius.dart';
-import 'package:spec/theme.dart';
+import '_composition_field.dart';
 
 class RoofTextArea extends StatelessWidget {
   final String fieldName;
@@ -25,10 +24,8 @@ class RoofTextArea extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Widget> fieldChildren = [];
 
-    if (fieldName != null) {
-      Widget fieldLabel = RoofFieldLabel(labelText: fieldName);
-      fieldChildren.add(fieldLabel);
-    }
+    if (fieldName != null)
+      fieldChildren.add(RoofFieldLabel(labelText: fieldName));
 
     fieldChildren.add(_FieldBody());
 
@@ -40,16 +37,16 @@ class RoofTextArea extends StatelessWidget {
   }
 }
 
-class _FieldBody extends StatelessWidget {
+class _FieldBody extends StatelessWidget with RoofCompositionField {
+  final bool autofocus;
   final String initialValue;
   final TextInputAction textInputAction;
-  final String fieldName;
   final String placeholder;
 
   const _FieldBody(
-      {this.initialValue,
+      {this.autofocus,
+      this.initialValue,
       this.textInputAction,
-      this.fieldName,
       this.placeholder});
 
   @override
@@ -57,23 +54,24 @@ class _FieldBody extends StatelessWidget {
     return Container(
         margin: EdgeInsets.fromLTRB(0, RoofDistance.a, 0, 0),
         child: TextFormField(
+            autofocus: autofocus,
+            initialValue: initialValue,
             textInputAction: textInputAction,
             maxLines: 3,
-            initialValue: initialValue,
-            decoration: _decoration(borderSideColor: RoofColor.neutralColorD)));
+            decoration:
+                _textAreaDecoration(borderSideColor: RoofColor.neutralColorD)));
   }
 
-  InputDecoration _decoration({Color borderSideColor}) {
+  InputDecoration _textAreaDecoration({Color borderSideColor}) {
     return InputDecoration(
-        labelText: fieldName,
         hintText: placeholder,
         border: OutlineInputBorder(),
         enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: borderSideColor),
+            borderSide: enabledBorderSide(),
             borderRadius: BorderRadius.all(RoofCornerRadius.regular)),
         focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: RoofColor.neutralColorF),
+            borderSide: focusedBorderSide(),
             borderRadius: BorderRadius.all(RoofCornerRadius.regular)),
-        hintStyle: TextStyle(color: RoofColor.neutralColorD));
+        hintStyle: hintStyle());
   }
 }
