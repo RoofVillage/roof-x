@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:stream/streamable_data.dart';
 
 import './_section.dart';
@@ -6,12 +7,26 @@ import './_field.dart';
 import './../util/index.dart';
 
 class StreamableFormData extends StreamableData {
-  final List<StreamableFormSectionData> sectionData = [];
+  final List<StreamableFormSectionData> sectionData;
+
+  List<StreamableFormFieldData> get fieldData {
+    return sectionData.expand((sectionData) => sectionData.fieldData);
+  }
+
+  StreamableFormData({this.sectionData});
+
+  StreamableFormData.withFields({List<StreamableFormFieldData> fieldData})
+      : sectionData = [StreamableFormSectionData(fieldData: fieldData)];
 
   void updateField(StreamableFormFieldData fieldData) {
     final formLocation = formLocationOfFieldData(fieldData);
     final sectionData = this.sectionData[formLocation.sectionIndex];
     sectionData.replace(index: formLocation.fieldIndex, fieldData: fieldData);
+  }
+
+  void updateSection(StreamableFormSectionData sectionData) {
+    final sectionIndex = this.sectionData.indexOf(sectionData);
+    _replace(index: sectionIndex, sectionData: sectionData);
   }
 
   void addFieldDataAfter(StreamableFormFieldData fieldData,
@@ -48,5 +63,9 @@ class StreamableFormData extends StreamableData {
       return FormLocation(fieldIndex: fieldIndex, sectionIndex: i);
     }
     return null;
+  }
+
+  void _replace({@required int index, StreamableFormSectionData sectionData}) {
+    this.sectionData.replaceRange(index, index + 1, [sectionData]);
   }
 }

@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:stream/bloc_provider.dart';
 
-import './bloc.dart';
-import './data/index.dart';
+import 'bloc.dart';
+import 'data/index.dart';
 
-abstract class StreamForm<
+abstract class StreamFormWidget<
     T extends StreamFormBloc,
     U extends StreamableFormFieldData,
     V extends StreamableFormSectionHeaderData> extends StatelessWidget {
   Widget build(BuildContext context) {
-    final table = _StreamForm<T>(
+    final form = _StreamForm<T>(
         buildField: buildField, buildSectionHeader: buildSectionHeader);
-    return table;
+    return form;
   }
 
   Widget buildField({U fieldData, int fieldIndex, int sectionIndex}) => null;
@@ -47,36 +47,23 @@ class _StreamForm<T extends StreamFormBloc> extends StatelessWidget {
     //Add each sections that accept streamable updates.
     formData.sectionData
       ..asMap().forEach((index, sectionData) {
-        final shouldShowSectionHeader = sectionData.headerData != null &&
-            sectionData.fieldData.isNotEmpty &&
-            buildSectionHeader != null;
-
-        //Add the header if needed.
-        if (shouldShowSectionHeader) {
-          final sectionHeader = buildSectionHeader(
-              headerData: sectionData.headerData, sectionIndex: index);
-          slivers.add(sectionHeader);
-        }
-
-        final stream =
+        final outSectionStream =
             bloc.outSection.where((data) => data.key == sectionData.key);
 
-        final sectionWidget = StreamBuilder<StreamableFormSectionData>(
-            stream: stream,
-            initialData: sectionData,
-            builder: (context, snapshot) {
-              if (!snapshot.hasData) return Container(child: Text("Doo"));
+        final sectionHeader = _createSectionHeader(
+            outSectionStream: outSectionStream,
+            sectionData: sectionData,
+            sectionIndex: index);
 
-              final section = _createSectionSliver(
-                  bloc: bloc,
-                  context: context,
-                  sectionData: snapshot.data,
-                  sectionIndex: index);
+        slivers.add(sectionHeader);
 
-              return section;
-            });
+        final section = _createSection(
+            bloc: bloc,
+            outSectionStream: outSectionStream,
+            sectionData: sectionData,
+            sectionIndex: index);
 
-        slivers.add(sectionWidget);
+        slivers.add(section);
       });
 
     final form = CustomScrollView(slivers: slivers);
@@ -84,39 +71,99 @@ class _StreamForm<T extends StreamFormBloc> extends StatelessWidget {
     return form;
   }
 
-  Widget _createSectionSliver(
-      {@required T bloc,
-      @required BuildContext context,
+  Widget _createSectionHeader(
+      {@required Stream outSectionStream,
       @required StreamableFormSectionData sectionData,
       @required int sectionIndex}) {
-    final gridDelegate = SliverGridDelegateWithMaxCrossAxisExtent(
-        maxCrossAxisExtent: double.infinity);
+    //Add the header if needed. If the section changes, check to make sure a header is still needed.
+    final sectionHeader = StreamBuilder<StreamableFormSectionData>(
+        stream: outSectionStream,
+        initialData: sectionData,
+        builder: (context, snapshot) {
+          final shouldShowSectionHeader = sectionData.headerData != null &&
+              sectionData.fieldData.isNotEmpty &&
+              buildSectionHeader != null;
 
+          if (!snapshot.hasData || !shouldShowSectionHeader) return _empty();
+
+          final header = buildSectionHeader(
+              headerData: sectionData.headerData, sectionIndex: sectionIndex);
+
+          if (header == null) return _empty();
+
+          return header;
+        });
+    return sectionHeader;
+  }
+
+  Widget _createSection(
+      {@required T bloc,
+      @required Stream outSectionStream,
+      @required StreamableFormSectionData sectionData,
+      @required int sectionIndex}) {
+    final section = StreamBuilder<StreamableFormSectionData>(
+        stream: outSectionStream,
+        initialData: sectionData,
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) return SliverToBoxAdapter();
+
+          final section = _createSectionSliver(
+              bloc: bloc,
+              sectionData: snapshot.data,
+              sectionIndex: sectionIndex);
+
+          return section;
+        });
+
+    return section;
+  }
+
+  Widget _createSectionSliver(
+      {@required T bloc,
+      @required StreamableFormSectionData sectionData,
+      @required int sectionIndex}) {
     final delegate =
         SliverChildBuilderDelegate((BuildContext context, int index) {
-      final initialRowData = sectionData.fieldData[index];
-      final stream =
-          bloc.outField.where((data) => data.key == initialRowData.key);
+      final initialFieldData = sectionData.fieldData[index];
 
-      return StreamBuilder<StreamableFormFieldData>(
-          stream: stream,
-          initialData: initialRowData,
-          builder: (context, snapshot) {
-            if (!snapshot.hasData) return Container(child: Text("Goo"));
-            return buildField(
-                fieldData: snapshot.data,
-                fieldIndex: index,
-                sectionIndex: sectionIndex);
-          });
+      final outFieldStream =
+          bloc.outField.where((data) => data.key == initialFieldData.key);
+
+      final field = _createField(
+          outFieldStream: outFieldStream,
+          fieldData: initialFieldData,
+          fieldIndex: index,
+          sectionIndex: sectionIndex);
+
+      return field;
     }, childCount: sectionData.fieldData.length);
 
-    final sectionSliver = SliverGrid(
-      gridDelegate: gridDelegate,
-      delegate: delegate,
-    );
-
+    final sectionSliver = SliverList(delegate: delegate);
     return sectionSliver;
   }
+
+  Widget _createField(
+      {@required Stream outFieldStream,
+      @required StreamableFormFieldData fieldData,
+      @required int fieldIndex,
+      @required int sectionIndex}) {
+    return StreamBuilder<StreamableFormFieldData>(
+        stream: outFieldStream,
+        initialData: fieldData,
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) return SliverToBoxAdapter();
+          final row = buildField(
+              fieldData: snapshot.data,
+              fieldIndex: fieldIndex,
+              sectionIndex: sectionIndex);
+
+          if (row == null) return _empty();
+
+          return row;
+        });
+  }
+
+  Widget _empty() => SliverToBoxAdapter();
 }
 
 typedef _FieldBuilder = Widget Function(

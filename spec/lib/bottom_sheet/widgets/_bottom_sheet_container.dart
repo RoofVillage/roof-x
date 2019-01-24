@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:spec/object_padding.dart';
-import 'package:spec/corner_radiuses.dart';
+import 'package:spec/corner_radius.dart';
 import 'package:spec/distance.dart';
 import 'package:spec/color.dart';
-import 'package:spec/device_haptics.dart';
+import 'package:spec/device_haptic.dart';
 
-import 'package:spec/bottomSheet/bottom_sheet_route.dart';
-import '_bottom_sheet_content.dart';
+import 'package:spec/bottom_sheet/bottom_sheet_route.dart';
 
 class RoofBottomSheet extends StatelessWidget {
   final List<Widget> content;
@@ -50,8 +48,8 @@ class RoofBottomSheet extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 GestureDetector(
-                    onTap: () =>
-                        Navigator.of(context).push(BottomSheetOverlay(isFirstOverlay: false)),
+                    onTap: () => Navigator.of(context)
+                        .push(BottomSheetOverlay(isFirstOverlay: false)),
                     onVerticalDragStart: (details) => _startDrag(details),
                     onVerticalDragUpdate: (details) =>
                         _monitorDragDown(details),
@@ -71,7 +69,7 @@ class RoofBottomSheet extends StatelessWidget {
                       child: ConstrainedBox(
                         constraints: BoxConstraints(
                             minHeight: 300, minWidth: double.infinity),
-                            // child: RoofBottomSheetContent()
+                        // child: RoofBottomSheetContent()
                       ),
                       // child: Container()
                     ))

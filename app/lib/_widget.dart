@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:stream/index.dart';
+import 'package:spec/theme.dart';
 
 import './artboards/public_activity/index.dart';
 
 import '_bloc.dart';
 import 'data/index.dart';
 
-class Root extends StatelessWidget {
+class RootWidget extends StatelessWidget {
+  Widget build(BuildContext context) {
+    return _Artboard(); //RoofTheme(child: ());
+  }
+}
+
+class _Artboard extends StatelessWidget {
+  @override
   Widget build(BuildContext context) {
     final AppBloc tableBloc = BlocProvider.of<AppBloc>(context);
     return StreamBuilder<StreamableAppStateData>(
@@ -14,6 +22,8 @@ class Root extends StatelessWidget {
         builder: (context, snapshot) {
           if (!snapshot.hasData) return Container();
           final appState = snapshot.data;
+
+          // RoofTheme.of(context).use(appState.theme);
 
           if (appState.isInSession) {
             return PublicActivity();

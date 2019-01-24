@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:spec/field_styles.dart';
 import 'package:spec/object_padding.dart';
 import 'package:spec/color.dart';
-import 'widgets/_animated_switch.dart';
 import 'package:flutter/animation.dart';
-import 'package:spec/device_haptics.dart';
+import 'package:spec/device_haptic.dart';
+import 'package:spec/font_size.dart';
+
+import 'package:spec/distance.dart';
 
 class RoofSwitchField extends StatefulWidget {
   final String title;
@@ -58,12 +59,12 @@ class _RoofSwitchFieldState extends State<RoofSwitchField>
       child: Text(
         title,
         maxLines: labelMaxLines,
-        style: RoofFieldStyle.fieldContentTextStyle(),
+        style: _fieldContentTextStyle(),
       ),
     );
 
     Widget switchButton =
-        RoofAnimatedSwitch(value: value, color: animation.value);
+        _RoofAnimatedSwitch(value: value, color: animation.value);
 
     return GestureDetector(
         onTap: () => _onChanged(),
@@ -72,5 +73,41 @@ class _RoofSwitchFieldState extends State<RoofSwitchField>
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [labelContainer, switchButton])));
+  }
+
+  TextStyle _fieldContentTextStyle() {
+    return TextStyle(
+        fontSize: RoofFontSize.medium, color: RoofColor.neutralColorG);
+  }
+}
+
+class _RoofAnimatedSwitch extends StatelessWidget {
+  final bool value;
+  final Color color;
+
+  _RoofAnimatedSwitch({this.value, this.color});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        width: 52,
+        height: 34,
+        margin: EdgeInsets.fromLTRB(RoofDistance.d, 0, 0, 0),
+        decoration: BoxDecoration(
+            border: Border.all(color: color),
+            borderRadius: BorderRadius.all(Radius.circular(17))),
+        child: Padding(
+            padding: EdgeInsets.all(4.0),
+            child: AnimatedAlign(
+                child: Container(
+                  width: 24,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(12)),
+                    color: color,
+                  ),
+                ),
+                alignment: value ? Alignment(1.0, 0.0) : Alignment(-1.0, 0.0),
+                curve: Curves.easeIn,
+                duration: Duration(milliseconds: 180))));
   }
 }

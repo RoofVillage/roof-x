@@ -5,11 +5,12 @@ import 'package:icon_library/index.dart';
 
 import 'package:spec/color.dart';
 import 'package:spec/distance.dart';
+import 'package:spec/nav_buttons/index.dart';
 
 class RoofNavBarA extends StatelessWidget {
   final NavigationIconReference centerIconReference;
-  final NavigationIconReference leftIconReference;
-  final NavigationIconReference rightIconReference;
+  final RoofNavButton leftButton;
+  final RoofNavButton rightButton;
 
   final double _heightRatioToDevice = 0.5 * 0.25;
   final double _minHeight = RoofDistance.g;
@@ -17,11 +18,8 @@ class RoofNavBarA extends StatelessWidget {
   final _horizontalPadding = RoofDistance.c;
   final _bottomPadding = RoofDistance.c;
 
-  RoofNavBarA(
-      {Key key,
-      this.centerIconReference,
-      this.leftIconReference,
-      this.rightIconReference})
+  const RoofNavBarA(
+      {Key key, this.centerIconReference, this.leftButton, this.rightButton})
       : super(key: key);
 
   @override
@@ -32,25 +30,22 @@ class RoofNavBarA extends StatelessWidget {
         padding: EdgeInsets.fromLTRB(
             _horizontalPadding, 0, _horizontalPadding, _bottomPadding),
         decoration: BoxDecoration(color: _backgroundColor),
-        child: _IconRow(
+        child: _ItemRow(
             centerIconReference: centerIconReference,
-            leftIconReference: leftIconReference,
-            rightIconReference: rightIconReference));
+            leftButton: leftButton,
+            rightButton: rightButton));
   }
 }
 
-class _IconRow extends StatelessWidget {
+class _ItemRow extends StatelessWidget {
   final NavigationIconReference centerIconReference;
-  final NavigationIconReference leftIconReference;
-  final NavigationIconReference rightIconReference;
+  final RoofNavButton leftButton;
+  final RoofNavButton rightButton;
 
   final _iconColor = RoofColor.neutralColorG;
 
-  _IconRow(
-      {Key key,
-      this.centerIconReference,
-      this.leftIconReference,
-      this.rightIconReference})
+  _ItemRow(
+      {Key key, this.centerIconReference, this.leftButton, this.rightButton})
       : super(key: key);
 
   @override
@@ -70,15 +65,11 @@ class _IconRow extends StatelessWidget {
   }
 
   List<Widget> _relevantElements() {
-    final blank = NavigationIconReference();
-
-    List<Widget> list = [
-      (leftIconReference ?? blank).buildSvg(color: _iconColor)
-    ];
+    List<Widget> list = [leftButton];
     if (centerIconReference != null) {
       list.add(centerIconReference.buildSvg(color: _iconColor));
     }
-    list.add((rightIconReference ?? blank).buildSvg(color: _iconColor));
+    list.add(rightButton);
     return list;
   }
 }

@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:stream/bloc_base.dart';
 
-import './data/index.dart';
+import 'data/index.dart';
 
 class StreamFormBloc extends BlocBase {
   StreamableFormData _formData;
@@ -17,9 +17,16 @@ class StreamFormBloc extends BlocBase {
   final _fieldController =
       StreamController<StreamableFormFieldData>.broadcast();
 
+  //The stream responsible for communicating changes to field values within the form;
+  final _fieldValueController =
+      StreamController<StreamableFormFieldValueData>.broadcast();
+
   //Set the form first value.
   set _initialFormData(StreamableFormData initialFormData) {
     if (_formData != null) return;
+
+    _addValueChangedStreamToForm(initialFormData);
+
     _formData = initialFormData;
     _inForm.add(_formData);
   }
@@ -33,6 +40,11 @@ class StreamFormBloc extends BlocBase {
   Sink<StreamableFormFieldData> get _inField => _fieldController.sink;
   Stream<StreamableFormFieldData> get outField => _fieldController.stream;
 
+  Sink<StreamableFormFieldValueData> get _inFieldValue =>
+      _fieldValueController.sink;
+  Stream<StreamableFormFieldValueData> get _outFieldValue =>
+      _fieldValueController.stream;
+
   StreamFormBloc() {
     _init();
   }
@@ -42,9 +54,17 @@ class StreamFormBloc extends BlocBase {
     return StreamableFormData();
   }
 
+  //Override to handle field changes;
+  void fieldChanged(String fieldKey, dynamic oldValue, dynamic newValue) {}
+
   void toggleFieldDataVisibility(StreamableFormFieldData fieldData) {
     fieldData.hidden = !fieldData.hidden;
     updateFieldData(fieldData);
+  }
+
+  void toggleSectionDataVisibility(StreamableFormSectionData sectionData) {
+    sectionData.hidden = !sectionData.hidden;
+    updateSectionData(sectionData);
   }
 
   void updateFieldData(StreamableFormFieldData fieldData) {
@@ -52,8 +72,15 @@ class StreamFormBloc extends BlocBase {
     _inField.add(fieldData);
   }
 
+  void updateSectionData(StreamableFormSectionData sectionData) {
+    _formData.updateSection(sectionData);
+    _inSection.add(sectionData);
+  }
+
   void insertFieldDataAfter(StreamableFormFieldData fieldData,
       StreamableFormFieldData afterFieldData) {
+    _addValueChangedStreamToField(fieldData);
+
     //Add the fieldData to the form.
     _formData.addFieldDataAfter(fieldData, afterFieldData);
 
@@ -65,6 +92,8 @@ class StreamFormBloc extends BlocBase {
 
   void insertFieldDataBefore(StreamableFormFieldData fieldData,
       StreamableFormFieldData beforeFieldData) {
+    _addValueChangedStreamToField(fieldData);
+
     //Add the fieldData to the form.
     _formData.addFieldDataBefore(fieldData, beforeFieldData);
 
@@ -96,10 +125,32 @@ class StreamFormBloc extends BlocBase {
     _formController.close();
     _sectionController.close();
     _fieldController.close();
+    _fieldValueController.close();
   }
 
   void _init() async {
     _initialFormData = await createFormData();
+  }
+
+  void _addValueChangedStreamToForm(StreamableFormData formData) {
+    _addValueChangedStreamToFields(formData.fieldData);
+  }
+
+  void _addValueChangedStreamToField(StreamableFormFieldData fieldData) {
+    _addValueChangedStreamToFields([fieldData]);
+  }
+
+  void _addValueChangedStreamToFields(List<StreamableFormFieldData> fieldData) {
+    fieldData.forEach((fieldData) {
+      fieldData.onChanged = (newValue) {
+        final fieldValueData = StreamableFormFieldValueData(
+            fieldKey: fieldData.key, value: newValue);
+        _inFieldValue.add(fieldValueData);
+      };
+      _outFieldValue
+          .where((valueData) => valueData.fieldKey == fieldData.key)
+          .listen((valueData) => fieldData.value = valueData.value);
+    });
   }
 
   // void _postDataForChangeAtLocation(FormLocation formLocation) {

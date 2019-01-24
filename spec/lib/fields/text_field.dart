@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:spec/field_styles.dart';
-import 'package:spec/object_padding.dart';
-import 'package:spec/distance.dart';
 import 'package:spec/fields/widgets/_field_label.dart';
+import 'package:spec/object_padding.dart';
 
-class RoofTextArea extends StatelessWidget {
+import '_composition_field.dart';
+
+class RoofTextField extends StatelessWidget with RoofCompositionField {
   final String fieldName;
   final String placeholder;
   final String initialValue;
+  final bool isPassword;
   final bool autofocus;
   final TextInputAction textInputAction;
 
-  const RoofTextArea(
+  RoofTextField(
       {this.fieldName,
       this.placeholder,
       this.initialValue,
+      this.isPassword = false,
       this.autofocus = false,
       this.textInputAction});
 
@@ -22,20 +24,21 @@ class RoofTextArea extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Widget> fieldChildren = [];
 
+    String passwordPlaceholder =
+        (placeholder == null && isPassword) ? "••••••••" : placeholder;
+
     if (fieldName != null) {
       Widget fieldLabel = RoofFieldLabel(labelText: fieldName);
       fieldChildren.add(fieldLabel);
     }
 
-    Widget fieldBody = Container(
-        margin: EdgeInsets.fromLTRB(0, RoofDistance.a, 0, 0),
-        child: TextFormField(
-          textInputAction: textInputAction,
-          maxLines: 3,
-          initialValue: initialValue,
-          decoration:
-              RoofFieldStyle.textAreaDecoration(placeholder: placeholder),
-        ));
+    Widget fieldBody = TextFormField(
+      autofocus: autofocus,
+      obscureText: isPassword,
+      textInputAction: textInputAction,
+      initialValue: initialValue,
+      decoration: decoration(placeholder: passwordPlaceholder ?? placeholder),
+    );
 
     fieldChildren.add(fieldBody);
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:spec/object_padding.dart';
-import 'package:spec/fields/switch/index.dart';
+import 'package:spec/fields/switch_field.dart';
 
 class RoofBottomSheetContent extends StatelessWidget {
   final void scrollListener;
@@ -16,13 +16,13 @@ class RoofBottomSheetContent extends StatelessWidget {
             shrinkWrap: true,
             padding: RoofObjectPadding.containerPaddingA(),
             children: <Widget>[
-              RoofSwitchField(
-                title: "Here's a switch field",
-              ),
-              // RoofTextField(
-              //   fieldName: "Some text",
-              //   placeholder: "Placeholder",
-              // )
-            ]));
+          RoofSwitchField(
+            title: "Here's a switch field",
+          ),
+          // RoofTextField(
+          //   fieldName: "Some text",
+          //   placeholder: "Placeholder",
+          // )
+        ]));
   }
 }

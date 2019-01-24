@@ -5,7 +5,7 @@ import 'package:spec/index.dart';
 import '_bloc.dart';
 import 'data/index.dart';
 
-class Root extends StreamTable<Bloc, PublicActivityData,
+class RootWidget extends StreamTableWidget<Bloc, PublicActivityData,
     StreamableTableSectionHeaderData, StreamableTableHeaderData> {
   @override
   Widget buildRow(

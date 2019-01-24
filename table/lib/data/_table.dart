@@ -15,6 +15,10 @@ class StreamableTableData extends StreamableData {
   //Sections should never be changed or removed.
   final List<StreamableTableSectionData> sectionData;
 
+  List<StreamableTableRowData> get _rowData {
+    return sectionData.expand((sectionData) => sectionData.rowData);
+  }
+
   StreamableTableData(
       {this.headerData,
       this.sectionData,
@@ -49,9 +53,7 @@ class StreamableTableData extends StreamableData {
   }
 
   void sort() {
-    //Dump all rows from all sections into a list.
-    final rowData = sectionData.expand((sectionData) => sectionData.rowData);
-    _sortWithRowData(rowData);
+    _sortWithRowData(_rowData);
   }
 
   void _sortWithRowData(List<StreamableTableRowData> rowData) {

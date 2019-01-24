@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:spec/color.dart';
-import 'package:spec/corner_radiuses.dart';
+import 'package:spec/corner_radius.dart';
 import 'package:spec/object_padding.dart';
 import 'package:spec/font_size.dart';
 import 'package:spec/distance.dart';
 import 'package:spec/font_weight.dart';
-import 'package:spec/device_haptics.dart';
+import 'package:spec/device_haptic.dart';
 
-import 'package:spec/bottomSheet/bottom_sheet_route.dart';
+import 'package:spec/bottom_sheet/bottom_sheet_route.dart';
+
 // import 'package:roof/routes.dart';
 
 class RoofButtonA extends StatefulWidget {

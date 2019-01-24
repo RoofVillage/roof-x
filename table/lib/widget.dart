@@ -5,7 +5,7 @@ import 'package:stream/index.dart';
 
 import 'bloc.dart';
 
-abstract class StreamTable<
+abstract class StreamTableWidget<
     T extends StreamTableBloc,
     U extends StreamableTableRowData,
     V extends StreamableTableSectionHeaderData,

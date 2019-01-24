@@ -1,5 +1,5 @@
-name: form
-description: Form tools.
+name: roof_form
+description: Roof's form tools.
 
 version: 1.0.0+1
 
@@ -9,8 +9,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  stream:
-    path: ./../stream
+  spec:
+    path: ./../spec
+  form:
+    path: ./../form
 
 dev_dependencies:
   flutter_test:
