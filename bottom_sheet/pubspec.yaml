@@ -1,0 +1,17 @@
+name: bottom_sheet
+description: Animated overlay sheet.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  spec:
+    path: ./../spec
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
