@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:spec/fields/widgets/_field_label.dart';
 import 'package:spec/object_padding.dart';
-
 import '_composition_field.dart';
 
 class RoofTextField extends StatelessWidget with RoofCompositionField {
@@ -24,28 +23,58 @@ class RoofTextField extends StatelessWidget with RoofCompositionField {
   Widget build(BuildContext context) {
     List<Widget> fieldChildren = [];
 
-    String passwordPlaceholder =
+    String formattedPlaceholder =
         (placeholder == null && isPassword) ? "••••••••" : placeholder;
 
-    if (fieldName != null) {
-      Widget fieldLabel = RoofFieldLabel(labelText: fieldName);
-      fieldChildren.add(fieldLabel);
-    }
+    if (fieldName != null)
+      fieldChildren.add(RoofFieldLabel(labelText: fieldName));
 
-    Widget fieldBody = TextFormField(
+    fieldChildren.add(_FieldBody(
       autofocus: autofocus,
-      obscureText: isPassword,
+      isPassword: isPassword,
       textInputAction: textInputAction,
       initialValue: initialValue,
-      decoration: decoration(placeholder: passwordPlaceholder ?? placeholder),
-    );
-
-    fieldChildren.add(fieldBody);
+      formattedPlaceholder: formattedPlaceholder,
+    ));
 
     return Container(
         margin: RoofObjectPadding.fieldPaddingA(),
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: fieldChildren));
+  }
+}
+
+class _FieldBody extends StatelessWidget with RoofCompositionField {
+  final bool autofocus;
+  final bool isPassword;
+  final TextInputAction textInputAction;
+  final String initialValue;
+  final String formattedPlaceholder;
+
+  const _FieldBody(
+      {this.autofocus,
+      this.isPassword,
+      this.initialValue,
+      this.textInputAction,
+      this.formattedPlaceholder});
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      autofocus: autofocus,
+      obscureText: isPassword,
+      initialValue: initialValue,
+      textInputAction: textInputAction,
+      decoration: _fieldBodyDecoration(placeholder: formattedPlaceholder),
+    );
+  }
+
+  InputDecoration _fieldBodyDecoration({String placeholder}) {
+    return InputDecoration(
+        hintText: placeholder,
+        enabledBorder: UnderlineInputBorder(borderSide: enabledBorderSide()),
+        focusedBorder: UnderlineInputBorder(borderSide: focusedBorderSide()),
+        hintStyle: hintStyle());
   }
 }

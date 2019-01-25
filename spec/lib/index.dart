@@ -7,3 +7,6 @@ export 'nav_buttons/index.dart';
 export 'color.dart';
 export 'distance.dart';
 export 'fields/index.dart';
+export 'device_haptic.dart';
+export 'object_padding.dart';
+export 'corner_radius.dart';

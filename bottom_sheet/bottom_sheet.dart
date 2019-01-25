@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/animation.dart';
-import 'widgets/_bottom_sheet_container.dart';
+import 'widgets/index.dart';
 
-class BottomSheetOverlay extends ModalRoute<void> {
+class RoofBottomSheet extends ModalRoute<void> {
   bool isFirstOverlay;
-  BottomSheetOverlay({this.isFirstOverlay = true});
+  RoofBottomSheet({this.isFirstOverlay = true});
 
   @override
   Duration get transitionDuration => Duration(milliseconds: 280);
@@ -16,7 +16,8 @@ class BottomSheetOverlay extends ModalRoute<void> {
   bool get barrierDismissible => false;
 
   @override
-  Color get barrierColor => isFirstOverlay? Colors.black.withOpacity(0.6) : null;
+  Color get barrierColor =>
+      isFirstOverlay ? Colors.black.withOpacity(0.6) : null;
 
   @override
   String get barrierLabel => null;
@@ -34,14 +35,27 @@ class BottomSheetOverlay extends ModalRoute<void> {
   }
 
   Widget _buildOverlayContent(BuildContext context) {
-    List<Widget> content;
-
-    return RoofBottomSheet(content);
+    return RoofBottomSheetContainer();
   }
 
   @override
   Widget buildTransitions(BuildContext context, Animation<double> animation,
       Animation<double> secondaryAnimation, Widget child) {
+    return _RoofBottomSheetTransition(
+        controller: controller, isFirstOverlay: isFirstOverlay, child: child);
+  }
+}
+
+class _RoofBottomSheetTransition extends StatelessWidget {
+  final AnimationController controller;
+  final bool isFirstOverlay;
+  final Widget child;
+
+  const _RoofBottomSheetTransition(
+      {this.controller, this.isFirstOverlay, this.child});
+
+  @override
+  Widget build(BuildContext context) {
     Animation<double> curvedAnimation =
         controller.drive(CurveTween(curve: Curves.fastOutSlowIn));
 

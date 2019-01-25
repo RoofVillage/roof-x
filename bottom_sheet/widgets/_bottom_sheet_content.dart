@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:spec/object_padding.dart';
-import 'package:spec/fields/switch_field.dart';
+import 'package:spec/index.dart';
 
 class RoofBottomSheetContent extends StatelessWidget {
   final void scrollListener;
