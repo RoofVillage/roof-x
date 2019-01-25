@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stream/index.dart';
-import 'package:spec/theme.dart';
+import 'package:spec/theme/index.dart';
 
 import './artboards/public_activity/index.dart';
 
@@ -8,8 +8,12 @@ import '_bloc.dart';
 import 'data/index.dart';
 
 class RootWidget extends StatelessWidget {
+  final RoofThemeOption theme;
+
+  RootWidget({this.theme = RoofThemeOption.dark});
+
   Widget build(BuildContext context) {
-    return _Artboard(); //RoofTheme(child: ());
+    return RoofTheme(theme, child: _Artboard());
   }
 }
 
@@ -22,8 +26,6 @@ class _Artboard extends StatelessWidget {
         builder: (context, snapshot) {
           if (!snapshot.hasData) return Container();
           final appState = snapshot.data;
-
-          // RoofTheme.of(context).use(appState.theme);
 
           if (appState.isInSession) {
             return PublicActivity();

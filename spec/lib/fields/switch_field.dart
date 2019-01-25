@@ -34,14 +34,13 @@ class _RoofSwitchFieldState extends State<RoofSwitchField>
     super.initState();
     controller = AnimationController(
         duration: const Duration(milliseconds: 180), vsync: this);
-    animation =
-        ColorTween(begin: RoofColor.neutralColorE, end: RoofColor.highlight)
-            .animate(controller)
-              ..addListener(() {
-                setState(() {
-                  // value = value;
-                });
-              });
+    animation = ColorTween(begin: RoofColor.neutralColorE, end: RoofColor.blue)
+        .animate(controller)
+          ..addListener(() {
+            setState(() {
+              // value = value;
+            });
+          });
   }
 
   @override

@@ -5,7 +5,6 @@ import 'package:spec/fields/widgets/_field_label.dart';
 
 import 'package:spec/color.dart';
 import 'package:spec/corner_radius.dart';
-import 'package:spec/theme.dart';
 
 class RoofTextArea extends StatelessWidget {
   final String fieldName;

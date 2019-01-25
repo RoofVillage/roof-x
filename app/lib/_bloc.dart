@@ -1,17 +1,16 @@
 import 'dart:async';
 
 import 'package:stream/index.dart';
-import 'package:spec/theme.dart';
+import 'package:spec/index.dart';
 
 import 'data/index.dart';
 
 class AppBloc extends BlocBase {
   StreamableAppStateData _appStateData;
 
-  // set theme(RoofThemeOption theme) {
-  //   _appStateData.theme = theme;
-  //   _inAppState.add(_appStateData);
-  // }
+  set theme(RoofThemeOption theme) {
+    _inAppState.add(_appStateData);
+  }
 
   //The stream responsible for communicating changes to the app's state.
   final _appStateController = StreamController<StreamableAppStateData>();

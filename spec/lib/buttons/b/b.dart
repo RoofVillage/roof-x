@@ -11,11 +11,11 @@ class RoofButtonB extends StatelessWidget {
   final Function onTap;
 
   final _decoration = BoxDecoration(
-      border: Border.all(color: RoofColor.highlight, width: 2.0),
+      border: Border.all(color: RoofColor.blue, width: 2.0),
       borderRadius: BorderRadius.all(RoofCornerRadius.regular));
 
   final _style = TextStyle(
-      color: RoofColor.highlight,
+      color: RoofColor.blue,
       fontSize: RoofFontSize.large,
       fontWeight: RoofFontWeight.extraThick);
 

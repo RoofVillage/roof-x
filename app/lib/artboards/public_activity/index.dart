@@ -15,7 +15,17 @@ class PublicActivity extends StatelessWidget {
       ),
       rightButtonIconReference: IconReference.info,
       centerIconReference: IconReference.logoFull,
-      rightButtonAction: () {},
+      rightButtonAction: () {
+        final theme = RoofTheme.of(context);
+        switch (theme.current) {
+          case RoofThemeOption.dark:
+            theme.use(RoofThemeOption.light);
+            break;
+          case RoofThemeOption.light:
+            theme.use(RoofThemeOption.dark);
+            break;
+        }
+      },
     );
   }
 }

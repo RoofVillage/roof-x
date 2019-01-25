@@ -50,7 +50,7 @@ class _RoofButtonAState extends State<RoofButtonA> {
                 margin: RoofObjectPadding.fieldPaddingB(),
                 padding: EdgeInsets.all(RoofDistance.c),
                 decoration: BoxDecoration(
-                    color: RoofColor.highlight,
+                    color: RoofColor.blue,
                     borderRadius: BorderRadius.all(RoofCornerRadius.regular)),
                 child: Text(
                   text,

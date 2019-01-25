@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'package:icon_library/index.dart';
-import 'package:spec/color.dart';
-// import 'package:spec/theme.dart';
+import 'package:spec/theme/index.dart';
 
 class RoofNavButton extends StatelessWidget {
   final NavigationIconReference iconReference;
@@ -13,11 +13,9 @@ class RoofNavButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final color = RoofTheme.of(context).navBarButtonIconColor;
+    final theme = RoofTheme.of(context);
     return GestureDetector(
         onTap: onTap,
-        child: (iconReference ?? _blank)
-            .buildSvg(color: RoofColor.neutralColorG) //color),
-        );
+        child: (iconReference ?? _blank).buildSvg(color: theme.iconColor.nav));
   }
 }

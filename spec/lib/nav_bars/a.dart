@@ -1,11 +1,13 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
 import 'package:icon_library/index.dart';
 
-import 'package:spec/color.dart';
 import 'package:spec/distance.dart';
 import 'package:spec/nav_buttons/index.dart';
+import 'package:spec/theme/index.dart';
 
 class RoofNavBarA extends StatelessWidget {
   final NavigationIconReference centerIconReference;
@@ -14,7 +16,6 @@ class RoofNavBarA extends StatelessWidget {
 
   final double _heightRatioToDevice = 0.5 * 0.25;
   final double _minHeight = RoofDistance.g;
-  final _backgroundColor = RoofColor.neutralColorC;
   final _horizontalPadding = RoofDistance.c;
   final _bottomPadding = RoofDistance.c;
 
@@ -25,11 +26,14 @@ class RoofNavBarA extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final diviceHeight = MediaQuery.of(context).size.height;
+    final theme = RoofTheme.of(context);
+    SystemChrome.setSystemUIOverlayStyle(theme.system.chromeOverlayStyle);
+
     return Container(
         height: max(diviceHeight * _heightRatioToDevice, _minHeight),
         padding: EdgeInsets.fromLTRB(
             _horizontalPadding, 0, _horizontalPadding, _bottomPadding),
-        decoration: BoxDecoration(color: _backgroundColor),
+        decoration: BoxDecoration(color: theme.backgroundColor.brand),
         child: _ItemRow(
             centerIconReference: centerIconReference,
             leftButton: leftButton,
@@ -42,14 +46,13 @@ class _ItemRow extends StatelessWidget {
   final RoofNavButton leftButton;
   final RoofNavButton rightButton;
 
-  final _iconColor = RoofColor.neutralColorG;
-
   _ItemRow(
       {Key key, this.centerIconReference, this.leftButton, this.rightButton})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final theme = RoofTheme.of(context);
     return Center(
         child: Column(
             // Stretch the cards in horizontal axis
@@ -60,14 +63,17 @@ class _ItemRow extends StatelessWidget {
             children: <Widget>[
           Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: _relevantElements())
+              children: _relevantElements(
+                  buttonIconColor: theme.iconColor.nav,
+                  centerIconColor: theme.typeColor.brand))
         ]));
   }
 
-  List<Widget> _relevantElements() {
+  List<Widget> _relevantElements(
+      {Color buttonIconColor, Color centerIconColor}) {
     List<Widget> list = [leftButton];
     if (centerIconReference != null) {
-      list.add(centerIconReference.buildSvg(color: _iconColor));
+      list.add(centerIconReference.buildSvg(color: centerIconColor));
     }
     list.add(rightButton);
     return list;

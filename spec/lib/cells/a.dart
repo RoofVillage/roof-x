@@ -3,9 +3,9 @@ import 'package:decorated_text/index.dart';
 import 'package:icon_library/index.dart';
 
 import 'package:spec/distance.dart';
-import 'package:spec/color.dart';
 import 'package:spec/font_weight.dart';
 import 'package:spec/font_size.dart';
+import 'package:spec/theme/index.dart';
 
 class RoofCellA extends StatelessWidget {
   final WeightDecoratedText titleText;
@@ -15,7 +15,6 @@ class RoofCellA extends StatelessWidget {
 
   final _horizontalPadding = RoofDistance.b;
   final _minHeight = RoofDistance.f;
-  final _backgroundColor = RoofColor.neutralColorA;
 
   RoofCellA(
       {Key key,
@@ -27,13 +26,13 @@ class RoofCellA extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Allows a minHeight.
+    final theme = RoofTheme.of(context);
     return ConstrainedBox(
         constraints: BoxConstraints(minHeight: _minHeight),
         child: GestureDetector(
             onTap: this.onTap,
             child: Container(
-                decoration: BoxDecoration(color: _backgroundColor),
+                decoration: BoxDecoration(color: theme.backgroundColor.general),
                 // Everything in the cell is relative to the horizontal padding.
                 child: Padding(
                     padding:
@@ -62,7 +61,6 @@ class _Body extends StatelessWidget {
   final _verticalPadding = RoofDistance.b;
   final _imagePaddingRight = RoofDistance.b;
   final _detailPaddingTop = RoofDistance.a;
-  final _iconColor = RoofColor.neutralColorG;
 
   _Body(
       {Key key,
@@ -73,6 +71,7 @@ class _Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = RoofTheme.of(context);
     return Container(
         padding: EdgeInsets.symmetric(vertical: _verticalPadding),
         //The body of the cell contains the icon and the labels.
@@ -82,7 +81,8 @@ class _Body extends StatelessWidget {
             children: <Widget>[
               Container(
                   padding: EdgeInsets.only(right: _imagePaddingRight),
-                  child: iconReference.buildSvg(color: _iconColor)),
+                  child:
+                      iconReference.buildSvg(color: theme.iconColor.general)),
 
               ///This child should expand to occupy remaining space.
               Expanded(
@@ -108,14 +108,15 @@ class _Body extends StatelessWidget {
 class _DetailLabel extends StatelessWidget {
   final String text;
 
-  final _style = const TextStyle(
-      color: RoofColor.neutralColorG,
-      fontSize: RoofFontSize.medium,
-      fontWeight: RoofFontWeight.thin);
-
   const _DetailLabel({Key key, @required this.text}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final theme = RoofTheme.of(context);
+    final _style = TextStyle(
+        color: theme.typeColor.secondary,
+        fontSize: RoofFontSize.medium,
+        fontWeight: RoofFontWeight.thin);
+
     return Text(text, style: _style);
   }
 }
@@ -123,9 +124,10 @@ class _DetailLabel extends StatelessWidget {
 class _CellDivider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final theme = RoofTheme.of(context);
     return Container(
       height: 1,
-      decoration: BoxDecoration(color: RoofColor.neutralColorC),
+      decoration: BoxDecoration(color: theme.strokeColor.light),
     );
   }
 }
@@ -133,20 +135,22 @@ class _CellDivider extends StatelessWidget {
 class _TitleLabel extends StatelessWidget {
   final WeightDecoratedText decoratedText;
 
-  final _defaultStyle = const TextStyle(
-      color: RoofColor.neutralColorG,
-      fontSize: RoofFontSize.large,
-      fontWeight: RoofFontWeight.thick);
-
-  final _thinStyle = const TextStyle(
-      color: RoofColor.neutralColorG,
-      fontSize: RoofFontSize.large,
-      fontWeight: RoofFontWeight.thin);
-
   const _TitleLabel({Key key, @required this.decoratedText}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final theme = RoofTheme.of(context);
+
+    final _defaultStyle = TextStyle(
+        color: theme.typeColor.primary,
+        fontSize: RoofFontSize.large,
+        fontWeight: RoofFontWeight.thick);
+
+    final _thinStyle = TextStyle(
+        color: theme.typeColor.primary,
+        fontSize: RoofFontSize.large,
+        fontWeight: RoofFontWeight.thin);
+
     return decoratedText.generateWidget(
         defaultStyle: _defaultStyle,
         thinStyle: _thinStyle,
