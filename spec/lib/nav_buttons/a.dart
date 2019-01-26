@@ -16,6 +16,6 @@ class RoofNavButton extends StatelessWidget {
     final theme = RoofTheme.of(context);
     return GestureDetector(
         onTap: onTap,
-        child: (iconReference ?? _blank).buildSvg(color: theme.iconColor.nav));
+        child: (iconReference ?? _blank).buildSvg(color: theme.color.icon.nav));
   }
 }

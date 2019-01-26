@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:spec/object_padding.dart';
 import 'package:spec/distance.dart';
 import 'package:spec/fields/widgets/_field_label.dart';
-import 'package:spec/color.dart';
+import 'package:spec/theme/index.dart';
+import 'package:spec/typography/index.dart';
 import 'package:spec/corner_radius.dart';
 import '_composition_field.dart';
 
@@ -24,13 +25,14 @@ class RoofTextArea extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Widget> fieldChildren = [];
 
-    if (fieldName != null)
+    if (fieldName != null) {
       fieldChildren.add(RoofFieldLabel(labelText: fieldName));
+    }
 
     fieldChildren.add(_FieldBody());
 
     return Container(
-        margin: RoofObjectPadding.fieldPaddingA(),
+        margin: RoofObjectPadding.field1,
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: fieldChildren));
@@ -43,6 +45,9 @@ class _FieldBody extends StatelessWidget with RoofCompositionField {
   final TextInputAction textInputAction;
   final String placeholder;
 
+  final int _maxLines = 3;
+  final _typographyDecoration = RoofTypography.body2;
+
   _FieldBody(
       {this.autofocus,
       this.initialValue,
@@ -51,27 +56,27 @@ class _FieldBody extends StatelessWidget with RoofCompositionField {
 
   @override
   Widget build(BuildContext context) {
+    final theme = RoofTheme.of(context);
+
+    final decoration = InputDecoration(
+        hintText: placeholder,
+        border: OutlineInputBorder(),
+        enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: theme.color.stroke.light),
+            borderRadius: BorderRadius.all(RoofCornerRadius.regular)),
+        focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: theme.color.stroke.focus),
+            borderRadius: BorderRadius.all(RoofCornerRadius.regular)),
+        hintStyle: _typographyDecoration
+            .textStyleWithColor(theme.color.text.placeholder));
+
     return Container(
         margin: EdgeInsets.fromLTRB(0, RoofDistance.a, 0, 0),
         child: TextFormField(
             autofocus: autofocus,
             initialValue: initialValue,
             textInputAction: textInputAction,
-            maxLines: 3,
-            decoration:
-                _textAreaDecoration(borderSideColor: RoofColor.neutralColorD)));
-  }
-
-  InputDecoration _textAreaDecoration({Color borderSideColor}) {
-    return InputDecoration(
-        hintText: placeholder,
-        border: OutlineInputBorder(),
-        enabledBorder: OutlineInputBorder(
-            borderSide: enabledBorderSide(),
-            borderRadius: BorderRadius.all(RoofCornerRadius.regular)),
-        focusedBorder: OutlineInputBorder(
-            borderSide: focusedBorderSide(),
-            borderRadius: BorderRadius.all(RoofCornerRadius.regular)),
-        hintStyle: hintStyle());
+            maxLines: _maxLines,
+            decoration: decoration));
   }
 }

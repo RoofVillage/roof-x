@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:spec/color.dart';
+import 'package:spec/theme/option.dart';
 
-import 'option.dart';
+import 'utils/_color.dart';
 
-class RoofIconColor {
+class RoofBackgroundColor {
   RoofThemeOption _current;
 
-  Color get nav {
+  Color get brand {
     switch (_current) {
       case RoofThemeOption.light:
-        return RoofColor.black2;
-      case RoofThemeOption.dark:
         return RoofColor.white1;
+      case RoofThemeOption.dark:
+        return RoofColor.black2;
     }
     return null;
   }
@@ -19,16 +19,12 @@ class RoofIconColor {
   Color get general {
     switch (_current) {
       case RoofThemeOption.light:
-        return RoofColor.black1;
-      case RoofThemeOption.dark:
         return RoofColor.white2;
+      case RoofThemeOption.dark:
+        return RoofColor.black3;
     }
     return null;
   }
 
-  double get iconPressedOpacity {
-    return 230;
-  }
-
-  RoofIconColor(this._current);
+  RoofBackgroundColor(this._current);
 }
