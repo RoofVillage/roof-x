@@ -81,7 +81,8 @@ class IconReference {
   static final backArrowNav = NavigationIconReference(path: 'back_arrow.svg');
   static final downArrowNav = NavigationIconReference(path: 'down_arrow.svg');
   static final info = NavigationIconReference(path: 'info.svg');
+  static final logoHouse = NavigationIconReference(path: 'logo_house.svg');
   static final logoFull =
-      NavigationIconReference(path: 'logo_full.svg', customWidth: 67);
+      NavigationIconReference(path: 'logo_full.svg', customWidth: 65);
   static final settingsNav = NavigationIconReference(path: 'settings.svg');
 }
