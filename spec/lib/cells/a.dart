@@ -3,9 +3,8 @@ import 'package:decorated_text/index.dart';
 import 'package:icon_library/index.dart';
 
 import 'package:spec/distance.dart';
-import 'package:spec/font_weight.dart';
-import 'package:spec/font_size.dart';
 import 'package:spec/theme/index.dart';
+import 'package:spec/typography/index.dart';
 
 class RoofCellA extends StatelessWidget {
   final WeightDecoratedText titleText;
@@ -32,7 +31,8 @@ class RoofCellA extends StatelessWidget {
         child: GestureDetector(
             onTap: this.onTap,
             child: Container(
-                decoration: BoxDecoration(color: theme.backgroundColor.general),
+                decoration:
+                    BoxDecoration(color: theme.color.background.general),
                 // Everything in the cell is relative to the horizontal padding.
                 child: Padding(
                     padding:
@@ -82,7 +82,7 @@ class _Body extends StatelessWidget {
               Container(
                   padding: EdgeInsets.only(right: _imagePaddingRight),
                   child:
-                      iconReference.buildSvg(color: theme.iconColor.general)),
+                      iconReference.buildSvg(color: theme.color.icon.general)),
 
               ///This child should expand to occupy remaining space.
               Expanded(
@@ -108,16 +108,15 @@ class _Body extends StatelessWidget {
 class _DetailLabel extends StatelessWidget {
   final String text;
 
-  const _DetailLabel({Key key, @required this.text}) : super(key: key);
+  final _typographyStyle = RoofTypography.body2;
+
+  _DetailLabel({Key key, @required this.text}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
-    final _style = TextStyle(
-        color: theme.typeColor.secondary,
-        fontSize: RoofFontSize.medium,
-        fontWeight: RoofFontWeight.thin);
+    final secondaryTextColor = RoofTheme.of(context).color.text.secondary;
 
-    return Text(text, style: _style);
+    return Text(text,
+        style: _typographyStyle.textStyleWithColor(secondaryTextColor));
   }
 }
 
@@ -127,7 +126,7 @@ class _CellDivider extends StatelessWidget {
     final theme = RoofTheme.of(context);
     return Container(
       height: 1,
-      decoration: BoxDecoration(color: theme.strokeColor.light),
+      decoration: BoxDecoration(color: theme.color.stroke.light),
     );
   }
 }
@@ -135,25 +134,19 @@ class _CellDivider extends StatelessWidget {
 class _TitleLabel extends StatelessWidget {
   final WeightDecoratedText decoratedText;
 
-  const _TitleLabel({Key key, @required this.decoratedText}) : super(key: key);
+  final _defaultTypographyStyle = RoofTypography.body1a;
+  final _thinTypographyStyle = RoofTypography.body1b;
+
+  _TitleLabel({Key key, @required this.decoratedText}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
-
-    final _defaultStyle = TextStyle(
-        color: theme.typeColor.primary,
-        fontSize: RoofFontSize.large,
-        fontWeight: RoofFontWeight.thick);
-
-    final _thinStyle = TextStyle(
-        color: theme.typeColor.primary,
-        fontSize: RoofFontSize.large,
-        fontWeight: RoofFontWeight.thin);
+    final primaryTextColor = RoofTheme.of(context).color.text.primary;
 
     return decoratedText.generateWidget(
-        defaultStyle: _defaultStyle,
-        thinStyle: _thinStyle,
+        defaultStyle:
+            _defaultTypographyStyle.textStyleWithColor(primaryTextColor),
+        thinStyle: _thinTypographyStyle.textStyleWithColor(primaryTextColor),
         textScaleFactor: MediaQuery.of(context).textScaleFactor);
   }
 }

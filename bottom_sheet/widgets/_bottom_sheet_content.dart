@@ -13,7 +13,7 @@ class RoofBottomSheetContent extends StatelessWidget {
         // behavior: HitTestBehavior.opaque,
         child: ListView(
             shrinkWrap: true,
-            padding: RoofObjectPadding.containerPaddingA(),
+            padding: RoofObjectPadding.container1,
             children: <Widget>[
           RoofSwitchField(
             title: "Here's a switch field",

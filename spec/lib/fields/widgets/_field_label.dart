@@ -1,27 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:spec/font_size.dart';
-import 'package:spec/font_weight.dart';
-import 'package:spec/color.dart';
+import 'package:spec/typography/index.dart';
+import 'package:spec/theme/index.dart';
 
 class RoofFieldLabel extends StatelessWidget {
   final String labelText;
   final int maxLines;
 
-  RoofFieldLabel({Key key, this.labelText, this.maxLines = 1})
+  final _typographyStyle = RoofTypography.title1;
+
+  static const _defaultMaxLines = 3;
+
+  RoofFieldLabel(
+      {Key key, @required this.labelText, this.maxLines = _defaultMaxLines})
       : super(key: key);
 
   Widget build(BuildContext context) {
+    final theme = RoofTheme.of(context);
     return Text(labelText,
         softWrap: true,
         maxLines: maxLines,
         overflow: TextOverflow.ellipsis,
-        style: _labelStyle());
-  }
-
-  TextStyle _labelStyle() {
-    return TextStyle(
-        fontSize: RoofFontSize.small,
-        fontWeight: RoofFontWeight.thick,
-        color: RoofColor.neutralColorG);
+        style: _typographyStyle.textStyleWithColor(theme.color.text.primary));
   }
 }

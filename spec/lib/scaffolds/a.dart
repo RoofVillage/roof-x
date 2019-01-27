@@ -26,7 +26,7 @@ class RoofScaffoldA extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = RoofTheme.of(context);
     return Scaffold(
-        backgroundColor: theme.backgroundColor.general,
+        backgroundColor: theme.color.background.general,
         body: Center(
             child: Column(
           // Stretch the cards in horizontal axis

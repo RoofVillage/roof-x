@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:spec/color.dart';
+import 'package:spec/theme/option.dart';
 
-import 'option.dart';
+import 'utils/_color.dart';
 
-class RoofTypeColor {
+class RoofTextColor {
   RoofThemeOption _current;
 
   Color get brand {
@@ -36,6 +36,16 @@ class RoofTypeColor {
     return null;
   }
 
+  Color get placeholder {
+    switch (_current) {
+      case RoofThemeOption.light:
+        return RoofColor.gray3;
+      case RoofThemeOption.dark:
+        return RoofColor.gray3;
+    }
+    return null;
+  }
+
   Color get fill {
     switch (_current) {
       case RoofThemeOption.light:
@@ -46,5 +56,25 @@ class RoofTypeColor {
     return null;
   }
 
-  RoofTypeColor(this._current);
+  Color get submitAction {
+    switch (_current) {
+      case RoofThemeOption.light:
+        return RoofColor.white1;
+      case RoofThemeOption.dark:
+        return RoofColor.white1;
+    }
+    return null;
+  }
+
+  Color get transitionAction {
+    switch (_current) {
+      case RoofThemeOption.light:
+        return RoofColor.blue;
+      case RoofThemeOption.dark:
+        return RoofColor.blue;
+    }
+    return null;
+  }
+
+  RoofTextColor(this._current);
 }

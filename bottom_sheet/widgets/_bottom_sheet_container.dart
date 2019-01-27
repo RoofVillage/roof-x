@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+
 import 'package:spec/index.dart';
+import 'package:spec/haptics/index.dart';
 
 class RoofBottomSheetContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     void _closeBottomSheet(context) {
       Navigator.pop(context);
-      VibrateDevice.mediumImpact();
+
+      RoofHaptic.triggerWith(RoofHapticOption.medium);
     }
 
     return GestureDetector(

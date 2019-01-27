@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/animation.dart';
+
+import 'package:spec/duration.dart';
 import 'widgets/index.dart';
 
 class RoofBottomSheet extends ModalRoute<void> {
@@ -7,7 +9,7 @@ class RoofBottomSheet extends ModalRoute<void> {
   RoofBottomSheet({this.isFirstOverlay = true});
 
   @override
-  Duration get transitionDuration => Duration(milliseconds: 280);
+  Duration get transitionDuration => RoofDuration.short;
 
   @override
   bool get opaque => false;

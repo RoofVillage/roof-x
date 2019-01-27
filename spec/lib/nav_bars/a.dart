@@ -27,13 +27,13 @@ class RoofNavBarA extends StatelessWidget {
   Widget build(BuildContext context) {
     final diviceHeight = MediaQuery.of(context).size.height;
     final theme = RoofTheme.of(context);
-    SystemChrome.setSystemUIOverlayStyle(theme.system.chromeOverlayStyle);
+    SystemChrome.setSystemUIOverlayStyle(theme.systemChromeStyle);
 
     return Container(
         height: max(diviceHeight * _heightRatioToDevice, _minHeight),
         padding: EdgeInsets.fromLTRB(
             _horizontalPadding, 0, _horizontalPadding, _bottomPadding),
-        decoration: BoxDecoration(color: theme.backgroundColor.brand),
+        decoration: BoxDecoration(color: theme.color.background.brand),
         child: _ItemRow(
             centerIconReference: centerIconReference,
             leftButton: leftButton,
@@ -64,8 +64,8 @@ class _ItemRow extends StatelessWidget {
           Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: _relevantElements(
-                  buttonIconColor: theme.iconColor.nav,
-                  centerIconColor: theme.typeColor.brand))
+                  buttonIconColor: theme.color.icon.nav,
+                  centerIconColor: theme.color.text.brand))
         ]));
   }
 

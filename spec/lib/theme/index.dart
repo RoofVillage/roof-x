@@ -1,39 +1,12 @@
 export 'option.dart';
 
 import 'package:flutter/material.dart';
+import 'package:spec/colors/index.dart';
+import 'package:flutter/services.dart';
 
 import 'option.dart';
-import '_background_color.dart';
-import '_icon_color.dart';
-import '_stroke_color.dart';
-import '_type_color.dart';
-import '_system_color.dart';
 
 typedef UseTheme = Function(RoofThemeOption theme);
-
-class RoofThemeSpec {
-  final RoofThemeOption _current;
-  RoofThemeOption get current => _current;
-  set current(RoofThemeOption newCurrent) {
-    use(newCurrent);
-  }
-
-  final RoofStrokeColor strokeColor;
-  final RoofBackgroundColor backgroundColor;
-  final RoofTypeColor typeColor;
-  final RoofIconColor iconColor;
-  final RoofSystem system;
-
-  final UseTheme use;
-
-  RoofThemeSpec({@required RoofThemeOption current, @required this.use})
-      : this._current = current,
-        strokeColor = RoofStrokeColor(current),
-        backgroundColor = RoofBackgroundColor(current),
-        typeColor = RoofTypeColor(current),
-        iconColor = RoofIconColor(current),
-        system = RoofSystem(current);
-}
 
 class RoofTheme extends StatefulWidget {
   final Widget child;
@@ -41,10 +14,8 @@ class RoofTheme extends StatefulWidget {
 
   RoofTheme(this.theme, {this.child});
 
-  static RoofThemeSpec of(BuildContext context) {
-    return (context.inheritFromWidgetOfExactType(_RoofInheritedStateContainer)
-            as _RoofInheritedStateContainer)
-        .spec;
+  static RoofInheritedTheme of(BuildContext context) {
+    return context.inheritFromWidgetOfExactType(RoofInheritedTheme);
   }
 
   @override
@@ -64,17 +35,53 @@ class RoofThemeState extends State<RoofTheme> {
 
   @override
   Widget build(BuildContext context) {
-    return _RoofInheritedStateContainer(data: this, child: widget.child);
+    return RoofInheritedTheme(data: this, child: widget.child);
   }
 }
 
-class _RoofInheritedStateContainer extends InheritedWidget {
-  final RoofThemeSpec spec;
-  _RoofInheritedStateContainer(
+class RoofInheritedTheme extends InheritedWidget {
+  final RoofThemeOption current;
+  final RoofSemanticColor color;
+
+  final UseTheme use;
+
+  SystemUiOverlayStyle get systemChromeStyle {
+    switch (current) {
+      case RoofThemeOption.light:
+        return SystemUiOverlayStyle.dark;
+      case RoofThemeOption.dark:
+        return SystemUiOverlayStyle.light;
+    }
+    return null;
+  }
+
+  BoxShadow get shadow {
+    double blurRadius;
+    switch (current) {
+      case RoofThemeOption.light:
+        blurRadius = 12;
+        break;
+      case RoofThemeOption.dark:
+        blurRadius = 16;
+        break;
+    }
+    return BoxShadow(
+        color: color.background.general.withAlpha((0.2 * 255).floor()),
+        blurRadius: blurRadius,
+        offset: Offset(0, 5));
+  }
+
+  set current(RoofThemeOption newCurrent) {
+    use(newCurrent);
+  }
+
+  RoofInheritedTheme(
       {Key key, @required RoofThemeState data, @required Widget child})
-      : spec = RoofThemeSpec(current: data.current, use: data.use),
+      : current = data.current,
+        use = data.use,
+        color = RoofSemanticColor(current: data.current),
         super(key: key, child: child);
 
   @override
-  bool updateShouldNotify(_RoofInheritedStateContainer oldWidget) => true;
+  bool updateShouldNotify(RoofInheritedTheme oldWidget) => true;
 }
