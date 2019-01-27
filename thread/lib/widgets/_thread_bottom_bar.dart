@@ -74,6 +74,7 @@ class _ThreadBottomBarState extends State<ThreadBottomBar>
     final theme = RoofTheme.of(context);
 
     void _isCommentBoxPopulated(String commentBoxContent) {
+      print(commentBoxContent.length);
       if (commentBoxContent.length > 0 && !isTyping) {
         setState(() {
           isTyping = true;

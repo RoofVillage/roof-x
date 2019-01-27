@@ -12,12 +12,12 @@ class CommentBox extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = RoofTheme.of(context);
 
-    // Leave these borders transparent for now, they may use color when the box expands
-    final enabledBorder = OutlineInputBorder(
-        borderSide: BorderSide(color: Colors.transparent),
-        borderRadius: BorderRadius.all(RoofCornerRadius.regular));
-    final focusedBorder = OutlineInputBorder(
-        borderSide: BorderSide(color: Colors.transparent),
+    final enabledBorder =
+        OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent));
+    final focusedBorder =
+        OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent));
+    final errorBorder = OutlineInputBorder(
+        borderSide: BorderSide(color: theme.color.stroke.alert),
         borderRadius: BorderRadius.all(RoofCornerRadius.regular));
 
     final hintStyle = TextStyle(color: theme.color.text.placeholder);
@@ -32,6 +32,7 @@ class CommentBox extends StatelessWidget {
         border: OutlineInputBorder(),
         enabledBorder: enabledBorder,
         focusedBorder: focusedBorder,
+        errorBorder: errorBorder,
         hintStyle: hintStyle);
 
     final double maxHeight = 200;
