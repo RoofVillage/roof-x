@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:spec/index.dart';
 import 'package:icon_library/index.dart';
+import 'package:spec/typography/index.dart';
 
 class ThreadHeader extends StatelessWidget {
   final String title;
@@ -8,31 +9,32 @@ class ThreadHeader extends StatelessWidget {
 
   ThreadHeader({this.title, this.threadMenuItems});
 
+  final _headerTextStyle = RoofTypography.heading1;
+
   @override
   Widget build(BuildContext context) {
+    final theme = RoofTheme.of(context);
+
     _openThreadMenu(threadMenuItems) {
       // open bottom sheet with thread menu items (e.g. unsubscribe)
     }
 
-    final _backgroundColor = RoofColor.neutralColorA;
+    final backgroundColor = theme.color.background.brand;
 
-    final _padding = RoofObjectPadding.containerPaddingA();
+    final padding = RoofObjectPadding.container1;
 
-    final _threadTitleTextStyle = TextStyle(
-        color: RoofColor.red,
-        fontWeight: RoofFontWeight.thick,
-        fontSize: RoofFontSize.extraLarge);
+    final threadTitleTextStyle = _headerTextStyle.textStyleWithColor(theme.color.text.brand);
 
-    final _threadTitleWidget = Text(title, style: _threadTitleTextStyle);
+    final threadTitleWidget = Text(title, style: threadTitleTextStyle);
 
-    final _threadMenu = GestureDetector(
+    final threadMenu = GestureDetector(
       onTap: _openThreadMenu(threadMenuItems),
-      child: IconReference.cashSack.buildSvg(color: RoofColor.neutralColorF),
+      child: IconReference.cashSack.buildSvg(color: theme.color.icon.general),
     );
 
-    final _headerContents = Row(
+    final headerContents = Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: <Widget>[_threadTitleWidget, _threadMenu],
+      children: <Widget>[threadTitleWidget, threadMenu],
     );
 
     return SafeArea(
@@ -40,8 +42,8 @@ class ThreadHeader extends StatelessWidget {
         left: false,
         right: false,
         child: Container(
-            color: _backgroundColor,
-            padding: _padding,
-            child: _headerContents));
+            color: backgroundColor,
+            padding: padding,
+            child: headerContents));
   }
 }

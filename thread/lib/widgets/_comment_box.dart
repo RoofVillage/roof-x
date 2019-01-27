@@ -10,15 +10,17 @@ class CommentBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = RoofTheme.of(context);
+
+    // Leave these borders transparent for now, they may use color when the box expands
     final _enabledBorder = OutlineInputBorder(
-        borderSide: BorderSide(color: RoofColor.neutralColorA),
+        borderSide: BorderSide(color: Colors.transparent),
         borderRadius: BorderRadius.all(RoofCornerRadius.regular));
-
     final _focusedBorder = OutlineInputBorder(
-        borderSide: BorderSide(color: RoofColor.neutralColorA),
+        borderSide: BorderSide(color: Colors.transparent),
         borderRadius: BorderRadius.all(RoofCornerRadius.regular));
 
-    final _hintStyle = TextStyle(color: RoofColor.neutralColorD);
+    final _hintStyle = TextStyle(color: theme.color.text.placeholder);
 
     final _hintText = "Add comment";
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:spec/color.dart';
+import 'package:spec/theme/option.dart';
 
-import 'option.dart';
+import 'utils/_color.dart';
 
 class RoofIconColor {
   RoofThemeOption _current;
@@ -26,9 +26,19 @@ class RoofIconColor {
     return null;
   }
 
-  double get iconPressedOpacity {
-    return 230;
+  Color get transitionAction {
+    switch (_current) {
+      case RoofThemeOption.light:
+        return RoofColor.blue;
+      case RoofThemeOption.dark:
+        return RoofColor.blue;
+    }
+    return null;
   }
+
+  // double get iconPressedOpacity {
+  //   return 230;
+  // }
 
   RoofIconColor(this._current);
 }

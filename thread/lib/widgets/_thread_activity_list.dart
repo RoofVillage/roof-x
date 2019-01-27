@@ -1,38 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:spec/index.dart';
+import 'package:spec/typography/index.dart';
 
 class ThreadActivityList extends StatelessWidget {
   final List<Widget> threadActivityItems;
 
   ThreadActivityList({this.threadActivityItems});
 
+  final _textStyle = RoofTypography.body1b;
+
   @override
   Widget build(BuildContext context) {
-    final _backgroundColor = RoofColor.neutralColorA;
+    final theme = RoofTheme.of(context);
 
-    final _padding = RoofObjectPadding.containerPaddingA();
+    final backgroundColor = theme.color.background.brand;
 
-    final _emptyTextStyle = TextStyle(
-        color: RoofColor.neutralColorE,
-        fontSize: RoofFontSize.small,
-        fontWeight: RoofFontWeight.thin);
+    final padding = RoofObjectPadding.container1;
+
+    final emptyTextStyle =
+        _textStyle.textStyleWithColor(theme.color.text.secondary);
 
     final emptyThreadMessage = Text(
       "No activity",
-      style: _emptyTextStyle,
+      style: emptyTextStyle,
       textAlign: TextAlign.center,
     );
 
-    List<Widget> _listChildren = [];
+    List<Widget> listChildren = [];
     if (threadActivityItems == null || threadActivityItems.length == 0)
-      _listChildren.add(emptyThreadMessage);
+      listChildren.add(emptyThreadMessage);
     else
-      _listChildren = threadActivityItems;
+      listChildren = threadActivityItems;
 
-    final _activityList = ListView(reverse: true, children: _listChildren);
+    final activityList = ListView(reverse: true, children: listChildren);
 
     return Expanded(
         child: Container(
-            color: _backgroundColor, padding: _padding, child: _activityList));
+            color: backgroundColor, padding: padding, child: activityList));
   }
 }

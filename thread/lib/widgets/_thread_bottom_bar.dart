@@ -3,6 +3,7 @@ import 'package:icon_library/index.dart';
 import 'package:spec/index.dart';
 import '_action_button.dart';
 import '_comment_box.dart';
+import '_file_button.dart';
 
 class ThreadBottomBar extends StatefulWidget {
   final String threadActionTitle;
@@ -26,7 +27,6 @@ class _ThreadBottomBarState extends State<ThreadBottomBar>
   SmallIconReference threadActionIconReference;
   Function threadAction;
   bool isTyping = false;
-
   Animation<double> animation;
   AnimationController controller;
 
@@ -41,10 +41,10 @@ class _ThreadBottomBarState extends State<ThreadBottomBar>
       this.threadActionIconReference,
       this.threadAction});
 
-  _buildAnimation(double _initialActionButtonWidth) {
-    final double _buttonBaseWidth = _baseButtonSize.width;
+  _buildAnimation(double initialActionButtonWidth) {
+    final double buttonBaseWidth = _baseButtonSize.width;
     final curve = CurvedAnimation(parent: controller, curve: Curves.easeIn);
-    animation = Tween(begin: _initialActionButtonWidth, end: _buttonBaseWidth)
+    animation = Tween(begin: initialActionButtonWidth, end: buttonBaseWidth)
         .animate(curve)
           ..addListener(() {
             setState(() {});
@@ -65,13 +65,13 @@ class _ThreadBottomBarState extends State<ThreadBottomBar>
     WidgetsBinding.instance.addPostFrameCallback(_getButtonSize);
     super.initState();
 
-    final Duration _duration = Duration(milliseconds: 180);
-    controller = AnimationController(duration: _duration, vsync: this);
+    final Duration duration = Duration(milliseconds: 180);
+    controller = AnimationController(duration: duration, vsync: this);
   }
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> _rowChildren = [];
+    final theme = RoofTheme.of(context);
 
     void _isCommentBoxPopulated(String commentBoxContent) {
       if (commentBoxContent.length > 0 && !isTyping) {
@@ -86,55 +86,42 @@ class _ThreadBottomBarState extends State<ThreadBottomBar>
       isTyping ? controller.forward() : controller.reverse();
     }
 
-    Widget _fileButton = _FileButton(baseHeight: _baseHeight);
-    _rowChildren.add(_fileButton);
+    List<Widget> rowChildren = [];
 
-    Widget _commentBox = CommentBox(onChangeCallback: _isCommentBoxPopulated);
-    _rowChildren.add(_commentBox);
+    Widget fileButton = FileButton(baseHeight: _baseHeight);
+    rowChildren.add(fileButton);
+
+    Widget commentBox = CommentBox(onChangeCallback: _isCommentBoxPopulated);
+    rowChildren.add(commentBox);
 
     if (threadAction != null) {
-      double _animatedButtonWidth = animation != null ? animation.value : null;
+      double animatedButtonWidth = animation != null ? animation.value : null;
 
-      Widget _threadActionButton = ThreadActionButton(
+      Widget threadActionButton = ThreadActionButton(
           threadAction: threadAction,
           threadActionTitle: threadActionTitle,
           threadActionIconReference: threadActionIconReference,
-          animatedWidth: _animatedButtonWidth,
+          animatedWidth: animatedButtonWidth,
           baseButtonSize: _baseButtonSize,
           buttonKey: _buttonKey);
 
-      _rowChildren.add(_threadActionButton);
+      rowChildren.add(threadActionButton);
     }
 
-    final Color _bottomBarColor = RoofColor.neutralColorA;
-    final EdgeInsets _bottomBarPadding = RoofObjectPadding.containerPaddingA();
+    final Color bottomBarColor = theme.color.background.brand;
 
-    final Widget _contentRow =
-        Row(crossAxisAlignment: CrossAxisAlignment.end, children: _rowChildren);
+    final EdgeInsets bottomBarPadding = RoofObjectPadding.container1;
+
+    final Widget contentRow =
+        Row(crossAxisAlignment: CrossAxisAlignment.end, children: rowChildren);
 
     return SafeArea(
         top: false,
         left: false,
         right: false,
         child: Container(
-            color: _bottomBarColor,
-            padding: _bottomBarPadding,
-            child: _contentRow));
-  }
-}
-
-class _FileButton extends StatelessWidget {
-  final double baseHeight;
-
-  _FileButton({this.baseHeight});
-
-  @override
-  Widget build(BuildContext context) {
-    final fileIcon =
-        IconReference.cashSack.buildSvg(color: RoofColor.neutralColorF);
-
-    return GestureDetector(
-      child: Container(height: baseHeight, child: fileIcon),
-    );
+            color: bottomBarColor,
+            padding: bottomBarPadding,
+            child: contentRow));
   }
 }

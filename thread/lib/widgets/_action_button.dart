@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:icon_library/index.dart';
 import 'package:spec/index.dart';
+import 'package:spec/typography/index.dart';
 
 class ThreadActionButton extends StatelessWidget {
   final Function threadAction;
@@ -20,33 +21,38 @@ class ThreadActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _buttonDecoration = BoxDecoration(
-        color: RoofColor.neutralColorA,
-        border: Border.all(color: RoofColor.blue, width: 1.0),
+    final theme = RoofTheme.of(context);
+
+    final buttonDecoration = BoxDecoration(
+        color: theme.color.background.transitionButton,
+        border:
+            Border.all(color: theme.color.stroke.transitionAction, width: 1.0),
         borderRadius: BorderRadius.all(RoofCornerRadius.regular));
 
-    double _textContainerWidth;
-    EdgeInsets _containerPadding =
+    double textContainerWidth;
+    EdgeInsets containerPadding =
         EdgeInsets.fromLTRB(RoofDistance.b, 0, RoofDistance.b, 0);
 
     // animationWidthOffset ensures button children don't overflow while button is collapsing. value should be equal to the difference between baseButtonSize.width and the width of the button icon + total x-axis _containerPadding
     final double animationWidthOffset = 2;
-    final double safeWidthForCollapse = baseButtonSize.width + animationWidthOffset;
+    final double safeWidthForCollapse =
+        baseButtonSize.width + animationWidthOffset;
     if (animatedWidth != null && animatedWidth <= safeWidthForCollapse) {
-      _textContainerWidth = 0;
-      _containerPadding = null;
+      textContainerWidth = 0;
+      containerPadding = null;
     }
 
-    final List<Widget> _buttonChildren = [];
+    final List<Widget> buttonChildren = [];
 
-    final _buttonIcon = Container(
-      child: threadActionIconReference.buildSvg(color: RoofColor.blue),
+    final buttonIcon = Container(
+      child: threadActionIconReference.buildSvg(
+          color: theme.color.icon.transitionAction),
     );
-    _buttonChildren.add(_buttonIcon);
+    buttonChildren.add(buttonIcon);
 
-    final _buttonText = _AnimatedButtonText(
-        text: threadActionTitle, textContainerWidth: _textContainerWidth);
-    _buttonChildren.add(_buttonText);
+    final buttonText = _AnimatedButtonText(
+        text: threadActionTitle, textContainerWidth: textContainerWidth);
+    buttonChildren.add(buttonText);
 
     return GestureDetector(
         onTap: threadAction,
@@ -54,12 +60,12 @@ class ThreadActionButton extends StatelessWidget {
             key: buttonKey,
             width: animatedWidth,
             height: baseButtonSize.height,
-            padding: _containerPadding,
-            decoration: _buttonDecoration,
+            padding: containerPadding,
+            decoration: buttonDecoration,
             child: Row(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: _buttonChildren)));
+                children: buttonChildren)));
   }
 }
 
@@ -69,24 +75,23 @@ class _AnimatedButtonText extends StatelessWidget {
 
   _AnimatedButtonText({this.text, this.textContainerWidth});
 
+  final _buttonTextStyle = RoofTypography.button;
+
   @override
   Widget build(BuildContext context) {
-    final _buttonTextStyle = TextStyle(
-        color: RoofColor.blue,
-        fontSize: RoofFontSize.medium,
-        fontWeight: RoofFontWeight.extraThick);
+    final buttonTextColor = RoofTheme.of(context).color.text.transitionAction;
 
-    final _textContainerPadding = EdgeInsets.fromLTRB(RoofDistance.b, 0, 0, 0);
+    final textContainerPadding = EdgeInsets.fromLTRB(RoofDistance.b, 0, 0, 0);
 
     return Flexible(
         flex: 1,
         child: Container(
             width: textContainerWidth,
-            padding: _textContainerPadding,
+            padding: textContainerPadding,
             child: Text(text,
                 softWrap: false,
                 overflow: TextOverflow.fade,
-                style: _buttonTextStyle,
+                style: _buttonTextStyle.textStyleWithColor(buttonTextColor),
                 textAlign: TextAlign.center)));
   }
 }

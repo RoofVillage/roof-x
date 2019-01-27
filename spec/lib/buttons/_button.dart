@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:spec/index.dart';
 import 'package:icon_library/index.dart';
+import 'package:spec/typography/index.dart';
 
 class RoofButton extends StatefulWidget {
   final Function onTap;
   final String buttonText;
   final SmallIconReference iconReference;
   final BoxDecoration buttonDecoration;
-  final TextStyle textDecoration;
+  final Color contentColor;
   final double buttonHeight;
 
-  const RoofButton(
+  RoofButton(
       {this.onTap,
       this.buttonText,
       this.iconReference,
       this.buttonDecoration,
-      this.textDecoration,
+      this.contentColor,
       this.buttonHeight});
 
   _RoofButtonState createState() => _RoofButtonState(
@@ -23,8 +24,8 @@ class RoofButton extends StatefulWidget {
       buttonText: buttonText,
       iconReference: iconReference,
       buttonDecoration: buttonDecoration,
-      buttonHeight: buttonHeight,
-      textDecoration: textDecoration);
+      contentColor: contentColor,
+      buttonHeight: buttonHeight);
 }
 
 class _RoofButtonState extends State<RoofButton> {
@@ -32,17 +33,18 @@ class _RoofButtonState extends State<RoofButton> {
   String buttonText;
   SmallIconReference iconReference;
   BoxDecoration buttonDecoration;
+  Color contentColor;
   double buttonHeight;
-  TextStyle textDecoration;
 
   _RoofButtonState(
       {this.onTap,
       this.buttonText,
       this.iconReference,
       this.buttonDecoration,
-      this.buttonHeight,
-      this.textDecoration});
+      this.contentColor,
+      this.buttonHeight});
 
+  final _textStyle = RoofTypography.button;
   static const double _defaultButtonHeight = 40;
 
   @override
@@ -52,48 +54,50 @@ class _RoofButtonState extends State<RoofButton> {
     bool tapped = false;
 
     void doTap() {
-      VibrateDevice.lightImpact();
+      RoofHaptic.triggerWith(RoofHapticOption.light);
       tapped = true;
       onTap();
       // .then(tapped = false);
     }
 
-    List<Widget> _buttonChildren = [];
+    List<Widget> buttonChildren = [];
 
     if (iconReference != null) {
-      final _iconPadding = buttonText != null
+      final iconPadding = buttonText != null
           ? EdgeInsets.fromLTRB(0, 0, RoofDistance.b, 0)
           : EdgeInsets.all(0);
 
-      final _buttonIcon = Container(
-          padding: _iconPadding,
-          child: iconReference.buildSvg(color: RoofColor.blue));
+      final buttonIcon = Container(
+          padding: iconPadding,
+          child: iconReference.buildSvg(color: contentColor));
 
-      _buttonChildren.add(_buttonIcon);
+      buttonChildren.add(buttonIcon);
     }
 
     if (buttonText != null) {
-      final _buttonText =
+      final textDecoration = _textStyle.textStyleWithColor(contentColor);
+
+      final styledButtonText =
           Text(buttonText, style: textDecoration, textAlign: TextAlign.center);
 
-      _buttonChildren.add(_buttonText);
+      buttonChildren.add(styledButtonText);
     }
 
-    final _buttonPadding =
+    final buttonPadding =
         EdgeInsets.fromLTRB(RoofDistance.c, 0, RoofDistance.c, 0);
 
-    double _opacity = tapped ? .75 : 1;
+    double opacity = tapped ? .75 : 1;
 
     return GestureDetector(
         onTap: doTap,
         child: Opacity(
-            opacity: _opacity,
+            opacity: opacity,
             child: Container(
                 height: buttonHeight,
-                padding: _buttonPadding,
+                padding: buttonPadding,
                 decoration: buttonDecoration,
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: _buttonChildren))));
+                    children: buttonChildren))));
   }
 }

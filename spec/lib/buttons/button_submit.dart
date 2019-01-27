@@ -3,31 +3,30 @@ import 'package:spec/index.dart';
 import 'package:icon_library/index.dart';
 import '_button.dart';
 
-class RoofButtonB extends StatelessWidget {
+class RoofSubmitButton extends StatelessWidget {
   final Function onTap;
   final String buttonText;
   final double buttonHeight;
   final SmallIconReference iconReference;
 
-  const RoofButtonB({this.onTap, this.buttonText, this.buttonHeight, this.iconReference});
+  RoofSubmitButton(
+      {this.onTap, this.buttonText, this.buttonHeight, this.iconReference});
 
   @override
   Widget build(BuildContext context) {
-    final _buttonDecoration = BoxDecoration(
-        border: Border.all(color: RoofColor.blue, width: 2.0),
-        borderRadius: BorderRadius.all(RoofCornerRadius.regular));
+    final theme = RoofTheme.of(context);
+    final contentColor = theme.color.text.submitAction;
 
-    final _textStyle = TextStyle(
-        color: RoofColor.blue,
-        fontSize: RoofFontSize.large,
-        fontWeight: RoofFontWeight.extraThick);
+    final buttonDecoration = BoxDecoration(
+        color: theme.color.background.submitButton,
+        borderRadius: BorderRadius.all(RoofCornerRadius.regular));
 
     return RoofButton(
         onTap: onTap,
         buttonText: buttonText,
         iconReference: iconReference,
         buttonHeight: buttonHeight,
-        buttonDecoration: _buttonDecoration,
-        textDecoration: _textStyle);
+        buttonDecoration: buttonDecoration,
+        contentColor: contentColor);
   }
 }

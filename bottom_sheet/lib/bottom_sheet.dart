@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/animation.dart';
+
+import 'package:spec/duration.dart';
 import 'widgets/index.dart';
 
 class RoofBottomSheet extends ModalRoute<void> {
@@ -7,7 +9,7 @@ class RoofBottomSheet extends ModalRoute<void> {
   RoofBottomSheet({this.isFirstOverlay = true});
 
   @override
-  Duration get transitionDuration => Duration(milliseconds: 280);
+  Duration get transitionDuration => RoofDuration.short;
 
   @override
   bool get opaque => false;
@@ -56,14 +58,14 @@ class _RoofBottomSheetTransition extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Animation<double> _curvedAnimation =
+    final Animation<double> curvedAnimation =
         controller.drive(CurveTween(curve: Curves.fastOutSlowIn));
 
-    final _animationTween = Tween<Offset>(
+    final animationTween = Tween<Offset>(
         begin: isFirstOverlay ? Offset(0.0, 1.0) : Offset(1.0, 0),
         end: Offset.zero);
 
     return SlideTransition(
-        position: _curvedAnimation.drive(_animationTween), child: child);
+        position: curvedAnimation.drive(animationTween), child: child);
   }
 }

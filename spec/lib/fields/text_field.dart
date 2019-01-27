@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:spec/fields/widgets/_field_label.dart';
 import 'package:spec/object_padding.dart';
+import 'package:spec/theme/index.dart';
+import 'package:spec/typography/index.dart';
 import '_composition_field.dart';
 
 class RoofTextField extends StatelessWidget with RoofCompositionField {
@@ -10,6 +12,10 @@ class RoofTextField extends StatelessWidget with RoofCompositionField {
   final bool isPassword;
   final bool autofocus;
   final TextInputAction textInputAction;
+
+  String get _formattedPlaceholder {
+    return (placeholder == null && isPassword) ? "••••••••" : placeholder;
+  }
 
   RoofTextField(
       {this.fieldName,
@@ -23,22 +29,22 @@ class RoofTextField extends StatelessWidget with RoofCompositionField {
   Widget build(BuildContext context) {
     List<Widget> fieldChildren = [];
 
-    String formattedPlaceholder =
-        (placeholder == null && isPassword) ? "••••••••" : placeholder;
-
-    if (fieldName != null)
+    if (fieldName != null) {
       fieldChildren.add(RoofFieldLabel(labelText: fieldName));
+    }
 
-    fieldChildren.add(_FieldBody(
+    final fieldBody = _FieldBody(
       autofocus: autofocus,
       isPassword: isPassword,
       textInputAction: textInputAction,
       initialValue: initialValue,
-      formattedPlaceholder: formattedPlaceholder,
-    ));
+      placeholder: _formattedPlaceholder,
+    );
+
+    fieldChildren.add(fieldBody);
 
     return Container(
-        margin: RoofObjectPadding.fieldPaddingA(),
+        margin: RoofObjectPadding.field1,
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: fieldChildren));
@@ -50,31 +56,35 @@ class _FieldBody extends StatelessWidget with RoofCompositionField {
   final bool isPassword;
   final TextInputAction textInputAction;
   final String initialValue;
-  final String formattedPlaceholder;
+  final String placeholder;
+
+  final _typographyDecoration = RoofTypography.body2;
 
   _FieldBody(
       {this.autofocus,
       this.isPassword,
       this.initialValue,
       this.textInputAction,
-      this.formattedPlaceholder});
+      this.placeholder});
 
   @override
   Widget build(BuildContext context) {
+    final theme = RoofTheme.of(context);
+    final decoration = InputDecoration(
+        hintText: placeholder,
+        enabledBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: theme.color.stroke.light)),
+        focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: theme.color.stroke.focus)),
+        hintStyle: _typographyDecoration
+            .textStyleWithColor(theme.color.text.placeholder));
+
     return TextFormField(
       autofocus: autofocus,
       obscureText: isPassword,
       initialValue: initialValue,
       textInputAction: textInputAction,
-      decoration: _fieldBodyDecoration(placeholder: formattedPlaceholder),
+      decoration: decoration,
     );
-  }
-
-  InputDecoration _fieldBodyDecoration({String placeholder}) {
-    return InputDecoration(
-        hintText: placeholder,
-        enabledBorder: UnderlineInputBorder(borderSide: enabledBorderSide()),
-        focusedBorder: UnderlineInputBorder(borderSide: focusedBorderSide()),
-        hintStyle: hintStyle());
   }
 }
