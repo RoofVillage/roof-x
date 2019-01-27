@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:icon_library/index.dart';
 
 import 'package:spec/nav_bars/index.dart';
 import 'package:spec/nav_buttons/index.dart';
@@ -13,14 +12,11 @@ abstract class RoofArtboard extends StatelessWidget {
 
   RoofNavBar get navBar {
     if (navButton != null) {
-      print("1");
       return RoofTitleNavBar(
           actionButtons: actionButtons, title: title, navButton: navButton);
     } else if (title != null) {
-      print("2");
       return RoofLogoNavBar(actionButtons: actionButtons, title: title);
     } else {
-      print("3");
       return RoofFullLogoNavBar(actionButtons: actionButtons);
     }
   }

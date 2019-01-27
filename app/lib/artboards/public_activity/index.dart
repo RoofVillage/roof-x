@@ -20,7 +20,7 @@ class PublicActivity extends RoofArtboard {
     },
   );
   final _moteButton = RoofIconNavButton(
-    iconReference: IconReference.add,
+    iconReference: IconReference.settingsNav,
     onTap: () {
       print("GOOP");
     },
@@ -35,11 +35,11 @@ class PublicActivity extends RoofArtboard {
   @override
   Widget get body => _PublicActivityTable();
   @override
-  List<RoofNavButton> get actionButtons => [_infoButton, _moteButton];
-  @override
-  String get title => "Public activity";
-  @override
-  RoofNavButton get navButton => _infoButton;
+  List<RoofNavButton> get actionButtons => [_moteButton, _infoButton];
+  // @override
+  // String get title => "Public activity";
+  // @override
+  // RoofNavButton get navButton => _backButton;
 }
 
 class _PublicActivityTable extends StreamTable<PublicActivityData,
