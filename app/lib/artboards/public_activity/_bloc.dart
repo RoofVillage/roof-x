@@ -68,7 +68,7 @@ class Bloc extends StreamTableBloc {
     return PublicActivityData(
         title: decoratedTitle,
         description: note,
-        iconReference: IconReference.action,
+        iconReference: IconReference.complete,
         type: PublicActivityType.completion,
         timestamp: 12221);
   }
@@ -87,7 +87,7 @@ class Bloc extends StreamTableBloc {
     return PublicActivityData(
         title: decoratedTitle,
         description: note,
-        iconReference: IconReference.balances,
+        iconReference: IconReference.piggyBank,
         type: PublicActivityType.expense,
         timestamp: 9012);
   }
@@ -156,7 +156,7 @@ class Bloc extends StreamTableBloc {
     return PublicActivityData(
         title: decoratedTitle,
         description: note,
-        iconReference: IconReference.action,
+        iconReference: IconReference.toolbox,
         type: PublicActivityType.maintenance,
         timestamp: 1901);
   }

@@ -7,7 +7,7 @@ class RoofTransitionButton extends StatelessWidget {
   final Function onTap;
   final String buttonText;
   final double buttonHeight;
-  final SmallIconReference iconReference;
+  final StandardIconReference iconReference;
 
   RoofTransitionButton(
       {this.onTap, this.buttonText, this.buttonHeight, this.iconReference});

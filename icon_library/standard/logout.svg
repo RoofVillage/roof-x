@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="28px" height="28px" viewBox="0 0 28 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+    <title>standard/logout</title>
+    <desc>Created with Sketch.</desc>
+    <g id="logout" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="Group" transform="translate(5.000000, 3.500000)" stroke="#0E0E0E" stroke-width="1.16">
+            <path d="M2.17334906,6.13487671 C0.818736122,7.71011887 0,9.7594464 0,12 C0,16.9705627 4.02943725,21 9,21 C13.9705627,21 18,16.9705627 18,12 C18,9.69827338 17.1359463,7.59835733 15.7145048,6.00691787" id="Oval-2"></path>
+            <path d="M9,12.5 L9,0.5" id="Line"></path>
+        </g>
+    </g>
+</svg>

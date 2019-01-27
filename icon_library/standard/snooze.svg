@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="28px" height="28px" viewBox="0 0 28 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+    <title>standard/snooze</title>
+    <desc>Created with Sketch.</desc>
+    <g id="snooze" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
+        <path d="M3.74352671,3.5 L24.2564733,3.5 C24.5150137,3.5 24.6087667,3.52691943 24.7032853,3.57746848 C24.7978038,3.62801754 24.8719825,3.70219623 24.9225315,3.79671475 C24.9730806,3.89123326 25,3.98498627 25,4.24352671 L25,21.0388397 C25,22.5900823 24.8384834,23.1526004 24.5351891,23.7197115 C24.2318948,24.2868226 23.7868226,24.7318948 23.2197115,25.0351891 C22.6526004,25.3384834 22.0900823,25.5 20.5388397,25.5 L7.46116027,25.5 C5.90991766,25.5 5.3473996,25.3384834 4.78028849,25.0351891 C4.21317737,24.7318948 3.76810525,24.2868226 3.46481091,23.7197115 C3.16151656,23.1526004 3,22.5900823 3,21.0388397 L3,4.24352671 C3,3.98498627 3.02691943,3.89123326 3.07746848,3.79671475 C3.12801754,3.70219623 3.20219623,3.62801754 3.29671475,3.57746848 C3.39123326,3.52691943 3.48498627,3.5 3.74352671,3.5 Z" id="Rectangle-3" stroke="#0E0E0E" stroke-width="1.16" stroke-linejoin="round"></path>
+        <path d="M6,2 L6,5" id="Line-Copy-3" stroke="#0E0E0E" stroke-width="1.16"></path>
+        <path d="M8.5,2 L8.5,5" id="Line-Copy-3" stroke="#0E0E0E" stroke-width="1.16"></path>
+        <path d="M19.5,2 L19.5,5" id="Line-Copy-3" stroke="#0E0E0E" stroke-width="1.16"></path>
+        <path d="M22,2 L22,5" id="Line-Copy-3" stroke="#0E0E0E" stroke-width="1.16"></path>
+        <path d="M3.55,7.58 L24.45,7.58" id="Line-2" stroke="#0E0E0E" stroke-width="1.16" stroke-linejoin="round"></path>
+        <g id="Group-2" transform="translate(6.500000, 13.000000)" stroke="#0E0E0E" stroke-linejoin="round" stroke-width="1.16">
+            <g id="Group">
+                <path d="M0,1.5 L3,1.5" id="Line-2"></path>
+                <path d="M0,5.5 L3,5.5" id="Line-2"></path>
+                <path d="M0,5.5 L3,1.5" id="Line-2"></path>
+            </g>
+            <g id="Group" transform="translate(6.000000, 0.000000)">
+                <path d="M0,1.5 L3,1.5" id="Line-2"></path>
+                <path d="M0,5.5 L3,5.5" id="Line-2"></path>
+                <path d="M0,5.5 L3,1.5" id="Line-2"></path>
+            </g>
+            <g id="Group" transform="translate(12.000000, 0.000000)">
+                <path d="M0,1.5 L3,1.5" id="Line-2"></path>
+                <path d="M0,5.5 L3,5.5" id="Line-2"></path>
+                <path d="M0,5.5 L3,1.5" id="Line-2"></path>
+            </g>
+        </g>
+    </g>
+</svg>

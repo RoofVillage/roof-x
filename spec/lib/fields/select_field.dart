@@ -138,8 +138,8 @@ class _RoofModelContainer extends StatelessWidget {
   final _typographyStyle = RoofTypography.body2;
   final _maxLines = 10;
 
-  final _upArrowIconReferece = IconReference.cashSack;
-  final _downArrowIconReferece = IconReference.action;
+  final _upArrowIconReferece = IconReference.upArrow;
+  final _downArrowIconReferece = IconReference.downArrow;
 
   _RoofModelContainer(
       {this.modelText, this.emptyText, this.onTap, this.isExpanded});
@@ -307,8 +307,8 @@ class _RoofDropdownOption extends StatelessWidget {
   final bool selected;
 
   final _typographyStyle = RoofTypography.body2;
-  final _checkIcon = IconReference.cashSack;
-  final _uncheckedIcon = IconReference.action;
+  final _checkIcon = IconReference.boxChecked;
+  final _uncheckedIcon = IconReference.boxUnchecked;
 
   _RoofDropdownOption(
       {this.name,

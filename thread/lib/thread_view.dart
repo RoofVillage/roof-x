@@ -7,7 +7,7 @@ class RoofThread extends StatelessWidget {
   final List<Widget> threadActivityItems;
   final List<Widget> threadMenuItems;
   final String threadActionTitle;
-  final SmallIconReference threadActionIconReference;
+  final StandardIconReference threadActionIconReference;
   final Function threadAction;
 
   RoofThread(

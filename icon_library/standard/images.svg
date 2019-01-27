@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="28px" height="28px" viewBox="0 0 28 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+    <title>standard/images</title>
+    <desc>Created with Sketch.</desc>
+    <g id="images" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <circle id="Oval" stroke="#0E0E0E" stroke-width="1.16" cx="17.5" cy="12.5" r="2.5"></circle>
+        <polyline id="Path-21" stroke="#0E0E0E" stroke-width="1.16" points="1 21.3636364 4.81818182 17.5454545 7.45454545 20.1818182 11.8181818 15.8181818 21.581818 25.581818"></polyline>
+        <rect id="Rectangle" stroke="#0E0E0E" stroke-width="1.16" x="1" y="6" width="23" height="20" rx="3"></rect>
+        <path d="M4,5.830657 L4,5 C4,3.34314575 5.34314575,2 7,2 L24,2 C25.6568542,2 27,3.34314575 27,5 L27,19 C27,20.6568542 25.6568542,22 24,22" id="Path" stroke="#0E0E0E" stroke-width="1.16"></path>
+    </g>
+</svg>

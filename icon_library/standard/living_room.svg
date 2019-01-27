@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="28px" height="28px" viewBox="0 0 28 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+    <title>standard/living_room</title>
+    <desc>Created with Sketch.</desc>
+    <g id="living_room" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="Rectangle-7" stroke="#0E0E0E" stroke-width="1.16" stroke-linecap="round" stroke-linejoin="round" x="6" y="21" width="16" height="4"></rect>
+        <path d="M4,17 L4,15.5 C4,14.3954305 4.8954305,13.5 6,13.5 L22,13.5 C23.1045695,13.5 24,14.3954305 24,15.5 L24,17" id="Rectangle-7" stroke="#0E0E0E" stroke-width="1.16" stroke-linecap="round" stroke-linejoin="round"></path>
+        <path d="M24,17 L24,17 C25.1045695,17 26,17.8954305 26,19 L26,25.42 C26,25.7403252 25.7403252,26 25.42,26 L22.58,26 C22.2596748,26 22,25.7403252 22,25.42 L22,19 C22,17.8954305 22.8954305,17 24,17 Z" id="Rectangle-7" stroke="#0E0E0E" stroke-width="1.16" stroke-linecap="round" stroke-linejoin="round"></path>
+        <path d="M4,17 L4,17 C5.1045695,17 6,17.8954305 6,19 L6,25.42 C6,25.7403252 5.74032515,26 5.42,26 L2.58,26 C2.25967485,26 2,25.7403252 2,25.42 L2,19 C2,17.8954305 2.8954305,17 4,17 Z" id="Rectangle-7" stroke="#0E0E0E" stroke-width="1.16" stroke-linecap="round" stroke-linejoin="round"></path>
+        <circle id="Oval-14" fill="#0E0E0E" cx="9.01999956" cy="17.2800007" r="1"></circle>
+        <circle id="Oval-14" fill="#0E0E0E" cx="14.0000001" cy="17.2800007" r="1"></circle>
+        <circle id="Oval-14" fill="#0E0E0E" cx="18.9799996" cy="17.2800007" r="1"></circle>
+        <g id="Group" transform="translate(4.000000, 1.500000)">
+            <circle id="Oval-14" fill="#0E0E0E" cx="4.48000008" cy="2.98000008" r="1"></circle>
+            <path d="M0,9 L20,9" id="Line" stroke="#0E0E0E" stroke-width="1.16" stroke-linecap="round" stroke-linejoin="round"></path>
+            <polygon id="Rectangle" stroke="#0E0E0E" stroke-width="1.16" stroke-linecap="round" stroke-linejoin="round" points="3 7 6 7 5.5 9 3.5 9"></polygon>
+            <path d="M4.5,7 L4.5,5" id="Line-2" stroke="#0E0E0E" stroke-width="1.16" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M3.00234156,2.08452743 C3.00078741,2.0565493 3,2.02836661 3,2 C3,1.17157288 3.67157288,0.5 4.5,0.5 C5.32842712,0.5 6,1.17157288 6,2 C6,2.02836661 5.99921259,2.0565493 5.99765844,2.08452743 C6.58147745,2.28978304 7,2.84601593 7,3.5 C7,4.32842712 6.32842712,5 5.5,5 C5.11582278,5 4.76537825,4.85557322 4.5,4.61805325 C4.23462175,4.85557322 3.88417722,5 3.5,5 C2.67157288,5 2,4.32842712 2,3.5 C2,2.84601593 2.41852255,2.28978304 3.00234156,2.08452743 Z" id="Combined-Shape" stroke="#0E0E0E" stroke-width="1.16" stroke-linecap="round" stroke-linejoin="round"></path>
+            <rect id="Rectangle-9" stroke="#0E0E0E" stroke-width="1.16" stroke-linecap="round" stroke-linejoin="round" x="10" y="4" width="2" height="5"></rect>
+            <rect id="Rectangle-9" stroke="#0E0E0E" stroke-width="1.16" stroke-linecap="round" stroke-linejoin="round" x="12" y="3" width="2" height="6"></rect>
+            <rect id="Rectangle-9" stroke="#0E0E0E" stroke-width="1.16" stroke-linecap="round" stroke-linejoin="round" x="14" y="4" width="2" height="5"></rect>
+            <path d="M16,7 L17,7 C17.5522847,7 18,7.44771525 18,8 L18,9 L16,9 L16,7 Z" id="Rectangle-9" stroke="#0E0E0E" stroke-width="1.16" stroke-linecap="round" stroke-linejoin="round"></path>
+        </g>
+    </g>
+</svg>

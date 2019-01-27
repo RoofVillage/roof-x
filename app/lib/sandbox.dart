@@ -12,7 +12,7 @@ class Sandbox extends StatelessWidget {
     }
     ///change to button sheet scaffold.
     return Scaffold(
-      body: RoofThread(threadTitle: "Thread bb", threadActionTitle: "Pay", threadAction: threadAction, threadActionIconReference: IconReference.balances,)
+      body: RoofThread(threadTitle: "Thread bb", threadActionTitle: "Pay", threadAction: threadAction, threadActionIconReference: IconReference.piggyBank,)
     );
   }
 }

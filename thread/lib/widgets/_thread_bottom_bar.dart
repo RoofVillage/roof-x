@@ -7,7 +7,7 @@ import '_file_button.dart';
 
 class ThreadBottomBar extends StatefulWidget {
   final String threadActionTitle;
-  final SmallIconReference threadActionIconReference;
+  final StandardIconReference threadActionIconReference;
   final Function threadAction;
 
   ThreadBottomBar(
@@ -24,7 +24,7 @@ class ThreadBottomBar extends StatefulWidget {
 class _ThreadBottomBarState extends State<ThreadBottomBar>
     with SingleTickerProviderStateMixin {
   String threadActionTitle;
-  SmallIconReference threadActionIconReference;
+  StandardIconReference threadActionIconReference;
   Function threadAction;
   bool isTyping = false;
   Animation<double> animation;

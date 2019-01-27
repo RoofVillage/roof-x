@@ -2,10 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class SmallIconReference extends _IconReference {
-  static const double _size = 28;
+  static const double _size = 24;
 
   SmallIconReference({String path = ""})
-      : super(path: "basic/$path", height: _size, width: _size);
+      : super(path: "small/$path", height: _size, width: _size);
+}
+
+class StandardIconReference extends _IconReference {
+  static const double _size = 28;
+
+  StandardIconReference({String path = ""})
+      : super(path: "standard/$path", height: _size, width: _size);
 }
 
 class NavigationIconReference extends _IconReference {

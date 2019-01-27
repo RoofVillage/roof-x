@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="28px" height="28px" viewBox="0 0 28 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+    <title>standard/reassign</title>
+    <desc>Created with Sketch.</desc>
+    <g id="reassign" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
+        <g id="Group-2" transform="translate(16.000000, 8.500000)" stroke="#0E0E0E">
+            <path d="M0.300000191,4.57999992 L9.01577161,4.58" id="Path-5" stroke-width="1.16"></path>
+            <polyline id="Path-4" stroke-linejoin="round" points="5.10000038 0.600000381 9.29999924 4.6134311 5.19999981 8.39999962"></polyline>
+        </g>
+        <circle id="Oval-5" stroke="#0E0E0E" stroke-width="1.16" stroke-linejoin="round" cx="8.79999995" cy="7.20000005" r="4.20000005"></circle>
+        <path d="M15.5999999,22.3095453 C15.5999999,17.3889391 11.4204592,13.3999996 8.75,13.3999996 C6.0795408,13.3999996 1.9000001,17.3889391 1.9000001,22.3095453 C1.9000001,27.2301516 15.5999999,27.2301516 15.5999999,22.3095453 Z" id="Oval-5" stroke="#0E0E0E" stroke-width="1.16" stroke-linejoin="round"></path>
+    </g>
+</svg>

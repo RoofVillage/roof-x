@@ -9,7 +9,7 @@ import 'package:spec/typography/index.dart';
 class RoofCellA extends StatelessWidget {
   final WeightDecoratedText titleText;
   final String detailText;
-  final SmallIconReference iconReference;
+  final StandardIconReference iconReference;
   final VoidCallback onTap;
 
   final _horizontalPadding = RoofDistance.b;
@@ -56,7 +56,7 @@ class RoofCellA extends StatelessWidget {
 class _Body extends StatelessWidget {
   final WeightDecoratedText titleText;
   final String detailText;
-  final SmallIconReference iconReference;
+  final StandardIconReference iconReference;
 
   final _verticalPadding = RoofDistance.b;
   final _imagePaddingRight = RoofDistance.b;

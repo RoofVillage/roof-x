@@ -6,7 +6,7 @@ import 'package:icon_library/index.dart';
 class PublicActivityData extends TimeSortableStreamableTableRowData {
   final WeightDecoratedText title;
   final String description;
-  final SmallIconReference iconReference;
+  final StandardIconReference iconReference;
   final PublicActivityType type;
 
   PublicActivityData(
