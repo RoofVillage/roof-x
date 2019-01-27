@@ -123,7 +123,7 @@ PublicActivityData _dataForCompletion(Map<String, Object> json) {
   return PublicActivityData(
       title: decoratedTitle,
       description: note,
-      iconReference: IconReference.action,
+      iconReference: IconReference.complete,
       type: PublicActivityType.completion,
       timestamp: 12221);
 }
@@ -142,7 +142,7 @@ PublicActivityData _dataForExpense(Map<String, Object> json) {
   return PublicActivityData(
       title: decoratedTitle,
       description: note,
-      iconReference: IconReference.balances,
+      iconReference: IconReference.piggyBank,
       type: PublicActivityType.expense,
       timestamp: 9012);
 }
@@ -211,7 +211,7 @@ PublicActivityData _dataForMaintenance(Map<String, Object> json) {
   return PublicActivityData(
       title: decoratedTitle,
       description: note,
-      iconReference: IconReference.action,
+      iconReference: IconReference.toolbox,
       type: PublicActivityType.maintenance,
       timestamp: 1901);
 }

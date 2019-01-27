@@ -6,7 +6,7 @@ import 'package:spec/typography/index.dart';
 class RoofButton extends StatefulWidget {
   final Function onTap;
   final String buttonText;
-  final SmallIconReference iconReference;
+  final StandardIconReference iconReference;
   final BoxDecoration buttonDecoration;
   final Color contentColor;
   final double buttonHeight;
@@ -31,7 +31,7 @@ class RoofButton extends StatefulWidget {
 class _RoofButtonState extends State<RoofButton> {
   Function onTap;
   String buttonText;
-  SmallIconReference iconReference;
+  StandardIconReference iconReference;
   BoxDecoration buttonDecoration;
   Color contentColor;
   double buttonHeight;

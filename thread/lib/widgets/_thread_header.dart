@@ -26,7 +26,13 @@ class ThreadHeader extends StatelessWidget {
     final threadTitleTextStyle =
         _headerTextStyle.textStyleWithColor(theme.color.text.brand);
 
-    final threadTitleWidget = Text(title, style: threadTitleTextStyle);
+    final backButton = Padding(
+        padding: EdgeInsets.fromLTRB(0, 0, RoofDistance.b, 0),
+        child:
+            IconReference.cashSack.buildSvg(color: theme.color.icon.nav));
+
+    final threadTitleWidget =
+        Expanded(child: Text(title, style: threadTitleTextStyle));
 
     final threadMenu = GestureDetector(
       onTap: _openThreadMenu(threadMenuItems),
@@ -34,8 +40,7 @@ class ThreadHeader extends StatelessWidget {
     );
 
     final headerContents = Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: <Widget>[threadTitleWidget, threadMenu],
+      children: <Widget>[backButton, threadTitleWidget, threadMenu],
     );
 
     return SafeArea(

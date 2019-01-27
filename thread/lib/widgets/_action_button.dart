@@ -6,7 +6,7 @@ import 'package:spec/typography/index.dart';
 class ThreadActionButton extends StatelessWidget {
   final Function threadAction;
   final String threadActionTitle;
-  final SmallIconReference threadActionIconReference;
+  final StandardIconReference threadActionIconReference;
   final double animatedWidth;
   final Size baseButtonSize;
   final Key buttonKey;

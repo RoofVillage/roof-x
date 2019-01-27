@@ -12,31 +12,39 @@ class CommentBox extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = RoofTheme.of(context);
 
-    // Leave these borders transparent for now, they may use color when the box expands
-    final _enabledBorder = OutlineInputBorder(
-        borderSide: BorderSide(color: Colors.transparent),
+    final enabledBorder =
+        OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent));
+    final focusedBorder =
+        OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent));
+    final errorBorder = OutlineInputBorder(
+        borderSide: BorderSide(color: theme.color.stroke.alert),
         borderRadius: BorderRadius.all(RoofCornerRadius.regular));
-    final _focusedBorder = OutlineInputBorder(
-        borderSide: BorderSide(color: Colors.transparent),
-        borderRadius: BorderRadius.all(RoofCornerRadius.regular));
 
-    final _hintStyle = TextStyle(color: theme.color.text.placeholder);
+    final hintStyle = TextStyle(color: theme.color.text.placeholder);
 
-    final _hintText = "Add comment";
+    final textStyle = TextStyle(color: theme.color.text.primary);
 
-    final _commentBoxDecoration = InputDecoration(
+    final hintText = "Add comment";
+
+    final commentBoxDecoration = InputDecoration(
         contentPadding: EdgeInsets.all(RoofDistance.c),
-        hintText: _hintText,
+        hintText: hintText,
         border: OutlineInputBorder(),
-        enabledBorder: _enabledBorder,
-        focusedBorder: _focusedBorder,
-        hintStyle: _hintStyle);
+        enabledBorder: enabledBorder,
+        focusedBorder: focusedBorder,
+        errorBorder: errorBorder,
+        hintStyle: hintStyle);
+
+    final double maxHeight = 200;
 
     return Expanded(
-      child: TextField(
-        decoration: _commentBoxDecoration,
-        onChanged: (String string) => onChangeCallback(string),
-      ),
-    );
+        child: ConstrainedBox(
+            constraints: BoxConstraints(maxHeight: maxHeight),
+            child: TextField(
+                maxLines: null,
+                style: textStyle,
+                textInputAction: TextInputAction.done,
+                decoration: commentBoxDecoration,
+                onChanged: (String string) => onChangeCallback(string))));
   }
 }

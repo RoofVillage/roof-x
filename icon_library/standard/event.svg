@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="28px" height="28px" viewBox="0 0 28 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+    <title>standard/event</title>
+    <desc>Created with Sketch.</desc>
+    <g id="event" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3.9000001,4.5 L21.4468708,4.5 C22.3101529,4.99673203 22.7417939,6.23856209 22.7417939,8.2254902 C22.7417939,13.2068151 22.7417939,9.01156083 22.7417939,14.5588235 C22.7417939,18.5326797 23.461196,21.5130719 24.9000001,23.5 L8.07253213,23.5 C5.67452529,22.0098039 4.47552187,19.0294118 4.47552187,14.5588235 C4.47552187,7.85294118 4.47552187,14.2543274 4.47552187,8.97058824 C4.47552187,7.48039216 4.28368128,5.99019608 3.9000001,4.5 Z" id="Rectangle-10" stroke="#0E0E0E" stroke-width="1.16"></path>
+        <g id="Group" transform="translate(8.800000, 10.000000)" stroke="#0E0E0E" stroke-width="1.16">
+            <path d="M0,1 L6.25,1" id="Line"></path>
+            <path d="M0,4 L10,4" id="Line"></path>
+            <path d="M0,7 L10,7" id="Line"></path>
+        </g>
+    </g>
+</svg>

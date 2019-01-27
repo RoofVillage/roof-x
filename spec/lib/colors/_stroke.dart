@@ -38,5 +38,15 @@ class RoofStrokeColor {
     return null;
   }
 
+  Color get alert {
+    switch (_current) {
+      case RoofThemeOption.light:
+        return RoofColor.alert;
+      case RoofThemeOption.dark:
+        return RoofColor.alert;
+    }
+    return null;
+  }
+
   RoofStrokeColor(this._current);
 }

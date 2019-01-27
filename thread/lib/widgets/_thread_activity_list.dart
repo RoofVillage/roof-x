@@ -34,8 +34,55 @@ class ThreadActivityList extends StatelessWidget {
 
     final activityList = ListView(reverse: true, children: listChildren);
 
+    final topGradient = _ActivityListGradient(gradientType: GradientType.top);
+
+    final bottomGradient =
+        _ActivityListGradient(gradientType: GradientType.bottom);
+
     return Expanded(
-        child: Container(
-            color: backgroundColor, padding: padding, child: activityList));
+        child: Stack(children: [
+      Container(color: backgroundColor, padding: padding, child: activityList),
+      topGradient,
+      bottomGradient
+    ]));
   }
 }
+
+class _ActivityListGradient extends StatelessWidget {
+  final GradientType gradientType;
+
+  _ActivityListGradient({this.gradientType});
+
+  final double _gradientHeight = RoofDistance.c;
+
+  @override
+  Widget build(BuildContext context) {
+    MainAxisAlignment columnAlignment;
+    Alignment gradientStart;
+    Alignment gradientEnd;
+
+    if (gradientType == GradientType.top) {
+      columnAlignment = MainAxisAlignment.end;
+      gradientStart = Alignment.bottomCenter;
+      gradientEnd = Alignment.topCenter;
+    } else if (gradientType == GradientType.bottom) {
+      columnAlignment = MainAxisAlignment.start;
+      gradientStart = Alignment.topCenter;
+      gradientEnd = Alignment.bottomCenter;
+    }
+
+    final gradientColor = RoofTheme.of(context).color.background.brandSecondary;
+
+    return Column(mainAxisAlignment: columnAlignment, children: [
+      Container(
+          height: _gradientHeight,
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  begin: gradientStart,
+                  end: gradientEnd,
+                  colors: [gradientColor, gradientColor.withAlpha(0)])))
+    ]);
+  }
+}
+
+enum GradientType { top, bottom }

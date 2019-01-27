@@ -15,7 +15,7 @@ class Sandbox extends StatelessWidget {
       threadTitle: "Thread bb",
       threadActionTitle: "Pay",
       threadAction: threadAction,
-      threadActionIconReference: IconReference.balances,
+      threadActionIconReference: IconReference.piggyBank,
     ));
   }
 }

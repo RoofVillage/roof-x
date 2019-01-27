@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="28px" height="28px" viewBox="0 0 28 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+    <title>standard/settings</title>
+    <desc>Created with Sketch.</desc>
+    <g id="settings" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12,6 L12,22" id="Path-6" stroke="#0E0E0E" stroke-width="1.16" transform="translate(12.000000, 14.000000) rotate(90.000000) translate(-12.000000, -14.000000) "></path>
+        <path d="M18.21,0.210000038 L18.21,11.79" id="Path-6" stroke="#0E0E0E" stroke-width="1.16" transform="translate(18.210000, 6.000000) rotate(90.000000) translate(-18.210000, -6.000000) "></path>
+        <path d="M5.25,4.75 L5.25,7.25" id="Path-6" stroke="#0E0E0E" stroke-width="1.16" transform="translate(5.250000, 6.000000) rotate(90.000000) translate(-5.250000, -6.000000) "></path>
+        <circle id="Oval" stroke="#0E0E0E" stroke-width="1.16" transform="translate(9.400000, 6.000000) rotate(90.000000) translate(-9.400000, -6.000000) " cx="9.39999962" cy="6" r="2.5"></circle>
+        <circle id="Oval-Copy" stroke="#0E0E0E" stroke-width="1.16" transform="translate(22.500000, 14.000000) rotate(90.000000) translate(-22.500000, -14.000000) " cx="22.5" cy="14" r="2.5"></circle>
+        <path d="M21,19 L21,25" id="Path-6" stroke="#0E0E0E" stroke-width="1.16" transform="translate(21.000000, 22.000000) rotate(90.000000) translate(-21.000000, -22.000000) "></path>
+        <path d="M8.30000019,17.6999998 L8.30000019,26.3000002" id="Path-6" stroke="#0E0E0E" stroke-width="1.16" transform="translate(8.300000, 22.000000) rotate(90.000000) translate(-8.300000, -22.000000) "></path>
+        <circle id="Oval-Copy-2" stroke="#0E0E0E" stroke-width="1.16" transform="translate(15.400000, 22.000000) rotate(90.000000) translate(-15.400000, -22.000000) " cx="15.3999996" cy="22" r="2.5"></circle>
+    </g>
+</svg>

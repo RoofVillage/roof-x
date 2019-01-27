@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="28px" height="28px" viewBox="0 0 28 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+    <title>standard/invite</title>
+    <desc>Created with Sketch.</desc>
+    <g id="invite" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <circle id="Oval-5" stroke="#0E0E0E" stroke-width="1.16" cx="9.20000005" cy="11.2" r="2.70000005"></circle>
+        <path d="M13,22.688225 C13,18.9391916 10.6509151,15.8999996 9.1500001,15.8999996 C7.64908509,15.8999996 5.30000019,18.9391916 5.30000019,22.688225 C5.30000019,26.4372583 13,26.4372583 13,22.688225 Z" id="Oval-5" stroke="#0E0E0E" stroke-width="1.16"></path>
+        <g id="Group-2" transform="translate(15.000000, 15.200000)" stroke="#0E0E0E" stroke-width="1.16">
+            <path d="M3.89999962,0.500000954 L3.89999962,7.5" id="Line"></path>
+            <path d="M7.39999962,4 L0.399999619,4" id="Line"></path>
+        </g>
+        <path d="M25,21.5 L25,11.6495421 C25,9.62893858 23.5625486,7.57272337 21.7203034,6.95813387 L9.24243165,2.79540421 C5.87172788,1.67090727 3,3.86351215 3,7.56112823 L3,21.5" id="Combined-Shape" stroke="#0E0E0E" stroke-width="1.16"></path>
+    </g>
+</svg>

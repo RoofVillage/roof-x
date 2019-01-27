@@ -10,4 +10,7 @@ class RoofObjectPadding {
 
   static const EdgeInsets container1 = EdgeInsets.fromLTRB(
       RoofDistance.c, RoofDistance.c, RoofDistance.c, RoofDistance.c);
+
+  static const EdgeInsets section1 = EdgeInsets.fromLTRB(
+      RoofDistance.c, RoofDistance.b, RoofDistance.c, RoofDistance.b);
 }

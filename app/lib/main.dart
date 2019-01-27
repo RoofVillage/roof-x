@@ -17,7 +17,7 @@ class _Sandbox extends StatelessWidget {
     return MaterialApp(
         title: 'Roof',
         theme: ThemeData(fontFamily: 'Azo'),
-        home: RoofTheme(RoofThemeOption.dark, child: Sandbox()));
+        home: RoofTheme(RoofThemeOption.light, child: Sandbox()));
   }
 }
 
