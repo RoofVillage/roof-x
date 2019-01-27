@@ -10,3 +10,5 @@ export 'fields/index.dart';
 export 'device_haptic.dart';
 export 'object_padding.dart';
 export 'corner_radius.dart';
+export 'font_size.dart';
+export 'font_weight.dart';

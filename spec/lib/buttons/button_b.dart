@@ -1,26 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:spec/color.dart';
-import 'package:spec/corner_radius.dart';
-import 'package:spec/font_size.dart';
-import 'package:spec/distance.dart';
-import 'package:spec/font_weight.dart';
+import 'package:spec/index.dart';
+import 'package:icon_library/index.dart';
 import '_button.dart';
 
 class RoofButtonB extends StatelessWidget {
   final Function onTap;
   final String buttonText;
+  final double buttonHeight;
+  final SmallIconReference iconReference;
 
-  const RoofButtonB({this.onTap, this.buttonText});
+  const RoofButtonB({this.onTap, this.buttonText, this.buttonHeight, this.iconReference});
 
   @override
   Widget build(BuildContext context) {
-    EdgeInsets _buttonPadding = EdgeInsets.all(RoofDistance.c);
-
-    BoxDecoration _buttonDecoration = BoxDecoration(
+    final _buttonDecoration = BoxDecoration(
         border: Border.all(color: RoofColor.blue, width: 2.0),
         borderRadius: BorderRadius.all(RoofCornerRadius.regular));
 
-    TextStyle _textStyle = TextStyle(
+    final _textStyle = TextStyle(
         color: RoofColor.blue,
         fontSize: RoofFontSize.large,
         fontWeight: RoofFontWeight.extraThick);
@@ -28,7 +25,8 @@ class RoofButtonB extends StatelessWidget {
     return RoofButton(
         onTap: onTap,
         buttonText: buttonText,
-        buttonPadding: _buttonPadding,
+        iconReference: iconReference,
+        buttonHeight: buttonHeight,
         buttonDecoration: _buttonDecoration,
         textDecoration: _textStyle);
   }

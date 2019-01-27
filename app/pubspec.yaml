@@ -21,6 +21,8 @@ dependencies:
     path: ./../icon_library
   decorated_text:
     path: ./../decorated_text
+  thread:
+    path: ./../thread
 
 dev_dependencies:
   flutter_test:

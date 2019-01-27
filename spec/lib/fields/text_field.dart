@@ -52,7 +52,7 @@ class _FieldBody extends StatelessWidget with RoofCompositionField {
   final String initialValue;
   final String formattedPlaceholder;
 
-  const _FieldBody(
+  _FieldBody(
       {this.autofocus,
       this.isPassword,
       this.initialValue,

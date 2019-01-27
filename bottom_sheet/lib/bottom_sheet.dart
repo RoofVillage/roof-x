@@ -56,15 +56,14 @@ class _RoofBottomSheetTransition extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Animation<double> curvedAnimation =
+    final Animation<double> _curvedAnimation =
         controller.drive(CurveTween(curve: Curves.fastOutSlowIn));
 
-    return SlideTransition(
-      position: curvedAnimation.drive(Tween<Offset>(
+    final _animationTween = Tween<Offset>(
         begin: isFirstOverlay ? Offset(0.0, 1.0) : Offset(1.0, 0),
-        end: Offset.zero,
-      )),
-      child: child,
-    );
+        end: Offset.zero);
+
+    return SlideTransition(
+        position: _curvedAnimation.drive(_animationTween), child: child);
   }
 }
