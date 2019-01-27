@@ -5,7 +5,7 @@ class RoofColor {
   static const blue = Color.fromRGBO(0, 187, 184, 1);
 
   static const white1 = Color.fromRGBO(255, 255, 255, 1);
-  static const white2 = Color.fromRGBO(245, 245, 245, 1);
+  static const white2 = Color.fromRGBO(250, 250, 250, 1);
 
   static const black1 = Color.fromRGBO(60, 60, 60, 1);
   static const black2 = Color.fromRGBO(40, 40, 40, 1);

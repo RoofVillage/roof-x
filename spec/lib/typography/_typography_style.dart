@@ -9,8 +9,8 @@ class RoofTypographyStyle {
   RoofTypographyStyle(
       {@required this.fontSize,
       @required this.fontWeight,
-      @required this.leading,
-      @required this.tracking});
+      this.leading,
+      this.tracking});
 
   TextStyle textStyleWithColor(Color color) {
     final height = (leading ?? fontSize) / fontSize;

@@ -6,12 +6,34 @@ import 'utils/_color.dart';
 class RoofBackgroundColor {
   RoofThemeOption _current;
 
-  Color get brand {
+  Color get brandSolid {
     switch (_current) {
       case RoofThemeOption.light:
         return RoofColor.white1;
       case RoofThemeOption.dark:
         return RoofColor.black2;
+    }
+    return null;
+  }
+
+  Color get brandPrimary {
+    final opacity = 0.98;
+    switch (_current) {
+      case RoofThemeOption.light:
+        return RoofColor.white1.withOpacity(opacity);
+      case RoofThemeOption.dark:
+        return RoofColor.black2.withOpacity(opacity);
+    }
+    return null;
+  }
+
+  Color get brandSecondary {
+    final opacity = 0.95;
+    switch (_current) {
+      case RoofThemeOption.light:
+        return RoofColor.white1.withOpacity(opacity);
+      case RoofThemeOption.dark:
+        return RoofColor.black2.withOpacity(opacity);
     }
     return null;
   }
@@ -22,6 +44,16 @@ class RoofBackgroundColor {
         return RoofColor.white2;
       case RoofThemeOption.dark:
         return RoofColor.black3;
+    }
+    return null;
+  }
+
+  Color get scrim {
+    switch (_current) {
+      case RoofThemeOption.light:
+        return RoofColor.black3.withOpacity(0.4);
+      case RoofThemeOption.dark:
+        return RoofColor.black3.withOpacity(0.4);
     }
     return null;
   }

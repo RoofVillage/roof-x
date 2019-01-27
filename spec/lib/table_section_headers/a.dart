@@ -45,7 +45,7 @@ class _RoofTableSectionHeaderADelegate extends SliverPersistentHeaderDelegate {
 
 class _TitleLabel extends StatelessWidget {
   final String text;
-  final _typographyStyle = RoofTypography.heading1;
+  final _typographyStyle = RoofTypography.heading2;
 
   _TitleLabel({Key key, @required this.text}) : super(key: key);
 

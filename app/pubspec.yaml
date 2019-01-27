@@ -23,6 +23,8 @@ dependencies:
     path: ./../decorated_text
   thread:
     path: ./../thread
+  bottom_sheet:
+    path: ./../bottom_sheet
 
 dev_dependencies:
   flutter_test:

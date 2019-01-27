@@ -5,6 +5,7 @@ import '_body_1b.dart';
 import '_body_2.dart';
 import '_button.dart';
 import '_heading_1.dart';
+import '_heading_2.dart';
 import '_title_1.dart';
 import '_typography_style.dart';
 
@@ -51,5 +52,12 @@ class RoofTypography {
       return RoofHeading1Ios();
     else
       return RoofHeading1Android();
+  }
+
+  static RoofTypographyStyle get heading2 {
+    if (Platform.isIOS)
+      return RoofHeading2Ios();
+    else
+      return RoofHeading2Android();
   }
 }

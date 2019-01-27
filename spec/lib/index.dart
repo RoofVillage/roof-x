@@ -1,6 +1,6 @@
 export 'cells/index.dart';
 export 'nav_bars/index.dart';
-export 'scaffolds/index.dart';
+export 'artboards/index.dart';
 export 'table_section_headers/index.dart';
 export 'theme/index.dart';
 export 'nav_buttons/index.dart';
@@ -9,3 +9,5 @@ export 'fields/index.dart';
 export 'haptics/index.dart';
 export 'object_padding.dart';
 export 'corner_radius.dart';
+export 'duration.dart';
+export 'colors/index.dart';

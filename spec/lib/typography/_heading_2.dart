@@ -1,17 +1,17 @@
 import '_typography_style.dart';
 import 'utils/index.dart';
 
-class RoofBody1bIos extends _RoofBody1b {}
+class RoofHeading2Ios extends _RoofHeading2 {}
 
-class RoofBody1bAndroid extends _RoofBody1b {}
+class RoofHeading2Android extends _RoofHeading2 {}
 
-class _RoofBody1b extends RoofTypographyStyle {
-  static const _fontSize = RoofFontSize.extraSmall;
-  static const _fontWeight = RoofFontWeight.thin;
+class _RoofHeading2 extends RoofTypographyStyle {
+  static const _fontSize = RoofFontSize.large;
+  static const _fontWeight = RoofFontWeight.thick;
   static const double _leading = _fontSize;
   static const double _tracking = 0;
 
-  _RoofBody1b(
+  _RoofHeading2(
       {fontSize = _fontSize,
       fontWeight = _fontWeight,
       leading = _leading,

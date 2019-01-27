@@ -108,7 +108,7 @@ class _ThreadBottomBarState extends State<ThreadBottomBar>
       rowChildren.add(threadActionButton);
     }
 
-    final Color bottomBarColor = theme.color.background.brand;
+    final Color bottomBarColor = theme.color.background.brandPrimary;
 
     final EdgeInsets bottomBarPadding = RoofObjectPadding.container1;
 

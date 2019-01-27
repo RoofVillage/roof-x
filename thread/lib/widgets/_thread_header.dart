@@ -19,11 +19,12 @@ class ThreadHeader extends StatelessWidget {
       // open bottom sheet with thread menu items (e.g. unsubscribe)
     }
 
-    final backgroundColor = theme.color.background.brand;
+    final backgroundColor = theme.color.background.brandPrimary;
 
     final padding = RoofObjectPadding.container1;
 
-    final threadTitleTextStyle = _headerTextStyle.textStyleWithColor(theme.color.text.brand);
+    final threadTitleTextStyle =
+        _headerTextStyle.textStyleWithColor(theme.color.text.brand);
 
     final threadTitleWidget = Text(title, style: threadTitleTextStyle);
 
@@ -42,8 +43,6 @@ class ThreadHeader extends StatelessWidget {
         left: false,
         right: false,
         child: Container(
-            color: backgroundColor,
-            padding: padding,
-            child: headerContents));
+            color: backgroundColor, padding: padding, child: headerContents));
   }
 }

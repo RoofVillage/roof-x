@@ -5,26 +5,7 @@ import 'package:stream/index.dart';
 
 import 'bloc.dart';
 
-abstract class StreamTableWidget<
-    T extends StreamTableBloc,
-    U extends StreamableTableRowData,
-    V extends StreamableTableSectionHeaderData,
-    W extends StreamableTableHeaderData> extends StatelessWidget {
-  Widget build(BuildContext context) {
-    final table = _StreamTable<T>(
-        buildRow: buildRow,
-        buildSectionHeader: buildSectionHeader,
-        buildTableHeader: buildTableHeader);
-    return table;
-  }
-
-  Widget buildRow({U rowData, int rowIndex, int sectionIndex}) => null;
-  SliverPersistentHeader buildSectionHeader({V headerData, int sectionIndex}) =>
-      null;
-  SliverPersistentHeader buildTableHeader({W headerData}) => null;
-}
-
-class _StreamTable<T extends StreamTableBloc> extends StatelessWidget {
+class StreamTableBuilder<T extends StreamTableBloc> extends StatelessWidget {
   final _RowBuilder buildRow;
 
   final _TableHeaderBuilder buildTableHeader;
@@ -34,7 +15,7 @@ class _StreamTable<T extends StreamTableBloc> extends StatelessWidget {
   final bool showsHeaderForEmptyTable;
   final bool showsHeadersForEmptySections;
 
-  _StreamTable(
+  StreamTableBuilder(
       {Key key,
       @required this.buildRow,
       this.buildSectionHeader,

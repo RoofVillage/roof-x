@@ -7,23 +7,23 @@ class RoofStrokeColor {
   RoofThemeOption _current;
 
   Color get light {
-    final alpha = 20;
+    final opacity = 0.1;
     switch (_current) {
       case RoofThemeOption.light:
-        return RoofColor.black3.withAlpha(alpha);
+        return RoofColor.black3.withOpacity(opacity);
       case RoofThemeOption.dark:
-        return RoofColor.white1.withAlpha(alpha);
+        return RoofColor.white1.withOpacity(opacity);
     }
     return null;
   }
 
   Color get focus {
-    final alpha = 30;
+    final opacity = 0.2;
     switch (_current) {
       case RoofThemeOption.light:
-        return RoofColor.black3.withAlpha(alpha);
+        return RoofColor.black3.withOpacity(opacity);
       case RoofThemeOption.dark:
-        return RoofColor.white1.withAlpha(alpha);
+        return RoofColor.white1.withOpacity(opacity);
     }
     return null;
   }

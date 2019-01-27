@@ -8,8 +8,8 @@ class RoofBody2Android extends _RoofBody2 {}
 class _RoofBody2 extends RoofTypographyStyle {
   static const _fontSize = RoofFontSize.small;
   static const _fontWeight = RoofFontWeight.thin;
-  static const double _leading = 18;
-  static const double _tracking = 10;
+  static const double _leading = _fontSize;
+  static const double _tracking = 0;
 
   _RoofBody2(
       {fontSize = _fontSize,

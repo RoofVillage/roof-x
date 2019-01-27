@@ -10,7 +10,7 @@ import 'data/index.dart';
 class RootWidget extends StatelessWidget {
   final RoofThemeOption theme;
 
-  RootWidget({this.theme = RoofThemeOption.dark});
+  RootWidget({this.theme = RoofThemeOption.light});
 
   Widget build(BuildContext context) {
     return RoofTheme(theme, child: _Artboard());

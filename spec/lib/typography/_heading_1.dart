@@ -6,10 +6,10 @@ class RoofHeading1Ios extends _RoofHeading1 {}
 class RoofHeading1Android extends _RoofHeading1 {}
 
 class _RoofHeading1 extends RoofTypographyStyle {
-  static const _fontSize = RoofFontSize.large;
+  static const _fontSize = RoofFontSize.extraLarge;
   static const _fontWeight = RoofFontWeight.thin;
-  static const double _leading = 18;
-  static const double _tracking = 10;
+  static const double _leading = _fontSize;
+  static const double _tracking = 0;
 
   _RoofHeading1(
       {fontSize = _fontSize,

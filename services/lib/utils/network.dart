@@ -10,10 +10,9 @@ class Network {
     final response = await http.post(Uri.encodeFull(url),
         body: json.encode(body),
         headers: {'content-type': _contentType, 'accept': _accept});
-    final dataConvertedToJson = json.decode(utf8.decode(response.bodyBytes));
     switch (response.statusCode) {
       case 200:
-        return dataConvertedToJson;
+        return utf8.decode(response.bodyBytes);
       default:
         throw Error();
     }

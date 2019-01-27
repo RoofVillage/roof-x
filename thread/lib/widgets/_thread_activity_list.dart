@@ -13,7 +13,7 @@ class ThreadActivityList extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = RoofTheme.of(context);
 
-    final backgroundColor = theme.color.background.brand;
+    final backgroundColor = theme.color.background.general;
 
     final padding = RoofObjectPadding.container1;
 

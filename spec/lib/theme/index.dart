@@ -57,16 +57,19 @@ class RoofInheritedTheme extends InheritedWidget {
 
   BoxShadow get shadow {
     double blurRadius;
+    double opacity;
     switch (current) {
       case RoofThemeOption.light:
         blurRadius = 12;
+        opacity = 0.2;
         break;
       case RoofThemeOption.dark:
         blurRadius = 16;
+        opacity = 0.1;
         break;
     }
     return BoxShadow(
-        color: color.background.general.withAlpha((0.2 * 255).floor()),
+        color: color.background.general.withOpacity(opacity),
         blurRadius: blurRadius,
         offset: Offset(0, 5));
   }

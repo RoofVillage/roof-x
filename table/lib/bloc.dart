@@ -40,6 +40,10 @@ class StreamTableBloc implements BlocBase {
     _init();
   }
 
+  StreamTableBloc.withInitialData(Future<StreamableTableData> initialData) {
+    _init(initialData: initialData);
+  }
+
   //Override to make the table.
   Future<StreamableTableData> createTableData() async {
     return StreamableTableData();
@@ -173,7 +177,7 @@ class StreamTableBloc implements BlocBase {
     });
   }
 
-  void _init() async {
-    _initialTableData = await createTableData();
+  void _init({Future<StreamableTableData> initialData}) async {
+    _initialTableData = await initialData ?? createTableData();
   }
 }

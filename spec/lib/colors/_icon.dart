@@ -26,6 +26,16 @@ class RoofIconColor {
     return null;
   }
 
+  Color get logo {
+    switch (_current) {
+      case RoofThemeOption.light:
+        return RoofColor.red;
+      case RoofThemeOption.dark:
+        return RoofColor.red;
+    }
+    return null;
+  }
+
   Color get transitionAction {
     switch (_current) {
       case RoofThemeOption.light:

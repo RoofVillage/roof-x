@@ -5,23 +5,26 @@ import 'package:spec/nav_bars/index.dart';
 import 'package:spec/nav_buttons/index.dart';
 import 'package:spec/theme/index.dart';
 
-class RoofScaffoldA extends StatelessWidget {
-  final NavigationIconReference centerIconReference;
-  final NavigationIconReference leftButtonIconReference;
-  final NavigationIconReference rightButtonIconReference;
-  final Function rightButtonAction;
-  final Function leftButtonAction;
-  final Widget body;
+abstract class RoofArtboard extends StatelessWidget {
+  Widget get body;
+  List<RoofNavButton> get actionButtons;
+  RoofNavButton get navButton => null;
+  String get title => null;
 
-  const RoofScaffoldA(
-      {Key key,
-      this.body,
-      this.centerIconReference,
-      this.leftButtonIconReference,
-      this.rightButtonIconReference,
-      this.rightButtonAction,
-      this.leftButtonAction})
-      : super(key: key);
+  RoofNavBar get navBar {
+    if (navButton != null) {
+      print("1");
+      return RoofTitleNavBar(
+          actionButtons: actionButtons, title: title, navButton: navButton);
+    } else if (title != null) {
+      print("2");
+      return RoofLogoNavBar(actionButtons: actionButtons, title: title);
+    } else {
+      print("3");
+      return RoofFullLogoNavBar(actionButtons: actionButtons);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = RoofTheme.of(context);
@@ -32,14 +35,7 @@ class RoofScaffoldA extends StatelessWidget {
           // Stretch the cards in horizontal axis
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            RoofNavBarA(
-                centerIconReference: centerIconReference,
-                leftButton: RoofNavButton(
-                    iconReference: leftButtonIconReference,
-                    onTap: leftButtonAction),
-                rightButton: RoofNavButton(
-                    iconReference: rightButtonIconReference,
-                    onTap: rightButtonAction)),
+            navBar,
             Expanded(
                 /*
               Wrap in MediaQuery to remove the top padding that the Scaffold will assume is necessary.
