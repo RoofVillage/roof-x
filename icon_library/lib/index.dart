@@ -15,10 +15,12 @@ class IconReference {
   static final backArrow = StandardIconReference(path: 'back_arrow.svg');
   static final bank = StandardIconReference(path: 'bank.svg');
   static final bellAlert = StandardIconReference(path: 'bell_alert.svg');
-  static final bellSubscribe = StandardIconReference(path: 'bell_subscribe.svg');
-  static final bellUnsubscribe = StandardIconReference(path: 'bell_unsubscribe.svg');
+  static final bellSubscribe =
+      StandardIconReference(path: 'bell_subscribe.svg');
+  static final bellUnsubscribe =
+      StandardIconReference(path: 'bell_unsubscribe.svg');
   static final camera = StandardIconReference(path: 'camera.svg');
-  static final cashSack = StandardIconReference(path: 'cash_sack.svg.svg');
+  static final cashSack = StandardIconReference(path: 'cash_sack.svg');
   static final comment = StandardIconReference(path: 'comment.svg');
   static final complete = StandardIconReference(path: 'complete.svg');
   static final dashboard = StandardIconReference(path: 'dashboard.svg');
@@ -55,7 +57,8 @@ class IconReference {
   static final nametag = StandardIconReference(path: 'nametag.svg');
   static final numberSign = StandardIconReference(path: 'number_sign.svg');
   static final outOfStock = StandardIconReference(path: 'out_of_stock.svg');
-  static final paymentHistory = StandardIconReference(path: 'payment_history.svg');
+  static final paymentHistory =
+      StandardIconReference(path: 'payment_history.svg');
   static final paymentInfo = StandardIconReference(path: 'payment_info.svg');
   static final phone = StandardIconReference(path: 'phone.svg');
   static final piggyBank = StandardIconReference(path: 'piggy_bank.svg');

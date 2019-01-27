@@ -14,13 +14,19 @@ import 'data/index.dart';
 
 class PublicActivity extends RoofArtboard {
   final _infoButton = RoofIconNavButton(
-    iconReference: IconReference.info,
+    iconReference: IconReference.add,
     onTap: () {
       print("GOOP");
     },
   );
   final _moteButton = RoofIconNavButton(
-    iconReference: IconReference.info,
+    iconReference: IconReference.add,
+    onTap: () {
+      print("GOOP");
+    },
+  );
+  final _backButton = RoofIconNavButton(
+    iconReference: IconReference.backArrowNav,
     onTap: () {
       print("GOOP");
     },
