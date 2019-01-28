@@ -27,6 +27,8 @@ dependencies:
     path: ../theme
   table_components:
     path: ../table_components
+  routing:
+    path: ../routing
 
 dev_dependencies:
   flutter_test:

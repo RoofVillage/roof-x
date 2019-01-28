@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stream/index.dart';
+import 'package:theme/index.dart';
 
 import 'src/_bloc.dart';
 import 'src/_widget.dart';
@@ -12,12 +13,12 @@ void main() {
 class _Roof extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Roof',
-      theme: ThemeData(fontFamily: 'Azo'),
-      home: BlocProvider(
-        bloc: AppBloc(),
-        child: RootWidget(),
+    return RoofTheme(
+      RoofThemeOption.light,
+      child: MaterialApp(
+        title: 'Roof',
+        theme: ThemeData(fontFamily: 'Azo'),
+        home: BlocProvider(bloc: AppBloc(), child: RootWidget()),
       ),
     );
   }

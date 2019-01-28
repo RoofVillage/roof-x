@@ -10,8 +10,8 @@ import 'package:services/index.dart';
 import 'package:app/src/utils/static_key.dart';
 import 'package:artboard_templates/index.dart';
 import 'package:navigation_components/index.dart';
-import 'package:theme/index.dart';
 import 'package:table_components/index.dart';
+import 'package:routing/index.dart';
 
 import 'data/index.dart';
 
@@ -20,16 +20,14 @@ class PublicActivity extends RoofArtboard {
       iconReference: IconReference.add,
       onTap: (context) {
         final k = PublicActivity();
-        Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => RoofTheme(RoofThemeOption.dark, child: k)));
+        Navigator.of(context).push(FullPageRoute(builder: (context) => k));
       });
 
   final _info2Button = RoofIconNavButton(
       iconReference: IconReference.settingsNav,
       onTap: (context) {
-        Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) =>
-                RoofTheme(RoofThemeOption.dark, child: PublicActivity())));
+        Navigator.of(context)
+            .push(FullPageRoute(builder: (context) => PublicActivity()));
       });
 
   final _backButton = RoofIconNavButton(

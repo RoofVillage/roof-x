@@ -7,8 +7,11 @@ abstract class RoofFloatingArtboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    final theme = RoofTheme.of(context);
+    final scaffold = Scaffold(
         body: _FloatingModal(page: body), backgroundColor: Colors.transparent);
+
+    return RoofTheme(theme.current, child: scaffold);
   }
 }
 
@@ -65,14 +68,6 @@ class _FloatingModalState extends State<_FloatingModal> {
     _timeDelta = details.sourceTimeStamp.inMilliseconds - _initialDragTime;
     _downDistanceDelta = details.globalPosition.dy - _initialDragDy;
   }
-
-  // _go() {
-  //   final container =
-  //       Container(color: null, child: _RoofBottomSheetContentArea());
-  //   setState(() => bottomSheets.add(container));
-  //   pageController.nextPage(
-  //       duration: Duration(milliseconds: 1000), curve: Curves.easeOut);
-  // }
 }
 
 class FloatingArtboard extends StatelessWidget {
@@ -101,13 +96,13 @@ class FloatingArtboard extends StatelessWidget {
   }
 }
 
-class _Button extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-        onTap: _onTap,
-        child: Container(color: Colors.red, child: Text("TAP ME")));
-  }
+// class _Button extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return GestureDetector(
+//         onTap: _onTap,
+//         child: Container(color: Colors.red, child: Text("TAP ME")));
+//   }
 
-  _onTap() {}
-}
+//   _onTap() {}
+// }

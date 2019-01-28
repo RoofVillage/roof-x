@@ -22,11 +22,10 @@ abstract class RoofArtboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = RoofTheme.of(context);
-    return Scaffold(
+    final scaffold = Scaffold(
         backgroundColor: theme.color.background.general,
         body: Center(
             child: Column(
-          // Stretch the cards in horizontal axis
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             navBar,
@@ -39,26 +38,7 @@ abstract class RoofArtboard extends StatelessWidget {
                     context: context, removeTop: true, child: body))
           ],
         )));
+
+    return RoofTheme(theme.current, child: scaffold);
   }
-
-  // @override
-  // present(BuildContext context) {
-  // final current = RoofTheme.of(context).current;
-  // final routeBuilder = PageRouteBuilder(
-  //     opaque: true,
-  //     transitionDuration: RoofDuration.short,
-  //     pageBuilder: (BuildContext context, _, __) {
-  //       return RoofTheme(RoofThemeOption.dark, child: this);
-  //     },
-  //     transitionsBuilder: (_, Animation<double> animation, __, Widget child) {
-  //       return SlideTransition(
-  //         position: Tween<Offset>(begin: Offset(1, 0), end: Offset.zero)
-  //             .animate(animation),
-  //         child: child,
-  //       );
-  //     });
-
-  //   Navigator.of(context).push(MaterialPageRoute(
-  //       builder: (context) => RoofTheme(RoofThemeOption.dark, child: this)));
-  // }
 }
