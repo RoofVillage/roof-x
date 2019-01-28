@@ -1,13 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="28px" height="28px" viewBox="0 0 28 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
-    <title>standard/shopping_list</title>
-    <desc>Created with Sketch.</desc>
-    <g id="shopping_list" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M19,7 C19,4.23857625 16.7614237,2 14,2 C11.2385763,2 9,4.23857625 9,7" id="Oval-20" stroke="#0E0E0E" stroke-width="1.16"></path>
-        <path d="M10,12.5 L18,12.5" id="Line-2" stroke="#0E0E0E" stroke-width="1.16"></path>
-        <path d="M10,16 L18,16" id="Line-2" stroke="#0E0E0E" stroke-width="1.16"></path>
-        <path d="M10,19.5 L18,19.5" id="Line-2" stroke="#0E0E0E" stroke-width="1.16"></path>
-        <path d="M24.5,7 L22.4576555,22.5218181 C22.1957766,24.5120977 20.4992729,26 18.4918383,26 L9.50816166,26 C7.50072708,26 5.80422338,24.5120977 5.54234448,22.5218181 L3.5,7 L24.5,7 Z" id="Rectangle-23" stroke="#0E0E0E" stroke-width="1.16"></path>
-    </g>
+<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+  <path fill="none" stroke="#0E0E0E" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.16" d="M19 7C19 4.23857625 16.7614237 2 14 2 11.2385763 2 9 4.23857625 9 7M10 12.5L18 12.5M10 16L18 16M10 19.5L18 19.5M24.5 7L22.4576555 22.5218181C22.1957766 24.5120977 20.4992729 26 18.4918383 26L9.50816166 26C7.50072708 26 5.80422338 24.5120977 5.54234448 22.5218181L3.5 7 24.5 7z"/>
 </svg>

@@ -1,12 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="28px" height="28px" viewBox="0 0 28 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
-    <title>standard/load_more</title>
-    <desc>Created with Sketch.</desc>
-    <g id="load_more" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M5,6 L23,6" id="Line" stroke="#0E0E0E" stroke-width="1.16"></path>
-        <path d="M5,10 L23,10" id="Line" stroke="#0E0E0E" stroke-width="1.16"></path>
-        <path d="M5,14 L23,14" id="Line" stroke="#0E0E0E" stroke-width="1.16"></path>
-        <polyline id="Line" stroke="#0E0E0E" stroke-width="1.16" points="10 19 14 23 18 19"></polyline>
-    </g>
+<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+  <g fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke="#0E0E0E" stroke-width="1.16" d="M5 6L23 6M5 10L23 10M5 14L23 14"/>
+    <polyline stroke="#0E0E0E" stroke-width="1.16" points="10 19 14 23 18 19"/>
+  </g>
 </svg>

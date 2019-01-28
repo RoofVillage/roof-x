@@ -1,9 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
-    <title>small/send</title>
-    <desc>Created with Sketch.</desc>
-    <g id="send" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
-        <polygon id="Rectangle-12" stroke="#0E0E0E" stroke-width="1.16" transform="translate(13.693305, 10.210893) rotate(50.000000) translate(-13.693305, -10.210893) " points="13.6933049 3.01089333 21.6933049 17.4108933 14.8933049 15.854467 13.6933049 7.81089333 12.4933049 15.854467 5.69330487 17.4108933"></polygon>
-    </g>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <polygon fill="none" stroke="#0E0E0E" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.16" points="13.693 3.011 21.693 17.411 14.893 15.854 13.693 7.811 12.493 15.854 5.693 17.411" transform="rotate(50 13.693 10.21)"/>
 </svg>

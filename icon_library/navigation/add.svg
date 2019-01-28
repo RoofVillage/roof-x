@@ -1,13 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
-    <title>navigation/add</title>
-    <desc>Created with Sketch.</desc>
-    <g id="add" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Group" transform="translate(2.000000, 2.000000)" stroke="#0E0E0E" stroke-width="1.8">
-            <path d="M14,6 L14,22" id="Line" stroke-linecap="round"></path>
-            <path d="M6,14 L22,14" id="Line" stroke-linecap="round"></path>
-            <path d="M14,27.1 C21.2349302,27.1 27.1,21.2349302 27.1,14 C27.1,6.76506978 21.2349302,0.9 14,0.9 C6.76506978,0.9 0.9,6.76506978 0.9,14 C0.9,21.2349302 6.76506978,27.1 14,27.1 Z" id="Oval"></path>
-        </g>
-    </g>
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <g fill="none" fill-rule="evenodd" stroke="#0E0E0E" stroke-width="1.8" transform="translate(2 2)">
+    <path stroke-linecap="round" d="M14 6L14 22M6 14L22 14"/>
+    <path d="M14,27.1 C21.2349302,27.1 27.1,21.2349302 27.1,14 C27.1,6.76506978 21.2349302,0.9 14,0.9 C6.76506978,0.9 0.9,6.76506978 0.9,14 C0.9,21.2349302 6.76506978,27.1 14,27.1 Z"/>
+  </g>
 </svg>
