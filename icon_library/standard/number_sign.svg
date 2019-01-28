@@ -1,14 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="28px" height="28px" viewBox="0 0 28 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
-    <title>standard/number_sign</title>
-    <desc>Created with Sketch.</desc>
-    <g id="number_sign" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
-        <g id="Group" transform="translate(1.000000, 1.500000)" stroke="#0E0E0E" stroke-width="1.16">
-            <path d="M20.2222222,0.909999752 L16.6111111,24.0211109" id="Path-15"></path>
-            <path d="M9.38888889,0.909999752 L5.77777778,24.0211109" id="Path-15"></path>
-            <path d="M2.16666667,7.40999975 L25.2777778,7.40999975" id="Path-16"></path>
-            <path d="M0.722222222,17.5211109 L23.8333333,17.5211109" id="Path-16"></path>
-        </g>
-    </g>
+<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+  <path fill="none" stroke="#0E0E0E" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.16" d="M20.2222222.909999752L16.6111111 24.0211109M9.38888889.909999752L5.77777778 24.0211109M2.16666667 7.40999975L25.2777778 7.40999975M.722222222 17.5211109L23.8333333 17.5211109" transform="translate(1 1.5)"/>
 </svg>

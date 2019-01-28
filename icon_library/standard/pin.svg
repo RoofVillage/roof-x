@@ -1,12 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="28px" height="28px" viewBox="0 0 28 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
-    <title>standard/pin</title>
-    <desc>Created with Sketch.</desc>
-    <g id="pin" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
-        <g id="Group" transform="translate(13.000000, 15.000000) rotate(45.000000) translate(-13.000000, -15.000000) translate(6.000000, 2.500000)" stroke="#0E0E0E" stroke-width="1.16">
-            <polygon id="Rectangle-20" points="2.33333333 0 11.6666667 0 10.5 2.10000022 10.5 10.5 14 14 0 14 3.5 10.5 3.5 2.10000022"></polygon>
-            <path d="M7,14.5833333 L7,24.9166667" id="Line"></path>
-        </g>
-    </g>
+<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+  <g fill="none" fill-rule="evenodd" stroke="#0E0E0E" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.16" transform="rotate(45 6.982 20.993)">
+    <polygon points="2.333 0 11.667 0 10.5 2.1 10.5 10.5 14 14 0 14 3.5 10.5 3.5 2.1"/>
+    <path d="M7,14.5833333 L7,24.9166667"/>
+  </g>
 </svg>

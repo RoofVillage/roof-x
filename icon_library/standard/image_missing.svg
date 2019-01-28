@@ -1,15 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="28px" height="28px" viewBox="0 0 28 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
-    <title>standard/image_missing</title>
-    <desc>Created with Sketch.</desc>
-    <g id="image_missing" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <circle id="Oval" fill="#0E0E0E" cx="14" cy="20.3" r="1"></circle>
-        <g id="Group" transform="translate(22.500000, 22.085786) rotate(45.000000) translate(-22.500000, -22.085786) translate(19.000000, 18.585786)" stroke="#0E0E0E" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.16">
-            <path d="M3.60606061,0.212121212 L3.60606061,7" id="Line"></path>
-            <path d="M0.212121212,3.60606061 L7,3.60606061" id="Line"></path>
-        </g>
-        <path d="M14,17 L13.9999783,15.6393473 C13.9999783,14.7646254 14.5684105,13.9913859 15.4032947,13.7304131 C15.5468975,13.685525 15.6705845,13.6373579 15.7743558,13.585912 C17.0932928,12.9320324 18,11.7719026 18,10.2 C18,8.290861 16.209139,7 14,7 C12.6527183,7 11.4610101,7.66608958 10.7362225,8.68692169" id="Shape" stroke="#0E0E0E" stroke-width="1.16" stroke-linecap="round" stroke-linejoin="round"></path>
-        <path d="M16.1818182,26 L5,26 C3.34314575,26 2,24.6568542 2,23 L2,5 C2,3.34314575 3.34314575,2 5,2 L23,2 C24.6568542,2 26,3.34314575 26,5 L26,16.1818182" id="Path" stroke="#0E0E0E" stroke-width="1.16" stroke-linecap="round" stroke-linejoin="round"></path>
-    </g>
+<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+  <g fill="none" fill-rule="evenodd">
+    <circle cx="14" cy="20.3" r="1" fill="#0E0E0E"/>
+    <path stroke="#0E0E0E" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.16" d="M3.60606061.212121212L3.60606061 7M.212121212 3.60606061L7 3.60606061" transform="rotate(45 -9.435 35.728)"/>
+    <path stroke="#0E0E0E" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.16" d="M14,17 L13.9999783,15.6393473 C13.9999783,14.7646254 14.5684105,13.9913859 15.4032947,13.7304131 C15.5468975,13.685525 15.6705845,13.6373579 15.7743558,13.585912 C17.0932928,12.9320324 18,11.7719026 18,10.2 C18,8.290861 16.209139,7 14,7 C12.6527183,7 11.4610101,7.66608958 10.7362225,8.68692169"/>
+    <path stroke="#0E0E0E" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.16" d="M16.1818182,26 L5,26 C3.34314575,26 2,24.6568542 2,23 L2,5 C2,3.34314575 3.34314575,2 5,2 L23,2 C24.6568542,2 26,3.34314575 26,5 L26,16.1818182"/>
+  </g>
 </svg>
