@@ -19,13 +19,6 @@ class PublicActivity extends RoofArtboard {
   final _infoButton = RoofIconNavButton(
       iconReference: IconReference.add,
       onTap: (context) {
-        final k = PublicActivity();
-        Navigator.of(context).push(FullPageRoute(builder: (context) => k));
-      });
-
-  final _info2Button = RoofIconNavButton(
-      iconReference: IconReference.settingsNav,
-      onTap: (context) {
         Navigator.of(context)
             .push(FullPageRoute(builder: (context) => PublicActivity()));
       });
@@ -37,8 +30,7 @@ class PublicActivity extends RoofArtboard {
   @override
   Widget get body => _PublicActivityTable();
   @override
-  List<RoofNavButton> get actionButtons =>
-      [_backButton, _info2Button, _infoButton];
+  List<RoofNavButton> get actionButtons => [_backButton, _infoButton];
 }
 
 class _PublicActivityTable extends StreamTable<PublicActivityData,

@@ -29,7 +29,24 @@ dependencies:
     path: ../table_components
   routing:
     path: ../routing
+  typography:
+    path: ../typography
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+flutter:
+  fonts:
+    - family: azo
+      fonts:
+        - asset: packages/typography/fonts/azo/AzoSans-Thin.otf
+          weight: 100
+        - asset: packages/typography/fonts/azo/AzoSans-Light.otf
+          weight: 200
+        - asset: packages/typography/fonts/azo/AzoSans-Regular.otf
+          weight: 300
+        - asset: packages/typography/fonts/azo/AzoSans-Medium.otf
+          weight: 400
+        - asset: packages/typography/fonts/azo/AzoSans-Bold.otf
+          weight: 500

@@ -5,7 +5,11 @@ class FullPageRoute extends PageRoute<void> {
   WidgetBuilder builder;
 
   @override
-  Duration get transitionDuration => RoofDuration.short;
+  Duration get transitionDuration =>
+      Duration(seconds: 2); // RoofDuration.medium;
+
+  @override
+  bool get opaque => false;
 
   @override
   Color get barrierColor => null;
@@ -14,15 +18,16 @@ class FullPageRoute extends PageRoute<void> {
   String get barrierLabel => null;
 
   @override
-  bool get maintainState => false;
+  bool get maintainState => true;
 
   @override
-  Animation<double> get animation =>
-      controller.drive(_curveTween).drive(_fadeTween);
+  Animation<double> get animation => _fadeTween.animate(_curvedAnimation);
 
-  final _curveTween = CurveTween(curve: Curves.easeOut);
+  get _curvedAnimation => CurvedAnimation(
+      curve: Curves.easeOut, reverseCurve: Curves.easeIn, parent: controller);
+
   final _fadeTween = Tween<double>(begin: 0.0, end: 1);
-  final _slideTween = Tween<Offset>(begin: Offset(0.0, 0.1), end: Offset.zero);
+  final _slideTween = Tween<Offset>(begin: Offset(0.6, 0.0), end: Offset.zero);
 
   FullPageRoute({@required this.builder});
 

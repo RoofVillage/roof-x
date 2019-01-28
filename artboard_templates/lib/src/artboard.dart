@@ -39,6 +39,6 @@ abstract class RoofArtboard extends StatelessWidget {
           ],
         )));
 
-    return RoofTheme(theme.current, child: scaffold);
+    return RoofTheme(RoofThemeOption.dark, child: scaffold);
   }
 }

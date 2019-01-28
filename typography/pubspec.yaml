@@ -13,18 +13,3 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
-flutter:
-  fonts:
-    - family: Azo
-      fonts:
-        - asset: fonts/Azo/AzoSans-Thin.otf
-          weight: 100
-        - asset: fonts/Azo/AzoSans-Light.otf
-          weight: 200
-        - asset: fonts/Azo/AzoSans-Regular.otf
-          weight: 300
-        - asset: fonts/Azo/AzoSans-Medium.otf
-          weight: 400
-        - asset: fonts/Azo/AzoSans-Bold.otf
-          weight: 500

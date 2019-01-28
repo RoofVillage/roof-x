@@ -17,7 +17,7 @@ class _Roof extends StatelessWidget {
       RoofThemeOption.light,
       child: MaterialApp(
         title: 'Roof',
-        theme: ThemeData(fontFamily: 'Azo'),
+        theme: ThemeData(fontFamily: 'azo'),
         home: BlocProvider(bloc: AppBloc(), child: RootWidget()),
       ),
     );

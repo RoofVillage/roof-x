@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:theme/index.dart';
 import 'package:spec/index.dart';
+import 'package:haptics/index.dart';
 
 typedef BuildContextPasser = void Function(BuildContext context);
 
@@ -15,7 +16,10 @@ abstract class RoofNavButton extends StatelessWidget {
     final theme = RoofTheme.of(context);
 
     return GestureDetector(
-        onTap: (() => onTap(context)),
+        onTap: (() {
+          RoofHaptic.triggerWith(RoofHapticOption.click);
+          onTap(context);
+        }),
         child: Container(padding: _padding, child: iconForTheme(theme)));
   }
 }
