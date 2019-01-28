@@ -1,10 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="28px" height="28px" viewBox="0 0 28 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
-    <title>standard/complete</title>
-    <desc>Created with Sketch.</desc>
-    <g id="complete" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M23,13.4705882 L23,20.8823529 C23,22.0518971 22.0518971,23 20.8823529,23 L7.11764706,23 C5.94810288,23 5,22.0518971 5,20.8823529 L5,7.11764706 C5,5.94810288 5.94810288,5 7.11764706,5 L17.8823529,5" id="Rectangle" stroke="#0E0E0E" stroke-width="1.16"></path>
-        <polyline id="Path-4-Copy" stroke="#0E0E0E" stroke-width="1.16" points="9.69999981 12.2 13.6568529 17 24 5"></polyline>
-    </g>
+<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+  <g fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke="#0E0E0E" stroke-width="1.16" d="M23,13.4705882 L23,20.8823529 C23,22.0518971 22.0518971,23 20.8823529,23 L7.11764706,23 C5.94810288,23 5,22.0518971 5,20.8823529 L5,7.11764706 C5,5.94810288 5.94810288,5 7.11764706,5 L17.8823529,5"/>
+    <polyline stroke="#0E0E0E" stroke-width="1.16" points="9.7 12.2 13.657 17 24 5"/>
+  </g>
 </svg>

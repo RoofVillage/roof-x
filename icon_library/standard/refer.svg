@@ -1,17 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="28px" height="28px" viewBox="0 0 28 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
-    <title>standard/refer</title>
-    <desc>Created with Sketch.</desc>
-    <g id="refer" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
-        <circle id="Oval-5" stroke="#0E0E0E" stroke-width="1.16" cx="19.3052628" cy="5.0999999" r="2.0999999"></circle>
-        <circle id="Oval-5" stroke="#0E0E0E" stroke-width="1.16" cx="15.9999995" cy="13.7000003" r="2.0999999"></circle>
-        <circle id="Oval-5" stroke="#0E0E0E" stroke-width="1.16" cx="23.0999999" cy="19.3999997" r="2.0999999"></circle>
-        <path d="M18.5012184,7.46159527 L16.7954372,11.6137256" id="Path-3" stroke="#0E0E0E" stroke-width="1.16"></path>
-        <path d="M17.8725434,15.2536936 L21.3050079,18.0105068" id="Path-3-Copy" stroke="#0E0E0E" stroke-width="1.16"></path>
-        <g id="Group-2" transform="translate(3.600000, 8.000000)" stroke="#0E0E0E" stroke-width="1.16">
-            <circle id="Oval-5" cx="4.20000005" cy="2.70000005" r="2.70000005"></circle>
-            <path d="M8,14.188225 C8,10.4391916 5.6509151,7.39999962 4.1500001,7.39999962 C2.64908509,7.39999962 0.300000191,10.4391916 0.300000191,14.188225 C0.300000191,17.9372583 8,17.9372583 8,14.188225 Z" id="Oval-5"></path>
-        </g>
+<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+  <g fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="19.305" cy="5.1" r="2.1" stroke="#0E0E0E" stroke-width="1.16"/>
+    <circle cx="16" cy="13.7" r="2.1" stroke="#0E0E0E" stroke-width="1.16"/>
+    <circle cx="23.1" cy="19.4" r="2.1" stroke="#0E0E0E" stroke-width="1.16"/>
+    <path stroke="#0E0E0E" stroke-width="1.16" d="M18.5012184 7.46159527L16.7954372 11.6137256M17.8725434 15.2536936L21.3050079 18.0105068"/>
+    <g stroke="#0E0E0E" stroke-width="1.16" transform="translate(3.6 8)">
+      <circle cx="4.2" cy="2.7" r="2.7"/>
+      <path d="M8,14.188225 C8,10.4391916 5.6509151,7.39999962 4.1500001,7.39999962 C2.64908509,7.39999962 0.300000191,10.4391916 0.300000191,14.188225 C0.300000191,17.9372583 8,17.9372583 8,14.188225 Z"/>
     </g>
+  </g>
 </svg>

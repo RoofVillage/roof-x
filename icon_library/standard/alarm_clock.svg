@@ -1,18 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="28px" height="28px" viewBox="0 0 28 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
-    <title>standard/alarm_clock</title>
-    <desc>Created with Sketch.</desc>
-    <g id="alarm_clock" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
-        <g id="Group" transform="translate(0.000000, 1.000000)" stroke="#0E0E0E" stroke-width="1.16">
-            <circle id="Oval-19" cx="14" cy="14" r="9.33333333"></circle>
-            <path d="M9.3403729,6.39697569 C9.3403729,4.14181296 7.5122023,2.31364236 5.25703957,2.31364236 C3.00187684,2.31364236 1.17370623,4.14181296 1.17370623,6.39697569" id="Oval-19" transform="translate(5.257040, 4.355309) rotate(-40.000000) translate(-5.257040, -4.355309) "></path>
-            <path d="M9.3403729,6.39697569 C9.3403729,4.14181296 7.5122023,2.31364236 5.25703957,2.31364236 C3.00187684,2.31364236 1.17370623,4.14181296 1.17370623,6.39697569" id="Oval-19" transform="translate(5.257040, 4.355309) rotate(-40.000000) translate(-5.257040, -4.355309) "></path>
-            <path d="M26.8287068,6.3937236 C26.8287068,4.13856087 25.0005362,2.31039027 22.7453735,2.31039027 C20.4902107,2.31039027 18.6620401,4.13856087 18.6620401,6.3937236" id="Oval-19" transform="translate(22.745373, 4.352057) scale(-1, 1) rotate(-40.000000) translate(-22.745373, -4.352057) "></path>
-            <path d="M14,15.1666667 L17.9666662,9.56666644" id="Line"></path>
-            <path d="M14,15.1666667 L11.6666667,12.8333333" id="Line"></path>
-            <path d="M21,24.5 L19.8333333,22.1666667" id="Line"></path>
-            <path d="M8.16666667,24.5 L7,22.1666667" id="Line" transform="translate(7.583333, 23.333333) scale(-1, 1) translate(-7.583333, -23.333333) "></path>
-        </g>
-    </g>
+<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+  <g fill="none" fill-rule="evenodd" stroke="#0E0E0E" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.16" transform="translate(0 1)">
+    <circle cx="14" cy="14" r="9.333"/>
+    <path d="M9.3403729,6.39697569 C9.3403729,4.14181296 7.5122023,2.31364236 5.25703957,2.31364236 C3.00187684,2.31364236 1.17370623,4.14181296 1.17370623,6.39697569" transform="rotate(-40 5.257 4.355)"/>
+    <path d="M9.3403729,6.39697569 C9.3403729,4.14181296 7.5122023,2.31364236 5.25703957,2.31364236 C3.00187684,2.31364236 1.17370623,4.14181296 1.17370623,6.39697569" transform="rotate(-40 5.257 4.355)"/>
+    <path d="M26.8287068,6.3937236 C26.8287068,4.13856087 25.0005362,2.31039027 22.7453735,2.31039027 C20.4902107,2.31039027 18.6620401,4.13856087 18.6620401,6.3937236" transform="scale(-1 1) rotate(-40 0 66.844)"/>
+    <path d="M14 15.1666667L17.9666662 9.56666644M14 15.1666667L11.6666667 12.8333333M21 24.5L19.8333333 22.1666667"/>
+    <path d="M8.16666667,24.5 L7,22.1666667" transform="matrix(-1 0 0 1 15.167 0)"/>
+  </g>
 </svg>

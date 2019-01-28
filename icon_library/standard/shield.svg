@@ -1,17 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="28px" height="28px" viewBox="0 0 28 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
-    <title>standard/shield</title>
-    <desc>Created with Sketch.</desc>
-    <g id="shield" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
-        <g id="Group" transform="translate(2.078000, 1.000000)" stroke="#0E0E0E" stroke-width="1.16">
-            <path d="M0.157083313,5.57032871 C0.157083313,21.786175 11.9166662,25.9948673 11.9166662,25.9948673 C11.9166662,25.9948673 23.676249,21.786175 23.676249,5.57032871 C16.249144,3.34219699 11.9166662,1.77635684e-15 11.9166662,1.77635684e-15 C11.9166662,1.77635684e-15 7.58418826,3.34219699 0.157083313,5.57032871 Z" id="Path-18"></path>
-            <g id="key" transform="translate(4.333333, 7.583333)">
-                <circle id="Oval" cx="3.03333315" cy="3.28611129" r="2.27499994"></circle>
-                <path d="M5.3083343,3.03333406 L14.5347222,3.03333406" id="Path-20"></path>
-                <path d="M13.2708333,3.79166667 L13.2708333,5.05555556" id="Path-20"></path>
-                <path d="M10.8694437,3.79166667 L10.8694437,5.43472126" id="Path-20"></path>
-            </g>
-        </g>
+<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+  <g fill="none" fill-rule="evenodd" stroke="#0E0E0E" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.16" transform="translate(2.078 1)">
+    <path d="M0.157083313,5.57032871 C0.157083313,21.786175 11.9166662,25.9948673 11.9166662,25.9948673 C11.9166662,25.9948673 23.676249,21.786175 23.676249,5.57032871 C16.249144,3.34219699 11.9166662,1.77635684e-15 11.9166662,1.77635684e-15 C11.9166662,1.77635684e-15 7.58418826,3.34219699 0.157083313,5.57032871 Z"/>
+    <g transform="translate(4.333 7.583)">
+      <circle cx="3.033" cy="3.286" r="2.275"/>
+      <path d="M5.3083343 3.03333406L14.5347222 3.03333406M13.2708333 3.79166667L13.2708333 5.05555556M10.8694437 3.79166667L10.8694437 5.43472126"/>
     </g>
+  </g>
 </svg>
