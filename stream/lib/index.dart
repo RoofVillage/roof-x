@@ -1,3 +1,3 @@
-export 'streamable_data.dart';
-export 'bloc_provider.dart';
-export 'bloc_base.dart';
+export 'src/streamable_data.dart';
+export 'src/bloc_provider.dart';
+export 'src/bloc_base.dart';

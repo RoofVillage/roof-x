@@ -1,0 +1,21 @@
+name: artboard_templates
+description: Roof's artboard templates.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  spec:
+    path: ../spec
+  navigation_components:
+    path: ../navigation_components
+  theme:
+    path: ../theme
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

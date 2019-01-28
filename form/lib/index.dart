@@ -1,5 +1,4 @@
 export 'package:stream/index.dart';
-
-export 'widget.dart';
-export 'data/index.dart';
-export 'bloc.dart';
+export 'src/data/index.dart';
+export 'src/bloc.dart';
+export 'src/stream_form.dart';

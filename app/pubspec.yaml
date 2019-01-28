@@ -9,38 +9,25 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  spec:
-    path: ./../spec
   table:
-    path: ./../table
+    path: ../table
   roof_form:
-    path: ./../roof_form
+    path: ../roof_form
   services:
-    path: ./../services
+    path: ../services
   icon_library:
-    path: ./../icon_library
+    path: ../icon_library
   decorated_text:
-    path: ./../decorated_text
-  thread:
-    path: ./../thread
-  bottom_sheet:
-    path: ./../bottom_sheet
+    path: ../decorated_text
+  artboard_templates:
+    path: ../artboard_templates
+  navigation_components:
+    path: ../navigation_components
+  theme:
+    path: ../theme
+  table_components:
+    path: ../table_components
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
-flutter:
-  fonts:
-    - family: Azo
-      fonts:
-        - asset: fonts/Azo/AzoSans-Thin.otf
-          weight: 100
-        - asset: fonts/Azo/AzoSans-Light.otf
-          weight: 200
-        - asset: fonts/Azo/AzoSans-Regular.otf
-          weight: 300
-        - asset: fonts/Azo/AzoSans-Medium.otf
-          weight: 400
-        - asset: fonts/Azo/AzoSans-Bold.otf
-          weight: 500

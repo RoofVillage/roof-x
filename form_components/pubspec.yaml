@@ -1,0 +1,23 @@
+name: form_components
+description: Widgets that make up a form.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  spec:
+    path: ../spec
+  typography:
+    path: ../typography
+  theme:
+    path: ../theme
+  haptics:
+    path: ../haptics
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

@@ -1,0 +1,21 @@
+name: navigation_components
+description: Widgets that make up the navigation.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  spec:
+    path: ../spec
+  theme:
+    path: ../theme
+  typography:
+    path: ../typography
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
