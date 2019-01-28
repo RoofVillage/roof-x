@@ -95,7 +95,7 @@ class _Body extends StatelessWidget {
   }
 
   List<Widget> _relevantLabels() {
-    List<Widget> list = [_TitleLabel(decoratedText: titleText)];
+    var list = <Widget>[_TitleLabel(decoratedText: titleText)];
     if (detailText != null && detailText.trim().isNotEmpty) {
       list.add(Container(
           padding: EdgeInsets.only(top: _detailPaddingTop),

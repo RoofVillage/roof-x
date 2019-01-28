@@ -1,2 +1,2 @@
-export 'src/floating_modal.dart';
-export 'src/full_page.dart';
+export 'src/floating.dart';
+export 'src/full_screen.dart';

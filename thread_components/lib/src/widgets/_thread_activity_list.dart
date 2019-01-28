@@ -27,7 +27,7 @@ class ThreadActivityList extends StatelessWidget {
       textAlign: TextAlign.center,
     );
 
-    List<Widget> listChildren = [];
+    var listChildren = <Widget>[];
     if (threadActivityItems == null || threadActivityItems.length == 0)
       listChildren.add(emptyThreadMessage);
     else

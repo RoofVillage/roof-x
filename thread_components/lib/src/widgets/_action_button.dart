@@ -43,7 +43,7 @@ class ThreadActionButton extends StatelessWidget {
       containerPadding = null;
     }
 
-    final List<Widget> buttonChildren = [];
+    final buttonChildren = <Widget>[];
 
     final buttonIcon = Container(
       child: threadActionIconReference.buildSvg(

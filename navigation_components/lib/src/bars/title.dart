@@ -21,7 +21,7 @@ class RoofTitleNavBar extends RoofNavBar {
 
   @override
   List<Widget> navigationWidgetsForTheme(RoofInheritedTheme theme) {
-    List<Widget> navigationWidgets = [];
+    var navigationWidgets = <Widget>[];
     if (navButton != null) {
       navigationWidgets.add(navButton);
     }

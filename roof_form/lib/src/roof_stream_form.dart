@@ -36,6 +36,7 @@ abstract class RoofStreamForm extends StreamForm<StreamableFormFieldData,
       StreamableFormFieldData fieldData,
       int fieldIndex,
       int sectionIndex}) {
+    print("HUZZAAH $fieldData");
     if (fieldData is FormTextFieldData) {
       return buildTextField(
           fieldData: fieldData,

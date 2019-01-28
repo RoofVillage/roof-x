@@ -1,6 +1,5 @@
 name: artboard_templates
-description: Roof's artboard templates.
-
+description: Templates the define the visual organization.
 version: 1.0.0+1
 
 environment:
@@ -9,12 +8,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  spec:
-    path: ../spec
   navigation_components:
     path: ../navigation_components
-  theme:
-    path: ../theme
 
 dev_dependencies:
   flutter_test:

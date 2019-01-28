@@ -1,0 +1,86 @@
+import 'references.dart';
+
+class IconReference {
+  static final boxChecked = SmallIconReference(path: 'box_checked.svg');
+  static final boxUnchecked = SmallIconReference(path: 'box_unchecked.svg');
+  static final removeFilled = SmallIconReference(path: 'remove_filled.svg');
+  static final send = SmallIconReference(path: 'send.svg');
+  static final sendFilled = SmallIconReference(path: 'send_filled.svg');
+
+  static final addImage = StandardIconReference(path: 'add_image.svg');
+  static final alarmClock = StandardIconReference(path: 'alarm_clock.svg');
+  static final atSign = StandardIconReference(path: 'at_sign.svg');
+  static final backArrow = StandardIconReference(path: 'back_arrow.svg');
+  static final bank = StandardIconReference(path: 'bank.svg');
+  static final bellAlert = StandardIconReference(path: 'bell_alert.svg');
+  static final bellSubscribe =
+      StandardIconReference(path: 'bell_subscribe.svg');
+  static final bellUnsubscribe =
+      StandardIconReference(path: 'bell_unsubscribe.svg');
+  static final camera = StandardIconReference(path: 'camera.svg');
+  static final cashSack = StandardIconReference(path: 'cash_sack.svg');
+  static final comment = StandardIconReference(path: 'comment.svg');
+  static final complete = StandardIconReference(path: 'complete.svg');
+  static final dashboard = StandardIconReference(path: 'dashboard.svg');
+  static final delete = StandardIconReference(path: 'delete.svg');
+  static final downArrow = StandardIconReference(path: 'down_arrow.svg');
+  static final earth = StandardIconReference(path: 'earth.svg');
+  static final edit = StandardIconReference(path: 'edit.svg');
+  static final event = StandardIconReference(path: 'event.svg');
+  static final exit = StandardIconReference(path: 'exit.svg');
+  static final export = StandardIconReference(path: 'export.svg');
+  static final flowerLetter = StandardIconReference(path: 'flower_letter.svg');
+  static final flowers = StandardIconReference(path: 'flowers.svg');
+  static final heart = StandardIconReference(path: 'heart.svg');
+  static final homes = StandardIconReference(path: 'homes.svg');
+  static final house = StandardIconReference(path: 'house.svg');
+  static final identity = StandardIconReference(path: 'identity.svg');
+  static final imageMissing = StandardIconReference(path: 'image_missing.svg');
+  static final images = StandardIconReference(path: 'images.svg');
+  static final invite = StandardIconReference(path: 'invite.svg');
+  static final keyJoin = StandardIconReference(path: 'key_join.svg');
+  static final keySend = StandardIconReference(path: 'key_send.svg');
+  static final key = StandardIconReference(path: 'key.svg');
+  static final keys = StandardIconReference(path: 'keys.svg');
+  static final lease = StandardIconReference(path: 'lease.svg');
+  static final letterHeart = StandardIconReference(path: 'letter_heart.svg');
+  static final livingRoom = StandardIconReference(path: 'living_room.svg');
+  static final loadMore = StandardIconReference(path: 'load_more.svg');
+  static final location = StandardIconReference(path: 'location.svg');
+  static final lock = StandardIconReference(path: 'lock.svg');
+  static final logout = StandardIconReference(path: 'logout.svg');
+  static final mailInvite = StandardIconReference(path: 'mail_invite.svg');
+  static final mail = StandardIconReference(path: 'mail.svg');
+  static final more = StandardIconReference(path: 'more.svg');
+  static final nametag = StandardIconReference(path: 'nametag.svg');
+  static final numberSign = StandardIconReference(path: 'number_sign.svg');
+  static final outOfStock = StandardIconReference(path: 'out_of_stock.svg');
+  static final paymentHistory =
+      StandardIconReference(path: 'payment_history.svg');
+  static final paymentInfo = StandardIconReference(path: 'payment_info.svg');
+  static final phone = StandardIconReference(path: 'phone.svg');
+  static final piggyBank = StandardIconReference(path: 'piggy_bank.svg');
+  static final pin = StandardIconReference(path: 'pin.svg');
+  static final reassign = StandardIconReference(path: 'reassign.svg');
+  static final rentCalendar = StandardIconReference(path: 'rent_calendar.svg');
+  static final refer = StandardIconReference(path: 'refer.svg');
+  static final restock = StandardIconReference(path: 'restock.svg');
+  static final roofNametag = StandardIconReference(path: 'roof_nametag.svg');
+  static final settings = StandardIconReference(path: 'settings.svg');
+  static final shield = StandardIconReference(path: 'shield.svg');
+  static final shoppingList = StandardIconReference(path: 'shopping_list.svg');
+  static final snooze = StandardIconReference(path: 'snooze.svg');
+  static final switchRoof = StandardIconReference(path: 'switch_roof.svg');
+  static final thread = StandardIconReference(path: 'thread.svg');
+  static final toolbox = StandardIconReference(path: 'toolbox.svg');
+  static final upArrow = StandardIconReference(path: 'up_arrow.svg');
+
+  static final add = NavigationIconReference(path: 'add.svg');
+  static final backArrowNav = NavigationIconReference(path: 'back_arrow.svg');
+  static final downArrowNav = NavigationIconReference(path: 'down_arrow.svg');
+  static final info = NavigationIconReference(path: 'info.svg');
+  static final logoHouse = NavigationIconReference(path: 'logo_house.svg');
+  static final logoFull =
+      NavigationIconReference(path: 'logo_full.svg', customWidth: 65);
+  static final settingsNav = NavigationIconReference(path: 'settings.svg');
+}

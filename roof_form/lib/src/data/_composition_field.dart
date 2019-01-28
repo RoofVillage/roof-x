@@ -16,7 +16,7 @@ class FormCompositionFieldData extends StreamableFormFieldData<String> {
       int rowSlots,
       int slots,
       bool forceNewRow,
-      ValueChanged onChanged,
+      ValueChanged<String> onChanged,
       bool hidden})
       : super(
             initialValue: initialValue,

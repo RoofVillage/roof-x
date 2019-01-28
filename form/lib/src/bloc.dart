@@ -145,7 +145,7 @@ class StreamFormBloc extends BlocBase {
   }
 
   void _addValueChangedStreamToFields(List<StreamableFormFieldData> fieldData) {
-    fieldData.forEach((fieldData) {
+    for (var fieldData in fieldData) {
       fieldData.onChanged = (newValue) {
         final fieldValueData = StreamableFormFieldValueData(
             fieldKey: fieldData.key, value: newValue);
@@ -154,7 +154,7 @@ class StreamFormBloc extends BlocBase {
       _outFieldValue
           .where((valueData) => valueData.fieldKey == fieldData.key)
           .listen((valueData) => fieldData.value = valueData.value);
-    });
+    }
   }
 
   // void _postDataForChangeAtLocation(FormLocation formLocation) {

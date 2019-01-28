@@ -10,7 +10,7 @@ class StreamableFormData extends StreamableData {
   final List<StreamableFormSectionData> sectionData;
 
   List<StreamableFormFieldData> get fieldData {
-    return sectionData.expand((sectionData) => sectionData.fieldData);
+    return sectionData.expand((sectionData) => sectionData.fieldData).toList();
   }
 
   StreamableFormData({this.sectionData});

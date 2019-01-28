@@ -19,7 +19,7 @@ class RoofLogoNavBar extends RoofNavBar {
 
   @override
   List<Widget> navigationWidgetsForTheme(RoofInheritedTheme theme) {
-    List<Widget> navigationWidgets = [RoofLogoNavButton()];
+    var navigationWidgets = <Widget>[RoofLogoNavButton()];
     if (title != null) {
       final text = Text(title,
           style: _typographyStyle.textStyleWithColor(theme.color.text.brand));

@@ -7,7 +7,7 @@ class StreamableTableSectionData<S extends StreamableTableRowData>
     extends StreamableTableRowData {
   final StreamableTableSectionHeaderData headerData;
 
-  final List<S> rowData = [];
+  final rowData = <S>[];
 
   Function(S, S) sort;
   bool Function(S) criteria;

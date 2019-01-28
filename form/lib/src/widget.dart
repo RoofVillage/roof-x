@@ -29,7 +29,7 @@ class StreamFormBuilder<T extends StreamFormBloc> extends StatelessWidget {
       {@required T bloc,
       @required BuildContext context,
       @required StreamableFormData formData}) {
-    final List<Widget> slivers = [];
+    final slivers = <Widget>[];
 
     //Add each sections that accept streamable updates.
     formData.sectionData

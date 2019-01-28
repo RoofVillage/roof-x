@@ -39,7 +39,7 @@ class StreamTableBuilder<T extends StreamTableBloc> extends StatelessWidget {
       {@required T bloc,
       @required BuildContext context,
       @required StreamableTableData tableData}) {
-    final List<Widget> slivers = [SliverToBoxAdapter()];
+    final slivers = <Widget>[];
 
     final shouldShowHeader = tableData.headerData != null &&
         (tableData.sectionData.isNotEmpty || showsHeaderForEmptyTable) &&

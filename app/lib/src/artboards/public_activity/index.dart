@@ -12,25 +12,37 @@ import 'package:artboard_templates/index.dart';
 import 'package:navigation_components/index.dart';
 import 'package:table_components/index.dart';
 import 'package:routing/index.dart';
+import 'package:theme/index.dart';
 
 import 'data/index.dart';
 
-class PublicActivity extends RoofArtboard {
-  final _infoButton = RoofIconNavButton(
+import '../sign_up/index.dart';
+
+class PublicActivity extends FullLogoFullScreenArtboard {
+  final _showFloatingArtboardButton = RoofIconNavButton(
       iconReference: IconReference.add,
       onTap: (context) {
-        Navigator.of(context)
-            .push(FullPageRoute(builder: (context) => PublicActivity()));
+        Navigator.of(context).push(FloatingRoute(
+            builder: (context) => SignUp(),
+            currentTheme: RoofTheme.of(context).current));
       });
 
-  final _backButton = RoofIconNavButton(
+  final _showFullScreenArtboardButton = RoofIconNavButton(
+      iconReference: IconReference.settingsNav,
+      onTap: (context) {
+        Navigator.of(context)
+            .push(FullScreenRoute(builder: (context) => PublicActivity()));
+      });
+
+  final _popButton = RoofIconNavButton(
       iconReference: IconReference.backArrowNav,
       onTap: (context) => Navigator.pop(context));
 
   @override
-  Widget get body => _PublicActivityTable();
+  WidgetBuilder get buildBody => (context) => _PublicActivityTable();
   @override
-  List<RoofNavButton> get actionButtons => [_backButton, _infoButton];
+  List<RoofNavButton> get actionButtons =>
+      [_popButton, _showFloatingArtboardButton, _showFullScreenArtboardButton];
 }
 
 class _PublicActivityTable extends StreamTable<PublicActivityData,

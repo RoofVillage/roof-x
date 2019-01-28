@@ -71,13 +71,13 @@ abstract class _DecoratedText {
 
   List<TextSpan> _addSpaces(List<TextSpan> children) {
     List<TextSpan> newList = [];
-    children.forEach((child) {
+    for (var child in children) {
       if (newList.isNotEmpty) {
         final spaceChild = TextSpan(text: " ");
         newList.add(spaceChild);
       }
       newList.add(child);
-    });
+    }
     return newList;
   }
 

@@ -65,7 +65,7 @@ class StreamTableBloc implements BlocBase {
     final Map<String, TableLocation> originalTableLocations = {};
 
     //Update each rowData.
-    rowData.forEach((data) {
+    for (var data in rowData) {
       //Find where the row currently is in the table.
       final originalLocation = _tableData.tableLocationOfRowData(data);
 
@@ -77,15 +77,15 @@ class StreamTableBloc implements BlocBase {
 
       //Save the original location.
       originalTableLocations[data.key] = originalLocation;
-    });
+    }
 
     //The correct order might have changed so sort again.
     _tableData.sort();
 
     //Only update the rows or sections that changed.
-    final List<int> sectionIndexesToUpdate = [];
-    final List<TableLocation> tableLocationsToUpdate = [];
-    rowData.forEach((data) {
+    final sectionIndexesToUpdate = <int>[];
+    final tableLocationsToUpdate = <TableLocation>[];
+    for (var data in rowData) {
       //Find where the new location of the data is.
       final newTableLocation = _tableData.tableLocationOfRowData(data);
       final originalTableLocation = originalTableLocations[data.key];
@@ -107,43 +107,44 @@ class StreamTableBloc implements BlocBase {
       else {
         tableLocationsToUpdate.add(newTableLocation);
       }
-    });
+    }
+    ;
 
     _postDataToSectionIndexes(sectionIndexesToUpdate);
 
     //Post messages to rows. Convert to set to remove duplicated.
-    tableLocationsToUpdate.toSet().forEach((location) {
+    for (var location in tableLocationsToUpdate.toSet()) {
       //Dont notify the row if the section has already been notified.
       if (sectionIndexesToUpdate.contains(location.sectionIndex)) return;
       final rowData = _tableData.rowDataAt(location);
       _inRow.add(rowData);
-    });
+    }
   }
 
   void batchInsertRowData(List<StreamableTableRowData> rowData,
       {int sectionIndex = 0}) {
     //Add each rowData to the table.
-    rowData.forEach((data) {
+    for (var data in rowData) {
       _tableData.addRowData(data, sectionIndex);
-    });
+    }
 
     //Sort the table to put the new rows in the correct spot.
     _tableData.sort();
 
     //Only update the rows or sections that changed.
-    final List<int> sectionIndexesToUpdate = [];
-    rowData.forEach((data) {
+    final sectionIndexesToUpdate = <int>[];
+    for (var data in rowData) {
       //Find where the new location of the data is.
       final newLocation = _tableData.tableLocationOfRowData(data);
       sectionIndexesToUpdate.add(newLocation.sectionIndex);
-    });
+    }
 
     _postDataToSectionIndexes(sectionIndexesToUpdate);
   }
 
   void batchRemoveRowData(List<StreamableTableRowData> rowData) {
     //Remove each rowData from the table.
-    rowData.forEach((data) {
+    for (var data in rowData) {
       //Get the location of the row being removed
       final location = _tableData.tableLocationOfRowData(data);
 
@@ -158,7 +159,7 @@ class StreamTableBloc implements BlocBase {
 
       //Post a message that the row changed.
       _inRow.add(data);
-    });
+    }
   }
 
   @override
@@ -170,10 +171,10 @@ class StreamTableBloc implements BlocBase {
 
   void _postDataToSectionIndexes(List<int> sectionIndexes) {
     //Post data to sections. Convert to set to remove duplicated.
-    sectionIndexes.toSet().forEach((sectionIndex) {
+    for (var sectionIndex in sectionIndexes.toSet()) {
       final sectionData = _tableData.sectionData[sectionIndex];
       _inSection.add(sectionData);
-    });
+    }
   }
 
   void _init({Future<StreamableTableData> initialData}) async {

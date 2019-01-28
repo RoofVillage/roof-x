@@ -16,7 +16,7 @@ class StreamableTableData extends StreamableData {
   final List<StreamableTableSectionData> sectionData;
 
   List<StreamableTableRowData> get _rowData {
-    return sectionData.expand((sectionData) => sectionData.rowData);
+    return sectionData.expand((sectionData) => sectionData.rowData).toList();
   }
 
   StreamableTableData(
@@ -58,20 +58,23 @@ class StreamableTableData extends StreamableData {
 
   void _sortWithRowData(List<StreamableTableRowData> rowData) {
     //Empty all sections.
-    sectionData.forEach((sectionData) =>
-        sectionData.rowData.removeRange(0, sectionData.rowData.length));
+    for (var sectionData in sectionData) {
+      sectionData.rowData.removeRange(0, sectionData.rowData.length);
+    }
 
     //Add the rows to their correct sections.
-    rowData.forEach((rowData) {
+    for (var rowData in rowData) {
       for (final sectionData in sectionData) {
         if (!sectionData.acceptsRow(rowData)) continue;
         sectionData.addRowData(rowData);
         return;
       }
-    });
+    }
 
     //Sort the sections.
-    sectionData.forEach((sectionData) => sectionData.sortRowData());
+    for (var sectionData in sectionData) {
+      sectionData.sortRowData();
+    }
   }
 
   TableLocation tableLocationOfRowData(StreamableTableRowData rowData) {
