@@ -5,15 +5,15 @@ import 'package:theme/index.dart';
 import 'nav_button.dart';
 
 class RoofLogoNavButton extends RoofNavButton {
-  final Function _onTap;
+  final BuildContextPasser _onTap;
 
   @override
-  BuildContextPasser onTap(BuildContext context) => _onTap(context);
+  void onTap(BuildContext context) => _onTap(context);
 
   @override
   Widget iconForTheme(RoofInheritedTheme theme) {
     return IconReference.info.buildSvg(color: theme.color.icon.logo);
   }
 
-  RoofLogoNavButton({Function onTap}) : _onTap = onTap;
+  RoofLogoNavButton({BuildContextPasser onTap}) : _onTap = onTap;
 }

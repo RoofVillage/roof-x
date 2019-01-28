@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:theme/index.dart';
 import 'package:spec/index.dart';
 
-typedef BuildContextPasser = Function(BuildContext context);
+typedef BuildContextPasser = void Function(BuildContext context);
 
 abstract class RoofNavButton extends StatelessWidget {
   Widget iconForTheme(RoofInheritedTheme theme);
-  BuildContextPasser onTap(BuildContext context);
+  void onTap(BuildContext context);
 
   final _padding = EdgeInsets.symmetric(horizontal: RoofDistance.b);
 

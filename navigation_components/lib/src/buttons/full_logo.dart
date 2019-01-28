@@ -8,7 +8,7 @@ class RoofFullLogoNavButton extends RoofNavButton {
   final BuildContextPasser _onTap;
 
   @override
-  BuildContextPasser onTap(BuildContext context) => _onTap(context);
+  void onTap(BuildContext context) => _onTap(context);
 
   @override
   Widget iconForTheme(RoofInheritedTheme theme) {
