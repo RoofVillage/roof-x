@@ -27,6 +27,16 @@ class NavigationIconReference extends _IconReference {
             width: customWidth);
 }
 
+class CustomIconReference extends _IconReference {
+  static const double _size = 32;
+
+  CustomIconReference({String path = "", double width = _size, double height = _size})
+      : super(
+            path: _localPath + "custom/$path",
+            height: height,
+            width: width);
+}
+
 class _IconReference {
   final String path;
   final double height;
