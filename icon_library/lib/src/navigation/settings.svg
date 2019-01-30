@@ -1,12 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-  <g fill="none" fill-rule="evenodd" stroke="#0E0E0E" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" transform="translate(4 3)">
-    <path d="M9.52380952,3.57142857 L9.52380952,22.6190476" transform="rotate(90 9.524 13.095)"/>
-    <path d="M16.9166667,-3.32142853 L16.9166667,10.4642857" transform="rotate(90 16.917 3.571)"/>
-    <path d="M1.5,2.07142857 L1.5,5.07142857" transform="rotate(90 1.5 3.571)"/>
-    <circle cx="6.429" cy="3.571" r="2.976" transform="rotate(90 6.429 3.571)"/>
-    <circle cx="22.024" cy="13.095" r="2.976" transform="rotate(90 22.024 13.095)"/>
-    <path d="M20.2380952,19.047619 L20.2380952,26.1904762" transform="rotate(90 20.238 22.619)"/>
-    <path d="M5.204762,17.4142856 L5.204762,27.8238096" transform="rotate(90 5.205 22.619)"/>
-    <circle cx="13.571" cy="22.619" r="2.976" transform="rotate(90 13.571 22.619)"/>
+  <g fill="none" fill-rule="evenodd">
+    <path stroke="#0E0E0E" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M13.5238095,6.57142857 L13.5238095,25.6190476" transform="rotate(90 13.524 16.095)"/>
+    <path stroke="#0E0E0E" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M20.9166667,-0.321428526 L20.9166667,13.4642857" transform="rotate(90 20.917 6.571)"/>
+    <path stroke="#0E0E0E" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M5.5,5.07142857 L5.5,8.07142857" transform="rotate(90 5.5 6.571)"/>
+    <circle cx="10.429" cy="6.571" r="2.976" stroke="#0E0E0E" stroke-linecap="square" stroke-width="1.8" transform="rotate(90 10.429 6.571)"/>
+    <circle cx="26.024" cy="16.095" r="2.976" stroke="#0E0E0E" stroke-linecap="square" stroke-width="1.8" transform="rotate(90 26.024 16.095)"/>
+    <path stroke="#0E0E0E" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M24.2380952,22.047619 L24.2380952,29.1904762" transform="rotate(90 24.238 25.619)"/>
+    <path stroke="#0E0E0E" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9.204762,20.4142856 L9.204762,30.8238096" transform="rotate(90 9.205 25.619)"/>
+    <circle cx="17.571" cy="25.619" r="2.976" stroke="#0E0E0E" stroke-linecap="square" stroke-width="1.8" transform="rotate(90 17.571 25.619)"/>
   </g>
 </svg>
