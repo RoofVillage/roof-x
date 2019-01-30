@@ -18,6 +18,7 @@ class SignUp extends FormFloatingArtboard {
 
 class _SignUpForm extends RoofStreamForm {
   final _nameFieldData = FormTextFieldData(
+    placeholder: "name",
       slots: 2,
       rowSlots: 3,
       title: "Full name",

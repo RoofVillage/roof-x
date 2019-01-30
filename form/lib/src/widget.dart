@@ -293,8 +293,10 @@ class StreamFormBuilder<T extends StreamFormBloc> extends StatelessWidget {
       @required int sectionIndex}) {
     final rows = <Row>[];
 
-    int rowSlotsRemaining = 0;
-    var rowWidgets = <Widget>[];
+    int usedRowSlots = 0;
+    int prevFieldRowSlots = 0;
+    int remainingFieldSlots = 0;
+    var rowChildren = <Widget>[];
     for (var i = 0; i < sectionData.fieldData.length; i++) {
       final fieldData = sectionData.fieldData[i];
       final outFieldStream =
@@ -307,33 +309,32 @@ class StreamFormBuilder<T extends StreamFormBloc> extends StatelessWidget {
           sectionIndex: sectionIndex,
           fieldHorizontalSpacing: sectionData.fieldHorizontalSpacing);
 
-      final rowStartedEmpty = rowSlotsRemaining == 0;
-      if (rowStartedEmpty) rowSlotsRemaining = fieldData.rowSlots;
-      rowSlotsRemaining -= fieldData.slots;
-
       final space = Container(color: Colors.green, height: 20, width: 40);
+
+      bool isFirstField = usedRowSlots == 0;
+      bool isLastField = i == sectionData.fieldData.length - 1;
       
-      if (rowSlotsRemaining < 0) {
-        rowWidgets.add(space);
-        final row = Row(children: rowWidgets);
-        rows.add(row);
-        rowWidgets = [field];
-        rowSlotsRemaining = fieldData.slots;
-      } else if (rowSlotsRemaining == 0) {
-        if (!rowStartedEmpty) {
-          rowWidgets.add(space);
-        }
-        rowWidgets.add(field);
-        final row = Row(children: rowWidgets);
-        rows.add(row);
-        rowWidgets = [];
-        rowSlotsRemaining = 0;
-      } else {
-        if (!rowStartedEmpty) {
-          rowWidgets.add(space);
-        }
-        rowWidgets.add(field);
+      usedRowSlots += fieldData.slots;
+      remainingFieldSlots = prevFieldRowSlots - usedRowSlots;
+
+      if (usedRowSlots <= fieldData.rowSlots) {
+        if (!isFirstField) rowChildren.add(space);
+        rowChildren.add(field);
       }
+
+      if (usedRowSlots >= fieldData.rowSlots || isLastField) {
+        if (remainingFieldSlots > 0) {
+          rowChildren.add(Flexible(
+              flex: remainingFieldSlots,
+              child: Container(height: 20, color: Colors.yellow)));
+        }
+        final row = Row(children: rowChildren);
+        rows.add(row);
+        rowChildren = <Widget>[];
+        usedRowSlots = 0;
+      }
+
+      prevFieldRowSlots = fieldData.rowSlots;
     }
 
     final section = Column(
