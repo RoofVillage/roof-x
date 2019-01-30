@@ -10,7 +10,6 @@ class FormTextFieldData extends FormCompositionFieldData {
       String initialValue,
       int rowSlots,
       int slots,
-      bool forceNewRow,
       ValueChanged<String> onChanged,
       bool hidden})
       : super(
@@ -18,6 +17,5 @@ class FormTextFieldData extends FormCompositionFieldData {
             onChanged: onChanged,
             rowSlots: rowSlots,
             slots: slots,
-            forceNewRow: forceNewRow,
             hidden: hidden);
 }

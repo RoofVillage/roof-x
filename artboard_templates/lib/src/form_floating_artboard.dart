@@ -42,6 +42,7 @@ class _FormFloatingArtboardPage extends StatelessWidget {
         color: theme.color.background.brandSecondary,
         shadow: theme.shadow,
         child: Container(
+          color: Colors.teal,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,

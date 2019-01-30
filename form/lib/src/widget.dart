@@ -29,31 +29,31 @@ class StreamFormBuilder<T extends StreamFormBloc> extends StatelessWidget {
       {@required T bloc,
       @required BuildContext context,
       @required StreamableFormData formData}) {
-    final slivers = <Widget>[];
+    final rows = <Widget>[];
 
     //Add each sections that accept streamable updates.
-    formData.sectionData
-      ..asMap().forEach((index, sectionData) {
-        final outSectionStream =
-            bloc.outSection.where((data) => data.key == sectionData.key);
+    for (var i = 0; i < formData.sectionData.length; i++) {
+      final sectionData = formData.sectionData[i];
+      final outSectionStream =
+          bloc.outSection.where((data) => data.key == sectionData.key);
 
-        final sectionHeader = _createSectionHeader(
-            outSectionStream: outSectionStream,
-            sectionData: sectionData,
-            sectionIndex: index);
+      final sectionHeader = _createSectionHeader(
+          outSectionStream: outSectionStream,
+          sectionData: sectionData,
+          sectionIndex: i);
 
-        slivers.add(sectionHeader);
+      rows.add(sectionHeader);
 
-        final section = _createSection(
-            bloc: bloc,
-            outSectionStream: outSectionStream,
-            sectionData: sectionData,
-            sectionIndex: index);
+      final section = _createSection(
+          bloc: bloc,
+          outSectionStream: outSectionStream,
+          sectionData: sectionData,
+          sectionIndex: i);
 
-        slivers.add(section);
-      });
+      rows.add(section);
+    }
 
-    final form = CustomScrollView(slivers: slivers);
+    final form = Column(children: rows);
 
     return form;
   }
@@ -94,7 +94,7 @@ class StreamFormBuilder<T extends StreamFormBloc> extends StatelessWidget {
         builder: (context, snapshot) {
           if (!snapshot.hasData) return SliverToBoxAdapter();
 
-          final section = _createSectionSliver(
+          final section = _createSectionBody(
               bloc: bloc,
               sectionData: snapshot.data,
               sectionIndex: sectionIndex);
@@ -105,52 +105,63 @@ class StreamFormBuilder<T extends StreamFormBloc> extends StatelessWidget {
     return section;
   }
 
-  Widget _createSectionSliver(
+  Wrap _createSectionBody(
       {@required T bloc,
       @required StreamableFormSectionData sectionData,
       @required int sectionIndex}) {
-    final delegate =
-        SliverChildBuilderDelegate((BuildContext context, int index) {
-      final initialFieldData = sectionData.fieldData[index];
+    final List<Widget> fields = [];
 
+    for (var i = 0; i < sectionData.fieldData.length; i++) {
+      final initialFieldData = sectionData.fieldData[i];
       final outFieldStream =
           bloc.outField.where((data) => data.key == initialFieldData.key);
 
       final field = _createField(
           outFieldStream: outFieldStream,
           fieldData: initialFieldData,
-          fieldIndex: index,
-          sectionIndex: sectionIndex);
+          fieldIndex: i,
+          sectionIndex: sectionIndex,
+          fieldHorizontalSpacing: sectionData.fieldHorizontalSpacing);
 
-      return field;
-    }, childCount: sectionData.fieldData.length);
+      fields.add(field);
+    }
 
-    final sectionSliver = SliverList(delegate: delegate);
-    return sectionSliver;
+    final section = Wrap(
+      spacing: sectionData.fieldHorizontalSpacing,
+      children: fields,
+    );
+
+    return section;
   }
 
   Widget _createField(
       {@required Stream outFieldStream,
       @required StreamableFormFieldData fieldData,
       @required int fieldIndex,
-      @required int sectionIndex}) {
+      @required int sectionIndex,
+      @required double fieldHorizontalSpacing}) {
     return StreamBuilder<StreamableFormFieldData>(
         stream: outFieldStream,
         initialData: fieldData,
         builder: (context, snapshot) {
-          if (!snapshot.hasData) return SliverToBoxAdapter();
-          final row = buildField(
+          if (!snapshot.hasData) return _empty();
+          final field = buildField(
               fieldData: snapshot.data,
               fieldIndex: fieldIndex,
               sectionIndex: sectionIndex);
 
-          if (row == null) return _empty();
+          if (field == null) return _empty();
 
-          return row;
+          final fieldWidthFactor = fieldData.slots / fieldData.rowSlots;
+          final rowSpacing = fieldHorizontalSpacing * (fieldData.rowSlots - 1);
+          final multiplier = 1 - rowSpacing;
+
+          return FractionallySizedBox(
+              widthFactor: fieldWidthFactor * multiplier, child: field);
         });
   }
 
-  Widget _empty() => SliverToBoxAdapter();
+  Widget _empty() => Container();
 }
 
 typedef _FieldBuilder = Widget Function(

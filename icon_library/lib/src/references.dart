@@ -35,8 +35,6 @@ class _IconReference {
   _IconReference({this.path, this.height, this.width});
 
   Widget buildSvg({Color color}) {
-    print(width);
-    print(path);
     if (path != null && path.endsWith(".svg")) {
       return SvgPicture.asset(path,
           package: "icon_library", height: height, width: width, color: color);

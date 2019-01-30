@@ -3,7 +3,11 @@ import 'package:flutter/material.dart';
 class FloatingArtboard extends StatefulWidget {
   final Widget page;
 
-  FloatingArtboard({this.page});
+  FloatingArtboard({Widget page})
+      : page = Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [Flexible(child: SingleChildScrollView(child: page))]);
 
   @override
   State<StatefulWidget> createState() => FloatingArtboardState(page: page);

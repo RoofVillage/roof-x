@@ -9,7 +9,6 @@ class ConstrainedFloatingArtboardPage extends StatelessWidget {
   final Widget child;
 
   final _bottomSheetMargin = EdgeInsets.all(RoofDistance.f);
-  final _sizeConstraints = BoxConstraints(maxHeight: 400);
 
   ConstrainedFloatingArtboardPage(
       {this.color, this.shadow, @required this.child});
@@ -25,9 +24,6 @@ class ConstrainedFloatingArtboardPage extends StatelessWidget {
         margin: _bottomSheetMargin,
         decoration: decoration,
         child: GestureDetector(
-            behavior: HitTestBehavior.opaque,
-            onTap: () {},
-            child:
-                ConstrainedBox(constraints: _sizeConstraints, child: child)));
+            behavior: HitTestBehavior.opaque, onTap: () {}, child: child));
   }
 }

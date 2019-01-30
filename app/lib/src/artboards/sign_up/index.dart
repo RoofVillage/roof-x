@@ -14,11 +14,20 @@ class SignUp extends FormFloatingArtboard {
 
 class _SignUpForm extends RoofStreamForm {
   final _nameFieldData = FormTextFieldData(
-      title: "Full name", onChanged: (someString) => print(someString));
+      slots: 1,
+      rowSlots: 2,
+      title: "Full name",
+      onChanged: (someString) => print(someString));
+  final _pooFieldData = FormTextFieldData(
+      slots: 1,
+      rowSlots: 2,
+      title: "Goo name",
+      onChanged: (someString) => print(someString));
 
   @override
   Future<StreamableFormData> get initialFormData async {
-    final formData = StreamableFormData.withFields(fieldData: [_nameFieldData]);
+    final formData = StreamableFormData.withFields(
+        fieldData: [_nameFieldData, _pooFieldData]);
     return formData;
   }
 }

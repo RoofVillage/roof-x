@@ -4,7 +4,6 @@ import 'package:stream/index.dart';
 class StreamableFormFieldData<T> extends StreamableData {
   final int rowSlots;
   final int slots;
-  final bool forceNewRow;
   ValueChanged<T> onChanged;
 
   T get value => _value;
@@ -17,12 +16,13 @@ class StreamableFormFieldData<T> extends StreamableData {
 
   StreamableFormFieldData({
     T initialValue,
-    this.rowSlots = 1,
-    this.slots = 1,
-    this.forceNewRow = false,
+    int rowSlots,
+    int slots,
     ValueChanged<T> onChanged,
-    bool hidden = false,
-  })  : _value = initialValue,
+    bool hidden,
+  })  : rowSlots = rowSlots ?? 1,
+        slots = slots ?? 1,
+        _value = initialValue,
         _onChanged = onChanged,
         super(hidden: hidden);
 }

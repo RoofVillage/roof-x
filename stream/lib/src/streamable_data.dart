@@ -8,7 +8,7 @@ abstract class StreamableData {
 
   String get key => _customKey ?? _uuid;
 
-  StreamableData({String key, bool hidden = false})
+  StreamableData({String key, bool hidden})
       : _customKey = key,
-        hidden = hidden;
+        hidden = hidden ?? false;
 }

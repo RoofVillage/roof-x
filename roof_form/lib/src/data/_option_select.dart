@@ -12,7 +12,6 @@ class FormOptionSelectData
       FormOptionSelectValueData initialValue,
       int rowSlots,
       int slots,
-      bool forceNewRow,
       ValueChanged<FormOptionSelectValueData> onChanged,
       bool hidden})
       : super(
@@ -20,6 +19,5 @@ class FormOptionSelectData
             onChanged: onChanged,
             rowSlots: rowSlots,
             slots: slots,
-            forceNewRow: forceNewRow,
             hidden: hidden);
 }

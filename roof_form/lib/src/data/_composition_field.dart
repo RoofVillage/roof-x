@@ -11,11 +11,10 @@ class FormCompositionFieldData extends StreamableFormFieldData<String> {
       {this.title,
       this.placeholder,
       this.autofocus = false,
-      this.inputAction = TextInputAction.none,
+      this.inputAction,
       String initialValue,
       int rowSlots,
       int slots,
-      bool forceNewRow,
       ValueChanged<String> onChanged,
       bool hidden})
       : super(
@@ -23,6 +22,5 @@ class FormCompositionFieldData extends StreamableFormFieldData<String> {
             onChanged: onChanged,
             rowSlots: rowSlots,
             slots: slots,
-            forceNewRow: forceNewRow,
             hidden: hidden);
 }
