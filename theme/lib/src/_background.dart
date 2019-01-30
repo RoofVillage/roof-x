@@ -51,9 +51,9 @@ class RoofBackgroundColor {
   Color get scrim {
     switch (_current) {
       case RoofThemeOption.light:
-        return RoofColor.black3.withOpacity(0.4);
+        return RoofColor.black3.withOpacity(0.7);
       case RoofThemeOption.dark:
-        return RoofColor.black3.withOpacity(0.4);
+        return RoofColor.black3.withOpacity(0.7);
     }
     return null;
   }

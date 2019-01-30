@@ -10,6 +10,8 @@ dependencies:
     sdk: flutter
   navigation_components:
     path: ../navigation_components
+  button_components:
+    path: ../button_components
 
 dev_dependencies:
   flutter_test:

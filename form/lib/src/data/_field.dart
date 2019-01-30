@@ -6,6 +6,8 @@ class StreamableFormFieldData<T> extends StreamableData {
   final int slots;
   ValueChanged<T> onChanged;
 
+  double get fieldWidthFactor => slots / rowSlots;
+
   T get value => _value;
   set value(T value) {
     _onChanged(value);

@@ -8,7 +8,7 @@ class ConstrainedFloatingArtboardPage extends StatelessWidget {
 
   final Widget child;
 
-  final _bottomSheetMargin = EdgeInsets.all(RoofDistance.f);
+  final _bottomSheetMargin = EdgeInsets.all(RoofDistance.d);
 
   ConstrainedFloatingArtboardPage(
       {this.color, this.shadow, @required this.child});
@@ -21,6 +21,7 @@ class ConstrainedFloatingArtboardPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+        padding: EdgeInsets.all(RoofDistance.c),
         margin: _bottomSheetMargin,
         decoration: decoration,
         child: GestureDetector(
