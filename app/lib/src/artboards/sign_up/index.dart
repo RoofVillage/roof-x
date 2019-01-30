@@ -18,14 +18,14 @@ class SignUp extends FormFloatingArtboard {
 
 class _SignUpForm extends RoofStreamForm {
   final _nameFieldData = FormTextFieldData(
-    placeholder: "name",
+      placeholder: "name",
       slots: 2,
       rowSlots: 3,
       title: "Full name",
       onChanged: (someString) => print(someString));
   final _pooFieldData = FormTextFieldData(
-      slots: 1,
-      rowSlots: 3,
+      slots: 10,
+      rowSlots: 30,
       title: "Goo name",
       onChanged: (someString) => print(someString));
   final _111FieldData = FormTextFieldData(
@@ -39,8 +39,8 @@ class _SignUpForm extends RoofStreamForm {
       title: "Full name",
       onChanged: (someString) => print(someString));
   final _333FieldData = FormTextFieldData(
-      slots: 1,
-      rowSlots: 6,
+      slots: 10,
+      rowSlots: 60,
       title: "Goo name",
       onChanged: (someString) => print(someString));
   final _sdfFieldData = FormTextFieldData(
@@ -59,11 +59,25 @@ class _SignUpForm extends RoofStreamForm {
     final formData = StreamableFormData.withFields(fieldData: [
       _nameFieldData,
       _pooFieldData,
-      _sdfFieldData,
-      _jklFieldData,
-      _111FieldData,
-      _222FieldData,
-      _333FieldData
+      // _sdfFieldData,
+      // _jklFieldData,
+      // _111FieldData,
+      // _222FieldData,
+      // _333FieldData,
+      // _nameFieldData,
+      // _pooFieldData,
+      // _sdfFieldData,
+      // _jklFieldData,
+      // _111FieldData,
+      // _222FieldData,
+      // _333FieldData,
+      // _nameFieldData,
+      // _pooFieldData,
+      // _sdfFieldData,
+      // _jklFieldData,
+      // _111FieldData,
+      // _222FieldData,
+      // _333FieldData
     ], fieldHorizontalSpacing: 20);
     return formData;
   }
