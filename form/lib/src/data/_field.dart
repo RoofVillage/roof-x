@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:stream/index.dart';
 
 class StreamableFormFieldData<T> extends StreamableData {
-  final int rowSlots;
-  final int slots;
+  final double size;
   ValueChanged<T> onChanged;
 
-  double get fieldWidthRatio => slots / rowSlots;
+  double get fieldSize => size;
 
   T get value => _value;
   set value(T value) {
@@ -18,12 +17,10 @@ class StreamableFormFieldData<T> extends StreamableData {
 
   StreamableFormFieldData({
     T initialValue,
-    int rowSlots,
-    int slots,
+    double size,
     ValueChanged<T> onChanged,
     bool hidden,
-  })  : rowSlots = rowSlots ?? 1,
-        slots = slots ?? 1,
+  })  : size = size ?? 1,
         _value = initialValue,
         _onChanged = onChanged,
         super(hidden: hidden);

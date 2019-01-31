@@ -7,14 +7,12 @@ class FormSwitchData extends StreamableFormFieldData<bool> {
   FormSwitchData(
       {this.title,
       bool initialValue,
-      int rowSlots,
-      int slots,
+      double size,
       ValueChanged<bool> onChanged,
       bool hidden})
       : super(
             initialValue: initialValue,
             onChanged: onChanged,
-            rowSlots: rowSlots,
-            slots: slots,
+            size: size,
             hidden: hidden);
 }

@@ -8,14 +8,12 @@ class FormTextFieldData extends FormCompositionFieldData {
       bool autofocus,
       TextInputAction inputAction,
       String initialValue,
-      int rowSlots,
-      int slots,
+      double size,
       ValueChanged<String> onChanged,
       bool hidden})
       : super(
             initialValue: initialValue,
             onChanged: onChanged,
-            rowSlots: rowSlots,
-            slots: slots,
+            size: size,
             hidden: hidden);
 }

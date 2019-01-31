@@ -14,7 +14,8 @@ abstract class RoofStreamForm extends StreamForm<StreamableFormFieldData,
         initialValue: fieldData.value,
         isPassword: false,
         autofocus: fieldData.autofocus,
-        textInputAction: fieldData.inputAction);
+        textInputAction: fieldData.inputAction
+        );
   }
 
   Widget buildTextArea(

@@ -11,6 +11,8 @@ dependencies:
     sdk: flutter
   stream:
     path: ../stream
+  spec:
+    path: ../spec
 
 dev_dependencies:
   flutter_test:

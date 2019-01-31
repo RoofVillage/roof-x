@@ -5,14 +5,12 @@ import '_field.dart';
 import '_section_header.dart';
 
 class StreamableFormSectionData extends StreamableData {
-  final double fieldHorizontalSpacing;
   StreamableFormSectionHeaderData headerData;
 
   final List<StreamableFormFieldData> fieldData;
 
   StreamableFormSectionData(
-      {this.headerData, this.fieldData, double fieldHorizontalSpacing})
-      : fieldHorizontalSpacing = fieldHorizontalSpacing ?? 0;
+      {this.headerData, this.fieldData});
 
   void replace({@required int index, StreamableFormFieldData fieldData}) {
     this.fieldData.replaceRange(index, index + 1, [fieldData]);

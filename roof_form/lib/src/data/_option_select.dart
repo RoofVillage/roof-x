@@ -10,14 +10,12 @@ class FormOptionSelectData
   FormOptionSelectData(
       {this.values,
       FormOptionSelectValueData initialValue,
-      int rowSlots,
-      int slots,
+      double size,
       ValueChanged<FormOptionSelectValueData> onChanged,
       bool hidden})
       : super(
             initialValue: initialValue,
             onChanged: onChanged,
-            rowSlots: rowSlots,
-            slots: slots,
+            size: size,
             hidden: hidden);
 }

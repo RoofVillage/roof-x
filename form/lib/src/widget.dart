@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stream/index.dart';
+import 'package:spec/index.dart';
 
 import 'bloc.dart';
 import 'data/index.dart';
@@ -112,11 +113,12 @@ class StreamFormBuilder<T extends StreamFormBloc> extends StatelessWidget {
       @required int sectionIndex}) {
     final rows = <Row>[];
 
-    double usedRowPercentage = 0;
-    double prevFieldRowPercentage = 0;
-    int prevFieldRowSlots = 0;
+    double percentRowFilled = 0;
     var rowChildren = <Widget>[];
-    final space = Container(color: Colors.green, height: 20, width: 40);
+
+    final spacing = RoofDistance.c;
+    final space = Container(width: spacing);
+
     for (var i = 0; i < sectionData.fieldData.length; i++) {
       final fieldData = sectionData.fieldData[i];
       final outFieldStream =
@@ -126,34 +128,40 @@ class StreamFormBuilder<T extends StreamFormBloc> extends StatelessWidget {
           outFieldStream: outFieldStream,
           fieldData: fieldData,
           fieldIndex: i,
-          sectionIndex: sectionIndex,
-          fieldHorizontalSpacing: sectionData.fieldHorizontalSpacing);
+          sectionIndex: sectionIndex);
 
-      bool isFirstField = usedRowPercentage == 0;
       bool isLastField = i == sectionData.fieldData.length - 1;
+      double percentRowWillFill = percentRowFilled + fieldData.fieldSize;
 
-      if (usedRowPercentage <= 1 - fieldData.fieldWidthRatio) {
-        if (!isFirstField) rowChildren.add(space);
+      if (percentRowWillFill <= 1) {
+        if (percentRowFilled > 0) rowChildren.add(space);
         rowChildren.add(field);
-        usedRowPercentage += fieldData.fieldWidthRatio;
       }
 
-      if (usedRowPercentage >= fieldData.rowSlots || isLastField) {
-        final remainingRowPercentage = 1 - usedRowPercentage;
-        if (remainingRowPercentage > 0) {
-          final fill = Flexible(
-              flex: (remainingRowPercentage * prevFieldRowSlots).floor(),
-              child: Container(height: 20, color: Colors.yellow));
-          rowChildren.add(fill);
-        }
+      if (percentRowWillFill == 1) {
         final row = Row(children: rowChildren);
         rows.add(row);
+
         rowChildren = <Widget>[];
-        usedRowPercentage = 0;
+        percentRowFilled = 0;
+      } else if (percentRowWillFill > 1) {
+        rowChildren.add(_remainingSpaceFiller(percentRowFilled));
+
+        final row = Row(children: rowChildren);
+        rows.add(row);
+
+        rowChildren = <Widget>[field];
+        percentRowFilled = fieldData.fieldSize;
+      } else {
+        percentRowFilled += fieldData.fieldSize;
       }
 
-      prevFieldRowSlots = fieldData.rowSlots;
-      prevFieldRowPercentage = fieldData.fieldWidthRatio;
+      if (isLastField && rowChildren.length > 0) {
+        rowChildren.add(_remainingSpaceFiller(percentRowFilled));
+
+        final row = Row(children: rowChildren);
+        rows.add(row);
+      }
     }
 
     final section = Column(children: rows);
@@ -161,12 +169,17 @@ class StreamFormBuilder<T extends StreamFormBloc> extends StatelessWidget {
     return section;
   }
 
+  _remainingSpaceFiller(double percentRowFilled) {
+    double remainingRowPercentage = 1 - percentRowFilled;
+    return Flexible(
+        flex: (remainingRowPercentage * 100).floor(), child: Container());
+  }
+
   Widget _createField(
       {@required Stream outFieldStream,
       @required StreamableFormFieldData fieldData,
       @required int fieldIndex,
-      @required int sectionIndex,
-      @required double fieldHorizontalSpacing}) {
+      @required int sectionIndex}) {
     return StreamBuilder<StreamableFormFieldData>(
         stream: outFieldStream,
         initialData: fieldData,
@@ -179,7 +192,8 @@ class StreamFormBuilder<T extends StreamFormBloc> extends StatelessWidget {
 
           if (field == null) return _empty();
 
-          return Expanded(flex: fieldData.slots, child: field);
+          return Expanded(
+              flex: (fieldData.fieldSize * 100).floor(), child: field);
         });
   }
 

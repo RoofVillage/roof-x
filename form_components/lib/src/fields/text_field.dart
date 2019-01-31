@@ -45,7 +45,8 @@ class RoofTextField extends StatelessWidget with RoofCompositionField {
     fieldChildren.add(fieldBody);
 
     return Container(
-        margin: RoofObjectPadding.field1,
+        // margin: RoofObjectPadding.field1,
+        // margin: isLeftPadded ? EdgeInsets.only(left: RoofDistance.e) : null,
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: fieldChildren));

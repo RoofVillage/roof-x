@@ -18,67 +18,18 @@ class SignUp extends FormFloatingArtboard {
 
 class _SignUpForm extends RoofStreamForm {
   final _nameFieldData = FormTextFieldData(
-      placeholder: "name",
-      slots: 2,
-      rowSlots: 3,
+      size: 1 / 2,
       title: "Full name",
       onChanged: (someString) => print(someString));
   final _pooFieldData = FormTextFieldData(
-      slots: 10,
-      rowSlots: 30,
-      title: "Goo name",
-      onChanged: (someString) => print(someString));
-  final _111FieldData = FormTextFieldData(
-      slots: 2,
-      rowSlots: 6,
-      title: "Goo name",
-      onChanged: (someString) => print(someString));
-  final _222FieldData = FormTextFieldData(
-      slots: 1,
-      rowSlots: 6,
-      title: "Full name",
-      onChanged: (someString) => print(someString));
-  final _333FieldData = FormTextFieldData(
-      slots: 10,
-      rowSlots: 60,
-      title: "Goo name",
-      onChanged: (someString) => print(someString));
-  final _sdfFieldData = FormTextFieldData(
-      slots: 2,
-      rowSlots: 5,
-      title: "Full name",
-      onChanged: (someString) => print(someString));
-  final _jklFieldData = FormTextFieldData(
-      slots: 3,
-      rowSlots: 5,
+      size: 1 / 2,
       title: "Goo name",
       onChanged: (someString) => print(someString));
 
   @override
   Future<StreamableFormData> get initialFormData async {
-    final formData = StreamableFormData.withFields(fieldData: [
-      _nameFieldData,
-      _pooFieldData,
-      // _sdfFieldData,
-      // _jklFieldData,
-      // _111FieldData,
-      // _222FieldData,
-      // _333FieldData,
-      // _nameFieldData,
-      // _pooFieldData,
-      // _sdfFieldData,
-      // _jklFieldData,
-      // _111FieldData,
-      // _222FieldData,
-      // _333FieldData,
-      // _nameFieldData,
-      // _pooFieldData,
-      // _sdfFieldData,
-      // _jklFieldData,
-      // _111FieldData,
-      // _222FieldData,
-      // _333FieldData
-    ], fieldHorizontalSpacing: 20);
+    final formData = StreamableFormData.withFields(
+        fieldData: [_nameFieldData, _pooFieldData]);
     return formData;
   }
 }
