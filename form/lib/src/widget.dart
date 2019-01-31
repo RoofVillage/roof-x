@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:stream/index.dart';
-import 'package:spec/index.dart';
 
 import 'bloc.dart';
 import 'data/index.dart';
@@ -116,7 +115,7 @@ class StreamFormBuilder<T extends StreamFormBloc> extends StatelessWidget {
     double percentRowFilled = 0;
     var rowChildren = <Widget>[];
 
-    final spacing = RoofDistance.c;
+    final spacing = sectionData.fieldHorizontalSpacing;
     final space = Container(width: spacing);
 
     for (var i = 0; i < sectionData.fieldData.length; i++) {
@@ -136,15 +135,17 @@ class StreamFormBuilder<T extends StreamFormBloc> extends StatelessWidget {
       if (percentRowWillFill <= 1) {
         if (percentRowFilled > 0) rowChildren.add(space);
         rowChildren.add(field);
-      }
 
-      if (percentRowWillFill == 1) {
-        final row = Row(children: rowChildren);
-        rows.add(row);
+        if (percentRowWillFill == 1) {
+          final row = Row(children: rowChildren);
+          rows.add(row);
 
-        rowChildren = <Widget>[];
-        percentRowFilled = 0;
-      } else if (percentRowWillFill > 1) {
+          rowChildren = <Widget>[];
+          percentRowFilled = 0;
+        } else {
+          percentRowFilled += fieldData.fieldSize;
+        }
+      } else {
         rowChildren.add(_remainingSpaceFiller(percentRowFilled));
 
         final row = Row(children: rowChildren);
@@ -152,8 +153,6 @@ class StreamFormBuilder<T extends StreamFormBloc> extends StatelessWidget {
 
         rowChildren = <Widget>[field];
         percentRowFilled = fieldData.fieldSize;
-      } else {
-        percentRowFilled += fieldData.fieldSize;
       }
 
       if (isLastField && rowChildren.length > 0) {
@@ -169,7 +168,7 @@ class StreamFormBuilder<T extends StreamFormBloc> extends StatelessWidget {
     return section;
   }
 
-  _remainingSpaceFiller(double percentRowFilled) {
+  Flexible _remainingSpaceFiller(double percentRowFilled) {
     double remainingRowPercentage = 1 - percentRowFilled;
     return Flexible(
         flex: (remainingRowPercentage * 100).floor(), child: Container());

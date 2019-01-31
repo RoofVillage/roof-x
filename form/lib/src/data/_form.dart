@@ -16,10 +16,11 @@ class StreamableFormData extends StreamableData {
   StreamableFormData({this.sectionData});
 
   StreamableFormData.withFields(
-      {List<StreamableFormFieldData> fieldData})
+      {List<StreamableFormFieldData> fieldData, double fieldHorizontalSpacing})
       : sectionData = [
           StreamableFormSectionData(
-              fieldData: fieldData)
+              fieldData: fieldData,
+              fieldHorizontalSpacing: fieldHorizontalSpacing)
         ];
 
   void updateField(StreamableFormFieldData fieldData) {

@@ -28,7 +28,7 @@ class _SignUpForm extends RoofStreamForm {
 
   @override
   Future<StreamableFormData> get initialFormData async {
-    final formData = StreamableFormData.withFields(
+    final formData = SpacedStreamableFormData.withFields(
         fieldData: [_nameFieldData, _pooFieldData]);
     return formData;
   }
