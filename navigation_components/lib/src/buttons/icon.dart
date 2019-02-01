@@ -9,13 +9,12 @@ class RoofIconNavButton extends RoofNavButton {
 
   final NavigationIconReference iconReference;
 
-  final _blank = NavigationIconReference();
-
   @override
   void onTap(BuildContext context) => _onTap(context);
 
   @override
   Widget iconForTheme(RoofInheritedTheme theme) {
+    final _blank = NavigationIconReference();
     return (iconReference ?? _blank).buildSvg(color: theme.color.icon.nav);
   }
 

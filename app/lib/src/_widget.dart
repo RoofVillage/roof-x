@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:stream/index.dart';
+import 'package:artboard_templates/index.dart';
+import 'package:artboard_navigators/index.dart';
 
-import './artboards/public_activity/index.dart';
+import 'artboards/public_activity/index.dart';
 
 import '_bloc.dart';
 import 'data/index.dart';
@@ -15,11 +17,14 @@ class RootWidget extends StatelessWidget {
           if (!snapshot.hasData) return Container();
           final appState = snapshot.data;
 
+          Artboard startingArtboard;
           if (appState.isInSession) {
-            return PublicActivity();
+            startingArtboard = PublicActivity();
           } else {
-            return PublicActivity();
+            startingArtboard = PublicActivity();
           }
+
+          return FullScreenArtboardNavigator(artboard: startingArtboard);
         });
   }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:spec/index.dart';
 
-class FullScreenRoute extends PageRoute<void> {
+class FullScreenRoute<T> extends PageRoute<T> {
   WidgetBuilder builder;
 
   @override

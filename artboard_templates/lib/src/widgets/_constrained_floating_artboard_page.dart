@@ -8,7 +8,9 @@ class ConstrainedFloatingArtboardPage extends StatelessWidget {
 
   final Widget child;
 
-  final _bottomSheetMargin = EdgeInsets.all(RoofDistance.d);
+  final _margin = EdgeInsets.all(RoofDistance.d);
+  final _padding = EdgeInsets.fromLTRB(
+      RoofDistance.c, RoofDistance.c, RoofDistance.c, RoofDistance.f);
 
   ConstrainedFloatingArtboardPage(
       {this.color, this.shadow, @required this.child});
@@ -21,8 +23,8 @@ class ConstrainedFloatingArtboardPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: EdgeInsets.all(RoofDistance.c),
-        margin: _bottomSheetMargin,
+        padding: _padding,
+        margin: _margin,
         decoration: decoration,
         child: GestureDetector(
             behavior: HitTestBehavior.opaque, onTap: () {}, child: child));

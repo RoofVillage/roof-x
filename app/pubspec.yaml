@@ -21,18 +21,16 @@ dependencies:
     path: ../decorated_text
   artboard_templates:
     path: ../artboard_templates
+  artboard_navigators:
+    path: ../artboard_navigators
   navigation_components:
     path: ../navigation_components
   theme:
     path: ../theme
   table_components:
     path: ../table_components
-  routing:
-    path: ../routing
   typography:
     path: ../typography
-  button_components:
-    path: ../button_components
 
 dev_dependencies:
   flutter_test:

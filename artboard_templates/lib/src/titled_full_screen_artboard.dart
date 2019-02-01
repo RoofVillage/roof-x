@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:navigation_components/index.dart';
-import 'package:theme/index.dart';
 
 import 'widgets/index.dart';
 
-abstract class TitledFullScreenArtboard extends StatelessWidget {
+import 'full_screen_artboard.dart';
+
+abstract class TitledFullScreenArtboard extends FullScreenArtboard {
   WidgetBuilder get buildBody;
   List<RoofNavButton> get actionButtons;
   RoofNavButton get navButton => null;
@@ -16,12 +17,7 @@ abstract class TitledFullScreenArtboard extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
-    final scaffold = Scaffold(
-        backgroundColor: theme.color.background.general,
-        body: FullScreenWithNav(navBar: _navBar, body: buildBody(context)));
-
-    return RoofTheme(theme.current, child: scaffold);
+  Widget buildChild(BuildContext context) {
+    return FullScreenWithNav(navBar: _navBar, body: buildBody(context));
   }
 }

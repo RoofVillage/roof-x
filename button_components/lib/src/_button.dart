@@ -4,82 +4,75 @@ import 'package:icon_library/index.dart';
 import 'package:typography/index.dart';
 import 'package:haptics/index.dart';
 
-class RoofButton extends StatefulWidget {
+typedef ColorGetter = Color Function(BuildContext context);
+
+abstract class RoofButton extends StatefulWidget {
   final Function onTap;
-  final String buttonText;
+  final String text;
   final StandardIconReference iconReference;
-  final BoxDecoration buttonDecoration;
-  final Color contentColor;
-  final double buttonHeight;
+  final double height;
+
+  ColorGetter get backgroundColor;
+  ColorGetter get textColor;
 
   RoofButton(
       {this.onTap,
-      this.buttonText,
+      this.text,
       this.iconReference,
-      this.buttonDecoration,
-      this.contentColor,
-      this.buttonHeight});
+      this.height = RoofDistance.e});
 
   _RoofButtonState createState() => _RoofButtonState(
       onTap: onTap,
-      buttonText: buttonText,
+      text: text,
       iconReference: iconReference,
-      buttonDecoration: buttonDecoration,
-      contentColor: contentColor,
-      buttonHeight: buttonHeight);
+      backgroundColor: backgroundColor,
+      textColor: textColor,
+      height: height);
 }
 
 class _RoofButtonState extends State<RoofButton> {
   Function onTap;
-  String buttonText;
+  String text;
   StandardIconReference iconReference;
-  BoxDecoration buttonDecoration;
-  Color contentColor;
-  double buttonHeight;
+  ColorGetter backgroundColor;
+  ColorGetter textColor;
+  double height;
+
+  bool _tapped = false;
+  double _tappedOpacity = 0.75;
 
   _RoofButtonState(
       {this.onTap,
-      this.buttonText,
+      this.text,
       this.iconReference,
-      this.buttonDecoration,
-      this.contentColor,
-      this.buttonHeight});
+      this.backgroundColor,
+      this.textColor,
+      this.height});
 
   final _textStyle = RoofTypography.button;
-  static const double _defaultButtonHeight = 40;
 
   @override
   Widget build(BuildContext context) {
-    buttonHeight = buttonHeight ?? _defaultButtonHeight;
-
-    bool tapped = false;
-
-    void doTap() {
-      RoofHaptic.triggerWith(RoofHapticOption.light);
-      tapped = true;
-      onTap();
-      // .then(tapped = false);
-    }
-
     List<Widget> buttonChildren = [];
 
+    final color = textColor(context);
+
     if (iconReference != null) {
-      final iconPadding = buttonText != null
+      final iconPadding = text != null
           ? EdgeInsets.fromLTRB(0, 0, RoofDistance.b, 0)
           : EdgeInsets.all(0);
 
       final buttonIcon = Container(
-          padding: iconPadding,
-          child: iconReference.buildSvg(color: contentColor));
+          padding: iconPadding, child: iconReference.buildSvg(color: color));
 
       buttonChildren.add(buttonIcon);
     }
 
-    if (buttonText != null) {
-      final textDecoration = _textStyle.textStyleWithColor(contentColor);
+    if (text != null) {
+      final textDecoration = _textStyle.textStyleWithColor(color);
 
       final styledButtonText =
-          Text(buttonText, style: textDecoration, textAlign: TextAlign.center);
+          Text(text, style: textDecoration, textAlign: TextAlign.center);
 
       buttonChildren.add(styledButtonText);
     }
@@ -87,18 +80,42 @@ class _RoofButtonState extends State<RoofButton> {
     final buttonPadding =
         EdgeInsets.fromLTRB(RoofDistance.c, 0, RoofDistance.c, 0);
 
-    double opacity = tapped ? .75 : 1;
+    double opacity = _tapped ? _tappedOpacity : 1;
+
+    final decoration = BoxDecoration(
+        color: backgroundColor(context).withOpacity(opacity),
+        borderRadius: BorderRadius.all(RoofCornerRadius.regular));
 
     return GestureDetector(
-        onTap: doTap,
-        child: Opacity(
-            opacity: opacity,
-            child: Container(
-                height: buttonHeight,
-                padding: buttonPadding,
-                decoration: buttonDecoration,
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: buttonChildren))));
+        onTap: _onTap,
+        onTapUp: _onTapUp,
+        onTapCancel: _onTapCancel,
+        child: Container(
+            height: height,
+            padding: buttonPadding,
+            decoration: decoration,
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: buttonChildren)));
+  }
+
+  void _onTap() {
+    RoofHaptic.triggerWith(RoofHapticOption.light);
+    onTap();
+    setState(() {
+      _tapped = true;
+    });
+  }
+
+  void _onTapUp(TapUpDetails details) {
+    setState(() {
+      _tapped = false;
+    });
+  }
+
+  void _onTapCancel() {
+    setState(() {
+      _tapped = false;
+    });
   }
 }

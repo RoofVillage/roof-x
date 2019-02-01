@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:spec/index.dart';
 import 'package:theme/index.dart';
 
-class FloatingRoute extends ModalRoute<void> {
+class FloatingRoute<T> extends ModalRoute<T> {
   WidgetBuilder builder;
   RoofThemeOption currentTheme;
 

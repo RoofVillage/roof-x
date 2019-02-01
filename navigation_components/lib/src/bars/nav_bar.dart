@@ -14,7 +14,7 @@ abstract class RoofNavBar extends StatelessWidget {
   final double _heightRatioToDevice = 0.5 * 0.25;
   final double _minHeight = RoofDistance.g;
   final _padding =
-      EdgeInsets.fromLTRB(RoofDistance.c, 0, RoofDistance.c, RoofDistance.c);
+      EdgeInsets.fromLTRB(RoofDistance.a, 0, RoofDistance.a, RoofDistance.c);
 
   RoofNavBar({Key key}) : super(key: key);
 

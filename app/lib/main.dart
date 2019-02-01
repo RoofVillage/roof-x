@@ -19,9 +19,6 @@ class _Roof extends StatelessWidget {
         title: 'Roof',
         theme: ThemeData(fontFamily: 'azo'),
         home: BlocProvider(bloc: AppBloc(), child: RootWidget()),
-        // Scaffold(
-        //     appBar: AppBar(),
-        //     body: k()),
       ),
     );
   }

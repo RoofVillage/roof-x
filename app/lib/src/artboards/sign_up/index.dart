@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:artboard_templates/index.dart';
 import 'package:roof_form/index.dart';
-import 'package:button_components/index.dart';
+import 'package:artboard_navigators/index.dart';
+
+import '../public_activity/index.dart';
 
 class SignUp extends FormFloatingArtboard {
   WidgetBuilder get buildBody => (context) => _SignUpForm();
@@ -13,7 +15,20 @@ class SignUp extends FormFloatingArtboard {
   String get subtitle => "Yamagucci";
 
   @override
-  get button => RoofSubmitButton(buttonText: "Button");
+  get submitButtonText => "Next";
+  get submitButtonAction => (context) {
+        ArtboardNavigator.of(context).goTo(SignUp(), context: context);
+      };
+
+  get threadButtonText => "Thread";
+  get threadButtonAction => (context) {
+        ArtboardNavigator.of(context).goTo(PublicActivity(), context: context);
+      };
+
+  get backButtonText => "Back";
+  get backButtonAction => (context) {
+        ArtboardNavigator.of(context).goTo(PublicActivity(), context: context);
+      };
 }
 
 class _SignUpForm extends RoofStreamForm {

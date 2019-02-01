@@ -11,35 +11,38 @@ import 'package:app/src/utils/static_key.dart';
 import 'package:artboard_templates/index.dart';
 import 'package:navigation_components/index.dart';
 import 'package:table_components/index.dart';
-import 'package:routing/index.dart';
-import 'package:theme/index.dart';
+import 'package:artboard_navigators/index.dart';
 
 import 'data/index.dart';
 
 import '../sign_up/index.dart';
 
-class PublicActivity extends FullLogoFullScreenArtboard {
+class PublicActivity extends TitledFullScreenArtboard {
   final _showFloatingArtboardButton = RoofIconNavButton(
       iconReference: IconReference.add,
       onTap: (context) {
-        Navigator.of(context).push(FloatingRoute(
-            builder: (context) => SignUp(),
-            currentTheme: RoofTheme.of(context).current));
+        ArtboardNavigator.of(context).goTo(SignUp(), context: context);
       });
 
   final _showFullScreenArtboardButton = RoofIconNavButton(
       iconReference: IconReference.settingsNav,
       onTap: (context) {
-        Navigator.of(context)
-            .push(FullScreenRoute(builder: (context) => PublicActivity()));
+        ArtboardNavigator.of(context).goTo(PublicActivity(), context: context);
       });
 
   final _popButton = RoofIconNavButton(
-      iconReference: IconReference.backArrowNav,
-      onTap: (context) => Navigator.pop(context));
+      iconReference: IconReference.backArrowNav, onTap: ArtboardNavigator.pop);
 
   @override
+  // TODO: implement title
+  String get title => "sup";
+
+  @override
+  // TODO: implement navButton
+  RoofNavButton get navButton => _popButton;
+  @override
   WidgetBuilder get buildBody => (context) => _PublicActivityTable();
+
   @override
   List<RoofNavButton> get actionButtons =>
       [_popButton, _showFloatingArtboardButton, _showFullScreenArtboardButton];
