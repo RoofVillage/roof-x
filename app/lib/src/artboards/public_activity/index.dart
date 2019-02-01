@@ -17,7 +17,7 @@ import 'data/index.dart';
 
 import '../sign_up/index.dart';
 
-class PublicActivity extends TitledFullScreenArtboard {
+class PublicActivity extends FullLogoFullScreenArtboard {
   final _showFloatingArtboardButton = RoofIconNavButton(
       iconReference: IconReference.add,
       onTap: (context) {
@@ -33,13 +33,6 @@ class PublicActivity extends TitledFullScreenArtboard {
   final _popButton = RoofIconNavButton(
       iconReference: IconReference.backArrowNav, onTap: ArtboardNavigator.pop);
 
-  @override
-  // TODO: implement title
-  String get title => "sup";
-
-  @override
-  // TODO: implement navButton
-  RoofNavButton get navButton => _popButton;
   @override
   WidgetBuilder get buildBody => (context) => _PublicActivityTable();
 

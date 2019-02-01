@@ -22,11 +22,13 @@ class ConstrainedFloatingArtboardPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final pageContent = Container(padding: _padding, child: child);
     return Container(
-        padding: _padding,
         margin: _margin,
         decoration: decoration,
         child: GestureDetector(
-            behavior: HitTestBehavior.opaque, onTap: () {}, child: child));
+            behavior: HitTestBehavior.opaque,
+            onTap: () {},
+            child: pageContent));
   }
 }

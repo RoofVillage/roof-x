@@ -9,7 +9,7 @@ abstract class RoofNavButton extends StatelessWidget {
   Widget iconForTheme(RoofInheritedTheme theme);
   void onTap(BuildContext context);
 
-  final _padding = EdgeInsets.symmetric(horizontal: RoofDistance.b);
+  final _padding = EdgeInsets.all(RoofDistance.b);
 
   @override
   Widget build(BuildContext context) {

@@ -11,8 +11,6 @@ abstract class FormFloatingArtboard extends FloatingArtboard {
   Function get submitButtonAction;
   String get threadButtonText;
   Function get threadButtonAction;
-  String get backButtonText;
-  Function get backButtonAction;
 
   @override
   List<Widget> buildChildren(BuildContext context) {
@@ -20,8 +18,6 @@ abstract class FormFloatingArtboard extends FloatingArtboard {
         text: submitButtonText, onTap: () => submitButtonAction(context));
     final threadButton = RoofTransitionButton(
         text: threadButtonText, onTap: () => threadButtonAction(context));
-    final backButton = RoofTransitionButton(
-        text: backButtonText, onTap: () => backButtonAction(context));
 
     return <Widget>[
       Text(title),
@@ -29,8 +25,7 @@ abstract class FormFloatingArtboard extends FloatingArtboard {
       buildBody(context),
       Container(height: 20),
       submitButton,
-      threadButton,
-      backButton
+      threadButton
     ];
   }
 }

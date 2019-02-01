@@ -36,8 +36,9 @@ class FullScreenArtboardNavigatorState extends ArtboardNavigatorState {
 
       if (redirect != null) goTo(redirect, context: context);
     } else {
-      Navigator.of(context)
-          .push(FullScreenRoute(builder: (context) => artboard));
+      Navigator.of(context).push(FullScreenRoute(
+        builder: (context) => FullScreenArtboardNavigator(artboard: artboard),
+      ));
     }
   }
 }

@@ -87,6 +87,7 @@ class _RoofButtonState extends State<RoofButton> {
         borderRadius: BorderRadius.all(RoofCornerRadius.regular));
 
     return GestureDetector(
+        onTapDown: _onTapDown,
         onTap: _onTap,
         onTapUp: _onTapUp,
         onTapCancel: _onTapCancel,
@@ -102,6 +103,9 @@ class _RoofButtonState extends State<RoofButton> {
   void _onTap() {
     RoofHaptic.triggerWith(RoofHapticOption.light);
     onTap();
+  }
+
+  void _onTapDown(TapDownDetails details) {
     setState(() {
       _tapped = true;
     });

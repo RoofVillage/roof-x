@@ -107,10 +107,10 @@ class _FloatingArtboardNavigatorPanel extends StatelessWidget {
   final FloatingArtboard artboard;
   final RoofTransitionIconNavButton navButton;
 
-  ///The percent from the bottom where the button will live;
-  final _alignment = Alignment(0, 0.93);
   final _defaultNavButton = RoofTransitionIconNavButton(
       iconReference: IconReference.downArrowNav, onTap: ArtboardNavigator.pop);
+
+  final _buttonMarginBottom = RoofDistance.e;
 
   _FloatingArtboardNavigatorPanel({this.artboard, this.navButton});
 
@@ -120,6 +120,12 @@ class _FloatingArtboardNavigatorPanel extends StatelessWidget {
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.end,
         children: [Flexible(child: SingleChildScrollView(child: artboard))]);
+
+    ///The percent from the bottom where the button will live;
+    double height = MediaQuery.of(context).size.height;
+    double ratio = (height - _buttonMarginBottom) / height;
+
+    final _alignment = Alignment(0, ratio);
 
     return Stack(
         alignment: _alignment,

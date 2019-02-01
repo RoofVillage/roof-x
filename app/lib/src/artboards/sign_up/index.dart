@@ -24,11 +24,6 @@ class SignUp extends FormFloatingArtboard {
   get threadButtonAction => (context) {
         ArtboardNavigator.of(context).goTo(PublicActivity(), context: context);
       };
-
-  get backButtonText => "Back";
-  get backButtonAction => (context) {
-        ArtboardNavigator.of(context).goTo(PublicActivity(), context: context);
-      };
 }
 
 class _SignUpForm extends RoofStreamForm {
