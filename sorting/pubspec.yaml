@@ -1,5 +1,5 @@
-name: form
-description: Form tools.
+name: sorting
+description: Common sorting strategies.
 
 version: 1.0.0+1
 
@@ -9,12 +9,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  stream:
-    path: ../stream
-  spec:
-    path: ../spec
-  network:
-    path: ../network
 
 dev_dependencies:
   flutter_test:

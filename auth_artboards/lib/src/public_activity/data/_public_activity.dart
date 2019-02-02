@@ -2,21 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:decorated_text/index.dart';
 import 'package:table/index.dart';
 import 'package:icon_library/index.dart';
+import 'package:sorting/index.dart';
 
-class PublicActivityData extends TimeSortableStreamableTableRowData {
+class PublicActivityData extends StreamableTableRowData with TimeSortable {
   final WeightDecoratedText title;
   final String description;
   final StandardIconReference iconReference;
   final PublicActivityType type;
+  final int timestamp;
 
   PublicActivityData(
       {@required this.title,
       @required this.description,
       @required this.iconReference,
       @required this.type,
-      @required int timestamp,
+      @required this.timestamp,
       String key})
-      : super(timestamp: timestamp, key: key);
+      : super(key: key);
 }
 
 enum PublicActivityType {

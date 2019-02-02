@@ -9,15 +9,22 @@ abstract class StreamForm<T extends StreamableFormFieldData,
     U extends StreamableFormSectionHeaderData> extends StatelessWidget {
   Future<StreamableFormData> get initialFormData => null;
 
+  String get address => null;
+
+  Map<String, dynamic> get params => null;
+
+  Function get onSubmit => (context) => bloc.submit();
+
   //If overriden, this is overrides initialFormData;
-  StreamFormBloc get bloc => StreamFormBloc.withInitialData(initialFormData);
+  StreamFormBloc get bloc => StreamFormBloc.withInitialData(initialFormData,
+      address: address, params: params);
 
   Widget build(BuildContext context) {
-    final table = StreamFormBuilder(
+    final form = StreamFormBuilder(
         buildField: buildField, buildSectionHeader: buildSectionHeader);
     return BlocProvider(
       bloc: bloc,
-      child: table,
+      child: form,
     );
   }
 

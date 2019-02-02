@@ -4,8 +4,28 @@ import 'package:form_components/index.dart';
 
 import 'data/index.dart';
 
-abstract class RoofStreamForm extends StreamForm<StreamableFormFieldData,
+typedef AddressGetter = String Function();
+typedef ParamsGetter = Map<String, dynamic> Function();
+
+class RoofStreamForm extends StreamForm<StreamableFormFieldData,
     StreamableFormSectionHeaderData> {
+  final Future<StreamableFormData> _initialFormData;
+  final AddressGetter _getAddress;
+  final ParamsGetter _getParams;
+
+  Future<StreamableFormData> get initialFormData async => _initialFormData;
+
+  String get address => _getAddress();
+  Map<String, dynamic> get params => _getParams();
+
+  RoofStreamForm(
+      {Future<StreamableFormData> initialFormData,
+      AddressGetter getAddress,
+      ParamsGetter getParams})
+      : _initialFormData = initialFormData,
+        _getAddress = getAddress,
+        _getParams = getParams;
+
   Widget buildTextField(
       {FormTextFieldData fieldData, int fieldIndex, int sectionIndex}) {
     return RoofTextField(
@@ -14,8 +34,7 @@ abstract class RoofStreamForm extends StreamForm<StreamableFormFieldData,
         initialValue: fieldData.value,
         isPassword: false,
         autofocus: fieldData.autofocus,
-        textInputAction: fieldData.inputAction
-        );
+        textInputAction: fieldData.inputAction);
   }
 
   Widget buildTextArea(

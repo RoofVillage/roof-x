@@ -1,14 +1,18 @@
+import 'package:network/index.dart';
 import 'utils/index.dart';
+
+import 'param.dart';
 
 class GetPublicActivity {
   Future<String> request(
       {num pageSize, num pageNumber = 0, num startTimestamp = 0}) async {
-    final body = {
-      StaticKey.pageSize: pageSize,
-      StaticKey.pageNumber: pageNumber,
-      StaticKey.startTimestamp: startTimestamp
+    final params = {
+      Param.pageSize: pageSize,
+      Param.pageNumber: pageNumber,
+      Param.startTimestamp: startTimestamp
     };
 
-    return await Network().post(url: ServiceAddress.activity, body: body);
+    return await Network()
+        .post(address: ServiceAddress.activity, params: params);
   }
 }

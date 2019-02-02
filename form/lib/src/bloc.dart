@@ -1,9 +1,14 @@
 import 'dart:async';
 import 'package:stream/index.dart';
+import 'package:network/index.dart';
 
 import 'data/index.dart';
 
 class StreamFormBloc extends BlocBase {
+  Function onSubmit;
+  String address;
+  Map<String, dynamic> params;
+
   StreamableFormData _formData;
 
   //The stream responsible for communicating changes to the entire form.
@@ -45,17 +50,27 @@ class StreamFormBloc extends BlocBase {
   Stream<StreamableFormFieldValueData> get _outFieldValue =>
       _fieldValueController.stream;
 
-  StreamFormBloc() {
+  StreamFormBloc({this.address, this.params}) {
     _init();
   }
 
-  StreamFormBloc.withInitialData(Future<StreamableFormData> initialData) {
+  StreamFormBloc.withInitialData(Future<StreamableFormData> initialData,
+      {this.address, this.params}) {
     _init(initialData: initialData);
   }
 
-  //Override to make the table.
+  //Override to make the form.
   Future<StreamableFormData> createFormData() async {
     return StreamableFormData();
+  }
+
+  //Override to submit.
+  Future<StreamableFormData> submitForm() async {
+    return StreamableFormData();
+  }
+
+  void submit() async {
+    await Network().post(address: address, params: params);
   }
 
   //Override to handle field changes;
