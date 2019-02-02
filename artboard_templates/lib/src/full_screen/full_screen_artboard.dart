@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:theme/index.dart';
 
-import 'artboard.dart';
+import '../artboard.dart';
 
 abstract class FullScreenArtboard extends Artboard {
   Widget buildChild(BuildContext context);
