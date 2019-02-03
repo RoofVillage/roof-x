@@ -1,4 +1,7 @@
-class StaticKey {
+class Param {
+  static const pageNumber = 'pageNumber';
+  static const pageSize = 'pageSize';
+  static const startTimestamp = 'startTimestamp';
   static const activityType = 'activityType';
   static const completion = 'completion';
   static const expense = 'expense';
@@ -12,7 +15,6 @@ class StaticKey {
   static const publicActivity = 'publicActivity';
   static const receiver = 'receiver';
   static const roof = 'roof';
-  static const startTimestamp = 'startTimestamp';
   static const transfer = 'transfer';
   static const who = 'who';
 }

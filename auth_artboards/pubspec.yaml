@@ -1,5 +1,5 @@
-name: artboard_templates
-description: Templates the define the visual organization.
+name: auth_artboards
+description: The artboards that make up the authentication flow.
 version: 1.0.0+1
 
 environment:
@@ -16,6 +16,16 @@ dependencies:
     path: ../roof_form
   services:
     path: ../services
+  artboard_templates:
+    path: ../artboard_templates
+  artboard_navigators:
+    path: ../artboard_navigators
+  table_components:
+    path: ../table_components
+  table:
+    path: ../table
+  sorting:
+    path: ../sorting
 
 dev_dependencies:
   flutter_test:

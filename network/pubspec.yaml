@@ -1,5 +1,5 @@
-name: form
-description: Form tools.
+name: network
+description: Networking tools.
 
 version: 1.0.0+1
 
@@ -9,12 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  stream:
-    path: ../stream
-  spec:
-    path: ../spec
-  network:
-    path: ../network
+  http: ^0.12.0
 
 dev_dependencies:
   flutter_test:

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:form/index.dart';
 
-import '_option_select_value.dart';
+import 'option_select_value.dart';
 
 class FormOptionSelectData
     extends StreamableFormFieldData<FormOptionSelectValueData> {

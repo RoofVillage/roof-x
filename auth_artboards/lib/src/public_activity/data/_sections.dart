@@ -1,6 +1,5 @@
 import 'package:table/index.dart';
-
-import 'package:app/src/utils/sort.dart';
+import 'package:sorting/index.dart';
 
 import '_public_activity.dart';
 import '_section.dart';

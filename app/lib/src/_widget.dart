@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:stream/index.dart';
 import 'package:artboard_templates/index.dart';
 import 'package:artboard_navigators/index.dart';
-
-import 'artboards/public_activity/index.dart';
+import 'package:auth_artboards/index.dart';
 
 import '_bloc.dart';
 import 'data/index.dart';
@@ -19,9 +18,9 @@ class RootWidget extends StatelessWidget {
 
           Artboard startingArtboard;
           if (appState.isInSession) {
-            startingArtboard = PublicActivity();
+            startingArtboard = PublicActivityArtboard();
           } else {
-            startingArtboard = PublicActivity();
+            startingArtboard = PublicActivityArtboard();
           }
 
           return FullScreenArtboardNavigator(artboard: startingArtboard);

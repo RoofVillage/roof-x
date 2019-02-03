@@ -31,6 +31,8 @@ dependencies:
     path: ../table_components
   typography:
     path: ../typography
+  auth_artboards:
+    path: ../auth_artboards
 
 dev_dependencies:
   flutter_test:

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:theme/index.dart';
 
-import 'artboard.dart';
 import 'widgets/index.dart';
+import '../artboard.dart';
 
 typedef ChildrenBuilder = List<Widget> Function(BuildContext context);
 

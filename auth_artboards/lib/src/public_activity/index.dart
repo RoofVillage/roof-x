@@ -7,7 +7,6 @@ import 'package:table/index.dart';
 import 'package:icon_library/index.dart';
 import 'package:decorated_text/index.dart';
 import 'package:services/index.dart';
-import 'package:app/src/utils/static_key.dart';
 import 'package:artboard_templates/index.dart';
 import 'package:navigation_components/index.dart';
 import 'package:table_components/index.dart';
@@ -17,17 +16,18 @@ import 'data/index.dart';
 
 import '../sign_up/index.dart';
 
-class PublicActivity extends FullLogoFullScreenArtboard {
+class PublicActivityArtboard extends FullLogoFullScreenArtboard {
   final _showFloatingArtboardButton = RoofIconNavButton(
       iconReference: IconReference.add,
       onTap: (context) {
-        ArtboardNavigator.of(context).goTo(SignUp(), context: context);
+        ArtboardNavigator.of(context).goTo(SignUpArtboard(), context: context);
       });
 
   final _showFullScreenArtboardButton = RoofIconNavButton(
       iconReference: IconReference.settingsNav,
       onTap: (context) {
-        ArtboardNavigator.of(context).goTo(PublicActivity(), context: context);
+        ArtboardNavigator.of(context)
+            .goTo(PublicActivityArtboard(), context: context);
       });
 
   final _popButton = RoofIconNavButton(
