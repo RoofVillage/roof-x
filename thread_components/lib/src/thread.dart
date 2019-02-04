@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:icon_library/index.dart';
+import 'package:theme/index.dart';
 
-import 'widgets/index.dart';
+import 'view/index.dart';
 
 class RoofThread extends StatelessWidget {
   final String threadTitle;
@@ -21,14 +22,26 @@ class RoofThread extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = RoofTheme.of(context);
+
+    final Color _threadHeaderColor = theme.color.background.general;
+    final Color _threadListColor = theme.color.background.general;
+    final Color _threadBottomColor = theme.color.background.general;
+
     return Container(
         child: Column(children: [
-      ThreadHeader(title: threadTitle, threadMenuItems: threadMenuItems),
-      ThreadActivityList(threadActivityItems: threadActivityItems),
+      ThreadHeader(
+          title: threadTitle,
+          threadMenuItems: threadMenuItems,
+          backgroundColor: _threadHeaderColor),
+      ThreadActivityList(
+          threadActivityItems: threadActivityItems,
+          backgroundColor: _threadListColor),
       ThreadBottomBar(
           threadActionTitle: threadActionTitle,
           threadAction: threadAction,
-          threadActionIconReference: threadActionIconReference)
+          threadActionIconReference: threadActionIconReference,
+          backgroundColor: _threadBottomColor)
     ]));
   }
 }

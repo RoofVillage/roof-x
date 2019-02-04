@@ -7,8 +7,9 @@ import 'package:theme/index.dart';
 class ThreadHeader extends StatelessWidget {
   final String title;
   final List<Widget> threadMenuItems;
+  final Color backgroundColor;
 
-  ThreadHeader({this.title, this.threadMenuItems});
+  ThreadHeader({this.title, this.threadMenuItems, this.backgroundColor});
 
   final _headerTextStyle = RoofTypography.heading1;
 
@@ -17,10 +18,9 @@ class ThreadHeader extends StatelessWidget {
     final theme = RoofTheme.of(context);
 
     _openThreadMenu(threadMenuItems) {
+      print("edit menu");
       // open bottom sheet with thread menu items (e.g. unsubscribe)
     }
-
-    final backgroundColor = theme.color.background.brandPrimary;
 
     final padding = RoofObjectPadding.container1;
 
@@ -29,14 +29,14 @@ class ThreadHeader extends StatelessWidget {
 
     final backButton = Padding(
         padding: EdgeInsets.fromLTRB(0, 0, RoofDistance.b, 0),
-        child: IconReference.cashSack.buildSvg(color: theme.color.icon.nav));
+        child: IconReference.backArrow.buildSvg(color: theme.color.icon.nav));
 
     final threadTitleWidget =
         Expanded(child: Text(title, style: threadTitleTextStyle));
 
     final threadMenu = GestureDetector(
       onTap: _openThreadMenu(threadMenuItems),
-      child: IconReference.cashSack.buildSvg(color: theme.color.icon.general),
+      child: IconReference.edit.buildSvg(color: theme.color.icon.general),
     );
 
     final headerContents = Row(

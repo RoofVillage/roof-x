@@ -22,8 +22,8 @@ class RoofTextField extends StatelessWidget with RoofCompositionField {
       {this.fieldName,
       this.placeholder,
       this.initialValue,
-      this.isPassword = false,
-      this.autofocus = false,
+      this.isPassword,
+      this.autofocus,
       this.textInputAction});
 
   @override
@@ -45,8 +45,7 @@ class RoofTextField extends StatelessWidget with RoofCompositionField {
     fieldChildren.add(fieldBody);
 
     return Container(
-        // margin: RoofObjectPadding.field1,
-        // margin: isLeftPadded ? EdgeInsets.only(left: RoofDistance.e) : null,
+        padding: RoofObjectPadding.field1,
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: fieldChildren));
@@ -82,11 +81,10 @@ class _FieldBody extends StatelessWidget with RoofCompositionField {
             .textStyleWithColor(theme.color.text.placeholder));
 
     return TextFormField(
-      autofocus: autofocus,
-      obscureText: isPassword,
-      initialValue: initialValue,
-      textInputAction: textInputAction,
-      decoration: decoration,
-    );
+        autofocus: autofocus ?? false,
+        obscureText: isPassword ?? false,
+        initialValue: initialValue,
+        textInputAction: textInputAction,
+        decoration: decoration);
   }
 }

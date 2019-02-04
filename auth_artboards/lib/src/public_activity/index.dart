@@ -91,19 +91,19 @@ class _PublicActivityTable extends StreamTable<PublicActivityData,
 
 List<PublicActivityData> _streamableDataFromResponse(String response) {
   final dataConvertedToJson = json.decode(response);
-  final List publicActivity = dataConvertedToJson[StaticKey.publicActivity];
+  final List publicActivity = dataConvertedToJson[Param.publicActivity];
 
   final data = publicActivity.map((json) {
-    switch (json[StaticKey.activityType]) {
-      case StaticKey.completion:
+    switch (json[Param.activityType]) {
+      case Param.completion:
         return _dataForCompletion(json);
-      case StaticKey.expense:
+      case Param.expense:
         return _dataForExpense(json);
-      case StaticKey.transfer:
+      case Param.transfer:
         return _dataForTransfer(json);
-      case StaticKey.landlordTransfer:
+      case Param.landlordTransfer:
         return _dataForLandlordTransfer(json);
-      case StaticKey.maintenance:
+      case Param.maintenance:
         return _dataForMaintenance(json);
     }
   }).toList();
@@ -112,10 +112,10 @@ List<PublicActivityData> _streamableDataFromResponse(String response) {
 }
 
 PublicActivityData _dataForCompletion(Map<String, Object> json) {
-  final String who = json[StaticKey.who];
-  final String name = json[StaticKey.name];
-  final String roof = json[StaticKey.roof];
-  final String note = json[StaticKey.note];
+  final String who = json[Param.who];
+  final String name = json[Param.name];
+  final String roof = json[Param.roof];
+  final String note = json[Param.note];
 
   final decoratedTitle = WeightDecoratedText();
 
@@ -134,9 +134,9 @@ PublicActivityData _dataForCompletion(Map<String, Object> json) {
 }
 
 PublicActivityData _dataForExpense(Map<String, Object> json) {
-  final String who = json[StaticKey.who];
-  final String note = json[StaticKey.note];
-  final String roof = json[StaticKey.roof];
+  final String who = json[Param.who];
+  final String note = json[Param.note];
+  final String roof = json[Param.roof];
 
   final decoratedTitle = WeightDecoratedText();
 
@@ -153,10 +153,10 @@ PublicActivityData _dataForExpense(Map<String, Object> json) {
 }
 
 PublicActivityData _dataForTransfer(Map<String, Object> json) {
-  final String payer = json[StaticKey.payer];
-  final String receiver = json[StaticKey.receiver];
-  final String roof = json[StaticKey.roof];
-  final String note = json[StaticKey.note];
+  final String payer = json[Param.payer];
+  final String receiver = json[Param.receiver];
+  final String roof = json[Param.roof];
+  final String note = json[Param.note];
 
   final decoratedTitle = WeightDecoratedText();
 
@@ -175,11 +175,11 @@ PublicActivityData _dataForTransfer(Map<String, Object> json) {
 }
 
 PublicActivityData _dataForLandlordTransfer(Map<String, Object> json) {
-  final String who = json[StaticKey.who];
-  final String home = json[StaticKey.home];
-  final String name = json[StaticKey.name];
-  final String landlord = json[StaticKey.landlord];
-  final String note = json[StaticKey.note];
+  final String who = json[Param.who];
+  final String home = json[Param.home];
+  final String name = json[Param.name];
+  final String landlord = json[Param.landlord];
+  final String note = json[Param.note];
 
   final decoratedTitle = WeightDecoratedText();
 
@@ -200,10 +200,10 @@ PublicActivityData _dataForLandlordTransfer(Map<String, Object> json) {
 }
 
 PublicActivityData _dataForMaintenance(Map<String, Object> json) {
-  final String who = json[StaticKey.who];
-  final String home = json[StaticKey.home];
-  final String name = json[StaticKey.name];
-  final String note = json[StaticKey.note];
+  final String who = json[Param.who];
+  final String home = json[Param.home];
+  final String name = json[Param.name];
+  final String note = json[Param.note];
 
   final decoratedTitle = WeightDecoratedText();
 

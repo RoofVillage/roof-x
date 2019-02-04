@@ -30,16 +30,17 @@ class ThreadActionButton extends StatelessWidget {
             Border.all(color: theme.color.stroke.transitionAction, width: 1.0),
         borderRadius: BorderRadius.all(RoofCornerRadius.regular));
 
-    double textContainerWidth;
-    EdgeInsets containerPadding =
-        EdgeInsets.fromLTRB(RoofDistance.b, 0, RoofDistance.b, 0);
-
     // animationWidthOffset ensures button children don't overflow while button is collapsing. value should be equal to the difference between baseButtonSize.width and the width of the button icon + total x-axis _containerPadding
     final double animationWidthOffset = 2;
     final double safeWidthForCollapse =
         baseButtonSize.width + animationWidthOffset;
+
+    double textWidth;
+    EdgeInsets containerPadding =
+        EdgeInsets.fromLTRB(RoofDistance.b, 0, RoofDistance.b, 0);
+        
     if (animatedWidth != null && animatedWidth <= safeWidthForCollapse) {
-      textContainerWidth = 0;
+      textWidth = 0;
       containerPadding = null;
     }
 
@@ -51,8 +52,8 @@ class ThreadActionButton extends StatelessWidget {
     );
     buttonChildren.add(buttonIcon);
 
-    final buttonText = _AnimatedButtonText(
-        text: threadActionTitle, textContainerWidth: textContainerWidth);
+    final buttonText =
+        _AnimatedButtonText(text: threadActionTitle, textWidth: textWidth);
     buttonChildren.add(buttonText);
 
     return GestureDetector(
@@ -72,9 +73,9 @@ class ThreadActionButton extends StatelessWidget {
 
 class _AnimatedButtonText extends StatelessWidget {
   final String text;
-  final double textContainerWidth;
+  final double textWidth;
 
-  _AnimatedButtonText({this.text, this.textContainerWidth});
+  _AnimatedButtonText({this.text, this.textWidth});
 
   final _buttonTextStyle = RoofTypography.button;
 
@@ -87,7 +88,7 @@ class _AnimatedButtonText extends StatelessWidget {
     return Flexible(
         flex: 1,
         child: Container(
-            width: textContainerWidth,
+            width: textWidth,
             padding: textContainerPadding,
             child: Text(text,
                 softWrap: false,

@@ -17,7 +17,7 @@ class RoofTextArea extends StatelessWidget {
       {this.fieldName,
       this.placeholder,
       this.initialValue,
-      this.autofocus = false,
+      this.autofocus,
       this.textInputAction});
 
   @override
@@ -28,7 +28,11 @@ class RoofTextArea extends StatelessWidget {
       fieldChildren.add(RoofFieldLabel(labelText: fieldName));
     }
 
-    fieldChildren.add(_FieldBody());
+    fieldChildren.add(_FieldBody(
+        autofocus: autofocus,
+        initialValue: initialValue,
+        placeholder: placeholder,
+        textInputAction: textInputAction));
 
     return Container(
         margin: RoofObjectPadding.field1,
@@ -41,8 +45,8 @@ class RoofTextArea extends StatelessWidget {
 class _FieldBody extends StatelessWidget with RoofCompositionField {
   final bool autofocus;
   final String initialValue;
-  final TextInputAction textInputAction;
   final String placeholder;
+  final TextInputAction textInputAction;
 
   final int _maxLines = 3;
   final _typographyDecoration = RoofTypography.body2;
@@ -72,7 +76,7 @@ class _FieldBody extends StatelessWidget with RoofCompositionField {
     return Container(
         margin: EdgeInsets.fromLTRB(0, RoofDistance.a, 0, 0),
         child: TextFormField(
-            autofocus: autofocus,
+            autofocus: autofocus ?? false,
             initialValue: initialValue,
             textInputAction: textInputAction,
             maxLines: _maxLines,

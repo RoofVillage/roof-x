@@ -16,6 +16,8 @@ class StreamableFormFieldData<T> extends StreamableData {
   T _value;
 
   StreamableFormFieldData({
+    String title,
+    String placeholder,
     T initialValue,
     double size,
     ValueChanged<T> onChanged,

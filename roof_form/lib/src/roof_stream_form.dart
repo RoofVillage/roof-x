@@ -38,16 +38,34 @@ class RoofStreamForm extends StreamForm<StreamableFormFieldData,
   }
 
   Widget buildTextArea(
-          {FormTextAreaData fieldData, int fieldIndex, int sectionIndex}) =>
-      null;
+      {FormTextAreaData fieldData,
+      int fieldIndex,
+      int sectionIndex,
+      bool autofocus,
+      TextInputAction textInputAction}) {
+    return RoofTextArea(
+        fieldName: fieldData.title,
+        placeholder: fieldData.placeholder,
+        initialValue: fieldData.value,
+        autofocus: autofocus,
+        textInputAction: textInputAction);
+  }
 
   Widget buildSwitch(
-          {FormSwitchData fieldData, int fieldIndex, int sectionIndex}) =>
-      null;
+      {FormSwitchData fieldData, int fieldIndex, int sectionIndex}) {
+    return RoofSwitchField(
+        title: fieldData.title, isOnInitially: fieldData.initialValue);
+  }
 
   Widget buildOptionSelect(
-          {FormOptionSelectData fieldData, int fieldIndex, int sectionIndex}) =>
-      null;
+      {FormOptionSelectData fieldData, int fieldIndex, int sectionIndex}) {
+    return RoofSelectField(
+        title: fieldData.title,
+        emptyText: fieldData.emptyText,
+        isMultiSelect: fieldData.isMultiSelect,
+        options: [],
+        selectedOptions: []);
+  }
 
   @override
   Widget buildField(

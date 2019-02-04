@@ -77,9 +77,6 @@ class _RoofButtonState extends State<RoofButton> {
       buttonChildren.add(styledButtonText);
     }
 
-    final buttonPadding =
-        EdgeInsets.fromLTRB(RoofDistance.c, 0, RoofDistance.c, 0);
-
     double opacity = _tapped ? _tappedOpacity : 1;
 
     final decoration = BoxDecoration(
@@ -93,7 +90,6 @@ class _RoofButtonState extends State<RoofButton> {
         onTapCancel: _onTapCancel,
         child: Container(
             height: height,
-            padding: buttonPadding,
             decoration: decoration,
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,

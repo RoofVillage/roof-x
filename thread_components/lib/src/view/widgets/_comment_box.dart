@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:spec/index.dart';
 import 'package:theme/index.dart';
+import 'package:typography/index.dart';
 
 typedef void StringCallback(String val);
 
@@ -8,6 +9,8 @@ class CommentBox extends StatelessWidget {
   final StringCallback onChangeCallback;
 
   CommentBox({this.onChangeCallback});
+
+  final _commentTextStyle = RoofTypography.body1a;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +26,7 @@ class CommentBox extends StatelessWidget {
 
     final hintStyle = TextStyle(color: theme.color.text.placeholder);
 
-    final textStyle = TextStyle(color: theme.color.text.primary);
+    final textStyle = _commentTextStyle.textStyleWithColor(theme.color.text.primary);
 
     final hintText = "Add comment";
 

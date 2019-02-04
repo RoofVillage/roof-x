@@ -15,11 +15,13 @@ class SignUpArtboard extends FormFloatingArtboard {
     final _nameFieldData = FormTextFieldData(
         size: 1 / 2,
         title: "Full name",
+        placeholder: "placeholder",
         onChanged: (someString) => print(someString));
 
     final _goodFieldData = FormTextFieldData(
         size: 1 / 2,
         title: "Good name",
+        placeholder: "placeholder",
         onChanged: (someString) => print(someString));
 
     return [_nameFieldData, _goodFieldData];

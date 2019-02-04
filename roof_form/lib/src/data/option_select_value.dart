@@ -4,7 +4,8 @@ import 'package:stream/index.dart';
 
 class FormOptionSelectValueData extends StreamableData {
   String title;
+  String data;
 
-  FormOptionSelectValueData({@required this.title, bool hidden})
+  FormOptionSelectValueData({@required this.title, this.data, bool hidden})
       : super(hidden: hidden);
 }

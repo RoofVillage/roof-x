@@ -191,8 +191,9 @@ class StreamFormBuilder<T extends StreamFormBloc> extends StatelessWidget {
 
           if (field == null) return _empty();
 
-          return Expanded(
-              flex: (fieldData.fieldSize * 100).floor(), child: field);
+          final fieldHorizontalFlex = (fieldData.fieldSize * 100).floor();
+
+          return Expanded(flex: fieldHorizontalFlex, child: field);
         });
   }
 

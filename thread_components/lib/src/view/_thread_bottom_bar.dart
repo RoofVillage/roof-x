@@ -3,23 +3,24 @@ import 'package:icon_library/index.dart';
 import 'package:spec/index.dart';
 import 'package:theme/index.dart';
 
-import '_action_button.dart';
-import '_comment_box.dart';
-import '_file_button.dart';
+import 'widgets/index.dart';
 
 class ThreadBottomBar extends StatefulWidget {
   final String threadActionTitle;
   final StandardIconReference threadActionIconReference;
   final Function threadAction;
+  final Color backgroundColor;
 
   ThreadBottomBar(
       {this.threadActionTitle,
       this.threadActionIconReference,
+      this.backgroundColor,
       this.threadAction});
 
   _ThreadBottomBarState createState() => _ThreadBottomBarState(
       threadActionTitle: threadActionTitle,
       threadActionIconReference: threadActionIconReference,
+      backgroundColor: backgroundColor,
       threadAction: threadAction);
 }
 
@@ -28,38 +29,41 @@ class _ThreadBottomBarState extends State<ThreadBottomBar>
   String threadActionTitle;
   StandardIconReference threadActionIconReference;
   Function threadAction;
-  bool isTyping = false;
   Animation<double> animation;
   AnimationController controller;
-
-  GlobalKey _buttonKey = GlobalKey(debugLabel: "testKey");
-  double _initialActionButtonWidth;
+  Color backgroundColor;
+  bool shouldFocusComment = false;
 
   static const double _baseHeight = 44;
   final Size _baseButtonSize = Size(_baseHeight, _baseHeight);
+  final GlobalKey _buttonKey = GlobalKey(debugLabel: "testKey");
 
   _ThreadBottomBarState(
       {this.threadActionTitle,
       this.threadActionIconReference,
-      this.threadAction});
+      this.threadAction,
+      this.backgroundColor});
 
-  _buildAnimation(double initialActionButtonWidth) {
-    final double buttonBaseWidth = _baseButtonSize.width;
-    final curve = CurvedAnimation(parent: controller, curve: Curves.easeIn);
-    animation = Tween(begin: initialActionButtonWidth, end: buttonBaseWidth)
-        .animate(curve)
-          ..addListener(() {
-            setState(() {});
-          });
+  _buildAnimation(double maxButtonWidth) {
+    final double minButtonWidth = _baseButtonSize.width;
+
+    final Curve animationCurve = Curves.easeIn;
+    final curve = CurvedAnimation(parent: controller, curve: animationCurve);
+
+    animation = Tween(begin: maxButtonWidth, end: minButtonWidth).animate(curve)
+      ..addListener(() {
+        setState(() {});
+      });
   }
 
   _getButtonSize(_) {
     if (_buttonKey.currentContext == null) return;
     final RenderBox threadActionButton =
         _buttonKey.currentContext.findRenderObject();
-    _initialActionButtonWidth = threadActionButton.size.width;
 
-    _buildAnimation(_initialActionButtonWidth);
+    final double maxButtonWidth = threadActionButton.size.width;
+
+    _buildAnimation(maxButtonWidth);
   }
 
   @override
@@ -67,34 +71,52 @@ class _ThreadBottomBarState extends State<ThreadBottomBar>
     WidgetsBinding.instance.addPostFrameCallback(_getButtonSize);
     super.initState();
 
-    final Duration duration = Duration(milliseconds: 180);
+    final Duration duration = RoofDuration.short;
     controller = AnimationController(duration: duration, vsync: this);
   }
 
   @override
   Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
 
-    void _isCommentBoxPopulated(String commentBoxContent) {
-      if (commentBoxContent.length > 0 && !isTyping) {
-        setState(() {
-          isTyping = true;
-        });
-      } else if (commentBoxContent.length == 0 && isTyping) {
-        setState(() {
-          isTyping = false;
-        });
+    commentHasText(String text) {
+      if (text.length > 0)
+        return true;
+      else
+        return false;
+    }
+
+    void animateButton(bool shouldFocusComment) {
+      shouldFocusComment ? controller.forward() : controller.reverse();
+    }
+
+    void updateCommentFocus(String text) {
+      bool buttonShouldUpdate = false;
+
+      if (commentHasText(text) && !shouldFocusComment) {
+        shouldFocusComment = true;
+        buttonShouldUpdate = true;
+      } else if (!commentHasText(text) && shouldFocusComment) {
+        shouldFocusComment = false;
+        buttonShouldUpdate = true;
       }
-      isTyping ? controller.forward() : controller.reverse();
+
+      if (buttonShouldUpdate) {
+        setState(() {});
+        animateButton(shouldFocusComment);
+      }
     }
 
     List<Widget> rowChildren = [];
 
-    Widget fileButton = FileButton(baseHeight: _baseHeight);
+    final fileButton = FileButton(baseHeight: _baseHeight);
     rowChildren.add(fileButton);
 
-    Widget commentBox = CommentBox(onChangeCallback: _isCommentBoxPopulated);
+    final commentBox = CommentBox(onChangeCallback: updateCommentFocus);
     rowChildren.add(commentBox);
+
+    final sendButton = AnimatedSendButton(
+        visible: shouldFocusComment, buttonHeight: _baseHeight);
+    rowChildren.add(sendButton);
 
     if (threadAction != null) {
       double animatedButtonWidth = animation != null ? animation.value : null;
@@ -110,8 +132,6 @@ class _ThreadBottomBarState extends State<ThreadBottomBar>
       rowChildren.add(threadActionButton);
     }
 
-    final Color bottomBarColor = theme.color.background.brandPrimary;
-
     final EdgeInsets bottomBarPadding = RoofObjectPadding.container1;
 
     final Widget contentRow =
@@ -122,7 +142,7 @@ class _ThreadBottomBarState extends State<ThreadBottomBar>
         left: false,
         right: false,
         child: Container(
-            color: bottomBarColor,
+            color: backgroundColor,
             padding: bottomBarPadding,
             child: contentRow));
   }
