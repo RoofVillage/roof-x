@@ -71,7 +71,7 @@ class _RoofSwitchFieldState extends State<RoofSwitchField>
     return GestureDetector(
         onTap: _onTap,
         child: Container(
-            margin: RoofObjectPadding.field1,
+            margin: RoofObjectPadding.field2,
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [labelContainer, switchButton])));
@@ -122,7 +122,7 @@ class _RoofAnimatedSwitch extends StatelessWidget {
                   ),
                 ),
                 alignment: isOn ? Alignment(1.0, 0.0) : Alignment(-1.0, 0.0),
-                curve: Curves.easeIn,
+                curve: RoofCurve.easy,
                 duration: _duration)));
   }
 }

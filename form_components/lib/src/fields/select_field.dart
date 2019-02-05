@@ -7,18 +7,18 @@ import 'package:haptics/index.dart';
 
 import 'widgets/index.dart';
 
-class RoofSelectFieldOption {
+class RoofSelectFieldOptionData {
   String title;
   String data;
 
-  RoofSelectFieldOption({@required this.title, this.data});
+  RoofSelectFieldOptionData({this.title, this.data});
 }
 
 class RoofSelectField extends StatefulWidget {
   final String title;
   final String emptyText;
-  final List<RoofSelectFieldOption> selectedOptions;
-  final List<RoofSelectFieldOption> options;
+  final List<RoofSelectFieldOptionData> selectedOptions;
+  final List<RoofSelectFieldOptionData> options;
   final bool isMultiSelect;
 
   const RoofSelectField(
@@ -40,8 +40,8 @@ class _RoofSelectFieldState extends State<RoofSelectField>
     with SingleTickerProviderStateMixin {
   String title;
   String emptyText;
-  List<RoofSelectFieldOption> selectedOptions;
-  List<RoofSelectFieldOption> options;
+  List<RoofSelectFieldOptionData> selectedOptions;
+  List<RoofSelectFieldOptionData> options;
   bool isMultiSelect;
   bool isExpanded;
 
@@ -54,8 +54,8 @@ class _RoofSelectFieldState extends State<RoofSelectField>
 
   @override
   void initState() {
-    if (selectedOptions.length == 0 && !isMultiSelect)
-      selectedOptions.add(options[0]);
+    if (selectedOptions == null && !isMultiSelect)
+      selectedOptions = [options[0]];
     isExpanded = false;
     super.initState();
   }
@@ -64,13 +64,13 @@ class _RoofSelectFieldState extends State<RoofSelectField>
   Widget build(BuildContext context) {
     Widget label = RoofFieldLabel(labelText: title);
 
-    final selectedOptionsContainer = _RoofSelectedOptionsContainer(
+    final selectedOptionsContainer = _SelectedOptionsContainer(
         selectedOptionsText: _textForSelectedOptions(),
         emptyText: emptyText,
         onTap: _updateDropdown,
         isExpanded: isExpanded);
 
-    final dropdownContainer = _RoofDropdownContainer(
+    final dropdownContainer = _DropdownContainer(
         options: options,
         selectedOptions: selectedOptions,
         isMultiSelect: isMultiSelect,
@@ -94,7 +94,7 @@ class _RoofSelectFieldState extends State<RoofSelectField>
     return text;
   }
 
-  _updateSelectedOptions(RoofSelectFieldOption option) {
+  _updateSelectedOptions(option) {
     RoofHapticOption hapticOption;
     if (isMultiSelect) {
       hapticOption = RoofHapticOption.light;
@@ -125,7 +125,7 @@ class _RoofSelectFieldState extends State<RoofSelectField>
   }
 }
 
-class _RoofSelectedOptionsContainer extends StatelessWidget {
+class _SelectedOptionsContainer extends StatelessWidget {
   final String selectedOptionsText;
   final String emptyText;
   final Function onTap;
@@ -137,7 +137,7 @@ class _RoofSelectedOptionsContainer extends StatelessWidget {
   final _upArrowIconReferece = IconReference.upArrow;
   final _downArrowIconReferece = IconReference.downArrow;
 
-  _RoofSelectedOptionsContainer(
+  _SelectedOptionsContainer(
       {this.selectedOptionsText, this.emptyText, this.onTap, this.isExpanded});
 
   Widget build(BuildContext context) {
@@ -150,15 +150,13 @@ class _RoofSelectedOptionsContainer extends StatelessWidget {
               .textStyleWithColor(theme.color.text.placeholder));
     } else {
       selectedOptionsChild = Expanded(
-          flex: 1,
           child: Text(
-            selectedOptionsText,
-            style:
-                _typographyStyle.textStyleWithColor(theme.color.text.primary),
-            softWrap: true,
-            maxLines: _maxLines,
-            overflow: TextOverflow.ellipsis,
-          ));
+        selectedOptionsText,
+        style: _typographyStyle.textStyleWithColor(theme.color.text.primary),
+        softWrap: true,
+        maxLines: _maxLines,
+        overflow: TextOverflow.ellipsis,
+      ));
     }
 
     final generalIconColor = theme.color.icon.general;
@@ -174,6 +172,8 @@ class _RoofSelectedOptionsContainer extends StatelessWidget {
       ),
     );
 
+    final verticalPadding = EdgeInsets.symmetric(vertical: RoofDistance.b);
+
     return Container(
         decoration: BoxDecoration(
             border:
@@ -182,8 +182,7 @@ class _RoofSelectedOptionsContainer extends StatelessWidget {
             onTap: onTap,
             behavior: HitTestBehavior.opaque,
             child: Padding(
-                padding:
-                    EdgeInsets.fromLTRB(0, RoofDistance.b, 0, RoofDistance.b),
+                padding: verticalPadding,
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [selectedOptionsChild, animatedArrow]))));
@@ -208,18 +207,17 @@ class _AnimatedIconReference extends StatelessWidget {
   }
 }
 
-class _RoofDropdownContainer extends StatelessWidget {
-  final List<RoofSelectFieldOption> options;
-  final List<RoofSelectFieldOption> selectedOptions;
+class _DropdownContainer extends StatelessWidget {
+  final List<RoofSelectFieldOptionData> options;
+  final List<RoofSelectFieldOptionData> selectedOptions;
   final bool isMultiSelect;
   final bool isExpanded;
   final Function onTap;
 
-  final double _optionHeight = 60;
   final _closeDuration = RoofDuration.short;
   final _showDuration = RoofDuration.short;
 
-  _RoofDropdownContainer(
+  _DropdownContainer(
       {this.options,
       this.selectedOptions,
       this.isMultiSelect,
@@ -235,19 +233,21 @@ class _RoofDropdownContainer extends StatelessWidget {
             bottomRight: RoofCornerRadius.small),
         color: theme.color.background.general,
         boxShadow: [theme.shadow]);
+
+    final Widget expandedChild = _DropdownContents(
+        options: options,
+        selectedOptions: selectedOptions,
+        isMultiSelect: isMultiSelect,
+        onTap: onTap);
+
     return Container(
         decoration: decoration,
         child: AnimatedCrossFade(
-            firstChild: _RoofDropdownContents(
-                options: options,
-                selectedOptions: selectedOptions,
-                isMultiSelect: isMultiSelect,
-                optionHeight: _optionHeight,
-                onTap: onTap),
+            firstChild: expandedChild,
             secondChild: Container(),
             firstCurve: Curves.easeIn,
             secondCurve: Curves.easeIn,
-            sizeCurve: Curves.decelerate,
+            sizeCurve: RoofCurve.easy,
             crossFadeState: isExpanded
                 ? CrossFadeState.showFirst
                 : CrossFadeState.showSecond,
@@ -255,48 +255,46 @@ class _RoofDropdownContainer extends StatelessWidget {
   }
 }
 
-class _RoofDropdownContents extends StatelessWidget {
-  final List<RoofSelectFieldOption> options;
-  final List<RoofSelectFieldOption> selectedOptions;
+class _DropdownContents extends StatelessWidget {
+  final List options;
+  final List selectedOptions;
   final bool isMultiSelect;
-  final double optionHeight;
   final Function onTap;
 
-  static const double _optionsVisible = 4.5;
+  final double _optionHeight = 60;
+  final double _optionsVisible = 4.5;
 
-  _RoofDropdownContents(
-      {this.options,
-      this.selectedOptions,
-      this.isMultiSelect,
-      this.optionHeight,
-      this.onTap});
+  _DropdownContents(
+      {this.options, this.selectedOptions, this.isMultiSelect, this.onTap});
 
   Widget build(BuildContext context) {
     List<Widget> optionsList = [];
     for (var option in options) {
-      final dropdownOption = _RoofDropdownOption(
+      final dropdownOption = _DropdownOption(
           name: option.title,
+          data: option.data,
           selected: selectedOptions.contains(option),
           isMultiSelect: isMultiSelect,
-          optionHeight: optionHeight,
+          optionHeight: _optionHeight,
           onTap: () => onTap(option));
-
       optionsList.add(dropdownOption);
     }
 
-    double totalDropdownHeight = optionHeight * optionsList.length.toDouble();
-
-    if (totalDropdownHeight > _optionsVisible * optionHeight) {
-      totalDropdownHeight = _optionsVisible * optionHeight;
-    }
+    double totalDropdownHeight;
+    if (optionsList.length.toDouble() <= _optionsVisible) {
+      totalDropdownHeight = _optionHeight * optionsList.length.toDouble();
+    } else
+      totalDropdownHeight = _optionHeight * _optionsVisible;
 
     return Container(
-        height: totalDropdownHeight, child: ListView(children: optionsList));
+        height: totalDropdownHeight,
+        child: ListView(children: optionsList, padding: EdgeInsets.all(0)));
   }
 }
 
-class _RoofDropdownOption extends StatelessWidget {
+class _DropdownOption extends StatelessWidget {
   final String name;
+  final String data;
   final double optionHeight;
   final Function onTap;
   final bool isMultiSelect;
@@ -306,8 +304,9 @@ class _RoofDropdownOption extends StatelessWidget {
   final _checkIcon = IconReference.boxChecked;
   final _uncheckedIcon = IconReference.boxUnchecked;
 
-  _RoofDropdownOption(
+  _DropdownOption(
       {this.name,
+      this.data,
       this.optionHeight,
       this.onTap,
       this.isMultiSelect,
@@ -333,13 +332,18 @@ class _RoofDropdownOption extends StatelessWidget {
     final optionTitle = Text(name,
         style: _typographyStyle.textStyleWithColor(theme.color.text.primary));
 
+    final optionBackgroundColor = (selected && !isMultiSelect)
+        ? theme.color.background.general
+        : Colors.transparent;
+
+    final optionPadding = EdgeInsets.fromLTRB(
+        RoofDistance.b, RoofDistance.c, RoofDistance.b, RoofDistance.c);
+
     rowChildren.add(optionTitle);
 
     return Container(
         decoration: BoxDecoration(
-          color: (selected && !isMultiSelect)
-              ? theme.color.background.general
-              : Colors.transparent,
+          color: optionBackgroundColor,
           // border: Border(bottom: BorderSide(color: RoofColor.neutralColorC))
         ),
         height: optionHeight,
@@ -347,10 +351,10 @@ class _RoofDropdownOption extends StatelessWidget {
             onTap: onTap,
             behavior: HitTestBehavior.opaque,
             child: Padding(
-                padding: EdgeInsets.fromLTRB(RoofDistance.b, RoofDistance.c,
-                    RoofDistance.b, RoofDistance.c),
+                padding: optionPadding,
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: rowChildren))));
   }
 }

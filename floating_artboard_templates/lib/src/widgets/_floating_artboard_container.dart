@@ -5,7 +5,8 @@ import 'package:theme/index.dart';
 class FloatingArtboardContainer extends StatelessWidget {
   final Widget child;
 
-  final _margin = EdgeInsets.all(RoofDistance.d);
+  final _margin = EdgeInsets.fromLTRB(
+      RoofDistance.c, RoofDistance.e, RoofDistance.c, RoofDistance.c);
   final _padding = EdgeInsets.fromLTRB(
       RoofDistance.c, RoofDistance.c, RoofDistance.c, RoofDistance.f);
 

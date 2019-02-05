@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:icon_library/index.dart';
 import 'package:spec/index.dart';
-import 'package:theme/index.dart';
 
 import 'widgets/index.dart';
 

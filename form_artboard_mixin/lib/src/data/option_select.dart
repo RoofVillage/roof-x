@@ -14,7 +14,7 @@ class FormOptionSelectData
       {this.title,
       this.emptyText = "Nothing selected",
       this.options,
-      this.isMultiSelect,
+      this.isMultiSelect = false,
       List<FormOptionSelectValueData> initialValue,
       double size,
       ValueChanged<List<FormOptionSelectValueData>> onChanged,

@@ -39,12 +39,17 @@ class RoofStreamForm extends StreamForm<StreamableFormFieldData,
 
   Widget buildOptionSelect(
       {FormOptionSelectData fieldData, int fieldIndex, int sectionIndex}) {
+    List<RoofSelectFieldOptionData> options = [];
+    for (var option in fieldData.options) {
+      options.add(
+          RoofSelectFieldOptionData(title: option.title, data: option.data));
+    }
+
     return RoofSelectField(
         title: fieldData.title,
         emptyText: fieldData.emptyText,
         isMultiSelect: fieldData.isMultiSelect,
-        options: [],
-        selectedOptions: []);
+        options: options);
   }
 
   @override

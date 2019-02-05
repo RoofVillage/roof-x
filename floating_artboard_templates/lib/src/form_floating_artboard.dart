@@ -11,8 +11,8 @@ abstract class FormFloatingArtboard extends FloatingArtboard with FormArtboard {
   final _headerStyle = RoofTypography.heading1;
   final _subtitleStyle = RoofTypography.body1a;
 
-  final _bodyVerticalPadding = EdgeInsets.only(top: RoofDistance.e);
-  final _buttonVerticalPadding = EdgeInsets.only(top: RoofDistance.e);
+  final _bodyVerticalPadding = EdgeInsets.only(top: RoofDistance.d);
+  final _buttonVerticalPadding = EdgeInsets.only(top: RoofDistance.d);
   @override
   List<Widget> buildChildren(BuildContext context) {
     final theme = RoofTheme.of(context);

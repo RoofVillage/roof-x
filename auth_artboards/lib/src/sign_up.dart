@@ -23,7 +23,23 @@ class SignUpArtboard extends FormFloatingArtboard {
         title: "Good name",
         onChanged: (someString) => print(someString));
 
-    return [nameFieldData, goodFieldData];
+    final _textArea = FormTextAreaData(title: "Text area");
+
+    final _switch1 = FormSwitchData(title: "Turn dis on", initialValue: false);
+    final _switch2 = FormSwitchData(title: "Turn dis off", initialValue: true);
+    final _selectField = FormOptionSelectData(title: "Pick yo shit", options: [
+      FormOptionSelectValueData(title: "One"),
+      FormOptionSelectValueData(title: "two")
+    ]);
+
+    return [
+      _nameFieldData,
+      _goodFieldData,
+      _textArea,
+      _switch1,
+      _switch2,
+      _selectField
+    ];
   }
 
   @override
