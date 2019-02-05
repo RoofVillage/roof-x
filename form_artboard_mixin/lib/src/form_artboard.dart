@@ -27,8 +27,6 @@ abstract class FormArtboard {
   StreamFormBloc get form => _form.bloc;
 
   final _form = RoofStreamForm();
-  final _headerStyle = RoofTypography.heading1;
-  final _subtitleStyle = RoofTypography.body1a;
 
   RoofStreamForm buildForm(BuildContext context) {
     StreamableFormData formData;

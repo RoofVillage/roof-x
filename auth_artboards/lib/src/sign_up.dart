@@ -13,12 +13,12 @@ class SignUpArtboard extends FormFloatingArtboard {
   String get submitButtonText => "Next";
 
   List<StreamableFormFieldData> get fieldData {
-    final nameFieldData = FormTextFieldData(
+    final _nameFieldData = FormTextFieldData(
         size: 1 / 2,
         title: "Full name",
         onChanged: (someString) => print(someString));
 
-    final goodFieldData = FormTextFieldData(
+    final _goodFieldData = FormTextFieldData(
         size: 1 / 2,
         title: "Good name",
         onChanged: (someString) => print(someString));
