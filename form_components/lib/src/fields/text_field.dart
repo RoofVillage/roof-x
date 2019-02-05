@@ -4,9 +4,8 @@ import 'package:theme/index.dart';
 import 'package:typography/index.dart';
 
 import 'widgets/index.dart';
-import '_composition_field.dart';
 
-class RoofTextField extends StatelessWidget with RoofCompositionField {
+class RoofTextField extends StatelessWidget {
   final String fieldName;
   final String placeholder;
   final String initialValue;
@@ -52,7 +51,7 @@ class RoofTextField extends StatelessWidget with RoofCompositionField {
   }
 }
 
-class _FieldBody extends StatelessWidget with RoofCompositionField {
+class _FieldBody extends StatelessWidget {
   final bool autofocus;
   final bool isPassword;
   final TextInputAction textInputAction;
