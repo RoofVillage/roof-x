@@ -1,0 +1,24 @@
+name: full_screen_artboard_templates
+description: Templates the define the visual organization for full screen artboards.
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  navigation_components:
+    path: ../navigation_components
+  button_components:
+    path: ../button_components
+  artboard_mixins:
+    path: ../artboard_mixins
+  services:
+    path: ../services
+  artboard:
+    path: ../artboard
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

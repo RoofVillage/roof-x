@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:artboard_templates/index.dart';
+import 'package:artboard/index.dart';
 
 typedef GoToArtboard = Function(Artboard artboard, {BuildContext context});
 

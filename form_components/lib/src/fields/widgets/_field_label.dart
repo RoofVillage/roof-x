@@ -6,7 +6,7 @@ class RoofFieldLabel extends StatelessWidget {
   final String labelText;
   final int maxLines;
 
-  final _typographyStyle = RoofTypography.title1;
+  final _labelStyle = RoofTypography.title1;
 
   static const _defaultMaxLines = 3;
 
@@ -15,11 +15,13 @@ class RoofFieldLabel extends StatelessWidget {
       : super(key: key);
 
   Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
+    final textColor = RoofTheme.of(context).color.text.secondary;
+    final labelStyle = _labelStyle.textStyleWithColor(textColor);
+
     return Text(labelText,
         softWrap: true,
         maxLines: maxLines,
         overflow: TextOverflow.ellipsis,
-        style: _typographyStyle.textStyleWithColor(theme.color.text.primary));
+        style: labelStyle);
   }
 }

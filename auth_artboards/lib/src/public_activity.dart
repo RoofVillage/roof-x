@@ -6,7 +6,7 @@ import 'package:roof_table/index.dart';
 import 'package:icon_library/index.dart';
 import 'package:decorated_text/index.dart';
 import 'package:services/index.dart';
-import 'package:artboard_templates/index.dart';
+import 'package:full_screen_artboard_templates/index.dart';
 import 'package:navigation_components/index.dart';
 import 'package:artboard_navigators/index.dart';
 import 'package:sorting/index.dart';

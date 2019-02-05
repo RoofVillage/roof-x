@@ -9,8 +9,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  artboard_templates:
-    path: ../artboard_templates
+  artboard:
+    path: ../artboard
   artboard_navigators:
     path: ../artboard_navigators
   theme:

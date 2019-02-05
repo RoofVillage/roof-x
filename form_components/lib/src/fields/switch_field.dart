@@ -92,8 +92,10 @@ class _RoofAnimatedSwitch extends StatelessWidget {
   final double _width = 52;
   final double _animatedContainerWidth = 24;
   final double _height = 34;
+  final double _innerSpacing = 4.0;
   final _duration = RoofDuration.short;
 
+  double get _leftMargin => RoofDistance.d;
   double get _radius => _height * 0.5;
   double get _aimatedContainerRadius => _animatedContainerWidth * 0.5;
 
@@ -104,12 +106,12 @@ class _RoofAnimatedSwitch extends StatelessWidget {
     return Container(
         width: _width,
         height: _height,
-        margin: EdgeInsets.fromLTRB(RoofDistance.d, 0, 0, 0),
+        margin: EdgeInsets.only(left: _leftMargin),
         decoration: BoxDecoration(
             border: Border.all(color: color),
             borderRadius: BorderRadius.all(Radius.circular(_radius))),
         child: Padding(
-            padding: EdgeInsets.all(4.0),
+            padding: EdgeInsets.all(_innerSpacing),
             child: AnimatedAlign(
                 child: Container(
                   width: _animatedContainerWidth,

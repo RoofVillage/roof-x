@@ -5,15 +5,17 @@ class FormTextAreaData extends FormCompositionFieldData {
   FormTextAreaData(
       {String title,
       String placeholder,
-      bool autofocus,
-      TextInputAction inputAction,
       String initialValue,
-      double size,
+      double size = 1,
+      bool autofocus = false,
       ValueChanged<String> onChanged,
       bool hidden})
       : super(
+            title: title,
+            placeholder: placeholder,
             initialValue: initialValue,
             onChanged: onChanged,
+            autofocus: autofocus,
             size: size,
             hidden: hidden);
 }

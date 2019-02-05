@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:artboard_templates/index.dart';
+import 'package:full_screen_artboard_templates/index.dart';
+import 'package:floating_artboard_templates/index.dart';
 import 'package:routing/index.dart';
 import 'package:theme/index.dart';
 

@@ -1,0 +1,20 @@
+name: artboard_mixins
+description: Functionality that attach to artboards.
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  roof_form:
+    path: ../roof_form
+  spec:
+    path: ../spec
+  roof_table:
+    path: ../roof_table
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

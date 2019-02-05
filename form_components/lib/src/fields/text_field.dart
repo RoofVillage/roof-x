@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:theme/index.dart';
 import 'package:typography/index.dart';
+import 'package:spec/index.dart';
 
 import 'widgets/index.dart';
-import '_composition_field.dart';
 
-class RoofTextField extends StatelessWidget with RoofCompositionField {
+class RoofTextField extends StatelessWidget {
   final String fieldName;
   final String placeholder;
   final String initialValue;
@@ -21,8 +21,8 @@ class RoofTextField extends StatelessWidget with RoofCompositionField {
       {this.fieldName,
       this.placeholder,
       this.initialValue,
-      this.isPassword = false,
-      this.autofocus = false,
+      this.isPassword,
+      this.autofocus,
       this.textInputAction});
 
   @override
@@ -44,15 +44,14 @@ class RoofTextField extends StatelessWidget with RoofCompositionField {
     fieldChildren.add(fieldBody);
 
     return Container(
-        // margin: RoofObjectPadding.field1,
-        // margin: isLeftPadded ? EdgeInsets.only(left: RoofDistance.e) : null,
+        padding: RoofObjectPadding.field1,
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: fieldChildren));
   }
 }
 
-class _FieldBody extends StatelessWidget with RoofCompositionField {
+class _FieldBody extends StatelessWidget {
   final bool autofocus;
   final bool isPassword;
   final TextInputAction textInputAction;
@@ -81,11 +80,10 @@ class _FieldBody extends StatelessWidget with RoofCompositionField {
             .textStyleWithColor(theme.color.text.placeholder));
 
     return TextFormField(
-      autofocus: autofocus,
-      obscureText: isPassword,
-      initialValue: initialValue,
-      textInputAction: textInputAction,
-      decoration: decoration,
-    );
+        autofocus: autofocus ?? false,
+        obscureText: isPassword ?? false,
+        initialValue: initialValue,
+        textInputAction: textInputAction,
+        decoration: decoration);
   }
 }

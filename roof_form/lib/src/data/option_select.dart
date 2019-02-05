@@ -4,14 +4,20 @@ import 'package:form/index.dart';
 import 'option_select_value.dart';
 
 class FormOptionSelectData
-    extends StreamableFormFieldData<FormOptionSelectValueData> {
-  final List<FormOptionSelectValueData> values;
+    extends StreamableFormFieldData<List<FormOptionSelectValueData>> {
+  String title;
+  String emptyText;
+  List<FormOptionSelectValueData> options;
+  bool isMultiSelect;
 
   FormOptionSelectData(
-      {this.values,
-      FormOptionSelectValueData initialValue,
+      {this.title,
+      this.emptyText = "Nothing selected",
+      this.options,
+      this.isMultiSelect,
+      List<FormOptionSelectValueData> initialValue,
       double size,
-      ValueChanged<FormOptionSelectValueData> onChanged,
+      ValueChanged<List<FormOptionSelectValueData>> onChanged,
       bool hidden})
       : super(
             initialValue: initialValue,

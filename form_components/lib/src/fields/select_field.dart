@@ -9,55 +9,53 @@ import 'widgets/index.dart';
 
 class RoofSelectFieldOption {
   String title;
+  String data;
 
-  RoofSelectFieldOption({@required this.title});
+  RoofSelectFieldOption({@required this.title, this.data});
 }
 
-class RoofSelectFieldCustom extends StatefulWidget {
+class RoofSelectField extends StatefulWidget {
   final String title;
   final String emptyText;
-  final List<RoofSelectFieldOption> model;
+  final List<RoofSelectFieldOption> selectedOptions;
   final List<RoofSelectFieldOption> options;
   final bool isMultiSelect;
 
-  const RoofSelectFieldCustom(
+  const RoofSelectField(
       {this.title,
       this.emptyText,
-      this.model,
+      this.selectedOptions,
       this.options,
       this.isMultiSelect});
 
   @override
-  _RoofSelectFieldCustomState createState() => _RoofSelectFieldCustomState(
+  _RoofSelectFieldState createState() => _RoofSelectFieldState(
       title: title,
-      model: model,
+      selectedOptions: selectedOptions,
       options: options,
       isMultiSelect: isMultiSelect);
 }
 
-class _RoofSelectFieldCustomState extends State<RoofSelectFieldCustom>
+class _RoofSelectFieldState extends State<RoofSelectField>
     with SingleTickerProviderStateMixin {
   String title;
   String emptyText;
-  List<RoofSelectFieldOption> model;
+  List<RoofSelectFieldOption> selectedOptions;
   List<RoofSelectFieldOption> options;
   bool isMultiSelect;
   bool isExpanded;
 
-  static const _defaultEmptyText = "No selection";
-  static const _defaultIsMultiSelect = false;
-  static const _defaultModel = [];
-
-  _RoofSelectFieldCustomState(
+  _RoofSelectFieldState(
       {this.title,
-      this.emptyText = _defaultEmptyText,
-      this.model = _defaultModel,
+      this.emptyText,
+      this.selectedOptions,
       this.options,
-      this.isMultiSelect = _defaultIsMultiSelect});
+      this.isMultiSelect});
 
   @override
   void initState() {
-    if (model.length == 0 && !isMultiSelect) model.add(options[0]);
+    if (selectedOptions.length == 0 && !isMultiSelect)
+      selectedOptions.add(options[0]);
     isExpanded = false;
     super.initState();
   }
@@ -66,49 +64,51 @@ class _RoofSelectFieldCustomState extends State<RoofSelectFieldCustom>
   Widget build(BuildContext context) {
     Widget label = RoofFieldLabel(labelText: title);
 
-    final modelContainer = _RoofModelContainer(
-        modelText: _textForModel(),
+    final selectedOptionsContainer = _RoofSelectedOptionsContainer(
+        selectedOptionsText: _textForSelectedOptions(),
         emptyText: emptyText,
         onTap: _updateDropdown,
         isExpanded: isExpanded);
 
     final dropdownContainer = _RoofDropdownContainer(
         options: options,
-        model: model,
+        selectedOptions: selectedOptions,
         isMultiSelect: isMultiSelect,
         isExpanded: isExpanded,
-        onTap: _updateModelWithOption);
+        onTap: _updateSelectedOptions);
 
     return Container(
         margin: RoofObjectPadding.field1,
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [label, modelContainer, dropdownContainer]));
+            children: [label, selectedOptionsContainer, dropdownContainer]));
   }
 
-  _textForModel() {
+  _textForSelectedOptions() {
     String text = "";
-    for (var i = 0; i < model.length; i++) {
-      bool isLast = i == model.length - 1;
-      text += model[i].title;
+    for (var i = 0; i < selectedOptions.length; i++) {
+      bool isLast = i == selectedOptions.length - 1;
+      text += selectedOptions[i].title;
       if (!isLast) text += ", ";
     }
     return text;
   }
 
-  _updateModelWithOption(RoofSelectFieldOption option) {
+  _updateSelectedOptions(RoofSelectFieldOption option) {
     RoofHapticOption hapticOption;
     if (isMultiSelect) {
       hapticOption = RoofHapticOption.light;
-      final modelDoesContain = model.contains(option);
+      final optionIsSelected = selectedOptions.contains(option);
       setState(() {
-        modelDoesContain ? model.remove(option) : model.add(option);
+        optionIsSelected
+            ? selectedOptions.remove(option)
+            : selectedOptions.add(option);
       });
     } else {
       hapticOption =
           isExpanded ? RoofHapticOption.medium : RoofHapticOption.light;
       setState(() {
-        model.first = option;
+        selectedOptions.first = option;
         isExpanded = !isExpanded;
       });
     }
@@ -125,8 +125,8 @@ class _RoofSelectFieldCustomState extends State<RoofSelectFieldCustom>
   }
 }
 
-class _RoofModelContainer extends StatelessWidget {
-  final String modelText;
+class _RoofSelectedOptionsContainer extends StatelessWidget {
+  final String selectedOptionsText;
   final String emptyText;
   final Function onTap;
   final bool isExpanded;
@@ -137,22 +137,22 @@ class _RoofModelContainer extends StatelessWidget {
   final _upArrowIconReferece = IconReference.upArrow;
   final _downArrowIconReferece = IconReference.downArrow;
 
-  _RoofModelContainer(
-      {this.modelText, this.emptyText, this.onTap, this.isExpanded});
+  _RoofSelectedOptionsContainer(
+      {this.selectedOptionsText, this.emptyText, this.onTap, this.isExpanded});
 
   Widget build(BuildContext context) {
     final theme = RoofTheme.of(context);
 
-    Widget modelChild;
-    if (modelText.isEmpty) {
-      modelChild = Text(emptyText,
+    Widget selectedOptionsChild;
+    if (selectedOptionsText.isEmpty) {
+      selectedOptionsChild = Text(emptyText,
           style: _typographyStyle
               .textStyleWithColor(theme.color.text.placeholder));
     } else {
-      modelChild = Expanded(
+      selectedOptionsChild = Expanded(
           flex: 1,
           child: Text(
-            modelText,
+            selectedOptionsText,
             style:
                 _typographyStyle.textStyleWithColor(theme.color.text.primary),
             softWrap: true,
@@ -186,7 +186,7 @@ class _RoofModelContainer extends StatelessWidget {
                     EdgeInsets.fromLTRB(0, RoofDistance.b, 0, RoofDistance.b),
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [modelChild, animatedArrow]))));
+                    children: [selectedOptionsChild, animatedArrow]))));
   }
 }
 
@@ -210,7 +210,7 @@ class _AnimatedIconReference extends StatelessWidget {
 
 class _RoofDropdownContainer extends StatelessWidget {
   final List<RoofSelectFieldOption> options;
-  final List<RoofSelectFieldOption> model;
+  final List<RoofSelectFieldOption> selectedOptions;
   final bool isMultiSelect;
   final bool isExpanded;
   final Function onTap;
@@ -221,7 +221,7 @@ class _RoofDropdownContainer extends StatelessWidget {
 
   _RoofDropdownContainer(
       {this.options,
-      this.model,
+      this.selectedOptions,
       this.isMultiSelect,
       this.isExpanded,
       this.onTap});
@@ -240,7 +240,7 @@ class _RoofDropdownContainer extends StatelessWidget {
         child: AnimatedCrossFade(
             firstChild: _RoofDropdownContents(
                 options: options,
-                model: model,
+                selectedOptions: selectedOptions,
                 isMultiSelect: isMultiSelect,
                 optionHeight: _optionHeight,
                 onTap: onTap),
@@ -257,7 +257,7 @@ class _RoofDropdownContainer extends StatelessWidget {
 
 class _RoofDropdownContents extends StatelessWidget {
   final List<RoofSelectFieldOption> options;
-  final List<RoofSelectFieldOption> model;
+  final List<RoofSelectFieldOption> selectedOptions;
   final bool isMultiSelect;
   final double optionHeight;
   final Function onTap;
@@ -266,7 +266,7 @@ class _RoofDropdownContents extends StatelessWidget {
 
   _RoofDropdownContents(
       {this.options,
-      this.model,
+      this.selectedOptions,
       this.isMultiSelect,
       this.optionHeight,
       this.onTap});
@@ -276,7 +276,7 @@ class _RoofDropdownContents extends StatelessWidget {
     for (var option in options) {
       final dropdownOption = _RoofDropdownOption(
           name: option.title,
-          selected: model.contains(option),
+          selected: selectedOptions.contains(option),
           isMultiSelect: isMultiSelect,
           optionHeight: optionHeight,
           onTap: () => onTap(option));
