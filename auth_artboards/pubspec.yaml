@@ -18,14 +18,12 @@ dependencies:
     path: ../full_screen_artboard_templates
   floating_artboard_templates:
     path: ../floating_artboard_templates
-  artboard_navigators:
-    path: ../artboard_navigators
   table_components:
     path: ../table_components
   sorting:
     path: ../sorting
-  roof_table:
-    path: ../roof_table
+  table_artboard_mixin:
+    path: ../table_artboard_mixin
 
 dev_dependencies:
   flutter_test:

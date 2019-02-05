@@ -12,8 +12,8 @@ dependencies:
     path: ../navigation_components
   button_components:
     path: ../button_components
-  artboard_mixins:
-    path: ../artboard_mixins
+  form_artboard_mixin:
+    path: ../form_artboard_mixin
   services:
     path: ../services
   artboard:

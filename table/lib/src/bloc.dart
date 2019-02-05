@@ -125,9 +125,9 @@ class StreamTableBloc implements BlocBase {
       sectionIndexesToUpdate.add(newLocation.sectionIndex);
     }
 
-    update(_tableData);
+    // update(_tableData);
 
-    // _postDataToSectionIndexes(sectionIndexesToUpdate);
+    _postDataToSectionIndexes(sectionIndexesToUpdate);
   }
 
   void batchRemoveRowData(List<StreamableTableRowData> rowData) {

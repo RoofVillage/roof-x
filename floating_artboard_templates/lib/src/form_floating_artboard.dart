@@ -3,7 +3,7 @@ import 'package:button_components/index.dart';
 import 'package:typography/index.dart';
 import 'package:spec/index.dart';
 import 'package:theme/index.dart';
-import 'package:artboard_mixins/index.dart';
+import 'package:form_artboard_mixin/index.dart';
 
 import 'floating_artboard.dart';
 

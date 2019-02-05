@@ -3,9 +3,7 @@ import 'package:full_screen_artboard_templates/index.dart';
 import 'package:floating_artboard_templates/index.dart';
 import 'package:routing/index.dart';
 import 'package:theme/index.dart';
-
-import 'artboard_navigator.dart';
-import 'floating_artboard_navigator.dart';
+import 'package:artboard/index.dart';
 
 class FullScreenArtboardNavigator extends ArtboardNavigator {
   final FullScreenArtboard artboard;

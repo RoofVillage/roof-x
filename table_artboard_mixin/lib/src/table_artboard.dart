@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:roof_table/index.dart';
+import 'package:table/index.dart';
+
+import 'roof_stream_table.dart';
+import 'data/index.dart';
 
 abstract class TableArtboard {
   List<StreamableTableRowData> get rowData => null;

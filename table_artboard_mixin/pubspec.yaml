@@ -1,5 +1,5 @@
-name: roof_table
-description: Roof's table tools.
+name: table_artboard_mixin
+description: Table functionality for artboards.
 
 version: 1.0.0+1
 

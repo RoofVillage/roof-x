@@ -4,8 +4,7 @@ import 'package:floating_artboard_templates/index.dart';
 import 'package:spec/index.dart';
 import 'package:navigation_components/index.dart';
 import 'package:icon_library/index.dart';
-
-import 'artboard_navigator.dart';
+import 'package:artboard/index.dart';
 
 final _slideDuration = RoofDuration.medium;
 final _slideCurve = RoofCurve.easy;

@@ -12,12 +12,16 @@ dependencies:
     path: ../navigation_components
   button_components:
     path: ../button_components
-  artboard_mixins:
-    path: ../artboard_mixins
+  table_artboard_mixin:
+    path: ../table_artboard_mixin
   services:
     path: ../services
   artboard:
     path: ../artboard
+  routing:
+    path: ../routing
+  floating_artboard_templates:
+    path: ../floating_artboard_templates
 
 dev_dependencies:
   flutter_test:
