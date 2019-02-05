@@ -6,9 +6,6 @@ import 'roof_stream_form.dart';
 import 'data/index.dart';
 
 abstract class FormArtboard {
-  String get title;
-  String get subtitle;
-  String get submitButtonText;
   List<StreamableFormFieldData> get fieldData => null;
   List<StreamableFormSectionData> get sectionData => null;
   StreamableFormData get formData => null;

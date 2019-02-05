@@ -8,6 +8,10 @@ import 'package:form_artboard_mixin/index.dart';
 import 'floating_artboard.dart';
 
 abstract class FormFloatingArtboard extends FloatingArtboard with FormArtboard {
+  String get title;
+  String get subtitle;
+  String get submitButtonText;
+  
   final _headerStyle = RoofTypography.heading1;
   final _subtitleStyle = RoofTypography.body1a;
 
