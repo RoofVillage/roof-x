@@ -21,6 +21,11 @@ class StreamableFormSectionData extends StreamableData {
     this.fieldData.insert(index, fieldData);
   }
 
+  void batchAddFieldData(
+      {@required List<StreamableFormFieldData> fieldData, int index}) {
+    this.fieldData.insertAll(index, fieldData);
+  }
+
   void removeFieldDataAtIndex(int index) {
     this.fieldData.removeAt(index);
   }

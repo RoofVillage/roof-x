@@ -1,0 +1,24 @@
+name: floating_artboard_templates
+description: Templates the define the visual organization for floating artboards.
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  navigation_components:
+    path: ../navigation_components
+  button_components:
+    path: ../button_components
+  form_artboard_mixin:
+    path: ../form_artboard_mixin
+  services:
+    path: ../services
+  artboard:
+    path: ../artboard
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

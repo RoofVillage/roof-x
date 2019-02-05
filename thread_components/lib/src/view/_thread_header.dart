@@ -18,7 +18,6 @@ class ThreadHeader extends StatelessWidget {
     final theme = RoofTheme.of(context);
 
     _openThreadMenu(threadMenuItems) {
-      print("edit menu");
       // open bottom sheet with thread menu items (e.g. unsubscribe)
     }
 

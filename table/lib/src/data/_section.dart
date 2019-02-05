@@ -14,6 +14,13 @@ class StreamableTableSectionData<S extends StreamableTableRowData>
 
   StreamableTableSectionData({this.headerData, this.sort, this.criteria});
 
+  StreamableTableSectionData.withTitle(String title,
+      {Function(S, S) sort, Function(S) criteria})
+      : this(
+            headerData: StreamableTableSectionHeaderData(title: title),
+            sort: sort,
+            criteria: criteria);
+
   void addRowData(StreamableTableRowData rowData) {
     this.rowData.add(rowData);
   }

@@ -19,39 +19,102 @@ class StreamableFormData extends StreamableData {
       {List<StreamableFormFieldData> fieldData, double fieldHorizontalSpacing})
       : sectionData = [
           StreamableFormSectionData(
-              fieldData: fieldData,
-              fieldHorizontalSpacing: fieldHorizontalSpacing)
+              fieldData: fieldData ?? [],
+              fieldHorizontalSpacing: fieldHorizontalSpacing ?? 0)
         ];
 
-  void updateField(StreamableFormFieldData fieldData) {
+  void updateFieldData(StreamableFormFieldData fieldData) {
     final formLocation = formLocationOfFieldData(fieldData);
     final sectionData = this.sectionData[formLocation.sectionIndex];
     sectionData.replace(index: formLocation.fieldIndex, fieldData: fieldData);
   }
 
-  void updateSection(StreamableFormSectionData sectionData) {
+  void updateSectionData(StreamableFormSectionData sectionData) {
     final sectionIndex = this.sectionData.indexOf(sectionData);
     _replace(index: sectionIndex, sectionData: sectionData);
   }
 
-  void addFieldDataAfter(StreamableFormFieldData fieldData,
-      StreamableFormFieldData afterFieldData) {
-    final afterFieldDataFormLocation = formLocationOfFieldData(afterFieldData);
-    final sectionData =
-        this.sectionData[afterFieldDataFormLocation.sectionIndex];
-    sectionData.addFieldData(
-        fieldData: fieldData, index: afterFieldDataFormLocation.fieldIndex + 1);
+  void addFieldData(StreamableFormFieldData fieldData) {
+    final beginning = FormLocation(fieldIndex: 0, sectionIndex: 0);
+    _addFieldDataAt(fieldData, beginning);
+  }
+
+  void batchAddFieldData(List<StreamableFormFieldData> fieldData) {
+    final beginning = FormLocation(fieldIndex: 0, sectionIndex: 0);
+    _batchAddFieldDataAt(fieldData, beginning);
   }
 
   void addFieldDataBefore(StreamableFormFieldData fieldData,
       StreamableFormFieldData beforeFieldData) {
     final beforeFieldDataFormLocation =
         formLocationOfFieldData(beforeFieldData);
+    _addFieldDataAt(fieldData, beforeFieldDataFormLocation);
+  }
+
+  void batchAddFieldDataBefore(List<StreamableFormFieldData> fieldData,
+      StreamableFormFieldData beforeFieldData) {
+    final beforeFieldDataFormLocation =
+        formLocationOfFieldData(beforeFieldData);
     if (beforeFieldDataFormLocation.fieldIndex < 0) return;
     final sectionData =
         this.sectionData[beforeFieldDataFormLocation.sectionIndex];
-    sectionData.addFieldData(
+    sectionData.batchAddFieldData(
         fieldData: fieldData, index: beforeFieldDataFormLocation.fieldIndex);
+  }
+
+  void addFieldDataAfter(StreamableFormFieldData fieldData,
+      StreamableFormFieldData afterFieldData) {
+    final afterFieldDataFormLocation = formLocationOfFieldData(afterFieldData);
+    final insertFormLocation = FormLocation(
+        sectionIndex: afterFieldDataFormLocation.sectionIndex,
+        fieldIndex: afterFieldDataFormLocation.fieldIndex + 1);
+
+    _addFieldDataAt(fieldData, insertFormLocation);
+  }
+
+  void batchAddFieldDataAfter(List<StreamableFormFieldData> fieldData,
+      StreamableFormFieldData afterFieldData) {
+    final afterFieldDataFormLocation = formLocationOfFieldData(afterFieldData);
+    final insertFormLocation = FormLocation(
+        sectionIndex: afterFieldDataFormLocation.sectionIndex,
+        fieldIndex: afterFieldDataFormLocation.fieldIndex + 1);
+
+    _batchAddFieldDataAt(fieldData, insertFormLocation);
+  }
+
+  void addSectionData(StreamableFormSectionData sectionData, {int index}) {
+    final last = this.sectionData.length - 1;
+    _addSectionDataAt(sectionData, index ?? last);
+  }
+
+  void batchAddSectionData(List<StreamableFormSectionData> sectionData,
+      {int index}) {
+    final last = this.sectionData.length - 1;
+    _batchAddSectionDataAt(sectionData, index ?? last);
+  }
+
+  void addSectionDataBefore(StreamableFormSectionData sectionData,
+      StreamableFormSectionData beforeSectionData) {
+    final index = this.sectionData.indexOf(beforeSectionData);
+    _addSectionDataAt(sectionData, index);
+  }
+
+  void batchAddSectionDataBefore(List<StreamableFormSectionData> sectionData,
+      StreamableFormSectionData beforeSectionData) {
+    final index = this.sectionData.indexOf(beforeSectionData);
+    _batchAddSectionDataAt(sectionData, index);
+  }
+
+  void addSectionDataAfter(StreamableFormSectionData sectionData,
+      StreamableFormSectionData afterSectionData) {
+    final index = this.sectionData.indexOf(afterSectionData);
+    _addSectionDataAt(sectionData, index + 1);
+  }
+
+  void batchAddSectionDataAfter(List<StreamableFormSectionData> sectionData,
+      StreamableFormSectionData afterSectionData) {
+    final index = this.sectionData.indexOf(afterSectionData);
+    _batchAddSectionDataAt(sectionData, index + 1);
   }
 
   void removeAtFormLocation(FormLocation location) {
@@ -72,5 +135,32 @@ class StreamableFormData extends StreamableData {
 
   void _replace({@required int index, StreamableFormSectionData sectionData}) {
     this.sectionData.replaceRange(index, index + 1, [sectionData]);
+  }
+
+  void _addFieldDataAt(
+      StreamableFormFieldData fieldData, FormLocation formLocation) {
+    if (formLocation.fieldIndex < 0) return;
+    final sectionData = this.sectionData[formLocation.sectionIndex];
+    sectionData.addFieldData(
+        fieldData: fieldData, index: formLocation.fieldIndex);
+  }
+
+  void _batchAddFieldDataAt(
+      List<StreamableFormFieldData> fieldData, FormLocation formLocation) {
+    if (formLocation.fieldIndex < 0) return;
+    final sectionData = this.sectionData[formLocation.sectionIndex];
+    sectionData.batchAddFieldData(
+        fieldData: fieldData, index: formLocation.fieldIndex);
+  }
+
+  void _addSectionDataAt(StreamableFormSectionData sectionData, int index) {
+    if (index < 0) return;
+    this.sectionData.insert(index, sectionData);
+  }
+
+  void _batchAddSectionDataAt(
+      List<StreamableFormSectionData> sectionData, int index) {
+    if (index < 0) return;
+    this.sectionData.insertAll(index, sectionData);
   }
 }

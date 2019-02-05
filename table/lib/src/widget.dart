@@ -30,8 +30,9 @@ class StreamTableBuilder<T extends StreamTableBloc> extends StatelessWidget {
         builder: (context, snapshot) {
           if (!snapshot.hasData) return Container();
 
-          return _createTable(
+          final ddd = _createTable(
               bloc: tableBloc, context: context, tableData: snapshot.data);
+          return ddd;
         });
   }
 
@@ -58,12 +59,12 @@ class StreamTableBuilder<T extends StreamTableBloc> extends StatelessWidget {
         final outSectionStream =
             bloc.outSection.where((data) => data.key == sectionData.key);
 
-        final sectionHeader = _createSectionHeader(
-            outSectionStream: outSectionStream,
-            sectionData: sectionData,
-            sectionIndex: index);
+        // final sectionHeader = _createSectionHeader(
+        //     outSectionStream: outSectionStream,
+        //     sectionData: sectionData,
+        //     sectionIndex: index);
 
-        slivers.add(sectionHeader);
+        // slivers.add(sectionHeader);
 
         final section = _createSection(
             bloc: bloc,

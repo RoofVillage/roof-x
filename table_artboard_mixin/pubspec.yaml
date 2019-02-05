@@ -1,0 +1,23 @@
+name: table_artboard_mixin
+description: Table functionality for artboards.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  table:
+    path: ../table
+  table_components:
+    path: ../table_components
+  decorated_text:
+    path: ../decorated_text
+  sorting:
+    path: ../sorting
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

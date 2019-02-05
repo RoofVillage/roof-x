@@ -22,11 +22,28 @@ class StreamableTableData extends StreamableData {
   StreamableTableData(
       {this.headerData,
       this.sectionData,
-      this.reverse = false,
-      this.scrollDirection = Axis.vertical,
-      rowData}) {
+      Axis scrollDirection,
+      bool reverse,
+      List<StreamableTableRowData> rowData})
+      : reverse = reverse ?? false,
+        scrollDirection = scrollDirection ?? Axis.vertical {
     _sortWithRowData(rowData);
   }
+
+  StreamableTableData.withoutSections(
+      {StreamableTableHeaderData headerData,
+      bool reverse,
+      Axis scrollDirection,
+      List<StreamableTableRowData> rowData})
+      : this(
+            headerData: headerData,
+            sectionData: [
+              StreamableTableSectionData(
+                  criteria: (_) => true, headerData: null, sort: (_, __) => 0)
+            ],
+            reverse: reverse,
+            scrollDirection: scrollDirection,
+            rowData: rowData);
 
   void replaceTableLocation(
       TableLocation location, StreamableTableRowData rowData) {
@@ -67,7 +84,7 @@ class StreamableTableData extends StreamableData {
       for (final sectionData in sectionData) {
         if (!sectionData.acceptsRow(rowData)) continue;
         sectionData.addRowData(rowData);
-        return;
+        break;
       }
     }
 

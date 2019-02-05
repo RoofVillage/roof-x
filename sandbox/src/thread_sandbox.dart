@@ -7,16 +7,18 @@ import 'package:thread_components/index.dart';
 class Sandbox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    action() {
-      print("yo");
-    }
+    action() {}
 
     List<Widget> activityItems = [];
 
     Widget comment1 = RoofActivityComment(
         creator: "Boby", timestamp: "10pm", note: "Yo just doin chores yo");
 
-  Widget event1 = RoofActivityEvent(title: "Stu cleaned the dog", note: "Super clean now!", timestamp: "2:30am",);
+    Widget event1 = RoofActivityEvent(
+      title: "Stu cleaned the dog",
+      note: "Super clean now!",
+      timestamp: "2:30am",
+    );
 
     activityItems.add(comment1);
     activityItems.add(event1);

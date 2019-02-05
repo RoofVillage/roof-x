@@ -9,28 +9,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  table:
-    path: ../table
-  roof_form:
-    path: ../roof_form
-  services:
-    path: ../services
-  icon_library:
-    path: ../icon_library
-  decorated_text:
-    path: ../decorated_text
-  artboard_templates:
-    path: ../artboard_templates
-  artboard_navigators:
-    path: ../artboard_navigators
-  navigation_components:
-    path: ../navigation_components
   theme:
     path: ../theme
-  table_components:
-    path: ../table_components
-  typography:
-    path: ../typography
+  stream:
+    path: ../stream
   auth_artboards:
     path: ../auth_artboards
 

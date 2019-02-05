@@ -18,13 +18,6 @@ class StreamTableBloc implements BlocBase {
   //The stream responsible for communicating changes to items within the list.
   final _rowController = StreamController<StreamableTableRowData>.broadcast();
 
-  //Set the table's first value.
-  set _initialTableData(StreamableTableData initialTableData) {
-    if (_tableData != null) return;
-    _tableData = initialTableData;
-    _inTable.add(_tableData);
-  }
-
   Sink<StreamableTableData> get _inTable => _tableController.sink;
   Stream<StreamableTableData> get outTable => _tableController.stream;
 
@@ -34,19 +27,6 @@ class StreamTableBloc implements BlocBase {
 
   Sink<StreamableTableRowData> get _inRow => _rowController.sink;
   Stream<StreamableTableRowData> get outRow => _rowController.stream;
-
-  StreamTableBloc() {
-    _init();
-  }
-
-  StreamTableBloc.withInitialData(Future<StreamableTableData> initialData) {
-    _init(initialData: initialData);
-  }
-
-  //Override to make the table.
-  Future<StreamableTableData> createTableData() async {
-    return StreamableTableData();
-  }
 
   void updateRowData(StreamableTableRowData rowData) {
     batchUpdateRowData([rowData]);
@@ -58,6 +38,11 @@ class StreamTableBloc implements BlocBase {
 
   void removeRowData(StreamableTableRowData rowData) {
     batchRemoveRowData([rowData]);
+  }
+
+  void update(StreamableTableData tableData) {
+    _tableData = tableData;
+    _inTable.add(_tableData);
   }
 
   void batchUpdateRowData(List<StreamableTableRowData> rowData) {
@@ -108,7 +93,6 @@ class StreamTableBloc implements BlocBase {
         tableLocationsToUpdate.add(newTableLocation);
       }
     }
-    ;
 
     _postDataToSectionIndexes(sectionIndexesToUpdate);
 
@@ -123,6 +107,8 @@ class StreamTableBloc implements BlocBase {
 
   void batchInsertRowData(List<StreamableTableRowData> rowData,
       {int sectionIndex = 0}) {
+    if (rowData.isEmpty) return;
+
     //Add each rowData to the table.
     for (var data in rowData) {
       _tableData.addRowData(data, sectionIndex);
@@ -138,6 +124,8 @@ class StreamTableBloc implements BlocBase {
       final newLocation = _tableData.tableLocationOfRowData(data);
       sectionIndexesToUpdate.add(newLocation.sectionIndex);
     }
+
+    // update(_tableData);
 
     _postDataToSectionIndexes(sectionIndexesToUpdate);
   }
@@ -175,9 +163,5 @@ class StreamTableBloc implements BlocBase {
       final sectionData = _tableData.sectionData[sectionIndex];
       _inSection.add(sectionData);
     }
-  }
-
-  void _init({Future<StreamableTableData> initialData}) async {
-    _initialTableData = await initialData ?? createTableData();
   }
 }

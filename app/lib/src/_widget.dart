@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stream/index.dart';
-import 'package:artboard_templates/index.dart';
-import 'package:artboard_navigators/index.dart';
+import 'package:artboard/index.dart';
 import 'package:auth_artboards/index.dart';
 
 import '_bloc.dart';

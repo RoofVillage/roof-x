@@ -9,13 +9,10 @@ abstract class StreamTable<
     T extends StreamableTableRowData,
     U extends StreamableTableSectionHeaderData,
     V extends StreamableTableHeaderData> extends StatelessWidget {
-  Future<StreamableTableData> get initialTableData => null;
+  final bloc = StreamTableBloc();
 
-  //If passed in, this overrides initialTableData;
-  StreamTableBloc get bloc => StreamTableBloc.withInitialData(initialTableData);
-
-  bool get showsHeaderForEmptyTable => false;
-  bool get showsHeadersForEmptySections => true;
+  bool get showsHeaderForEmptyTable => true;
+  bool get showsHeadersForEmptySections => false;
 
   Widget build(BuildContext context) {
     final table = StreamTableBuilder(

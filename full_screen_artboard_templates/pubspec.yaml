@@ -1,5 +1,5 @@
-name: auth_artboards
-description: The artboards that make up the authentication flow.
+name: full_screen_artboard_templates
+description: Templates the define the visual organization for full screen artboards.
 version: 1.0.0+1
 
 environment:
@@ -12,18 +12,16 @@ dependencies:
     path: ../navigation_components
   button_components:
     path: ../button_components
-  services:
-    path: ../services
-  full_screen_artboard_templates:
-    path: ../full_screen_artboard_templates
-  floating_artboard_templates:
-    path: ../floating_artboard_templates
-  table_components:
-    path: ../table_components
-  sorting:
-    path: ../sorting
   table_artboard_mixin:
     path: ../table_artboard_mixin
+  services:
+    path: ../services
+  artboard:
+    path: ../artboard
+  routing:
+    path: ../routing
+  floating_artboard_templates:
+    path: ../floating_artboard_templates
 
 dev_dependencies:
   flutter_test:
