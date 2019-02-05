@@ -1,5 +1,5 @@
 import 'package:network/index.dart';
-import 'utils/index.dart';
+import 'address.dart';
 
 import 'param.dart';
 
@@ -12,7 +12,6 @@ class GetPublicActivity {
       Param.startTimestamp: startTimestamp
     };
 
-    return await Network()
-        .post(address: ServiceAddress.activity, params: params);
+    return await Network().post(address: Address.activity, params: params);
   }
 }

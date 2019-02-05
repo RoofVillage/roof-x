@@ -5,7 +5,7 @@ import 'option_select_value.dart';
 
 class FormOptionSelectData
     extends StreamableFormFieldData<FormOptionSelectValueData> {
-  List<FormOptionSelectValueData> values;
+  final List<FormOptionSelectValueData> values;
 
   FormOptionSelectData(
       {this.values,

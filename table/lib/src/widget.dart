@@ -30,8 +30,9 @@ class StreamTableBuilder<T extends StreamTableBloc> extends StatelessWidget {
         builder: (context, snapshot) {
           if (!snapshot.hasData) return Container();
 
-          return _createTable(
+          final ddd = _createTable(
               bloc: tableBloc, context: context, tableData: snapshot.data);
+          return ddd;
         });
   }
 

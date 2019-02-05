@@ -5,8 +5,8 @@ import 'widgets/index.dart';
 
 import 'full_screen_artboard.dart';
 
-abstract class TitledFullScreenArtboard extends FullScreenArtboard {
-  WidgetBuilder get buildBody;
+abstract class TitledFullTableScreenArtboard extends FullScreenArtboard
+    with TableArtboard {
   List<RoofNavButton> get actionButtons;
   RoofNavButton get navButton => null;
   String get title => null;
@@ -17,7 +17,7 @@ abstract class TitledFullScreenArtboard extends FullScreenArtboard {
   }
 
   @override
-  Widget buildChild(BuildContext context) {
-    return FullScreenWithNav(navBar: _navBar, body: buildBody(context));
+  Widget buildBody(BuildContext context) {
+    return FullScreenWithNav(navBar: _navBar, body: buildTable(context));
   }
 }

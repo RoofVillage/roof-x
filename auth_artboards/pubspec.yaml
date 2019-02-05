@@ -12,8 +12,6 @@ dependencies:
     path: ../navigation_components
   button_components:
     path: ../button_components
-  roof_form:
-    path: ../roof_form
   services:
     path: ../services
   artboard_templates:
@@ -22,10 +20,10 @@ dependencies:
     path: ../artboard_navigators
   table_components:
     path: ../table_components
-  table:
-    path: ../table
   sorting:
     path: ../sorting
+  roof_table:
+    path: ../roof_table
 
 dev_dependencies:
   flutter_test:

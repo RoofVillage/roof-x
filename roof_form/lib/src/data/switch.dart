@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:form/index.dart';
 
 class FormSwitchData extends StreamableFormFieldData<bool> {
-  String title;
+  final String title;
 
   FormSwitchData(
       {this.title,

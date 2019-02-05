@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:spec/index.dart';
 import 'package:theme/index.dart';
 import 'package:typography/index.dart';
 

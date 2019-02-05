@@ -4,10 +4,12 @@ import 'package:network/index.dart';
 
 import 'data/index.dart';
 
+typedef AddressGetter = String Function();
+typedef ParamsGetter = Map<String, dynamic> Function();
+
 class StreamFormBloc extends BlocBase {
-  Function onSubmit;
-  String address;
-  Map<String, dynamic> params;
+  AddressGetter getAddress;
+  ParamsGetter getParams;
 
   StreamableFormData _formData;
 
@@ -26,16 +28,6 @@ class StreamFormBloc extends BlocBase {
   final _fieldValueController =
       StreamController<StreamableFormFieldValueData>.broadcast();
 
-  //Set the form first value.
-  set _initialFormData(StreamableFormData initialFormData) {
-    if (_formData != null) return;
-
-    _addValueChangedStreamToForm(initialFormData);
-
-    _formData = initialFormData;
-    _inForm.add(_formData);
-  }
-
   Sink<StreamableFormData> get _inForm => _formController.sink;
   Stream<StreamableFormData> get outForm => _formController.stream;
 
@@ -50,26 +42,10 @@ class StreamFormBloc extends BlocBase {
   Stream<StreamableFormFieldValueData> get _outFieldValue =>
       _fieldValueController.stream;
 
-  StreamFormBloc({this.address, this.params}) {
-    _init();
-  }
-
-  StreamFormBloc.withInitialData(Future<StreamableFormData> initialData,
-      {this.address, this.params}) {
-    _init(initialData: initialData);
-  }
-
-  //Override to make the form.
-  Future<StreamableFormData> createFormData() async {
-    return StreamableFormData();
-  }
-
-  //Override to submit.
-  Future<StreamableFormData> submitForm() async {
-    return StreamableFormData();
-  }
-
   void submit() async {
+    final address = getAddress();
+    final params = getParams();
+    if (address == null || params == null) return;
     await Network().post(address: address, params: params);
   }
 
@@ -87,12 +63,88 @@ class StreamFormBloc extends BlocBase {
   }
 
   void updateFieldData(StreamableFormFieldData fieldData) {
-    _formData.updateField(fieldData);
+    _formData.updateFieldData(fieldData);
     _inField.add(fieldData);
   }
 
   void updateSectionData(StreamableFormSectionData sectionData) {
-    _formData.updateSection(sectionData);
+    _formData.updateSectionData(sectionData);
+    _inSection.add(sectionData);
+  }
+
+  void update(StreamableFormData formData) {
+    _addValueChangedStreamToForm(formData);
+
+    _formData = formData;
+    _inForm.add(_formData);
+  }
+
+  void batchUpdateSectionData(List<StreamableFormSectionData> sectionData) {
+    for (final sectionData in sectionData) {
+      updateSectionData(sectionData);
+    }
+  }
+
+  void batchUpdateFieldData(List<StreamableFormFieldData> fieldData) {
+    for (final fieldData in fieldData) {
+      updateFieldData(fieldData);
+    }
+  }
+
+  void insertFieldData(StreamableFormFieldData fieldData) {
+    _addValueChangedStreamToField(fieldData);
+
+    //Add the fieldData to the form.
+    _formData.addFieldData(fieldData);
+
+    //Find where the new location of the data is.
+    final newLocation = _formData.formLocationOfFieldData(fieldData);
+    final sectionData = _formData.sectionData[newLocation.sectionIndex];
+    _inSection.add(sectionData);
+  }
+
+  void batchInsertFieldData(List<StreamableFormFieldData> fieldData) {
+    if (fieldData == null || fieldData.isEmpty) return;
+
+    for (final fieldData in fieldData) {
+      _addValueChangedStreamToField(fieldData);
+    }
+
+    //Add the fieldData to the form.
+    _formData.batchAddFieldData(fieldData);
+
+    //Find where the new location of the data is.
+    final newLocation = _formData.formLocationOfFieldData(fieldData.first);
+    final sectionData = _formData.sectionData[newLocation.sectionIndex];
+    _inSection.add(sectionData);
+  }
+
+  void insertFieldDataBefore(StreamableFormFieldData fieldData,
+      StreamableFormFieldData beforeFieldData) {
+    _addValueChangedStreamToField(fieldData);
+
+    //Add the fieldData to the form.
+    _formData.addFieldDataBefore(fieldData, beforeFieldData);
+
+    //Find where the new location of the data is.
+    final newLocation = _formData.formLocationOfFieldData(fieldData);
+    final sectionData = _formData.sectionData[newLocation.sectionIndex];
+    _inSection.add(sectionData);
+  }
+
+  void batchInsertFieldDataBefore(List<StreamableFormFieldData> fieldData,
+      StreamableFormFieldData beforeFieldData) {
+    if (fieldData == null || fieldData.isEmpty) return;
+    for (final fieldData in fieldData) {
+      _addValueChangedStreamToField(fieldData);
+    }
+
+    //Add the fieldData to the form.
+    _formData.batchAddFieldDataBefore(fieldData, beforeFieldData);
+
+    //Find where the new location of the data is.
+    final newLocation = _formData.formLocationOfFieldData(fieldData.first);
+    final sectionData = _formData.sectionData[newLocation.sectionIndex];
     _inSection.add(sectionData);
   }
 
@@ -109,17 +161,93 @@ class StreamFormBloc extends BlocBase {
     _inSection.add(sectionData);
   }
 
-  void insertFieldDataBefore(StreamableFormFieldData fieldData,
-      StreamableFormFieldData beforeFieldData) {
-    _addValueChangedStreamToField(fieldData);
+  void batchInsertFieldDataAfter(List<StreamableFormFieldData> fieldData,
+      StreamableFormFieldData afterFieldData) {
+    if (fieldData == null || fieldData.isEmpty) return;
+
+    for (final fieldData in fieldData) {
+      _addValueChangedStreamToField(fieldData);
+    }
 
     //Add the fieldData to the form.
-    _formData.addFieldDataBefore(fieldData, beforeFieldData);
+    _formData.batchAddFieldDataAfter(fieldData, afterFieldData);
 
     //Find where the new location of the data is.
-    final newLocation = _formData.formLocationOfFieldData(fieldData);
+    final newLocation = _formData.formLocationOfFieldData(fieldData.first);
     final sectionData = _formData.sectionData[newLocation.sectionIndex];
     _inSection.add(sectionData);
+  }
+
+  void insertSectionData(StreamableFormSectionData sectionData) {
+    for (final fieldData in sectionData.fieldData) {
+      _addValueChangedStreamToField(fieldData);
+    }
+
+    //Add the sectionData to the form.
+    _formData.addSectionData(sectionData);
+
+    _inForm.add(_formData);
+  }
+
+  void batchInsertSectionData(List<StreamableFormSectionData> sectionData) {
+    for (final sectionData in sectionData) {
+      for (final fieldData in sectionData.fieldData) {
+        _addValueChangedStreamToField(fieldData);
+      }
+    }
+
+    //Add the fieldData to the form.
+    _formData.batchAddSectionData(sectionData);
+
+    _inForm.add(_formData);
+  }
+
+  void insertSectionDataBefore(StreamableFormSectionData sectionData,
+      StreamableFormSectionData beforeSectionData) {
+    for (final fieldData in sectionData.fieldData) {
+      _addValueChangedStreamToField(fieldData);
+    }
+
+    _formData.addSectionDataBefore(sectionData, beforeSectionData);
+
+    _inForm.add(_formData);
+  }
+
+  void batchInsertSectionDataBefore(List<StreamableFormSectionData> sectionData,
+      StreamableFormSectionData beforeSectionData) {
+    for (final sectionData in sectionData) {
+      for (final fieldData in sectionData.fieldData) {
+        _addValueChangedStreamToField(fieldData);
+      }
+    }
+
+    _formData.batchAddSectionDataBefore(sectionData, beforeSectionData);
+
+    _inForm.add(_formData);
+  }
+
+  void insertSectionDataAfter(StreamableFormSectionData sectionData,
+      StreamableFormSectionData afterSectionData) {
+    for (final fieldData in sectionData.fieldData) {
+      _addValueChangedStreamToField(fieldData);
+    }
+
+    _formData.addSectionDataAfter(sectionData, afterSectionData);
+
+    _inForm.add(_formData);
+  }
+
+  void batchInsertSectionDataAfter(List<StreamableFormSectionData> sectionData,
+      StreamableFormSectionData afterSectionData) {
+    for (final sectionData in sectionData) {
+      for (final fieldData in sectionData.fieldData) {
+        _addValueChangedStreamToField(fieldData);
+      }
+    }
+
+    _formData.batchAddSectionDataAfter(sectionData, afterSectionData);
+
+    _inForm.add(_formData);
   }
 
   void removeFieldData(StreamableFormFieldData fieldData) {
@@ -147,10 +275,6 @@ class StreamFormBloc extends BlocBase {
     _fieldValueController.close();
   }
 
-  void _init({Future<StreamableFormData> initialData}) async {
-    _initialFormData = await initialData ?? createFormData();
-  }
-
   void _addValueChangedStreamToForm(StreamableFormData formData) {
     _addValueChangedStreamToFields(formData.fieldData);
   }
@@ -171,12 +295,4 @@ class StreamFormBloc extends BlocBase {
           .listen((valueData) => fieldData.value = valueData.value);
     }
   }
-
-  // void _postDataForChangeAtLocation(FormLocation formLocation) {
-  //   final fieldDataInSameSection =
-  //       _formData.sectionData[formLocation.sectionIndex].fieldData;
-  //   final fieldDataToReload = fieldDataInSameSection.getRange(
-  //       formLocation.fieldIndex, fieldDataInSameSection.length);
-  //   fieldDataToReload.forEach((fieldData) => _inField.add(fieldData));
-  // }
 }

@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:form/index.dart';
 
 class FormCompositionFieldData extends StreamableFormFieldData<String> {
-  String title;
-  String placeholder;
-  bool autofocus;
-  TextInputAction inputAction;
+  final String title;
+  final String placeholder;
+  final bool autofocus;
+  final TextInputAction inputAction;
 
   FormCompositionFieldData(
       {this.title,

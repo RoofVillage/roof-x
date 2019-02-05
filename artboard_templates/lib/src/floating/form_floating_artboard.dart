@@ -1,35 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:button_components/index.dart';
-import 'package:roof_form/index.dart';
+
+import 'widgets/index.dart';
 
 import 'floating_artboard.dart';
 
-abstract class FormFloatingArtboard extends FloatingArtboard {
-  String get title;
-  String get subtitle;
-  String get submitButtonText;
-  List<StreamableFormFieldData> get fieldData;
-
-  String get address;
-  Map<String, dynamic> get params;
-
+abstract class FormFloatingArtboard extends FloatingArtboard with FormArtboard {
   @override
   List<Widget> buildChildren(BuildContext context) {
-    final form = RoofStreamForm(
-        initialFormData: Future<SpacedStreamableFormData>.value(
-            SpacedStreamableFormData.withFields(
-          fieldData: fieldData,
-        )),
-        getAddress: () => address,
-        getParams: () => params);
-
-    final submitButton = RoofSubmitButton(
-        text: submitButtonText, onTap: () => form.onSubmit(context));
+    //Create a submit button that submits the form.
+    final submitButton =
+        RoofSubmitButton(text: submitButtonText, onTap: form.submit);
 
     return <Widget>[
       Text(title),
       Text(subtitle),
-      form,
+      buildForm(context),
       Container(height: 20),
       submitButton
     ];
