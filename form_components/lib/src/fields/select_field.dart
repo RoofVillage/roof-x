@@ -45,16 +45,12 @@ class _RoofSelectFieldState extends State<RoofSelectField>
   bool isMultiSelect;
   bool isExpanded;
 
-  static const _defaultEmptyText = "No selection";
-  static const _defaultIsMultiSelect = false;
-  static const _defaultSelectedOptions = [];
-
   _RoofSelectFieldState(
       {this.title,
-      this.emptyText = _defaultEmptyText,
-      this.selectedOptions = _defaultSelectedOptions,
+      this.emptyText,
+      this.selectedOptions,
       this.options,
-      this.isMultiSelect = _defaultIsMultiSelect});
+      this.isMultiSelect});
 
   @override
   void initState() {

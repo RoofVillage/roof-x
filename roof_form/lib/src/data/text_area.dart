@@ -6,7 +6,8 @@ class FormTextAreaData extends FormCompositionFieldData {
       {String title,
       String placeholder,
       String initialValue,
-      double size,
+      double size = 1,
+      bool autofocus = false,
       ValueChanged<String> onChanged,
       bool hidden})
       : super(
@@ -14,6 +15,7 @@ class FormTextAreaData extends FormCompositionFieldData {
             placeholder: placeholder,
             initialValue: initialValue,
             onChanged: onChanged,
+            autofocus: autofocus,
             size: size,
             hidden: hidden);
 }

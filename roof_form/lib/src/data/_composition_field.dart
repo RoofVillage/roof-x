@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:form/index.dart';
 
-class FormCompositionFieldData extends StreamableFormFieldData<String> {
+abstract class FormCompositionFieldData extends StreamableFormFieldData<String> {
   String title;
   String placeholder;
   bool autofocus;
@@ -10,13 +10,14 @@ class FormCompositionFieldData extends StreamableFormFieldData<String> {
   FormCompositionFieldData(
       {this.title,
       this.placeholder,
-      this.autofocus = false,
       this.inputAction,
+      bool autofocus,
       String initialValue,
       double size,
       ValueChanged<String> onChanged,
-      bool hidden})
-      : super(
+      bool hidden}) 
+      : autofocus = autofocus ?? false, 
+      super(
             initialValue: initialValue,
             onChanged: onChanged,
             size: size,

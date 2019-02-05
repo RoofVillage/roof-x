@@ -3,7 +3,6 @@ import 'package:spec/index.dart';
 import 'package:theme/index.dart';
 import 'package:typography/index.dart';
 
-import '_composition_field.dart';
 import 'widgets/index.dart';
 
 class RoofTextArea extends StatelessWidget {
@@ -42,7 +41,7 @@ class RoofTextArea extends StatelessWidget {
   }
 }
 
-class _FieldBody extends StatelessWidget with RoofCompositionField {
+class _FieldBody extends StatelessWidget {
   final bool autofocus;
   final String initialValue;
   final String placeholder;
