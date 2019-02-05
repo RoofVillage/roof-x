@@ -28,8 +28,8 @@ abstract class FormFloatingArtboard extends FloatingArtboard {
     final headerStyle = _headerStyle.textStyleWithColor(headerColor);
     final subtitleStyle = _subtitleStyle.textStyleWithColor(subtitleColor);
 
-    final bodyVerticalPadding = EdgeInsets.only(top: RoofDistance.e);
-    final buttonVerticalPadding = EdgeInsets.only(top: RoofDistance.e);
+    final bodyVerticalPadding = EdgeInsets.only(top: RoofDistance.d);
+    final buttonVerticalPadding = EdgeInsets.only(top: RoofDistance.d);
 
     final form = RoofStreamForm(
         initialFormData: Future<SpacedStreamableFormData>.value(
