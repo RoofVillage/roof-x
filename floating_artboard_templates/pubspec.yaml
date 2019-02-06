@@ -14,8 +14,6 @@ dependencies:
     path: ../button_components
   form_artboard_mixin:
     path: ../form_artboard_mixin
-  services:
-    path: ../services
   artboard:
     path: ../artboard
 

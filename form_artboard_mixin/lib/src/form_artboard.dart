@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:spec/index.dart';
 import 'package:form/index.dart';
 
-import 'roof_stream_form.dart';
-import 'data/index.dart';
+import '_roof_stream_form.dart';
 
 abstract class FormArtboard {
   List<StreamableFormFieldData> get fieldData => null;

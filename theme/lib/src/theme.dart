@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '_semantic_color.dart';
+import 'semantic_color.dart';
 import 'option.dart';
 
 typedef _UseTheme = Function(RoofThemeOption theme);

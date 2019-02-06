@@ -9,10 +9,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  icon_library:
-    path: ../icon_library
-  decorated_text:
-    path: ../decorated_text
 
 dev_dependencies:
   flutter_test:

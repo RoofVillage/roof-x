@@ -17,7 +17,7 @@ abstract class RoofNavButton extends StatelessWidget {
 
     return GestureDetector(
         onTap: (() {
-          RoofHaptic.triggerWith(RoofHapticOption.click);
+          Haptic.triggerWith(HapticOption.click);
           onTap(context);
         }),
         child: Container(padding: _padding, child: iconForTheme(theme)));

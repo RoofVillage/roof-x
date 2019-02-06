@@ -95,9 +95,9 @@ class _RoofSelectFieldState extends State<RoofSelectField>
   }
 
   _updateSelectedOptions(option) {
-    RoofHapticOption hapticOption;
+    HapticOption hapticOption;
     if (isMultiSelect) {
-      hapticOption = RoofHapticOption.light;
+      hapticOption = HapticOption.light;
       final optionIsSelected = selectedOptions.contains(option);
       setState(() {
         optionIsSelected
@@ -105,20 +105,18 @@ class _RoofSelectFieldState extends State<RoofSelectField>
             : selectedOptions.add(option);
       });
     } else {
-      hapticOption =
-          isExpanded ? RoofHapticOption.medium : RoofHapticOption.light;
+      hapticOption = isExpanded ? HapticOption.medium : HapticOption.light;
       setState(() {
         selectedOptions.first = option;
         isExpanded = !isExpanded;
       });
     }
-    RoofHaptic.triggerWith(hapticOption);
+    Haptic.triggerWith(hapticOption);
   }
 
   _updateDropdown() {
-    final hapticOption =
-        isExpanded ? RoofHapticOption.medium : RoofHapticOption.light;
-    RoofHaptic.triggerWith(hapticOption);
+    final hapticOption = isExpanded ? HapticOption.medium : HapticOption.light;
+    Haptic.triggerWith(hapticOption);
     setState(() {
       isExpanded = !isExpanded;
     });

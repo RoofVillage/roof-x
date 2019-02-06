@@ -78,7 +78,7 @@ class _RoofSwitchFieldState extends State<RoofSwitchField>
   }
 
   void _onTap() {
-    RoofHaptic.triggerWith(RoofHapticOption.light);
+    Haptic.triggerWith(HapticOption.light);
     setState(() {
       isOn = !isOn;
     });

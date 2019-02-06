@@ -17,6 +17,8 @@ dependencies:
     path: ../decorated_text
   sorting:
     path: ../sorting
+  icon_library:
+    path: ../icon_library
 
 dev_dependencies:
   flutter_test:

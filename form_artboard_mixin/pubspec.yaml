@@ -11,8 +11,6 @@ dependencies:
     sdk: flutter
   form:
     path: ../form
-  spec:
-    path: ../spec
   form_components:
     path: ../form_components
 

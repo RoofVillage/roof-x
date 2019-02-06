@@ -8,16 +8,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  navigation_components:
-    path: ../navigation_components
-  button_components:
-    path: ../button_components
   table_artboard_mixin:
     path: ../table_artboard_mixin
-  services:
-    path: ../services
-  artboard:
-    path: ../artboard
   routing:
     path: ../routing
   floating_artboard_templates:
