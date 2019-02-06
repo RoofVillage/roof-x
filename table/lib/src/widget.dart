@@ -14,6 +14,10 @@ class StreamTableBuilder<T extends StreamTableBloc> extends StatelessWidget {
   final bool showsHeaderForEmptyTable;
   final bool showsHeadersForEmptySections;
 
+  Widget get _empty => SliverToBoxAdapter();
+  Widget get _emptyHeader =>
+      SliverPersistentHeader(delegate: _EmptySliverPersistentHeaderDelegate());
+
   StreamTableBuilder(
       {Key key,
       @required this.buildRow,
@@ -30,9 +34,8 @@ class StreamTableBuilder<T extends StreamTableBloc> extends StatelessWidget {
         builder: (context, snapshot) {
           if (!snapshot.hasData) return Container();
 
-          final ddd = _createTable(
+          return _createTable(
               bloc: tableBloc, context: context, tableData: snapshot.data);
-          return ddd;
         });
   }
 
@@ -59,12 +62,12 @@ class StreamTableBuilder<T extends StreamTableBloc> extends StatelessWidget {
         final outSectionStream =
             bloc.outSection.where((data) => data.key == sectionData.key);
 
-        // final sectionHeader = _createSectionHeader(
-        //     outSectionStream: outSectionStream,
-        //     sectionData: sectionData,
-        //     sectionIndex: index);
+        final sectionHeader = _createSectionHeader(
+            outSectionStream: outSectionStream,
+            sectionData: sectionData,
+            sectionIndex: index);
 
-        // slivers.add(sectionHeader);
+        slivers.add(sectionHeader);
 
         final section = _createSection(
             bloc: bloc,
@@ -97,12 +100,14 @@ class StreamTableBuilder<T extends StreamTableBloc> extends StatelessWidget {
                   showsHeadersForEmptySections) &&
               buildSectionHeader != null;
 
-          if (!snapshot.hasData || !shouldShowSectionHeader) return _empty();
+          if (!snapshot.hasData || !shouldShowSectionHeader) {
+            return _emptyHeader;
+          }
 
           final header = buildSectionHeader(
               headerData: sectionData.headerData, sectionIndex: sectionIndex);
 
-          if (header == null) return _empty();
+          if (header == null) return _emptyHeader;
 
           return header;
         });
@@ -118,7 +123,7 @@ class StreamTableBuilder<T extends StreamTableBloc> extends StatelessWidget {
         stream: outSectionStream,
         initialData: sectionData,
         builder: (context, snapshot) {
-          if (!snapshot.hasData) return SliverToBoxAdapter();
+          if (!snapshot.hasData) return _empty;
 
           final section = _createSectionSliver(
               bloc: bloc,
@@ -165,19 +170,17 @@ class StreamTableBuilder<T extends StreamTableBloc> extends StatelessWidget {
         stream: outRowStream,
         initialData: rowData,
         builder: (context, snapshot) {
-          if (!snapshot.hasData) return SliverToBoxAdapter();
+          if (!snapshot.hasData) return _empty;
           final row = buildRow(
               rowData: snapshot.data,
               rowIndex: rowIndex,
               sectionIndex: sectionIndex);
 
-          if (row == null) return _empty();
+          if (row == null) return _empty;
 
           return row;
         });
   }
-
-  Widget _empty() => SliverToBoxAdapter();
 }
 
 typedef _RowBuilder = Widget Function(
@@ -188,3 +191,20 @@ typedef _TableHeaderBuilder = SliverPersistentHeader Function(
 
 typedef _TableSectionHeaderBuilder = SliverPersistentHeader Function(
     {@required StreamableTableSectionHeaderData headerData, int sectionIndex});
+
+class _EmptySliverPersistentHeaderDelegate
+    extends SliverPersistentHeaderDelegate {
+  @override
+  double get minExtent => 0;
+
+  @override
+  double get maxExtent => 0;
+
+  @override
+  Widget build(
+          BuildContext context, double shrinkOffset, bool overlapsContent) =>
+      Container();
+
+  @override
+  bool shouldRebuild(SliverPersistentHeaderDelegate oldDelegate) => true;
+}

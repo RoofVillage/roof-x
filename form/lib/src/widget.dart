@@ -9,6 +9,8 @@ class StreamFormBuilder<T extends StreamFormBloc> extends StatelessWidget {
 
   final _FormSectionHeaderBuilder buildSectionHeader;
 
+  Widget get _empty => Container();
+
   StreamFormBuilder(
       {Key key, @required this.buildField, this.buildSectionHeader})
       : super(key: key);
@@ -72,12 +74,12 @@ class StreamFormBuilder<T extends StreamFormBloc> extends StatelessWidget {
               sectionData.fieldData.isNotEmpty &&
               buildSectionHeader != null;
 
-          if (!snapshot.hasData || !shouldShowSectionHeader) return _empty();
+          if (!snapshot.hasData || !shouldShowSectionHeader) return _empty;
 
           final header = buildSectionHeader(
               headerData: sectionData.headerData, sectionIndex: sectionIndex);
 
-          if (header == null) return _empty();
+          if (header == null) return _empty;
 
           return header;
         });
@@ -183,21 +185,19 @@ class StreamFormBuilder<T extends StreamFormBloc> extends StatelessWidget {
         stream: outFieldStream,
         initialData: fieldData,
         builder: (context, snapshot) {
-          if (!snapshot.hasData) return _empty();
+          if (!snapshot.hasData) return _empty;
           final field = buildField(
               fieldData: snapshot.data,
               fieldIndex: fieldIndex,
               sectionIndex: sectionIndex);
 
-          if (field == null) return _empty();
+          if (field == null) return _empty;
 
           final fieldHorizontalFlex = (fieldData.fieldSize * 100).floor();
 
           return Expanded(flex: fieldHorizontalFlex, child: field);
         });
   }
-
-  Widget _empty() => Container();
 }
 
 typedef _FieldBuilder = Widget Function(

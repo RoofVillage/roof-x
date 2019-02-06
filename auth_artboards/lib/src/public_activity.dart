@@ -5,10 +5,10 @@ import 'package:flutter/foundation.dart';
 import 'package:table_artboard_mixin/index.dart';
 import 'package:icon_library/index.dart';
 import 'package:decorated_text/index.dart';
-import 'package:services/index.dart';
 import 'package:full_screen_artboard_templates/index.dart';
 import 'package:navigation_components/index.dart';
 import 'package:sorting/index.dart';
+import 'package:services/index.dart';
 
 import 'sign_up.dart';
 

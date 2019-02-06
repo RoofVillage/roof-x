@@ -1,2 +1,2 @@
-export 'src/section_headers/index.dart';
+export 'src/section_header_delegates/index.dart';
 export 'src/cells/index.dart';

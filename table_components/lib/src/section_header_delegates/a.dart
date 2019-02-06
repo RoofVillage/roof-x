@@ -5,27 +5,19 @@ import 'package:spec/index.dart';
 import 'package:typography/index.dart';
 import 'package:theme/index.dart';
 
-class RoofTableSectionHeaderA extends SliverPersistentHeader {
-  RoofTableSectionHeaderA({@required String title})
-      : super(
-            pinned: false,
-            floating: false,
-            delegate: _RoofTableSectionHeaderADelegate(title: title));
-}
-
-class _RoofTableSectionHeaderADelegate extends SliverPersistentHeaderDelegate {
+class RoofTableSectionHeaderADelegate extends SliverPersistentHeaderDelegate {
   final String title;
 
-  final double minHeight = RoofDistance.e;
-  final double maxHeight = RoofDistance.f;
+  final double _minHeight = RoofDistance.e;
+  final double _maxHeight = RoofDistance.f;
 
-  _RoofTableSectionHeaderADelegate({@required this.title});
-
-  @override
-  double get minExtent => minHeight;
+  RoofTableSectionHeaderADelegate({@required this.title});
 
   @override
-  double get maxExtent => max(maxHeight, minHeight);
+  double get minExtent => _minHeight;
+
+  @override
+  double get maxExtent => max(_maxHeight, _minHeight);
 
   @override
   Widget build(
@@ -37,9 +29,7 @@ class _RoofTableSectionHeaderADelegate extends SliverPersistentHeaderDelegate {
   }
 
   @override
-  bool shouldRebuild(_RoofTableSectionHeaderADelegate oldDelegate) {
-    return true;
-  }
+  bool shouldRebuild(RoofTableSectionHeaderADelegate oldDelegate) => true;
 }
 
 class _TitleLabel extends StatelessWidget {

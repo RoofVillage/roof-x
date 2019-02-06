@@ -125,8 +125,6 @@ class StreamTableBloc implements BlocBase {
       sectionIndexesToUpdate.add(newLocation.sectionIndex);
     }
 
-    // update(_tableData);
-
     _postDataToSectionIndexes(sectionIndexesToUpdate);
   }
 

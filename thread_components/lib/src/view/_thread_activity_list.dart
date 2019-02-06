@@ -54,7 +54,7 @@ class _ActivityListGradient extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final topGradientColor = RoofTheme.of(context).color.background.general;
-    final bottomGradientColor = RoofTheme.of(context).color.background.general;
+    // final bottomGradientColor = RoofTheme.of(context).color.background.general;
 
     final topGradient = Container(
         height: _gradientHeight,
@@ -64,22 +64,20 @@ class _ActivityListGradient extends StatelessWidget {
                 end: Alignment.bottomCenter,
                 colors: [topGradientColor, topGradientColor.withAlpha(0)])));
 
-    final bottomGradient = Container(
-        height: _gradientHeight,
-        decoration: BoxDecoration(
-            gradient: LinearGradient(
-                begin: Alignment.bottomCenter,
-                end: Alignment.topCenter,
-                colors: [
-              bottomGradientColor,
-              bottomGradientColor.withAlpha(0)
-            ])));
+    // final bottomGradient = Container(
+    //     height: _gradientHeight,
+    //     decoration: BoxDecoration(
+    //         gradient: LinearGradient(
+    //             begin: Alignment.bottomCenter,
+    //             end: Alignment.topCenter,
+    //             colors: [
+    //           bottomGradientColor,
+    //           bottomGradientColor.withAlpha(0)
+    //         ])));
 
-    return Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          topGradient, 
-        // bottomGradient
-        ]);
+    return Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+      topGradient,
+      // bottomGradient
+    ]);
   }
 }
