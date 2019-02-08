@@ -9,7 +9,7 @@ abstract class FormArtboard {
   List<StreamableFormSectionData> get sectionData => null;
   StreamableFormData get formData => null;
   String get address;
-  Map<String, dynamic> get params;
+  Map<String, Object> get params;
   double get fieldHorizontalSpacing => RoofDistance.c;
 
   Future<List<StreamableFormFieldData>> get loadedFieldData async {

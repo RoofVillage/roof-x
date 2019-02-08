@@ -5,7 +5,7 @@ import 'package:network/index.dart';
 import 'data/index.dart';
 
 typedef AddressGetter = String Function();
-typedef ParamsGetter = Map<String, dynamic> Function();
+typedef ParamsGetter = Map<String, Object> Function();
 
 class StreamFormBloc extends BlocBase {
   AddressGetter getAddress;

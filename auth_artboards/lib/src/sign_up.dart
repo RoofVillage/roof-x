@@ -46,5 +46,5 @@ class SignUpArtboard extends FormFloatingArtboard {
   String get address => Address.signUp;
 
   @override
-  Map<String, dynamic> get params => {};
+  Map<String, Object> get params => {};
 }
