@@ -1,5 +1,5 @@
-export '_row.dart';
-export '_section.dart';
-export '_table.dart';
-export '_table_header.dart';
-export '_section_header.dart';
+export 'row.dart';
+export 'section.dart';
+export 'table.dart';
+export 'table_header.dart';
+export 'section_header.dart';

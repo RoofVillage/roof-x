@@ -1,3 +1,3 @@
-export '_activity_comment.dart';
-export '_activity_event.dart';
-export '_activity_item.dart';
+export 'activity_comment.dart';
+export 'activity_event.dart';
+export 'activity_item.dart';

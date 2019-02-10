@@ -1,7 +1,7 @@
 import 'package:types/index.dart';
 import '../utils/index.dart';
 
-import '_name_payment_profile.dart';
+import 'name_payment_profile.dart';
 
 class PaymentDefault extends Mappable {
   final PaymentDefaultType type;

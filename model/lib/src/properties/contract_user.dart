@@ -1,5 +1,5 @@
 import '_name_user.dart';
-import '_contract.dart';
+import '../abstract/index.dart';
 import '../utils/index.dart';
 
 class ContractUser extends NameUser {

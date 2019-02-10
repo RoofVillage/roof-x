@@ -1,5 +1,5 @@
 import '_name_user.dart';
-import '../abstract/_domain.dart';
+import '../abstract/index.dart';
 import '../utils/index.dart';
 
 class DomainUser extends NameUser {

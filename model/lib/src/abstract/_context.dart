@@ -1,6 +1,6 @@
 import '../utils/index.dart';
 
-import '_object.dart';
+import 'object.dart';
 
 class Context extends ModelObject {
   final int unreadCommentableObjectCount;

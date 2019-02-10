@@ -1,3 +1,3 @@
-export '_object.dart';
-export '_domain.dart';
-export '_contract.dart';
+export 'object.dart';
+export 'domain.dart';
+export 'contract.dart';

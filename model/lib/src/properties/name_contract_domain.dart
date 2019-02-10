@@ -1,7 +1,7 @@
 import 'package:types/index.dart';
 import '../utils/index.dart';
 
-import '_name_domain.dart';
+import 'name_domain.dart';
 
 class NameContractDomain extends NameDomain {
   final String phoneNumber;
