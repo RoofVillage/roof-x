@@ -1,5 +1,5 @@
-name: model
-description: Tools to reference and persist model objects.
+name: date
+description: Date parsing and formatting.
 
 version: 1.0.0+1
 
@@ -9,12 +9,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  storage:
-    path: ../storage
-  types:
-    path: ../types
-  date:
-    path: ../date
 
 dev_dependencies:
   flutter_test:

@@ -2,7 +2,7 @@ import 'dart:io';
 import 'dart:collection';
 import 'package:storage/index.dart';
 
-import 'object.dart';
+import 'abstract/index.dart';
 
 class Cache {
   SplayTreeMap _tempCacheMap;
