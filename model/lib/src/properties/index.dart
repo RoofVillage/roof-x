@@ -12,3 +12,8 @@ export 'schedule.dart';
 export 'late_fee.dart';
 export 'name_property.dart';
 export 'name_user.dart';
+export 'user_reference.dart';
+export 'bank_owner_reference.dart';
+export 'task_reference.dart';
+export 'commentable_object_reference.dart';
+export 'thread_reference.dart';

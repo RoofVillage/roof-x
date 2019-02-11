@@ -90,4 +90,11 @@ class Key {
   static const domainUsers = "domainUsers";
   static const stubs = "stubs";
   static const formerStubs = "formerStubs";
+  static const clientReferenceId = "clientReferenceId";
+  static const deadline = "deadline";
+  static const note = "note";
+  static const privacyKind = "privacyKind";
+  static const completingUsers = "completingUsers";
+  static const task = "task";
+  static const prizeCompletion = "prizeCompletion";
 }

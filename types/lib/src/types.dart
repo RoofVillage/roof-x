@@ -12,3 +12,11 @@ enum DayType { sunday, monday, tuesday, wednesday, thursday, friday, saturday }
 enum FeePayerType { payer, reciever }
 enum InvoiceType { contractual }
 enum StubType { user }
+enum TaskType { reminder, shoppingItem, serviceRequest, invoice }
+enum CommentableObjectType {
+  thread,
+  reminder,
+  shoppingItem,
+  serviceRequest,
+  invoice
+}

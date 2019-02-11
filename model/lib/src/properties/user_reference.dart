@@ -1,18 +1,18 @@
 import 'package:types/index.dart';
 import '../utils/index.dart';
 
-class Reference extends Mappable {
+class UserReference extends Mappable {
   final String guid;
   final String domainGuid;
   final DomainType domainType;
 
-  Reference({this.guid, this.domainGuid, this.domainType});
+  UserReference({this.guid, this.domainGuid, this.domainType});
 
-  factory Reference.fromMap(Map<String, Object> map) {
+  factory UserReference.fromMap(Map<String, Object> map) {
     final domainType = DomainType.values.firstWhere(
         (value) => value.toString() == 'DomainType.' + map[Key.domainKind]);
 
-    return Reference(
+    return UserReference(
         guid: map[Key.guid],
         domainGuid: map[Key.domainGuid],
         domainType: domainType);

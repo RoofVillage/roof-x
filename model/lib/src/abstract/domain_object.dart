@@ -7,7 +7,7 @@ import 'object.dart';
 import 'contract.dart';
 import 'domain.dart';
 
-class DomainObect extends ModelObject {
+class DomainObject extends ModelObject {
   // final Domain domain;
   // final Contract contract;
   final List<NameUser> contractDomainUsers;
@@ -18,7 +18,7 @@ class DomainObect extends ModelObject {
   final String contractPropertyName;
   final FeePayerType feePayerType;
 
-  const DomainObect(
+  const DomainObject(
       {
       //   this.domain,
       // this.contract,
@@ -30,10 +30,10 @@ class DomainObect extends ModelObject {
       this.contractPropertyName,
       this.feePayerType});
 
-  factory DomainObect.fromMap(Map<String, Object> map) {
+  factory DomainObject.fromMap(Map<String, Object> map) {
     final contract = map[Key.contract] as Map;
     final property = contract[Key.property] as Map;
-    return DomainObect(
+    return DomainObject(
         contractDomainUsers: (contract[Key.domainUsers] as List)
             .map((map) => NameUser.fromMap(map)),
         contractUsers:
