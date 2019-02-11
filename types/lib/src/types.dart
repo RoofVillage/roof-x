@@ -11,3 +11,4 @@ enum FrequencyType { daily, weekly, monthly }
 enum DayType { sunday, monday, tuesday, wednesday, thursday, friday, saturday }
 enum FeePayerType { payer, reciever }
 enum InvoiceType { contractual }
+enum StubType { user }

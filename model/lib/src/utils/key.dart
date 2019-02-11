@@ -86,4 +86,8 @@ class Key {
   static const openServiceRequest = "openServiceRequest";
   static const serviceRequestCompletion = "serviceRequestCompletion";
   static const serviceRequest = "serviceRequest";
+  static const object = "object";
+  static const domainUsers = "domainUsers";
+  static const stubs = "stubs";
+  static const formerStubs = "formerStubs";
 }

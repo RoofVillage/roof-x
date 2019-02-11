@@ -11,3 +11,4 @@ export 'location.dart';
 export 'schedule.dart';
 export 'late_fee.dart';
 export 'name_property.dart';
+export 'name_user.dart';
