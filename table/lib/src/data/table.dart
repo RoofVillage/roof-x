@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:stream/index.dart';
 
-import '_table_header.dart';
-import '_section.dart';
-import '_row.dart';
+import 'table_header.dart';
+import 'section.dart';
+import 'row.dart';
 
 import '../util/index.dart';
 
