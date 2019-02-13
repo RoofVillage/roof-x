@@ -35,8 +35,9 @@ class RoofStreamForm extends StreamForm<StreamableFormFieldData,
 
   Widget buildOptionSelect(
       {FormOptionSelectData fieldData, int fieldIndex, int sectionIndex}) {
-    List<RoofSelectFieldOptionData> options = fieldData.options.map((option) =>
-        RoofSelectFieldOptionData(title: option.title, data: option.data));
+    List<RoofSelectFieldOptionData> options = fieldData.options.map((option) {
+      return RoofSelectFieldOptionData(title: option.title, data: option.data);
+    });
 
     return RoofSelectField(
         title: fieldData.title,
@@ -45,8 +46,10 @@ class RoofStreamForm extends StreamForm<StreamableFormFieldData,
         options: options,
         onChanged: (selectedOptions) {
           List<FormOptionSelectValueData> convertedOptions =
-              selectedOptions.map((option) => FormOptionSelectValueData(
-                  title: option.title, data: option.data));
+              selectedOptions.map((option) {
+            return FormOptionSelectValueData(
+                title: option.title, data: option.data);
+          });
           fieldData.onChanged(convertedOptions);
         });
   }
