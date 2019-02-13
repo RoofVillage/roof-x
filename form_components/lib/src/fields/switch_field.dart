@@ -9,6 +9,7 @@ class RoofSwitchField extends StatefulWidget {
   final String title;
   final bool isOnInitially;
   final int labelMaxLines;
+  final Function(bool) onChanged;
 
   static const int _defaultLabelMaxLines = 3;
   static const bool _isOnInitially = false;
@@ -16,11 +17,15 @@ class RoofSwitchField extends StatefulWidget {
   const RoofSwitchField(
       {this.title,
       this.isOnInitially = _isOnInitially,
-      this.labelMaxLines = _defaultLabelMaxLines});
+      this.labelMaxLines = _defaultLabelMaxLines,
+      this.onChanged});
 
   @override
   _RoofSwitchFieldState createState() => _RoofSwitchFieldState(
-      title: title, isOn: isOnInitially, labelMaxLines: labelMaxLines);
+      title: title,
+      isOn: isOnInitially,
+      labelMaxLines: labelMaxLines,
+      onChanged: onChanged);
 }
 
 class _RoofSwitchFieldState extends State<RoofSwitchField>
@@ -30,11 +35,13 @@ class _RoofSwitchFieldState extends State<RoofSwitchField>
   int labelMaxLines;
   Animation<Color> animation;
   AnimationController controller;
+  Function(bool) onChanged;
 
   final _typographyStyle = RoofTypography.title1;
   final _duration = RoofDuration.short;
 
-  _RoofSwitchFieldState({this.title, this.isOn, this.labelMaxLines});
+  _RoofSwitchFieldState(
+      {this.title, this.isOn, this.labelMaxLines, this.onChanged});
 
   initState() {
     super.initState();
@@ -79,6 +86,7 @@ class _RoofSwitchFieldState extends State<RoofSwitchField>
 
   void _onTap() {
     Haptic.triggerWith(HapticOption.light);
+    onChanged(!isOn);
     setState(() {
       isOn = !isOn;
     });
