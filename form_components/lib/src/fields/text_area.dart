@@ -73,16 +73,16 @@ class _FieldBody2State extends State<_FieldBody2> {
   TextInputAction textInputAction;
   Function(String) onChanged;
 
+  final int _maxLines = 3;
+  final _typographyStyle = RoofTypography.body2;
+  final _controller = TextEditingController();
+
   _FieldBody2State(
       {this.autofocus,
       this.initialValue,
       this.textInputAction,
       this.placeholder,
       this.onChanged});
-
-  final int _maxLines = 3;
-  final _typographyDecoration = RoofTypography.body2;
-  final _controller = TextEditingController();
 
   _controllerUpdated() {
     onChanged(_controller.text);
@@ -107,7 +107,7 @@ class _FieldBody2State extends State<_FieldBody2> {
         focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(color: theme.color.stroke.focus),
             borderRadius: BorderRadius.all(RoofCornerRadius.regular)),
-        hintStyle: _typographyDecoration
+        hintStyle: _typographyStyle
             .textStyleWithColor(theme.color.text.placeholder));
 
     return Container(

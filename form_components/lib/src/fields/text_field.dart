@@ -82,6 +82,12 @@ class _FieldBodyState extends State<_FieldBody> {
   String placeholder;
   Function(String) onChanged;
 
+  final _controller = TextEditingController();
+  final _typographyStyle = RoofTypography.body2;
+  String get _formattedPlaceholder {
+    return (placeholder == null && isPassword) ? "••••••••" : placeholder;
+  }
+
   _FieldBodyState(
       {this.autofocus,
       this.isPassword,
@@ -89,12 +95,6 @@ class _FieldBodyState extends State<_FieldBody> {
       this.initialValue,
       this.placeholder,
       this.onChanged});
-
-  final _controller = TextEditingController();
-  final _typographyDecoration = RoofTypography.body2;
-  String get _formattedPlaceholder {
-    return (placeholder == null && isPassword) ? "••••••••" : placeholder;
-  }
 
   _controllerUpdated() {
     onChanged(_controller.text);
@@ -116,7 +116,7 @@ class _FieldBodyState extends State<_FieldBody> {
             borderSide: BorderSide(color: theme.color.stroke.light)),
         focusedBorder: UnderlineInputBorder(
             borderSide: BorderSide(color: theme.color.stroke.focus)),
-        hintStyle: _typographyDecoration
+        hintStyle: _typographyStyle
             .textStyleWithColor(theme.color.text.placeholder));
 
     return TextField(
