@@ -65,7 +65,7 @@ class RoofStreamForm extends StreamForm<StreamableFormFieldData,
         onChanged: (selectedOptions) {
           List<FormOptionSelectValueData> convertedOptions =
               convertSelectedOptionsToData(selectedOptions);
-          print("Select field: ${convertedOptions[0].title}");
+          fieldData.onChanged(convertedOptions);
         });
   }
 

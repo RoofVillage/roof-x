@@ -35,10 +35,15 @@ class SignUpArtboard extends FormFloatingArtboard {
         title: "Turn dis off",
         initialValue: true,
         onChanged: (isOn) => print("switch $isOn"));
-    final _selectField = FormOptionSelectData(title: "Pick yo shit", options: [
-      FormOptionSelectValueData(title: "One"),
-      FormOptionSelectValueData(title: "two")
-    ]);
+    final _selectField = FormOptionSelectData(
+        title: "Pick yo shit",
+        options: [
+          FormOptionSelectValueData(title: "One"),
+          FormOptionSelectValueData(title: "two"),
+        ],
+        onChanged: (selectedOptions) {
+          print("Select field: ${selectedOptions[0].title}");
+        });
 
     return [
       _nameFieldData,
