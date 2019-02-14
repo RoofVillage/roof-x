@@ -37,7 +37,7 @@ class _RoofSwitchFieldState extends State<RoofSwitchField>
   AnimationController controller;
   Function(bool) onChanged;
 
-  final _typographyStyle = RoofTypography.title1;
+  final _typographyStyle = RoofTypography.title;
   final _duration = RoofDuration.short;
 
   _RoofSwitchFieldState(

@@ -108,7 +108,7 @@ class _Body extends StatelessWidget {
 class _DetailLabel extends StatelessWidget {
   final String text;
 
-  final _typographyStyle = RoofTypography.body2;
+  final _typographyStyle = RoofTypography.bodyPrimary;
 
   _DetailLabel({Key key, @required this.text}) : super(key: key);
   @override
@@ -134,8 +134,8 @@ class _CellDivider extends StatelessWidget {
 class _TitleLabel extends StatelessWidget {
   final WeightDecoratedText decoratedText;
 
-  final _defaultTypographyStyle = RoofTypography.body1a;
-  final _thinTypographyStyle = RoofTypography.body1b;
+  final _defaultTypographyStyle = RoofTypography.bodyPrimaryThick;
+  final _thinTypographyStyle = RoofTypography.bodyPrimary;
 
   _TitleLabel({Key key, @required this.decoratedText}) : super(key: key);
 
