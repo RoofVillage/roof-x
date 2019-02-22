@@ -134,8 +134,8 @@ class _CellDivider extends StatelessWidget {
 class _TitleLabel extends StatelessWidget {
   final WeightDecoratedText decoratedText;
 
-  final _defaultTypographyStyle = RoofTypography.bodyPrimaryThick;
-  final _thinTypographyStyle = RoofTypography.bodyPrimary;
+  final _defaultTypographyStyle = RoofTypography.title;
+  final _thinTypographyStyle = RoofTypography.bodySecondary;
 
   _TitleLabel({Key key, @required this.decoratedText}) : super(key: key);
 
