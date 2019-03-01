@@ -17,6 +17,8 @@ dependencies:
     path: ../theme
   haptics:
     path: ../haptics
+  icon_library:
+    path: ../icon_library
 
 dev_dependencies:
   flutter_test:

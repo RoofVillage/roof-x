@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:stream/index.dart';
 
-import '_field.dart';
-import '_section_header.dart';
+import 'field.dart';
+import 'section_header.dart';
 
 class StreamableFormSectionData extends StreamableData {
   final double fieldHorizontalSpacing;

@@ -13,43 +13,45 @@ class RoofStreamForm extends StreamForm<StreamableFormFieldData,
         placeholder: fieldData.placeholder,
         initialValue: fieldData.value,
         isPassword: false,
-        autofocus: fieldData.autofocus,
-        textInputAction: fieldData.inputAction);
+        onChanged: fieldData.onChanged);
   }
 
   Widget buildTextArea(
-      {FormTextAreaData fieldData,
-      int fieldIndex,
-      int sectionIndex,
-      bool autofocus,
-      TextInputAction textInputAction}) {
+      {FormTextAreaData fieldData, int fieldIndex, int sectionIndex}) {
     return RoofTextArea(
         fieldName: fieldData.title,
         placeholder: fieldData.placeholder,
         initialValue: fieldData.value,
-        autofocus: autofocus,
-        textInputAction: textInputAction);
+        onChanged: fieldData.onChanged);
   }
 
   Widget buildSwitch(
       {FormSwitchData fieldData, int fieldIndex, int sectionIndex}) {
     return RoofSwitchField(
-        title: fieldData.title, isOnInitially: fieldData.initialValue);
+        title: fieldData.title,
+        isOnInitially: fieldData.initialValue,
+        onChanged: fieldData.onChanged);
   }
 
   Widget buildOptionSelect(
       {FormOptionSelectData fieldData, int fieldIndex, int sectionIndex}) {
-    List<RoofSelectFieldOptionData> options = [];
-    for (var option in fieldData.options) {
-      options.add(
-          RoofSelectFieldOptionData(title: option.title, data: option.data));
-    }
+    List<RoofSelectFieldOptionData> options = fieldData.options.map((option) {
+      return RoofSelectFieldOptionData(title: option.title, data: option.data);
+    }).toList();
 
     return RoofSelectField(
         title: fieldData.title,
         emptyText: fieldData.emptyText,
         isMultiSelect: fieldData.isMultiSelect,
-        options: options);
+        options: options,
+        onChanged: (selectedOptions) {
+          List<FormOptionSelectValueData> convertedOptions =
+              selectedOptions.map((option) {
+            return FormOptionSelectValueData(
+                title: option.title, data: option.data);
+          }).toList();
+          fieldData.onChanged(convertedOptions);
+        });
   }
 
   @override

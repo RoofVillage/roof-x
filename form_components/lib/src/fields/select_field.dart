@@ -20,20 +20,23 @@ class RoofSelectField extends StatefulWidget {
   final List<RoofSelectFieldOptionData> selectedOptions;
   final List<RoofSelectFieldOptionData> options;
   final bool isMultiSelect;
+  final Function(List<RoofSelectFieldOptionData>) onChanged;
 
   const RoofSelectField(
       {this.title,
       this.emptyText,
       this.selectedOptions,
       this.options,
-      this.isMultiSelect});
+      this.isMultiSelect,
+      this.onChanged});
 
   @override
   _RoofSelectFieldState createState() => _RoofSelectFieldState(
       title: title,
       selectedOptions: selectedOptions,
       options: options,
-      isMultiSelect: isMultiSelect);
+      isMultiSelect: isMultiSelect,
+      onChanged: onChanged);
 }
 
 class _RoofSelectFieldState extends State<RoofSelectField>
@@ -44,13 +47,15 @@ class _RoofSelectFieldState extends State<RoofSelectField>
   List<RoofSelectFieldOptionData> options;
   bool isMultiSelect;
   bool isExpanded;
+  Function(List<RoofSelectFieldOptionData>) onChanged;
 
   _RoofSelectFieldState(
       {this.title,
       this.emptyText,
       this.selectedOptions,
       this.options,
-      this.isMultiSelect});
+      this.isMultiSelect,
+      this.onChanged});
 
   @override
   void initState() {
@@ -67,7 +72,7 @@ class _RoofSelectFieldState extends State<RoofSelectField>
     final selectedOptionsContainer = _SelectedOptionsContainer(
         selectedOptionsText: _textForSelectedOptions(),
         emptyText: emptyText,
-        onTap: _updateDropdown,
+        onTap: _expandDropdown,
         isExpanded: isExpanded);
 
     final dropdownContainer = _DropdownContainer(
@@ -111,10 +116,11 @@ class _RoofSelectFieldState extends State<RoofSelectField>
         isExpanded = !isExpanded;
       });
     }
+    onChanged(selectedOptions);
     Haptic.triggerWith(hapticOption);
   }
 
-  _updateDropdown() {
+  _expandDropdown() {
     final hapticOption = isExpanded ? HapticOption.medium : HapticOption.light;
     Haptic.triggerWith(hapticOption);
     setState(() {
