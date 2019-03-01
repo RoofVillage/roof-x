@@ -1,5 +1,5 @@
-name: date
-description: Date parsing and formatting.
+name: navigation_artboard_mixin
+description: Navigation functionality for artboards.
 
 version: 1.0.0+1
 
@@ -9,7 +9,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  intl: ^0.15.7
+  navigation_components:
+    path: ../navigation_components
 
 dev_dependencies:
   flutter_test:

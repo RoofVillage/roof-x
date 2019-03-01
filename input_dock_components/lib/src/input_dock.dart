@@ -1,49 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:icon_library/index.dart';
 import 'package:spec/index.dart';
+import 'package:theme/index.dart';
 
-import 'widgets/index.dart';
+import 'button.dart';
+import 'field.dart';
 
-class ThreadBottomBar extends StatefulWidget {
-  final String threadActionTitle;
-  final StandardIconReference threadActionIconReference;
-  final Function threadAction;
-  final Color backgroundColor;
+class RoofInputDock extends StatefulWidget {
+  final DockInputButton inputButton;
+  final bool hasInputField;
+  final List<Widget> auxiliaryWidgets;
 
-  ThreadBottomBar(
-      {this.threadActionTitle,
-      this.threadActionIconReference,
-      this.backgroundColor,
-      this.threadAction});
+  RoofInputDock({this.inputButton, this.hasInputField, this.auxiliaryWidgets});
 
-  _ThreadBottomBarState createState() => _ThreadBottomBarState(
-      threadActionTitle: threadActionTitle,
-      threadActionIconReference: threadActionIconReference,
-      backgroundColor: backgroundColor,
-      threadAction: threadAction);
+  @override
+  State<StatefulWidget> createState() => _RoofInputDockState();
 }
 
-class _ThreadBottomBarState extends State<ThreadBottomBar>
+class _RoofInputDockState extends State<RoofInputDock>
     with SingleTickerProviderStateMixin {
-  String threadActionTitle;
-  StandardIconReference threadActionIconReference;
-  Function threadAction;
   Animation<double> animation;
   AnimationController controller;
-  Color backgroundColor;
   bool shouldFocusComment = false;
 
   static const double _baseHeight = 44;
   final Size _baseButtonSize = Size(_baseHeight, _baseHeight);
   final GlobalKey _buttonKey = GlobalKey(debugLabel: "testKey");
 
-  _ThreadBottomBarState(
-      {this.threadActionTitle,
-      this.threadActionIconReference,
-      this.threadAction,
-      this.backgroundColor});
-
-  _buildAnimation(double maxButtonWidth) {
+  void _buildAnimation(double maxButtonWidth) {
     final double minButtonWidth = _baseButtonSize.width;
 
     final Curve animationCurve = Curves.easeIn;
@@ -55,7 +38,7 @@ class _ThreadBottomBarState extends State<ThreadBottomBar>
       });
   }
 
-  _getButtonSize(_) {
+  void _getButtonSize(_) {
     if (_buttonKey.currentContext == null) return;
     final RenderBox threadActionButton =
         _buttonKey.currentContext.findRenderObject();
@@ -99,28 +82,17 @@ class _ThreadBottomBarState extends State<ThreadBottomBar>
 
     List<Widget> rowChildren = [];
 
-    final fileButton = FileButton(baseHeight: _baseHeight);
-    rowChildren.add(fileButton);
+    if (widget.auxiliaryWidgets != null && widget.auxiliaryWidgets.isNotEmpty) {
+      rowChildren.addAll(widget.auxiliaryWidgets);
+    }
 
-    final commentBox = CommentBox(onChangeCallback: updateCommentFocus);
-    rowChildren.add(commentBox);
+    if (widget.hasInputField) {
+      final commentBox = DockInputField(onChange: updateCommentFocus);
+      rowChildren.add(commentBox);
+    }
 
-    final sendButton = AnimatedSendButton(
-        visible: shouldFocusComment, buttonHeight: _baseHeight);
-    rowChildren.add(sendButton);
-
-    if (threadAction != null) {
-      double animatedButtonWidth = animation != null ? animation.value : null;
-
-      Widget threadActionButton = ThreadActionButton(
-          threadAction: threadAction,
-          threadActionTitle: threadActionTitle,
-          threadActionIconReference: threadActionIconReference,
-          animatedWidth: animatedButtonWidth,
-          baseButtonSize: _baseButtonSize,
-          buttonKey: _buttonKey);
-
-      rowChildren.add(threadActionButton);
+    if (widget.inputButton != null) {
+      rowChildren.add(widget.inputButton);
     }
 
     final EdgeInsets bottomBarPadding = RoofObjectPadding.container1;
@@ -128,12 +100,13 @@ class _ThreadBottomBarState extends State<ThreadBottomBar>
     final Widget contentRow =
         Row(crossAxisAlignment: CrossAxisAlignment.end, children: rowChildren);
 
+    final theme = RoofTheme.of(context);
     return SafeArea(
         top: false,
         left: false,
         right: false,
         child: Container(
-            color: backgroundColor,
+            color: theme.color.background.brandSecondary,
             padding: bottomBarPadding,
             child: contentRow));
   }
