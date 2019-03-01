@@ -6,6 +6,7 @@ class NameProperty extends Mappable {
   NameProperty({this.name});
 
   factory NameProperty.fromMap(Map<String, Object> map) {
+    if (map == null) return null;
     return NameProperty(name: map[Key.name]);
   }
 

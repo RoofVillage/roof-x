@@ -18,6 +18,8 @@ class NameContractDomain extends NameDomain {
       : super(guid: guid, name: name, type: type);
 
   factory NameContractDomain.fromMap(Map<String, Object> map) {
+    if (map == null) return null;
+
     final nameDomain = NameDomain.fromMap(map);
     return NameContractDomain(
         guid: nameDomain.guid,

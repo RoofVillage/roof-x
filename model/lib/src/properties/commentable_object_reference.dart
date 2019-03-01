@@ -9,20 +9,14 @@ class CommentableObjectReference extends Mappable {
   CommentableObjectReference({this.guid, this.name, this.type});
 
   factory CommentableObjectReference.fromMap(Map<String, Object> map) {
-    final commentableObjectType = CommentableObjectType.values.firstWhere(
-        (value) =>
-            value.toString() == 'CommentableObjectType.' + map[Key.kind]);
-
     return CommentableObjectReference(
-        guid: map[Key.guid], name: map[Key.name], type: commentableObjectType);
+        guid: map[Key.guid],
+        name: map[Key.name],
+        type: CommentableObjectType.fromString(map[Key.kind]));
   }
 
   @override
   Map<String, Object> toMap() {
-    return {
-      Key.guid: guid,
-      Key.name: name,
-      Key.kind: type.toString().split(".").last
-    };
+    return {Key.guid: guid, Key.name: name, Key.kind: type.toString()};
   }
 }

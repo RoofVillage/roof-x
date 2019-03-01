@@ -5,6 +5,8 @@ class NameUser with Mappable {
   final String firstName;
   final String lastName;
 
+  String get preferredName => firstName;
+
   NameUser({this.guid, this.firstName, this.lastName});
 
   factory NameUser.fromMap(Map<String, Object> map) {

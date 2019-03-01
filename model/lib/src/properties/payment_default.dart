@@ -11,11 +11,8 @@ class PaymentDefault extends Mappable {
   PaymentDefault({this.type, this.namePaymentProfile, this.contractGuid});
 
   factory PaymentDefault.fromMap(Map<String, Object> map) {
-    final type = PaymentDefaultType.values.firstWhere(
-        (value) => value.toString() == 'PaymentDefaultType.' + map[Key.kind]);
-
     return PaymentDefault(
-        type: type,
+        type: PaymentDefaultType.fromString(map[Key.kind]),
         namePaymentProfile: map[Key.paymentProfile],
         contractGuid: map[Key.contract]);
   }
@@ -23,7 +20,7 @@ class PaymentDefault extends Mappable {
   @override
   Map<String, Object> toMap() {
     return {
-      Key.kind: type.toString().split(".").last,
+      Key.kind: type.toString(),
       Key.paymentProfile: namePaymentProfile,
       Key.contract: contractGuid
     };

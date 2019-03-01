@@ -1,3 +1,5 @@
+import 'package:date/index.dart';
+import 'package:meta/meta.dart';
 import 'package:types/index.dart';
 import '../abstract/index.dart';
 import '../properties/index.dart';
@@ -8,38 +10,56 @@ class User extends ModelObject {
   final String lastName;
   final String email;
   final String phoneNumber;
-  final List<NameDomain> nameDomains;
-  final List<NameContract> nameContracts;
-  final List<NamePaymentProfile> namePaymentProfiles;
-  final List<PaymentDefault> paymentDefaults;
+  final Set<NameDomain> nameDomains;
+  final Set<NameContract> nameContracts;
+  final Set<NamePaymentProfile> namePaymentProfiles;
+  final Set<PaymentDefault> paymentDefaults;
   final PrivacyType privacyType;
   final bool tfaEnabled;
   final bool textNotificationsEnabled;
   final int badgeCount;
-  final List<NotificationUnsubscribeType> notificationUnsubscribes;
-  final List<EmailUnsubscribeType> emailUnsubscribes;
+  final Set<NotificationCategoryType> notificationUnsubscribes;
+  final Set<EmailCategoryType> emailUnsubscribes;
   final Billing billing;
 
   const User(
-      {String guid,
-      this.firstName,
-      this.lastName,
-      this.email,
+      {@required String guid,
+      @required Date dateCreated,
+      @required String creatorGuid,
+      @required this.firstName,
+      @required this.lastName,
+      @required this.email,
       this.phoneNumber,
-      this.nameDomains,
-      this.nameContracts,
-      this.namePaymentProfiles,
-      this.paymentDefaults,
-      this.privacyType,
-      this.tfaEnabled,
-      this.textNotificationsEnabled,
-      this.badgeCount,
-      this.notificationUnsubscribes,
-      this.emailUnsubscribes,
-      this.billing})
-      : super(guid: guid);
+      @required this.nameDomains,
+      @required this.nameContracts,
+      @required this.namePaymentProfiles,
+      @required this.paymentDefaults,
+      @required this.privacyType,
+      @required this.tfaEnabled,
+      @required this.textNotificationsEnabled,
+      @required this.badgeCount,
+      @required this.notificationUnsubscribes,
+      @required this.emailUnsubscribes,
+      @required this.billing})
+      : assert(firstName != null),
+        assert(lastName != null),
+        assert(email != null),
+        assert(nameDomains != null),
+        assert(nameContracts != null),
+        assert(namePaymentProfiles != null),
+        assert(paymentDefaults != null),
+        assert(privacyType != null),
+        assert(tfaEnabled != null),
+        assert(textNotificationsEnabled != null),
+        assert(badgeCount != null),
+        assert(notificationUnsubscribes != null),
+        assert(emailUnsubscribes != null),
+        assert(billing != null),
+        super(guid: guid, dateCreated: dateCreated, creatorGuid: creatorGuid);
 
   factory User.fromMap(Map<String, Object> map) {
+    assert(map != null);
+
     final object = ModelObject.fromMap(map);
     final name = map[Key.name] as Map;
     final nameDomains =
@@ -51,31 +71,30 @@ class User extends ModelObject {
     final paymentDefaults = (map[Key.paymentDefaults] as List)
         .map((map) => PaymentDefault.fromMap(map));
     final emailUnsubscribes = (map[Key.emailUnsubscribes] as List).map(
-        (emailUnsubscribe) => EmailUnsubscribeType.values.firstWhere((value) =>
-            value.toString() == 'EmailUnsubscribeType.' + emailUnsubscribe));
+        (emailUnsubscribe) => EmailCategoryType.fromString(emailUnsubscribe));
     final notificationUnsubscribes = (map[Key.notificationUnsubscribes] as List)
-        .map((notificationUnsubscribe) => NotificationUnsubscribeType.values
-            .firstWhere((value) =>
-                value.toString() ==
-                'NotificationUnsubscribeType.' + notificationUnsubscribe));
+        .map((notificationUnsubscribe) =>
+            NotificationCategoryType.fromString(notificationUnsubscribe));
     final billing = Billing.fromMap(map[Key.billing]);
 
     return User(
         guid: object.guid,
+        dateCreated: object.dateCreated,
+        creatorGuid: object.creatorGuid,
         firstName: name[Key.first],
         lastName: name[Key.last],
         email: map[Key.email],
         phoneNumber: map[Key.phoneNumber],
-        nameDomains: nameDomains,
-        nameContracts: nameContracts,
-        namePaymentProfiles: namePaymentProfiles,
-        paymentDefaults: paymentDefaults,
+        nameDomains: nameDomains.toSet(),
+        nameContracts: nameContracts.toSet(),
+        namePaymentProfiles: namePaymentProfiles.toSet(),
+        paymentDefaults: paymentDefaults.toSet(),
         privacyType: map[Key.defaultPrivacyKind],
         tfaEnabled: map[Key.tfaEnabled],
         textNotificationsEnabled: map[Key.textNotificationsEnabled],
-        badgeCount: map[Key.badgeCount],
-        notificationUnsubscribes: notificationUnsubscribes,
-        emailUnsubscribes: emailUnsubscribes,
+        badgeCount: map[Key.badgeCount] ?? 0,
+        notificationUnsubscribes: notificationUnsubscribes.toSet(),
+        emailUnsubscribes: emailUnsubscribes.toSet(),
         billing: billing);
   }
 
@@ -92,15 +111,14 @@ class User extends ModelObject {
           .map((namePaymentProfile) => namePaymentProfile.toMap()),
       Key.paymentDefaults:
           paymentDefaults.map((paymentDefaults) => paymentDefaults.toMap()),
-      Key.defaultPrivacyKind: privacyType.toString().split(".").last,
+      Key.defaultPrivacyKind: privacyType.toString(),
       Key.tfaEnabled: tfaEnabled,
       Key.textNotificationsEnabled: textNotificationsEnabled,
       Key.badgeCount: badgeCount,
-      Key.notificationUnsubscribes: notificationUnsubscribes.map(
-          (notificationUnsubscribe) =>
-              notificationUnsubscribe.toString().split(".").last),
-      Key.emailUnsubscribes: emailUnsubscribes.map(
-          (emailUnsubscribe) => emailUnsubscribe.toString().split(".").last),
+      Key.notificationUnsubscribes: notificationUnsubscribes
+          .map((notificationUnsubscribe) => notificationUnsubscribe.toString()),
+      Key.emailUnsubscribes: emailUnsubscribes
+          .map((emailUnsubscribe) => emailUnsubscribe.toString()),
       Key.billing: billing.toMap()
     });
 

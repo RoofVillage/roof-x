@@ -1,7 +1,7 @@
 import 'package:collection/collection.dart';
 
-import '_row.dart';
-import '_section_header.dart';
+import 'row.dart';
+import 'section_header.dart';
 
 class StreamableTableSectionData<S extends StreamableTableRowData>
     extends StreamableTableRowData {
