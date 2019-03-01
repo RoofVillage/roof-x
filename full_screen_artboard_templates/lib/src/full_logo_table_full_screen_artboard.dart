@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:navigation_components/index.dart';
+import 'package:navigation_artboard_mixin/index.dart';
 import 'package:table_artboard_mixin/index.dart';
 
 import 'widgets/index.dart';

@@ -1,5 +1,4 @@
-import '../bars/index.dart';
-import '../buttons/index.dart';
+import 'package:navigation_components/index.dart';
 
 mixin FullLogoNavBarArtboard {
   List<RoofNavButton> get actionButtons;
