@@ -97,7 +97,7 @@ class Date extends DateTime {
       return "yesterday " + formatter.format(this);
     } else if (difference.inDays >= 1) {
       final formatter = DateFormat("cccc");
-      return "yesterday " + formatter.format(this);
+      return formatter.format(this);
     } else if (difference.inHours > 0) {
       final formatter = DateFormat("h:mm a");
       return formatter.format(this);
