@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:spec/index.dart';
 import 'package:theme/index.dart';
-import '_activity_item.dart';
+import 'activity_item.dart';
 
 class RoofActivityComment extends StatelessWidget with ActivityItem {
   final String creator;

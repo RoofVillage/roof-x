@@ -6,13 +6,9 @@ import 'widgets/index.dart';
 import 'full_screen_artboard.dart';
 
 abstract class FullLogoTableFullScreenArtboard extends FullScreenArtboard
-    with TableArtboard {
-  List<RoofNavButton> get actionButtons => [];
-
-  get _navBar => RoofFullLogoNavBar(actionButtons: actionButtons);
-
+    with TableArtboard, FullLogoNavBarArtboard {
   @override
   Widget buildBody(BuildContext context) {
-    return FullScreenWithNav(navBar: _navBar, body: buildTable(context));
+    return FullScreenWithNav(navBar: navBar, body: buildTable(context));
   }
 }

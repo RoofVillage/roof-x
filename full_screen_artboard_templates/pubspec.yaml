@@ -10,6 +10,8 @@ dependencies:
     sdk: flutter
   table_artboard_mixin:
     path: ../table_artboard_mixin
+  input_dock_artboard_mixin:
+    path: ../input_dock_artboard_mixin
   floating_artboard_templates:
     path: ../floating_artboard_templates
 

@@ -4,7 +4,7 @@ import 'package:form/index.dart';
 
 import '_roof_stream_form.dart';
 
-abstract class FormArtboard {
+mixin FormArtboard {
   List<StreamableFormFieldData> get fieldData => null;
   List<StreamableFormSectionData> get sectionData => null;
   StreamableFormData get formData => null;
