@@ -7,6 +7,8 @@ class LateFee extends Mappable {
   LateFee({this.amount, this.numDaysWhenLate});
 
   factory LateFee.fromMap(Map<String, Object> map) {
+    if (map == null) return null;
+
     return LateFee(
         amount: map[Key.amount], numDaysWhenLate: map[Key.numDaysWhenLate]);
   }

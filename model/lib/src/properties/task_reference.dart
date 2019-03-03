@@ -11,13 +11,10 @@ class TaskReference extends Mappable {
   TaskReference({this.guid, this.name, this.type, this.deadline});
 
   factory TaskReference.fromMap(Map<String, Object> map) {
-    final taskType = TaskType.values
-        .firstWhere((value) => value.toString() == 'TaskType.' + map[Key.kind]);
-
     return TaskReference(
         guid: map[Key.guid],
         name: map[Key.name],
-        type: taskType,
+        type: TaskType.fromString(map[Key.kind]),
         deadline: Date.fromSecondsSinceEpoch(map[Key.deadline]));
   }
 
@@ -26,7 +23,7 @@ class TaskReference extends Mappable {
     return {
       Key.guid: guid,
       Key.name: name,
-      Key.kind: type.toString().split(".").last,
+      Key.kind: type.toString(),
       Key.deadline: deadline.secondsSinceEpoch
     };
   }

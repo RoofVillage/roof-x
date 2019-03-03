@@ -1,7 +1,15 @@
+import 'package:date/index.dart';
+import 'package:meta/meta.dart';
+
 import '../utils/index.dart';
 
 import '../abstract/index.dart';
 import '../properties/index.dart';
+
+const _MAP_NO_DAYS = 0;
+const _MAP_DAYS_IN_WEEK = 7;
+const _MAP_DAYS_IN_MONTH = 30;
+const _MAP_DAYS_IN_YEAR = 365;
 
 class Organization extends Domain {
   final int propertyCount;
@@ -20,30 +28,49 @@ class Organization extends Domain {
   final Billing billing;
 
   Organization(
-      {int unreadCommentableObjectCount,
-      int pinnedCommentableObjectCount,
-      String name,
-      List<DomainUser> users,
-      List<DomainUser> formerUsers,
-      Location location,
-      int expenseCount,
-      int reminderCount,
-      int transferCount,
-      this.propertyCount,
-      this.emergencyServiceRequestCount,
-      this.unseenServiceRequestCount,
-      this.incompleteServiceRequestCount,
-      this.overdueAmount,
-      this.earnedAllTimeAmount,
-      this.earnedWeekAmount,
-      this.earnedMonthAmount,
-      this.earnedYearAmount,
-      this.owedAllTimeAmount,
-      this.owedWeekAmount,
-      this.owedMonthAmount,
-      this.owedYearAmount,
-      this.billing})
-      : super(
+      {@required String guid,
+      @required Date dateCreated,
+      @required String creatorGuid,
+      @required int unreadCommentableObjectCount,
+      @required int pinnedCommentableObjectCount,
+      @required String name,
+      @required Set<DomainUser> users,
+      @required Set<DomainUser> formerUsers,
+      @required Location location,
+      @required int expenseCount,
+      @required int reminderCount,
+      @required int transferCount,
+      @required this.propertyCount,
+      @required this.emergencyServiceRequestCount,
+      @required this.unseenServiceRequestCount,
+      @required this.incompleteServiceRequestCount,
+      @required this.overdueAmount,
+      @required this.earnedAllTimeAmount,
+      @required this.earnedWeekAmount,
+      @required this.earnedMonthAmount,
+      @required this.earnedYearAmount,
+      @required this.owedAllTimeAmount,
+      @required this.owedWeekAmount,
+      @required this.owedMonthAmount,
+      @required this.owedYearAmount,
+      @required this.billing})
+      : assert(propertyCount != null), 
+      assert(emergencyServiceRequestCount != null), 
+      assert(unseenServiceRequestCount != null),
+      assert(incompleteServiceRequestCount != null),
+      assert(overdueAmount != null),
+      assert(earnedAllTimeAmount != null),
+      assert(earnedWeekAmount != null),
+      assert(earnedMonthAmount != null),
+      assert(earnedYearAmount != null),
+      assert(owedAllTimeAmount != null),
+      assert(owedWeekAmount != null),
+      assert(owedMonthAmount != null),
+      assert(owedYearAmount != null),
+      assert(billing != null), super(
+        guid: guid,
+        dateCreated: dateCreated,
+        creatorGuid: creatorGuid,
             unreadCommentableObjectCount: unreadCommentableObjectCount,
             pinnedCommentableObjectCount: pinnedCommentableObjectCount,
             name: name,
@@ -55,12 +82,17 @@ class Organization extends Domain {
             transferCount: transferCount);
 
   factory Organization.fromMap(Map<String, Object> map) {
+    assert(map != null);
+
     final domain = Domain.fromMap(map);
-    final counts = map[Key.counts] as Map;
-    final earnedAmounts = map[Key.earned] as List;
-    final owedAmounts = map[Key.owed] as List;
+    final counts = map[Key.counts] as Map ?? {};
+    final earnedAmounts = map[Key.earned] as List ?? [];
+    final owedAmounts = map[Key.owed] as List ?? [];
 
     return Organization(
+      guid: domain.guid,
+      dateCreated: domain.dateCreated,
+      creatorGuid: domain.creatorGuid,
         unreadCommentableObjectCount: domain.unreadCommentableObjectCount,
         pinnedCommentableObjectCount: domain.pinnedCommentableObjectCount,
         expenseCount: domain.expenseCount,
@@ -71,18 +103,18 @@ class Organization extends Domain {
         formerUsers: domain.formerUsers,
         location: domain.location,
         propertyCount: counts[Key.property],
-        emergencyServiceRequestCount: counts[Key.emergencyServiceRequest],
-        unseenServiceRequestCount: counts[Key.unseenServiceRequest],
-        incompleteServiceRequestCount: counts[Key.incompleteServiceRequest],
-        overdueAmount: owedAmounts.firstWhere((amount) => amount[Key.dayBound] == 0)[Key.amount],
-        owedWeekAmount: owedAmounts.firstWhere((amount) => amount[Key.dayBound] == 7)[Key.amount],
-        owedMonthAmount: owedAmounts.firstWhere((amount) => amount[Key.dayBound] == 30)[Key.amount],
-        owedYearAmount: owedAmounts.firstWhere((amount) => amount[Key.dayBound] == 365)[Key.amount],
-        owedAllTimeAmount:owedAmounts.firstWhere((amount) => amount[Key.dayBound] == null)[Key.amount],
-        earnedWeekAmount: earnedAmounts.firstWhere((amount) => amount[Key.dayBound] == 7)[Key.amount],
-        earnedMonthAmount: earnedAmounts.firstWhere((amount) => amount[Key.dayBound] == 30)[Key.amount],
-        earnedYearAmount: earnedAmounts.firstWhere((amount) => amount[Key.dayBound] == 365)[Key.amount],
-        earnedAllTimeAmount: earnedAmounts.firstWhere((amount) => amount[Key.dayBound] == null)[Key.amount],
+        emergencyServiceRequestCount: counts[Key.emergencyServiceRequest] ?? 0,
+        unseenServiceRequestCount: counts[Key.unseenServiceRequest] ?? 0,
+        incompleteServiceRequestCount: counts[Key.incompleteServiceRequest] ?? 0,
+        overdueAmount: (owedAmounts.firstWhere((amount) => amount[Key.dayBound] == _MAP_NO_DAYS) ?? {})[Key.amount] ?? 0,
+        owedWeekAmount: (owedAmounts.firstWhere((amount) => amount[Key.dayBound] == _MAP_DAYS_IN_WEEK) ?? {})[Key.amount] ?? 0,
+        owedMonthAmount: (owedAmounts.firstWhere((amount) => amount[Key.dayBound] == _MAP_DAYS_IN_MONTH) ?? {})[Key.amount] ?? 0,
+        owedYearAmount: (owedAmounts.firstWhere((amount) => amount[Key.dayBound] == _MAP_DAYS_IN_YEAR) ?? {})[Key.amount] ?? 0,
+        owedAllTimeAmount:(owedAmounts.firstWhere((amount) => amount[Key.dayBound] == null) ?? {})[Key.amount] ?? 0,
+        earnedWeekAmount: (earnedAmounts.firstWhere((amount) => amount[Key.dayBound] == _MAP_DAYS_IN_WEEK) ?? {})[Key.amount] ?? 0,
+        earnedMonthAmount: (earnedAmounts.firstWhere((amount) => amount[Key.dayBound] == _MAP_DAYS_IN_MONTH) ?? {})[Key.amount] ?? 0,
+        earnedYearAmount: (earnedAmounts.firstWhere((amount) => amount[Key.dayBound] == _MAP_DAYS_IN_YEAR) ?? {})[Key.amount] ?? 0,
+        earnedAllTimeAmount: (earnedAmounts.firstWhere((amount) => amount[Key.dayBound] == null) ?? {})[Key.amount] ?? 0,
         billing: Billing.fromMap(map[Key.billing]));
   }
 
@@ -98,15 +130,15 @@ class Organization extends Domain {
     map.addAll({Key.amounts: {
       Key.earned: [
         {
-          Key.dayBound: 7,
+          Key.dayBound: _MAP_DAYS_IN_WEEK,
           Key.amount: earnedWeekAmount
         },
         {
-          Key.dayBound: 30,
+          Key.dayBound: _MAP_DAYS_IN_MONTH,
           Key.amount: earnedMonthAmount
         },
         {
-          Key.dayBound: 365,
+          Key.dayBound: _MAP_DAYS_IN_YEAR,
           Key.amount: earnedYearAmount
         },
         {
@@ -116,19 +148,19 @@ class Organization extends Domain {
       ],
       Key.owed: [
         {
-          Key.dayBound: 0,
+          Key.dayBound: _MAP_NO_DAYS,
           Key.amount: overdueAmount
         },
         {
-          Key.dayBound: 7,
+          Key.dayBound: _MAP_DAYS_IN_WEEK,
           Key.amount: owedWeekAmount
         },
         {
-          Key.dayBound: 30,
+          Key.dayBound: _MAP_DAYS_IN_MONTH,
           Key.amount: owedMonthAmount
         },
         {
-          Key.dayBound: 365,
+          Key.dayBound: _MAP_DAYS_IN_YEAR,
           Key.amount: owedYearAmount
         },
         {

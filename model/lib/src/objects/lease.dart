@@ -1,4 +1,5 @@
 import 'package:date/index.dart';
+import 'package:meta/meta.dart';
 import 'package:types/index.dart';
 import '../utils/index.dart';
 
@@ -15,27 +16,37 @@ class Lease extends Contract {
   final int serviceRequestCount;
 
   Lease(
-      {int unreadCommentableObjectCount,
-      int pinnedCommentableObjectCount,
-      Date startDate,
-      Date endDate,
+      {@required String guid,
+      @required Date dateCreated,
+      @required String creatorGuid,
+      @required int unreadCommentableObjectCount,
+      @required int pinnedCommentableObjectCount,
+      @required Date startDate,
+      @required Date endDate,
       String name,
-      int amount,
-      List<ContractUser> users,
-      List<ContractUser> formerUsers,
-      Schedule schedule,
+      @required int amount,
+      @required Set<ContractUser> users,
+      @required Set<ContractUser> formerUsers,
+      @required Schedule schedule,
       NameContractDomain domain,
-      int invoiceCount,
-      FeePayerType feePayerType,
-      bool monthToMonth,
+      @required int invoiceCount,
+      @required FeePayerType feePayerType,
+      @required bool monthToMonth,
       this.lateFee,
-      this.property,
+      @required this.property,
       this.nextInvoiceDeadline,
       this.nextInvoiceType,
-      this.openServiceRequestCount,
-      this.serviceRequestCompletionCount,
-      this.serviceRequestCount})
-      : super(
+      @required this.openServiceRequestCount,
+      @required this.serviceRequestCompletionCount,
+      @required this.serviceRequestCount})
+      : assert(property != null),
+        assert(openServiceRequestCount != null),
+        assert(serviceRequestCompletionCount != null),
+        assert(serviceRequestCount != null),
+        super(
+            guid: guid,
+            dateCreated: dateCreated,
+            creatorGuid: creatorGuid,
             unreadCommentableObjectCount: unreadCommentableObjectCount,
             pinnedCommentableObjectCount: pinnedCommentableObjectCount,
             startDate: startDate,
@@ -51,10 +62,15 @@ class Lease extends Contract {
             monthToMonth: monthToMonth);
 
   factory Lease.fromMap(Map<String, Object> map) {
+    assert(map != null);
+
     final contract = Contract.fromMap(map);
     final counts = map[Key.counts] as Map;
 
     return Lease(
+        guid: contract.guid,
+        dateCreated: contract.dateCreated,
+        creatorGuid: contract.creatorGuid,
         unreadCommentableObjectCount: contract.unreadCommentableObjectCount,
         pinnedCommentableObjectCount: contract.pinnedCommentableObjectCount,
         startDate: contract.startDate,
@@ -72,11 +88,11 @@ class Lease extends Contract {
         property: NameProperty.fromMap(map[Key.property]),
         nextInvoiceDeadline:
             Date.fromSecondsSinceEpoch(map[Key.nextInvoiceDeadline]),
-        nextInvoiceType: InvoiceType.values.firstWhere((value) =>
-            value.toString() == 'InvoiceType.' + map[Key.nextInvoiceKind]),
-        openServiceRequestCount: counts[Key.openServiceRequest],
-        serviceRequestCompletionCount: counts[Key.serviceRequestCompletion],
-        serviceRequestCount: counts[Key.serviceRequest]);
+        nextInvoiceType: InvoiceType.fromString(map[Key.nextInvoiceKind]),
+        openServiceRequestCount: counts[Key.openServiceRequest] ?? 0,
+        serviceRequestCompletionCount:
+            counts[Key.serviceRequestCompletion] ?? 0,
+        serviceRequestCount: counts[Key.serviceRequest] ?? 0);
   }
 
   Map<String, Object> toMap() {
@@ -91,7 +107,7 @@ class Lease extends Contract {
       Key.lateFee: lateFee.toMap(),
       Key.property: property.toMap(),
       Key.nextInvoiceDeadline: nextInvoiceDeadline.secondsSinceEpoch,
-      Key.nextInvoiceKind: nextInvoiceType.toString().split(".").last
+      Key.nextInvoiceKind: nextInvoiceType.toString()
     });
 
     return map;

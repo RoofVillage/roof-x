@@ -76,14 +76,6 @@ class _ThreadBottomBarState extends State<ThreadBottomBar>
 
   @override
   Widget build(BuildContext context) {
-
-    commentHasText(String text) {
-      if (text.length > 0)
-        return true;
-      else
-        return false;
-    }
-
     void animateButton(bool shouldFocusComment) {
       shouldFocusComment ? controller.forward() : controller.reverse();
     }
@@ -91,10 +83,10 @@ class _ThreadBottomBarState extends State<ThreadBottomBar>
     void updateCommentFocus(String text) {
       bool buttonShouldUpdate = false;
 
-      if (commentHasText(text) && !shouldFocusComment) {
+      if (text.isNotEmpty && !shouldFocusComment) {
         shouldFocusComment = true;
         buttonShouldUpdate = true;
-      } else if (!commentHasText(text) && shouldFocusComment) {
+      } else if (text.isEmpty && shouldFocusComment) {
         shouldFocusComment = false;
         buttonShouldUpdate = true;
       }

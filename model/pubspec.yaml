@@ -9,6 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  strings: ^0.1.0
   storage:
     path: ../storage
   types:

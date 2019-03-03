@@ -11,6 +11,8 @@ class Location with Mappable {
       {this.postalCode, this.countryCode, this.city, this.state, this.street});
 
   factory Location.fromMap(Map<String, Object> map) {
+    if (map == null) return null;
+
     return Location(
         postalCode: map[Key.postalCode],
         countryCode: map[Key.countryCode],

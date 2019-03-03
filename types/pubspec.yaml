@@ -9,6 +9,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  date:
+    path: ../date
 
 dev_dependencies:
   flutter_test:

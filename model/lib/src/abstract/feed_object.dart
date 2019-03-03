@@ -4,26 +4,20 @@ import '../properties/index.dart';
 import '../objects/index.dart';
 
 import 'domain_object.dart';
-import 'contract.dart';
-import 'domain.dart';
 
 class FeedObject extends DomainObject {
   final String clientReferenceId;
 
-  const FeedObject(
-      {Domain domain,
-      Contract contract,
-      List<NameUser> contractDomainUsers,
-      List<NameUser> contractUsers,
-      List<NameUser> formerContractUsers,
-      List<Stub> contractStubs,
-      List<Stub> formerContractStubs,
+  FeedObject(
+      {Set<NameUser> contractDomainUsers,
+      Set<NameUser> contractUsers,
+      Set<NameUser> formerContractUsers,
+      Set<Stub> contractStubs,
+      Set<Stub> formerContractStubs,
       String contractPropertyName,
       FeePayerType feePayerType,
       this.clientReferenceId})
       : super(
-            // domain: domain,
-            // contract: contract,
             contractDomainUsers: contractDomainUsers,
             contractUsers: contractUsers,
             formerContractUsers: formerContractUsers,

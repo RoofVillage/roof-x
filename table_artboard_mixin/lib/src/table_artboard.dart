@@ -3,7 +3,7 @@ import 'package:table/index.dart';
 
 import '_roof_stream_table.dart';
 
-abstract class TableArtboard {
+mixin TableArtboard {
   List<StreamableTableRowData> get rowData => null;
   List<StreamableTableSectionData> get sectionData => null;
   StreamableTableData get tableData => null;

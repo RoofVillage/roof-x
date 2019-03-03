@@ -1,4 +1,9 @@
-export 'object.dart';
+export 'model_object.dart';
 export 'domain.dart';
 export 'contract.dart';
 export 'feed_object.dart';
+export 'transaction.dart';
+export 'one_to_one_transaction.dart';
+export 'commentable_object.dart';
+export 'task.dart';
+export 'context.dart';

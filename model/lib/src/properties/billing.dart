@@ -26,17 +26,15 @@ class Billing extends Mappable {
       this.postalCode});
 
   factory Billing.fromMap(Map<String, Object> map) {
-    final statusType = BillingStatusType.values.firstWhere((value) =>
-        value.toString() == 'BillingStatusType.' + map[Key.statusKind]);
-    final type = BillingType.values.firstWhere(
-        (value) => value.toString() == 'BillingType.' + map[Key.kind]);
+    if (map == null) return null;
+
     return Billing(
         email: map[Key.email],
         isEmailVerified: map[Key.isEmailVerified],
         firstName: map[Key.firstName],
         lastName: map[Key.lastName],
-        statusType: statusType,
-        type: type,
+        statusType: BillingStatusType.fromString(map[Key.statusKind]),
+        type: BillingType.fromString(map[Key.kind]),
         address1: map[Key.address1],
         address2: map[Key.address2],
         city: map[Key.city],
@@ -50,8 +48,8 @@ class Billing extends Mappable {
       Key.isEmailVerified: isEmailVerified,
       Key.firstName: firstName,
       Key.lastName: lastName,
-      Key.statusKind: statusType.toString().split(".").last,
-      Key.kind: type.toString().split(".").last,
+      Key.statusKind: statusType.toString(),
+      Key.kind: type.toString(),
       Key.address1: address1,
       Key.address2: address2,
       Key.city: city,

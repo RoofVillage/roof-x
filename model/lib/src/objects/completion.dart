@@ -1,7 +1,9 @@
+import 'package:meta/meta.dart';
 import 'package:types/index.dart';
 import '../utils/index.dart';
 import '../properties/index.dart';
 import '../abstract/index.dart';
+import '../mixins/index.dart';
 
 import 'stub.dart';
 import 'expense.dart';
@@ -10,18 +12,16 @@ class Completion extends FeedObject {
   final String name;
   final String note;
   final PrivacyType privacyType;
-  final List<UserReference> completingUsers;
+  final Set<UserReference> completingUsers;
   final TaskReference task;
   final Expense completionPrize;
 
-  const Completion(
-      {Domain domain,
-      Contract contract,
-      List<NameUser> contractDomainUsers,
-      List<NameUser> contractUsers,
-      List<NameUser> formerContractUsers,
-      List<Stub> contractStubs,
-      List<Stub> formerContractStubs,
+  Completion(
+      {Set<NameUser> contractDomainUsers,
+      Set<NameUser> contractUsers,
+      Set<NameUser> formerContractUsers,
+      Set<Stub> contractStubs,
+      Set<Stub> formerContractStubs,
       String contractPropertyName,
       FeePayerType feePayerType,
       String clientReferenceId,
@@ -32,8 +32,6 @@ class Completion extends FeedObject {
       this.task,
       this.completionPrize})
       : super(
-            // domain: domain,
-            // contract: contract,
             contractDomainUsers: contractDomainUsers,
             contractUsers: contractUsers,
             formerContractUsers: formerContractUsers,
@@ -44,9 +42,13 @@ class Completion extends FeedObject {
             clientReferenceId: clientReferenceId);
 
   factory Completion.fromMap(Map<String, Object> map) {
-    final feedObject = Completion.fromMap(map);
-    final privacyType = PrivacyType.values.firstWhere(
-        (value) => value.toString() == 'PrivacyType.' + map[Key.privacyKind]);
+    assert(map != null);
+
+    final feedObject = FeedObject.fromMap(map);
+
+    final completingUsers = (map[Key.completingUsers] as List)
+        .map((map) => UserReference.fromMap(map));
+
     return Completion(
         contractDomainUsers: feedObject.contractDomainUsers,
         contractUsers: feedObject.contractUsers,
@@ -58,9 +60,8 @@ class Completion extends FeedObject {
         clientReferenceId: feedObject.clientReferenceId,
         name: map[Key.name],
         note: map[Key.note],
-        privacyType: privacyType,
-        completingUsers: (map[Key.completingUsers] as List)
-            .map((map) => UserReference.fromMap(map)),
+        privacyType: PrivacyType.fromString(map[Key.privacyKind]),
+        completingUsers: completingUsers.toSet(),
         task: TaskReference.fromMap(map[Key.task]),
         completionPrize: Expense.fromMap(map[Key.prizeCompletion]));
   }
@@ -70,12 +71,24 @@ class Completion extends FeedObject {
     map.addAll({
       Key.name: name,
       Key.note: note,
-      Key.privacyKind: privacyType.toString().split(".").last,
+      Key.privacyKind: privacyType.toString(),
       Key.completingUsers:
           completingUsers.map((completingUser) => completingUser.toMap()),
       Key.task: task.toMap(),
       Key.prizeCompletion: completionPrize.toMap()
     });
     return map;
+  }
+
+  String formattedCompletingUsers({
+    String sessionOwnerGuid,
+    @required NameDefiningObject nameDefiningObject,
+    bool firstPerson = false,
+  }) {
+    return formatName(
+        guids: completingUsers.map((user) => user.guid),
+        sessionOwnerGuid: sessionOwnerGuid,
+        nameDefiningObject: nameDefiningObject,
+        firstPerson: firstPerson);
   }
 }
