@@ -66,23 +66,26 @@ class _FieldBodyState extends State<_FieldBody> {
   final _fieldTextStyle = RoofTypography.body2;
 
   _selectDate() {
+    print("select date");
+
     DateTime initialDate = value != null
         ? DateTime.fromMillisecondsSinceEpoch(value)
         : DateTime.now();
 
     // show picker with current value
     showDatePicker(
-            context: context,
-            initialDate: initialDate,
-            firstDate: DateTime(2018),
-            lastDate: DateTime(2030))
-        .then((date) {
-      int newDate = date.millisecondsSinceEpoch;
-      setState(() {
-        value = newDate;
-      });
-      onChanged(newDate.toString());
-    });
+        context: context,
+        initialDate: initialDate,
+        firstDate: DateTime(2018),
+        lastDate: DateTime(2030));
+    //     .then((date) {
+    //   print("then $date");
+    //   int newDate = date.millisecondsSinceEpoch;
+    //   setState(() {
+    //     value = newDate;
+    //   });
+    //   onChanged(newDate.toString());
+    // });
   }
 
   _formatDate(int value) {
@@ -98,9 +101,12 @@ class _FieldBodyState extends State<_FieldBody> {
         ? _fieldTextStyle.textStyleWithColor(theme.color.text.primary)
         : _fieldTextStyle.textStyleWithColor(theme.color.text.placeholder);
 
-    return GestureDetector(
-        onTap: _selectDate,
-        child: Expanded(
-            child: Container(child: Text(textValue, style: textStyle))));
+    return Expanded(
+        child: GestureDetector(
+            onTap: _selectDate,
+            child: Container(
+                color: Colors.yellow,
+                child: Text(textValue,
+                    style: textStyle, textAlign: TextAlign.end))));
   }
 }

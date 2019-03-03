@@ -7,17 +7,16 @@ class RoofPickerField extends StatelessWidget {
   final String fieldName;
   final Widget body;
 
-  final double _fieldHeight = 40;
-
   RoofPickerField({@required this.fieldName, this.body});
 
   @override
   Widget build(BuildContext context) {
+    print(fieldName);
     final label = RoofFieldLabel(labelText: fieldName);
     final fieldChildren = [label, body];
 
     return Container(
-        height: _fieldHeight,
+        color: Colors.white,
         padding: RoofObjectPadding.field1,
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           Row(
