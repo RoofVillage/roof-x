@@ -10,7 +10,7 @@ class CommentBox extends StatelessWidget {
 
   CommentBox({this.onChangeCallback});
 
-  final _commentTextStyle = RoofTypography.body1a;
+  final _commentTextStyle = RoofTypography.bodyPrimary;
 
   @override
   Widget build(BuildContext context) {

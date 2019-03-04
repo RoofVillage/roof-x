@@ -74,7 +74,7 @@ class _FieldBody2State extends State<_FieldBody2> {
   Function(String) onChanged;
 
   final int _maxLines = 3;
-  final _typographyStyle = RoofTypography.body2;
+  final _typographyStyle = RoofTypography.bodyPrimary;
   final _controller = TextEditingController();
 
   _FieldBody2State(

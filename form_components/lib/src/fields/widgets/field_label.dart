@@ -6,7 +6,7 @@ class RoofFieldLabel extends StatelessWidget {
   final String labelText;
   final int maxLines;
 
-  final _labelStyle = RoofTypography.title1;
+  final _labelStyle = RoofTypography.title;
 
   static const _defaultMaxLines = 3;
 

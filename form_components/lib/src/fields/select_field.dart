@@ -135,7 +135,7 @@ class _SelectedOptionsContainer extends StatelessWidget {
   final Function onTap;
   final bool isExpanded;
 
-  final _typographyStyle = RoofTypography.body2;
+  final _typographyStyle = RoofTypography.bodyPrimary;
   final _maxLines = 10;
 
   final _upArrowIconReferece = IconReference.upArrow;
@@ -304,7 +304,7 @@ class _DropdownOption extends StatelessWidget {
   final bool isMultiSelect;
   final bool selected;
 
-  final _typographyStyle = RoofTypography.body2;
+  final _typographyStyle = RoofTypography.bodySecondary;
   final _checkIcon = IconReference.boxChecked;
   final _uncheckedIcon = IconReference.boxUnchecked;
 
