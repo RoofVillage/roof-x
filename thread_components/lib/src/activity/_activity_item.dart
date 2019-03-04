@@ -3,9 +3,9 @@ import 'package:typography/index.dart';
 import 'package:spec/index.dart';
 
 mixin ActivityItem {
-  final titleStyle = RoofTypography.title1;
-  final timestampStyle = RoofTypography.title1;
-  final noteStyle = RoofTypography.body1a;
+  final titleStyle = RoofTypography.title;
+  final timestampStyle = RoofTypography.detailSecondary;
+  final noteStyle = RoofTypography.bodyPrimary;
 
   static final activityPaddingDistance = RoofDistance.a;
 

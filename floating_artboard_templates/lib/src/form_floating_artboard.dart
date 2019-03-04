@@ -13,7 +13,7 @@ abstract class FormFloatingArtboard extends FloatingArtboard with FormArtboard {
   String get submitButtonText;
   
   final _headerStyle = RoofTypography.heading1;
-  final _subtitleStyle = RoofTypography.body1a;
+  final _subtitleStyle = RoofTypography.bodyPrimary;
 
   final _bodyVerticalPadding = EdgeInsets.only(top: RoofDistance.d);
   final _buttonVerticalPadding = EdgeInsets.only(top: RoofDistance.d);

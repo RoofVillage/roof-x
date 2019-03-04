@@ -1,7 +1,7 @@
 class RoofFontSize {
-  static const double extraSmall = 14;
-  static const double small = 16;
-  static const double medium = 18;
+  static const double extraSmall = 13;
+  static const double small = 14;
+  static const double medium = 16;
   static const double large = 20;
-  static const double extraLarge = 26;
+  static const double extraLarge = 24;
 }

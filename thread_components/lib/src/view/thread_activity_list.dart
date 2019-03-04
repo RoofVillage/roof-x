@@ -31,7 +31,7 @@ class ThreadActivityList extends StatelessWidget {
 }
 
 class _EmptyListMessage extends StatelessWidget {
-  final _textStyle = RoofTypography.body1a;
+  final _textStyle = RoofTypography.bodyPrimary;
 
   @override
   Widget build(BuildContext context) {
