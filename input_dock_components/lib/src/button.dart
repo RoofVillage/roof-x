@@ -39,11 +39,22 @@ class _ActionButton extends StatefulWidget {
 
 class _ActionButtonState extends State<_ActionButton>
     with SingleTickerProviderStateMixin {
-  final GlobalKey _buttonKey = GlobalKey(debugLabel: "testKey");
+  final GlobalKey _buttonKey = GlobalKey();
   final Size _baseButtonSize = Size(44, 44);
 
   Animation<double> widthAnimation;
   AnimationController controller;
+
+  void _getActionButtonSize(_) {
+    if (_buttonKey.currentContext == null) return;
+
+    final RenderBox actionButtonRenderBox =
+        _buttonKey.currentContext.findRenderObject();
+
+    final double maxButtonWidth = actionButtonRenderBox.size.width;
+
+    _buildAnimation(maxButtonWidth);
+  }
 
   void _buildAnimation(double maxButtonWidth) {
     final double minButtonWidth = _baseButtonSize.width;
@@ -57,51 +68,37 @@ class _ActionButtonState extends State<_ActionButton>
           });
   }
 
-  void _getActionButtonSize(_) {
-    if (_buttonKey.currentContext == null) return;
-    final RenderBox actionButtonRenderBox =
-        _buttonKey.currentContext.findRenderObject();
-
-    final double maxButtonWidth = actionButtonRenderBox.size.width;
-
-    _buildAnimation(maxButtonWidth);
-  }
-
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback(_getActionButtonSize);
 
-    final Duration duration = RoofDuration.short;
-    controller = AnimationController(duration: duration, vsync: this);
+    controller = AnimationController(duration: RoofDuration.short, vsync: this);
 
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    print("build button");
     widget.shrink ? controller.forward() : controller.reverse();
     final theme = RoofTheme.of(context);
 
     final buttonDecoration = BoxDecoration(
-      border:
-          Border.all(color: theme.color.stroke.transitionAction, width: 1.0),
-      borderRadius: BorderRadius.all(
-        RoofCornerRadius.regular,
-      ),
+      border: Border.all(color: theme.color.stroke.transitionAction),
+      borderRadius: BorderRadius.all(RoofCornerRadius.regular),
     );
 
-    // animationWidthOffset ensures button children don't overflow while button is collapsing. value should be equal to the difference between baseButtonSize.width and the width of the button icon + total x-axis containerPadding
-    final double animationWidthOffset = 2;
-    final double maxWidthForCollapse =
+    // animationWidthOffset ensures button children don't overflow while button is collapsing. Value should be equal to the difference between baseButtonSize.width and the width of the button icon + total x-axis containerPadding
+    const double animationWidthOffset = 2;
+    final double minWidthToShowText =
         _baseButtonSize.width + animationWidthOffset;
 
-    double textWidth;
+    bool showText = true;
     EdgeInsets containerPadding =
         EdgeInsets.fromLTRB(RoofDistance.b, 0, RoofDistance.b, 0);
 
-    if (widthAnimation != null && widthAnimation.value <= maxWidthForCollapse) {
-      textWidth = 0;
+    final animatedWidth = widthAnimation != null ? widthAnimation.value : null;
+    if (animatedWidth != null && animatedWidth <= minWidthToShowText) {
+      showText = false;
       containerPadding = null;
     }
 
@@ -113,7 +110,7 @@ class _ActionButtonState extends State<_ActionButton>
     );
 
     final buttonText =
-        _AnimatedButtonText(text: widget.actionTitle, textWidth: textWidth);
+        _AnimatedButtonText(text: widget.actionTitle, show: showText);
 
     buttonChildren.add(buttonIcon);
     buttonChildren.add(buttonText);
@@ -122,7 +119,7 @@ class _ActionButtonState extends State<_ActionButton>
         onTap: widget.action,
         child: Container(
             key: _buttonKey,
-            width: widthAnimation != null ? widthAnimation.value : null,
+            width: animatedWidth ?? null,
             height: _baseButtonSize.height,
             padding: containerPadding,
             decoration: buttonDecoration,
@@ -136,9 +133,9 @@ class _ActionButtonState extends State<_ActionButton>
 
 class _AnimatedButtonText extends StatelessWidget {
   final String text;
-  final double textWidth;
+  final bool show;
 
-  _AnimatedButtonText({this.text, this.textWidth});
+  _AnimatedButtonText({this.text, this.show});
 
   final _buttonTextStyle = RoofTypography.button;
 
@@ -149,13 +146,16 @@ class _AnimatedButtonText extends StatelessWidget {
     final textContainerPadding = EdgeInsets.fromLTRB(RoofDistance.b, 0, 0, 0);
 
     return Flexible(
-        child: Container(
-            width: textWidth,
-            padding: textContainerPadding,
-            child: Text(text,
-                softWrap: false,
-                overflow: TextOverflow.fade,
-                style: _buttonTextStyle.textStyleWithColor(buttonTextColor),
-                textAlign: TextAlign.center)));
+      child: Container(
+        width: show ? null : 0,
+        padding: textContainerPadding,
+        child: Text(
+          text,
+          softWrap: false,
+          overflow: TextOverflow.fade,
+          style: _buttonTextStyle.textStyleWithColor(buttonTextColor),
+        ),
+      ),
+    );
   }
 }

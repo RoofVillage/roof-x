@@ -17,25 +17,20 @@ class RoofInputDock extends StatefulWidget {
 
 class _RoofInputDockState extends State<RoofInputDock>
     with SingleTickerProviderStateMixin {
-  bool inputHasText = false;
+  bool _inputHasText = false;
 
-  void updateCommentFocus(String inputText) {
-    print("updateCommentFocus: $inputText");
-    if (inputText.isNotEmpty && !inputHasText) {
-      inputHasText = true;
+  void doesInputHaveText(bool val) {
+    if (val != _inputHasText) {
       setState(() {
-        inputHasText = true;
-      });
-    } else if (inputText.isEmpty && inputHasText) {
-      setState(() {
-        inputHasText = false;
+        _inputHasText = val;
       });
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    print("rebuild dock, inputHasText: $inputHasText");
+    final theme = RoofTheme.of(context);
+
     List<Widget> rowChildren = [];
 
     if (widget.auxiliaryWidgets != null && widget.auxiliaryWidgets.isNotEmpty) {
@@ -43,29 +38,25 @@ class _RoofInputDockState extends State<RoofInputDock>
     }
 
     final commentBox =
-        DockInputField(onChange: (String text) => updateCommentFocus(text));
+        DockInputField(inputHasText: (bool val) => doesInputHaveText(val));
     rowChildren.add(commentBox);
 
     if (widget.dockActionButton != null) {
-      rowChildren.add(widget.dockActionButton.build(shrink: inputHasText));
+      rowChildren.add(widget.dockActionButton.build(shrink: _inputHasText));
     }
 
-    final EdgeInsets bottomBarPadding = RoofObjectPadding.container1;
-
     final Widget contentRow = Row(
-      mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.end,
       children: rowChildren,
     );
 
-    final theme = RoofTheme.of(context);
     return SafeArea(
         top: false,
         left: false,
         right: false,
         child: Container(
           color: theme.color.background.brandPrimary,
-          padding: bottomBarPadding,
+          padding: RoofObjectPadding.container1,
           child: contentRow,
         ));
   }

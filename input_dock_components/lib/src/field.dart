@@ -4,7 +4,7 @@ import 'package:icon_library/index.dart';
 import 'package:theme/index.dart';
 import 'package:typography/index.dart';
 
-typedef void ChangeCallback(String val);
+typedef void ChangeCallback(bool val);
 typedef void SubmitCallback(DockFieldSubmitData data);
 
 class DockFieldSubmitData {
@@ -14,10 +14,10 @@ class DockFieldSubmitData {
 }
 
 class DockInputField extends StatefulWidget {
-  final ChangeCallback onChange;
+  final ChangeCallback inputHasText;
   final SubmitCallback onSubmit;
 
-  DockInputField({this.onChange, this.onSubmit});
+  DockInputField({this.inputHasText, this.onSubmit});
 
   _DockInputFieldState createState() => _DockInputFieldState();
 }
@@ -32,7 +32,7 @@ class _DockInputFieldState extends State<DockInputField> {
   final _controller = TextEditingController();
 
   _textChanged() {
-    widget.onChange(_controller.text);
+    widget.inputHasText(_controller.text.isNotEmpty);
     if (_controller.text.isNotEmpty && !_showSendButton) {
       setState(() {
         _showSendButton = true;
@@ -46,7 +46,6 @@ class _DockInputFieldState extends State<DockInputField> {
 
   @override
   void initState() {
-    print("initState");
     _controller.addListener(_textChanged);
     super.initState();
   }
@@ -60,8 +59,9 @@ class _DockInputFieldState extends State<DockInputField> {
     final focusedBorder =
         OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent));
     final errorBorder = OutlineInputBorder(
-        borderSide: BorderSide(color: theme.color.stroke.alert),
-        borderRadius: BorderRadius.all(RoofCornerRadius.regular));
+      borderSide: BorderSide(color: theme.color.stroke.alert),
+      borderRadius: BorderRadius.all(RoofCornerRadius.regular),
+    );
 
     final hintStyle = TextStyle(color: theme.color.text.placeholder);
 
@@ -69,20 +69,22 @@ class _DockInputFieldState extends State<DockInputField> {
         _commentTextStyle.textStyleWithColor(theme.color.text.primary);
 
     final textFieldDecoration = InputDecoration(
-        contentPadding: EdgeInsets.all(RoofDistance.c),
-        hintText: _hintText,
-        border: OutlineInputBorder(),
-        enabledBorder: enabledBorder,
-        focusedBorder: focusedBorder,
-        errorBorder: errorBorder,
-        hintStyle: hintStyle);
+      contentPadding: EdgeInsets.all(RoofDistance.c),
+      hintText: _hintText,
+      border: OutlineInputBorder(),
+      enabledBorder: enabledBorder,
+      focusedBorder: focusedBorder,
+      errorBorder: errorBorder,
+      hintStyle: hintStyle,
+    );
 
     final textField = TextField(
-        maxLines: null,
-        style: textStyle,
-        textInputAction: TextInputAction.done,
-        decoration: textFieldDecoration,
-        controller: _controller);
+      maxLines: null,
+      style: textStyle,
+      textInputAction: TextInputAction.done,
+      decoration: textFieldDecoration,
+      controller: _controller,
+    );
 
     return Flexible(
       child: Row(
@@ -118,7 +120,6 @@ class _SendButton extends StatelessWidget {
     final inactiveColor = activeColor.withAlpha(0);
 
     final sendIcon = IconReference.sendFilled;
-
     final activeIcon = sendIcon.buildSvg(color: activeColor);
     final inactiveIcon = sendIcon.buildSvg(color: inactiveColor);
 
