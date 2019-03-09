@@ -21,7 +21,7 @@ class DockInputField extends StatelessWidget {
 
   DockInputField({this.onChange, this.onSubmit});
 
-  final _commentTextStyle = RoofTypography.body1a;
+  final _commentTextStyle = RoofTypography.bodyPrimary;
 
   @override
   Widget build(BuildContext context) {

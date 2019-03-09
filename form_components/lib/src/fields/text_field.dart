@@ -83,7 +83,7 @@ class _FieldBodyState extends State<_FieldBody> {
   Function(String) onChanged;
 
   final _controller = TextEditingController();
-  final _typographyStyle = RoofTypography.body2;
+  final _typographyStyle = RoofTypography.bodyPrimary;
   String get _formattedPlaceholder {
     return (placeholder == null && isPassword) ? "••••••••" : placeholder;
   }
