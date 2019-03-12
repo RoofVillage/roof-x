@@ -23,7 +23,7 @@ class DockInputField extends StatefulWidget {
 }
 
 class _DockInputFieldState extends State<DockInputField> {
-  bool _showSendButton = false;
+  bool _showSubmitButton = false;
 
   static const String _hintText = "Add comment";
   static const double _maxHeight = 200;
@@ -33,13 +33,13 @@ class _DockInputFieldState extends State<DockInputField> {
 
   _textChanged() {
     widget.inputHasText(_controller.text.isNotEmpty);
-    if (_controller.text.isNotEmpty && !_showSendButton) {
+    if (_controller.text.isNotEmpty && !_showSubmitButton) {
       setState(() {
-        _showSendButton = true;
+        _showSubmitButton = true;
       });
-    } else if (_controller.text.isEmpty && _showSendButton) {
+    } else if (_controller.text.isEmpty && _showSubmitButton) {
       setState(() {
-        _showSendButton = false;
+        _showSubmitButton = false;
       });
     }
   }
@@ -69,7 +69,8 @@ class _DockInputFieldState extends State<DockInputField> {
         _commentTextStyle.textStyleWithColor(theme.color.text.primary);
 
     final textFieldDecoration = InputDecoration(
-      contentPadding: EdgeInsets.all(RoofDistance.c),
+      contentPadding: EdgeInsets.fromLTRB(
+          0, RoofDistance.c, RoofDistance.c, RoofDistance.c),
       hintText: _hintText,
       border: OutlineInputBorder(),
       enabledBorder: enabledBorder,
@@ -96,9 +97,9 @@ class _DockInputFieldState extends State<DockInputField> {
               child: textField,
             ),
           ),
-          _SendButton(
+          _SubmitButton(
             onTap: widget.onSubmit,
-            visible: _showSendButton,
+            visible: _showSubmitButton,
           ),
         ],
       ),
@@ -106,13 +107,13 @@ class _DockInputFieldState extends State<DockInputField> {
   }
 }
 
-class _SendButton extends StatelessWidget {
+class _SubmitButton extends StatelessWidget {
   final Function onTap;
   final bool visible;
 
   static const double _height = 44;
 
-  _SendButton({this.onTap, this.visible: false});
+  _SubmitButton({this.onTap, this.visible: false});
 
   @override
   Widget build(BuildContext context) {
