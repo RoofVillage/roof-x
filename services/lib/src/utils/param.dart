@@ -17,4 +17,5 @@ class Param {
   static const roof = 'roof';
   static const transfer = 'transfer';
   static const who = 'who';
+  static const objectsToSync = 'objectsToSync';
 }

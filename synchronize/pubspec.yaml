@@ -1,5 +1,5 @@
-name: services
-description: Roof's services.
+name: synchronize
+description: Tools to parse data recieved by the server.
 
 version: 1.0.0+1
 
@@ -11,8 +11,6 @@ dependencies:
     sdk: flutter
   network:
     path: ../network
-  synchronize:
-    path: ../synchronize
 
 dev_dependencies:
   flutter_test:

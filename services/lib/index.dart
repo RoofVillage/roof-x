@@ -1,3 +1,3 @@
 export 'src/public.dart';
-export 'src/address.dart';
-export 'src/param.dart';
+export 'src/utils/address.dart';
+export 'src/utils/param.dart';

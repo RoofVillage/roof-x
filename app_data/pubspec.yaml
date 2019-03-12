@@ -1,5 +1,5 @@
-name: services
-description: Roof's services.
+name: app_data
+description: An interface to interact with app data.
 
 version: 1.0.0+1
 

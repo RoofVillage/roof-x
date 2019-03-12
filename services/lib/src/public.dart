@@ -1,7 +1,6 @@
 import 'package:network/index.dart';
-import 'address.dart';
 
-import 'param.dart';
+import 'utils/index.dart';
 
 class GetPublicActivity {
   Future<String> request(

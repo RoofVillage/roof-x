@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:stream/index.dart';
 import 'package:network/index.dart';
 
@@ -46,7 +48,16 @@ class StreamFormBloc extends BlocBase {
     final address = getAddress();
     final params = getParams();
     if (address == null || params == null) return;
-    await Network().post(address: address, params: params);
+    final response = await Network().post(address: address, params: params);
+    final _ = await compute<String, int>(_sync, response);
+  }
+
+  int _sync(String response) {
+    final dataConvertedToJson = json.decode(response);
+    final Map objectsToSync = dataConvertedToJson[Param.objectsToSync];
+    // final dataConvertedToJson = json.decode(response);
+    // final List publicActivity = dataConvertedToJson[Param.publicActivity];
+    return 0;
   }
 
   //Override to handle field changes;
