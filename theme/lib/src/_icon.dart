@@ -21,7 +21,7 @@ class RoofIconColor {
       case RoofThemeOption.light:
         return RoofColor.black1;
       case RoofThemeOption.dark:
-        return RoofColor.white2;
+        return RoofColor.gray2;
     }
     return null;
   }

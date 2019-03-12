@@ -1,4 +1,4 @@
-name: Sandbox 
+name: Sandbox
 description: Testing.
 
 version: 1.0.0+1
@@ -9,9 +9,30 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  thread_components:
-    path: ../thread_components
+  input_dock_artboard_mixin:
+    path: ../input_dock_artboard_mixin
+  input_dock_components:
+    path: ../input_dock_components
+  icon_library:
+    path: ../icon_library
+  theme:
+    path: ../theme
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+flutter:
+  fonts:
+    - family: azo
+      fonts:
+        - asset: packages/typography/fonts/azo/AzoSans-Thin.otf
+          weight: 100
+        - asset: packages/typography/fonts/azo/AzoSans-Light.otf
+          weight: 200
+        - asset: packages/typography/fonts/azo/AzoSans-Regular.otf
+          weight: 300
+        - asset: packages/typography/fonts/azo/AzoSans-Medium.otf
+          weight: 400
+        - asset: packages/typography/fonts/azo/AzoSans-Bold.otf
+          weight: 500
