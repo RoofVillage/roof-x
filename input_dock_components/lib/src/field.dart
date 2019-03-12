@@ -16,8 +16,9 @@ class DockFieldSubmitData {
 class DockInputField extends StatefulWidget {
   final ChangeCallback onInputChange;
   final SubmitCallback onSubmit;
+  final double baseHeight;
 
-  DockInputField({this.onInputChange, this.onSubmit});
+  DockInputField({this.onInputChange, this.onSubmit, this.baseHeight});
 
   _DockInputFieldState createState() => _DockInputFieldState();
 }
@@ -103,6 +104,7 @@ class _DockInputFieldState extends State<DockInputField> {
           ),
           _SubmitButton(
             onTap: _submit,
+            height: widget.baseHeight,
             visible: _inputHasText,
           ),
         ],
@@ -113,11 +115,10 @@ class _DockInputFieldState extends State<DockInputField> {
 
 class _SubmitButton extends StatelessWidget {
   final Function onTap;
+  final double height;
   final bool visible;
 
-  static const double _height = 44;
-
-  _SubmitButton({this.onTap, this.visible: false});
+  _SubmitButton({this.onTap, this.height, this.visible: false});
 
   @override
   Widget build(BuildContext context) {
@@ -135,7 +136,7 @@ class _SubmitButton extends StatelessWidget {
         child: Container(
             alignment: Alignment.center,
             padding: padding,
-            height: _height,
+            height: height,
             child: AnimatedCrossFade(
                 firstChild: activeIcon,
                 secondChild: inactiveIcon,

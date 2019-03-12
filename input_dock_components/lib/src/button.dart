@@ -11,53 +11,75 @@ class DockActionButton {
 
   DockActionButton({this.action, this.actionTitle, this.actionIconReference});
 
-  buildWithCallback({bool collapse}) {
-    return _ActionButton(
+  buildWithProperties({bool collapse, double baseHeight}) {
+    return _DockActionButton(
       action: action,
       actionTitle: actionTitle,
       actionIconReference: actionIconReference,
       isCollapsed: collapse,
+      baseHeight: baseHeight,
     );
   }
 }
 
-class _ActionButton extends StatefulWidget {
+class _DockActionButton extends StatefulWidget {
   final Function action;
   final String actionTitle;
   final StandardIconReference actionIconReference;
   final bool isCollapsed;
+  final double baseHeight;
 
-  _ActionButton({
+  _DockActionButton({
     this.action,
     this.actionTitle,
     this.actionIconReference,
     this.isCollapsed: false,
+    this.baseHeight,
   });
 
-  _ActionButtonState createState() => _ActionButtonState();
+  _DockActionButtonState createState() => _DockActionButtonState(
+        baseButtonSize: Size(this.baseHeight, this.baseHeight),
+      );
 }
 
-class _ActionButtonState extends State<_ActionButton>
+class _DockActionButtonState extends State<_DockActionButton>
     with SingleTickerProviderStateMixin {
-  final GlobalKey _buttonKey = GlobalKey();
-  final Size _baseButtonSize = Size(44, 44);
+  Size baseButtonSize;
 
+  _DockActionButtonState({this.baseButtonSize});
+
+  final GlobalKey _buttonKey = GlobalKey();
+  final GlobalKey _buttonIconKey = GlobalKey();
+  final double _buttonHorizontalPadding = RoofDistance.b;
+
+  double minWidthToShowText = 0;
+  double maxButtonWidth;
+  double buttonIconWidth;
   Animation<double> widthAnimation;
   AnimationController controller;
 
-  void _getActionButtonSize(_) {
+  void _buildButtonAnimation(_) {
+    _calculateComponentSizes();
+    _buildAnimationFromMaxButtonWidth(maxButtonWidth);
+  }
+
+  void _calculateComponentSizes() {
     if (_buttonKey.currentContext == null) return;
 
     final RenderBox actionButtonRenderBox =
         _buttonKey.currentContext.findRenderObject();
+    final RenderBox actionButtonIconRenderBox =
+        _buttonIconKey.currentContext.findRenderObject();
 
-    final double maxButtonWidth = actionButtonRenderBox.size.width;
+    maxButtonWidth = actionButtonRenderBox.size.width;
+    buttonIconWidth = actionButtonIconRenderBox.size.width;
 
-    _buildAnimation(maxButtonWidth);
+    // minWidthToShowText ensures button children don't overflow while button is collapsing by removing the text precisely before overflow would occur. Value should be at least equal to ((width of the button icon) + (button x-axis containerPadding) + (borderWidth * 2))
+    minWidthToShowText = buttonIconWidth + (_buttonHorizontalPadding * 2) + 2;
   }
 
-  void _buildAnimation(double maxButtonWidth) {
-    final double minButtonWidth = _baseButtonSize.width;
+  void _buildAnimationFromMaxButtonWidth(double maxButtonWidth) {
+    final double minButtonWidth = baseButtonSize.width;
 
     final curve = CurvedAnimation(parent: controller, curve: RoofCurve.quick);
 
@@ -70,9 +92,11 @@ class _ActionButtonState extends State<_ActionButton>
 
   @override
   void initState() {
-    WidgetsBinding.instance.addPostFrameCallback(_getActionButtonSize);
+    WidgetsBinding.instance
+        .addPostFrameCallback(_buildButtonAnimation);
 
-    controller = AnimationController(duration: RoofDuration.short, vsync: this);
+    controller =
+        AnimationController(duration: RoofDuration.medium, vsync: this);
 
     super.initState();
   }
@@ -80,17 +104,13 @@ class _ActionButtonState extends State<_ActionButton>
   @override
   Widget build(BuildContext context) {
     widget.isCollapsed ? controller.forward() : controller.reverse();
+
     final theme = RoofTheme.of(context);
 
     final buttonDecoration = BoxDecoration(
       border: Border.all(color: theme.color.stroke.transitionAction),
       borderRadius: BorderRadius.all(RoofCornerRadius.regular),
     );
-
-    // animationWidthOffset ensures button children don't overflow while button is collapsing. Value should be equal to the difference between baseButtonSize.width and the width of the button icon + total x-axis containerPadding
-    const double animationWidthOffset = 2;
-    final double minWidthToShowText =
-        _baseButtonSize.width + animationWidthOffset;
 
     bool showText = true;
     EdgeInsets containerPadding =
@@ -105,6 +125,7 @@ class _ActionButtonState extends State<_ActionButton>
     final buttonChildren = <Widget>[];
 
     final buttonIcon = Container(
+      key: _buttonIconKey,
       child: widget.actionIconReference
           .buildSvg(color: theme.color.icon.transitionAction),
     );
@@ -120,7 +141,7 @@ class _ActionButtonState extends State<_ActionButton>
         child: Container(
             key: _buttonKey,
             width: animatedWidth ?? null,
-            height: _baseButtonSize.height,
+            height: baseButtonSize.height,
             padding: containerPadding,
             decoration: buttonDecoration,
             child: Row(

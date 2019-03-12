@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:spec/index.dart';
 import 'package:theme/index.dart';
 
+import 'auxiliary_widget.dart';
 import 'button.dart';
 import 'field.dart';
 
 class RoofInputDock extends StatefulWidget {
   final DockActionButton dockActionButton;
   final SubmitCallback onSubmit;
-  final List<Widget> auxiliaryWidgets;
+  final List<AuxiliaryWidget> auxiliaryWidgets;
 
   RoofInputDock({this.dockActionButton, this.onSubmit, this.auxiliaryWidgets});
 
@@ -18,6 +19,7 @@ class RoofInputDock extends StatefulWidget {
 
 class _RoofInputDockState extends State<RoofInputDock>
     with SingleTickerProviderStateMixin {
+  final double _baseHeight = 44;
   bool _inputHasText = false;
 
   void _doesInputHaveText(bool val) {
@@ -35,18 +37,24 @@ class _RoofInputDockState extends State<RoofInputDock>
     List<Widget> rowChildren = [];
 
     if (widget.auxiliaryWidgets != null && widget.auxiliaryWidgets.isNotEmpty) {
-      rowChildren.addAll(widget.auxiliaryWidgets);
+      final List<Widget> _auxiliaryWidgets = [];
+      for (AuxiliaryWidget auxiliaryWidget in widget.auxiliaryWidgets) {
+        _auxiliaryWidgets.add(auxiliaryWidget.buildWithSize(_baseHeight));
+      }
+      rowChildren.addAll(_auxiliaryWidgets);
     }
 
     final inputField = DockInputField(
       onInputChange: _doesInputHaveText,
       onSubmit: widget.onSubmit,
+      baseHeight: _baseHeight,
     );
     rowChildren.add(inputField);
 
     if (widget.dockActionButton != null) {
-      final actionButton = widget.dockActionButton.buildWithCallback(
+      final actionButton = widget.dockActionButton.buildWithProperties(
         collapse: _inputHasText,
+        baseHeight: _baseHeight,
       );
       rowChildren.add(actionButton);
     }

@@ -30,17 +30,25 @@ class Thread extends StatelessWidget {
     print("thread action");
   }
 
-  final _actionIcon = IconReference.outOfStock;
+  final _actionIcon = IconReference.cashSack;
 
   @override
   Widget build(BuildContext context) {
+    final auxiliaryWidgets = [
+      AuxiliaryWidget(
+        iconReference: IconReference.addImage,
+        action: () => print("auxiliary action"),
+      )
+    ];
+
     final inputButton = DockActionButton(
       action: _threadAction,
-      actionTitle: "Action!",
+      actionTitle: "Log payment",
       actionIconReference: _actionIcon,
     );
 
     final dock = RoofInputDock(
+      auxiliaryWidgets: auxiliaryWidgets,
       dockActionButton: inputButton,
       onSubmit: _inputSubmitAction,
     );
