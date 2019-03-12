@@ -14,16 +14,16 @@ class DockFieldSubmitData {
 }
 
 class DockInputField extends StatefulWidget {
-  final ChangeCallback inputHasText;
+  final ChangeCallback onInputChange;
   final SubmitCallback onSubmit;
 
-  DockInputField({this.inputHasText, this.onSubmit});
+  DockInputField({this.onInputChange, this.onSubmit});
 
   _DockInputFieldState createState() => _DockInputFieldState();
 }
 
 class _DockInputFieldState extends State<DockInputField> {
-  bool _showSubmitButton = false;
+  bool _inputHasText = false;
 
   static const String _hintText = "Add comment";
   static const double _maxHeight = 200;
@@ -32,16 +32,20 @@ class _DockInputFieldState extends State<DockInputField> {
   final _controller = TextEditingController();
 
   _textChanged() {
-    widget.inputHasText(_controller.text.isNotEmpty);
-    if (_controller.text.isNotEmpty && !_showSubmitButton) {
+    widget.onInputChange(_controller.text.isNotEmpty);
+    if (_controller.text.isNotEmpty && !_inputHasText) {
       setState(() {
-        _showSubmitButton = true;
+        _inputHasText = true;
       });
-    } else if (_controller.text.isEmpty && _showSubmitButton) {
+    } else if (_controller.text.isEmpty && _inputHasText) {
       setState(() {
-        _showSubmitButton = false;
+        _inputHasText = false;
       });
     }
+  }
+
+  _submit() {
+    widget.onSubmit(DockFieldSubmitData(text: _controller.text));
   }
 
   @override
@@ -98,8 +102,8 @@ class _DockInputFieldState extends State<DockInputField> {
             ),
           ),
           _SubmitButton(
-            onTap: widget.onSubmit,
-            visible: _showSubmitButton,
+            onTap: _submit,
+            visible: _inputHasText,
           ),
         ],
       ),

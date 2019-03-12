@@ -7,9 +7,10 @@ import 'field.dart';
 
 class RoofInputDock extends StatefulWidget {
   final DockActionButton dockActionButton;
+  final SubmitCallback onSubmit;
   final List<Widget> auxiliaryWidgets;
 
-  RoofInputDock({this.dockActionButton, this.auxiliaryWidgets});
+  RoofInputDock({this.dockActionButton, this.onSubmit, this.auxiliaryWidgets});
 
   @override
   State<StatefulWidget> createState() => _RoofInputDockState();
@@ -19,7 +20,7 @@ class _RoofInputDockState extends State<RoofInputDock>
     with SingleTickerProviderStateMixin {
   bool _inputHasText = false;
 
-  void doesInputHaveText(bool val) {
+  void _doesInputHaveText(bool val) {
     if (val != _inputHasText) {
       setState(() {
         _inputHasText = val;
@@ -37,12 +38,17 @@ class _RoofInputDockState extends State<RoofInputDock>
       rowChildren.addAll(widget.auxiliaryWidgets);
     }
 
-    final commentBox =
-        DockInputField(inputHasText: (bool val) => doesInputHaveText(val));
-    rowChildren.add(commentBox);
+    final inputField = DockInputField(
+      onInputChange: _doesInputHaveText,
+      onSubmit: widget.onSubmit,
+    );
+    rowChildren.add(inputField);
 
     if (widget.dockActionButton != null) {
-      rowChildren.add(widget.dockActionButton.build(shrink: _inputHasText));
+      final actionButton = widget.dockActionButton.buildWithCallback(
+        collapse: _inputHasText,
+      );
+      rowChildren.add(actionButton);
     }
 
     final Widget contentRow = Row(
@@ -51,13 +57,14 @@ class _RoofInputDockState extends State<RoofInputDock>
     );
 
     return SafeArea(
-        top: false,
-        left: false,
-        right: false,
-        child: Container(
-          color: theme.color.background.brandPrimary,
-          padding: RoofObjectPadding.container1,
-          child: contentRow,
-        ));
+      top: false,
+      left: false,
+      right: false,
+      child: Container(
+        color: theme.color.background.brandPrimary,
+        padding: RoofObjectPadding.container1,
+        child: contentRow,
+      ),
+    );
   }
 }

@@ -22,20 +22,28 @@ class Sandbox extends StatelessWidget {
 }
 
 class Thread extends StatelessWidget {
+  _inputSubmitAction(DockFieldSubmitData data) {
+    print("input text: ${data.text}");
+  }
+
+  _threadAction() {
+    print("thread action");
+  }
+
+  final _actionIcon = IconReference.outOfStock;
+
   @override
   Widget build(BuildContext context) {
-    _threadAction() {
-      print("thread action");
-    }
-
-    final actionIcon = IconReference.outOfStock;
     final inputButton = DockActionButton(
       action: _threadAction,
       actionTitle: "Action!",
-      actionIconReference: actionIcon,
+      actionIconReference: _actionIcon,
     );
 
-    final dock = RoofInputDock(dockActionButton: inputButton);
+    final dock = RoofInputDock(
+      dockActionButton: inputButton,
+      onSubmit: _inputSubmitAction,
+    );
 
     return Scaffold(
       body: Column(

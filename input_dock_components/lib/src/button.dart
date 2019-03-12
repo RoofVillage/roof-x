@@ -11,12 +11,12 @@ class DockActionButton {
 
   DockActionButton({this.action, this.actionTitle, this.actionIconReference});
 
-  build({bool shrink}) {
+  buildWithCallback({bool collapse}) {
     return _ActionButton(
       action: action,
       actionTitle: actionTitle,
       actionIconReference: actionIconReference,
-      shrink: shrink,
+      isCollapsed: collapse,
     );
   }
 }
@@ -25,13 +25,13 @@ class _ActionButton extends StatefulWidget {
   final Function action;
   final String actionTitle;
   final StandardIconReference actionIconReference;
-  final bool shrink;
+  final bool isCollapsed;
 
   _ActionButton({
     this.action,
     this.actionTitle,
     this.actionIconReference,
-    this.shrink: false,
+    this.isCollapsed: false,
   });
 
   _ActionButtonState createState() => _ActionButtonState();
@@ -79,7 +79,7 @@ class _ActionButtonState extends State<_ActionButton>
 
   @override
   Widget build(BuildContext context) {
-    widget.shrink ? controller.forward() : controller.reverse();
+    widget.isCollapsed ? controller.forward() : controller.reverse();
     final theme = RoofTheme.of(context);
 
     final buttonDecoration = BoxDecoration(
