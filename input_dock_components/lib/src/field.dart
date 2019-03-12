@@ -137,6 +137,7 @@ class _SubmitButton extends StatelessWidget {
             alignment: Alignment.center,
             padding: padding,
             height: height,
+            width: visible? null : 0,
             child: AnimatedCrossFade(
                 firstChild: activeIcon,
                 secondChild: inactiveIcon,

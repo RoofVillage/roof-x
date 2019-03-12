@@ -38,6 +38,10 @@ class Thread extends StatelessWidget {
       AuxiliaryWidget(
         iconReference: IconReference.addImage,
         action: () => print("auxiliary action"),
+      ),
+      AuxiliaryWidget(
+        iconReference: IconReference.camera,
+        action: () => print("auxiliary action"),
       )
     ];
 
