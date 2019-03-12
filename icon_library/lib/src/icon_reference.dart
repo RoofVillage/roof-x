@@ -64,6 +64,7 @@ class IconReference {
   static final refer = StandardIconReference(path: 'refer.svg');
   static final restock = StandardIconReference(path: 'restock.svg');
   static final roofNametag = StandardIconReference(path: 'roof_nametag.svg');
+  static final sendFilled = StandardIconReference(path: 'send_filled.svg');
   static final settings = StandardIconReference(path: 'settings.svg');
   static final shield = StandardIconReference(path: 'shield.svg');
   static final shoppingList = StandardIconReference(path: 'shopping_list.svg');
@@ -72,11 +73,6 @@ class IconReference {
   static final thread = StandardIconReference(path: 'thread.svg');
   static final toolbox = StandardIconReference(path: 'toolbox.svg');
   static final upArrow = StandardIconReference(path: 'up_arrow.svg');
-
-  static final send =
-      CustomIconReference(path: 'send.svg', width: 32, height: 32);
-  static final sendFilled =
-      CustomIconReference(path: 'send_filled.svg', width: 32, height: 32);
 
   static final add = NavigationIconReference(path: 'add.svg');
   static final backArrowNav = NavigationIconReference(path: 'back_arrow.svg');

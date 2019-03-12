@@ -39,10 +39,10 @@ class Thread extends StatelessWidget {
         iconReference: IconReference.addImage,
         action: () => print("auxiliary action"),
       ),
-      AuxiliaryWidget(
-        iconReference: IconReference.camera,
-        action: () => print("auxiliary action"),
-      )
+      // AuxiliaryWidget(
+      //   iconReference: IconReference.camera,
+      //   action: () => print("auxiliary action"),
+      // )
     ];
 
     final inputButton = DockActionButton(

@@ -35,7 +35,7 @@ class _AuxiliaryWidget extends StatelessWidget {
       onTap: action,
       child: Container(
         height: baseHeight,
-        margin: EdgeInsets.only(right: RoofDistance.b),
+        margin: EdgeInsets.only(right: RoofDistance.c),
         child: Center(
           child: icon,
         ),

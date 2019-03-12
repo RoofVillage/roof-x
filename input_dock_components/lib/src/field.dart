@@ -68,14 +68,15 @@ class _DockInputFieldState extends State<DockInputField> {
       borderRadius: BorderRadius.all(RoofCornerRadius.regular),
     );
 
-    final hintStyle = TextStyle(color: theme.color.text.placeholder);
-
-    final textStyle =
-        _commentTextStyle.textStyleWithColor(theme.color.text.primary);
+    final hintStyle = _commentTextStyle.textStyleWithColor(
+      theme.color.text.placeholder,
+    );
+    final textStyle = _commentTextStyle.textStyleWithColor(
+      theme.color.text.primary,
+    );
 
     final textFieldDecoration = InputDecoration(
-      contentPadding: EdgeInsets.fromLTRB(
-          0, RoofDistance.c, RoofDistance.c, RoofDistance.c),
+      contentPadding: EdgeInsets.all(0),
       hintText: _hintText,
       border: OutlineInputBorder(),
       enabledBorder: enabledBorder,
@@ -92,29 +93,42 @@ class _DockInputFieldState extends State<DockInputField> {
       controller: _controller,
     );
 
-    return Flexible(
+    final constrainedTextField = Expanded(
+      child: ConstrainedBox(
+        constraints: BoxConstraints(
+          maxHeight: _maxHeight,
+          minHeight: widget.baseHeight,
+        ),
+        child: Padding(
+          padding: EdgeInsets.symmetric(vertical: RoofDistance.a),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Flexible(child: textField),
+            ],
+          ),
+        ),
+      ),
+    );
+
+    final submitButton = _SubmitButton(
+      onTap: _submit,
+      height: widget.baseHeight,
+      visible: _inputHasText,
+    );
+
+    return Expanded(
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          Expanded(
-            child: ConstrainedBox(
-              constraints: BoxConstraints(maxHeight: _maxHeight),
-              child: textField,
-            ),
-          ),
-          _SubmitButton(
-            onTap: _submit,
-            height: widget.baseHeight,
-            visible: _inputHasText,
-          ),
-        ],
+        children: [constrainedTextField, submitButton],
       ),
     );
   }
 }
 
 class _SubmitButton extends StatelessWidget {
-  final Function onTap;
+  final VoidCallback onTap;
   final double height;
   final bool visible;
 
@@ -129,22 +143,26 @@ class _SubmitButton extends StatelessWidget {
     final activeIcon = sendIcon.buildSvg(color: activeColor);
     final inactiveIcon = sendIcon.buildSvg(color: inactiveColor);
 
-    final padding = EdgeInsets.fromLTRB(RoofDistance.c, 0, RoofDistance.c, 0);
+    final action = visible? onTap : null;
+    final padding = EdgeInsets.symmetric(horizontal: RoofDistance.c);
+    final double width = visible ? null : 0;
 
     return GestureDetector(
-        onTap: visible ? onTap : null,
-        child: Container(
-            alignment: Alignment.center,
-            padding: padding,
-            height: height,
-            width: visible? null : 0,
-            child: AnimatedCrossFade(
-                firstChild: activeIcon,
-                secondChild: inactiveIcon,
-                duration: RoofDuration.short,
-                crossFadeState: visible
-                    ? CrossFadeState.showFirst
-                    : CrossFadeState.showSecond,
-                firstCurve: RoofCurve.quick)));
+      onTap: action,
+      child: Container(
+        alignment: Alignment.center,
+        padding: padding,
+        height: height,
+        width: width,
+        child: AnimatedCrossFade(
+          firstChild: activeIcon,
+          secondChild: inactiveIcon,
+          duration: RoofDuration.short,
+          crossFadeState:
+              visible ? CrossFadeState.showFirst : CrossFadeState.showSecond,
+          firstCurve: RoofCurve.quick,
+        ),
+      ),
+    );
   }
 }

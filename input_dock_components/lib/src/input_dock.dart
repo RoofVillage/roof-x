@@ -17,15 +17,14 @@ class RoofInputDock extends StatefulWidget {
   State<StatefulWidget> createState() => _RoofInputDockState();
 }
 
-class _RoofInputDockState extends State<RoofInputDock>
-    with SingleTickerProviderStateMixin {
-  final double _baseHeight = 44;
-  bool _inputHasText = false;
+class _RoofInputDockState extends State<RoofInputDock> {
+  static const double _baseHeight = 40;
+  bool _collapseButton = false;
 
-  void _doesInputHaveText(bool val) {
-    if (val != _inputHasText) {
+  void _shouldButtonCollapse(bool val) {
+    if (val != _collapseButton) {
       setState(() {
-        _inputHasText = val;
+        _collapseButton = val;
       });
     }
   }
@@ -38,14 +37,16 @@ class _RoofInputDockState extends State<RoofInputDock>
 
     if (widget.auxiliaryWidgets != null && widget.auxiliaryWidgets.isNotEmpty) {
       final List<Widget> _auxiliaryWidgets = [];
-      for (AuxiliaryWidget auxiliaryWidget in widget.auxiliaryWidgets) {
-        _auxiliaryWidgets.add(auxiliaryWidget.buildWithSize(_baseHeight));
+      for (AuxiliaryWidget auxWidget in widget.auxiliaryWidgets) {
+        _auxiliaryWidgets.add(
+          auxWidget.buildWithSize(_baseHeight),
+        );
       }
       rowChildren.addAll(_auxiliaryWidgets);
     }
 
     final inputField = DockInputField(
-      onInputChange: _doesInputHaveText,
+      onInputChange: _shouldButtonCollapse,
       onSubmit: widget.onSubmit,
       baseHeight: _baseHeight,
     );
@@ -53,7 +54,7 @@ class _RoofInputDockState extends State<RoofInputDock>
 
     if (widget.dockActionButton != null) {
       final actionButton = widget.dockActionButton.buildWithProperties(
-        collapse: _inputHasText,
+        collapse: _collapseButton,
         baseHeight: _baseHeight,
       );
       rowChildren.add(actionButton);
