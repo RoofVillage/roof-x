@@ -23,33 +23,34 @@ class Sandbox extends StatelessWidget {
 
 class Thread extends StatelessWidget {
   _inputSubmitAction(DockFieldSubmitData data) {
-    print("input text: ${data.text}");
+    print("submit: ${data.text}");
   }
 
   _threadAction() {
-    print("thread action");
+    print("thread action: $_actionText");
   }
 
   final _actionIcon = IconReference.restock;
+  final _actionText = "Restock";
 
   @override
   Widget build(BuildContext context) {
-    final theme =RoofTheme.of(context);
+    final theme = RoofTheme.of(context);
 
     final auxiliaryWidgets = [
       AuxiliaryWidget(
         iconReference: IconReference.addImage,
-        action: () => print("auxiliary action"),
+        action: () => print("aux action addImage"),
       ),
       // AuxiliaryWidget(
       //   iconReference: IconReference.camera,
-      //   action: () => print("auxiliary action"),
+      //   action: () => print("aux action camera"),
       // )
     ];
 
     final inputButton = DockActionButton(
       action: _threadAction,
-      actionTitle: "Restock",
+      actionTitle: _actionText,
       actionIconReference: _actionIcon,
     );
 
@@ -60,14 +61,10 @@ class Thread extends StatelessWidget {
     );
 
     return Scaffold(
+      backgroundColor: theme.color.background.general,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
-          Expanded(
-            child: Container(
-              color: theme.color.background.general,
-            ),
-          ),
           dock,
         ],
       ),
