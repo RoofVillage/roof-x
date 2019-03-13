@@ -56,6 +56,7 @@ class _DockActionButtonState extends State<_DockActionButton>
   double maxButtonWidth;
   double buttonIconWidth;
   Animation<double> widthAnimation;
+  Animation<double> opacityAnimation;
   AnimationController controller;
 
   void _buildButtonAnimation(_) {
@@ -83,20 +84,29 @@ class _DockActionButtonState extends State<_DockActionButton>
 
     final curve = CurvedAnimation(parent: controller, curve: RoofCurve.quick);
 
-    widthAnimation =
-        Tween(begin: maxButtonWidth, end: minButtonWidth).animate(curve)
-          ..addListener(() {
-            setState(() {});
-          });
+    widthAnimation = Tween(
+      begin: maxButtonWidth,
+      end: minButtonWidth,
+    ).animate(curve)
+      ..addListener(() {
+        setState(() {});
+      });
+
+    opacityAnimation = Tween(
+      begin: 1.0,
+      end: 0.0,
+    ).animate(curve)
+      ..addListener(() {
+        setState(() {});
+      });
   }
 
   @override
   void initState() {
-    WidgetsBinding.instance
-        .addPostFrameCallback(_buildButtonAnimation);
+    WidgetsBinding.instance.addPostFrameCallback(_buildButtonAnimation);
 
     controller =
-        AnimationController(duration: RoofDuration.medium, vsync: this);
+        AnimationController(duration: RoofDuration.short, vsync: this);
 
     super.initState();
   }
@@ -130,8 +140,11 @@ class _DockActionButtonState extends State<_DockActionButton>
           .buildSvg(color: theme.color.icon.transitionAction),
     );
 
-    final buttonText =
-        _AnimatedButtonText(text: widget.actionTitle, show: showText);
+    final buttonText = _AnimatedButtonText(
+      text: widget.actionTitle,
+      show: showText,
+      opacity: opacityAnimation != null ? opacityAnimation.value : 1,
+    );
 
     buttonChildren.add(buttonIcon);
     buttonChildren.add(buttonText);
@@ -155,8 +168,9 @@ class _DockActionButtonState extends State<_DockActionButton>
 class _AnimatedButtonText extends StatelessWidget {
   final String text;
   final bool show;
+  final double opacity;
 
-  _AnimatedButtonText({this.text, this.show});
+  _AnimatedButtonText({this.text, this.show, this.opacity});
 
   final _buttonTextStyle = RoofTypography.button;
 
@@ -170,11 +184,14 @@ class _AnimatedButtonText extends StatelessWidget {
       child: Container(
         width: show ? null : 0,
         padding: textContainerPadding,
-        child: Text(
-          text,
-          softWrap: false,
-          overflow: TextOverflow.fade,
-          style: _buttonTextStyle.textStyleWithColor(buttonTextColor),
+        child: Opacity(
+          opacity: opacity,
+          child: Text(
+            text,
+            softWrap: false,
+            overflow: TextOverflow.fade,
+            style: _buttonTextStyle.textStyleWithColor(buttonTextColor),
+          ),
         ),
       ),
     );

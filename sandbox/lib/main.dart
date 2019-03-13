@@ -30,24 +30,26 @@ class Thread extends StatelessWidget {
     print("thread action");
   }
 
-  final _actionIcon = IconReference.cashSack;
+  final _actionIcon = IconReference.restock;
 
   @override
   Widget build(BuildContext context) {
+    final theme =RoofTheme.of(context);
+
     final auxiliaryWidgets = [
       AuxiliaryWidget(
         iconReference: IconReference.addImage,
         action: () => print("auxiliary action"),
       ),
-      AuxiliaryWidget(
-        iconReference: IconReference.camera,
-        action: () => print("auxiliary action"),
-      )
+      // AuxiliaryWidget(
+      //   iconReference: IconReference.camera,
+      //   action: () => print("auxiliary action"),
+      // )
     ];
 
     final inputButton = DockActionButton(
       action: _threadAction,
-      actionTitle: "Log payment",
+      actionTitle: "Restock",
       actionIconReference: _actionIcon,
     );
 
@@ -61,9 +63,12 @@ class Thread extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
-          Container(
-            child: dock,
-          )
+          Expanded(
+            child: Container(
+              color: theme.color.background.general,
+            ),
+          ),
+          dock,
         ],
       ),
     );

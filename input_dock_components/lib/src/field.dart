@@ -90,15 +90,23 @@ class _DockInputFieldState extends State<DockInputField> {
 
     final double submitButtonPaddingBuffer = 50;
     final paddingWithBuffer = EdgeInsets.fromLTRB(
-        0, RoofDistance.a, submitButtonPaddingBuffer, RoofDistance.a);
-    final paddingWithoutBuffer = EdgeInsets.symmetric(vertical: RoofDistance.a);
+      0,
+      RoofDistance.a,
+      submitButtonPaddingBuffer,
+      RoofDistance.a,
+    );
+    final paddingWithoutBuffer = EdgeInsets.symmetric(
+      vertical: RoofDistance.a,
+    );
 
     final paddedTextField = Padding(
       padding: _inputHasText ? paddingWithBuffer : paddingWithoutBuffer,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [textField],
+        children: [
+          Flexible(child: textField),
+        ],
       ),
     );
 
