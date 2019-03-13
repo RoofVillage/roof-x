@@ -1,4 +1,3 @@
-export 'src/auxiliary_widget.dart';
-export 'src/button.dart';
-export 'src/field.dart';
 export 'src/input_dock.dart';
+export 'src/dock_data.dart';
+export 'src/widgets/index.dart';

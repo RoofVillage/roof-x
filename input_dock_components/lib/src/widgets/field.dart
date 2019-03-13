@@ -4,18 +4,12 @@ import 'package:icon_library/index.dart';
 import 'package:theme/index.dart';
 import 'package:typography/index.dart';
 
-typedef void ChangeCallback(bool val);
-typedef void SubmitCallback(DockFieldSubmitData data);
-
-class DockFieldSubmitData {
-  final String text;
-
-  DockFieldSubmitData({this.text});
-}
+typedef void TextChangeCallback(bool val);
+typedef void TextSubmitCallback(String text);
 
 class DockInputField extends StatefulWidget {
-  final ChangeCallback onInputChange;
-  final SubmitCallback onSubmit;
+  final TextChangeCallback onInputChange;
+  final TextSubmitCallback onSubmit;
   final double baseHeight;
 
   DockInputField({this.onInputChange, this.onSubmit, this.baseHeight});
@@ -46,7 +40,7 @@ class _DockInputFieldState extends State<DockInputField> {
   }
 
   _submit() {
-    widget.onSubmit(DockFieldSubmitData(text: _controller.text));
+    widget.onSubmit(_controller.text);
   }
 
   @override
