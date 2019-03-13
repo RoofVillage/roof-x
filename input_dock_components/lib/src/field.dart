@@ -63,10 +63,6 @@ class _DockInputFieldState extends State<DockInputField> {
         OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent));
     final focusedBorder =
         OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent));
-    final errorBorder = OutlineInputBorder(
-      borderSide: BorderSide(color: theme.color.stroke.alert),
-      borderRadius: BorderRadius.all(RoofCornerRadius.regular),
-    );
 
     final hintStyle = _commentTextStyle.textStyleWithColor(
       theme.color.text.placeholder,
@@ -81,7 +77,6 @@ class _DockInputFieldState extends State<DockInputField> {
       border: OutlineInputBorder(),
       enabledBorder: enabledBorder,
       focusedBorder: focusedBorder,
-      errorBorder: errorBorder,
       hintStyle: hintStyle,
     );
 
@@ -93,22 +88,17 @@ class _DockInputFieldState extends State<DockInputField> {
       controller: _controller,
     );
 
-    final constrainedTextField = Expanded(
-      child: ConstrainedBox(
-        constraints: BoxConstraints(
-          maxHeight: _maxHeight,
-          minHeight: widget.baseHeight,
-        ),
-        child: Padding(
-          padding: EdgeInsets.symmetric(vertical: RoofDistance.a),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Flexible(child: textField),
-            ],
-          ),
-        ),
+    final double submitButtonPaddingBuffer = 50;
+    final paddingWithBuffer = EdgeInsets.fromLTRB(
+        0, RoofDistance.a, submitButtonPaddingBuffer, RoofDistance.a);
+    final paddingWithoutBuffer = EdgeInsets.symmetric(vertical: RoofDistance.a);
+
+    final paddedTextField = Padding(
+      padding: _inputHasText ? paddingWithBuffer : paddingWithoutBuffer,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [textField],
       ),
     );
 
@@ -118,10 +108,27 @@ class _DockInputFieldState extends State<DockInputField> {
       visible: _inputHasText,
     );
 
+    final constrainedInputStack = ConstrainedBox(
+      constraints: BoxConstraints(
+        maxHeight: _maxHeight,
+        minHeight: widget.baseHeight,
+      ),
+      child: Stack(
+        alignment: AlignmentDirectional.bottomCenter,
+        fit: StackFit.passthrough,
+        children: [
+          paddedTextField,
+          submitButton,
+        ],
+      ),
+    );
+
     return Expanded(
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.end,
-        children: [constrainedTextField, submitButton],
+        children: [
+          Expanded(child: constrainedInputStack),
+        ],
       ),
     );
   }
@@ -136,31 +143,23 @@ class _SubmitButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final activeColor = RoofTheme.of(context).color.background.submitButton;
-    final inactiveColor = activeColor.withAlpha(0);
+    final iconColor = RoofTheme.of(context).color.background.submitButton;
+    final sendIcon = IconReference.sendFilled.buildSvg(color: iconColor);
 
-    final sendIcon = IconReference.sendFilled;
-    final activeIcon = sendIcon.buildSvg(color: activeColor);
-    final inactiveIcon = sendIcon.buildSvg(color: inactiveColor);
-
-    final action = visible? onTap : null;
     final padding = EdgeInsets.symmetric(horizontal: RoofDistance.c);
-    final double width = visible ? null : 0;
 
     return GestureDetector(
-      onTap: action,
+      onTap: visible ? onTap : null,
       child: Container(
-        alignment: Alignment.center,
+        alignment: Alignment.centerRight,
         padding: padding,
         height: height,
-        width: width,
-        child: AnimatedCrossFade(
-          firstChild: activeIcon,
-          secondChild: inactiveIcon,
+        width: height,
+        child: AnimatedOpacity(
+          opacity: visible ? 1 : 0,
           duration: RoofDuration.short,
-          crossFadeState:
-              visible ? CrossFadeState.showFirst : CrossFadeState.showSecond,
-          firstCurve: RoofCurve.quick,
+          curve: RoofCurve.quick,
+          child: sendIcon,
         ),
       ),
     );
