@@ -74,7 +74,11 @@ class _DockActionButtonState extends State<DockActionButton>
     final dock = RoofInputDock.of(context);
     final double minButtonWidth = dock.baseHeight;
 
-    final curve = CurvedAnimation(parent: controller, curve: RoofCurve.quick);
+    final curve = CurvedAnimation(
+      parent: controller,
+      curve: RoofCurve.quick,
+      reverseCurve: RoofCurve.quick.flipped,
+    );
 
     widthAnimation = Tween(
       begin: maxButtonWidth,
