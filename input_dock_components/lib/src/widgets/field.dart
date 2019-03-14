@@ -7,15 +7,87 @@ import 'package:typography/index.dart';
 import '../input_dock.dart';
 
 class DockInputField extends StatefulWidget {
+  @override
   _DockInputFieldState createState() => _DockInputFieldState();
 }
 
 class _DockInputFieldState extends State<DockInputField> {
-  static const String _hintText = "Add comment";
   static const double _maxHeight = 200;
 
+  final _textController = TextEditingController();
+
+  InheritedInputDock _dock;
+
+  @override
+  void dispose() {
+    _textController.dispose();
+    super.dispose();
+  }
+
+  @override
+  void initState() {
+    _textController.addListener(textChanged);
+    super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    _dock = RoofInputDock.of(context);
+    super.didChangeDependencies();
+  }
+
+  textChanged() {
+    _dock.setText(_textController.text);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final paddedTextField = _TextFieldComponent(
+      dock: _dock,
+      controller: _textController,
+    );
+
+    final submitButton = _SubmitButton(
+      onTap: _dock.onSubmit,
+      height: _dock.baseHeight,
+      visible: _dock.showSubmitButton,
+    );
+
+    final constrainedInputStack = ConstrainedBox(
+      constraints: BoxConstraints(
+        maxHeight: _maxHeight,
+        minHeight: _dock.baseHeight,
+      ),
+      child: Stack(
+        alignment: AlignmentDirectional.bottomCenter,
+        fit: StackFit.passthrough,
+        children: [
+          paddedTextField,
+          submitButton,
+        ],
+      ),
+    );
+
+    return Expanded(
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          Expanded(child: constrainedInputStack),
+        ],
+      ),
+    );
+  }
+}
+
+class _TextFieldComponent extends StatelessWidget {
+  final InheritedInputDock dock;
+  final TextEditingController controller;
+
+  _TextFieldComponent({this.dock, this.controller});
+
+  static const String _hintText = "Add comment";
+
   final _commentTextStyle = RoofTypography.bodyPrimary;
-  final _controller = TextEditingController();
 
   final _enabledBorder =
       OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent));
@@ -25,13 +97,6 @@ class _DockInputFieldState extends State<DockInputField> {
   @override
   Widget build(BuildContext context) {
     final theme = RoofTheme.of(context);
-    final dock = RoofInputDock.of(context);
-
-    textChanged() {
-      dock.setText(_controller.text);
-    }
-
-    _controller.addListener(textChanged);
 
     final hintStyle = _commentTextStyle.textStyleWithColor(
       theme.color.text.placeholder,
@@ -54,7 +119,7 @@ class _DockInputFieldState extends State<DockInputField> {
       style: textStyle,
       textInputAction: TextInputAction.done,
       decoration: textFieldDecoration,
-      controller: _controller,
+      controller: controller,
     );
 
     final double submitButtonPaddingBuffer = 50;
@@ -68,43 +133,13 @@ class _DockInputFieldState extends State<DockInputField> {
       vertical: RoofDistance.a,
     );
 
-    final paddedTextField = Padding(
+    return Padding(
       padding: dock.showSubmitButton ? paddingWithBuffer : paddingWithoutBuffer,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Flexible(child: textField),
-        ],
-      ),
-    );
-
-    final submitButton = _SubmitButton(
-      onTap: dock.onSubmit,
-      height: dock.baseHeight,
-      visible: dock.showSubmitButton,
-    );
-
-    final constrainedInputStack = ConstrainedBox(
-      constraints: BoxConstraints(
-        maxHeight: _maxHeight,
-        minHeight: dock.baseHeight,
-      ),
-      child: Stack(
-        alignment: AlignmentDirectional.bottomCenter,
-        fit: StackFit.passthrough,
-        children: [
-          paddedTextField,
-          submitButton,
-        ],
-      ),
-    );
-
-    return Expanded(
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          Expanded(child: constrainedInputStack),
         ],
       ),
     );
