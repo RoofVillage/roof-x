@@ -4,50 +4,41 @@ import 'package:spec/index.dart';
 import 'package:typography/index.dart';
 import 'package:theme/index.dart';
 
-class DockActionButton {
+import '../input_dock.dart';
+
+// class XDockActionButton {
+//   final Function action;
+//   final String actionTitle;
+//   final StandardIconReference actionIconReference;
+
+//   XDockActionButton({this.action, this.actionTitle, this.actionIconReference});
+
+//   buildWithProperties({bool collapse, @required BuildContext context}) {
+//     final baseHeight = RoofInputDock.of(context).baseHeight;
+//     final baseButtonSize = Size(baseHeight, baseHeight);
+
+//     return DockActionButton(
+//       action: action,
+//       actionTitle: actionTitle,
+//       actionIconReference: actionIconReference,
+//       baseButtonSize: baseButtonSize,
+//       isCollapsed: collapse,
+//     );
+//   }
+// }
+
+class DockActionButton extends StatefulWidget {
   final Function action;
   final String actionTitle;
   final StandardIconReference actionIconReference;
 
   DockActionButton({this.action, this.actionTitle, this.actionIconReference});
 
-  buildWithProperties({bool collapse, double baseHeight}) {
-    return _DockActionButton(
-      action: action,
-      actionTitle: actionTitle,
-      actionIconReference: actionIconReference,
-      isCollapsed: collapse,
-      baseHeight: baseHeight,
-    );
-  }
+  _DockActionButtonState createState() => _DockActionButtonState();
 }
 
-class _DockActionButton extends StatefulWidget {
-  final Function action;
-  final String actionTitle;
-  final StandardIconReference actionIconReference;
-  final bool isCollapsed;
-  final double baseHeight;
-
-  _DockActionButton({
-    this.action,
-    this.actionTitle,
-    this.actionIconReference,
-    this.isCollapsed: false,
-    this.baseHeight,
-  });
-
-  _DockActionButtonState createState() => _DockActionButtonState(
-        baseButtonSize: Size(this.baseHeight, this.baseHeight),
-      );
-}
-
-class _DockActionButtonState extends State<_DockActionButton>
+class _DockActionButtonState extends State<DockActionButton>
     with SingleTickerProviderStateMixin {
-  Size baseButtonSize;
-
-  _DockActionButtonState({this.baseButtonSize});
-
   final GlobalKey _buttonKey = GlobalKey();
   final GlobalKey _buttonIconKey = GlobalKey();
   final double _buttonHorizontalPadding = RoofDistance.b;
@@ -80,7 +71,8 @@ class _DockActionButtonState extends State<_DockActionButton>
   }
 
   void _buildAnimationFromMaxButtonWidth(double maxButtonWidth) {
-    final double minButtonWidth = baseButtonSize.width;
+    final dock = RoofInputDock.of(context);
+    final double minButtonWidth = dock.baseHeight;
 
     final curve = CurvedAnimation(parent: controller, curve: RoofCurve.quick);
 
@@ -105,15 +97,15 @@ class _DockActionButtonState extends State<_DockActionButton>
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback(_buildButtonAnimation);
 
-    controller =
-        AnimationController(duration: RoofDuration.short, vsync: this);
+    controller = AnimationController(duration: RoofDuration.short, vsync: this);
 
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    widget.isCollapsed ? controller.forward() : controller.reverse();
+    final dock = RoofInputDock.of(context);
+    dock.showSubmitButton ? controller.forward() : controller.reverse();
 
     final theme = RoofTheme.of(context);
 
@@ -154,7 +146,7 @@ class _DockActionButtonState extends State<_DockActionButton>
         child: Container(
             key: _buttonKey,
             width: animatedWidth ?? null,
-            height: baseButtonSize.height,
+            height: dock.baseHeight,
             padding: containerPadding,
             decoration: buttonDecoration,
             child: Row(

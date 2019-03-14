@@ -2,49 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:theme/index.dart';
 import 'package:icon_library/index.dart';
 import 'package:spec/index.dart';
-import 'auxiliary_widgets/index.dart';
-import '../dock_data.dart';
+import '../input_dock.dart';
 
-class AuxiliaryWidgetReference {
-  static AuxiliaryWidget get addImage {
-    return AddImage();
-  }
-
-  static AuxiliaryWidget get camera {
-    return Camera();
-  }
-}
-
-class AuxiliaryWidget {
+class AuxiliaryWidget extends StatelessWidget {
   final StandardIconReference iconReference;
-  final DockDataCallback action;
+  final Function(BuildContext) action;
 
   AuxiliaryWidget({
-    @required this.iconReference,
-    @required this.action,
-  });
-
-  buildForDock({double baseHeight, DockSubmitData dockData}) {
-    return _AuxiliaryWidget(
-      iconReference: iconReference,
-      action: action,
-      baseHeight: baseHeight,
-      dockData: dockData,
-    );
-  }
-}
-
-class _AuxiliaryWidget extends StatelessWidget {
-  final StandardIconReference iconReference;
-  final DockDataCallback action;
-  final double baseHeight;
-  final DockSubmitData dockData;
-
-  _AuxiliaryWidget({
     this.iconReference,
     this.action,
-    this.baseHeight,
-    this.dockData,
   });
 
   @override
@@ -52,8 +18,10 @@ class _AuxiliaryWidget extends StatelessWidget {
     final iconColor = RoofTheme.of(context).color.icon.general;
     final icon = iconReference.buildSvg(color: iconColor);
 
+    final baseHeight = RoofInputDock.of(context).baseHeight;
+
     onTap() {
-      action(data: dockData);
+      action(context);
     }
 
     return GestureDetector(

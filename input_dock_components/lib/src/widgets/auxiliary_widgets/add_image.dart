@@ -1,17 +1,25 @@
+import 'package:flutter/material.dart';
 import 'package:icon_library/index.dart';
 import '../auxiliary_widget.dart';
-import '../../dock_data.dart';
+import '../../input_dock.dart';
 
-class AddImage extends AuxiliaryWidget {
+class AddImageAuxiliaryWidget extends AuxiliaryWidget {
   static final _iconReference = IconReference.addImage;
 
-  static void _action({DockSubmitData data}) {
+  static void _action(BuildContext context) {
+    final dock = RoofInputDock.of(context);
+
     // Open image picker and return selection
     final image = "file9000";
-    data.addFile(image);
 
-    print("addImage — files: ${data.getFiles()}");
+    print("add image");
+
+    dock.addFile(image);
   }
 
-  AddImage() : super(iconReference: _iconReference, action: _action);
+  AddImageAuxiliaryWidget({Key key})
+      : super(
+          iconReference: _iconReference,
+          action: _action,
+        );
 }

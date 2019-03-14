@@ -4,59 +4,34 @@ import 'package:icon_library/index.dart';
 import 'package:theme/index.dart';
 import 'package:typography/index.dart';
 
-typedef void TextChangeCallback(bool val);
-typedef void TextSubmitCallback(String text);
+import '../input_dock.dart';
 
 class DockInputField extends StatefulWidget {
-  final TextChangeCallback onInputChange;
-  final TextSubmitCallback onSubmit;
-  final double baseHeight;
-
-  DockInputField({this.onInputChange, this.onSubmit, this.baseHeight});
-
   _DockInputFieldState createState() => _DockInputFieldState();
 }
 
 class _DockInputFieldState extends State<DockInputField> {
-  bool _inputHasText = false;
-
   static const String _hintText = "Add comment";
   static const double _maxHeight = 200;
 
   final _commentTextStyle = RoofTypography.bodyPrimary;
   final _controller = TextEditingController();
 
-  _textChanged() {
-    widget.onInputChange(_controller.text.isNotEmpty);
-    if (_controller.text.isNotEmpty && !_inputHasText) {
-      setState(() {
-        _inputHasText = true;
-      });
-    } else if (_controller.text.isEmpty && _inputHasText) {
-      setState(() {
-        _inputHasText = false;
-      });
-    }
-  }
-
-  _submit() {
-    widget.onSubmit(_controller.text);
-  }
-
-  @override
-  void initState() {
-    _controller.addListener(_textChanged);
-    super.initState();
-  }
+  final _enabledBorder =
+      OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent));
+  final _focusedBorder =
+      OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent));
 
   @override
   Widget build(BuildContext context) {
     final theme = RoofTheme.of(context);
+    final dock = RoofInputDock.of(context);
 
-    final enabledBorder =
-        OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent));
-    final focusedBorder =
-        OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent));
+    textChanged() {
+      dock.setText(_controller.text);
+    }
+
+    _controller.addListener(textChanged);
 
     final hintStyle = _commentTextStyle.textStyleWithColor(
       theme.color.text.placeholder,
@@ -68,10 +43,10 @@ class _DockInputFieldState extends State<DockInputField> {
     final textFieldDecoration = InputDecoration(
       contentPadding: EdgeInsets.all(0),
       hintText: _hintText,
-      border: OutlineInputBorder(),
-      enabledBorder: enabledBorder,
-      focusedBorder: focusedBorder,
       hintStyle: hintStyle,
+      border: OutlineInputBorder(),
+      enabledBorder: _enabledBorder,
+      focusedBorder: _focusedBorder,
     );
 
     final textField = TextField(
@@ -94,7 +69,7 @@ class _DockInputFieldState extends State<DockInputField> {
     );
 
     final paddedTextField = Padding(
-      padding: _inputHasText ? paddingWithBuffer : paddingWithoutBuffer,
+      padding: dock.showSubmitButton ? paddingWithBuffer : paddingWithoutBuffer,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
@@ -105,15 +80,15 @@ class _DockInputFieldState extends State<DockInputField> {
     );
 
     final submitButton = _SubmitButton(
-      onTap: _submit,
-      height: widget.baseHeight,
-      visible: _inputHasText,
+      onTap: dock.onSubmit,
+      height: dock.baseHeight,
+      visible: dock.showSubmitButton,
     );
 
     final constrainedInputStack = ConstrainedBox(
       constraints: BoxConstraints(
         maxHeight: _maxHeight,
-        minHeight: widget.baseHeight,
+        minHeight: dock.baseHeight,
       ),
       child: Stack(
         alignment: AlignmentDirectional.bottomCenter,

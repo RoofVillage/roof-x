@@ -12,6 +12,10 @@ class RoofInputDock extends StatefulWidget {
 
   RoofInputDock({this.actionButton, this.onSubmit, this.auxiliaryWidgets});
 
+  static InheritedInputDock of(BuildContext context) {
+    return context.inheritFromWidgetOfExactType(InheritedInputDock);
+  }
+
   @override
   State<StatefulWidget> createState() => _RoofInputDockState();
 }
@@ -19,51 +23,51 @@ class RoofInputDock extends StatefulWidget {
 class _RoofInputDockState extends State<RoofInputDock> {
   static const double _baseHeight = 40;
 
-  bool _collapseButton = false;
-  DockSubmitData _dockData = DockSubmitData();
+  String _text = "";
+  List<String> _files = [];
 
-  void _shouldButtonCollapse(bool val) {
-    if (val != _collapseButton) {
-      setState(() {
-        _collapseButton = val;
-      });
-    }
+  void _setText(String text) {
+    setState(() {
+      _text = text;
+    });
   }
 
-  void _fieldSubmit(String text) {
-    _dockData.setText(text);
-    widget.onSubmit(data: _dockData);
+  void _addFile(String file) {
+    setState(() {
+      _files.add(file);
+    });
+  }
+
+  void _removeFile(String file) {
+    setState(() {
+      _files.remove(file);
+    });
+  }
+
+  void _submit() {
+    final data = DockSubmitData(
+      text: _text,
+      files: _files,
+    );
+    widget.onSubmit(data: data);
   }
 
   @override
   Widget build(BuildContext context) {
     final theme = RoofTheme.of(context);
 
+    final hasData = _text.isNotEmpty || _files.isNotEmpty;
+
     List<Widget> rowChildren = [];
 
-    if (widget.auxiliaryWidgets != null && widget.auxiliaryWidgets.isNotEmpty) {
-      final List<Widget> _auxiliaryWidgets = [];
-      for (AuxiliaryWidget auxWidget in widget.auxiliaryWidgets) {
-        _auxiliaryWidgets.add(
-          auxWidget.buildForDock(baseHeight: _baseHeight, dockData: _dockData),
-        );
-      }
-      rowChildren.addAll(_auxiliaryWidgets);
+    if (widget.auxiliaryWidgets != null) {
+      rowChildren.addAll(widget.auxiliaryWidgets);
     }
 
-    final inputField = DockInputField(
-      onInputChange: _shouldButtonCollapse,
-      onSubmit: _fieldSubmit,
-      baseHeight: _baseHeight,
-    );
-    rowChildren.add(inputField);
+    rowChildren.add(DockInputField());
 
     if (widget.actionButton != null) {
-      final actionButton = widget.actionButton.buildWithProperties(
-        collapse: _collapseButton,
-        baseHeight: _baseHeight,
-      );
-      rowChildren.add(actionButton);
+      rowChildren.add(widget.actionButton);
     }
 
     final Widget fieldRow = Row(
@@ -71,22 +75,59 @@ class _RoofInputDockState extends State<RoofInputDock> {
       children: rowChildren,
     );
 
-    if (_dockData.getFiles().isNotEmpty) {
+    final List<Widget> columnChildren = [];
+
+    if (_files.isNotEmpty) {
       final Widget filePreviews = FilePreviewContainer(
-        files: _dockData.getFiles(),
-        removeFile: _dockData.removeFile,
+        files: _files,
+        removeFile: _removeFile,
       );
+      columnChildren.add(filePreviews);
     }
 
-    return SafeArea(
+    columnChildren.add(fieldRow);
+
+    final Widget dock = SafeArea(
       top: false,
       left: false,
       right: false,
       child: Container(
         color: theme.color.background.brandPrimary,
         padding: RoofObjectPadding.container1,
-        child: fieldRow,
+        child: Column(
+          children: columnChildren,
+        ),
       ),
     );
+
+    return InheritedInputDock(
+      child: dock,
+      setText: _setText,
+      addFile: _addFile,
+      onSubmit: _submit,
+      baseHeight: _baseHeight,
+      showSubmitButton: hasData,
+    );
   }
+}
+
+class InheritedInputDock extends InheritedWidget {
+  final Function(String) setText;
+  final Function(String) addFile;
+  final VoidCallback onSubmit;
+  final double baseHeight;
+  final bool showSubmitButton;
+
+  InheritedInputDock({
+    Key key,
+    @required Widget child,
+    @required this.setText,
+    @required this.addFile,
+    @required this.onSubmit,
+    this.showSubmitButton,
+    this.baseHeight,
+  }) : super(key: key, child: child);
+
+  @override
+  bool updateShouldNotify(InheritedWidget oldWidget) => true;
 }

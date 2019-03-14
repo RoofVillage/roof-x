@@ -23,9 +23,11 @@ class Sandbox extends StatelessWidget {
 
 class Thread extends StatelessWidget {
   _inputSubmitAction({DockSubmitData data}) {
-    final text = data.getText();
-    final files = data.getFiles();
-    print("submit: $text");
+    final text = data.text;
+    final files = data.files;
+    if (text.isNotEmpty) {
+      print("submit: $text");
+    }
     if (files.isNotEmpty) {
       print("files: $files");
     }
@@ -43,7 +45,7 @@ class Thread extends StatelessWidget {
     final theme = RoofTheme.of(context);
 
     final auxiliaryWidgets = [
-      AuxiliaryWidgetReference.addImage,
+      AddImageAuxiliaryWidget(),
       // AuxiliaryWidgetReference.camera
     ];
 
