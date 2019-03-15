@@ -48,12 +48,6 @@ class _DockInputFieldState extends State<DockInputField> {
       controller: _textController,
     );
 
-    final submitButton = _SubmitButton(
-      onSubmit: _dock.onSubmit,
-      height: _dock.baseHeight,
-      visible: _dock.showSubmitButton,
-    );
-
     final constrainedInputStack = ConstrainedBox(
       constraints: BoxConstraints(
         maxHeight: _maxHeight,
@@ -64,7 +58,7 @@ class _DockInputFieldState extends State<DockInputField> {
         fit: StackFit.passthrough,
         children: [
           paddedTextField,
-          submitButton,
+          _SubmitButton(),
         ],
       ),
     );
@@ -148,35 +142,28 @@ class _TextFieldComponent extends StatelessWidget {
 }
 
 class _SubmitButton extends StatelessWidget {
-  final VoidCallback onSubmit;
-  final double height;
-  final bool visible;
-
-  _SubmitButton({this.onSubmit, this.height, this.visible: false});
-
   @override
   Widget build(BuildContext context) {
+    final dock = RoofInputDock.of(context);
+
     final iconColor = RoofTheme.of(context).color.background.submitButton;
     final sendIcon = IconReference.sendFilled.buildSvg(color: iconColor);
 
-    final padding = EdgeInsets.symmetric(horizontal: RoofDistance.c);
-
     onTap() {
       Haptic.triggerWith(HapticOption.light);
-      onSubmit();
+      dock.onSubmit();
     }
 
-    return GestureDetector(
-      onTap: visible ? onTap : null,
-      child: Container(
-        alignment: Alignment.centerRight,
-        padding: padding,
-        height: height,
-        width: height,
-        child: AnimatedOpacity(
-          opacity: visible ? 1 : 0,
-          duration: RoofDuration.short,
-          curve: RoofCurve.quick,
+    return Container(
+      alignment: Alignment.centerRight,
+      padding: EdgeInsets.only(right: RoofDistance.c),
+      height: dock.baseHeight,
+      child: AnimatedOpacity(
+        opacity: dock.showSubmitButton ? 1 : 0,
+        duration: RoofDuration.short,
+        curve: RoofCurve.easy,
+        child: GestureDetector(
+          onTap: dock.showSubmitButton ? onTap : null,
           child: sendIcon,
         ),
       ),
