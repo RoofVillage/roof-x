@@ -1,61 +1,36 @@
+import 'package:flutter/material.dart';
 import 'package:floating_artboard_templates/index.dart';
 import 'package:form_artboard_mixin/index.dart';
 import 'package:app_data/index.dart';
 
+import 'phone_number.dart';
+
 class SignUpArtboard extends FormFloatingArtboard {
   @override
-  String get title => "Gucci";
+  String get title => "Create an account";
 
   @override
-  String get subtitle => "Yamagucci";
-
-  @override
-  String get submitButtonText => "Next";
+  String get submitButtonText => "Create";
 
   List<StreamableFormFieldData> get fieldData {
-    final _nameFieldData = FormTextFieldData(
-        size: 1 / 2,
+    final nameFieldData = FormTextFieldData(
         title: "Full name",
-        onChanged: (someString) => print("Textfield: $someString"));
+        onChanged: (someString) => print("Full name: $someString"));
 
-    final _goodFieldData = FormTextFieldData(
-        size: 1 / 2,
-        title: "Good name",
-        onChanged: (someString) => print("Textfield2: $someString"));
+    final emailFieldData = EmailTextFieldData(
+        onChanged: (someString) => print("Email: $someString"));
 
-    final _textArea = FormTextAreaData(
-        title: "Text area",
-        onChanged: (someString) => print("textarea: $someString"));
+    final passwordFieldData = PasswordTextFieldData(
+        onChanged: (someString) => print("Password: $someString"));
 
-    final _switch1 = FormSwitchData(
-        title: "Turn dis on",
-        initialValue: false,
-        onChanged: (isOn) => print("switch $isOn"));
-    final _switch2 = FormSwitchData(
-        title: "Turn dis off",
-        initialValue: true,
-        onChanged: (isOn) => print("switch $isOn"));
-    final _selectField = FormOptionSelectData(
-        title: "Pick yo shit",
-        options: [
-          FormOptionSelectValueData(title: "One"),
-          FormOptionSelectValueData(title: "two"),
-        ],
-        onChanged: (selectedOptions) {
-          print("Select field: ${selectedOptions[0].title}");
-        });
-
-    return [
-      _nameFieldData,
-      _goodFieldData,
-      _textArea,
-      _switch1,
-      _switch2,
-      _selectField
-    ];
+    return [nameFieldData, emailFieldData, passwordFieldData];
   }
 
   @override
-  get submit => User()
-      .create(name: "Tony hawk", email: "tony@hawk.io", password: "T0nYRocks");
+  Future<void> submit(BuildContext context) {
+    ArtboardNavigator.of(context).goTo(PhoneNumberArtboard(), context: context);
+
+    // User()
+    //     .create(name: "Tony hawk", email: "tony@hawk.io", password: "T0nYRocks");
+  }
 }

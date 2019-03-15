@@ -9,9 +9,9 @@ import 'floating_artboard.dart';
 
 abstract class FormFloatingArtboard extends FloatingArtboard with FormArtboard {
   String get title;
-  String get subtitle;
+  String get subtitle => null;
   String get submitButtonText;
-  
+
   final _headerStyle = RoofTypography.heading1;
   final _subtitleStyle = RoofTypography.bodyPrimary;
 
@@ -29,11 +29,15 @@ abstract class FormFloatingArtboard extends FloatingArtboard with FormArtboard {
     final submitButton =
         RoofSubmitButton(text: submitButtonText, onTap: form.submit);
 
-    return <Widget>[
-      Text(title, style: headerStyle),
-      Text(subtitle, style: subtitleStyle),
+    final widgets = <Widget>[Text(title, style: headerStyle)];
+
+    if (subtitle != null) {
+      widgets.add(Text(subtitle, style: subtitleStyle));
+    }
+    widgets.addAll([
       Padding(padding: _bodyVerticalPadding, child: buildForm(context)),
       Padding(padding: _buttonVerticalPadding, child: submitButton)
-    ];
+    ]);
+    return widgets;
   }
 }

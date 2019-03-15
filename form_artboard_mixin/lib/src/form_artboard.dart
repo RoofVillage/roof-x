@@ -8,7 +8,7 @@ mixin FormArtboard {
   List<StreamableFormFieldData> get fieldData => null;
   List<StreamableFormSectionData> get sectionData => null;
   StreamableFormData get formData => null;
-  Future<String> get submit;
+  Future<void> submit(BuildContext context);
 
   double get fieldHorizontalSpacing => RoofDistance.c;
 
@@ -39,7 +39,7 @@ mixin FormArtboard {
       form.update(formData);
     }
 
-    form.getSubmit = () => submit;
+    form.getSubmit = () => submit(context);
 
     _load();
     return _form;
