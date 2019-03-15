@@ -54,9 +54,14 @@ class _RoofInputDockState extends State<RoofInputDock> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
+    final RoofInheritedTheme theme = RoofTheme.of(context);
 
-    final hasData = _text.isNotEmpty || _files.isNotEmpty;
+    final bool hasData = _text.isNotEmpty || _files.isNotEmpty;
+
+    final List<Widget> columnChildren = [];
+
+    final Widget filePreviews = FilePreviewContainer();
+    columnChildren.add(filePreviews);
 
     List<Widget> rowChildren = [];
 
@@ -70,21 +75,13 @@ class _RoofInputDockState extends State<RoofInputDock> {
       rowChildren.add(widget.actionButton);
     }
 
-    final Widget fieldRow = Row(
-      crossAxisAlignment: CrossAxisAlignment.end,
-      children: rowChildren,
+    final Widget fieldRow = Container(
+      padding: RoofObjectPadding.container1,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: rowChildren,
+      ),
     );
-
-    final List<Widget> columnChildren = [];
-
-    if (_files.isNotEmpty) {
-      final Widget filePreviews = FilePreviewContainer(
-        files: _files,
-        removeFile: _removeFile,
-      );
-      columnChildren.add(filePreviews);
-    }
-
     columnChildren.add(fieldRow);
 
     final Widget dock = SafeArea(
@@ -93,7 +90,6 @@ class _RoofInputDockState extends State<RoofInputDock> {
       right: false,
       child: Container(
         color: theme.color.background.brandPrimary,
-        padding: RoofObjectPadding.container1,
         child: Column(
           children: columnChildren,
         ),
@@ -104,9 +100,11 @@ class _RoofInputDockState extends State<RoofInputDock> {
       child: dock,
       setText: _setText,
       addFile: _addFile,
+      removeFile: _removeFile,
       onSubmit: _submit,
       baseHeight: _baseHeight,
       showSubmitButton: hasData,
+      files: _files,
     );
   }
 }
@@ -114,18 +112,22 @@ class _RoofInputDockState extends State<RoofInputDock> {
 class InheritedInputDock extends InheritedWidget {
   final Function(String) setText;
   final Function(String) addFile;
+  final Function(String) removeFile;
   final VoidCallback onSubmit;
   final double baseHeight;
   final bool showSubmitButton;
+  final List<String> files;
 
   InheritedInputDock({
     Key key,
     @required Widget child,
     @required this.setText,
     @required this.addFile,
+    @required this.removeFile,
     @required this.onSubmit,
     this.showSubmitButton,
     this.baseHeight,
+    this.files,
   }) : super(key: key, child: child);
 
   @override

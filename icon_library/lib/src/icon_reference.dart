@@ -17,6 +17,7 @@ class IconReference {
       StandardIconReference(path: 'bell_unsubscribe.svg');
   static final camera = StandardIconReference(path: 'camera.svg');
   static final cashSack = StandardIconReference(path: 'cash_sack.svg');
+  static final closeFilled = StandardIconReference(path: 'close_filled.svg');
   static final comment = StandardIconReference(path: 'comment.svg');
   static final complete = StandardIconReference(path: 'complete.svg');
   static final dashboard = StandardIconReference(path: 'dashboard.svg');
