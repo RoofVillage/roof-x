@@ -3,6 +3,7 @@ import 'package:spec/index.dart';
 import 'package:icon_library/index.dart';
 import 'package:theme/index.dart';
 import 'package:typography/index.dart';
+import 'package:haptics/index.dart';
 
 import '../input_dock.dart';
 
@@ -48,7 +49,7 @@ class _DockInputFieldState extends State<DockInputField> {
     );
 
     final submitButton = _SubmitButton(
-      onTap: _dock.onSubmit,
+      onSubmit: _dock.onSubmit,
       height: _dock.baseHeight,
       visible: _dock.showSubmitButton,
     );
@@ -147,11 +148,11 @@ class _TextFieldComponent extends StatelessWidget {
 }
 
 class _SubmitButton extends StatelessWidget {
-  final VoidCallback onTap;
+  final VoidCallback onSubmit;
   final double height;
   final bool visible;
 
-  _SubmitButton({this.onTap, this.height, this.visible: false});
+  _SubmitButton({this.onSubmit, this.height, this.visible: false});
 
   @override
   Widget build(BuildContext context) {
@@ -159,6 +160,11 @@ class _SubmitButton extends StatelessWidget {
     final sendIcon = IconReference.sendFilled.buildSvg(color: iconColor);
 
     final padding = EdgeInsets.symmetric(horizontal: RoofDistance.c);
+
+    onTap() {
+      Haptic.triggerWith(HapticOption.light);
+      onSubmit();
+    }
 
     return GestureDetector(
       onTap: visible ? onTap : null,

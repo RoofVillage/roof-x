@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:spec/index.dart';
 import 'package:icon_library/index.dart';
+import 'package:haptics/index.dart';
+
 import '../input_dock.dart';
-import 'dart:math';
 
 typedef void RemoveFileCallback(String file);
 
@@ -24,8 +25,8 @@ class _FilePreviewContainerState extends State<FilePreviewContainer>
       final preview = _FilePreview(
         key: ObjectKey(file),
         file: file,
-        isLastFile: (file == dock.files.last),
-        isOnlyFile: (dock.files.length == 1),
+        isRightPadded: (file != dock.files.last),
+        shouldFadeOut: (dock.files.length > 1),
       );
       previews.add(preview);
     }
@@ -50,14 +51,14 @@ class _FilePreviewContainerState extends State<FilePreviewContainer>
 
 class _FilePreview extends StatefulWidget {
   final String file;
-  final bool isLastFile;
-  final bool isOnlyFile;
+  final bool isRightPadded;
+  final bool shouldFadeOut;
 
   _FilePreview({
     Key key,
     this.file,
-    this.isLastFile,
-    this.isOnlyFile,
+    this.isRightPadded,
+    this.shouldFadeOut,
   }) : super(key: key);
 
   _FilePreviewState createState() => _FilePreviewState();
@@ -69,48 +70,49 @@ class _FilePreviewState extends State<_FilePreview>
 
   bool _show = true;
 
-  _remove(String file) {
-    setState(() {
-      _show = false;
-    });
-    Future.delayed(RoofDuration.short, () {
-      RoofInputDock.of(context).removeFile(file);
-    });
-  }
-
-  _removeOnly(String file) {
-    RoofInputDock.of(context).removeFile(file);
+  _remove() {
+    Haptic.triggerWith(HapticOption.light);
+    
+    if (widget.shouldFadeOut) {
+      setState(() {
+        _show = false;
+      });
+      Future.delayed(RoofDuration.short, () {
+        RoofInputDock.of(context).removeFile(widget.file);
+      });
+    } else {
+      RoofInputDock.of(context).removeFile(widget.file);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    // Unique color for testing
     final uniqueInt = int.parse(widget.file);
     final uniqueColor = Color.fromRGBO(
-      Random(uniqueInt).nextInt(255),
-      Random(uniqueInt * 2).nextInt(255),
-      Random(uniqueInt * 3).nextInt(255),
+      uniqueInt % 255,
+      (uniqueInt * 2) % 255,
+      (uniqueInt * 3) % 255,
       1,
+    );
+
+    final removeIcon = IconReference.closeFilled.buildSvg(
+      color: Colors.black.withAlpha(180),
+    );
+
+    final removeButton = GestureDetector(
+      onTap: _remove,
+      child: Container(
+        width: _show ? null : 0,
+        padding: EdgeInsets.all(RoofDistance.a),
+        child: removeIcon,
+      ),
     );
 
     final imageDecoration = BoxDecoration(
       color: uniqueColor,
       borderRadius: BorderRadius.all(
         RoofCornerRadius.small,
-      ),
-    );
-
-    final closeIcon = IconReference.closeFilled.buildSvg(
-      color: Colors.black.withAlpha(180),
-    );
-
-    final closeButton = GestureDetector(
-      onTap: widget.isOnlyFile
-          ? () => _removeOnly(widget.file)
-          : () => _remove(widget.file),
-      child: Container(
-        width: _show ? null : 0,
-        padding: EdgeInsets.all(RoofDistance.a),
-        child: closeIcon,
       ),
     );
 
@@ -135,13 +137,12 @@ class _FilePreviewState extends State<_FilePreview>
       curve: RoofCurve.quick,
       duration: RoofDuration.short,
       child: Container(
-        decoration: imageDecoration,
         margin: EdgeInsets.only(
           top: RoofDistance.c,
-          right: widget.isLastFile ? 0 : RoofDistance.a,
+          right: widget.isRightPadded ? RoofDistance.a : 0,
         ),
         child: Stack(
-          children: [animatedWidthContainer, closeButton],
+          children: [animatedWidthContainer, removeButton],
         ),
       ),
     );

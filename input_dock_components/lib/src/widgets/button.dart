@@ -3,6 +3,7 @@ import 'package:icon_library/index.dart';
 import 'package:spec/index.dart';
 import 'package:typography/index.dart';
 import 'package:theme/index.dart';
+import 'package:haptics/index.dart';
 
 import '../input_dock.dart';
 
@@ -87,8 +88,10 @@ class _DockActionButtonState extends State<DockActionButton>
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback(_buildButtonAnimation);
 
-    widthAnimationController = AnimationController(duration: RoofDuration.short, vsync: this);
-    opacityAnimationController = AnimationController(duration: RoofDuration.short, vsync: this);
+    widthAnimationController =
+        AnimationController(duration: RoofDuration.short, vsync: this);
+    opacityAnimationController =
+        AnimationController(duration: RoofDuration.short, vsync: this);
 
     super.initState();
   }
@@ -101,6 +104,7 @@ class _DockActionButtonState extends State<DockActionButton>
       widthAnimationController.forward();
       opacityAnimationController.forward();
     }
+
     animateReverse() {
       widthAnimationController.reverse();
       opacityAnimationController.reverse();
@@ -142,8 +146,13 @@ class _DockActionButtonState extends State<DockActionButton>
     buttonChildren.add(buttonIcon);
     buttonChildren.add(buttonText);
 
+    onTap() {
+      Haptic.triggerWith(HapticOption.medium);
+      widget.action();
+    }
+
     return GestureDetector(
-        onTap: widget.action,
+        onTap: onTap,
         child: Container(
             key: _buttonKey,
             width: animatedWidth ?? null,
