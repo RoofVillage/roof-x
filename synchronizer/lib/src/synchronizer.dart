@@ -39,12 +39,12 @@ Map<String, Object> _lookupValues(
       newObjectsToSync[key] = newArray;
     } else if (value is List<Map<String, Object>>) {
       final newArray = value.map((map) {
-        return lookupValues(objectsToSync: map, lookupTable: lookupTable);
+        return _lookupValues(objectsToSync: map, lookupTable: lookupTable);
       });
       newObjectsToSync[key] = newArray;
     } else if (value is Map<String, Object>) {
       newObjectsToSync[key] =
-          lookupValues(objectsToSync: value, lookupTable: lookupTable);
+          _lookupValues(objectsToSync: value, lookupTable: lookupTable);
     }
   });
   return newObjectsToSync;
