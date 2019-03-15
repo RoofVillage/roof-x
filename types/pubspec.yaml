@@ -11,6 +11,8 @@ dependencies:
     sdk: flutter
   date:
     path: ../date
+  string_from_enum_string:
+    path: ../string_from_enum_string
 
 dev_dependencies:
   flutter_test:

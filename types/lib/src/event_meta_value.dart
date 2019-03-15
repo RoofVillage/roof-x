@@ -1,5 +1,5 @@
 import 'package:date/index.dart';
-import 'utils/index.dart';
+import 'package:string_from_enum_string/index.dart';
 
 enum _EventMetaValueTypeOption { string, amount, users, number, timestamp }
 

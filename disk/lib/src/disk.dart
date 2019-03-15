@@ -5,10 +5,10 @@ import 'dart:collection';
 import 'package:path_provider/path_provider.dart';
 
 //For more on SplayTrees, see https://api.dartlang.org/stable/2.1.0/dart-collection/SplayTreeMap-class.html.
-class Storage {
-  static SplayTreeMap _loadedStorageMap;
+class Disk {
+  static SplayTreeMap _loadedDiskMap;
 
-  static SplayTreeMap get read => _loadedStorageMap;
+  static SplayTreeMap get read => _loadedDiskMap;
 
   static Future<SplayTreeMap> get load async {
     if (read != null) return Future.value(read);
@@ -17,7 +17,7 @@ class Storage {
     // Read the file
     String contents = await file.readAsString();
     final map = json.decode(contents);
-    _loadedStorageMap = map;
+    _loadedDiskMap = map;
     return read;
   }
 
@@ -26,7 +26,7 @@ class Storage {
 
     // Write the file
     final updatedFile = await file.writeAsString(json.encode(map));
-    _loadedStorageMap = map;
+    _loadedDiskMap = map;
     return updatedFile;
   }
 

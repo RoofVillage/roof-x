@@ -1,10 +1,10 @@
 import 'dart:io';
 import 'dart:collection';
-import 'package:storage/index.dart';
+import 'package:disk/index.dart';
 
 import 'abstract/index.dart';
 
-class Cache {
+class ModelObjectCache {
   SplayTreeMap _tempCacheMap;
 
   Future<File> save(ModelObject modelObject) async {
@@ -13,13 +13,17 @@ class Cache {
     startBatchSaving();
 
     final modelCache = _readModelCache(_tempCacheMap, modelObject.runtimeType);
+
     //Updates the particular model object passed in.
     modelCache[modelObject] = modelObject.toMap();
+
+    //Updates the cache.
+    _tempCacheMap[modelObject.runtimeType] = modelCache;
 
     return await endBatchSaving();
   }
 
-  void startBatchSaving() => _tempCacheMap = Storage.read;
+  void startBatchSaving() => _tempCacheMap = Disk.read;
 
   void continueBatchSaving<T extends ModelObject>(
       List<ModelObject> modelObjects) {
@@ -38,7 +42,7 @@ class Cache {
   Future<File> endBatchSaving() async {
     if (_tempCacheMap == null) throw _batchWritingStateError;
 
-    final file = Storage.write(_tempCacheMap);
+    final file = Disk.write(_tempCacheMap);
     _tempCacheMap = null;
     return file;
   }
@@ -46,7 +50,7 @@ class Cache {
   T read<T extends ModelObject>(
       {String guid, T converter(Map<String, Object> map)}) {
     //Get the cache.
-    final cache = Storage.read;
+    final cache = Disk.read;
 
     //Get the cache.
     final modelCache = _readModelCache(cache, T);
@@ -56,6 +60,26 @@ class Cache {
     ///Get from server if null;
 
     return converter(map);
+  }
+
+  Future<File> empty({List<String> except}) async {
+    if (_tempCacheMap != null) throw _batchWritingStateInterruptError;
+
+    startBatchSaving();
+
+    if (except == null) {
+      _tempCacheMap = SplayTreeMap();
+    } else {
+      _tempCacheMap.forEach((modelKey, objects) {
+        final map = objects as Map<ModelObject, Object>;
+        map.forEach((modelObject, objects) {
+          if (except.contains(modelObject.guid)) return;
+          map.remove(modelObject);
+        });
+      });
+    }
+
+    return await endBatchSaving();
   }
 
   Map<ModelObject, Object> _readModelCache(SplayTreeMap cache, Type key) {

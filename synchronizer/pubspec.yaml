@@ -1,5 +1,5 @@
-name: services
-description: Roof's services.
+name: synchronizer
+description: A tool to parse data recieved by the server.
 
 version: 1.0.0+1
 

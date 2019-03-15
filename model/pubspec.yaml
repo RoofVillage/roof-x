@@ -10,8 +10,8 @@ dependencies:
   flutter:
     sdk: flutter
   strings: ^0.1.0
-  storage:
-    path: ../storage
+  disk:
+    path: ../disk
   types:
     path: ../types
   date:
