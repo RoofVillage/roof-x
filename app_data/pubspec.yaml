@@ -9,10 +9,17 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  device_info: ^0.4.0+1
   network:
     path: ../network
-  synchronize:
-    path: ../synchronize
+  synchronizer:
+    path: ../synchronizer
+  string_from_enum_string:
+    path: ../string_from_enum_string
+  service:
+    path: ../service
+  session:
+    path: ../session
 
 dev_dependencies:
   flutter_test:

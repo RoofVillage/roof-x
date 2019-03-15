@@ -1,17 +1,16 @@
 import 'dart:async';
-import 'dart:convert';
-import 'package:flutter/foundation.dart';
 import 'package:stream/index.dart';
-import 'package:network/index.dart';
 
 import 'data/index.dart';
 
 typedef AddressGetter = String Function();
 typedef ParamsGetter = Map<String, Object> Function();
+typedef SubmitGetter = Future<String> Function();
 
 class StreamFormBloc extends BlocBase {
   AddressGetter getAddress;
   ParamsGetter getParams;
+  SubmitGetter getSubmit;
 
   StreamableFormData _formData;
 
@@ -45,19 +44,9 @@ class StreamFormBloc extends BlocBase {
       _fieldValueController.stream;
 
   void submit() async {
-    final address = getAddress();
-    final params = getParams();
-    if (address == null || params == null) return;
-    final response = await Network().post(address: address, params: params);
-    final _ = await compute<String, int>(_sync, response);
-  }
-
-  int _sync(String response) {
-    final dataConvertedToJson = json.decode(response);
-    final Map objectsToSync = dataConvertedToJson[Param.objectsToSync];
-    // final dataConvertedToJson = json.decode(response);
-    // final List publicActivity = dataConvertedToJson[Param.publicActivity];
-    return 0;
+    final submit = getSubmit;
+    if (submit == null) return;
+    await submit();
   }
 
   //Override to handle field changes;

@@ -1,6 +1,6 @@
 import 'package:floating_artboard_templates/index.dart';
 import 'package:form_artboard_mixin/index.dart';
-import 'package:services/index.dart';
+import 'package:app_data/index.dart';
 
 class SignUpArtboard extends FormFloatingArtboard {
   @override
@@ -56,8 +56,6 @@ class SignUpArtboard extends FormFloatingArtboard {
   }
 
   @override
-  String get address => Address.signUp;
-
-  @override
-  Map<String, Object> get params => {};
+  get submit => User()
+      .create(name: "Tony hawk", email: "tony@hawk.io", password: "T0nYRocks");
 }

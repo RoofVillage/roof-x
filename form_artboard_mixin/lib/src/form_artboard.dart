@@ -8,8 +8,8 @@ mixin FormArtboard {
   List<StreamableFormFieldData> get fieldData => null;
   List<StreamableFormSectionData> get sectionData => null;
   StreamableFormData get formData => null;
-  String get address;
-  Map<String, Object> get params;
+  Future<String> get submit;
+
   double get fieldHorizontalSpacing => RoofDistance.c;
 
   Future<List<StreamableFormFieldData>> get loadedFieldData async {
@@ -39,8 +39,7 @@ mixin FormArtboard {
       form.update(formData);
     }
 
-    form.getAddress = () => address;
-    form.getParams = () => params;
+    form.getSubmit = () => submit;
 
     _load();
     return _form;
