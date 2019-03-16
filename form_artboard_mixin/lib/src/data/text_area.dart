@@ -1,6 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-// import 'package:error_messages/index.dart';
-// import 'package:consts/index.dart';
+import 'package:error_messages/index.dart';
+import 'package:consts/index.dart';
 
 import '_composition_field.dart';
 
@@ -8,7 +10,7 @@ class FormTextAreaData extends FormCompositionFieldData {
   FormTextAreaData(
       {String title,
       String placeholder,
-      String initialValue,
+      String initialValue = "",
       double size = 1,
       bool autofocus = false,
       ValueChanged<String> onChanged,
@@ -23,8 +25,8 @@ class FormTextAreaData extends FormCompositionFieldData {
             hidden: hidden);
 
   Future<void> validate() async {
-    // if (value.length > Consts.maxCharsInLongTextField) {
-    //   throw AssertionError(ValidationErrors.longLongString(title));
-    // }
+    if (value.length > Consts.maxCharsInLongTextField) {
+      throw AssertionError(ValidationErrors.longLongString(title));
+    }
   }
 }

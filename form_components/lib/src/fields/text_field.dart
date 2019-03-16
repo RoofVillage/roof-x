@@ -13,7 +13,7 @@ class RoofTextField extends StatelessWidget {
   final bool isPassword;
   final bool autofocus;
   final TextInputAction textInputAction;
-  // final MaskOption mask;
+  final MaskOption mask;
   final Function(String) onChanged;
 
   RoofTextField(
@@ -22,7 +22,7 @@ class RoofTextField extends StatelessWidget {
       this.initialValue,
       this.isPassword = false,
       this.autofocus = false,
-      // this.mask,
+      this.mask,
       this.textInputAction,
       this.onChanged});
 
@@ -39,7 +39,7 @@ class RoofTextField extends StatelessWidget {
         isPassword: isPassword,
         textInputAction: textInputAction,
         initialValue: initialValue,
-        // mask: mask,
+        mask: mask,
         placeholder: placeholder,
         onChanged: onChanged);
 
@@ -59,7 +59,7 @@ class _FieldBody extends StatefulWidget {
   final TextInputAction textInputAction;
   final String initialValue;
   final String placeholder;
-  // final MaskOption mask;
+  final MaskOption mask;
   final Function(String) onChanged;
 
   _FieldBody(
@@ -67,7 +67,7 @@ class _FieldBody extends StatefulWidget {
       this.isPassword,
       this.initialValue,
       this.textInputAction,
-      // this.mask,
+      this.mask,
       this.placeholder,
       this.onChanged});
 
@@ -81,13 +81,14 @@ class _FieldBodyState extends State<_FieldBody> {
   _FieldBodyState();
 
   _controllerUpdated() {
-    // if (widget.mask != null) {
-    //   final formattedText = Mask(widget.mask).apply(_controller.text);
+    if (widget.mask != null) {
+      final formattedText = Mask(widget.mask).apply(_controller.text);
 
-    //   _controller.removeListener(_controllerUpdated);
-    //   _controller.text = formattedText;
-    //   _controller.addListener(_controllerUpdated);
-    // }
+      print("sup $formattedText");
+      _controller.removeListener(_controllerUpdated);
+      _controller.text = formattedText;
+      _controller.addListener(_controllerUpdated);
+    }
     widget.onChanged(_controller.text);
   }
 

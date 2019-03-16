@@ -5,7 +5,7 @@ import 'data/index.dart';
 
 typedef AddressGetter = String Function();
 typedef ParamsGetter = Map<String, Object> Function();
-typedef SubmitGetter = Future<String> Function();
+typedef SubmitGetter = Future<void> Function();
 typedef ValidationGetter = Future<void> Function();
 
 class StreamFormBloc extends BlocBase {

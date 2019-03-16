@@ -1,11 +1,13 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-// import 'package:error_messages/index.dart';
+import 'package:error_messages/index.dart';
 
 import 'text_field.dart';
 
 class EmailFormTextFieldData extends FormTextFieldData {
-  static const _validPattern =
-      r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$";
+  static final regEx = RegExp(
+      r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$");
 
   EmailFormTextFieldData(
       {String title = "Email",
@@ -26,7 +28,6 @@ class EmailFormTextFieldData extends FormTextFieldData {
 
   @override
   Future<void> validate() async {
-    // final regEx = RegExp(_validPattern);
-    // if (!regEx.hasMatch(value)) throw AssertionError(ValidationErrors.badEmail);
+    if (!regEx.hasMatch(value)) throw AssertionError(ValidationErrors.badEmail);
   }
 }

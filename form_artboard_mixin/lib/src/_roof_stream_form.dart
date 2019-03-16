@@ -13,6 +13,7 @@ class RoofStreamForm extends StreamForm<StreamableFormFieldData,
         placeholder: fieldData.placeholder,
         initialValue: fieldData.value,
         isPassword: false,
+        mask: fieldData.mask,
         onChanged: fieldData.onChanged);
   }
 

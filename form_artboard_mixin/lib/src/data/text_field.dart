@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
-// import 'package:mask/index.dart';
+import 'package:mask/index.dart';
 import '_composition_field.dart';
 
 abstract class FormTextFieldData extends FormCompositionFieldData {
-  // MaskOption mask;
+  MaskOption mask;
 
   FormTextFieldData(
-      {
-      // this.mask,
+      {this.mask,
       String title,
       String placeholder,
-      String initialValue,
+      String initialValue = "",
       double size,
       bool autofocus,
       ValueChanged<String> onChanged,
