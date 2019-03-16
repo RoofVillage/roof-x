@@ -14,6 +14,8 @@ class DockInputField extends StatefulWidget {
 
 class _DockInputFieldState extends State<DockInputField> {
   static const double _maxHeight = 200;
+  static const int _maxCharCount = 750;
+  static const int _charShowCount = 720;
 
   final _textController = TextEditingController();
 
@@ -50,6 +52,8 @@ class _DockInputFieldState extends State<DockInputField> {
     final paddedTextField = _TextFieldComponent(
       dock: _dock,
       controller: _textController,
+      charShowCount: _charShowCount,
+      maxCharCount: _maxCharCount,
     );
 
     final constrainedInputStack = ConstrainedBox(
@@ -62,7 +66,10 @@ class _DockInputFieldState extends State<DockInputField> {
         fit: StackFit.passthrough,
         children: [
           paddedTextField,
-          _SubmitButton(submitCallback: _resetText),
+          _SubmitButton(
+            submitCallback: _resetText,
+            canSubmit: _textController.text.length <= _maxCharCount,
+          ),
         ],
       ),
     );
@@ -81,8 +88,11 @@ class _DockInputFieldState extends State<DockInputField> {
 class _TextFieldComponent extends StatelessWidget {
   final InheritedInputDock dock;
   final TextEditingController controller;
+  final int charShowCount;
+  final int maxCharCount;
 
-  _TextFieldComponent({this.dock, this.controller});
+  _TextFieldComponent(
+      {this.dock, this.controller, this.charShowCount, this.maxCharCount});
 
   static const String _hintText = "Add comment";
 
@@ -122,24 +132,53 @@ class _TextFieldComponent extends StatelessWidget {
     );
 
     final double submitButtonPaddingBuffer = 50;
-    final paddingWithBuffer = EdgeInsets.fromLTRB(
-      0,
-      RoofDistance.a,
-      submitButtonPaddingBuffer,
-      RoofDistance.a,
-    );
-    final paddingWithoutBuffer = EdgeInsets.symmetric(
-      vertical: RoofDistance.a,
-    );
+    final paddingWithBuffer = EdgeInsets.only(right: submitButtonPaddingBuffer);
+    final paddingWithoutBuffer = EdgeInsets.all(0);
 
     return Padding(
       padding: dock.showSubmitButton ? paddingWithBuffer : paddingWithoutBuffer,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.end,
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Flexible(child: textField),
+          _TextCounter(
+            charCount: controller.text.length,
+            charShowCount: charShowCount,
+            charMaxCount: maxCharCount,
+          )
         ],
+      ),
+    );
+  }
+}
+
+class _TextCounter extends StatelessWidget {
+  final int charCount;
+  final int charShowCount;
+  final int charMaxCount;
+
+  _TextCounter({Key key, this.charCount, this.charShowCount, this.charMaxCount})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = RoofTheme.of(context);
+
+    final bool showTextCounter = charCount > charShowCount;
+    final bool showAlert = charCount > charMaxCount;
+
+    final textCounterStyle = RoofTypography.detailSecondary.textStyleWithColor(
+      showAlert ? theme.color.text.alert : theme.color.text.placeholder,
+    );
+
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: RoofDistance.a),
+      height: showTextCounter ? null : 0,
+      child: Text(
+        showTextCounter ? "$charCount/$charMaxCount" : "",
+        style: textCounterStyle,
       ),
     );
   }
@@ -147,21 +186,45 @@ class _TextFieldComponent extends StatelessWidget {
 
 class _SubmitButton extends StatelessWidget {
   final VoidCallback submitCallback;
+  final bool canSubmit;
 
-  _SubmitButton({this.submitCallback});
+  _SubmitButton({this.submitCallback, this.canSubmit});
 
   @override
   Widget build(BuildContext context) {
     final dock = RoofInputDock.of(context);
+    final theme = RoofTheme.of(context);
 
-    final iconColor = RoofTheme.of(context).color.background.submitButton;
-    final sendIcon = IconReference.sendFilled.buildSvg(color: iconColor);
+    final activeIconColor = theme.color.background.submitButton;
+    final inactiveIconColor = theme.color.background.inactiveButton;
+    final sendIcon = IconReference.sendFilled;
+    final activeSendIcon = sendIcon.buildSvg(color: activeIconColor);
+    final inactiveSendIcon = sendIcon.buildSvg(color: inactiveIconColor);
+
+    final animatedSubmitButton = AnimatedCrossFade(
+      duration: RoofDuration.short,
+      firstCurve: RoofCurve.easy,
+      secondCurve: RoofCurve.quick,
+      crossFadeState:
+          canSubmit ? CrossFadeState.showFirst : CrossFadeState.showSecond,
+      firstChild: activeSendIcon,
+      secondChild: inactiveSendIcon,
+    );
 
     onTap() {
       Haptic.triggerWith(HapticOption.light);
       dock.onSubmit();
       submitCallback();
     }
+
+    inactiveTap() {
+      Haptic.triggerWith(HapticOption.click);
+    }
+
+    final tapAction = dock.showSubmitButton && canSubmit ? onTap : null;
+
+    final tapDownAction =
+        dock.showSubmitButton && !canSubmit ? (details) => inactiveTap() : null;
 
     return Container(
       alignment: Alignment.centerRight,
@@ -172,9 +235,9 @@ class _SubmitButton extends StatelessWidget {
         duration: RoofDuration.short,
         curve: RoofCurve.easy,
         child: GestureDetector(
-          onTap: dock.showSubmitButton ? onTap : null,
-          child: sendIcon,
-        ),
+            onTap: tapAction,
+            onTapDown: tapDownAction,
+            child: animatedSubmitButton),
       ),
     );
   }
