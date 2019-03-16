@@ -58,39 +58,23 @@ class _FieldBody2 extends StatefulWidget {
       this.placeholder,
       this.onChanged});
 
-  _FieldBody2State createState() => _FieldBody2State(
-      autofocus: autofocus,
-      initialValue: initialValue,
-      textInputAction: textInputAction,
-      placeholder: placeholder,
-      onChanged: onChanged);
+  _FieldBody2State createState() => _FieldBody2State();
 }
 
 class _FieldBody2State extends State<_FieldBody2> {
-  bool autofocus;
-  String initialValue;
-  String placeholder;
-  TextInputAction textInputAction;
-  Function(String) onChanged;
-
   final int _maxLines = 3;
   final _typographyStyle = RoofTypography.bodyPrimary;
   final _controller = TextEditingController();
 
-  _FieldBody2State(
-      {this.autofocus,
-      this.initialValue,
-      this.textInputAction,
-      this.placeholder,
-      this.onChanged});
+  _FieldBody2State();
 
   _controllerUpdated() {
-    onChanged(_controller.text);
+    widget.onChanged(_controller.text);
   }
 
   @override
   void initState() {
-    _controller.text = initialValue;
+    _controller.text = widget.initialValue;
     _controller.addListener(_controllerUpdated);
     super.initState();
   }
@@ -99,7 +83,7 @@ class _FieldBody2State extends State<_FieldBody2> {
   Widget build(BuildContext context) {
     final theme = RoofTheme.of(context);
     final decoration = InputDecoration(
-        hintText: placeholder,
+        hintText: widget.placeholder,
         border: OutlineInputBorder(),
         enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: theme.color.stroke.light),
@@ -107,14 +91,14 @@ class _FieldBody2State extends State<_FieldBody2> {
         focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(color: theme.color.stroke.focus),
             borderRadius: BorderRadius.all(RoofCornerRadius.regular)),
-        hintStyle: _typographyStyle
-            .textStyleWithColor(theme.color.text.placeholder));
+        hintStyle:
+            _typographyStyle.textStyleWithColor(theme.color.text.placeholder));
 
     return Container(
         margin: EdgeInsets.fromLTRB(0, RoofDistance.a, 0, 0),
         child: TextField(
-            autofocus: autofocus ?? false,
-            textInputAction: textInputAction,
+            autofocus: widget.autofocus ?? false,
+            textInputAction: widget.textInputAction,
             maxLines: _maxLines,
             decoration: decoration,
             controller: _controller));

@@ -8,6 +8,9 @@ mixin FormArtboard {
   List<StreamableFormFieldData> get fieldData => null;
   List<StreamableFormSectionData> get sectionData => null;
   StreamableFormData get formData => null;
+
+  //An opportunity for forms to throw an exception before being submitted.
+  Future<void> validation(BuildContext context) async {}
   Future<void> submit(BuildContext context);
 
   double get fieldHorizontalSpacing => RoofDistance.c;
@@ -39,6 +42,7 @@ mixin FormArtboard {
       form.update(formData);
     }
 
+    form.getValidation = () => validation(context);
     form.getSubmit = () => submit(context);
 
     _load();

@@ -10,28 +10,24 @@ class LogInArtboard extends FormFloatingArtboard {
   String get title => "Log in";
 
   @override
+  String get auxiliaryDescription => "Forgot your password?";
+
+  @override
+  String get auxiliaryButtonText => "Reset password";
+
+  @override
   String get submitButtonText => "Log in";
 
   @override
-  String get auxiliaryDescription => null;
+  List<StreamableFormFieldData> get fieldData =>
+      [_usernameFieldData, _passwordFieldData];
+
+  final _usernameFieldData = EmailFormTextFieldData(title: "Email or phone");
+  final _passwordFieldData = PasswordFormTextFieldData();
 
   @override
-  String get auxiliaryButtonText => null;
-
-  List<StreamableFormFieldData> get fieldData {
-    final usernameFieldData = EmailTextFieldData(
-        title: "Email or phone",
-        onChanged: (someString) => print("Username: $someString"));
-
-    final passwordFieldData = PasswordTextFieldData(
-        onChanged: (someString) => print("Password: $someString"));
-
-    return [usernameFieldData, passwordFieldData];
-  }
-
-  @override
-  Future<void> submit(BuildContext context) {
-    return ArtboardNavigator.of(context)
+  Future<void> submit(BuildContext context) async {
+    ArtboardNavigator.of(context)
         .goTo(ResetPasswordArtboard(), context: context);
   }
 }

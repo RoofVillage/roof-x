@@ -53,4 +53,5 @@ class Param {
   static const sessionToken = 'sessionToken';
   static const verificationToken = 'verificationToken';
   static const refreshToken = 'refreshToken';
+  static const phoneNumber = 'phoneNumber';
 }

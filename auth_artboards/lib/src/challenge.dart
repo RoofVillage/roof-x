@@ -6,8 +6,14 @@ import 'resend_challenge.dart';
 
 class AuthChallengeArtboard extends ChallengeArtboard {
   @override
-  Future<void> submit(BuildContext context) {
-    return ArtboardNavigator.of(context)
+  String get auxiliaryDescription => "Didn't get one?";
+
+  @override
+  String get auxiliaryButtonText => "Send again";
+
+  @override
+  Future<void> submit(BuildContext context) async {
+    ArtboardNavigator.of(context)
         .goTo(ResentChallengeArtboard(), context: context);
   }
 

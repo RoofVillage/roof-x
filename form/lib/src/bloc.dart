@@ -6,11 +6,13 @@ import 'data/index.dart';
 typedef AddressGetter = String Function();
 typedef ParamsGetter = Map<String, Object> Function();
 typedef SubmitGetter = Future<String> Function();
+typedef ValidationGetter = Future<void> Function();
 
 class StreamFormBloc extends BlocBase {
   AddressGetter getAddress;
   ParamsGetter getParams;
   SubmitGetter getSubmit;
+  ValidationGetter getValidation;
 
   StreamableFormData _formData;
 
@@ -46,6 +48,12 @@ class StreamFormBloc extends BlocBase {
   void submit() async {
     final submit = getSubmit;
     if (submit == null) return;
+
+    _validateFields();
+
+    final validation = getValidation;
+    if (validation != null) await validation();
+
     await submit();
   }
 
@@ -294,5 +302,11 @@ class StreamFormBloc extends BlocBase {
           .where((valueData) => valueData.fieldKey == fieldData.key)
           .listen((valueData) => fieldData.value = valueData.value);
     }
+  }
+
+  Future<void> _validateFields() async {
+    await Future.wait(
+        _formData.fieldData.map((data) async => await data.validate()),
+        eagerError: true);
   }
 }

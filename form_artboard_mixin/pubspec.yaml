@@ -13,6 +13,12 @@ dependencies:
     path: ../form
   form_components:
     path: ../form_components
+  error_messages:
+    path: ../error_messages
+  consts:
+    path: ../consts
+  mask:
+    path: ../mask
 
 dev_dependencies:
   flutter_test:

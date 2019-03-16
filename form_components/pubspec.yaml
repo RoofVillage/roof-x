@@ -19,6 +19,8 @@ dependencies:
     path: ../haptics
   icon_library:
     path: ../icon_library
+  mask:
+    path: ../mask
 
 dev_dependencies:
   flutter_test:

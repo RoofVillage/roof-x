@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:floating_artboard_templates/index.dart';
 import 'package:form_artboard_mixin/index.dart';
-import 'package:app_data/index.dart';
 
-import 'challenge.dart';
+typedef Future<void> PhoneNumberDependentSubmit(
+    {@required String phoneNumber, @required BuildContext context});
 
 class PhoneNumberArtboard extends FormFloatingArtboard {
+  final PhoneNumberDependentSubmit onSubmit;
+
   @override
   String get title => "Enter your phone number";
 
@@ -15,19 +17,15 @@ class PhoneNumberArtboard extends FormFloatingArtboard {
   @override
   String get submitButtonText => "Send code";
 
-  List<StreamableFormFieldData> get fieldData {
-    final phoneNumberFieldData = PhoneNumberTextFieldData(
-        onChanged: (someString) => print("Phone: $someString"));
+  @override
+  List<StreamableFormFieldData> get fieldData => [_phoneNumberFieldData];
 
-    return [phoneNumberFieldData];
-  }
+  final _phoneNumberFieldData = PhoneNumberFormTextFieldData();
+
+  PhoneNumberArtboard({@required this.onSubmit});
 
   @override
-  Future<void> submit(BuildContext context) {
-    return ArtboardNavigator.of(context).goTo(
-        AuthChallengeArtboard(
-          phoneNumber: "9193571144",
-        ),
-        context: context);
+  Future<void> submit(BuildContext context) async {
+    await onSubmit(phoneNumber: _phoneNumberFieldData.value, context: context);
   }
 }

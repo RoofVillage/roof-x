@@ -37,7 +37,7 @@ abstract class FormFloatingArtboard extends FloatingArtboard with FormArtboard {
     if (subtitle != null) {
       widgets.add(Text(subtitle, style: subtitleStyle));
     }
-    print("BUILDING CHILDREN");
+
     widgets.addAll([
       Padding(padding: _bodyVerticalPadding, child: buildForm(context)),
       Padding(padding: _buttonVerticalPadding, child: submitButton)

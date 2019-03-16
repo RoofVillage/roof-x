@@ -12,16 +12,13 @@ class ResentChallengeArtboard extends FormFloatingArtboard {
   @override
   String get submitButtonText => "Send code";
 
-  List<StreamableFormFieldData> get fieldData {
-    final phoneNumberFieldData = PhoneNumberTextFieldData(
-        onChanged: (someString) => print("Phone: $someString"));
+  @override
+  List<StreamableFormFieldData> get fieldData => [_phoneNumberFieldData];
 
-    return [phoneNumberFieldData];
-  }
+  final _phoneNumberFieldData = PhoneNumberFormTextFieldData();
 
   @override
-  Future<void> submit(BuildContext context) {
-    return ArtboardNavigator.of(context)
-        .goTo(LogInArtboard(), context: context);
+  Future<void> submit(BuildContext context) async {
+    ArtboardNavigator.of(context).goTo(LogInArtboard(), context: context);
   }
 }

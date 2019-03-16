@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+// import 'package:error_messages/index.dart';
+// import 'package:consts/index.dart';
+
 import '_composition_field.dart';
 
 class FormTextAreaData extends FormCompositionFieldData {
@@ -18,4 +21,10 @@ class FormTextAreaData extends FormCompositionFieldData {
             autofocus: autofocus,
             size: size,
             hidden: hidden);
+
+  Future<void> validate() async {
+    // if (value.length > Consts.maxCharsInLongTextField) {
+    //   throw AssertionError(ValidationErrors.longLongString(title));
+    // }
+  }
 }

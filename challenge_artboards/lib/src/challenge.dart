@@ -18,20 +18,18 @@ class ChallengeArtboard extends FormFloatingArtboard {
         ".";
   }
 
+  @override
   String get submitButtonText => "Submit";
 
-  List<StreamableFormFieldData> get fieldData {
-    final codeFieldData = FormTextFieldData(
-        title: "Enter code",
-        onChanged: (someString) => print("Code: $someString"));
+  @override
+  List<StreamableFormFieldData> get fieldData => [_codeFieldData];
 
-    return [codeFieldData];
-  }
+  final _codeFieldData = ShortFormTextFieldData(title: "Enter code");
 
   ChallengeArtboard({this.phoneNumber});
 
   @override
-  Future<void> submit(BuildContext context) {
+  Future<void> submit(BuildContext context) async {
     return null;
   }
 }

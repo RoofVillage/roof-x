@@ -4,6 +4,7 @@ import 'package:form_artboard_mixin/index.dart';
 import 'package:app_data/index.dart';
 
 import 'phone_number.dart';
+import 'challenge.dart';
 
 class SignUpArtboard extends FormFloatingArtboard {
   @override
@@ -12,25 +13,33 @@ class SignUpArtboard extends FormFloatingArtboard {
   @override
   String get submitButtonText => "Create";
 
-  List<StreamableFormFieldData> get fieldData {
-    final nameFieldData = FormTextFieldData(
-        title: "Full name",
-        onChanged: (someString) => print("Full name: $someString"));
+  @override
+  List<StreamableFormFieldData> get fieldData =>
+      [_nameFieldData, _emailFieldData, _passwordFieldData];
 
-    final emailFieldData = EmailTextFieldData(
-        onChanged: (someString) => print("Email: $someString"));
-
-    final passwordFieldData = PasswordTextFieldData(
-        onChanged: (someString) => print("Password: $someString"));
-
-    return [nameFieldData, emailFieldData, passwordFieldData];
-  }
+  final _nameFieldData = MediumFormTextFieldData(title: "Full name");
+  final _emailFieldData = EmailFormTextFieldData();
+  final _passwordFieldData = PasswordFormTextFieldData();
 
   @override
-  Future<void> submit(BuildContext context) {
-    ArtboardNavigator.of(context).goTo(PhoneNumberArtboard(), context: context);
+  Future<void> submit(BuildContext context) async {
+    ArtboardNavigator.of(context).goTo(
+        PhoneNumberArtboard(onSubmit: _phoneNumberDependentSubmit),
+        context: context);
+  }
 
-    // User()
-    //     .create(name: "Tony hawk", email: "tony@hawk.io", password: "T0nYRocks");
+  Future<void> _phoneNumberDependentSubmit(
+      {@required String phoneNumber, @required BuildContext context}) async {
+    await User().create(
+        email: _emailFieldData.value,
+        name: _nameFieldData.value,
+        password: _passwordFieldData.value,
+        phoneNumber: phoneNumber);
+
+    ArtboardNavigator.of(context).goTo(
+        AuthChallengeArtboard(
+          phoneNumber: phoneNumber,
+        ),
+        context: context);
   }
 }

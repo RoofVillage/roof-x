@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:stream/index.dart';
 
-class StreamableFormFieldData<T> extends StreamableData {
+abstract class StreamableFormFieldData<T> extends StreamableData {
   final double size;
   ValueChanged<T> onChanged;
 
@@ -9,7 +9,7 @@ class StreamableFormFieldData<T> extends StreamableData {
 
   T get value => _value;
   set value(T value) {
-    _onChanged(value);
+    if (_onChanged != null) _onChanged(value);
   }
 
   final ValueChanged<T> _onChanged;
@@ -26,4 +26,6 @@ class StreamableFormFieldData<T> extends StreamableData {
         _value = initialValue,
         _onChanged = onChanged,
         super(hidden: hidden);
+
+  Future<void> validate() async {}
 }

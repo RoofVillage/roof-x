@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+// import 'package:mask/index.dart';
 import 'text_field.dart';
 
-class PhoneNumberTextFieldData extends FormTextFieldData {
-  PhoneNumberTextFieldData(
+class PhoneNumberFormTextFieldData extends FormTextFieldData {
+  PhoneNumberFormTextFieldData(
       {String title = "Phone number",
       String placeholder,
       String initialValue,
@@ -11,6 +12,7 @@ class PhoneNumberTextFieldData extends FormTextFieldData {
       ValueChanged<String> onChanged,
       bool hidden})
       : super(
+            // mask: MaskOption.phoneNumber,
             title: title,
             placeholder: placeholder,
             initialValue: initialValue,
@@ -18,4 +20,8 @@ class PhoneNumberTextFieldData extends FormTextFieldData {
             autofocus: autofocus,
             size: size,
             hidden: hidden);
+
+  Future<void> validate() async {
+    ///call Roof API to validate phone number;
+  }
 }

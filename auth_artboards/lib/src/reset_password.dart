@@ -8,18 +8,16 @@ class ResetPasswordArtboard extends FormFloatingArtboard {
   String get title => "Reset password";
 
   @override
-  String get subtitle => "We'll send yu an email with a reset link.";
+  String get subtitle => "We'll send you an email with a reset link.";
 
   @override
   String get submitButtonText => "Send";
 
-  List<StreamableFormFieldData> get fieldData {
-    final emailFieldData = FormTextFieldData(
-        title: "Email", onChanged: (someString) => print("Email: $someString"));
+  @override
+  List<StreamableFormFieldData> get fieldData => [_emailFieldData];
 
-    return [emailFieldData];
-  }
+  final _emailFieldData = EmailFormTextFieldData();
 
   @override
-  Future<void> submit(BuildContext context) {}
+  Future<void> submit(BuildContext context) async {}
 }

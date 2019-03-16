@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
-// import 'package:mask/index.dart';
-import '_composition_field.dart';
+// import 'package:consts/index.dart';
+// import 'package:error_messages/index.dart';
+import 'text_field.dart';
 
-abstract class FormTextFieldData extends FormCompositionFieldData {
-  // MaskOption mask;
-
-  FormTextFieldData(
-      {
-      // this.mask,
-      String title,
+class ShortFormTextFieldData extends FormTextFieldData {
+  ShortFormTextFieldData(
+      {String title,
       String placeholder,
       String initialValue,
       double size,
@@ -23,4 +20,10 @@ abstract class FormTextFieldData extends FormCompositionFieldData {
             autofocus: autofocus,
             size: size,
             hidden: hidden);
+
+  Future<void> validate() async {
+    // if (value.length > Consts.maxCharsInSmallTextField) {
+    //   throw AssertionError(ValidationErrors.longSmallString(title));
+    // }
+  }
 }

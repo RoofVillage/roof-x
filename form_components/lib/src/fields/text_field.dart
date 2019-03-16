@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:theme/index.dart';
 import 'package:typography/index.dart';
 import 'package:spec/index.dart';
+import 'package:mask/index.dart';
 
 import 'widgets/index.dart';
 
@@ -12,14 +13,16 @@ class RoofTextField extends StatelessWidget {
   final bool isPassword;
   final bool autofocus;
   final TextInputAction textInputAction;
+  // final MaskOption mask;
   final Function(String) onChanged;
 
   RoofTextField(
-      {this.fieldName,
+      {@required this.fieldName,
       this.placeholder,
       this.initialValue,
-      this.isPassword,
-      this.autofocus,
+      this.isPassword = false,
+      this.autofocus = false,
+      // this.mask,
       this.textInputAction,
       this.onChanged});
 
@@ -36,6 +39,7 @@ class RoofTextField extends StatelessWidget {
         isPassword: isPassword,
         textInputAction: textInputAction,
         initialValue: initialValue,
+        // mask: mask,
         placeholder: placeholder,
         onChanged: onChanged);
 
@@ -55,6 +59,7 @@ class _FieldBody extends StatefulWidget {
   final TextInputAction textInputAction;
   final String initialValue;
   final String placeholder;
+  // final MaskOption mask;
   final Function(String) onChanged;
 
   _FieldBody(
@@ -62,47 +67,33 @@ class _FieldBody extends StatefulWidget {
       this.isPassword,
       this.initialValue,
       this.textInputAction,
+      // this.mask,
       this.placeholder,
       this.onChanged});
 
-  _FieldBodyState createState() => _FieldBodyState(
-      autofocus: autofocus,
-      isPassword: isPassword,
-      textInputAction: textInputAction,
-      initialValue: initialValue,
-      placeholder: placeholder,
-      onChanged: onChanged);
+  _FieldBodyState createState() => _FieldBodyState();
 }
 
 class _FieldBodyState extends State<_FieldBody> {
-  bool autofocus;
-  bool isPassword;
-  TextInputAction textInputAction;
-  String initialValue;
-  String placeholder;
-  Function(String) onChanged;
-
   final _controller = TextEditingController();
   final _typographyStyle = RoofTypography.bodyPrimary;
-  String get _formattedPlaceholder {
-    return (placeholder == null && isPassword) ? "••••••••" : placeholder;
-  }
 
-  _FieldBodyState(
-      {this.autofocus,
-      this.isPassword,
-      this.textInputAction,
-      this.initialValue,
-      this.placeholder,
-      this.onChanged});
+  _FieldBodyState();
 
   _controllerUpdated() {
-    onChanged(_controller.text);
+    // if (widget.mask != null) {
+    //   final formattedText = Mask(widget.mask).apply(_controller.text);
+
+    //   _controller.removeListener(_controllerUpdated);
+    //   _controller.text = formattedText;
+    //   _controller.addListener(_controllerUpdated);
+    // }
+    widget.onChanged(_controller.text);
   }
 
   @override
   void initState() {
-    _controller.text = initialValue;
+    _controller.text = widget.initialValue;
     _controller.addListener(_controllerUpdated);
     super.initState();
   }
@@ -111,18 +102,18 @@ class _FieldBodyState extends State<_FieldBody> {
   Widget build(BuildContext context) {
     final theme = RoofTheme.of(context);
     final decoration = InputDecoration(
-        hintText: _formattedPlaceholder,
+        hintText: widget.placeholder,
         enabledBorder: UnderlineInputBorder(
             borderSide: BorderSide(color: theme.color.stroke.light)),
         focusedBorder: UnderlineInputBorder(
             borderSide: BorderSide(color: theme.color.stroke.focus)),
-        hintStyle: _typographyStyle
-            .textStyleWithColor(theme.color.text.placeholder));
+        hintStyle:
+            _typographyStyle.textStyleWithColor(theme.color.text.placeholder));
 
     return TextField(
-        autofocus: autofocus ?? false,
-        obscureText: isPassword ?? false,
-        textInputAction: textInputAction,
+        autofocus: widget.autofocus,
+        obscureText: widget.isPassword,
+        textInputAction: widget.textInputAction,
         decoration: decoration,
         controller: _controller);
   }
