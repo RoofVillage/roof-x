@@ -45,7 +45,7 @@ class Thread extends StatelessWidget {
     final theme = RoofTheme.of(context);
 
     final auxiliaryWidgets = [
-      AddImageAuxiliaryWidget(),
+      AddFileAuxiliaryWidget(),
       // AuxiliaryWidgetReference.camera
     ];
 

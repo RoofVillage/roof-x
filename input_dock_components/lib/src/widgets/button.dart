@@ -3,29 +3,9 @@ import 'package:icon_library/index.dart';
 import 'package:spec/index.dart';
 import 'package:typography/index.dart';
 import 'package:theme/index.dart';
+import 'package:haptics/index.dart';
 
 import '../input_dock.dart';
-
-// class XDockActionButton {
-//   final Function action;
-//   final String actionTitle;
-//   final StandardIconReference actionIconReference;
-
-//   XDockActionButton({this.action, this.actionTitle, this.actionIconReference});
-
-//   buildWithProperties({bool collapse, @required BuildContext context}) {
-//     final baseHeight = RoofInputDock.of(context).baseHeight;
-//     final baseButtonSize = Size(baseHeight, baseHeight);
-
-//     return DockActionButton(
-//       action: action,
-//       actionTitle: actionTitle,
-//       actionIconReference: actionIconReference,
-//       baseButtonSize: baseButtonSize,
-//       isCollapsed: collapse,
-//     );
-//   }
-// }
 
 class DockActionButton extends StatefulWidget {
   final Function action;
@@ -38,7 +18,7 @@ class DockActionButton extends StatefulWidget {
 }
 
 class _DockActionButtonState extends State<DockActionButton>
-    with SingleTickerProviderStateMixin {
+    with TickerProviderStateMixin {
   final GlobalKey _buttonKey = GlobalKey();
   final GlobalKey _buttonIconKey = GlobalKey();
   final double _buttonHorizontalPadding = RoofDistance.b;
@@ -48,7 +28,8 @@ class _DockActionButtonState extends State<DockActionButton>
   double buttonIconWidth;
   Animation<double> widthAnimation;
   Animation<double> opacityAnimation;
-  AnimationController controller;
+  AnimationController widthAnimationController;
+  AnimationController opacityAnimationController;
 
   void _buildButtonAnimation(_) {
     _calculateComponentSizes();
@@ -74,16 +55,22 @@ class _DockActionButtonState extends State<DockActionButton>
     final dock = RoofInputDock.of(context);
     final double minButtonWidth = dock.baseHeight;
 
-    final curve = CurvedAnimation(
-      parent: controller,
+    final widthCurve = CurvedAnimation(
+      parent: widthAnimationController,
       curve: RoofCurve.quick,
       reverseCurve: RoofCurve.quick.flipped,
+    );
+
+    final opacityCurve = CurvedAnimation(
+      parent: opacityAnimationController,
+      curve: RoofCurve.slow,
+      reverseCurve: RoofCurve.slow.flipped,
     );
 
     widthAnimation = Tween(
       begin: maxButtonWidth,
       end: minButtonWidth,
-    ).animate(curve)
+    ).animate(widthCurve)
       ..addListener(() {
         setState(() {});
       });
@@ -91,7 +78,7 @@ class _DockActionButtonState extends State<DockActionButton>
     opacityAnimation = Tween(
       begin: 1.0,
       end: 0.0,
-    ).animate(curve)
+    ).animate(opacityCurve)
       ..addListener(() {
         setState(() {});
       });
@@ -101,7 +88,10 @@ class _DockActionButtonState extends State<DockActionButton>
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback(_buildButtonAnimation);
 
-    controller = AnimationController(duration: RoofDuration.short, vsync: this);
+    widthAnimationController =
+        AnimationController(duration: RoofDuration.short, vsync: this);
+    opacityAnimationController =
+        AnimationController(duration: RoofDuration.short, vsync: this);
 
     super.initState();
   }
@@ -109,7 +99,18 @@ class _DockActionButtonState extends State<DockActionButton>
   @override
   Widget build(BuildContext context) {
     final dock = RoofInputDock.of(context);
-    dock.showSubmitButton ? controller.forward() : controller.reverse();
+
+    animateForward() {
+      widthAnimationController.forward();
+      opacityAnimationController.forward();
+    }
+
+    animateReverse() {
+      widthAnimationController.reverse();
+      opacityAnimationController.reverse();
+    }
+
+    dock.showSubmitButton ? animateForward() : animateReverse();
 
     final theme = RoofTheme.of(context);
 
@@ -136,7 +137,7 @@ class _DockActionButtonState extends State<DockActionButton>
           .buildSvg(color: theme.color.icon.transitionAction),
     );
 
-    final buttonText = _AnimatedButtonText(
+    final buttonText = _ButtonText(
       text: widget.actionTitle,
       show: showText,
       opacity: opacityAnimation != null ? opacityAnimation.value : 1,
@@ -145,8 +146,13 @@ class _DockActionButtonState extends State<DockActionButton>
     buttonChildren.add(buttonIcon);
     buttonChildren.add(buttonText);
 
+    onTap() {
+      Haptic.triggerWith(HapticOption.medium);
+      widget.action();
+    }
+
     return GestureDetector(
-        onTap: widget.action,
+        onTap: onTap,
         child: Container(
             key: _buttonKey,
             width: animatedWidth ?? null,
@@ -161,12 +167,12 @@ class _DockActionButtonState extends State<DockActionButton>
   }
 }
 
-class _AnimatedButtonText extends StatelessWidget {
+class _ButtonText extends StatelessWidget {
   final String text;
   final bool show;
   final double opacity;
 
-  _AnimatedButtonText({this.text, this.show, this.opacity});
+  _ButtonText({this.text, this.show, this.opacity});
 
   final _buttonTextStyle = RoofTypography.button;
 

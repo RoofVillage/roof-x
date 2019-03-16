@@ -3,19 +3,86 @@ import 'package:spec/index.dart';
 import 'package:icon_library/index.dart';
 import 'package:theme/index.dart';
 import 'package:typography/index.dart';
+import 'package:haptics/index.dart';
 
 import '../input_dock.dart';
 
 class DockInputField extends StatefulWidget {
+  @override
   _DockInputFieldState createState() => _DockInputFieldState();
 }
 
 class _DockInputFieldState extends State<DockInputField> {
-  static const String _hintText = "Add comment";
   static const double _maxHeight = 200;
 
+  final _textController = TextEditingController();
+
+  InheritedInputDock _dock;
+
+  @override
+  void dispose() {
+    _textController.dispose();
+    super.dispose();
+  }
+
+  @override
+  void initState() {
+    _textController.addListener(textChanged);
+    super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    _dock = RoofInputDock.of(context);
+    super.didChangeDependencies();
+  }
+
+  textChanged() {
+    _dock.setText(_textController.text);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final paddedTextField = _TextFieldComponent(
+      dock: _dock,
+      controller: _textController,
+    );
+
+    final constrainedInputStack = ConstrainedBox(
+      constraints: BoxConstraints(
+        maxHeight: _maxHeight,
+        minHeight: _dock.baseHeight,
+      ),
+      child: Stack(
+        alignment: AlignmentDirectional.bottomCenter,
+        fit: StackFit.passthrough,
+        children: [
+          paddedTextField,
+          _SubmitButton(),
+        ],
+      ),
+    );
+
+    return Expanded(
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          Expanded(child: constrainedInputStack),
+        ],
+      ),
+    );
+  }
+}
+
+class _TextFieldComponent extends StatelessWidget {
+  final InheritedInputDock dock;
+  final TextEditingController controller;
+
+  _TextFieldComponent({this.dock, this.controller});
+
+  static const String _hintText = "Add comment";
+
   final _commentTextStyle = RoofTypography.bodyPrimary;
-  final _controller = TextEditingController();
 
   final _enabledBorder =
       OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent));
@@ -25,13 +92,6 @@ class _DockInputFieldState extends State<DockInputField> {
   @override
   Widget build(BuildContext context) {
     final theme = RoofTheme.of(context);
-    final dock = RoofInputDock.of(context);
-
-    textChanged() {
-      dock.setText(_controller.text);
-    }
-
-    _controller.addListener(textChanged);
 
     final hintStyle = _commentTextStyle.textStyleWithColor(
       theme.color.text.placeholder,
@@ -54,7 +114,7 @@ class _DockInputFieldState extends State<DockInputField> {
       style: textStyle,
       textInputAction: TextInputAction.done,
       decoration: textFieldDecoration,
-      controller: _controller,
+      controller: controller,
     );
 
     final double submitButtonPaddingBuffer = 50;
@@ -68,7 +128,7 @@ class _DockInputFieldState extends State<DockInputField> {
       vertical: RoofDistance.a,
     );
 
-    final paddedTextField = Padding(
+    return Padding(
       padding: dock.showSubmitButton ? paddingWithBuffer : paddingWithoutBuffer,
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -78,64 +138,32 @@ class _DockInputFieldState extends State<DockInputField> {
         ],
       ),
     );
-
-    final submitButton = _SubmitButton(
-      onTap: dock.onSubmit,
-      height: dock.baseHeight,
-      visible: dock.showSubmitButton,
-    );
-
-    final constrainedInputStack = ConstrainedBox(
-      constraints: BoxConstraints(
-        maxHeight: _maxHeight,
-        minHeight: dock.baseHeight,
-      ),
-      child: Stack(
-        alignment: AlignmentDirectional.bottomCenter,
-        fit: StackFit.passthrough,
-        children: [
-          paddedTextField,
-          submitButton,
-        ],
-      ),
-    );
-
-    return Expanded(
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          Expanded(child: constrainedInputStack),
-        ],
-      ),
-    );
   }
 }
 
 class _SubmitButton extends StatelessWidget {
-  final VoidCallback onTap;
-  final double height;
-  final bool visible;
-
-  _SubmitButton({this.onTap, this.height, this.visible: false});
-
   @override
   Widget build(BuildContext context) {
+    final dock = RoofInputDock.of(context);
+
     final iconColor = RoofTheme.of(context).color.background.submitButton;
     final sendIcon = IconReference.sendFilled.buildSvg(color: iconColor);
 
-    final padding = EdgeInsets.symmetric(horizontal: RoofDistance.c);
+    onTap() {
+      Haptic.triggerWith(HapticOption.light);
+      dock.onSubmit();
+    }
 
-    return GestureDetector(
-      onTap: visible ? onTap : null,
-      child: Container(
-        alignment: Alignment.centerRight,
-        padding: padding,
-        height: height,
-        width: height,
-        child: AnimatedOpacity(
-          opacity: visible ? 1 : 0,
-          duration: RoofDuration.short,
-          curve: RoofCurve.quick,
+    return Container(
+      alignment: Alignment.centerRight,
+      padding: EdgeInsets.only(right: RoofDistance.c),
+      height: dock.baseHeight,
+      child: AnimatedOpacity(
+        opacity: dock.showSubmitButton ? 1 : 0,
+        duration: RoofDuration.short,
+        curve: RoofCurve.easy,
+        child: GestureDetector(
+          onTap: dock.showSubmitButton ? onTap : null,
           child: sendIcon,
         ),
       ),
