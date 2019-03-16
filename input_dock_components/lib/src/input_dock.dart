@@ -89,8 +89,7 @@ class _RoofInputDockState extends State<RoofInputDock> {
 
     final List<Widget> columnChildren = [];
 
-    final Widget filePreviews = FilePreviewContainer();
-    columnChildren.add(filePreviews);
+    columnChildren.add(FilePreviewContainer());
 
     List<Widget> rowChildren = [];
 
