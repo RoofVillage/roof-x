@@ -71,8 +71,8 @@ class _FilePreviewState extends State<_FilePreview>
   bool _show = true;
 
   _remove() {
-    Haptic.triggerWith(HapticOption.light);
-    
+    Haptic.triggerWith(HapticOption.click);
+
     if (widget.shouldFadeOut) {
       setState(() {
         _show = false;
