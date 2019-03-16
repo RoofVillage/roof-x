@@ -12,6 +12,12 @@ class LogInArtboard extends FormFloatingArtboard {
   @override
   String get submitButtonText => "Log in";
 
+  @override
+  String get auxiliaryDescription => null;
+
+  @override
+  String get auxiliaryButtonText => null;
+
   List<StreamableFormFieldData> get fieldData {
     final usernameFieldData = EmailTextFieldData(
         title: "Email or phone",

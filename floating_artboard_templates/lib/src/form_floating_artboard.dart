@@ -11,6 +11,8 @@ abstract class FormFloatingArtboard extends FloatingArtboard with FormArtboard {
   String get title;
   String get subtitle => null;
   String get submitButtonText;
+  String get auxiliaryDescription => null;
+  String get auxiliaryButtonText => null;
 
   final _headerStyle = RoofTypography.heading1;
   final _subtitleStyle = RoofTypography.bodyPrimary;
