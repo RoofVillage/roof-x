@@ -10,7 +10,10 @@ class PhoneNumberArtboard extends FormFloatingArtboard {
   String get title => "Enter your phone number";
 
   @override
-  String get submitButtonText => "We'll send you a code to make sure it's you.";
+  String get subtitle => "We'll send you a code to make sure it's you.";
+
+  @override
+  String get submitButtonText => "Send code";
 
   List<StreamableFormFieldData> get fieldData {
     final phoneNumberFieldData = PhoneNumberTextFieldData(

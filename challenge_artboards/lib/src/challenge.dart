@@ -10,13 +10,15 @@ class ChallengeArtboard extends FormFloatingArtboard {
   String get title => "Confirm";
 
   @override
-  String get submitButtonText {
+  String get subtitle {
     final last4 = phoneNumber.substring(phoneNumber.length - 4);
 
     return "A confirmation code was sent to your phone number ending in " +
         last4 +
         ".";
   }
+
+  String get submitButtonText => "Submit";
 
   List<StreamableFormFieldData> get fieldData {
     final codeFieldData = FormTextFieldData(

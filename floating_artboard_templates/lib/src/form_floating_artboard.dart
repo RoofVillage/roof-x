@@ -17,6 +17,7 @@ abstract class FormFloatingArtboard extends FloatingArtboard with FormArtboard {
 
   final _bodyVerticalPadding = EdgeInsets.only(top: RoofDistance.d);
   final _buttonVerticalPadding = EdgeInsets.only(top: RoofDistance.d);
+
   @override
   List<Widget> buildChildren(BuildContext context) {
     final theme = RoofTheme.of(context);
@@ -34,6 +35,7 @@ abstract class FormFloatingArtboard extends FloatingArtboard with FormArtboard {
     if (subtitle != null) {
       widgets.add(Text(subtitle, style: subtitleStyle));
     }
+    print("BUILDING CHILDREN");
     widgets.addAll([
       Padding(padding: _bodyVerticalPadding, child: buildForm(context)),
       Padding(padding: _buttonVerticalPadding, child: submitButton)

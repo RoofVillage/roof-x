@@ -26,9 +26,9 @@ mixin FormArtboard {
 
   RoofStreamForm buildForm(BuildContext context) {
     StreamableFormData formData;
-    if (this.formData != null)
+    if (this.formData != null) {
       formData = this.formData;
-    else if (sectionData != null) {
+    } else if (sectionData != null) {
       formData = StreamableFormData(sectionData: sectionData);
     } else {
       formData = StreamableFormData.withFields(

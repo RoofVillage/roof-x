@@ -11,6 +11,7 @@ abstract class FloatingArtboard extends Artboard {
   List<Widget> buildChildren(BuildContext context);
 
   Widget build(BuildContext context) {
+    print("BUILDING FLOATING AB");
     final children = buildChildren(context);
     return FloatingArtboardContainer(
         child: Column(

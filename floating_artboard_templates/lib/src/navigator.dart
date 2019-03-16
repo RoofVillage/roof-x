@@ -27,7 +27,7 @@ class FloatingArtboardNavigatorState extends ArtboardNavigatorState {
 
   final _popMinDragDistanceDelta = 50;
   final _popMaxDragTimeDelta = 70;
-  final _pageController = PageController();
+  final _pageController = PageController(keepPage: true);
 
   int _initialDragTime;
   double _initialDragDy;
@@ -65,17 +65,8 @@ class FloatingArtboardNavigatorState extends ArtboardNavigatorState {
         data: this, child: RoofTheme(theme.current, child: scaffold));
   }
 
-  void _onVerticalDragStart(details) {
-    _initialDragTime = details.sourceTimeStamp.inMilliseconds;
-    _initialDragDy = details.globalPosition.dy;
-  }
-
-  void _onDragDownUpdate(details) {
-    _timeDelta = details.sourceTimeStamp.inMilliseconds - _initialDragTime;
-    _downDistanceDelta = details.globalPosition.dy - _initialDragDy;
-  }
-
   void goTo(Artboard artboard, {BuildContext context}) {
+    print("going through");
     if (artboard is FloatingArtboard) {
       final button = artboard.allowsBackNavigation
           ? RoofTransitionIconNavButton(
@@ -100,25 +91,47 @@ class FloatingArtboardNavigatorState extends ArtboardNavigatorState {
       Navigator.pop(context, artboard);
     }
   }
+
+  void _onVerticalDragStart(details) {
+    _initialDragTime = details.sourceTimeStamp.inMilliseconds;
+    _initialDragDy = details.globalPosition.dy;
+  }
+
+  void _onDragDownUpdate(details) {
+    _timeDelta = details.sourceTimeStamp.inMilliseconds - _initialDragTime;
+    _downDistanceDelta = details.globalPosition.dy - _initialDragDy;
+  }
 }
 
-class _FloatingArtboardNavigatorPanel extends StatelessWidget {
+class _FloatingArtboardNavigatorPanel extends StatefulWidget {
   final FloatingArtboard artboard;
   final RoofTransitionIconNavButton navButton;
 
   final _defaultNavButton = RoofTransitionIconNavButton(
       iconReference: IconReference.downArrowNav, onTap: ArtboardNavigator.pop);
 
-  final _buttonMarginBottom = RoofDistance.e;
-
   _FloatingArtboardNavigatorPanel({this.artboard, this.navButton});
 
   @override
+  State<StatefulWidget> createState() => _FloatingArtboardNavigatorPanelState();
+}
+
+// https://docs.flutter.io/flutter/widgets/AutomaticKeepAliveClientMixin-mixin.html
+// https://github.com/flutter/flutter/issues/13080#issuecomment-399320752
+class _FloatingArtboardNavigatorPanelState
+    extends State<_FloatingArtboardNavigatorPanel>
+    with AutomaticKeepAliveClientMixin {
+  final _buttonMarginBottom = RoofDistance.e;
+
+  @override
   Widget build(BuildContext context) {
+    super.build(context); //necessary for the mixin.
     final flexibleColumn = Column(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.end,
-        children: [Flexible(child: SingleChildScrollView(child: artboard))]);
+        children: [
+          Flexible(child: SingleChildScrollView(child: widget.artboard))
+        ]);
 
     ///The percent from the bottom where the button will live;
     double height = MediaQuery.of(context).size.height;
@@ -126,8 +139,12 @@ class _FloatingArtboardNavigatorPanel extends StatelessWidget {
 
     final _alignment = Alignment(0, ratio);
 
-    return Stack(
-        alignment: _alignment,
-        children: [flexibleColumn, navButton ?? _defaultNavButton]);
+    return Stack(alignment: _alignment, children: [
+      flexibleColumn,
+      widget.navButton ?? widget._defaultNavButton
+    ]);
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
