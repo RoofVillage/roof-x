@@ -66,7 +66,6 @@ class FloatingArtboardNavigatorState extends ArtboardNavigatorState {
   }
 
   void goTo(Artboard artboard, {BuildContext context}) {
-    print("going through");
     if (artboard is FloatingArtboard) {
       final button = artboard.allowsBackNavigation
           ? RoofTransitionIconNavButton(

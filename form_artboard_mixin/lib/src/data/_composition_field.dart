@@ -19,7 +19,7 @@ abstract class FormCompositionFieldData
       bool hidden})
       : autofocus = autofocus ?? false,
         super(
-            initialValue: initialValue,
+            initialValue: initialValue ?? "",
             onChanged: onChanged,
             size: size,
             hidden: hidden);

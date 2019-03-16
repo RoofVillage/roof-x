@@ -21,6 +21,12 @@ abstract class FormFloatingArtboard extends FloatingArtboard with FormArtboard {
   final _buttonVerticalPadding = EdgeInsets.only(top: RoofDistance.d);
 
   @override
+  void errorHandler(BuildContext context, String message) {
+    // TODO: implement errorHandler
+    print("yung");
+  }
+
+  @override
   List<Widget> buildChildren(BuildContext context) {
     final theme = RoofTheme.of(context);
 

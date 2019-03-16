@@ -1,17 +1,22 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:spec/index.dart';
 import 'package:theme/index.dart';
 
-import 'auxiliary_widget.dart';
-import 'button.dart';
-import 'field.dart';
+import 'widgets/index.dart';
+import 'dock_data.dart';
 
 class RoofInputDock extends StatefulWidget {
-  final DockActionButton dockActionButton;
-  final SubmitCallback onSubmit;
+  final DockActionButton actionButton;
+  final DockDataCallback onSubmit;
   final List<AuxiliaryWidget> auxiliaryWidgets;
 
-  RoofInputDock({this.dockActionButton, this.onSubmit, this.auxiliaryWidgets});
+  RoofInputDock({this.actionButton, this.onSubmit, this.auxiliaryWidgets});
+
+  static InheritedInputDock of(BuildContext context) {
+    return context.inheritFromWidgetOfExactType(InheritedInputDock);
+  }
 
   @override
   State<StatefulWidget> createState() => _RoofInputDockState();
@@ -19,61 +24,140 @@ class RoofInputDock extends StatefulWidget {
 
 class _RoofInputDockState extends State<RoofInputDock> {
   static const double _baseHeight = 40;
-  bool _collapseButton = false;
 
-  void _shouldButtonCollapse(bool val) {
-    if (val != _collapseButton) {
-      setState(() {
-        _collapseButton = val;
-      });
+  String _text = "";
+  List<File> _files = [];
+
+  void _setText(String text) {
+    setState(() {
+      _text = text;
+    });
+  }
+
+  void _addFile(File file) {
+    setState(() {
+      _files.add(file);
+    });
+  }
+
+  void _removeFile(File file) {
+    setState(() {
+      _files.remove(file);
+    });
+  }
+
+  void _submit() {
+    _showDialogDev();
+
+    // Format data and make API call
+    final data = DockSubmitData(
+        // text: _text,
+        // files: _files,
+        );
+    widget.onSubmit(data: data);
+
+    _resetDock();
+  }
+
+  void _resetDock() {
+    setState(() {
+      _files = [];
+      _text = "";
+    });
+  }
+
+  void _showDialogDev() {
+    String displayText = "";
+    if (_text.isNotEmpty) {
+      displayText += "\nText: " + _text;
     }
+    if (_files.isNotEmpty) {
+      displayText += "\nFiles: " + _files.length.toString();
+    }
+    showDialog(
+      builder: (context) => AlertDialog(
+            title: Text("submit:"),
+            content: Text(displayText),
+          ),
+      context: context,
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
+    final RoofInheritedTheme theme = RoofTheme.of(context);
+
+    final List<Widget> columnChildren = [];
+
+    columnChildren.add(FilePreviewContainer());
 
     List<Widget> rowChildren = [];
 
-    if (widget.auxiliaryWidgets != null && widget.auxiliaryWidgets.isNotEmpty) {
-      final List<Widget> _auxiliaryWidgets = [];
-      for (AuxiliaryWidget auxWidget in widget.auxiliaryWidgets) {
-        _auxiliaryWidgets.add(
-          auxWidget.buildWithSize(_baseHeight),
-        );
-      }
-      rowChildren.addAll(_auxiliaryWidgets);
+    if (widget.auxiliaryWidgets != null) {
+      rowChildren.addAll(widget.auxiliaryWidgets);
     }
 
-    final inputField = DockInputField(
-      onInputChange: _shouldButtonCollapse,
-      onSubmit: widget.onSubmit,
-      baseHeight: _baseHeight,
-    );
-    rowChildren.add(inputField);
+    rowChildren.add(DockInputField());
 
-    if (widget.dockActionButton != null) {
-      final actionButton = widget.dockActionButton.buildWithProperties(
-        collapse: _collapseButton,
-        baseHeight: _baseHeight,
-      );
-      rowChildren.add(actionButton);
+    if (widget.actionButton != null) {
+      rowChildren.add(widget.actionButton);
     }
 
-    final Widget contentRow = Row(
-      crossAxisAlignment: CrossAxisAlignment.end,
-      children: rowChildren,
+    final Widget fieldRow = Container(
+      padding: RoofObjectPadding.container1,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: rowChildren,
+      ),
     );
+    columnChildren.add(fieldRow);
 
-    return SafeArea(
+    final Widget dock = SafeArea(
       top: false,
       left: false,
       right: false,
       child: Container(
         color: theme.color.background.brandPrimary,
-        padding: RoofObjectPadding.container1,
-        child: contentRow,
+        child: Column(
+          children: columnChildren,
+        ),
       ),
     );
+
+    return InheritedInputDock(
+      child: dock,
+      setText: _setText,
+      addFile: _addFile,
+      removeFile: _removeFile,
+      onSubmit: _submit,
+      baseHeight: _baseHeight,
+      showSubmitButton: (_text.isNotEmpty || _files.isNotEmpty),
+      files: _files,
+    );
   }
+}
+
+class InheritedInputDock extends InheritedWidget {
+  final Function(String) setText;
+  final Function(File) addFile;
+  final Function(File) removeFile;
+  final VoidCallback onSubmit;
+  final double baseHeight;
+  final bool showSubmitButton;
+  final List<File> files;
+
+  InheritedInputDock({
+    Key key,
+    @required Widget child,
+    @required this.setText,
+    @required this.addFile,
+    @required this.removeFile,
+    @required this.onSubmit,
+    this.showSubmitButton,
+    this.baseHeight,
+    this.files,
+  }) : super(key: key, child: child);
+
+  @override
+  bool updateShouldNotify(InheritedWidget oldWidget) => true;
 }

@@ -9,7 +9,7 @@ abstract class FormTextFieldData extends FormCompositionFieldData {
       {this.mask,
       String title,
       String placeholder,
-      String initialValue = "",
+      String initialValue,
       double size,
       bool autofocus,
       ValueChanged<String> onChanged,

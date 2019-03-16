@@ -66,6 +66,16 @@ class RoofTextColor {
     return null;
   }
 
+  Color get alert {
+    switch (_current) {
+      case RoofThemeOption.light:
+        return RoofColor.alert;
+      case RoofThemeOption.dark:
+        return RoofColor.alert;
+    }
+    return null;
+  }
+
   Color get transitionAction {
     switch (_current) {
       case RoofThemeOption.light:

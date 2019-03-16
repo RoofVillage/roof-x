@@ -22,10 +22,6 @@ class Sandbox extends StatelessWidget {
 }
 
 class Thread extends StatelessWidget {
-  _inputSubmitAction(DockFieldSubmitData data) {
-    print("submit: ${data.text}");
-  }
-
   _threadAction() {
     print("thread action: $_actionText");
   }
@@ -38,25 +34,24 @@ class Thread extends StatelessWidget {
     final theme = RoofTheme.of(context);
 
     final auxiliaryWidgets = [
-      AuxiliaryWidget(
-        iconReference: IconReference.addImage,
-        action: () => print("aux action addImage"),
-      ),
-      // AuxiliaryWidget(
-      //   iconReference: IconReference.camera,
-      //   action: () => print("aux action camera"),
-      // )
+      CameraAuxiliaryWidget(),
+      AddFileAuxiliaryWidget(),
     ];
 
-    final inputButton = DockActionButton(
+    final actionButton = DockActionButton(
       action: _threadAction,
       actionTitle: _actionText,
       actionIconReference: _actionIcon,
     );
 
-    final dock = RoofInputDock(
+    _inputSubmitAction({DockSubmitData data}) {
+      final text = data.text;
+      final files = data.files;
+    }
+
+    final inputDock = RoofInputDock(
       auxiliaryWidgets: auxiliaryWidgets,
-      dockActionButton: inputButton,
+      actionButton: actionButton,
       onSubmit: _inputSubmitAction,
     );
 
@@ -65,7 +60,7 @@ class Thread extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
-          dock,
+          inputDock,
         ],
       ),
     );

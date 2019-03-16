@@ -1,0 +1,20 @@
+name: thread_artboards
+description: The artboards that make up the thread flow.
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  full_screen_artboard_templates:
+    path: ../full_screen_artboard_templates
+  navigation_components:
+    path: ../navigation_components
+  input_dock_components:
+    path: ../input_dock_components
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

@@ -23,7 +23,7 @@ enum Section {
 
 class PublicActivityArtboard extends FullLogoTableFullScreenArtboard {
   final _showFloatingArtboardButton = RoofIconNavButton(
-      iconReference: IconReference.add,
+      iconReference: IconReference.addNav,
       onTap: (context) {
         ArtboardNavigator.of(context).goTo(SignUpArtboard(), context: context);
       });

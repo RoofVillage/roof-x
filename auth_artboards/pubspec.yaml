@@ -18,6 +18,10 @@ dependencies:
     path: ../service
   challenge_artboards:
     path: ../challenge_artboards
+  navigation_components:
+    path: ../navigation_components
+  icon_library:
+    path: ../icon_library
 
 dev_dependencies:
   flutter_test:

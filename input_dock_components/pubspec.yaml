@@ -4,9 +4,10 @@ description: Widgets that make up the input dock.
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+  sdk: ">=2.1.0 <3.0.0"
 
 dependencies:
+  image_picker: ^0.5.0+6
   flutter:
     sdk: flutter
   spec:
@@ -19,6 +20,10 @@ dependencies:
     path: ../haptics
   icon_library:
     path: ../icon_library
+  artboard:
+    path: ../artboard
+  auth_artboards:
+    path: ../auth_artboards
 
 dev_dependencies:
   flutter_test:

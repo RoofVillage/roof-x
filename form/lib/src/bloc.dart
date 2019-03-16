@@ -7,12 +7,14 @@ typedef AddressGetter = String Function();
 typedef ParamsGetter = Map<String, Object> Function();
 typedef SubmitGetter = Future<void> Function();
 typedef ValidationGetter = Future<void> Function();
+typedef ErrorHandlerGetter = Function(String message);
 
 class StreamFormBloc extends BlocBase {
   AddressGetter getAddress;
   ParamsGetter getParams;
   SubmitGetter getSubmit;
   ValidationGetter getValidation;
+  ErrorHandlerGetter getErrorHandler;
 
   StreamableFormData _formData;
 
@@ -49,10 +51,16 @@ class StreamFormBloc extends BlocBase {
     final submit = getSubmit;
     if (submit == null) return;
 
-    _validateFields();
-
-    final validation = getValidation;
-    if (validation != null) await validation();
+    try {
+      print("HI");
+      _validateFields();
+      final validation = getValidation;
+      if (validation != null) await validation();
+    } catch (err) {
+      final errorHandler = getErrorHandler;
+      print(err.toString());
+      if (errorHandler != null) errorHandler(err.toString());
+    }
 
     await submit();
   }
@@ -305,8 +313,12 @@ class StreamFormBloc extends BlocBase {
   }
 
   Future<void> _validateFields() async {
-    await Future.wait(
-        _formData.fieldData.map((data) async => await data.validate()),
-        eagerError: true);
+    try {
+      for (final data in _formData.fieldData) {
+        await data.validate();
+      }
+    } catch (err) {
+      print(err.toString());
+    }
   }
 }

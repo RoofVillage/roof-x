@@ -13,6 +13,8 @@ mixin FormArtboard {
 
   //An opportunity for forms to throw an exception before being submitted.
   Future<void> validation(BuildContext context) async {}
+  void errorHandler(BuildContext context, String message);
+
   Future<void> submit(BuildContext context);
 
   double get fieldHorizontalSpacing => RoofDistance.c;
@@ -46,6 +48,7 @@ mixin FormArtboard {
 
     form.getValidation = () => validation(context);
     form.getSubmit = () => submit(context);
+    form.getErrorHandler = (message) => errorHandler(context, message);
 
     _load();
     return _form;
