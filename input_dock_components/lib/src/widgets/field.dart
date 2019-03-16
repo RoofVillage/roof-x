@@ -19,6 +19,14 @@ class _DockInputFieldState extends State<DockInputField> {
 
   InheritedInputDock _dock;
 
+  _textChanged() {
+    _dock.setText(_textController.text);
+  }
+
+  _resetText() {
+    _textController.text = "";
+  }
+
   @override
   void dispose() {
     _textController.dispose();
@@ -27,7 +35,7 @@ class _DockInputFieldState extends State<DockInputField> {
 
   @override
   void initState() {
-    _textController.addListener(textChanged);
+    _textController.addListener(_textChanged);
     super.initState();
   }
 
@@ -35,10 +43,6 @@ class _DockInputFieldState extends State<DockInputField> {
   void didChangeDependencies() {
     _dock = RoofInputDock.of(context);
     super.didChangeDependencies();
-  }
-
-  textChanged() {
-    _dock.setText(_textController.text);
   }
 
   @override
@@ -58,7 +62,7 @@ class _DockInputFieldState extends State<DockInputField> {
         fit: StackFit.passthrough,
         children: [
           paddedTextField,
-          _SubmitButton(),
+          _SubmitButton(submitCallback: _resetText),
         ],
       ),
     );
@@ -142,6 +146,10 @@ class _TextFieldComponent extends StatelessWidget {
 }
 
 class _SubmitButton extends StatelessWidget {
+  final VoidCallback submitCallback;
+
+  _SubmitButton({this.submitCallback});
+
   @override
   Widget build(BuildContext context) {
     final dock = RoofInputDock.of(context);
@@ -152,6 +160,7 @@ class _SubmitButton extends StatelessWidget {
     onTap() {
       Haptic.triggerWith(HapticOption.light);
       dock.onSubmit();
+      submitCallback();
     }
 
     return Container(

@@ -22,17 +22,6 @@ class Sandbox extends StatelessWidget {
 }
 
 class Thread extends StatelessWidget {
-  _inputSubmitAction({DockSubmitData data}) {
-    final text = data.text;
-    final files = data.files;
-    if (text.isNotEmpty) {
-      print("submit: $text");
-    }
-    if (files.isNotEmpty) {
-      print("files: $files");
-    }
-  }
-
   _threadAction() {
     print("thread action: $_actionText");
   }
@@ -54,6 +43,11 @@ class Thread extends StatelessWidget {
       actionTitle: _actionText,
       actionIconReference: _actionIcon,
     );
+
+    _inputSubmitAction({DockSubmitData data}) {
+      final text = data.text;
+      final files = data.files;
+    }
 
     final inputDock = RoofInputDock(
       auxiliaryWidgets: auxiliaryWidgets,

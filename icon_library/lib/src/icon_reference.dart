@@ -5,6 +5,7 @@ class IconReference {
   static final boxUnchecked = SmallIconReference(path: 'box_unchecked.svg');
   static final removeFilled = SmallIconReference(path: 'remove_filled.svg');
 
+  static final add = StandardIconReference(path: 'add.svg');
   static final addImage = StandardIconReference(path: 'add_image.svg');
   static final alarmClock = StandardIconReference(path: 'alarm_clock.svg');
   static final atSign = StandardIconReference(path: 'at_sign.svg');
@@ -75,7 +76,7 @@ class IconReference {
   static final toolbox = StandardIconReference(path: 'toolbox.svg');
   static final upArrow = StandardIconReference(path: 'up_arrow.svg');
 
-  static final add = NavigationIconReference(path: 'add.svg');
+  static final addNav = NavigationIconReference(path: 'add.svg');
   static final backArrowNav = NavigationIconReference(path: 'back_arrow.svg');
   static final downArrowNav = NavigationIconReference(path: 'down_arrow.svg');
   static final info = NavigationIconReference(path: 'info.svg');

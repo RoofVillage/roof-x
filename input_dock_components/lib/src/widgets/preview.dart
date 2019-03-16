@@ -38,18 +38,18 @@ class _FilePreviewContainerState extends State<FilePreviewContainer>
 
     final List<Widget> previews = [];
 
-    for (var file in dock.previews) {
+    for (var file in dock.files) {
       final preview = _FilePreview(
         key: ObjectKey(file),
         file: file,
-        isRightPadded: (file != dock.previews.last),
-        shouldFadeOut: (dock.previews.length > 1),
+        isRightPadded: (file != dock.files.last),
+        shouldFadeOut: (dock.files.length > 1),
       );
       previews.add(preview);
     }
 
     final previewRow = Container(
-      height: dock.previews.isNotEmpty ? _maxHeight : 0,
+      height: dock.files.isNotEmpty ? _maxHeight : 0,
       child: ListView(
         controller: _listViewController,
         padding: EdgeInsets.symmetric(horizontal: RoofDistance.c),
@@ -124,13 +124,6 @@ class _FilePreviewState extends State<_FilePreview>
         width: _show ? null : 0,
         padding: EdgeInsets.all(RoofDistance.a),
         child: removeIcon,
-      ),
-    );
-
-    final imageDecoration = BoxDecoration(
-      color: uniqueColor,
-      borderRadius: BorderRadius.all(
-        RoofCornerRadius.small,
       ),
     );
 

@@ -147,23 +147,29 @@ class _DockActionButtonState extends State<DockActionButton>
     buttonChildren.add(buttonText);
 
     onTap() {
+      showDialog(
+        builder: (context) => AlertDialog(title: Text(widget.actionTitle)),
+        context: context,
+      );
       Haptic.triggerWith(HapticOption.medium);
       widget.action();
     }
 
     return GestureDetector(
-        onTap: onTap,
-        child: Container(
-            key: _buttonKey,
-            width: animatedWidth ?? null,
-            height: dock.baseHeight,
-            padding: containerPadding,
-            decoration: buttonDecoration,
-            child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: buttonChildren)));
+      onTap: onTap,
+      child: Container(
+        key: _buttonKey,
+        width: animatedWidth ?? null,
+        height: dock.baseHeight,
+        padding: containerPadding,
+        decoration: buttonDecoration,
+        child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: buttonChildren),
+      ),
+    );
   }
 }
 

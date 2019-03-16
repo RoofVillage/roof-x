@@ -9,13 +9,7 @@ class CameraAuxiliaryWidget extends AuxiliaryWidget {
   static final _iconReference = IconReference.camera;
 
   static void _action(BuildContext context) async {
-    print("start");
     final dock = RoofInputDock.of(context);
-
-    // Open image picker and return selection
-    // final file = DateTime.now().millisecond.toString();
-
-    // print("add file: $file");
 
     final file = await ImagePicker.pickImage(source: ImageSource.camera);
 

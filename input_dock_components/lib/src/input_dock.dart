@@ -26,7 +26,7 @@ class _RoofInputDockState extends State<RoofInputDock> {
   static const double _baseHeight = 40;
 
   String _text = "";
-  List<File> _previews = [];
+  List<File> _files = [];
 
   void _setText(String text) {
     setState(() {
@@ -36,29 +36,56 @@ class _RoofInputDockState extends State<RoofInputDock> {
 
   void _addFile(File file) {
     setState(() {
-      _previews.add(file);
+      _files.add(file);
     });
   }
 
   void _removeFile(File file) {
     setState(() {
-      _previews.remove(file);
+      _files.remove(file);
     });
   }
 
   void _submit() {
+    _showDialogDev();
+
+    // Format data and make API call
     final data = DockSubmitData(
-      text: _text,
-      // files: _files,
-    );
+        // text: _text,
+        // files: _files,
+        );
     widget.onSubmit(data: data);
+
+    _resetDock();
+  }
+
+  void _resetDock() {
+    setState(() {
+      _files = [];
+      _text = "";
+    });
+  }
+
+  void _showDialogDev() {
+    String displayText = "";
+    if (_text.isNotEmpty) {
+      displayText += "\nText: " + _text;
+    }
+    if (_files.isNotEmpty) {
+      displayText += "\nFiles: " + _files.length.toString();
+    }
+    showDialog(
+      builder: (context) => AlertDialog(
+            title: Text("submit:"),
+            content: Text(displayText),
+          ),
+      context: context,
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     final RoofInheritedTheme theme = RoofTheme.of(context);
-
-    final bool hasData = _text.isNotEmpty || _previews.isNotEmpty;
 
     final List<Widget> columnChildren = [];
 
@@ -105,8 +132,8 @@ class _RoofInputDockState extends State<RoofInputDock> {
       removeFile: _removeFile,
       onSubmit: _submit,
       baseHeight: _baseHeight,
-      showSubmitButton: hasData,
-      previews: _previews,
+      showSubmitButton: (_text.isNotEmpty || _files.isNotEmpty),
+      files: _files,
     );
   }
 }
@@ -118,7 +145,7 @@ class InheritedInputDock extends InheritedWidget {
   final VoidCallback onSubmit;
   final double baseHeight;
   final bool showSubmitButton;
-  final List<File> previews;
+  final List<File> files;
 
   InheritedInputDock({
     Key key,
@@ -129,7 +156,7 @@ class InheritedInputDock extends InheritedWidget {
     @required this.onSubmit,
     this.showSubmitButton,
     this.baseHeight,
-    this.previews,
+    this.files,
   }) : super(key: key, child: child);
 
   @override
