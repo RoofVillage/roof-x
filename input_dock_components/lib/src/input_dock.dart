@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:spec/index.dart';
 import 'package:theme/index.dart';
@@ -24,7 +26,7 @@ class _RoofInputDockState extends State<RoofInputDock> {
   static const double _baseHeight = 40;
 
   String _text = "";
-  List<String> _files = [];
+  List<File> _previews = [];
 
   void _setText(String text) {
     setState(() {
@@ -32,22 +34,22 @@ class _RoofInputDockState extends State<RoofInputDock> {
     });
   }
 
-  void _addFile(String file) {
+  void _addFile(File file) {
     setState(() {
-      _files.add(file);
+      _previews.add(file);
     });
   }
 
-  void _removeFile(String file) {
+  void _removeFile(File file) {
     setState(() {
-      _files.remove(file);
+      _previews.remove(file);
     });
   }
 
   void _submit() {
     final data = DockSubmitData(
       text: _text,
-      files: _files,
+      // files: _files,
     );
     widget.onSubmit(data: data);
   }
@@ -56,7 +58,7 @@ class _RoofInputDockState extends State<RoofInputDock> {
   Widget build(BuildContext context) {
     final RoofInheritedTheme theme = RoofTheme.of(context);
 
-    final bool hasData = _text.isNotEmpty || _files.isNotEmpty;
+    final bool hasData = _text.isNotEmpty || _previews.isNotEmpty;
 
     final List<Widget> columnChildren = [];
 
@@ -104,19 +106,19 @@ class _RoofInputDockState extends State<RoofInputDock> {
       onSubmit: _submit,
       baseHeight: _baseHeight,
       showSubmitButton: hasData,
-      files: _files,
+      previews: _previews,
     );
   }
 }
 
 class InheritedInputDock extends InheritedWidget {
   final Function(String) setText;
-  final Function(String) addFile;
-  final Function(String) removeFile;
+  final Function(File) addFile;
+  final Function(File) removeFile;
   final VoidCallback onSubmit;
   final double baseHeight;
   final bool showSubmitButton;
-  final List<String> files;
+  final List<File> previews;
 
   InheritedInputDock({
     Key key,
@@ -127,7 +129,7 @@ class InheritedInputDock extends InheritedWidget {
     @required this.onSubmit,
     this.showSubmitButton,
     this.baseHeight,
-    this.files,
+    this.previews,
   }) : super(key: key, child: child);
 
   @override

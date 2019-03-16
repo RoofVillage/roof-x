@@ -5,8 +5,8 @@ import 'package:image_picker/image_picker.dart';
 import '../auxiliary_widget.dart';
 import '../../input_dock.dart';
 
-class AddFileAuxiliaryWidget extends AuxiliaryWidget {
-  static final _iconReference = IconReference.addImage;
+class CameraAuxiliaryWidget extends AuxiliaryWidget {
+  static final _iconReference = IconReference.camera;
 
   static void _action(BuildContext context) async {
     print("start");
@@ -17,14 +17,14 @@ class AddFileAuxiliaryWidget extends AuxiliaryWidget {
 
     // print("add file: $file");
 
-    final file = await ImagePicker.pickImage(source: ImageSource.gallery);
+    final file = await ImagePicker.pickImage(source: ImageSource.camera);
 
     if (file == null) return;
 
     dock.addFile(file);
   }
 
-  AddFileAuxiliaryWidget({Key key})
+  CameraAuxiliaryWidget({Key key})
       : super(
           iconReference: _iconReference,
           action: _action,

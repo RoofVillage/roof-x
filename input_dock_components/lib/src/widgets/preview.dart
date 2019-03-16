@@ -1,3 +1,6 @@
+import 'dart:async';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:spec/index.dart';
 import 'package:icon_library/index.dart';
@@ -15,25 +18,40 @@ class _FilePreviewContainerState extends State<FilePreviewContainer>
     with SingleTickerProviderStateMixin {
   static const double _maxHeight = 120;
 
+  final ScrollController _listViewController = ScrollController();
+
+  @override
+  void didChangeDependencies() {
+    Future.delayed(RoofDuration.short, () {
+      _listViewController.animateTo(
+        _listViewController.position.maxScrollExtent,
+        duration: RoofDuration.short,
+        curve: RoofCurve.quick,
+      );
+    });
+    super.didChangeDependencies();
+  }
+
   @override
   Widget build(BuildContext context) {
     final InheritedInputDock dock = RoofInputDock.of(context);
 
     final List<Widget> previews = [];
 
-    for (var file in dock.files) {
+    for (var file in dock.previews) {
       final preview = _FilePreview(
         key: ObjectKey(file),
         file: file,
-        isRightPadded: (file != dock.files.last),
-        shouldFadeOut: (dock.files.length > 1),
+        isRightPadded: (file != dock.previews.last),
+        shouldFadeOut: (dock.previews.length > 1),
       );
       previews.add(preview);
     }
 
     final previewRow = Container(
-      height: dock.files.isNotEmpty ? _maxHeight : 0,
+      height: dock.previews.isNotEmpty ? _maxHeight : 0,
       child: ListView(
+        controller: _listViewController,
         padding: EdgeInsets.symmetric(horizontal: RoofDistance.c),
         scrollDirection: Axis.horizontal,
         children: previews,
@@ -50,7 +68,7 @@ class _FilePreviewContainerState extends State<FilePreviewContainer>
 }
 
 class _FilePreview extends StatefulWidget {
-  final String file;
+  final File file;
   final bool isRightPadded;
   final bool shouldFadeOut;
 
@@ -88,7 +106,7 @@ class _FilePreviewState extends State<_FilePreview>
   @override
   Widget build(BuildContext context) {
     // Unique color for testing
-    final uniqueInt = int.parse(widget.file);
+    final uniqueInt = DateTime.now().millisecond;
     final uniqueColor = Color.fromRGBO(
       uniqueInt % 255,
       (uniqueInt * 2) % 255,
@@ -116,9 +134,12 @@ class _FilePreviewState extends State<_FilePreview>
       ),
     );
 
-    final fileImage = Container(
-      decoration: imageDecoration,
-      // child: Image.asset(widget.file),
+    final fileImage = ClipRRect(
+      borderRadius: BorderRadius.all(RoofCornerRadius.small),
+      child: Image.file(
+        widget.file,
+        fit: BoxFit.cover,
+      ),
     );
 
     final animatedWidthContainer = AnimatedSize(
