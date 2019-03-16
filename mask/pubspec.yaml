@@ -9,7 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  # string_mask: ^0.1.0
+  flutter_masked_text: ^0.8.0
 
 dev_dependencies:
   flutter_test:
