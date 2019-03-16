@@ -1,0 +1,23 @@
+name: session
+description: Session parameters.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cache:
+    path: ../cache
+  secure_storage:
+    path: ../secure_storage
+  date:
+    path: ../date
+  model:
+    path: ../model
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

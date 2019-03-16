@@ -1,0 +1,26 @@
+name: app_data
+description: An interface to interact with app data.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  device_info: ^0.4.0+1
+  network:
+    path: ../network
+  synchronizer:
+    path: ../synchronizer
+  string_from_enum_string:
+    path: ../string_from_enum_string
+  service:
+    path: ../service
+  session:
+    path: ../session
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

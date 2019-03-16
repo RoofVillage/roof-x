@@ -19,7 +19,7 @@ class ModelObject extends Object with Mappable {
       : assert(guid != null),
         assert(dateCreated != null);
 
-  factory ModelObject.fromMap(Map<String, Object> map) {
+  static fromMap(Map<String, Object> map) {
     return ModelObject(
         guid: map[Key.guid],
         dateCreated: map[Key.dateCreated],

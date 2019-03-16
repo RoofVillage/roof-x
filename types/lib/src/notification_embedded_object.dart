@@ -1,4 +1,4 @@
-import 'utils/index.dart';
+import 'package:string_from_enum_string/index.dart';
 
 enum _NotificationEmbeddedObectTypeOption { task }
 

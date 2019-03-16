@@ -12,8 +12,10 @@ dependencies:
     path: ../full_screen_artboard_templates
   floating_artboard_templates:
     path: ../floating_artboard_templates
-  services:
-    path: ../services
+  app_data:
+    path: ../app_data
+  service:
+    path: ../service
 
 dev_dependencies:
   flutter_test:

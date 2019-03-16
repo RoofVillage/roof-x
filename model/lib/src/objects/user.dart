@@ -57,7 +57,7 @@ class User extends ModelObject {
         assert(billing != null),
         super(guid: guid, dateCreated: dateCreated, creatorGuid: creatorGuid);
 
-  factory User.fromMap(Map<String, Object> map) {
+  static User fromMap(Map<String, Object> map) {
     assert(map != null);
 
     final object = ModelObject.fromMap(map);

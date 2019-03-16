@@ -22,7 +22,7 @@ class Context extends ModelObject with NameDefiningObject {
         assert(pinnedCommentableObjectCount != null),
         super(guid: guid, dateCreated: dateCreated, creatorGuid: creatorGuid);
 
-  factory Context.fromMap(Map<String, Object> map) {
+  static Context fromMap(Map<String, Object> map) {
     final modelObject = ModelObject.fromMap(map);
     final counts = map[Key.counts] as Map;
     return Context(

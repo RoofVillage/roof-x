@@ -1,5 +1,5 @@
-name: storage
-description: Read and write to disk.
+name: service
+description: A description of the Roof API service.
 
 version: 1.0.0+1
 
@@ -9,7 +9,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  path_provider: ^0.5.0
+  string_from_enum_string:
+    path: ../string_from_enum_string
 
 dev_dependencies:
   flutter_test:

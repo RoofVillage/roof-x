@@ -8,7 +8,8 @@ import 'package:decorated_text/index.dart';
 import 'package:full_screen_artboard_templates/index.dart';
 import 'package:navigation_components/index.dart';
 import 'package:sorting/index.dart';
-import 'package:services/index.dart';
+import 'package:app_data/index.dart';
+import 'package:service/index.dart';
 
 import 'sign_up.dart';
 
@@ -83,9 +84,9 @@ class PublicActivityArtboard extends FullLogoTableFullScreenArtboard {
   }
 
   @override
-  Future<List<CellAData>> get loadedRowData async {
+  Future<List<CellAData>> get loadRowData async {
     //Format it the activity into streamable data on different thread.
-    final response = await GetPublicActivity().request(pageSize: 50);
+    final response = await PublicActivity().get(pageSize: 50);
 
     final rowData = await compute<String, List<CellAData>>(
         _streamableDataFromResponse, response);

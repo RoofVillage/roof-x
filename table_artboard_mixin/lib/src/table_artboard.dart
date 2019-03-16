@@ -8,7 +8,7 @@ mixin TableArtboard {
   List<StreamableTableSectionData> get sectionData => null;
   StreamableTableData get tableData => null;
 
-  Future<List<StreamableTableRowData>> get loadedRowData async {
+  Future<List<StreamableTableRowData>> get loadRowData async {
     return Future<List<StreamableTableRowData>>.value(null);
   }
 
@@ -38,7 +38,7 @@ mixin TableArtboard {
   }
 
   _load() async {
-    final rowData = await loadedRowData;
+    final rowData = await loadRowData;
 
     if (rowData == null) return;
 
