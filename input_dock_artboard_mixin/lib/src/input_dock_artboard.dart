@@ -7,6 +7,8 @@ mixin InputDockArtboard {
 
   Widget buildInputDock(BuildContext context) {
     return RoofInputDock(
-        actionButton: actionButton, auxiliaryWidgets: auxiliaryWidgets);
+      actionButton: actionButton,
+      auxiliaryWidgets: auxiliaryWidgets,
+    );
   }
 }

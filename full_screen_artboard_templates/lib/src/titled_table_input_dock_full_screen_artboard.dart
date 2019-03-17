@@ -12,8 +12,9 @@ abstract class TitledTableInputDockFullScreenArtboard extends FullScreenArtboard
   @override
   Widget buildBody(BuildContext context) {
     return FullScreenWithNavAndDock(
-        navBar: navBar,
-        body: buildTable(context),
-        dock: buildInputDock(context));
+      navBar: navBar,
+      body: buildTable(context),
+      dock: buildInputDock(context),
+    );
   }
 }

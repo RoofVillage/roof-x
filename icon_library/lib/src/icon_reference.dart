@@ -83,5 +83,6 @@ class IconReference {
   static final logoHouse = NavigationIconReference(path: 'logo_house.svg');
   static final logoFull =
       NavigationIconReference(path: 'logo_full.svg', customWidth: 65);
+  static final moreNav = NavigationIconReference(path: 'more.svg');
   static final settingsNav = NavigationIconReference(path: 'settings.svg');
 }

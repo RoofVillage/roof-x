@@ -7,7 +7,7 @@ import 'package:haptics/index.dart';
 typedef ColorGetter = Color Function(BuildContext context);
 
 abstract class RoofButton extends StatefulWidget {
-  final Function onTap;
+  final Function(BuildContext context) onTap;
   final String text;
   final StandardIconReference iconReference;
   final double height;
@@ -31,7 +31,7 @@ abstract class RoofButton extends StatefulWidget {
 }
 
 class _RoofButtonState extends State<RoofButton> {
-  Function onTap;
+  Function(BuildContext context) onTap;
   String text;
   StandardIconReference iconReference;
   ColorGetter backgroundColor;
@@ -80,8 +80,9 @@ class _RoofButtonState extends State<RoofButton> {
     double opacity = _tapped ? _tappedOpacity : 1;
 
     final decoration = BoxDecoration(
-        color: backgroundColor(context).withOpacity(opacity),
-        borderRadius: BorderRadius.all(RoofCornerRadius.regular));
+      color: backgroundColor(context).withOpacity(opacity),
+      borderRadius: BorderRadius.all(RoofCornerRadius.regular),
+    );
 
     return GestureDetector(
         onTapDown: _onTapDown,
@@ -98,7 +99,7 @@ class _RoofButtonState extends State<RoofButton> {
 
   void _onTap() {
     Haptic.triggerWith(HapticOption.light);
-    onTap();
+    onTap(context);
   }
 
   void _onTapDown(TapDownDetails details) {

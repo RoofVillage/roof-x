@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:theme/index.dart';
 import 'package:spec/index.dart';
@@ -65,7 +67,8 @@ class FloatingArtboardNavigatorState extends ArtboardNavigatorState {
         data: this, child: RoofTheme(theme.current, child: scaffold));
   }
 
-  void goTo(Artboard artboard, {BuildContext context}) {
+  @override
+  Future goTo(Artboard artboard, {BuildContext context}) async {
     if (artboard is FloatingArtboard) {
       final button = artboard.allowsBackNavigation
           ? RoofTransitionIconNavButton(

@@ -12,7 +12,11 @@ class DockActionButton extends StatefulWidget {
   final String actionTitle;
   final StandardIconReference actionIconReference;
 
-  DockActionButton({this.action, this.actionTitle, this.actionIconReference});
+  DockActionButton({
+    @required this.action,
+    @required this.actionTitle,
+    @required this.actionIconReference,
+  });
 
   _DockActionButtonState createState() => _DockActionButtonState();
 }
