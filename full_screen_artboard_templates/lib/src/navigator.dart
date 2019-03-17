@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:full_screen_artboard_templates/index.dart';
 import 'package:floating_artboard_templates/index.dart';
@@ -25,18 +27,19 @@ class FullScreenArtboardNavigatorState extends ArtboardNavigatorState {
     return InheritedArtboardNavigator(data: this, child: artboard);
   }
 
-  void goTo(Artboard artboard, {BuildContext context}) async {
+  Future goTo(Artboard artboard, {BuildContext context}) async {
     final theme = RoofTheme.of(context);
     if (artboard is FloatingArtboard) {
       final floatingNavigator = FloatingArtboardNavigator(artboard: artboard);
-      final Artboard redirect = await Navigator.of(context).push<Artboard>(
+      final result = await Navigator.of(context).push<dynamic>(
           FloatingRoute(
               builder: (context) => floatingNavigator,
               currentTheme: theme.current));
-
-      if (redirect != null) goTo(redirect, context: context);
+      print("RESULT $result");
+      if (result is Artboard) return goTo(result, context: context);
+      else return result;
     } else {
-      Navigator.of(context).push(FullScreenRoute(
+      return Navigator.of(context).push<dynamic>(FullScreenRoute(
         builder: (context) => FullScreenArtboardNavigator(artboard: artboard),
       ));
     }

@@ -1,8 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import 'artboard.dart';
 
-typedef GoToArtboard = void Function(Artboard artboard, {BuildContext context});
+typedef GoToArtboard = Future Function(Artboard artboard, {BuildContext context});
 
 abstract class ArtboardNavigator extends StatefulWidget {
   final Artboard child;
@@ -19,7 +21,7 @@ abstract class ArtboardNavigator extends StatefulWidget {
 }
 
 abstract class ArtboardNavigatorState extends State<ArtboardNavigator> {
-  void goTo(Artboard artboard, {BuildContext context});
+  Future goTo(Artboard artboard, {BuildContext context});
 }
 
 class InheritedArtboardNavigator extends InheritedWidget {

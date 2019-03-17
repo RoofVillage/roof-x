@@ -16,8 +16,11 @@ class SignUpArtboard extends FormFloatingArtboard {
   String get submitButtonText => "Create";
 
   @override
-  List<StreamableFormFieldData> get fieldData =>
-      [_nameFieldData, _emailFieldData, _passwordFieldData];
+  List<StreamableFormFieldData> get fieldData => [
+        _nameFieldData,
+        _emailFieldData,
+        _passwordFieldData,
+      ];
 
   final _nameFieldData = MediumFormTextFieldData(title: "Full name");
   final _emailFieldData = EmailFormTextFieldData();

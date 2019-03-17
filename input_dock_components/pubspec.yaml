@@ -22,8 +22,8 @@ dependencies:
     path: ../icon_library
   artboard:
     path: ../artboard
-  auth_artboards:
-    path: ../auth_artboards
+  file_upload_artboards:
+    path: ../file_upload_artboards
 
 dev_dependencies:
   flutter_test:

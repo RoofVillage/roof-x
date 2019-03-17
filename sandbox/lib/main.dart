@@ -34,8 +34,9 @@ class Thread extends StatelessWidget {
     final theme = RoofTheme.of(context);
 
     final auxiliaryWidgets = [
-      CameraAuxiliaryWidget(),
-      AddFileAuxiliaryWidget(),
+      // CameraAuxiliaryWidget(),
+      // AddFileAuxiliaryWidget(),
+      AddAuxiliaryWidget()
     ];
 
     final actionButton = DockActionButton(

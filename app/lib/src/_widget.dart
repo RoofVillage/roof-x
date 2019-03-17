@@ -11,19 +11,20 @@ class RootWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final AppBloc tableBloc = BlocProvider.of<AppBloc>(context);
     return StreamBuilder<StreamableAppStateData>(
-        stream: tableBloc.outAppState,
-        builder: (context, snapshot) {
-          if (!snapshot.hasData) return Container();
-          final appState = snapshot.data;
+      stream: tableBloc.outAppState,
+      builder: (context, snapshot) {
+        if (!snapshot.hasData) return Container();
+        final appState = snapshot.data;
 
-          Artboard startingArtboard;
-          if (appState.isInSession) {
-            startingArtboard = ThreadArtboard(); // PublicActivityArtboard();
-          } else {
-            startingArtboard = ThreadArtboard(); //PublicActivityArtboard();
-          }
+        Artboard startingArtboard;
+        if (appState.isInSession) {
+          startingArtboard = ThreadArtboard(); // PublicActivityArtboard();
+        } else {
+          startingArtboard = ThreadArtboard(); //PublicActivityArtboard();
+        }
 
-          return FullScreenArtboardNavigator(artboard: startingArtboard);
-        });
+        return FullScreenArtboardNavigator(artboard: startingArtboard);
+      },
+    );
   }
 }
