@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:stream/index.dart';
+import 'package:exceptions/index.dart';
 
 import 'data/index.dart';
 
@@ -51,14 +52,14 @@ class StreamFormBloc extends BlocBase {
     final submit = getSubmit;
     if (submit == null) return;
 
+    final errorHandler = getErrorHandler;
     try {
-      print("HI");
-      _validateFields();
+      await _validateFields();
       final validation = getValidation;
       if (validation != null) await validation();
+    } on FormValidationException catch (err) {
+      if (errorHandler != null) errorHandler(err.message);
     } catch (err) {
-      final errorHandler = getErrorHandler;
-      print(err.toString());
       if (errorHandler != null) errorHandler(err.toString());
     }
 
@@ -313,12 +314,7 @@ class StreamFormBloc extends BlocBase {
   }
 
   Future<void> _validateFields() async {
-    try {
-      for (final data in _formData.fieldData) {
-        await data.validate();
-      }
-    } catch (err) {
-      print(err.toString());
-    }
+    return Future.wait(
+        _formData.fieldData.map((data) async => await data.validate()));
   }
 }

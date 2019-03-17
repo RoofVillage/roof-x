@@ -5,7 +5,7 @@ import 'package:spec/index.dart';
 import 'package:theme/index.dart';
 
 import 'widgets/index.dart';
-import 'dock_data.dart';
+import 'data.dart';
 
 class RoofInputDock extends StatefulWidget {
   final DockActionButton actionButton;
@@ -112,15 +112,14 @@ class _RoofInputDockState extends State<RoofInputDock> {
     );
     columnChildren.add(fieldRow);
 
-    final Widget dock = SafeArea(
-      top: false,
-      left: false,
-      right: false,
-      child: Container(
-        color: theme.color.background.brandPrimary,
-        child: Column(
-          children: columnChildren,
-        ),
+    final safeArea = MediaQuery.of(context).padding.bottom;
+    final padding = EdgeInsets.only(bottom: safeArea);
+
+    final Widget dock = Container(
+      padding: padding,
+      color: theme.color.background.brandPrimary,
+      child: Column(
+        children: columnChildren,
       ),
     );
 

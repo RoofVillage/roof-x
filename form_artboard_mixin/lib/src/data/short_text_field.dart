@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:consts/index.dart';
-import 'package:error_messages/index.dart';
+import 'package:exceptions/index.dart';
 import 'text_field.dart';
 
 class ShortFormTextFieldData extends FormTextFieldData {
@@ -25,7 +25,7 @@ class ShortFormTextFieldData extends FormTextFieldData {
 
   Future<void> validate() async {
     if (value.length > Consts.maxCharsInSmallTextField) {
-      throw AssertionError(ValidationErrors.longSmallString(title));
+      throw FormValidationException.longSmallString(title);
     }
   }
 }

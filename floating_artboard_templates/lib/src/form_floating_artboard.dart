@@ -22,8 +22,7 @@ abstract class FormFloatingArtboard extends FloatingArtboard with FormArtboard {
 
   @override
   void errorHandler(BuildContext context, String message) {
-    // TODO: implement errorHandler
-    print("yung");
+    print("Tyler's a boss");
   }
 
   @override

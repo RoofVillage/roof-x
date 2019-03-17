@@ -1,5 +1,5 @@
-name: error_messages
-description: The messages presented to users when errors occur.
+name: exceptions
+description: The exceptions thrown during normal circumstances in the app.
 
 version: 1.0.0+1
 

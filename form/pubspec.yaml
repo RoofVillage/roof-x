@@ -13,6 +13,8 @@ dependencies:
     path: ../stream
   network:
     path: ../network
+  exceptions:
+    path: ../exceptions
 
 dev_dependencies:
   flutter_test:

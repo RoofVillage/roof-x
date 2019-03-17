@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:error_messages/index.dart';
+import 'package:exceptions/index.dart';
 import 'package:consts/index.dart';
 
 import '_composition_field.dart';
@@ -26,7 +26,7 @@ class FormTextAreaData extends FormCompositionFieldData {
 
   Future<void> validate() async {
     if (value.length > Consts.maxCharsInLongTextField) {
-      throw AssertionError(ValidationErrors.longLongString(title));
+      throw FormValidationException.longLongString(title);
     }
   }
 }

@@ -83,11 +83,9 @@ class _FieldBodyState extends State<_FieldBody> {
   _controllerUpdated() {
     if (widget.mask != null) {
       final formattedText = Mask(widget.mask).apply(_controller.text);
-
-      print("sup $formattedText");
-      _controller.removeListener(_controllerUpdated);
-      _controller.text = formattedText;
-      _controller.addListener(_controllerUpdated);
+      if (formattedText != _controller.text) {
+        _controller.text = formattedText;
+      }
     }
     widget.onChanged(_controller.text);
   }

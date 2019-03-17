@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:spec/index.dart';
@@ -11,15 +9,12 @@ abstract class RoofNavBar extends StatelessWidget {
   List<RoofNavButton> actionButtonWidgetsForTheme(RoofInheritedTheme theme);
   List<Widget> navigationWidgetsForTheme(RoofInheritedTheme theme);
 
-  final double _heightRatioToDevice = 0.5 * 0.20;
-  final double _minHeight = RoofDistance.g;
   final _padding = EdgeInsets.fromLTRB(RoofDistance.a, 0, RoofDistance.a, 0);
 
   RoofNavBar({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final diviceHeight = MediaQuery.of(context).size.height;
     final theme = RoofTheme.of(context);
     SystemChrome.setSystemUIOverlayStyle(theme.systemChromeStyle);
 
@@ -39,9 +34,12 @@ abstract class RoofNavBar extends StatelessWidget {
           ])
         ]));
 
+    final safeArea = MediaQuery.of(context).padding.top;
+    final padding = EdgeInsets.fromLTRB(_padding.left, _padding.top + safeArea,
+        _padding.right, _padding.bottom);
+
     return Container(
-        height: max(diviceHeight * _heightRatioToDevice, _minHeight),
-        padding: _padding,
+        padding: padding,
         decoration: BoxDecoration(color: theme.color.background.brandPrimary),
         child: itemRow);
   }

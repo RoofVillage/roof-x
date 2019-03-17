@@ -12,11 +12,9 @@ class ThreadArtboard extends TitledTableInputDockFullScreenArtboard {
       iconReference: IconReference.settingsNav, onTap: ArtboardNavigator.pop);
 
   @override
-  // TODO: implement title
   String get title => "Take out the trash";
 
   @override
-  // TODO: implement navButton
   RoofNavButton get navButton => RoofIconNavButton(
       iconReference: IconReference.backArrowNav,
       onTap: (context) => print("asdf"));

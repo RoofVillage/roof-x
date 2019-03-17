@@ -3,66 +3,49 @@ import 'package:flutter/material.dart';
 class StringMask {
   String mask;
 
-  StringMask({@required this.mask});
-
-  final Map<String, RegExp> translator = {
+  final Map<String, RegExp> _translator = {
     'A': new RegExp(r'[A-Za-z]'),
     '0': new RegExp(r'[0-9]'),
     '@': new RegExp(r'[A-Za-z0-9]'),
     '*': new RegExp(r'.*')
   };
 
+  StringMask({@required this.mask});
+
   String apply(String text) {
     if (text != null) {
-      return this._applyMask(this.mask, text);
+      return this._applyMask(text);
     } else {
       return '';
     }
   }
 
-  String _applyMask(String mask, String value) {
+  String _applyMask(String value) {
     String result = '';
 
     var maskCharIndex = 0;
     var valueCharIndex = 0;
 
-    while (true) {
-      // if mask is ended, break.
-      if (maskCharIndex == mask.length) {
-        break;
-      }
-
-      // if value is ended, break.
-      if (valueCharIndex == value.length) {
-        break;
-      }
-
-      var maskChar = mask[maskCharIndex];
-      var valueChar = value[valueCharIndex];
+    while (maskCharIndex < mask.length && valueCharIndex < value.length) {
+      final maskChar = mask[maskCharIndex];
+      final valueChar = value[valueCharIndex];
 
       // value equals mask, just set
       if (maskChar == valueChar) {
         result += maskChar;
         valueCharIndex += 1;
         maskCharIndex += 1;
-        continue;
-      }
-
-      // apply translator if match
-      if (this.translator.containsKey(maskChar)) {
-        if (this.translator[maskChar].hasMatch(valueChar)) {
+      } else if (this._translator.containsKey(maskChar)) {
+        if (this._translator[maskChar].hasMatch(valueChar)) {
           result += valueChar;
           maskCharIndex += 1;
         }
 
         valueCharIndex += 1;
-        continue;
+      } else {
+        result += maskChar;
+        maskCharIndex += 1;
       }
-
-      // not masked value, fixed char on mask
-      result += maskChar;
-      maskCharIndex += 1;
-      continue;
     }
 
     return result;

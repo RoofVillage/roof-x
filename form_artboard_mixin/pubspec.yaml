@@ -13,8 +13,8 @@ dependencies:
     path: ../form
   form_components:
     path: ../form_components
-  error_messages:
-    path: ../error_messages
+  exceptions:
+    path: ../exceptions
   consts:
     path: ../consts
   mask:

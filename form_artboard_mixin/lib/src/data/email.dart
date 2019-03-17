@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:error_messages/index.dart';
+import 'package:exceptions/index.dart';
 
 import 'text_field.dart';
 
@@ -28,6 +28,8 @@ class EmailFormTextFieldData extends FormTextFieldData {
 
   @override
   Future<void> validate() async {
-    if (!regEx.hasMatch(value)) throw AssertionError(ValidationErrors.badEmail);
+    if (!regEx.hasMatch(value)) {
+      throw FormValidationException.badEmail;
+    }
   }
 }
