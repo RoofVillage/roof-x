@@ -32,11 +32,11 @@ class SignUpArtboard extends FormFloatingArtboard {
 
   Future<void> _phoneNumberDependentSubmit(
       {@required String phoneNumber, @required BuildContext context}) async {
-    await User().create(
-        email: _emailFieldData.value,
-        name: _nameFieldData.value,
-        password: _passwordFieldData.value,
-        phoneNumber: phoneNumber);
+    // await User().create(
+    //     email: _emailFieldData.value,
+    //     name: _nameFieldData.value,
+    //     password: _passwordFieldData.value,
+    //     phoneNumber: phoneNumber);
 
     ArtboardNavigator.of(context).goTo(
         AuthChallengeArtboard(

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:mask/index.dart';
+import 'package:exceptions/index.dart';
 import 'text_field.dart';
 
 class PhoneNumberFormTextFieldData extends FormTextFieldData {
@@ -24,6 +25,9 @@ class PhoneNumberFormTextFieldData extends FormTextFieldData {
             hidden: hidden);
 
   Future<void> validate() async {
+    if (value.length < 5) {
+      throw FormValidationException.badPhoneNumber;
+    }
     // /call Roof API to validate phone number;
   }
 }

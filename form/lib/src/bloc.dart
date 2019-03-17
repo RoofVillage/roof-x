@@ -53,14 +53,17 @@ class StreamFormBloc extends BlocBase {
     if (submit == null) return;
 
     final errorHandler = getErrorHandler;
+
     try {
       await _validateFields();
       final validation = getValidation;
       if (validation != null) await validation();
     } on FormValidationException catch (err) {
       if (errorHandler != null) errorHandler(err.message);
+      return;
     } catch (err) {
       if (errorHandler != null) errorHandler(err.toString());
+      return;
     }
 
     await submit();

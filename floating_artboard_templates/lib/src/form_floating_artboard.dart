@@ -20,9 +20,13 @@ abstract class FormFloatingArtboard extends FloatingArtboard with FormArtboard {
   final _bodyVerticalPadding = EdgeInsets.only(top: RoofDistance.d);
   final _buttonVerticalPadding = EdgeInsets.only(top: RoofDistance.d);
 
+  final state = _FormFloatingArtboardState();
+
   @override
   void errorHandler(BuildContext context, String message) {
-    print("Tyler's a boss");
+    state.setState(() {
+      print("Tyler's a boss");
+    });
   }
 
   @override
@@ -48,5 +52,15 @@ abstract class FormFloatingArtboard extends FloatingArtboard with FormArtboard {
       Padding(padding: _buttonVerticalPadding, child: submitButton)
     ]);
     return widgets;
+  }
+
+  @override
+  State<StatefulWidget> createState() => state;
+}
+
+class _FormFloatingArtboardState extends FloatingArtboardState {
+  @override
+  Widget build(BuildContext context) {
+    return super.build(context);
   }
 }

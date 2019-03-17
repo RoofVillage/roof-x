@@ -6,6 +6,9 @@ class FormValidationException implements Exception {
   static const badEmail = FormValidationException(
       "Looks like this email isn't valid. Reach out to us if you think we've got it wrong.");
 
+  static const badPhoneNumber = FormValidationException(
+      "Looks like this phone number isn't valid. Reach out to us if you think we've got it wrong.");
+
   static const longPassword = FormValidationException(
       "This password is too long. Try something under ${Consts.maxCharsInPassword} characters.");
 

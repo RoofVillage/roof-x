@@ -10,8 +10,14 @@ abstract class FloatingArtboard extends Artboard {
 
   List<Widget> buildChildren(BuildContext context);
 
+  @override
+  State<StatefulWidget> createState() => FloatingArtboardState();
+}
+
+class FloatingArtboardState extends State<FloatingArtboard> {
+  @override
   Widget build(BuildContext context) {
-    final children = buildChildren(context);
+    final children = widget.buildChildren(context);
     return FloatingArtboardContainer(
         child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

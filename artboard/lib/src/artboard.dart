@@ -1,3 +1,3 @@
 import 'package:flutter/material.dart';
 
-abstract class Artboard extends StatelessWidget {}
+abstract class Artboard extends StatefulWidget {}
