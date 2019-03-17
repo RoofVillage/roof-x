@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:floating_artboard_templates/index.dart';
 import 'package:icon_library/index.dart';
-import 'package:input_dock_components/index.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:button_components/index.dart';
 
