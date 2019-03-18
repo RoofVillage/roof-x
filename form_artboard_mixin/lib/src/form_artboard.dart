@@ -101,7 +101,7 @@ mixin FormArtboardState {
     } on FormValidationException catch (e) {
       _handleException(context, e);
       formArtboard._enableForm();
-      return;
+      // return;
     }
 
     _handleLoading(context);

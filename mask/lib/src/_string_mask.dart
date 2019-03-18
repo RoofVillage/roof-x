@@ -1,8 +1,4 @@
-import 'package:flutter/material.dart';
-
-class StringMask {
-  String mask;
-
+abstract class StringMask {
   final Map<String, RegExp> _translator = {
     'A': new RegExp(r'[A-Za-z]'),
     '0': new RegExp(r'[0-9]'),
@@ -10,25 +6,34 @@ class StringMask {
     '*': new RegExp(r'.*')
   };
 
-  StringMask({@required this.mask});
-
   String apply(String text) {
-    if (text != null) {
-      return this._applyMask(text);
-    } else {
-      return '';
-    }
+    String masked = this.applyMask(text);
+    return masked;
   }
 
-  String _applyMask(String value) {
+  String getOnlyNumbers(String text) {
+    String cleanedText = text;
+
+    var onlyNumbersRegex = new RegExp(r'[^\d]');
+
+    cleanedText = cleanedText.replaceAll(onlyNumbersRegex, '');
+
+    return cleanedText;
+  }
+
+  String maskForText(String text) => "";
+
+  String applyMask(String text) {
+    final mask = maskForText(text);
+
     String result = '';
 
     var maskCharIndex = 0;
     var valueCharIndex = 0;
 
-    while (maskCharIndex < mask.length && valueCharIndex < value.length) {
+    while (maskCharIndex < mask.length && valueCharIndex < text.length) {
       final maskChar = mask[maskCharIndex];
-      final valueChar = value[valueCharIndex];
+      final valueChar = text[valueCharIndex];
 
       // value equals mask, just set
       if (maskChar == valueChar) {

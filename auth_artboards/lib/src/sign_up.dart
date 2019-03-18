@@ -27,11 +27,9 @@ class SignUpArtboard extends FormFloatingArtboard {
 
   @override
   Future<void> submit(BuildContext context) async {
-    return Future.delayed(const Duration(seconds: 2), () {
-      ArtboardNavigator.of(context).goTo(
-          PhoneNumberArtboard(onSubmit: _phoneNumberDependentSubmit),
-          context: context);
-    });
+    ArtboardNavigator.of(context).goTo(
+        PhoneNumberArtboard(onSubmit: _phoneNumberDependentSubmit),
+        context: context);
   }
 
   Future<void> _phoneNumberDependentSubmit(
