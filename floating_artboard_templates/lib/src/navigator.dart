@@ -22,7 +22,7 @@ class FloatingArtboardNavigator extends ArtboardNavigator {
 }
 
 class FloatingArtboardNavigatorState extends ArtboardNavigatorState {
-  final List<Widget> _pages;
+  final List<_FloatingArtboardNavigatorPanel> _pages;
 
   FloatingArtboardNavigatorState({FloatingArtboard artboard})
       : _pages = [_FloatingArtboardNavigatorPanel(artboard: artboard)];
@@ -40,6 +40,13 @@ class FloatingArtboardNavigatorState extends ArtboardNavigatorState {
   get _shouldPop =>
       _timeDelta < _popMinDragDistanceDelta &&
       _downDistanceDelta > _popMaxDragTimeDelta;
+
+  void showNavItems() {
+    // for (final page in _pages) {
+    //   page.navButton.
+    // }
+  }
+  void hideNavItems() {}
 
   @override
   Widget build(BuildContext context) {
@@ -105,14 +112,32 @@ class FloatingArtboardNavigatorState extends ArtboardNavigatorState {
   }
 }
 
+class FloatingInheritedArtboardNavigator extends InheritedArtboardNavigator {
+  final void hideNavItems;
+  final void showNavItems;
+
+  FloatingInheritedArtboardNavigator(
+      {Key key,
+      @required FloatingArtboardNavigatorState data,
+      @required Widget child})
+      : hideNavItems = data.hideNavItems,
+        showNavItems = data.showNavItems,
+        super(key: key, data: data, child: child);
+
+  @override
+  bool updateShouldNotify(InheritedWidget oldWidget) => false;
+}
+
 class _FloatingArtboardNavigatorPanel extends StatefulWidget {
+  static final _defaultNavButton = RoofTransitionIconNavButton(
+      iconReference: IconReference.downArrowNav, onTap: ArtboardNavigator.pop);
+
   final FloatingArtboard artboard;
   final RoofTransitionIconNavButton navButton;
 
-  final _defaultNavButton = RoofTransitionIconNavButton(
-      iconReference: IconReference.downArrowNav, onTap: ArtboardNavigator.pop);
-
-  _FloatingArtboardNavigatorPanel({this.artboard, this.navButton});
+  _FloatingArtboardNavigatorPanel(
+      {this.artboard, RoofTransitionIconNavButton navButton})
+      : this.navButton = navButton ?? _defaultNavButton;
 
   @override
   State<StatefulWidget> createState() => _FloatingArtboardNavigatorPanelState();
@@ -143,10 +168,8 @@ class _FloatingArtboardNavigatorPanelState
 
     final _alignment = Alignment(0, ratio);
 
-    return Stack(alignment: _alignment, children: [
-      flexibleColumn,
-      widget.navButton ?? widget._defaultNavButton
-    ]);
+    return Stack(
+        alignment: _alignment, children: [flexibleColumn, widget.navButton]);
   }
 
   @override

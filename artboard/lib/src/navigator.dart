@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 
 import 'artboard.dart';
 
-typedef GoToArtboard = Future Function(Artboard artboard, {BuildContext context});
+typedef GoToArtboard = Future Function(Artboard artboard,
+    {BuildContext context});
 
 abstract class ArtboardNavigator extends StatefulWidget {
   final Artboard child;
