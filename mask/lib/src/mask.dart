@@ -1,26 +1,25 @@
 import 'option.dart';
 import '_string_mask.dart';
 import '_money_string_mask.dart';
+import '_phone_number_string_mask.dart';
 
 class Mask {
-  static final _phoneNumberMask = '+00 (00) 0000-0000';
-
   final MaskOption option;
 
   Mask(this.option);
 
   String apply(String text) {
-    StringMask controller;
+    StringMask mask;
 
     switch (option) {
       case MaskOption.phoneNumber:
-        controller = StringMask(mask: _phoneNumberMask);
+        mask = PhoneNumberStringMask();
         break;
       case MaskOption.money:
-        controller = MoneyStringMask();
+        mask = MoneyStringMask();
         break;
     }
 
-    return controller.apply(text);
+    return mask.apply(text);
   }
 }

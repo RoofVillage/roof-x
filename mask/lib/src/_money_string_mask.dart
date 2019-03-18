@@ -16,22 +16,8 @@ class MoneyStringMask extends StringMask {
     _validateConfig();
   }
 
-  @override
-  String apply(String text) {
-    final value = (text == null) ? 0 : _valueFromString(text);
-    String masked = this._applyMask(value);
-    if (rightSymbol.length > 0) {
-      masked += rightSymbol;
-    }
-
-    if (leftSymbol.length > 0) {
-      masked = leftSymbol + masked;
-    }
-    return masked;
-  }
-
   double _valueFromString(String text) {
-    List<String> parts = _getOnlyNumbers(text).split('').toList(growable: true);
+    List<String> parts = getOnlyNumbers(text).split('').toList(growable: true);
 
     parts.insert(parts.length - precision, '.');
 
@@ -39,24 +25,15 @@ class MoneyStringMask extends StringMask {
   }
 
   _validateConfig() {
-    bool rightSymbolHasNumbers = _getOnlyNumbers(this.rightSymbol).length > 0;
+    bool rightSymbolHasNumbers = getOnlyNumbers(this.rightSymbol).length > 0;
 
     if (rightSymbolHasNumbers) {
       throw ArgumentError("rightSymbol must not have numbers.");
     }
   }
 
-  String _getOnlyNumbers(String text) {
-    String cleanedText = text;
-
-    var onlyNumbersRegex = new RegExp(r'[^\d]');
-
-    cleanedText = cleanedText.replaceAll(onlyNumbersRegex, '');
-
-    return cleanedText;
-  }
-
-  String _applyMask(double value) {
+  String applyMask(String text) {
+    final value = (text == null) ? 0 : _valueFromString(text);
     List<String> textRepresentation = value
         .toStringAsFixed(precision)
         .replaceAll('.', '')
@@ -74,6 +51,16 @@ class MoneyStringMask extends StringMask {
       }
     }
 
-    return textRepresentation.reversed.join('');
+    String masked = textRepresentation.reversed.join('');
+
+    if (rightSymbol.length > 0) {
+      masked += rightSymbol;
+    }
+
+    if (leftSymbol.length > 0) {
+      masked = leftSymbol + masked;
+    }
+
+    return masked;
   }
 }

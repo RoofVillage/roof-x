@@ -83,9 +83,8 @@ class _FieldBodyState extends State<_FieldBody> {
   _controllerUpdated() {
     if (widget.mask != null) {
       final formattedText = Mask(widget.mask).apply(_controller.text);
-      if (formattedText != _controller.text) {
-        _controller.text = formattedText;
-      }
+      if (formattedText == _controller.text) return;
+      _setText(formattedText);
     }
     widget.onChanged(_controller.text);
   }
@@ -122,5 +121,14 @@ class _FieldBodyState extends State<_FieldBody> {
   void dispose() {
     _controller.dispose();
     super.dispose();
+  }
+
+  void _setText(String text) {
+    //Prevents the cursor from jumping.
+    TextSelection cursorPos = _controller.selection;
+    _controller.text = text ?? '';
+    cursorPos = TextSelection.fromPosition(
+        TextPosition(offset: _controller.text.length));
+    _controller.selection = cursorPos;
   }
 }
