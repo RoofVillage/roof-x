@@ -9,6 +9,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  auth_artboards:
+    path: ../auth_artboards
   input_dock_artboard_mixin:
     path: ../input_dock_artboard_mixin
   input_dock_components:
@@ -17,6 +19,8 @@ dependencies:
     path: ../icon_library
   theme:
     path: ../theme
+  thread_artboards:
+    path: ../thread_artboards
 
 dev_dependencies:
   flutter_test:

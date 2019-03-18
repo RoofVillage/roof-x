@@ -16,6 +16,7 @@ class _Roof extends StatelessWidget {
       RoofThemeOption.dark,
       child: MaterialApp(
         title: 'Roof',
+        debugShowCheckedModeBanner: false,
         home: BlocProvider(bloc: AppBloc(), child: RootWidget()),
       ),
     );
