@@ -11,7 +11,6 @@ import '_device_info.dart';
 class Api {
   final _bearerTokenPrefix = 'Bearer ';
   Future<String> post({Service service, Map<String, Object> params}) async {
-    print(await DeviceInfo.params);
     // params.addAll({Param.client: await DeviceInfo.params});
 
     if (service.doesNeedSession) {

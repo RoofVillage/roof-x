@@ -54,8 +54,6 @@ class _FormFloatingArtboardState extends State<FormFloatingArtboard>
     final headerStyle = _headerStyle.textStyleWithColor(headerColor);
     final subtitleStyle = _subtitleStyle.textStyleWithColor(subtitleColor);
 
-    print(widget.title);
-    print(_submitButtonText);
     final submitButton =
         RoofSubmitButton(text: _submitButtonText, onTap: onSubmitButtonTap);
 

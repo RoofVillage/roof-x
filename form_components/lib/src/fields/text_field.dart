@@ -113,6 +113,7 @@ class _FieldBodyState extends State<_FieldBody> {
         autofocus: widget.autofocus,
         obscureText: widget.isPassword,
         textInputAction: widget.textInputAction,
+        style: _typographyStyle.textStyleWithColor(theme.color.text.primary),
         decoration: decoration,
         controller: _controller);
   }

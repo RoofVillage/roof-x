@@ -26,7 +26,6 @@ class FileUploadArtboard extends SegueFloatingArtboard {
           text: "Upload a file",
           iconReference: IconReference.addImage,
           onTap: (BuildContext context) async {
-            print("context: $context");
             final file = await ImagePicker.pickImage(
               source: ImageSource.gallery,
             );

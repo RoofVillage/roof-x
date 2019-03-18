@@ -5,18 +5,21 @@ class RoofTypographyStyle {
   final FontWeight fontWeight;
   final double leading;
   final double tracking;
+  final String fontFamily;
 
   RoofTypographyStyle(
       {@required this.fontSize,
       @required this.fontWeight,
       this.leading,
-      this.tracking});
+      this.tracking,
+      this.fontFamily = "Azo"});
 
   TextStyle textStyleWithColor(Color color) {
     final height = (leading ?? fontSize) / fontSize;
     final letterSpacing = (tracking ?? 0) * fontSize / 1000;
 
     final style = TextStyle(
+        fontFamily: fontFamily,
         fontSize: fontSize,
         fontWeight: fontWeight,
         height: height,

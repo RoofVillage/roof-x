@@ -6,6 +6,8 @@ import 'package:typography/index.dart';
 typedef void StringCallback(String val);
 
 class CommentBox extends StatelessWidget {
+  static final _hintText = "Add comment";
+
   final StringCallback onChangeCallback;
 
   CommentBox({this.onChangeCallback});
@@ -24,15 +26,15 @@ class CommentBox extends StatelessWidget {
         borderSide: BorderSide(color: theme.color.stroke.alert),
         borderRadius: BorderRadius.all(RoofCornerRadius.regular));
 
-    final hintStyle = TextStyle(color: theme.color.text.placeholder);
+    final hintStyle =
+        _commentTextStyle.textStyleWithColor(theme.color.text.placeholder);
 
-    final textStyle = _commentTextStyle.textStyleWithColor(theme.color.text.primary);
-
-    final hintText = "Add comment";
+    final textStyle =
+        _commentTextStyle.textStyleWithColor(theme.color.text.primary);
 
     final commentBoxDecoration = InputDecoration(
         contentPadding: EdgeInsets.all(RoofDistance.c),
-        hintText: hintText,
+        hintText: _hintText,
         border: OutlineInputBorder(),
         enabledBorder: enabledBorder,
         focusedBorder: focusedBorder,
