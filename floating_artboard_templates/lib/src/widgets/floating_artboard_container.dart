@@ -24,8 +24,12 @@ class FloatingArtboardContainer extends StatelessWidget {
 
     final pageContent = Container(padding: _padding, child: child);
 
+    final safeArea = MediaQuery.of(context).padding.bottom;
+    final safeAreaMargin = EdgeInsets.fromLTRB(
+        _margin.left, _margin.top, _margin.right, _margin.bottom + safeArea);
+
     return Container(
-        margin: _margin,
+        margin: safeAreaMargin,
         decoration: decoration,
         child: GestureDetector(
             behavior: HitTestBehavior.opaque,

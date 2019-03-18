@@ -123,7 +123,7 @@ class _FloatingArtboardNavigatorPanel extends StatefulWidget {
 class _FloatingArtboardNavigatorPanelState
     extends State<_FloatingArtboardNavigatorPanel>
     with AutomaticKeepAliveClientMixin {
-  final _buttonMarginBottom = RoofDistance.e;
+  final _buttonMarginBottom = RoofDistance.d;
 
   @override
   Widget build(BuildContext context) {
@@ -136,8 +136,10 @@ class _FloatingArtboardNavigatorPanelState
         ]);
 
     ///The percent from the bottom where the button will live;
-    double height = MediaQuery.of(context).size.height;
-    double ratio = (height - _buttonMarginBottom) / height;
+    final halfHeight = MediaQuery.of(context).size.height * 0.5;
+    final safeArea = MediaQuery.of(context).padding.bottom;
+
+    final ratio = (halfHeight - _buttonMarginBottom - safeArea) / halfHeight;
 
     final _alignment = Alignment(0, ratio);
 
