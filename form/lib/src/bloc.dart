@@ -9,6 +9,8 @@ class StreamFormBloc extends BlocBase {
   StreamableFormData _formData;
 
   ChangeListener onValueChange;
+  ChangeListener onFocus;
+  ChangeListener onResignFocus;
 
   //The stream responsible for communicating changes to the entire form.
   final _formController = StreamController<StreamableFormData>();
@@ -274,18 +276,46 @@ class StreamFormBloc extends BlocBase {
   }
 
   void _addValueChangedStreamToFields(List<StreamableFormFieldData> fieldData) {
-    for (var fieldData in fieldData) {
+    for (final fieldData in fieldData) {
+      if (fieldData.tracked) continue;
       fieldData.onChanged = (newValue) {
         final fieldValueData = StreamableFormFieldValueData(
             fieldKey: fieldData.key, value: newValue);
         _inFieldValue.add(fieldValueData);
       };
+      fieldData.onFocusChanged = (newFocusValue) {
+        final fieldValueData = StreamableFormFieldValueData(
+            fieldKey: fieldData.key, isInFocus: newFocusValue);
+        _inFieldValue.add(fieldValueData);
+      };
       _outFieldValue
           .where((valueData) => valueData.fieldKey == fieldData.key)
           .listen((valueData) {
-        fieldData.value = valueData.value;
-        if (onValueChange != null) onValueChange();
+        if (valueData.value != null) {
+          fieldData.value = valueData.value;
+          if (onValueChange != null) onValueChange();
+        }
+        if (valueData.isInFocus != null) {
+          final hasFocusedFieldBefore = _hasFocusedField();
+          fieldData.isInFocus = valueData.isInFocus;
+
+          if (valueData.isInFocus == !hasFocusedFieldBefore) {
+            if (valueData.isInFocus && onFocus != null) {
+              onFocus();
+            } else if (!valueData.isInFocus && onResignFocus != null) {
+              onResignFocus();
+            }
+          }
+        }
       });
+      fieldData.tracked = true;
     }
+  }
+
+  bool _hasFocusedField() {
+    for (final fieldData in _formData.fieldData) {
+      if (fieldData.isInFocus) return true;
+    }
+    return false;
   }
 }

@@ -9,12 +9,14 @@ class RoofStreamForm extends StreamForm<StreamableFormFieldData,
   Widget buildTextField(
       {FormTextFieldData fieldData, int fieldIndex, int sectionIndex}) {
     return RoofTextField(
-        fieldName: fieldData.title,
-        placeholder: fieldData.placeholder,
-        initialValue: fieldData.value,
-        isPassword: false,
-        mask: fieldData.mask,
-        onChanged: fieldData.onChanged);
+      fieldName: fieldData.title,
+      placeholder: fieldData.placeholder,
+      initialValue: fieldData.value,
+      isPassword: false,
+      mask: fieldData.mask,
+      onChanged: fieldData.onChanged,
+      onFocusChanged: fieldData.onFocusChanged,
+    );
   }
 
   Widget buildTextArea(

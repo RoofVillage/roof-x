@@ -8,6 +8,7 @@ import 'package:theme/index.dart';
 import 'package:form_artboard_mixin/index.dart';
 
 import 'floating_artboard.dart';
+import 'navigator.dart';
 import 'mixins/index.dart';
 
 abstract class FormFloatingArtboard extends FloatingArtboard with FormArtboard {
@@ -72,6 +73,10 @@ class _FormFloatingArtboardState extends State<FormFloatingArtboard>
 
   @override
   Widget build(BuildContext context) {
+    widget.form.onFocus =
+        () => FloatingArtboardNavigator.of(context).hideNavButtons();
+    widget.form.onResignFocus =
+        () => FloatingArtboardNavigator.of(context).showNavButtons();
     return super.build(context);
   }
 }

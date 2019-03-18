@@ -18,7 +18,7 @@ class RootWidget extends StatelessWidget {
 
         Artboard startingArtboard;
         if (appState.isInSession) {
-          startingArtboard = ThreadArtboard();
+          startingArtboard = PublicActivityArtboard();
         } else {
           startingArtboard = PublicActivityArtboard();
           // ThreadArtboard();

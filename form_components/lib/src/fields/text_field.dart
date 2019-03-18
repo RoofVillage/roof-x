@@ -15,6 +15,7 @@ class RoofTextField extends StatelessWidget {
   final TextInputAction textInputAction;
   final MaskOption mask;
   final Function(String) onChanged;
+  final Function(bool) onFocusChanged;
 
   RoofTextField(
       {@required this.fieldName,
@@ -24,7 +25,8 @@ class RoofTextField extends StatelessWidget {
       this.autofocus = false,
       this.mask,
       this.textInputAction,
-      this.onChanged});
+      this.onChanged,
+      this.onFocusChanged});
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +43,8 @@ class RoofTextField extends StatelessWidget {
         initialValue: initialValue,
         mask: mask,
         placeholder: placeholder,
-        onChanged: onChanged);
+        onChanged: onChanged,
+        onFocusChanged: onFocusChanged);
 
     fieldChildren.add(fieldBody);
 
@@ -61,6 +64,7 @@ class _FieldBody extends StatefulWidget {
   final String placeholder;
   final MaskOption mask;
   final Function(String) onChanged;
+  final Function(bool) onFocusChanged;
 
   _FieldBody(
       {this.autofocus,
@@ -69,18 +73,20 @@ class _FieldBody extends StatefulWidget {
       this.textInputAction,
       this.mask,
       this.placeholder,
-      this.onChanged});
+      this.onChanged,
+      this.onFocusChanged});
 
   _FieldBodyState createState() => _FieldBodyState();
 }
 
 class _FieldBodyState extends State<_FieldBody> {
   final _controller = TextEditingController();
+  final _focusNode = FocusNode();
   final _typographyStyle = RoofTypography.bodyPrimary;
 
   _FieldBodyState();
 
-  _controllerUpdated() {
+  void _controllerUpdated() {
     if (widget.mask != null) {
       final formattedText = Mask(widget.mask).apply(_controller.text);
       if (formattedText == _controller.text) return;
@@ -89,10 +95,15 @@ class _FieldBodyState extends State<_FieldBody> {
     widget.onChanged(_controller.text);
   }
 
+  void _focusUpdated() {
+    widget.onFocusChanged(_focusNode.hasFocus);
+  }
+
   @override
   void initState() {
     _controller.text = widget.initialValue;
     _controller.addListener(_controllerUpdated);
+    _focusNode.addListener(_focusUpdated);
     super.initState();
   }
 
@@ -114,6 +125,7 @@ class _FieldBodyState extends State<_FieldBody> {
         textInputAction: widget.textInputAction,
         style: _typographyStyle.textStyleWithColor(theme.color.text.primary),
         decoration: decoration,
+        focusNode: _focusNode,
         controller: _controller);
   }
 
