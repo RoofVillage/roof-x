@@ -8,6 +8,10 @@ class RoofSubmitButton extends RoofButton {
         final theme = RoofTheme.of(context);
         return theme.color.background.submitButton;
       };
+  get borderColor => (context) {
+        final theme = RoofTheme.of(context);
+        return theme.color.border.submitButton;
+      };
   get textColor => (context) {
         final theme = RoofTheme.of(context);
         return theme.color.text.submitAction;
