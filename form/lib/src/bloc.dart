@@ -1,23 +1,14 @@
 import 'dart:async';
 import 'package:stream/index.dart';
-import 'package:exceptions/index.dart';
 
 import 'data/index.dart';
 
-typedef AddressGetter = String Function();
-typedef ParamsGetter = Map<String, Object> Function();
-typedef SubmitGetter = Future<void> Function();
-typedef ValidationGetter = Future<void> Function();
-typedef ErrorHandlerGetter = Function(String message);
+typedef void ChangeListener();
 
 class StreamFormBloc extends BlocBase {
-  AddressGetter getAddress;
-  ParamsGetter getParams;
-  SubmitGetter getSubmit;
-  ValidationGetter getValidation;
-  ErrorHandlerGetter getErrorHandler;
-
   StreamableFormData _formData;
+
+  ChangeListener onValueChange;
 
   //The stream responsible for communicating changes to the entire form.
   final _formController = StreamController<StreamableFormData>();
@@ -47,27 +38,6 @@ class StreamFormBloc extends BlocBase {
       _fieldValueController.sink;
   Stream<StreamableFormFieldValueData> get _outFieldValue =>
       _fieldValueController.stream;
-
-  void submit() async {
-    final submit = getSubmit;
-    if (submit == null) return;
-
-    final errorHandler = getErrorHandler;
-
-    try {
-      await _validateFields();
-      final validation = getValidation;
-      if (validation != null) await validation();
-    } on FormValidationException catch (err) {
-      if (errorHandler != null) errorHandler(err.message);
-      return;
-    } catch (err) {
-      if (errorHandler != null) errorHandler(err.toString());
-      return;
-    }
-
-    await submit();
-  }
 
   //Override to handle field changes;
   void fieldChanged(String fieldKey, dynamic oldValue, dynamic newValue) {}
@@ -312,12 +282,10 @@ class StreamFormBloc extends BlocBase {
       };
       _outFieldValue
           .where((valueData) => valueData.fieldKey == fieldData.key)
-          .listen((valueData) => fieldData.value = valueData.value);
+          .listen((valueData) {
+        fieldData.value = valueData.value;
+        if (onValueChange != null) onValueChange();
+      });
     }
-  }
-
-  Future<void> _validateFields() async {
-    return Future.wait(
-        _formData.fieldData.map((data) async => await data.validate()));
   }
 }

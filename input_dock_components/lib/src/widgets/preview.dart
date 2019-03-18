@@ -106,13 +106,13 @@ class _FilePreviewState extends State<_FilePreview>
   @override
   Widget build(BuildContext context) {
     // Unique color for testing
-    final uniqueInt = DateTime.now().millisecond;
-    final uniqueColor = Color.fromRGBO(
-      uniqueInt % 255,
-      (uniqueInt * 2) % 255,
-      (uniqueInt * 3) % 255,
-      1,
-    );
+    // final uniqueInt = DateTime.now().millisecond;
+    // final uniqueColor = Color.fromRGBO(
+    //   uniqueInt % 255,
+    //   (uniqueInt * 2) % 255,
+    //   (uniqueInt * 3) % 255,
+    //   1,
+    // );
 
     final removeIcon = IconReference.closeFilled.buildSvg(
       color: Colors.black.withAlpha(180),

@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:floating_artboard_templates/index.dart';
 import 'package:form_artboard_mixin/index.dart';
-import 'package:app_data/index.dart';
 
 import 'phone_number.dart';
 import 'challenge.dart';
@@ -28,9 +27,11 @@ class SignUpArtboard extends FormFloatingArtboard {
 
   @override
   Future<void> submit(BuildContext context) async {
-    ArtboardNavigator.of(context).goTo(
-        PhoneNumberArtboard(onSubmit: _phoneNumberDependentSubmit),
-        context: context);
+    return Future.delayed(const Duration(seconds: 2), () {
+      ArtboardNavigator.of(context).goTo(
+          PhoneNumberArtboard(onSubmit: _phoneNumberDependentSubmit),
+          context: context);
+    });
   }
 
   Future<void> _phoneNumberDependentSubmit(

@@ -7,6 +7,8 @@ abstract class StreamableFormFieldData<T> extends StreamableData {
   final double size;
   ValueChanged<T> onChanged;
 
+  bool enabled;
+
   double get fieldSize => size;
 
   T get value => _value;
@@ -22,9 +24,11 @@ abstract class StreamableFormFieldData<T> extends StreamableData {
     String placeholder,
     T initialValue,
     double size,
+    bool enabled,
     ValueChanged<T> onChanged,
     bool hidden,
   })  : size = size ?? 1,
+        enabled = enabled ?? true,
         _value = initialValue,
         _onChanged = onChanged,
         super(hidden: hidden);

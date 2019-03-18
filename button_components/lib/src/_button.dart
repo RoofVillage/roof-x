@@ -21,33 +21,14 @@ abstract class RoofButton extends StatefulWidget {
       this.iconReference,
       this.height = RoofDistance.e});
 
-  _RoofButtonState createState() => _RoofButtonState(
-      onTap: onTap,
-      text: text,
-      iconReference: iconReference,
-      backgroundColor: backgroundColor,
-      textColor: textColor,
-      height: height);
+  _RoofButtonState createState() => _RoofButtonState();
 }
 
 class _RoofButtonState extends State<RoofButton> {
-  Function(BuildContext context) onTap;
-  String text;
-  StandardIconReference iconReference;
-  ColorGetter backgroundColor;
-  ColorGetter textColor;
-  double height;
-
   bool _tapped = false;
   double _tappedOpacity = 0.75;
 
-  _RoofButtonState(
-      {this.onTap,
-      this.text,
-      this.iconReference,
-      this.backgroundColor,
-      this.textColor,
-      this.height});
+  _RoofButtonState();
 
   final _textStyle = RoofTypography.button;
 
@@ -55,24 +36,25 @@ class _RoofButtonState extends State<RoofButton> {
   Widget build(BuildContext context) {
     List<Widget> buttonChildren = [];
 
-    final color = textColor(context);
+    final color = widget.textColor(context);
 
-    if (iconReference != null) {
-      final iconPadding = text != null
+    if (widget.iconReference != null) {
+      final iconPadding = widget.text != null
           ? EdgeInsets.fromLTRB(0, 0, RoofDistance.b, 0)
           : EdgeInsets.all(0);
 
       final buttonIcon = Container(
-          padding: iconPadding, child: iconReference.buildSvg(color: color));
+          padding: iconPadding,
+          child: widget.iconReference.buildSvg(color: color));
 
       buttonChildren.add(buttonIcon);
     }
 
-    if (text != null) {
+    if (widget.text != null) {
       final textDecoration = _textStyle.textStyleWithColor(color);
 
       final styledButtonText =
-          Text(text, style: textDecoration, textAlign: TextAlign.center);
+          Text(widget.text, style: textDecoration, textAlign: TextAlign.center);
 
       buttonChildren.add(styledButtonText);
     }
@@ -80,7 +62,7 @@ class _RoofButtonState extends State<RoofButton> {
     double opacity = _tapped ? _tappedOpacity : 1;
 
     final decoration = BoxDecoration(
-      color: backgroundColor(context).withOpacity(opacity),
+      color: widget.backgroundColor(context).withOpacity(opacity),
       borderRadius: BorderRadius.all(RoofCornerRadius.regular),
     );
 
@@ -90,7 +72,7 @@ class _RoofButtonState extends State<RoofButton> {
         onTapUp: _onTapUp,
         onTapCancel: _onTapCancel,
         child: Container(
-            height: height,
+            height: widget.height,
             decoration: decoration,
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -99,7 +81,7 @@ class _RoofButtonState extends State<RoofButton> {
 
   void _onTap() {
     Haptic.triggerWith(HapticOption.light);
-    onTap(context);
+    widget.onTap(context);
   }
 
   void _onTapDown(TapDownDetails details) {

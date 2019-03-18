@@ -11,10 +11,10 @@ class AddAuxiliaryWidget extends AuxiliaryWidget {
 
   static void _action(BuildContext context) async {
     // open button sheet to
-    print("action");
-    final file = await ArtboardNavigator.of(context).goTo(FileUploadArtboard(), context: context);
+    final file = await ArtboardNavigator.of(context)
+        .goTo(FileUploadArtboard(), context: context);
     if (file == null) return;
-        
+
     RoofInputDock.of(context).addFile(file);
   }
 

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:button_components/index.dart';
 import 'package:typography/index.dart';
@@ -6,6 +8,7 @@ import 'package:theme/index.dart';
 import 'package:form_artboard_mixin/index.dart';
 
 import 'floating_artboard.dart';
+import 'mixins/index.dart';
 
 abstract class FormFloatingArtboard extends FloatingArtboard with FormArtboard {
   String get title;
@@ -13,21 +16,34 @@ abstract class FormFloatingArtboard extends FloatingArtboard with FormArtboard {
   String get submitButtonText;
   String get auxiliaryDescription => null;
   String get auxiliaryButtonText => null;
+  Future<void> submit(BuildContext context);
+
+  @override
+  State<StatefulWidget> createState() => _FormFloatingArtboardState();
+}
+
+class _FormFloatingArtboardState extends State<FormFloatingArtboard>
+    with FloatingArtboardState, FormArtboardState {
+  @override
+  FormArtboard get formArtboard => widget;
+
+  String get _submitButtonText {
+    switch (formSubmitState) {
+      case FormSubmitState.exception:
+        return exception.message;
+      case FormSubmitState.loading:
+        return "Loading";
+      case FormSubmitState.normal:
+        return widget.submitButtonText;
+    }
+    return null;
+  }
 
   final _headerStyle = RoofTypography.heading1;
   final _subtitleStyle = RoofTypography.bodyPrimary;
 
   final _bodyVerticalPadding = EdgeInsets.only(top: RoofDistance.d);
   final _buttonVerticalPadding = EdgeInsets.only(top: RoofDistance.d);
-
-  final state = _FormFloatingArtboardState();
-
-  @override
-  void errorHandler(BuildContext context, String message) {
-    state.setState(() {
-      print("Tyler's a boss");
-    });
-  }
 
   @override
   List<Widget> buildChildren(BuildContext context) {
@@ -38,13 +54,15 @@ abstract class FormFloatingArtboard extends FloatingArtboard with FormArtboard {
     final headerStyle = _headerStyle.textStyleWithColor(headerColor);
     final subtitleStyle = _subtitleStyle.textStyleWithColor(subtitleColor);
 
+    print(widget.title);
+    print(_submitButtonText);
     final submitButton =
-        RoofSubmitButton(text: submitButtonText, onTap: form.submit);
+        RoofSubmitButton(text: _submitButtonText, onTap: onSubmitButtonTap);
 
-    final widgets = <Widget>[Text(title, style: headerStyle)];
+    final widgets = <Widget>[Text(widget.title, style: headerStyle)];
 
-    if (subtitle != null) {
-      widgets.add(Text(subtitle, style: subtitleStyle));
+    if (widget.subtitle != null) {
+      widgets.add(Text(widget.subtitle, style: subtitleStyle));
     }
 
     widgets.addAll([
@@ -54,11 +72,6 @@ abstract class FormFloatingArtboard extends FloatingArtboard with FormArtboard {
     return widgets;
   }
 
-  @override
-  State<StatefulWidget> createState() => state;
-}
-
-class _FormFloatingArtboardState extends FloatingArtboardState {
   @override
   Widget build(BuildContext context) {
     return super.build(context);

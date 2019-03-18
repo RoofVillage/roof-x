@@ -1,19 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:typography/index.dart';
-import 'package:icon_library/index.dart';
 import 'package:spec/index.dart';
 import 'package:theme/index.dart';
 import 'package:button_components/index.dart';
 
 import 'floating_artboard.dart';
+import 'mixins/index.dart';
 
 abstract class SegueFloatingArtboard extends FloatingArtboard {
   List<RoofTransitionButton> get buttons => [];
-
   String get title;
 
-  final _headerStyle = RoofTypography.heading2;
+  @override
+  State<StatefulWidget> createState() => _SegueFloatingArtboardState();
+}
 
+class _SegueFloatingArtboardState extends State<SegueFloatingArtboard>
+    with FloatingArtboardState {
+  final _headerStyle = RoofTypography.heading2;
   final _buttonVerticalPadding = EdgeInsets.only(top: RoofDistance.d);
 
   @override
@@ -22,15 +26,15 @@ abstract class SegueFloatingArtboard extends FloatingArtboard {
 
     final List<Widget> children = [];
 
-    if (title != null)
+    if (widget.title != null)
       children.add(
         Text(
-          title,
+          widget.title,
           style: _headerStyle.textStyleWithColor(theme.color.text.primary),
         ),
       );
 
-    for (final button in buttons) {
+    for (final button in widget.buttons) {
       children.add(
         Padding(
           child: button,
@@ -40,5 +44,10 @@ abstract class SegueFloatingArtboard extends FloatingArtboard {
     }
 
     return children;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return super.build(context);
   }
 }

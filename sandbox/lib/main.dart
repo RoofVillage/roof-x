@@ -46,8 +46,8 @@ class Thread extends StatelessWidget {
     );
 
     _inputSubmitAction({DockSubmitData data}) {
-      final text = data.text;
-      final files = data.files;
+      // final text = data.text;
+      // final files = data.files;
     }
 
     final inputDock = RoofInputDock(

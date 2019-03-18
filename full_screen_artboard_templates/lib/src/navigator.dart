@@ -31,13 +31,13 @@ class FullScreenArtboardNavigatorState extends ArtboardNavigatorState {
     final theme = RoofTheme.of(context);
     if (artboard is FloatingArtboard) {
       final floatingNavigator = FloatingArtboardNavigator(artboard: artboard);
-      final result = await Navigator.of(context).push<dynamic>(
-          FloatingRoute(
-              builder: (context) => floatingNavigator,
-              currentTheme: theme.current));
-      print("RESULT $result");
-      if (result is Artboard) return goTo(result, context: context);
-      else return result;
+      final result = await Navigator.of(context).push<dynamic>(FloatingRoute(
+          builder: (context) => floatingNavigator,
+          currentTheme: theme.current));
+      if (result is Artboard)
+        return goTo(result, context: context);
+      else
+        return result;
     } else {
       return Navigator.of(context).push<dynamic>(FullScreenRoute(
         builder: (context) => FullScreenArtboardNavigator(artboard: artboard),
