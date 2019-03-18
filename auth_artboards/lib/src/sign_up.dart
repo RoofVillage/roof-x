@@ -40,7 +40,7 @@ class SignUpArtboard extends FormFloatingArtboard {
     //     password: _passwordFieldData.value,
     //     phoneNumber: phoneNumber);
 
-    ArtboardNavigator.of(context).goTo(
+    FloatingArtboardNavigator.of(context).goTo(
         AuthChallengeArtboard(
           phoneNumber: phoneNumber,
         ),

@@ -20,6 +20,7 @@ class ResentChallengeArtboard extends FormFloatingArtboard {
 
   @override
   Future<void> submit(BuildContext context) async {
-    ArtboardNavigator.of(context).goTo(LogInArtboard(), context: context);
+    FloatingArtboardNavigator.of(context)
+        .goTo(LogInArtboard(), context: context);
   }
 }
