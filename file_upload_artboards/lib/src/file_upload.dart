@@ -8,29 +8,32 @@ class FileUploadArtboard extends SegueFloatingArtboard {
   @override
   String get title => "Upload";
 
-  @override
-  List<RoofTransitionButton> get buttons => [
-        RoofTransitionButton(
-          text: "Take a picture",
-          iconReference: IconReference.camera,
-          onTap: (BuildContext context) async {
-            final file = await ImagePicker.pickImage(
-              source: ImageSource.camera,
-            );
-            if (file == null) return;
+  final cameraButton = RoofTransitionButton(
+    text: "Take a picture",
+    iconReference: IconReference.camera,
+    onTap: (BuildContext context) async {
+      final file = await ImagePicker.pickImage(
+        source: ImageSource.camera,
+      );
+      if (file == null) return;
 
-            Navigator.of(context).pop(file);
-          },
-        ),
-        RoofTransitionButton(
-          text: "Upload a picture",
-          iconReference: IconReference.addImage,
-          onTap: (BuildContext context) async {
-            final file = await ImagePicker.pickImage(
-              source: ImageSource.gallery,
-            );
-            Navigator.of(context).pop(file);
-          },
-        ),
-      ];
+      Navigator.of(context).pop(file);
+    },
+  );
+
+  final uploadButton = RoofTransitionButton(
+    text: "Upload a picture",
+    iconReference: IconReference.addImage,
+    onTap: (BuildContext context) async {
+      final file = await ImagePicker.pickImage(
+        source: ImageSource.gallery,
+      );
+      if (file == null) return;
+
+      Navigator.of(context).pop(file);
+    },
+  );
+
+  @override
+  List<RoofTransitionButton> get buttons => [cameraButton, uploadButton];
 }
