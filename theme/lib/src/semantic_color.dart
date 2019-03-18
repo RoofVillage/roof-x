@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '_background.dart';
+import '_border.dart';
 import '_icon.dart';
 import '_stroke.dart';
 import '_text.dart';
@@ -13,6 +14,7 @@ class RoofSemanticColor {
 
   final RoofStrokeColor stroke;
   final RoofBackgroundColor background;
+  final RoofBorderColor border;
   final RoofTextColor text;
   final RoofIconColor icon;
 
@@ -20,6 +22,7 @@ class RoofSemanticColor {
       : this._current = current,
         stroke = RoofStrokeColor(current),
         background = RoofBackgroundColor(current),
+        border = RoofBorderColor(current),
         text = RoofTextColor(current),
         icon = RoofIconColor(current);
 }

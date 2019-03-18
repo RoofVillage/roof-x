@@ -23,7 +23,7 @@ class FileUploadArtboard extends SegueFloatingArtboard {
           },
         ),
         RoofTransitionButton(
-          text: "Upload a file",
+          text: "Upload a picture",
           iconReference: IconReference.addImage,
           onTap: (BuildContext context) async {
             final file = await ImagePicker.pickImage(

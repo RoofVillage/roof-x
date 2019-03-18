@@ -8,6 +8,10 @@ class RoofTransitionButton extends RoofButton {
         final theme = RoofTheme.of(context);
         return theme.color.background.transitionButton;
       };
+  get borderColor => (context) {
+        final theme = RoofTheme.of(context);
+        return theme.color.border.transitionButton;
+      };
   get textColor => (context) {
         final theme = RoofTheme.of(context);
         return theme.color.text.transitionAction;

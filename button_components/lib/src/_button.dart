@@ -13,6 +13,7 @@ abstract class RoofButton extends StatefulWidget {
   final double height;
 
   ColorGetter get backgroundColor;
+  ColorGetter get borderColor;
   ColorGetter get textColor;
 
   RoofButton(
@@ -63,6 +64,7 @@ class _RoofButtonState extends State<RoofButton> {
 
     final decoration = BoxDecoration(
       color: widget.backgroundColor(context).withOpacity(opacity),
+      border: Border.all(width: 1, color: widget.borderColor(context)),
       borderRadius: BorderRadius.all(RoofCornerRadius.regular),
     );
 
