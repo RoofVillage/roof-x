@@ -15,7 +15,7 @@ class AddAuxiliaryWidget extends AuxiliaryWidget {
         .goTo(FileUploadArtboard(), context: context);
     if (file == null) return;
 
-    RoofInputDock.of(context).addFile(file);
+    RoofInputDock.of(context).addFiles([file]);
   }
 
   AddAuxiliaryWidget()

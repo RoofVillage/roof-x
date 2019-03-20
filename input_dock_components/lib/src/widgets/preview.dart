@@ -1,14 +1,12 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:multi_image_picker/asset.dart';
 import 'package:spec/index.dart';
 import 'package:icon_library/index.dart';
 import 'package:haptics/index.dart';
 
 import '../input_dock.dart';
-
-typedef void RemoveFileCallback(String file);
 
 class FilePreviewContainer extends StatefulWidget {
   _FilePreviewContainerState createState() => _FilePreviewContainerState();
@@ -16,8 +14,6 @@ class FilePreviewContainer extends StatefulWidget {
 
 class _FilePreviewContainerState extends State<FilePreviewContainer>
     with SingleTickerProviderStateMixin {
-  static const double _maxHeight = 120;
-
   final ScrollController _listViewController = ScrollController();
 
   @override
@@ -43,13 +39,15 @@ class _FilePreviewContainerState extends State<FilePreviewContainer>
         key: ObjectKey(file),
         file: file,
         isRightPadded: (file != dock.files.last),
-        shouldFadeOut: (dock.files.length > 1),
+        animateOnRemove: (dock.files.length > 1),
+        previewWidth: dock.previewWidth,
+        removeFile: () => dock.removeFile(file),
       );
       previews.add(preview);
     }
 
     final previewRow = Container(
-      height: dock.files.isNotEmpty ? _maxHeight : 0,
+      height: dock.files.isNotEmpty ? dock.previewHeight : 0,
       child: ListView(
         controller: _listViewController,
         padding: EdgeInsets.symmetric(horizontal: RoofDistance.c),
@@ -68,52 +66,48 @@ class _FilePreviewContainerState extends State<FilePreviewContainer>
 }
 
 class _FilePreview extends StatefulWidget {
-  final File file;
+  final Asset file;
   final bool isRightPadded;
-  final bool shouldFadeOut;
+  final bool animateOnRemove;
+  final double previewWidth;
+  final VoidCallback removeFile;
 
   _FilePreview({
     Key key,
-    this.file,
-    this.isRightPadded,
-    this.shouldFadeOut,
-  }) : super(key: key);
+    @required this.file,
+    @required this.isRightPadded,
+    @required this.animateOnRemove,
+    @required this.previewWidth,
+    @required this.removeFile,
+  })  : assert(file.thumbData != null),
+        super(key: key);
 
   _FilePreviewState createState() => _FilePreviewState();
 }
 
 class _FilePreviewState extends State<_FilePreview>
     with SingleTickerProviderStateMixin {
-  static const double _previewWidth = 160;
-
   bool _show = true;
 
   _remove() {
     Haptic.triggerWith(HapticOption.click);
 
-    if (widget.shouldFadeOut) {
+    if (widget.animateOnRemove) {
       setState(() {
         _show = false;
       });
       Future.delayed(RoofDuration.short, () {
-        RoofInputDock.of(context).removeFile(widget.file);
+        widget.removeFile();
+        widget.file.release();
       });
     } else {
-      RoofInputDock.of(context).removeFile(widget.file);
+      widget.removeFile();
+      widget.file.release();
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    // Unique color for testing
-    // final uniqueInt = DateTime.now().millisecond;
-    // final uniqueColor = Color.fromRGBO(
-    //   uniqueInt % 255,
-    //   (uniqueInt * 2) % 255,
-    //   (uniqueInt * 3) % 255,
-    //   1,
-    // );
-
     final removeIcon = IconReference.closeFilled.buildSvg(
       color: Colors.black.withAlpha(180),
     );
@@ -127,12 +121,16 @@ class _FilePreviewState extends State<_FilePreview>
       ),
     );
 
-    final fileImage = ClipRRect(
+    final thumbnail = Image.memory(
+      widget.file.thumbData.buffer.asUint8List(),
+      fit: BoxFit.cover,
+      gaplessPlayback: true,
+    );
+
+    final imageWidget = ClipRRect(
       borderRadius: BorderRadius.all(RoofCornerRadius.small),
-      child: Image.file(
-        widget.file,
-        fit: BoxFit.cover,
-      ),
+      clipBehavior: Clip.antiAliasWithSaveLayer,
+      child: thumbnail,
     );
 
     final animatedWidthContainer = AnimatedSize(
@@ -141,8 +139,8 @@ class _FilePreviewState extends State<_FilePreview>
       duration: RoofDuration.short,
       alignment: Alignment.topLeft,
       child: Container(
-        width: _show ? _previewWidth : 0,
-        child: fileImage,
+        width: _show ? widget.previewWidth : 0,
+        child: imageWidget,
       ),
     );
 
