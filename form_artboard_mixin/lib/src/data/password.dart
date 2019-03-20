@@ -19,14 +19,20 @@ class PasswordFormTextFieldData extends FormTextFieldData {
       String initialValue,
       double size,
       bool autofocus,
+      bool canSubmitWithKeyboardRaised,
+      ValueChanged<String> onSubmitted,
       ValueChanged<String> onChanged,
+      ValueChanged<bool> onFocusChanged,
       bool hidden})
       : super(
             title: title,
             placeholder: placeholder,
             initialValue: initialValue,
+            onSubmitted: onSubmitted,
             onChanged: onChanged,
+            onFocusChanged: onFocusChanged,
             autofocus: autofocus,
+            canSubmitWithKeyboardRaised: canSubmitWithKeyboardRaised,
             size: size,
             hidden: hidden);
 

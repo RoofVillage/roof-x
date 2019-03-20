@@ -8,7 +8,8 @@ abstract class StreamableFormFieldData<T> extends StreamableData {
   ValueChanged<T> onChanged;
   ValueChanged<bool> onFocusChanged;
 
-  bool tracked = false;
+  bool _tracked = false;
+  bool get tracked => _tracked;
 
   bool enabled;
 
@@ -50,4 +51,6 @@ abstract class StreamableFormFieldData<T> extends StreamableData {
         super(hidden: hidden);
 
   Future<void> validate() async {}
+
+  void markAsTracked() => _tracked = true;
 }

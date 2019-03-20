@@ -8,6 +8,8 @@ typedef void ChangeListener();
 class StreamFormBloc extends BlocBase {
   StreamableFormData _formData;
 
+  StreamableFormData get formData => _formData;
+
   ChangeListener onValueChange;
   ChangeListener onFocus;
   ChangeListener onResignFocus;
@@ -308,7 +310,7 @@ class StreamFormBloc extends BlocBase {
           }
         }
       });
-      fieldData.tracked = true;
+      fieldData.markAsTracked();
     }
   }
 

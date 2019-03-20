@@ -8,3 +8,4 @@ export 'password.dart';
 export 'text_field.dart';
 export 'short_text_field.dart';
 export 'medium_text_field.dart';
+export 'composition_field.dart';

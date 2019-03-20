@@ -6,6 +6,10 @@ import 'package:mask/index.dart';
 
 import 'widgets/index.dart';
 
+//TODO
+//for animating:
+// https://stackoverflow.com/questions/50736571/when-i-select-a-textfield-the-keyboard-moves-over-it
+/// may want to make this animation a mixin so text area and any other field can benefit if needed.
 class RoofTextField extends StatelessWidget {
   final String fieldName;
   final String placeholder;
@@ -15,7 +19,9 @@ class RoofTextField extends StatelessWidget {
   final TextInputAction textInputAction;
   final MaskOption mask;
   final Function(String) onChanged;
+  final Function(String, BuildContext) onSubmitted;
   final Function(bool) onFocusChanged;
+  final FocusNode focusNode;
 
   RoofTextField(
       {@required this.fieldName,
@@ -26,7 +32,9 @@ class RoofTextField extends StatelessWidget {
       this.mask,
       this.textInputAction,
       this.onChanged,
-      this.onFocusChanged});
+      this.onSubmitted,
+      this.onFocusChanged,
+      this.focusNode});
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +44,7 @@ class RoofTextField extends StatelessWidget {
       fieldChildren.add(RoofFieldLabel(labelText: fieldName));
     }
 
+    print("widget title ${fieldName}");
     final fieldBody = _FieldBody(
         autofocus: autofocus,
         isPassword: isPassword,
@@ -44,7 +53,9 @@ class RoofTextField extends StatelessWidget {
         mask: mask,
         placeholder: placeholder,
         onChanged: onChanged,
-        onFocusChanged: onFocusChanged);
+        onSubmitted: onSubmitted,
+        onFocusChanged: onFocusChanged,
+        focusNode: focusNode);
 
     fieldChildren.add(fieldBody);
 
@@ -64,7 +75,9 @@ class _FieldBody extends StatefulWidget {
   final String placeholder;
   final MaskOption mask;
   final Function(String) onChanged;
+  final Function(String, BuildContext) onSubmitted;
   final Function(bool) onFocusChanged;
+  final FocusNode focusNode;
 
   _FieldBody(
       {this.autofocus,
@@ -74,14 +87,15 @@ class _FieldBody extends StatefulWidget {
       this.mask,
       this.placeholder,
       this.onChanged,
-      this.onFocusChanged});
+      this.onSubmitted,
+      this.onFocusChanged,
+      this.focusNode});
 
   _FieldBodyState createState() => _FieldBodyState();
 }
 
 class _FieldBodyState extends State<_FieldBody> {
   final _controller = TextEditingController();
-  final _focusNode = FocusNode();
   final _typographyStyle = RoofTypography.bodyPrimary;
 
   _FieldBodyState();
@@ -95,15 +109,15 @@ class _FieldBodyState extends State<_FieldBody> {
     widget.onChanged(_controller.text);
   }
 
-  void _focusUpdated() {
-    widget.onFocusChanged(_focusNode.hasFocus);
+  void focusUpdated() {
+    widget.onFocusChanged(widget.focusNode.hasFocus);
   }
 
   @override
   void initState() {
     _controller.text = widget.initialValue;
     _controller.addListener(_controllerUpdated);
-    _focusNode.addListener(_focusUpdated);
+    widget.focusNode.addListener(focusUpdated);
     super.initState();
   }
 
@@ -119,14 +133,26 @@ class _FieldBodyState extends State<_FieldBody> {
         hintStyle:
             _typographyStyle.textStyleWithColor(theme.color.text.placeholder));
 
+    print("widget ${widget.textInputAction}");
     return TextField(
         autofocus: widget.autofocus,
         obscureText: widget.isPassword,
         textInputAction: widget.textInputAction,
         style: _typographyStyle.textStyleWithColor(theme.color.text.primary),
         decoration: decoration,
-        focusNode: _focusNode,
+        focusNode: widget.focusNode,
+        keyboardAppearance: _brightnessForTheme(theme.current),
+        onSubmitted: (value) => widget.onSubmitted(value, context),
         controller: _controller);
+  }
+
+  Brightness _brightnessForTheme(RoofThemeOption theme) {
+    switch (theme) {
+      case RoofThemeOption.dark:
+        return Brightness.dark;
+      default:
+        return Brightness.light;
+    }
   }
 
   @override

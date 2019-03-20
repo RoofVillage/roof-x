@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:exceptions/index.dart';
 import 'package:consts/index.dart';
 
-import '_composition_field.dart';
+import 'composition_field.dart';
 
 class FormTextAreaData extends FormCompositionFieldData {
   FormTextAreaData(
@@ -12,15 +12,21 @@ class FormTextAreaData extends FormCompositionFieldData {
       String placeholder,
       String initialValue = "",
       double size = 1,
-      bool autofocus = false,
+      bool autofocus,
+      bool canSubmitWithKeyboardRaised,
+      ValueChanged<String> onSubmitted,
       ValueChanged<String> onChanged,
+      ValueChanged<bool> onFocusChanged,
       bool hidden})
       : super(
             title: title,
             placeholder: placeholder,
             initialValue: initialValue,
+            onSubmitted: onSubmitted,
             onChanged: onChanged,
+            onFocusChanged: onFocusChanged,
             autofocus: autofocus,
+            canSubmitWithKeyboardRaised: canSubmitWithKeyboardRaised,
             size: size,
             hidden: hidden);
 

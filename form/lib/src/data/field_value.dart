@@ -3,7 +3,7 @@ import 'package:stream/index.dart';
 
 class StreamableFormFieldValueData<T> extends StreamableData {
   T value;
-  bool isInFocus;
+  final bool isInFocus;
 
   String get fieldKey => key;
 
