@@ -28,6 +28,7 @@ class ThreadArtboard extends TitledTableInputDockFullScreenArtboard {
       );
 
   List<AuxiliaryWidget> get auxiliaryWidgets => [
-        AddAuxiliaryWidget(),
+        // AddAuxiliaryWidget(),
+        AddFileAuxiliaryWidget(),
       ];
 }

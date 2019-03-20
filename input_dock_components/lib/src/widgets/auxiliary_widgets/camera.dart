@@ -15,7 +15,7 @@ class CameraAuxiliaryWidget extends AuxiliaryWidget {
 
     if (file == null) return;
 
-    dock.addFile(file);
+    // dock.addFiles([file]);
   }
 
   CameraAuxiliaryWidget({Key key})

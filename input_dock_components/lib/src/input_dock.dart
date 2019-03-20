@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:multi_image_picker/asset.dart';
 import 'package:spec/index.dart';
 import 'package:theme/index.dart';
 
@@ -26,7 +27,7 @@ class _RoofInputDockState extends State<RoofInputDock> {
   static const double _baseHeight = 40;
 
   String _text = "";
-  List<File> _files = [];
+  List<Asset> _files = [];
 
   void _setText(String text) {
     setState(() {
@@ -34,13 +35,13 @@ class _RoofInputDockState extends State<RoofInputDock> {
     });
   }
 
-  void _addFile(File file) {
+  void _addFiles(List<Asset> files) {
     setState(() {
-      _files.add(file);
+      _files.addAll(files);
     });
   }
 
-  void _removeFile(File file) {
+  void _removeFile(Asset file) {
     setState(() {
       _files.remove(file);
     });
@@ -51,9 +52,9 @@ class _RoofInputDockState extends State<RoofInputDock> {
 
     // Format data and make API call
     final data = DockSubmitData(
-        // text: _text,
-        // files: _files,
-        );
+      text: _text,
+      // files: _files,
+    );
     widget.onSubmit(data: data);
 
     _resetDock();
@@ -126,7 +127,7 @@ class _RoofInputDockState extends State<RoofInputDock> {
     return InheritedInputDock(
       child: dock,
       setText: _setText,
-      addFile: _addFile,
+      addFiles: _addFiles,
       removeFile: _removeFile,
       onSubmit: _submit,
       baseHeight: _baseHeight,
@@ -138,18 +139,21 @@ class _RoofInputDockState extends State<RoofInputDock> {
 
 class InheritedInputDock extends InheritedWidget {
   final Function(String) setText;
-  final Function(File) addFile;
-  final Function(File) removeFile;
+  final Function(List<Asset>) addFiles;
+  final Function(Asset) removeFile;
   final VoidCallback onSubmit;
   final double baseHeight;
   final bool showSubmitButton;
-  final List<File> files;
+  final List<Asset> files;
+
+  final double previewHeight = 120;
+  final double previewWidth = 160;
 
   InheritedInputDock({
     Key key,
     @required Widget child,
     @required this.setText,
-    @required this.addFile,
+    @required this.addFiles,
     @required this.removeFile,
     @required this.onSubmit,
     this.showSubmitButton,
