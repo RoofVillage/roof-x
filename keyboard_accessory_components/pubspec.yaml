@@ -1,0 +1,28 @@
+name: keyboard_accessory_components
+description: Widgets that make up the keyboard accessory.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  multi_image_picker: ^3.0.23
+  flutter:
+    sdk: flutter
+  spec:
+    path: ../spec
+  theme:
+    path: ../theme
+  typography:
+    path: ../typography
+  haptics:
+    path: ../haptics
+  icon_library:
+    path: ../icon_library
+  artboard:
+    path: ../artboard
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

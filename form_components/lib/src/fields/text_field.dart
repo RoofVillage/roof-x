@@ -44,7 +44,6 @@ class RoofTextField extends StatelessWidget {
       fieldChildren.add(RoofFieldLabel(labelText: fieldName));
     }
 
-    print("widget title ${fieldName}");
     final fieldBody = _FieldBody(
         autofocus: autofocus,
         isPassword: isPassword,
@@ -133,7 +132,6 @@ class _FieldBodyState extends State<_FieldBody> {
         hintStyle:
             _typographyStyle.textStyleWithColor(theme.color.text.placeholder));
 
-    print("widget ${widget.textInputAction}");
     return TextField(
         autofocus: widget.autofocus,
         obscureText: widget.isPassword,

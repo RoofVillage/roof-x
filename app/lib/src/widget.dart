@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:stream/index.dart';
 import 'package:artboard/index.dart';
 import 'package:auth_artboards/index.dart';
-import 'package:thread_artboards/index.dart';
 
-import '_bloc.dart';
+import 'bloc.dart';
 import 'data/index.dart';
 
 class RootWidget extends StatelessWidget {

@@ -7,18 +7,17 @@ import 'package:floating_artboard_templates/index.dart';
 import 'package:navigation_components/index.dart';
 import 'package:icon_library/index.dart';
 import 'package:artboard/index.dart';
+import 'package:keyboard_accessory/index.dart';
 
 final _slideDuration = RoofDuration.medium;
 final _slideCurve = RoofCurve.easy;
 
 class FloatingArtboardNavigator extends ArtboardNavigator {
-  final FloatingArtboard _artboard;
-
-  FloatingArtboardNavigator({FloatingArtboard artboard}) : _artboard = artboard;
+  FloatingArtboardNavigator({FloatingArtboard artboard})
+      : super(child: artboard);
 
   @override
-  State<StatefulWidget> createState() =>
-      FloatingArtboardNavigatorState(artboard: _artboard);
+  State<StatefulWidget> createState() => FloatingArtboardNavigatorState();
 
   static FloatingInheritedArtboardNavigator of(BuildContext context) {
     return context
@@ -27,10 +26,13 @@ class FloatingArtboardNavigator extends ArtboardNavigator {
 }
 
 class FloatingArtboardNavigatorState extends ArtboardNavigatorState {
-  final List<FloatingArtboard> _floatingArtboards;
+  final List<FloatingArtboard> _floatingArtboards = [];
 
-  FloatingArtboardNavigatorState({FloatingArtboard artboard})
-      : _floatingArtboards = [artboard];
+  @override
+  void initState() {
+    _floatingArtboards.add(this.widget.child);
+    super.initState();
+  }
 
   final _popMinDragDistanceDelta = 50;
   final _popMaxDragTimeDelta = 70;
@@ -79,8 +81,9 @@ class FloatingArtboardNavigatorState extends ArtboardNavigatorState {
         behavior: HitTestBehavior.opaque,
         child: pageView);
 
-    final scaffold =
-        Scaffold(body: swippablePage, backgroundColor: Colors.transparent);
+    final scaffold = Scaffold(
+        body: KeyboardAccessory(child: swippablePage),
+        backgroundColor: Colors.transparent);
 
     return FloatingInheritedArtboardNavigator(
         data: this, child: RoofTheme(theme.current, child: scaffold));

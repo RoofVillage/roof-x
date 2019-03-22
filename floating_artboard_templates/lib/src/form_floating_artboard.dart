@@ -14,10 +14,8 @@ import 'mixins/index.dart';
 abstract class FormFloatingArtboard extends FloatingArtboard with FormArtboard {
   String get title;
   String get subtitle => null;
-  String get submitButtonText;
   String get auxiliaryDescription => null;
   String get auxiliaryButtonText => null;
-  Future<void> submit(BuildContext context);
 
   @override
   State<StatefulWidget> createState() => _FormFloatingArtboardState();

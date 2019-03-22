@@ -9,10 +9,9 @@ class FullScreenWithNav extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-        child: Column(
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: <Widget>[
+      children: [
         navBar,
         Expanded(
             /*
@@ -22,6 +21,6 @@ class FullScreenWithNav extends StatelessWidget {
             child: MediaQuery.removePadding(
                 context: context, removeTop: true, child: body))
       ],
-    ));
+    );
   }
 }

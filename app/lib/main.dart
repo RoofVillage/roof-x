@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:stream/index.dart';
 import 'package:theme/index.dart';
 
-import 'src/_bloc.dart';
-import 'src/_widget.dart';
+import 'src/bloc.dart';
+import 'src/widget.dart';
 
 void main() {
   runApp(_Roof());
