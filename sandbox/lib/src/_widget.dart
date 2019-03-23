@@ -6,6 +6,7 @@ import 'package:thread_artboards/index.dart';
 
 import '_bloc.dart';
 import 'data/index.dart';
+import 'fields_scaffold.dart';
 
 class RootWidget extends StatelessWidget {
   Widget build(BuildContext context) {
@@ -18,9 +19,9 @@ class RootWidget extends StatelessWidget {
 
         Artboard startingArtboard;
         if (appState.isInSession) {
-          startingArtboard = ThreadArtboard();
+          startingArtboard = FieldsTestingArtboard();
         } else {
-          startingArtboard = ThreadArtboard();
+          startingArtboard = FieldsTestingArtboard();
         }
 
         return FullScreenArtboardNavigator(artboard: startingArtboard);

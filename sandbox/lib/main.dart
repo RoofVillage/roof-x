@@ -4,6 +4,7 @@ import 'package:stream/index.dart';
 
 import 'src/_bloc.dart';
 import 'src/_widget.dart';
+import 'src/fields_scaffold.dart';
 
 void main() {
   runApp(Sandbox());
