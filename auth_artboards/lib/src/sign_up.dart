@@ -27,7 +27,7 @@ class SignUpArtboard extends FormFloatingArtboard {
 
   @override
   Future<void> submit(BuildContext context) async {
-    FloatingArtboardNavigator.of(context).goTo(
+    ArtboardNavigator.of(context).goTo(
         PhoneNumberArtboard(onSubmit: _phoneNumberDependentSubmit),
         context: context);
   }
@@ -40,7 +40,7 @@ class SignUpArtboard extends FormFloatingArtboard {
     //     password: _passwordFieldData.value,
     //     phoneNumber: phoneNumber);
 
-    FloatingArtboardNavigator.of(context).goTo(
+    ArtboardNavigator.of(context).goTo(
         AuthChallengeArtboard(
           phoneNumber: phoneNumber,
         ),

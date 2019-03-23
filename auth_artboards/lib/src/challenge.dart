@@ -15,7 +15,7 @@ class AuthChallengeArtboard extends ChallengeArtboard {
 
   @override
   Future<void> submit(BuildContext context) async {
-    FloatingArtboardNavigator.of(context)
+    ArtboardNavigator.of(context)
         .goTo(ResentChallengeArtboard(), context: context);
   }
 

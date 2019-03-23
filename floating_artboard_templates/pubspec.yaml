@@ -16,8 +16,6 @@ dependencies:
     path: ../form_artboard_mixin
   artboard:
     path: ../artboard
-  keyboard_accessory:
-    path: ../keyboard_accessory
 
 dev_dependencies:
   flutter_test:

@@ -7,32 +7,25 @@ import 'package:floating_artboard_templates/index.dart';
 import 'package:navigation_components/index.dart';
 import 'package:icon_library/index.dart';
 import 'package:artboard/index.dart';
-import 'package:keyboard_accessory/index.dart';
 
 final _slideDuration = RoofDuration.medium;
 final _slideCurve = RoofCurve.easy;
 
 class FloatingArtboardNavigator extends ArtboardNavigator {
-  FloatingArtboardNavigator({FloatingArtboard artboard})
-      : super(child: artboard);
+  final FloatingArtboard _artboard;
+
+  FloatingArtboardNavigator({FloatingArtboard artboard}) : _artboard = artboard;
 
   @override
-  State<StatefulWidget> createState() => FloatingArtboardNavigatorState();
-
-  static FloatingInheritedArtboardNavigator of(BuildContext context) {
-    return context
-        .inheritFromWidgetOfExactType(FloatingInheritedArtboardNavigator);
-  }
+  State<StatefulWidget> createState() =>
+      FloatingArtboardNavigatorState(artboard: _artboard);
 }
 
 class FloatingArtboardNavigatorState extends ArtboardNavigatorState {
-  final List<FloatingArtboard> _floatingArtboards = [];
+  final List<Widget> _pages;
 
-  @override
-  void initState() {
-    _floatingArtboards.add(this.widget.child);
-    super.initState();
-  }
+  FloatingArtboardNavigatorState({FloatingArtboard artboard})
+      : _pages = [_FloatingArtboardNavigatorPanel(artboard: artboard)];
 
   final _popMinDragDistanceDelta = 50;
   final _popMaxDragTimeDelta = 70;
@@ -48,25 +41,11 @@ class FloatingArtboardNavigatorState extends ArtboardNavigatorState {
       _timeDelta < _popMinDragDistanceDelta &&
       _downDistanceDelta > _popMaxDragTimeDelta;
 
-  bool showsNavButtons = true;
-
-  void showNavButtons() {
-    setState(() {
-      showsNavButtons = true;
-    });
-  }
-
-  void hideNavButtons() {
-    setState(() {
-      showsNavButtons = false;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     final pageView = PageView(
         controller: _pageController,
-        children: _buildPanels(),
+        children: _pages,
         physics: NeverScrollableScrollPhysics());
 
     final theme = RoofTheme.of(context);
@@ -81,19 +60,33 @@ class FloatingArtboardNavigatorState extends ArtboardNavigatorState {
         behavior: HitTestBehavior.opaque,
         child: pageView);
 
-    final scaffold = Scaffold(
-        body: KeyboardAccessory(child: swippablePage),
-        backgroundColor: Colors.transparent);
+    final scaffold =
+        Scaffold(body: swippablePage, backgroundColor: Colors.transparent);
 
-    return FloatingInheritedArtboardNavigator(
+    return InheritedArtboardNavigator(
         data: this, child: RoofTheme(theme.current, child: scaffold));
   }
 
   @override
   Future goTo(Artboard artboard, {BuildContext context}) async {
     if (artboard is FloatingArtboard) {
+      final button = artboard.allowsBackNavigation
+          ? RoofTransitionIconNavButton(
+              iconReference: IconReference.backArrowNav,
+              onTap: (context) {
+                _pageController.previousPage(
+                    duration: _slideDuration, curve: _slideCurve);
+                setState(() {
+                  _pages.removeLast();
+                });
+              })
+          : null;
+
+      final page = _FloatingArtboardNavigatorPanel(
+          artboard: artboard, navButton: button);
+
       setState(() {
-        _floatingArtboards.add(artboard);
+        _pages.add(page);
       });
       _pageController.nextPage(duration: _slideDuration, curve: _slideCurve);
     } else {
@@ -110,62 +103,16 @@ class FloatingArtboardNavigatorState extends ArtboardNavigatorState {
     _timeDelta = details.sourceTimeStamp.inMilliseconds - _initialDragTime;
     _downDistanceDelta = details.globalPosition.dy - _initialDragDy;
   }
-
-  List<_FloatingArtboardNavigatorPanel> _buildPanels() {
-    return _floatingArtboards.map((artboard) {
-      final button =
-          artboard.allowsBackNavigation && artboard != _floatingArtboards.first
-              ? RoofTransitionIconNavButton(
-                  iconReference: IconReference.backArrowNav,
-                  onTap: (context) {
-                    _pageController.previousPage(
-                        duration: _slideDuration, curve: _slideCurve);
-                    setState(() {
-                      _floatingArtboards.removeLast();
-                    });
-                  })
-              : null;
-
-      final page = _FloatingArtboardNavigatorPanel(
-          artboard: artboard,
-          navButton: button,
-          showsNavButton: showsNavButtons);
-
-      return page;
-    }).toList();
-  }
-}
-
-class FloatingInheritedArtboardNavigator extends InheritedArtboardNavigator {
-  final Function hideNavButtons;
-  final Function showNavButtons;
-
-  FloatingInheritedArtboardNavigator(
-      {Key key,
-      @required FloatingArtboardNavigatorState data,
-      @required Widget child})
-      : hideNavButtons = data.hideNavButtons,
-        showNavButtons = data.showNavButtons,
-        super(key: key, data: data, child: child);
-
-  @override
-  bool updateShouldNotify(InheritedWidget oldWidget) => false;
 }
 
 class _FloatingArtboardNavigatorPanel extends StatefulWidget {
-  static final _defaultNavButton = RoofTransitionIconNavButton(
-      iconReference: IconReference.downArrowNav, onTap: ArtboardNavigator.pop);
-
   final FloatingArtboard artboard;
   final RoofTransitionIconNavButton navButton;
-  final bool showsNavButton;
 
-  _FloatingArtboardNavigatorPanel(
-      {this.artboard,
-      bool showsNavButton,
-      RoofTransitionIconNavButton navButton})
-      : this.showsNavButton = showsNavButton ?? true,
-        this.navButton = navButton ?? _defaultNavButton;
+  final _defaultNavButton = RoofTransitionIconNavButton(
+      iconReference: IconReference.downArrowNav, onTap: ArtboardNavigator.pop);
+
+  _FloatingArtboardNavigatorPanel({this.artboard, this.navButton});
 
   @override
   State<StatefulWidget> createState() => _FloatingArtboardNavigatorPanelState();
@@ -177,11 +124,6 @@ class _FloatingArtboardNavigatorPanelState
     extends State<_FloatingArtboardNavigatorPanel>
     with AutomaticKeepAliveClientMixin {
   final _buttonMarginBottom = RoofDistance.d;
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -201,12 +143,10 @@ class _FloatingArtboardNavigatorPanelState
 
     final _alignment = Alignment(0, ratio);
 
-    List<Widget> children = [flexibleColumn];
-    if (widget.showsNavButton) {
-      children.add(widget.navButton);
-    }
-
-    return Stack(alignment: _alignment, children: children);
+    return Stack(alignment: _alignment, children: [
+      flexibleColumn,
+      widget.navButton ?? widget._defaultNavButton
+    ]);
   }
 
   @override

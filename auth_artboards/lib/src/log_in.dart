@@ -28,7 +28,7 @@ class LogInArtboard extends FormFloatingArtboard {
 
   @override
   Future<void> submit(BuildContext context) async {
-    FloatingArtboardNavigator.of(context)
+    ArtboardNavigator.of(context)
         .goTo(ResetPasswordArtboard(), context: context);
   }
 }
