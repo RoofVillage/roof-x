@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:spec/index.dart';
 
 class KeyboardAccessoryShortBar extends StatelessWidget {
-  static const _height = RoofDistance.e;
+  static const _height = RoofDistance.g;
 
   final Color color;
   final List<Widget> children;

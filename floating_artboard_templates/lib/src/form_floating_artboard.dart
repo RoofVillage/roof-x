@@ -72,9 +72,9 @@ class _FormFloatingArtboardState extends State<FormFloatingArtboard>
   @override
   Widget build(BuildContext context) {
     widget.form.onFocus =
-        () => FloatingArtboardNavigator.of(context).hideNavButtons();
+        () => FloatingArtboardNavigator.of(context).hideNavButtons(context);
     widget.form.onResignFocus =
-        () => FloatingArtboardNavigator.of(context).showNavButtons();
+        () => FloatingArtboardNavigator.of(context).showNavButtons(context);
     return super.build(context);
   }
 }
