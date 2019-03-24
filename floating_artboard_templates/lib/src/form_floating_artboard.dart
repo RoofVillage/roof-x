@@ -36,7 +36,12 @@ class _FormFloatingArtboardState extends State<FormFloatingArtboard>
     return null;
   }
 
-  bool isFocused = false;
+  bool _isFocused = false;
+  set isFocused(bool isFocused) {
+    setState(() {
+      _isFocused = isFocused;
+    });
+  }
 
   final _headerStyle = RoofTypography.heading1;
   final _subtitleStyle = RoofTypography.bodyPrimary;
@@ -66,7 +71,7 @@ class _FormFloatingArtboardState extends State<FormFloatingArtboard>
       Padding(padding: _bodyVerticalPadding, child: buildForm(context)),
     );
 
-    if (!isFocused) {
+    if (!_isFocused) {
       widgets
           .add(Padding(padding: _buttonVerticalPadding, child: submitButton));
     }
@@ -76,18 +81,18 @@ class _FormFloatingArtboardState extends State<FormFloatingArtboard>
 
   @override
   Widget build(BuildContext context) {
-    widget.form.onFocus = () {
-      setState(() {
-        isFocused = true;
-      });
-      FloatingArtboardNavigator.of(context).hideNavButtons(context);
-    };
-    widget.form.onResignFocus = () {
-      setState(() {
-        isFocused = false;
-      });
-      FloatingArtboardNavigator.of(context).showNavButtons(context);
-    };
+    widget.form.onFocus = () => _onFocus(context);
+    widget.form.onResignFocus = () => _onResignFocus(context);
     return super.build(context);
+  }
+
+  void _onFocus(BuildContext context) {
+    isFocused = true;
+    FloatingArtboardNavigator.of(context).hideNavButtons(context);
+  }
+
+  void _onResignFocus(BuildContext context) {
+    isFocused = false;
+    FloatingArtboardNavigator.of(context).showNavButtons(context);
   }
 }
