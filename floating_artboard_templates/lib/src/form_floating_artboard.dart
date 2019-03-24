@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:button_components/index.dart';
 import 'package:typography/index.dart';

@@ -50,8 +50,9 @@ class RoofStreamForm extends StreamForm<StreamableFormFieldData,
       },
       onFocusChanged: (isInFocus) {
         if (isInFocus) {
+          final button = _buttonFor(fieldData: fieldData, formData: formData);
           KeyboardAccessory.of(context).child =
-              _buttonFor(fieldData: fieldData, formData: formData);
+              KeyboardAccessoryShortBar(children: [button]);
         }
         _onCompositionViewFocusChanged(fieldData, isInFocus);
       },

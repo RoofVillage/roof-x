@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:spec/index.dart';
 
 class KeyboardAccessoryShortBar extends StatelessWidget {
-  static const _height = RoofDistance.g;
+  static const _height = RoofDistance.e;
 
-  final Color color;
   final List<Widget> children;
 
-  KeyboardAccessoryShortBar({this.color, this.children});
+  KeyboardAccessoryShortBar({this.children});
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +14,7 @@ class KeyboardAccessoryShortBar extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: children,
     );
-    return Container(height: _height, color: color, child: row);
+
+    return Container(height: _height, child: row);
   }
 }

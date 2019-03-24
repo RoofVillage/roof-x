@@ -5,6 +5,7 @@ import 'package:spec/index.dart';
 import 'package:form/index.dart';
 import 'package:exceptions/index.dart';
 import 'package:keyboard_accessory_components/index.dart';
+import 'package:keyboard_accessory/index.dart';
 
 import '_roof_stream_form.dart';
 
@@ -72,6 +73,7 @@ mixin FormArtboard {
 
   void _resignFocus(BuildContext context) {
     FocusScope.of(context).requestFocus(FocusNode());
+    KeyboardAccessory.of(context).hide();
   }
 }
 

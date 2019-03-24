@@ -11,7 +11,8 @@ class SecondaryActionKeyboardAccessoryButton
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return buildButton(
+        context: context,
         onTap: () => onTap(context),
         child: Container(color: Colors.amber, child: Text(title)));
   }
