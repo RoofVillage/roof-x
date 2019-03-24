@@ -36,6 +36,8 @@ class _FormFloatingArtboardState extends State<FormFloatingArtboard>
     return null;
   }
 
+  bool isFocused = false;
+
   final _headerStyle = RoofTypography.heading1;
   final _subtitleStyle = RoofTypography.bodyPrimary;
 
@@ -60,19 +62,32 @@ class _FormFloatingArtboardState extends State<FormFloatingArtboard>
       widgets.add(Text(widget.subtitle, style: subtitleStyle));
     }
 
-    widgets.addAll([
+    widgets.add(
       Padding(padding: _bodyVerticalPadding, child: buildForm(context)),
-      Padding(padding: _buttonVerticalPadding, child: submitButton)
-    ]);
+    );
+
+    if (!isFocused) {
+      widgets
+          .add(Padding(padding: _buttonVerticalPadding, child: submitButton));
+    }
+
     return widgets;
   }
 
   @override
   Widget build(BuildContext context) {
-    widget.form.onFocus =
-        () => FloatingArtboardNavigator.of(context).hideNavButtons(context);
-    widget.form.onResignFocus =
-        () => FloatingArtboardNavigator.of(context).showNavButtons(context);
+    widget.form.onFocus = () {
+      setState(() {
+        isFocused = true;
+      });
+      FloatingArtboardNavigator.of(context).hideNavButtons(context);
+    };
+    widget.form.onResignFocus = () {
+      setState(() {
+        isFocused = false;
+      });
+      FloatingArtboardNavigator.of(context).showNavButtons(context);
+    };
     return super.build(context);
   }
 }
