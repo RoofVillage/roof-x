@@ -52,6 +52,7 @@ class StreamFormBuilder<T extends StreamFormBloc> extends StatelessWidget {
           bloc: bloc,
           outSectionStream: outSectionStream,
           sectionData: sectionData,
+          formData: formData,
           sectionIndex: i);
 
       rows.add(section);
@@ -79,7 +80,9 @@ class StreamFormBuilder<T extends StreamFormBloc> extends StatelessWidget {
           if (!snapshot.hasData || !shouldShowSectionHeader) return _empty;
 
           final header = buildSectionHeader(
-              headerData: sectionData.headerData, sectionIndex: sectionIndex);
+              headerData: sectionData.headerData,
+              sectionIndex: sectionIndex,
+              context: context);
 
           if (header == null) return _empty;
 
@@ -92,6 +95,7 @@ class StreamFormBuilder<T extends StreamFormBloc> extends StatelessWidget {
       {@required T bloc,
       @required Stream outSectionStream,
       @required StreamableFormSectionData sectionData,
+      @required StreamableFormData formData,
       @required int sectionIndex}) {
     final section = StreamBuilder<StreamableFormSectionData>(
         stream: outSectionStream,
@@ -102,6 +106,7 @@ class StreamFormBuilder<T extends StreamFormBloc> extends StatelessWidget {
           final section = _createSectionBody(
               bloc: bloc,
               sectionData: snapshot.data,
+              formData: formData,
               sectionIndex: sectionIndex);
 
           return section;
@@ -113,6 +118,7 @@ class StreamFormBuilder<T extends StreamFormBloc> extends StatelessWidget {
   Widget _createSectionBody(
       {@required T bloc,
       @required StreamableFormSectionData sectionData,
+      @required StreamableFormData formData,
       @required int sectionIndex}) {
     final rows = <Row>[];
 
@@ -130,6 +136,7 @@ class StreamFormBuilder<T extends StreamFormBloc> extends StatelessWidget {
       final field = _createField(
           outFieldStream: outFieldStream,
           fieldData: fieldData,
+          formData: formData,
           fieldIndex: i,
           sectionIndex: sectionIndex);
 
@@ -181,6 +188,7 @@ class StreamFormBuilder<T extends StreamFormBloc> extends StatelessWidget {
   Widget _createField(
       {@required Stream outFieldStream,
       @required StreamableFormFieldData fieldData,
+      @required StreamableFormData formData,
       @required int fieldIndex,
       @required int sectionIndex}) {
     return StreamBuilder<StreamableFormFieldData>(
@@ -190,8 +198,10 @@ class StreamFormBuilder<T extends StreamFormBloc> extends StatelessWidget {
           if (!snapshot.hasData) return _empty;
           final field = buildField(
               fieldData: snapshot.data,
+              formData: formData,
               fieldIndex: fieldIndex,
-              sectionIndex: sectionIndex);
+              sectionIndex: sectionIndex,
+              context: context);
 
           if (field == null) return _empty;
 
@@ -204,8 +214,12 @@ class StreamFormBuilder<T extends StreamFormBloc> extends StatelessWidget {
 
 typedef _FieldBuilder = Widget Function(
     {@required StreamableFormFieldData fieldData,
-    int fieldIndex,
-    int sectionIndex});
+    @required StreamableFormData formData,
+    @required int fieldIndex,
+    @required int sectionIndex,
+    @required BuildContext context});
 
 typedef _FormSectionHeaderBuilder = Widget Function(
-    {@required StreamableFormSectionHeaderData headerData, int sectionIndex});
+    {@required StreamableFormSectionHeaderData headerData,
+    @required int sectionIndex,
+    @required BuildContext context});

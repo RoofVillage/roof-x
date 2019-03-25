@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:spec/index.dart';
 import 'package:form/index.dart';
 import 'package:exceptions/index.dart';
+import 'package:keyboard_accessory_components/index.dart';
+import 'package:keyboard_accessory/index.dart';
 
 import '_roof_stream_form.dart';
 
@@ -12,8 +14,16 @@ mixin FormArtboard {
   List<StreamableFormFieldData> get fieldData => null;
   List<StreamableFormSectionData> get sectionData => null;
   StreamableFormData get formData => null;
+  String get submitButtonText;
 
   double get fieldHorizontalSpacing => RoofDistance.c;
+
+  Widget get submitKeyboardAccessory => PrimaryActionKeyboardAccessoryButton(
+      onTap: (context) {
+        _resignFocus(context);
+        submit(context);
+      },
+      title: submitButtonText);
 
   Future<List<StreamableFormFieldData>> get loadedFieldData async {
     return Future<List<StreamableFormFieldData>>.value(null);
@@ -60,6 +70,11 @@ mixin FormArtboard {
       form.updateFieldData(fieldData);
     }
   }
+
+  void _resignFocus(BuildContext context) {
+    FocusScope.of(context).requestFocus(FocusNode());
+    KeyboardAccessory.of(context).hide();
+  }
 }
 
 mixin FormArtboardState {
@@ -75,11 +90,14 @@ mixin FormArtboardState {
     if (formArtboard.formData != null) {
       formData = formArtboard.formData;
     } else if (formArtboard.sectionData != null) {
-      formData = StreamableFormData(sectionData: formArtboard.sectionData);
+      formData = StreamableFormData(
+          sectionData: formArtboard.sectionData,
+          submitKeyboardAccessory: formArtboard.submitKeyboardAccessory);
     } else {
       formData = StreamableFormData.withFields(
           fieldData: formArtboard.fieldData,
-          fieldHorizontalSpacing: formArtboard.fieldHorizontalSpacing);
+          fieldHorizontalSpacing: formArtboard.fieldHorizontalSpacing,
+          submitKeyboardAccessory: formArtboard.submitKeyboardAccessory);
     }
 
     if (formData != null) {

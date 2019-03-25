@@ -14,6 +14,7 @@ class RoofTextArea extends StatelessWidget {
   final Function(String) onChanged;
   final Function(String, BuildContext) onSubmitted;
   final Function(bool) onFocusChanged;
+  final Function onTap;
   final FocusNode focusNode;
 
   RoofTextArea(
@@ -25,6 +26,7 @@ class RoofTextArea extends StatelessWidget {
       this.onChanged,
       this.onSubmitted,
       this.onFocusChanged,
+      this.onTap,
       this.focusNode});
 
   @override
@@ -35,14 +37,17 @@ class RoofTextArea extends StatelessWidget {
       fieldChildren.add(RoofFieldLabel(labelText: fieldName));
     }
 
-    fieldChildren.add(_FieldBody(
+    final body = _FieldBody(
       autofocus: autofocus,
       initialValue: initialValue,
       placeholder: placeholder,
       textInputAction: textInputAction,
       onChanged: onChanged,
+      onTap: onTap,
       focusNode: focusNode,
-    ));
+    );
+
+    fieldChildren.add(body);
 
     return Container(
         margin: RoofObjectPadding.field1,
@@ -60,6 +65,7 @@ class _FieldBody extends StatefulWidget {
   final Function(String) onChanged;
   final Function(String, BuildContext) onSubmitted;
   final Function(bool) onFocusChanged;
+  final Function onTap;
   final FocusNode focusNode;
 
   _FieldBody(
@@ -70,6 +76,7 @@ class _FieldBody extends StatefulWidget {
       this.onChanged,
       this.onSubmitted,
       this.onFocusChanged,
+      this.onTap,
       this.focusNode});
 
   _FieldBodyState createState() => _FieldBodyState();
@@ -120,6 +127,7 @@ class _FieldBodyState extends State<_FieldBody> {
             decoration: decoration,
             onSubmitted: (value) => widget.onSubmitted(value, context),
             focusNode: widget.focusNode,
+            onTap: widget.onTap,
             controller: _controller));
   }
 

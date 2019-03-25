@@ -16,6 +16,8 @@ dependencies:
     path: ../input_dock_artboard_mixin
   floating_artboard_templates:
     path: ../floating_artboard_templates
+  keyboard_accessory:
+    path: ../keyboard_accessory
 
 dev_dependencies:
   flutter_test:

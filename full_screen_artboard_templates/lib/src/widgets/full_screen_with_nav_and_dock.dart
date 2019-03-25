@@ -10,16 +10,15 @@ class FullScreenWithNavAndDock extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-        child: Column(
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: <Widget>[
+      children: [
         navBar,
         Expanded(
             child: MediaQuery.removePadding(
                 context: context, removeTop: true, child: body)),
         dock
       ],
-    ));
+    );
   }
 }

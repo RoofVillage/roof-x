@@ -21,6 +21,7 @@ class RoofTextField extends StatelessWidget {
   final Function(String) onChanged;
   final Function(String, BuildContext) onSubmitted;
   final Function(bool) onFocusChanged;
+  final Function onTap;
   final FocusNode focusNode;
 
   RoofTextField(
@@ -34,6 +35,7 @@ class RoofTextField extends StatelessWidget {
       this.onChanged,
       this.onSubmitted,
       this.onFocusChanged,
+      this.onTap,
       this.focusNode});
 
   @override
@@ -44,7 +46,6 @@ class RoofTextField extends StatelessWidget {
       fieldChildren.add(RoofFieldLabel(labelText: fieldName));
     }
 
-    print("widget title ${fieldName}");
     final fieldBody = _FieldBody(
         autofocus: autofocus,
         isPassword: isPassword,
@@ -55,6 +56,7 @@ class RoofTextField extends StatelessWidget {
         onChanged: onChanged,
         onSubmitted: onSubmitted,
         onFocusChanged: onFocusChanged,
+        onTap: onTap,
         focusNode: focusNode);
 
     fieldChildren.add(fieldBody);
@@ -77,6 +79,7 @@ class _FieldBody extends StatefulWidget {
   final Function(String) onChanged;
   final Function(String, BuildContext) onSubmitted;
   final Function(bool) onFocusChanged;
+  final Function onTap;
   final FocusNode focusNode;
 
   _FieldBody(
@@ -89,6 +92,7 @@ class _FieldBody extends StatefulWidget {
       this.onChanged,
       this.onSubmitted,
       this.onFocusChanged,
+      this.onTap,
       this.focusNode});
 
   _FieldBodyState createState() => _FieldBodyState();
@@ -133,7 +137,6 @@ class _FieldBodyState extends State<_FieldBody> {
         hintStyle:
             _typographyStyle.textStyleWithColor(theme.color.text.placeholder));
 
-    print("widget ${widget.textInputAction}");
     return TextField(
         autofocus: widget.autofocus,
         obscureText: widget.isPassword,
@@ -143,6 +146,7 @@ class _FieldBodyState extends State<_FieldBody> {
         focusNode: widget.focusNode,
         keyboardAppearance: _brightnessForTheme(theme.current),
         onSubmitted: (value) => widget.onSubmitted(value, context),
+        onTap: widget.onTap,
         controller: _controller);
   }
 

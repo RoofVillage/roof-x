@@ -85,13 +85,14 @@ class PublicActivityArtboard extends FullLogoTableFullScreenArtboard {
 
   @override
   Future<List<CellAData>> get loadRowData async {
-    //Format it the activity into streamable data on different thread.
-    final response = await PublicActivity().get(pageSize: 50);
+    return [];
+    // //Format it the activity into streamable data on different thread.
+    // final response = await PublicActivity().get(pageSize: 50);
 
-    final rowData = await compute<String, List<CellAData>>(
-        _streamableDataFromResponse, response);
+    // final rowData = await compute<String, List<CellAData>>(
+    //     _streamableDataFromResponse, response);
 
-    return rowData;
+    // return rowData;
   }
 }
 
