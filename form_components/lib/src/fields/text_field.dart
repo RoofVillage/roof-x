@@ -18,6 +18,7 @@ class RoofTextField extends StatelessWidget {
   final bool autofocus;
   final TextInputAction textInputAction;
   final MaskOption mask;
+  final TextInputType keyboardType;
   final Function(String) onChanged;
   final Function(String, BuildContext) onSubmitted;
   final Function(bool) onFocusChanged;
@@ -32,6 +33,7 @@ class RoofTextField extends StatelessWidget {
       this.autofocus = false,
       this.mask,
       this.textInputAction,
+      this.keyboardType = TextInputType.text,
       this.onChanged,
       this.onSubmitted,
       this.onFocusChanged,
@@ -53,6 +55,7 @@ class RoofTextField extends StatelessWidget {
         initialValue: initialValue,
         mask: mask,
         placeholder: placeholder,
+        keyboardType: keyboardType,
         onChanged: onChanged,
         onSubmitted: onSubmitted,
         onFocusChanged: onFocusChanged,
@@ -76,6 +79,7 @@ class _FieldBody extends StatefulWidget {
   final String initialValue;
   final String placeholder;
   final MaskOption mask;
+  final TextInputType keyboardType;
   final Function(String) onChanged;
   final Function(String, BuildContext) onSubmitted;
   final Function(bool) onFocusChanged;
@@ -88,6 +92,7 @@ class _FieldBody extends StatefulWidget {
       this.initialValue,
       this.textInputAction,
       this.mask,
+      this.keyboardType,
       this.placeholder,
       this.onChanged,
       this.onSubmitted,
@@ -106,7 +111,8 @@ class _FieldBodyState extends State<_FieldBody> {
 
   void _controllerUpdated() {
     if (widget.mask != null) {
-      final formattedText = Mask(widget.mask).apply(_controller.text);
+      final formattedText =
+          Mask(widget.mask).apply(text: _controller.text, context: context);
       if (formattedText == _controller.text) return;
       _setText(formattedText);
     }
@@ -141,6 +147,7 @@ class _FieldBodyState extends State<_FieldBody> {
         autofocus: widget.autofocus,
         obscureText: widget.isPassword,
         textInputAction: widget.textInputAction,
+        keyboardType: widget.keyboardType,
         style: _typographyStyle.textStyleWithColor(theme.color.text.primary),
         decoration: decoration,
         focusNode: widget.focusNode,

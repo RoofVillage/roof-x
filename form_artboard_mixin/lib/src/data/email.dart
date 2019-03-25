@@ -15,11 +15,10 @@ class EmailFormTextFieldData extends FormTextFieldData {
       String initialValue,
       double size,
       bool autofocus,
-      bool canSubmitWithKeyboardRaised,
       ValueChanged<String> onSubmitted,
       ValueChanged<String> onChanged,
       ValueChanged<bool> onFocusChanged,
-      bool hidden})
+      bool isHidden})
       : super(
             title: title,
             placeholder: placeholder,
@@ -28,9 +27,9 @@ class EmailFormTextFieldData extends FormTextFieldData {
             onChanged: onChanged,
             onFocusChanged: onFocusChanged,
             autofocus: autofocus,
-            canSubmitWithKeyboardRaised: canSubmitWithKeyboardRaised,
+            keyboardType: TextInputType.emailAddress,
             size: size,
-            hidden: hidden);
+            isHidden: isHidden);
 
   @override
   Future<void> validate() async {

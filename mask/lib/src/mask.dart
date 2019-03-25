@@ -1,3 +1,6 @@
+import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+
 import 'option.dart';
 import '_string_mask.dart';
 import '_money_string_mask.dart';
@@ -8,7 +11,7 @@ class Mask {
 
   Mask(this.option);
 
-  String apply(String text) {
+  String apply({@required String text, @required BuildContext context}) {
     StringMask mask;
 
     switch (option) {
@@ -16,7 +19,9 @@ class Mask {
         mask = PhoneNumberStringMask();
         break;
       case MaskOption.money:
-        mask = MoneyStringMask();
+        final local = Localizations.localeOf(context);
+        final symbol = NumberFormat(local: local).currencySymbol;
+        final
         break;
     }
 

@@ -1,6 +1,6 @@
 import 'package:stream/index.dart';
 
 class StreamableTableRowData extends StreamableData {
-  StreamableTableRowData({String key, bool hidden})
-      : super(key: key, hidden: hidden);
+  StreamableTableRowData({String key, bool isHidden})
+      : super(key: key, isHidden: isHidden);
 }

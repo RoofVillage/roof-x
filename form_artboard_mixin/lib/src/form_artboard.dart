@@ -15,6 +15,7 @@ mixin FormArtboard {
   List<StreamableFormSectionData> get sectionData => null;
   StreamableFormData get formData => null;
   String get submitButtonText;
+  bool get canSubmitWitheyboardRaised => true;
 
   double get fieldHorizontalSpacing => RoofDistance.c;
 
@@ -57,20 +58,6 @@ mixin FormArtboard {
     return Future.wait(fieldData.map((data) async => await data.validate()));
   }
 
-  void _enableForm() {
-    for (final fieldData in fieldData) {
-      fieldData.enabled = true;
-      form.updateFieldData(fieldData);
-    }
-  }
-
-  void _disableForm() {
-    for (final fieldData in fieldData) {
-      fieldData.enabled = false;
-      form.updateFieldData(fieldData);
-    }
-  }
-
   void _resignFocus(BuildContext context) {
     FocusScope.of(context).requestFocus(FocusNode());
     KeyboardAccessory.of(context).hide();
@@ -92,12 +79,14 @@ mixin FormArtboardState {
     } else if (formArtboard.sectionData != null) {
       formData = StreamableFormData(
           sectionData: formArtboard.sectionData,
-          submitKeyboardAccessory: formArtboard.submitKeyboardAccessory);
+          submitKeyboardAccessory: formArtboard.submitKeyboardAccessory,
+          canSubmitWithKeyboardRaised: formArtboard.canSubmitWitheyboardRaised);
     } else {
       formData = StreamableFormData.withFields(
           fieldData: formArtboard.fieldData,
           fieldHorizontalSpacing: formArtboard.fieldHorizontalSpacing,
-          submitKeyboardAccessory: formArtboard.submitKeyboardAccessory);
+          submitKeyboardAccessory: formArtboard.submitKeyboardAccessory,
+          canSubmitWithKeyboardRaised: formArtboard.canSubmitWitheyboardRaised);
     }
 
     if (formData != null) {
@@ -111,21 +100,23 @@ mixin FormArtboardState {
   }
 
   Future<void> onSubmitButtonTap(BuildContext context) async {
-    formArtboard._disableForm();
+    _disableForm();
 
     try {
       await formArtboard._validateFields();
       await formArtboard.validate();
     } on FormValidationException catch (e) {
       _handleException(context, e);
-      formArtboard._enableForm();
+      _enableForm();
+
+      ///commented out for testing;
       // return;
     }
 
     _handleLoading(context);
     await formArtboard.submit(context);
     _restoreState(context);
-    formArtboard._enableForm();
+    _enableForm();
   }
 
   void _handleException(
@@ -142,5 +133,19 @@ mixin FormArtboardState {
   void _restoreState(BuildContext context) {
     if (formSubmitState == FormSubmitState.normal) return;
     setState(() => formSubmitState = FormSubmitState.normal);
+  }
+
+  void _enableForm() {
+    for (final fieldData in formArtboard.fieldData) {
+      fieldData.enabled = true;
+      formArtboard.form.updateFieldData(fieldData);
+    }
+  }
+
+  void _disableForm() {
+    for (final fieldData in formArtboard.fieldData) {
+      fieldData.enabled = false;
+      formArtboard.form.updateFieldData(fieldData);
+    }
   }
 }

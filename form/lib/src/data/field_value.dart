@@ -11,6 +11,6 @@ class StreamableFormFieldValueData<T> extends StreamableData {
     @required String fieldKey,
     this.value,
     this.isInFocus,
-    bool hidden = false,
-  }) : super(key: fieldKey, hidden: hidden);
+    bool isHidden = false,
+  }) : super(key: fieldKey, isHidden: isHidden);
 }

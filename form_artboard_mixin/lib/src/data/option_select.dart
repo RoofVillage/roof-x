@@ -19,11 +19,11 @@ class FormOptionSelectData
       double size,
       ValueChanged<List<FormOptionSelectValueData>> onChanged,
       ValueChanged<bool> onFocusChanged,
-      bool hidden})
+      bool isHidden})
       : super(
             initialValue: initialValue,
             onChanged: onChanged,
             onFocusChanged: onFocusChanged,
             size: size,
-            hidden: hidden);
+            isHidden: isHidden);
 }

@@ -1,33 +1,32 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:mask/index.dart';
-import 'composition_field.dart';
+import 'text_field.dart';
 
-abstract class FormTextFieldData extends FormCompositionFieldData {
-  MaskOption mask;
-
-  FormTextFieldData(
-      {this.mask,
-      String title,
-      String placeholder,
+class CurrencyFormTextFieldData extends FormTextFieldData {
+  CurrencyFormTextFieldData(
+      {String title = "Amount",
+      String placeholder = "\$0.00",
       String initialValue,
-      TextInputType keyboardType,
       double size,
       bool autofocus,
       ValueChanged<String> onSubmitted,
       ValueChanged<String> onChanged,
       ValueChanged<bool> onFocusChanged,
-      bool isOptional,
       bool isHidden})
       : super(
+            mask: MaskOption.money,
             title: title,
             placeholder: placeholder,
             initialValue: initialValue,
-            keyboardType: keyboardType,
             onSubmitted: onSubmitted,
             onChanged: onChanged,
             onFocusChanged: onFocusChanged,
             autofocus: autofocus,
+            keyboardType: TextInputType.numberWithOptions(decimal: true),
             size: size,
-            isOptional: isOptional,
             isHidden: isHidden);
+
+  Future<void> validate() async {}
 }

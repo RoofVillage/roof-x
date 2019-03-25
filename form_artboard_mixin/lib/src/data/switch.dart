@@ -11,12 +11,12 @@ class FormSwitchData extends StreamableFormFieldData<bool> {
       double size,
       ValueChanged<bool> onChanged,
       ValueChanged<bool> onFocusChanged,
-      bool hidden})
+      bool isHidden})
       : super(
             title: title,
             initialValue: initialValue,
             size: size,
             onChanged: onChanged,
             onFocusChanged: onFocusChanged,
-            hidden: hidden);
+            isHidden: isHidden);
 }

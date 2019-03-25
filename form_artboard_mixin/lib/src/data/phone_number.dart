@@ -12,11 +12,10 @@ class PhoneNumberFormTextFieldData extends FormTextFieldData {
       String initialValue,
       double size,
       bool autofocus,
-      bool canSubmitWithKeyboardRaised,
       ValueChanged<String> onSubmitted,
       ValueChanged<String> onChanged,
       ValueChanged<bool> onFocusChanged,
-      bool hidden})
+      bool isHidden})
       : super(
             mask: MaskOption.phoneNumber,
             title: title,
@@ -26,9 +25,9 @@ class PhoneNumberFormTextFieldData extends FormTextFieldData {
             onChanged: onChanged,
             onFocusChanged: onFocusChanged,
             autofocus: autofocus,
-            canSubmitWithKeyboardRaised: canSubmitWithKeyboardRaised,
+            keyboardType: TextInputType.phone,
             size: size,
-            hidden: hidden);
+            isHidden: isHidden);
 
   Future<void> validate() async {
     if (value.length < 5) {

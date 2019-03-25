@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart';
+
 import '_string_mask.dart';
 
 class MoneyStringMask extends StringMask {
@@ -8,8 +10,8 @@ class MoneyStringMask extends StringMask {
   final int precision;
 
   MoneyStringMask(
-      {this.decimalSeparator = ',',
-      this.thousandSeparator = '.',
+      {this.decimalSeparator = '.',
+      this.thousandSeparator = ',',
       this.rightSymbol = '',
       this.leftSymbol = '',
       this.precision = 2}) {
@@ -17,11 +19,9 @@ class MoneyStringMask extends StringMask {
   }
 
   double _valueFromString(String text) {
-    List<String> parts = getOnlyNumbers(text).split('').toList(growable: true);
-
-    parts.insert(parts.length - precision, '.');
-
-    return double.parse(parts.join());
+    final string = getOnlyNumbers(text);
+    if (string.isEmpty) return 0;
+    return double.parse(string);
   }
 
   _validateConfig() {
@@ -33,7 +33,8 @@ class MoneyStringMask extends StringMask {
   }
 
   String applyMask(String text) {
-    final value = (text == null) ? 0 : _valueFromString(text);
+    if (text == null || text.isEmpty) return "";
+    final value = _valueFromString(text);
     List<String> textRepresentation = value
         .toStringAsFixed(precision)
         .replaceAll('.', '')
@@ -53,14 +54,15 @@ class MoneyStringMask extends StringMask {
 
     String masked = textRepresentation.reversed.join('');
 
-    if (rightSymbol.length > 0) {
-      masked += rightSymbol;
-    }
+    // if (rightSymbol.length > 0) {
+    //   masked += rightSymbol;
+    // }
 
-    if (leftSymbol.length > 0) {
-      masked = leftSymbol + masked;
-    }
+    // if (leftSymbol.length > 0) {
+    //   masked = leftSymbol + masked;
+    // }
 
-    return masked;
+    print("MASK: $masked");
+    return NumberFormat.simpleCurrency().format(double.parse(masked));
   }
 }
