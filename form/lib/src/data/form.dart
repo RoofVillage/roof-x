@@ -8,20 +8,24 @@ import '../util/index.dart';
 
 class StreamableFormData extends StreamableData {
   final List<StreamableFormSectionData> sectionData;
+  final Widget submitKeyboardAccessory;
 
   List<StreamableFormFieldData> get fieldData {
     return sectionData.expand((sectionData) => sectionData.fieldData).toList();
   }
 
-  StreamableFormData({this.sectionData});
+  StreamableFormData({this.sectionData, this.submitKeyboardAccessory});
 
   StreamableFormData.withFields(
-      {List<StreamableFormFieldData> fieldData, double fieldHorizontalSpacing})
+      {List<StreamableFormFieldData> fieldData,
+      double fieldHorizontalSpacing,
+      Widget submitKeyboardAccessory})
       : sectionData = [
           StreamableFormSectionData(
               fieldData: fieldData ?? [],
               fieldHorizontalSpacing: fieldHorizontalSpacing ?? 0)
-        ];
+        ],
+        submitKeyboardAccessory = submitKeyboardAccessory;
 
   void updateFieldData(StreamableFormFieldData fieldData) {
     final formLocation = formLocationOfFieldData(fieldData);

@@ -17,18 +17,20 @@ class RoofTheme extends StatefulWidget {
   }
 
   @override
-  State<StatefulWidget> createState() => RoofThemeState(theme);
+  State<StatefulWidget> createState() => RoofThemeState();
 }
 
 class RoofThemeState extends State<RoofTheme> {
-  RoofThemeOption current;
+  RoofThemeOption _current;
 
-  RoofThemeState(RoofThemeOption current)
-      : this.current = current,
-        super();
+  @override
+  void initState() {
+    _current = widget.theme;
+    super.initState();
+  }
 
   void use(RoofThemeOption theme) {
-    setState(() => this.current = theme);
+    setState(() => this._current = theme);
   }
 
   @override
@@ -78,9 +80,9 @@ class RoofInheritedTheme extends InheritedWidget {
 
   RoofInheritedTheme(
       {Key key, @required RoofThemeState data, @required Widget child})
-      : current = data.current,
+      : current = data._current,
         use = data.use,
-        color = RoofSemanticColor(current: data.current),
+        color = RoofSemanticColor(current: data._current),
         super(key: key, child: child);
 
   @override

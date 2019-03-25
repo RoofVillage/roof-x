@@ -19,6 +19,16 @@ abstract class StreamForm<T extends StreamableFormFieldData,
     );
   }
 
-  Widget buildField({T fieldData, int fieldIndex, int sectionIndex}) => null;
-  Widget buildSectionHeader({U headerData, int sectionIndex}) => null;
+  Widget buildField(
+          {@required T fieldData,
+          @required StreamableFormData formData,
+          @required int fieldIndex,
+          @required int sectionIndex,
+          @required BuildContext context}) =>
+      null;
+  Widget buildSectionHeader(
+          {@required U headerData,
+          @required int sectionIndex,
+          @required BuildContext context}) =>
+      null;
 }

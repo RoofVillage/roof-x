@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:button_components/index.dart';
 import 'package:typography/index.dart';
@@ -14,10 +12,8 @@ import 'mixins/index.dart';
 abstract class FormFloatingArtboard extends FloatingArtboard with FormArtboard {
   String get title;
   String get subtitle => null;
-  String get submitButtonText;
   String get auxiliaryDescription => null;
   String get auxiliaryButtonText => null;
-  Future<void> submit(BuildContext context);
 
   @override
   State<StatefulWidget> createState() => _FormFloatingArtboardState();
@@ -38,6 +34,13 @@ class _FormFloatingArtboardState extends State<FormFloatingArtboard>
         return widget.submitButtonText;
     }
     return null;
+  }
+
+  bool _isFocused = false;
+  set isFocused(bool isFocused) {
+    setState(() {
+      _isFocused = isFocused;
+    });
   }
 
   final _headerStyle = RoofTypography.heading1;
@@ -64,19 +67,32 @@ class _FormFloatingArtboardState extends State<FormFloatingArtboard>
       widgets.add(Text(widget.subtitle, style: subtitleStyle));
     }
 
-    widgets.addAll([
+    widgets.add(
       Padding(padding: _bodyVerticalPadding, child: buildForm(context)),
-      Padding(padding: _buttonVerticalPadding, child: submitButton)
-    ]);
+    );
+
+    if (!_isFocused) {
+      widgets
+          .add(Padding(padding: _buttonVerticalPadding, child: submitButton));
+    }
+
     return widgets;
   }
 
   @override
   Widget build(BuildContext context) {
-    widget.form.onFocus =
-        () => FloatingArtboardNavigator.of(context).hideNavButtons();
-    widget.form.onResignFocus =
-        () => FloatingArtboardNavigator.of(context).showNavButtons();
+    widget.form.onFocus = () => _onFocus(context);
+    widget.form.onResignFocus = () => _onResignFocus(context);
     return super.build(context);
+  }
+
+  void _onFocus(BuildContext context) {
+    isFocused = true;
+    FloatingArtboardNavigator.of(context).hideNavButtons(context);
+  }
+
+  void _onResignFocus(BuildContext context) {
+    isFocused = false;
+    FloatingArtboardNavigator.of(context).showNavButtons(context);
   }
 }

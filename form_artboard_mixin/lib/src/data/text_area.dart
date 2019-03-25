@@ -17,6 +17,7 @@ class FormTextAreaData extends FormCompositionFieldData {
       ValueChanged<String> onSubmitted,
       ValueChanged<String> onChanged,
       ValueChanged<bool> onFocusChanged,
+      bool isOptional,
       bool hidden})
       : super(
             title: title,
@@ -28,6 +29,7 @@ class FormTextAreaData extends FormCompositionFieldData {
             autofocus: autofocus,
             canSubmitWithKeyboardRaised: canSubmitWithKeyboardRaised,
             size: size,
+            isOptional: isOptional,
             hidden: hidden);
 
   Future<void> validate() async {

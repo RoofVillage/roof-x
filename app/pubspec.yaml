@@ -15,8 +15,6 @@ dependencies:
     path: ../stream
   auth_artboards:
     path: ../auth_artboards
-  thread_artboards:
-    path: ../thread_artboards
 
 dev_dependencies:
   flutter_test:

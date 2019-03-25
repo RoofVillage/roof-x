@@ -5,26 +5,22 @@ import 'package:full_screen_artboard_templates/index.dart';
 import 'package:floating_artboard_templates/index.dart';
 import 'package:theme/index.dart';
 import 'package:artboard/index.dart';
+import 'package:keyboard_accessory/index.dart';
 
 import 'routing.dart';
 
 class FullScreenArtboardNavigator extends ArtboardNavigator {
-  final FullScreenArtboard artboard;
-
-  FullScreenArtboardNavigator({this.artboard});
+  FullScreenArtboardNavigator({FullScreenArtboard artboard})
+      : super(child: artboard);
 
   @override
-  State<StatefulWidget> createState() =>
-      FullScreenArtboardNavigatorState(artboard: artboard);
+  State<StatefulWidget> createState() => FullScreenArtboardNavigatorState();
 }
 
 class FullScreenArtboardNavigatorState extends ArtboardNavigatorState {
-  final FullScreenArtboard artboard;
-
-  FullScreenArtboardNavigatorState({this.artboard});
-
   Widget build(BuildContext context) {
-    return InheritedArtboardNavigator(data: this, child: artboard);
+    return InheritedArtboardNavigator(
+        data: this, child: KeyboardAccessory(child: widget.child));
   }
 
   Future goTo(Artboard artboard, {BuildContext context}) async {

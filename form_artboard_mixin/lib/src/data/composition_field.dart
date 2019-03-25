@@ -9,12 +9,14 @@ abstract class FormCompositionFieldData
   TextInputAction inputAction;
   bool canSubmitWithKeyboardRaised;
   ValueChanged<String> onSubmitted;
+  bool isOptional;
 
   FormCompositionFieldData(
       {this.title,
       this.placeholder,
       this.inputAction,
       this.onSubmitted,
+      bool isOptional,
       bool autofocus,
       bool canSubmitWithKeyboardRaised,
       String initialValue,
@@ -23,6 +25,7 @@ abstract class FormCompositionFieldData
       ValueChanged<bool> onFocusChanged,
       bool hidden})
       : autofocus = autofocus ?? false,
+        isOptional = isOptional ?? false,
         canSubmitWithKeyboardRaised = canSubmitWithKeyboardRaised ?? true,
         super(
             initialValue: initialValue ?? "",

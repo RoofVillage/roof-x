@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:form/index.dart';
 import 'package:form_components/index.dart';
+import 'package:keyboard_accessory/index.dart';
+import 'package:keyboard_accessory_components/index.dart';
 
 import 'data/index.dart';
 
+enum KeyboardAccessoryState { hideKeyboard, submit }
+
 class RoofStreamForm extends StreamForm<StreamableFormFieldData,
     StreamableFormSectionHeaderData> {
+  static const _hideKeyboardTitle = "Hide keyboard";
+  static const _doneKeyboardTitle = "Done";
+
   final _focusNodeManager = _FocusNodeManager();
 
   List<FormCompositionFieldData> get _allCompositionFieldData {
@@ -20,7 +27,11 @@ class RoofStreamForm extends StreamForm<StreamableFormFieldData,
   }
 
   Widget buildTextField(
-      {FormTextFieldData fieldData, int fieldIndex, int sectionIndex}) {
+      {FormTextFieldData fieldData,
+      StreamableFormData formData,
+      int fieldIndex,
+      int sectionIndex,
+      BuildContext context}) {
     final inputAction = _getInputActionForCompositionFieldData(fieldData);
     final focusNode = _focusNodeManager.nodeFor(fieldData);
     return RoofTextField(
@@ -38,6 +49,11 @@ class RoofStreamForm extends StreamForm<StreamableFormFieldData,
         _onCompositionViewSubmitted(fieldData, value, context);
       },
       onFocusChanged: (isInFocus) {
+        if (isInFocus) {
+          final button = _buttonFor(fieldData: fieldData, formData: formData);
+          KeyboardAccessory.of(context).child =
+              KeyboardAccessoryShortBar(children: [button]);
+        }
         _onCompositionViewFocusChanged(fieldData, isInFocus);
       },
       focusNode: focusNode,
@@ -45,7 +61,11 @@ class RoofStreamForm extends StreamForm<StreamableFormFieldData,
   }
 
   Widget buildTextArea(
-      {FormTextAreaData fieldData, int fieldIndex, int sectionIndex}) {
+      {FormTextAreaData fieldData,
+      StreamableFormData formData,
+      int fieldIndex,
+      int sectionIndex,
+      BuildContext context}) {
     final inputAction = _getInputActionForCompositionFieldData(fieldData);
 
     return RoofTextArea(
@@ -99,18 +119,23 @@ class RoofStreamForm extends StreamForm<StreamableFormFieldData,
   Widget buildField(
       {BuildContext context,
       StreamableFormFieldData fieldData,
+      StreamableFormData formData,
       int fieldIndex,
       int sectionIndex}) {
     if (fieldData is FormTextFieldData) {
       return buildTextField(
           fieldData: fieldData,
+          formData: formData,
           fieldIndex: fieldIndex,
-          sectionIndex: sectionIndex);
+          sectionIndex: sectionIndex,
+          context: context);
     } else if (fieldData is FormTextAreaData) {
       return buildTextArea(
           fieldData: fieldData,
+          formData: formData,
           fieldIndex: fieldIndex,
-          sectionIndex: sectionIndex);
+          sectionIndex: sectionIndex,
+          context: context);
     } else if (fieldData is FormSwitchData) {
       return buildSwitch(
           fieldData: fieldData,
@@ -135,8 +160,7 @@ class RoofStreamForm extends StreamForm<StreamableFormFieldData,
       final focusNode = _focusNodeManager.nodeFor(nextEmptyFieldData);
       if (focusNode != null) FocusScope.of(context).requestFocus(focusNode);
     } else {
-      final focusNode = _focusNodeManager.nodeFor(fieldData);
-      if (focusNode != null) focusNode.unfocus();
+      _resignFocus(fieldData: fieldData, context: context);
     }
   }
 
@@ -147,17 +171,20 @@ class RoofStreamForm extends StreamForm<StreamableFormFieldData,
     final index = allCompositionFieldData.indexOf(fieldData);
     for (var i = index + 1; i < allCompositionFieldData.length; i++) {
       final subsequentFieldData = allCompositionFieldData[i];
-      if (subsequentFieldData.value.isEmpty) return subsequentFieldData;
+      if (subsequentFieldData.value.isEmpty && !subsequentFieldData.isOptional)
+        return subsequentFieldData;
     }
     for (var i = 0; i < index; i++) {
       final previousFieldData = allCompositionFieldData[i];
-      if (previousFieldData.value.isEmpty) return previousFieldData;
+      if (previousFieldData.value.isEmpty && !previousFieldData.isOptional)
+        return previousFieldData;
     }
     return null;
   }
 
   TextInputAction _getInputActionForCompositionFieldData(
       FormCompositionFieldData fieldData) {
+    if (fieldData.inputAction != null) return fieldData.inputAction;
     final nextEmpty = _nextEmptyCompositionFieldDataAfter(fieldData);
 
     return nextEmpty != null ? TextInputAction.next : TextInputAction.done;
@@ -191,21 +218,39 @@ class RoofStreamForm extends StreamForm<StreamableFormFieldData,
     }
   }
 
-  // KeyboardButtonData _getKeyboardButtonDataForCompositionFieldData(
-  //     FormCompositionFieldData fieldData) {
-  //   final hasEmptyField =
-  //       _nextEmptyCompositionFieldDataAfter(fieldData) != null;
+  _resignFocus(
+      {@required FormCompositionFieldData fieldData,
+      @required BuildContext context}) {
+    final focusNode = _focusNodeManager.nodeFor(fieldData);
+    if (focusNode != null) focusNode.unfocus();
+    KeyboardAccessory.of(context).hide();
+  }
 
-  //   // final submitState = (fieldData.canSubmitWithKeyboardRaised ?  );
-  //   final nextButton = KeyboardButtonData(
-  //       text: "Next",
-  //       onTap: (context) => FocusScope.of(context).requestFocus(FocusNode()));
+  ActionKeyboardAccessoryButton _buttonFor({
+    @required FormCompositionFieldData fieldData,
+    StreamableFormData formData,
+  }) {
+    final _nextButton = SecondaryActionKeyboardAccessoryButton(
+        title: _hideKeyboardTitle,
+        onTap: (context) =>
+            _resignFocus(fieldData: fieldData, context: context));
+    final _doneButton = PrimaryActionKeyboardAccessoryButton(
+        title: _doneKeyboardTitle,
+        onTap: (context) =>
+            _resignFocus(fieldData: fieldData, context: context));
 
-  //   final submitButton = KeyboardButtonData(
-  //       text: "Next",
-  //       onTap: (context) => FocusScope.of(context).requestFocus(FocusNode()));
-  //   // return hasEmptyField ? nextButton : nextButton);
-  // }
+    switch (_getInputActionForCompositionFieldData(fieldData)) {
+      case TextInputAction.next:
+        return _nextButton;
+      default:
+        if (fieldData.canSubmitWithKeyboardRaised &&
+            formData != null &&
+            formData.submitKeyboardAccessory != null) {
+          return formData.submitKeyboardAccessory;
+        }
+        return _doneButton;
+    }
+  }
 }
 
 class _FocusNodeManager {
@@ -219,10 +264,3 @@ class _FocusNodeManager {
     return newNode;
   }
 }
-
-// class KeyboardButtonData {
-//   final String text;
-//   final Function(BuildContext) onTap;
-
-//   KeyboardButtonData({@required this.text, @required this.onTap});
-// }
