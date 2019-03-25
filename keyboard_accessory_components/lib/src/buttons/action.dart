@@ -7,7 +7,6 @@ abstract class ActionKeyboardAccessoryButton extends StatelessWidget {
       {@required BuildContext context,
       @required Function onTap,
       @required Widget child}) {
-    //Tyler, this is the thing we were talking about for expanded the button.
-    return Flexible(child: GestureDetector(onTap: onTap, child: child));
+    return Expanded(child: GestureDetector(onTap: onTap, child: child));
   }
 }
