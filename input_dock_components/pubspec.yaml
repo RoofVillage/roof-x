@@ -7,23 +7,24 @@ environment:
   sdk: ">=2.1.0 <3.0.0"
 
 dependencies:
-  multi_image_picker: ^3.0.23
   flutter:
     sdk: flutter
+  artboard:
+    path: ../artboard
+  file_upload_artboards:
+    path: ../file_upload_artboards
+  haptics:
+    path: ../haptics
+  icon_library:
+    path: ../icon_library
+  image_picker_component:
+    path: ../image_picker_component
   spec:
     path: ../spec
   theme:
     path: ../theme
   typography:
     path: ../typography
-  haptics:
-    path: ../haptics
-  icon_library:
-    path: ../icon_library
-  artboard:
-    path: ../artboard
-  file_upload_artboards:
-    path: ../file_upload_artboards
 
 dev_dependencies:
   flutter_test:
