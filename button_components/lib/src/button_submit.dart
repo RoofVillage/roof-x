@@ -26,10 +26,14 @@ class RoofSubmitButton extends RoofButton {
         return theme.color.text.submitAction;
       };
 
-  RoofSubmitButton(
-      {Function onTap,
-      String text,
-      StandardIconReference iconReference,
-      ButtonState buttonState})
-      : super(onTap: onTap, text: text, iconReference: iconReference);
+  RoofSubmitButton({
+    Function onTap,
+    String text,
+    StandardIconReference iconReference,
+    ButtonState buttonState,
+  }) : super(
+          onTap: onTap,
+          text: text,
+          iconReference: iconReference,
+        );
 }

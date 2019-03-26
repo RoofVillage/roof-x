@@ -6,6 +6,7 @@ import 'package:form/index.dart';
 import 'package:exceptions/index.dart';
 import 'package:keyboard_accessory_components/index.dart';
 import 'package:keyboard_accessory/index.dart';
+import 'package:haptics/index.dart';
 
 import '_roof_stream_form.dart';
 
@@ -123,6 +124,7 @@ mixin FormArtboardState {
       BuildContext context, FormValidationException exception) {
     this.exception = exception;
     setState(() => formSubmitState = FormSubmitState.exception);
+    Haptic.triggerWith(HapticOption.medium);
   }
 
   void _handleLoading(BuildContext context) {
