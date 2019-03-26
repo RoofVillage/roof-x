@@ -78,6 +78,16 @@ class RoofBackgroundColor {
     return null;
   }
 
+  Color get errorButton {
+    switch (_current) {
+      case RoofThemeOption.light:
+        return RoofColor.alert;
+      case RoofThemeOption.dark:
+        return RoofColor.alert;
+    }
+    return null;
+  }
+
   Color get inactiveButton {
     switch (_current) {
       case RoofThemeOption.light:

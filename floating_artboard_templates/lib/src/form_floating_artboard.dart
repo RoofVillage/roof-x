@@ -24,14 +24,24 @@ class _FormFloatingArtboardState extends State<FormFloatingArtboard>
   @override
   FormArtboard get formArtboard => widget;
 
-  String get _submitButtonText {
+  Widget get _submitButton {
     switch (formSubmitState) {
       case FormSubmitState.exception:
-        return exception.message;
+        return RoofSubmitButton(
+          text: exception.message,
+          onTap: onSubmitButtonTap,
+        );
       case FormSubmitState.loading:
-        return "Loading";
+        return RoofSubmitButton(
+          text: "Loading",
+          onTap: onSubmitButtonTap,
+          buttonState: ButtonState.inactive,
+        );
       case FormSubmitState.normal:
-        return widget.submitButtonText;
+        return RoofSubmitButton(
+          text: widget.submitButtonText,
+          buttonState: ButtonState.error,
+        );
     }
     return null;
   }
@@ -58,8 +68,7 @@ class _FormFloatingArtboardState extends State<FormFloatingArtboard>
     final headerStyle = _headerStyle.textStyleWithColor(headerColor);
     final subtitleStyle = _subtitleStyle.textStyleWithColor(subtitleColor);
 
-    final submitButton =
-        RoofSubmitButton(text: _submitButtonText, onTap: onSubmitButtonTap);
+    final submitButton = _submitButton;
 
     final widgets = <Widget>[Text(widget.title, style: headerStyle)];
 
