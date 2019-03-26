@@ -24,8 +24,9 @@ class CurrencyFormTextFieldData extends FormTextFieldData {
             onChanged: onChanged,
             onFocusChanged: onFocusChanged,
             autofocus: autofocus,
-            keyboardType: TextInputType
-                .text, //TextInputType.numberWithOptions(decimal: true),
+            keyboardType: TextInputType.numberWithOptions(
+              decimal: true,
+            ), //TextInputType.numberWithOptions(decimal: true),
             size: size,
             isHidden: isHidden);
 
