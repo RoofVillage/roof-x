@@ -19,11 +19,10 @@ class PasswordFormTextFieldData extends FormTextFieldData {
       String initialValue,
       double size,
       bool autofocus,
-      bool canSubmitWithKeyboardRaised,
       ValueChanged<String> onSubmitted,
       ValueChanged<String> onChanged,
       ValueChanged<bool> onFocusChanged,
-      bool hidden})
+      bool isHidden})
       : super(
             title: title,
             placeholder: placeholder,
@@ -32,9 +31,8 @@ class PasswordFormTextFieldData extends FormTextFieldData {
             onChanged: onChanged,
             onFocusChanged: onFocusChanged,
             autofocus: autofocus,
-            canSubmitWithKeyboardRaised: canSubmitWithKeyboardRaised,
             size: size,
-            hidden: hidden);
+            isHidden: isHidden);
 
   Future<void> validate() async {
     if (value.length > Consts.maxCharsInPassword) {

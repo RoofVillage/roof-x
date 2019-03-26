@@ -10,17 +10,18 @@ abstract class RoofButton extends StatefulWidget {
   final Function(BuildContext context) onTap;
   final String text;
   final StandardIconReference iconReference;
-  final double height;
 
   ColorGetter get backgroundColor;
   ColorGetter get borderColor;
   ColorGetter get textColor;
 
-  RoofButton(
-      {this.onTap,
-      this.text,
-      this.iconReference,
-      this.height = RoofDistance.e});
+  RoofButton({
+    this.onTap,
+    this.text,
+    this.iconReference,
+  });
+
+  final double _buttonHeight = 50;
 
   _RoofButtonState createState() => _RoofButtonState();
 }
@@ -41,7 +42,7 @@ class _RoofButtonState extends State<RoofButton> {
 
     if (widget.iconReference != null) {
       final iconPadding = widget.text != null
-          ? EdgeInsets.fromLTRB(0, 0, RoofDistance.b, 0)
+          ? EdgeInsets.only(right: RoofDistance.b)
           : EdgeInsets.all(0);
 
       final buttonIcon = Container(
@@ -69,21 +70,24 @@ class _RoofButtonState extends State<RoofButton> {
     );
 
     return GestureDetector(
-        onTapDown: _onTapDown,
-        onTap: _onTap,
-        onTapUp: _onTapUp,
-        onTapCancel: _onTapCancel,
-        child: Container(
-            height: widget.height,
-            decoration: decoration,
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: buttonChildren)));
+      onTapDown: _onTapDown,
+      onTap: _onTap,
+      onTapUp: _onTapUp,
+      onTapCancel: _onTapCancel,
+      child: Container(
+        height: widget._buttonHeight,
+        decoration: decoration,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: buttonChildren,
+        ),
+      ),
+    );
   }
 
   void _onTap() {
     Haptic.triggerWith(HapticOption.light);
-    widget.onTap(context);
+    if (widget.onTap != null) widget.onTap(context);
   }
 
   void _onTapDown(TapDownDetails details) {

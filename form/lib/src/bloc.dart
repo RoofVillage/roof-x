@@ -47,12 +47,12 @@ class StreamFormBloc extends BlocBase {
   void fieldChanged(String fieldKey, dynamic oldValue, dynamic newValue) {}
 
   void toggleFieldDataVisibility(StreamableFormFieldData fieldData) {
-    fieldData.hidden = !fieldData.hidden;
+    fieldData.isHidden = !fieldData.isHidden;
     updateFieldData(fieldData);
   }
 
   void toggleSectionDataVisibility(StreamableFormSectionData sectionData) {
-    sectionData.hidden = !sectionData.hidden;
+    sectionData.isHidden = !sectionData.isHidden;
     updateSectionData(sectionData);
   }
 
@@ -254,8 +254,8 @@ class StreamFormBloc extends BlocBase {
     //Remove the data.
     _formData.removeAtFormLocation(location);
 
-    //Mark the row as hidden.
-    fieldData.hidden = true;
+    //Mark the row as isHidden.
+    fieldData.isHidden = true;
 
     //Post a message that the row changed.
     _inField.add(fieldData);

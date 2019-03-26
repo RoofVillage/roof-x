@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'utils/index.dart';
+import 'color.dart';
 import 'option.dart';
 
 class RoofBackgroundColor {
@@ -51,7 +51,7 @@ class RoofBackgroundColor {
   Color get scrim {
     switch (_current) {
       case RoofThemeOption.light:
-        return RoofColor.black3.withOpacity(0.7);
+        return RoofColor.black3.withOpacity(0.5);
       case RoofThemeOption.dark:
         return RoofColor.black3.withOpacity(0.7);
     }
@@ -74,6 +74,16 @@ class RoofBackgroundColor {
         return RoofColor.white1;
       case RoofThemeOption.dark:
         return RoofColor.black2;
+    }
+    return null;
+  }
+
+  Color get errorButton {
+    switch (_current) {
+      case RoofThemeOption.light:
+        return RoofColor.alert;
+      case RoofThemeOption.dark:
+        return RoofColor.alert;
     }
     return null;
   }

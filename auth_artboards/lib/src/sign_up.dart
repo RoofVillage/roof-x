@@ -16,6 +16,7 @@ class SignUpArtboard extends FormFloatingArtboard {
 
   @override
   List<StreamableFormFieldData> get fieldData => [
+        _temp,
         _nameFieldData,
         _emailFieldData,
         _passwordFieldData,
@@ -24,6 +25,7 @@ class SignUpArtboard extends FormFloatingArtboard {
   final _nameFieldData = MediumFormTextFieldData(title: "Full name");
   final _emailFieldData = EmailFormTextFieldData();
   final _passwordFieldData = PasswordFormTextFieldData();
+  final _temp = CurrencyFormTextFieldData();
 
   @override
   Future<void> submit(BuildContext context) async {

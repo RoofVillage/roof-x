@@ -10,6 +10,7 @@ class RoofTextArea extends StatelessWidget {
   final String placeholder;
   final String initialValue;
   final bool autofocus;
+  final TextInputType keyboardType;
   final TextInputAction textInputAction;
   final Function(String) onChanged;
   final Function(String, BuildContext) onSubmitted;
@@ -23,6 +24,7 @@ class RoofTextArea extends StatelessWidget {
       this.initialValue,
       this.autofocus = false,
       this.textInputAction,
+      this.keyboardType = TextInputType.text,
       this.onChanged,
       this.onSubmitted,
       this.onFocusChanged,
@@ -63,6 +65,7 @@ class _FieldBody extends StatefulWidget {
   final String placeholder;
   final TextInputAction textInputAction;
   final Function(String) onChanged;
+  final TextInputType keyboardType;
   final Function(String, BuildContext) onSubmitted;
   final Function(bool) onFocusChanged;
   final Function onTap;
@@ -73,6 +76,7 @@ class _FieldBody extends StatefulWidget {
       this.initialValue,
       this.textInputAction,
       this.placeholder,
+      this.keyboardType,
       this.onChanged,
       this.onSubmitted,
       this.onFocusChanged,
@@ -125,6 +129,7 @@ class _FieldBodyState extends State<_FieldBody> {
             textInputAction: widget.textInputAction,
             maxLines: _maxLines,
             decoration: decoration,
+            keyboardType: widget.keyboardType,
             onSubmitted: (value) => widget.onSubmitted(value, context),
             focusNode: widget.focusNode,
             onTap: widget.onTap,
