@@ -21,6 +21,8 @@ abstract class RoofButton extends StatefulWidget {
     this.iconReference,
   });
 
+  final double _buttonHeight = 50;
+
   _RoofButtonState createState() => _RoofButtonState();
 }
 
@@ -73,7 +75,7 @@ class _RoofButtonState extends State<RoofButton> {
       onTapUp: _onTapUp,
       onTapCancel: _onTapCancel,
       child: Container(
-        height: RoofDistance.e2,
+        height: widget._buttonHeight,
         decoration: decoration,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
