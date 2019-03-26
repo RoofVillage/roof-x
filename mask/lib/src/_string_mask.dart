@@ -6,8 +6,8 @@ abstract class StringMask {
     '*': new RegExp(r'.*')
   };
 
-  String apply(String text) {
-    String masked = this.applyMask(text);
+  String apply(String text, bool isEditing) {
+    String masked = this.applyMask(text, maskForText(text));
     return masked;
   }
 
@@ -23,9 +23,7 @@ abstract class StringMask {
 
   String maskForText(String text) => "";
 
-  String applyMask(String text) {
-    final mask = maskForText(text);
-
+  String applyMask(String text, String mask) {
     String result = '';
 
     var maskCharIndex = 0;

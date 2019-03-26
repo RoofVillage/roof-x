@@ -39,6 +39,7 @@ class RoofStreamForm extends StreamForm<StreamableFormFieldData,
       fieldName: fieldData.title,
       placeholder: fieldData.placeholder,
       initialValue: fieldData.value,
+      keyboardType: fieldData.keyboardType,
       textInputAction: inputAction,
       isPassword: false,
       mask: fieldData.mask,
@@ -74,6 +75,7 @@ class RoofStreamForm extends StreamForm<StreamableFormFieldData,
         placeholder: fieldData.placeholder,
         initialValue: fieldData.value,
         textInputAction: inputAction,
+        keyboardType: fieldData.keyboardType,
         onChanged: (value) {
           _onCompositionViewChanged(fieldData, value);
         },
@@ -243,7 +245,7 @@ class RoofStreamForm extends StreamForm<StreamableFormFieldData,
       case TextInputAction.next:
         return _nextButton;
       default:
-        if (fieldData.canSubmitWithKeyboardRaised &&
+        if (formData.canSubmitWithKeyboardRaised &&
             formData != null &&
             formData.submitKeyboardAccessory != null) {
           return formData.submitKeyboardAccessory;

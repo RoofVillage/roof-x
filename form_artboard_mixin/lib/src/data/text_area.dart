@@ -13,12 +13,12 @@ class FormTextAreaData extends FormCompositionFieldData {
       String initialValue = "",
       double size = 1,
       bool autofocus,
-      bool canSubmitWithKeyboardRaised,
       ValueChanged<String> onSubmitted,
       ValueChanged<String> onChanged,
       ValueChanged<bool> onFocusChanged,
+      TextInputType keyboardType,
       bool isOptional,
-      bool hidden})
+      bool isHidden})
       : super(
             title: title,
             placeholder: placeholder,
@@ -26,11 +26,11 @@ class FormTextAreaData extends FormCompositionFieldData {
             onSubmitted: onSubmitted,
             onChanged: onChanged,
             onFocusChanged: onFocusChanged,
+            keyboardType: keyboardType,
             autofocus: autofocus,
-            canSubmitWithKeyboardRaised: canSubmitWithKeyboardRaised,
             size: size,
             isOptional: isOptional,
-            hidden: hidden);
+            isHidden: isHidden);
 
   Future<void> validate() async {
     if (value.length > Consts.maxCharsInLongTextField) {

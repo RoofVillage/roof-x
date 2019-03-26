@@ -7,8 +7,8 @@ abstract class FormCompositionFieldData
   String placeholder;
   bool autofocus;
   TextInputAction inputAction;
-  bool canSubmitWithKeyboardRaised;
   ValueChanged<String> onSubmitted;
+  TextInputType keyboardType;
   bool isOptional;
 
   FormCompositionFieldData(
@@ -16,21 +16,21 @@ abstract class FormCompositionFieldData
       this.placeholder,
       this.inputAction,
       this.onSubmitted,
+      TextInputType keyboardType,
       bool isOptional,
       bool autofocus,
-      bool canSubmitWithKeyboardRaised,
       String initialValue,
       double size,
       ValueChanged<String> onChanged,
       ValueChanged<bool> onFocusChanged,
-      bool hidden})
+      bool isHidden})
       : autofocus = autofocus ?? false,
         isOptional = isOptional ?? false,
-        canSubmitWithKeyboardRaised = canSubmitWithKeyboardRaised ?? true,
+        keyboardType = keyboardType ?? TextInputType.text,
         super(
             initialValue: initialValue ?? "",
             onChanged: onChanged,
             onFocusChanged: onFocusChanged,
             size: size,
-            hidden: hidden);
+            isHidden: isHidden);
 }

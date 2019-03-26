@@ -13,7 +13,7 @@ class _Roof extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RoofTheme(
-      RoofThemeOption.dark,
+      RoofThemeOption.light,
       child: MaterialApp(
         title: 'Roof',
         debugShowCheckedModeBanner: false,

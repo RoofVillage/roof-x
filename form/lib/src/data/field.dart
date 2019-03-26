@@ -41,14 +41,14 @@ abstract class StreamableFormFieldData<T> extends StreamableData {
     bool enabled,
     ValueChanged<T> onChanged,
     ValueChanged<bool> onFocusChanged,
-    bool hidden,
+    bool isHidden,
   })  : size = size ?? 1,
         enabled = enabled ?? true,
         _value = initialValue,
         _isInFocus = false,
         _onChanged = onChanged,
         _onFocusChanged = onFocusChanged,
-        super(hidden: hidden);
+        super(isHidden: isHidden);
 
   Future<void> validate() async {}
 

@@ -1,66 +1,100 @@
+import 'dart:math';
 import '_string_mask.dart';
 
 class MoneyStringMask extends StringMask {
+  static final intMask = "0";
+
+  final bool isEditing;
   final String decimalSeparator;
-  final String thousandSeparator;
+  final String groupSeparator;
   final String rightSymbol;
   final String leftSymbol;
   final int precision;
 
   MoneyStringMask(
-      {this.decimalSeparator = ',',
-      this.thousandSeparator = '.',
+      {this.isEditing,
+      this.decimalSeparator = ',',
+      this.groupSeparator = '.',
       this.rightSymbol = '',
       this.leftSymbol = '',
-      this.precision = 2}) {
-    _validateConfig();
+      this.precision = 2});
+
+  @override
+  String apply(String text, bool isEditing) {
+    final onlyNumbers = getOnlyNumbers(text);
+    if (onlyNumbers.isEmpty && !isEditing) return '';
+
+    String body = _makeBody(text, isEditing);
+
+    if (leftSymbol != null) body = leftSymbol + body;
+    if (rightSymbol != null) body = body + rightSymbol;
+
+    return body;
   }
 
-  double _valueFromString(String text) {
-    List<String> parts = getOnlyNumbers(text).split('').toList(growable: true);
+  String _makeBody(String text, bool isEditing) {
+    if (isEditing && _isInvalid(text)) return '';
 
-    parts.insert(parts.length - precision, '.');
+    final numDecimalSeparators = decimalSeparator.allMatches(text).length;
 
-    return double.parse(parts.join());
-  }
-
-  _validateConfig() {
-    bool rightSymbolHasNumbers = getOnlyNumbers(this.rightSymbol).length > 0;
-
-    if (rightSymbolHasNumbers) {
-      throw ArgumentError("rightSymbol must not have numbers.");
+    if (numDecimalSeparators > 1) {
+      text = _stripExtraDecimalSeparators(text);
     }
-  }
 
-  String applyMask(String text) {
-    final value = (text == null) ? 0 : _valueFromString(text);
-    List<String> textRepresentation = value
-        .toStringAsFixed(precision)
-        .replaceAll('.', '')
-        .split('')
-        .reversed
-        .toList(growable: true);
+    final decimalGroups = text.split(decimalSeparator);
+    final integer = decimalGroups.first;
 
-    textRepresentation.insert(precision, decimalSeparator);
+    String body = applyMask(integer, _maskForInteger(integer));
 
-    for (var i = precision + 4; true; i = i + 4) {
-      if (textRepresentation.length > i) {
-        textRepresentation.insert(i, thousandSeparator);
-      } else {
-        break;
+    if (numDecimalSeparators > 0) {
+      body += decimalSeparator;
+      if (decimalGroups.length > 1) {
+        body += _maskDecimals(decimalGroups.last);
       }
+    } else if (!isEditing) {
+      body += decimalSeparator + "00";
     }
 
-    String masked = textRepresentation.reversed.join('');
+    return body;
+  }
 
-    if (rightSymbol.length > 0) {
-      masked += rightSymbol;
+  String _maskDecimals(String decimals) {
+    if (isEditing) {
+      return decimals.substring(0, min(precision, decimals.length));
+    } else {
+      for (var i = 0; i < precision - decimals.length; i++) {
+        decimals += '0';
+      }
+      return decimals;
+    }
+  }
+
+  String _maskForInteger(String integer) {
+    final onlyNumbers = getOnlyNumbers(integer);
+    final groupMaskLength = 3;
+
+    if (onlyNumbers.length <= groupMaskLength) {
+      return intMask * onlyNumbers.length;
     }
 
-    if (leftSymbol.length > 0) {
-      masked = leftSymbol + masked;
-    }
+    final tailMaskRange = onlyNumbers.length - groupMaskLength;
+    return _maskForInteger(onlyNumbers.substring(0, tailMaskRange)) +
+        groupSeparator +
+        _maskForInteger(onlyNumbers.substring(tailMaskRange));
+  }
 
-    return masked;
+  String _stripExtraDecimalSeparators(String text) {
+    final indexOfLastDecimalSeparator = text.lastIndexOf(decimalSeparator);
+    return text
+            .substring(0, indexOfLastDecimalSeparator)
+            .replaceAll(decimalSeparator, '') +
+        text.substring(indexOfLastDecimalSeparator);
+  }
+
+  bool _isInvalid(String text) {
+    if (text.isEmpty) return true;
+    final noSymbols =
+        text.replaceAll(rightSymbol, '').replaceAll(leftSymbol, '');
+    return noSymbols.startsWith(decimalSeparator) || noSymbols.startsWith('0');
   }
 }

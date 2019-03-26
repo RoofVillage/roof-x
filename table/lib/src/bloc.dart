@@ -140,8 +140,8 @@ class StreamTableBloc implements BlocBase {
       //Remove the data.
       _tableData.removeAtTableLocation(location);
 
-      //Mark the row as hidden.
-      data.hidden = true;
+      //Mark the row as isHidden.
+      data.isHidden = true;
 
       //Post a message that the row changed.
       _inRow.add(data);
