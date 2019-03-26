@@ -107,35 +107,42 @@ class _FieldBodyState extends State<_FieldBody> {
   final _controller = TextEditingController();
   final _typographyStyle = RoofTypography.bodyPrimary;
 
+  String _formattedPlaceholder = "";
+  bool _didSetInitialValue = false;
+
   _FieldBodyState();
-
-  void _controllerUpdated() {
-    if (widget.mask != null) {
-      final formattedText =
-          Mask(widget.mask).apply(text: _controller.text, context: context);
-      if (formattedText == _controller.text) return;
-      _setText(formattedText);
-    }
-    widget.onChanged(_controller.text);
-  }
-
-  void focusUpdated() {
-    widget.onFocusChanged(widget.focusNode.hasFocus);
-  }
 
   @override
   void initState() {
-    _controller.text = widget.initialValue;
     _controller.addListener(_controllerUpdated);
-    widget.focusNode.addListener(focusUpdated);
+    widget.focusNode.addListener(_focusUpdated);
     super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    if (!_didSetInitialValue) {
+      _formattedPlaceholder =
+          _formattedText(text: widget.placeholder, context: context);
+      _setInitialValue();
+    }
+
+    _didSetInitialValue = true;
+    super.didChangeDependencies();
+  }
+
+  void _setInitialValue() {
+    if (widget.initialValue.isEmpty) return;
+    final formattedText =
+        _formattedText(text: widget.initialValue, context: context);
+    _setText(formattedText);
   }
 
   @override
   Widget build(BuildContext context) {
     final theme = RoofTheme.of(context);
     final decoration = InputDecoration(
-        hintText: widget.placeholder,
+        hintText: _formattedPlaceholder,
         enabledBorder: UnderlineInputBorder(
             borderSide: BorderSide(color: theme.color.stroke.light)),
         focusedBorder: UnderlineInputBorder(
@@ -157,19 +164,29 @@ class _FieldBodyState extends State<_FieldBody> {
         controller: _controller);
   }
 
-  Brightness _brightnessForTheme(RoofThemeOption theme) {
-    switch (theme) {
-      case RoofThemeOption.dark:
-        return Brightness.dark;
-      default:
-        return Brightness.light;
-    }
-  }
-
   @override
   void dispose() {
     _controller.dispose();
+    widget.focusNode.dispose();
     super.dispose();
+  }
+
+  void _controllerUpdated() {
+    if (widget.mask != null) {
+      final formattedText =
+          _formattedText(text: _controller.text, context: context);
+      if (formattedText == _controller.text) return;
+      _setText(formattedText);
+    }
+    widget.onChanged(_controller.text);
+  }
+
+  String _formattedText(
+      {@required String text, @required BuildContext context}) {
+    if (widget.mask == null) return text;
+    final formattedText = Mask(widget.mask).apply(
+        text: text, isEditing: widget.focusNode.hasFocus, context: context);
+    return formattedText;
   }
 
   void _setText(String text) {
@@ -179,5 +196,21 @@ class _FieldBodyState extends State<_FieldBody> {
     cursorPos = TextSelection.fromPosition(
         TextPosition(offset: _controller.text.length));
     _controller.selection = cursorPos;
+  }
+
+  void _focusUpdated() {
+    final formattedText =
+        _formattedText(text: _controller.text, context: context);
+    _setText(formattedText);
+    widget.onFocusChanged(widget.focusNode.hasFocus);
+  }
+
+  Brightness _brightnessForTheme(RoofThemeOption theme) {
+    switch (theme) {
+      case RoofThemeOption.dark:
+        return Brightness.dark;
+      default:
+        return Brightness.light;
+    }
   }
 }

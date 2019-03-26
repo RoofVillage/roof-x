@@ -11,7 +11,10 @@ class Mask {
 
   Mask(this.option);
 
-  String apply({@required String text, @required BuildContext context}) {
+  String apply(
+      {@required String text,
+      bool isEditing = false,
+      @required BuildContext context}) {
     StringMask mask;
 
     switch (option) {
@@ -19,12 +22,24 @@ class Mask {
         mask = PhoneNumberStringMask();
         break;
       case MaskOption.money:
-        final local = Localizations.localeOf(context);
-        final symbol = NumberFormat(local: local).currencySymbol;
-        final
+        mask = _makeMoneyStringMask(context, isEditing);
         break;
     }
 
-    return mask.apply(text);
+    return mask.apply(text, isEditing);
+  }
+
+  MoneyStringMask _makeMoneyStringMask(BuildContext context, bool isEditing) {
+    final locale = Localizations.localeOf(context);
+    final format =
+        NumberFormat(null, locale.languageCode + '_' + locale.countryCode);
+    final symbol = format.simpleCurrencySymbol(format.currencyName);
+    final decimalSeperator = format.symbols.DECIMAL_SEP;
+    final thousandsSeperator = format.symbols.GROUP_SEP;
+    return MoneyStringMask(
+        isEditing: isEditing,
+        leftSymbol: symbol,
+        decimalSeparator: decimalSeperator,
+        groupSeparator: thousandsSeperator);
   }
 }

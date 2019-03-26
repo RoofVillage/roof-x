@@ -7,7 +7,7 @@ import 'text_field.dart';
 class CurrencyFormTextFieldData extends FormTextFieldData {
   CurrencyFormTextFieldData(
       {String title = "Amount",
-      String placeholder = "\$0.00",
+      String placeholder = "0.00",
       String initialValue,
       double size,
       bool autofocus,
@@ -24,7 +24,8 @@ class CurrencyFormTextFieldData extends FormTextFieldData {
             onChanged: onChanged,
             onFocusChanged: onFocusChanged,
             autofocus: autofocus,
-            keyboardType: TextInputType.numberWithOptions(decimal: true),
+            keyboardType: TextInputType
+                .text, //TextInputType.numberWithOptions(decimal: true),
             size: size,
             isHidden: isHidden);
 
