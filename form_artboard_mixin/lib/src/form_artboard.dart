@@ -22,7 +22,7 @@ mixin FormArtboard {
 
   Widget get submitKeyboardAccessory => PrimaryActionKeyboardAccessoryButton(
       onTap: (context) {
-        _resignFocus(context);
+        _form.resignFocus(context);
         submit(context);
       },
       title: submitButtonText);
@@ -39,9 +39,12 @@ mixin FormArtboard {
 
   final _form = RoofStreamForm();
 
-  //An opportunity for forms to throw an exception before being submitted.
+  // An opportunity for forms to throw an exception before being submitted.
   Future<void> validate() async {}
   Future<void> submit(BuildContext context);
+
+  // An opportunity for forms to setup additional properties before building.
+  void setup() {}
 
   _load() async {
     final sectionData = await loadedSectionData;
@@ -58,11 +61,6 @@ mixin FormArtboard {
   Future<void> _validateFields() async {
     return Future.wait(fieldData.map((data) async => await data.validate()));
   }
-
-  void _resignFocus(BuildContext context) {
-    FocusScope.of(context).requestFocus(FocusNode());
-    KeyboardAccessory.of(context).hide();
-  }
 }
 
 mixin FormArtboardState {
@@ -73,7 +71,11 @@ mixin FormArtboardState {
 
   void setState(dynamic());
 
+  bool _hasSetUp = false;
+
   RoofStreamForm buildForm(BuildContext context) {
+    _setupIfNeeded();
+
     StreamableFormData formData;
     if (formArtboard.formData != null) {
       formData = formArtboard.formData;
@@ -118,6 +120,14 @@ mixin FormArtboardState {
     await formArtboard.submit(context);
     _restoreState(context);
     _enableForm();
+  }
+
+  void disposeOfForm() => formArtboard._form.dispose();
+
+  void _setupIfNeeded() {
+    if (_hasSetUp) return;
+    formArtboard.setup();
+    _hasSetUp = true;
   }
 
   void _handleException(

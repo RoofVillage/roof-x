@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:stream/index.dart';
 
@@ -16,9 +14,7 @@ class StreamTableBuilder<T extends StreamTableBloc> extends StatelessWidget {
   final bool showsHeaderForEmptyTable;
   final bool showsHeadersForEmptySections;
 
-  Widget get _empty => SliverToBoxAdapter();
-  Widget get _emptyHeader =>
-      SliverPersistentHeader(delegate: _EmptySliverPersistentHeaderDelegate());
+  Widget get _emptyHeader => Container();
 
   StreamTableBuilder(
       {Key key,
@@ -36,14 +32,12 @@ class StreamTableBuilder<T extends StreamTableBloc> extends StatelessWidget {
         builder: (context, snapshot) {
           if (!snapshot.hasData) return Container();
 
-          return _createTable(
-              bloc: tableBloc, context: context, tableData: snapshot.data);
+          return _createTable(context: context, tableData: snapshot.data);
         });
   }
 
   Widget _createTable(
-      {@required T bloc,
-      @required BuildContext context,
+      {@required BuildContext context,
       @required StreamableTableData tableData}) {
     final slivers = <Widget>[];
 
@@ -57,131 +51,88 @@ class StreamTableBuilder<T extends StreamTableBloc> extends StatelessWidget {
       if (header != null) slivers.add(header);
     }
 
-    //Add each sections that accept streamable updates.
-    tableData.sectionData
-      ..asMap().forEach((index, sectionData) {
-        //The steam to which section updates will be posted.
-        final outSectionStream =
-            bloc.outSection.where((data) => data.key == sectionData.key);
+    final delegate = _sliverListDelegateForTableData(tableData);
+    final sliverList = SliverList(delegate: delegate);
 
-        final sectionHeader = _createSectionHeader(
-            outSectionStream: outSectionStream,
-            sectionData: sectionData,
-            sectionIndex: index);
-
-        slivers.add(sectionHeader);
-
-        final section = _createSection(
-            bloc: bloc,
-            outSectionStream: outSectionStream,
-            sectionData: sectionData,
-            sectionIndex: index);
-
-        slivers.add(section);
-      });
+    slivers.add(sliverList);
 
     final table = CustomScrollView(
         scrollDirection: tableData.scrollDirection,
         reverse: tableData.reverse,
-        slivers: slivers);
+        slivers: slivers,
+        key: PageStorageKey(tableData.key));
 
     return table;
   }
 
+  SliverChildBuilderDelegate _sliverListDelegateForTableData(
+      StreamableTableData tableData) {
+    final childData = _sliverListChildDataForTableData(tableData);
+
+    final delegate = SliverChildBuilderDelegate((context, index) {
+      final data = childData[index];
+      switch (data.type) {
+        case _SliverListChildDataType.header:
+          return _createSectionHeader(
+              sectionData: data.sectionData, sectionIndex: data.sectionIndex);
+        case _SliverListChildDataType.row:
+          return buildRow(
+              rowData: data.rowData,
+              rowIndex: data.rowIndex,
+              sectionIndex: data.sectionIndex);
+      }
+    }, childCount: childData.length);
+
+    return delegate;
+  }
+
+  List<_SliverListChildData> _sliverListChildDataForTableData(
+      StreamableTableData tableData) {
+    final childData = <_SliverListChildData>[];
+
+    //Add each sections that accept streamable updates.
+    for (var i = 0; i < tableData.sectionData.length; i++) {
+      final sectionData = tableData.sectionData[i];
+
+      final sectionHeaderRowData = _SliverListChildData.forHeader(
+          sectionData: sectionData, sectionIndex: i);
+
+      childData.add(sectionHeaderRowData);
+
+      final sectionRows =
+          _rowDataForSectionData(sectionData: sectionData, sectionIndex: i);
+      childData.addAll(sectionRows);
+    }
+
+    return childData;
+  }
+
+  List<_SliverListChildData> _rowDataForSectionData(
+      {@required StreamableTableSectionData sectionData,
+      @required int sectionIndex}) {
+    final childData = <_SliverListChildData>[];
+    for (var i = 0; i < sectionData.rowData.length; i++) {
+      final rowData = sectionData.rowData[i];
+      final data = _SliverListChildData.forRow(
+          rowData: rowData, rowIndex: i, sectionIndex: sectionIndex);
+      childData.add(data);
+    }
+    return childData;
+  }
+
   Widget _createSectionHeader(
-      {@required Stream outSectionStream,
-      @required StreamableTableSectionData sectionData,
+      {@required StreamableTableSectionData sectionData,
       @required int sectionIndex}) {
     //Add the header if needed. If the section changes, check to make sure a header is still needed.
-    final sectionHeader = StreamBuilder<StreamableTableSectionData>(
-        stream: outSectionStream,
-        initialData: sectionData,
-        builder: (context, snapshot) {
-          final shouldShowSectionHeader = sectionData.headerData != null &&
-              (sectionData.rowData.isNotEmpty ||
-                  showsHeadersForEmptySections) &&
-              buildSectionHeader != null;
+    final shouldShowSectionHeader = sectionData.headerData != null &&
+        (sectionData.rowData.isNotEmpty || showsHeadersForEmptySections) &&
+        buildSectionHeader != null;
 
-          if (!snapshot.hasData || !shouldShowSectionHeader) {
-            return _emptyHeader;
-          }
+    if (!shouldShowSectionHeader) return _emptyHeader;
 
-          final header = buildSectionHeader(
-              headerData: sectionData.headerData, sectionIndex: sectionIndex);
-
-          if (header == null) return _emptyHeader;
-
-          return header;
-        });
-    return sectionHeader;
-  }
-
-  Widget _createSection(
-      {@required T bloc,
-      @required Stream outSectionStream,
-      @required StreamableTableSectionData sectionData,
-      @required int sectionIndex}) {
-    final section = StreamBuilder<StreamableTableSectionData>(
-        stream: outSectionStream,
-        initialData: sectionData,
-        builder: (context, snapshot) {
-          if (!snapshot.hasData) return _empty;
-
-          final section = _createSectionSliver(
-              bloc: bloc,
-              sectionData: snapshot.data,
-              sectionIndex: sectionIndex);
-
-          return section;
-        });
-
-    return section;
-  }
-
-  Widget _createSectionSliver(
-      {@required T bloc,
-      @required StreamableTableSectionData sectionData,
-      @required int sectionIndex}) {
-    final delegate =
-        SliverChildBuilderDelegate((BuildContext context, int index) {
-      final initialRowData = sectionData.rowData[index];
-
-      final outRowStream =
-          bloc.outRow.where((data) => data.key == initialRowData.key);
-
-      final row = _createRow(
-          outRowStream: outRowStream,
-          rowData: initialRowData,
-          rowIndex: index,
-          sectionIndex: sectionIndex);
-
-      return row;
-    }, childCount: sectionData.rowData.length);
-
-    final sectionSliver = SliverList(delegate: delegate);
-
-    return sectionSliver;
-  }
-
-  Widget _createRow(
-      {@required Stream outRowStream,
-      @required StreamableTableRowData rowData,
-      @required int rowIndex,
-      @required int sectionIndex}) {
-    return StreamBuilder<StreamableTableRowData>(
-        stream: outRowStream,
-        initialData: rowData,
-        builder: (context, snapshot) {
-          if (!snapshot.hasData) return _empty;
-          final row = buildRow(
-              rowData: snapshot.data,
-              rowIndex: rowIndex,
-              sectionIndex: sectionIndex);
-
-          if (row == null) return _empty;
-
-          return row;
-        });
+    return buildSectionHeader(
+            headerData: sectionData.headerData, sectionIndex: sectionIndex) ??
+        _emptyHeader;
   }
 }
 
@@ -191,7 +142,7 @@ typedef _RowBuilder = Widget Function(
 typedef _TableHeaderBuilder = SliverPersistentHeader Function(
     {@required StreamableTableHeaderData headerData});
 
-typedef _TableSectionHeaderBuilder = SliverPersistentHeader Function(
+typedef _TableSectionHeaderBuilder = Widget Function(
     {@required StreamableTableSectionHeaderData headerData, int sectionIndex});
 
 class _EmptySliverPersistentHeaderDelegate
@@ -209,4 +160,39 @@ class _EmptySliverPersistentHeaderDelegate
 
   @override
   bool shouldRebuild(SliverPersistentHeaderDelegate oldDelegate) => true;
+}
+
+enum _SliverListChildDataType { header, row }
+
+class _SliverListChildData {
+  final StreamableTableRowData rowData;
+  final StreamableTableSectionData sectionData;
+  final int rowIndex;
+  final int sectionIndex;
+  final _SliverListChildDataType type;
+
+  _SliverListChildData(
+      {this.rowData,
+      this.sectionData,
+      this.rowIndex,
+      this.sectionIndex,
+      this.type});
+
+  _SliverListChildData.forRow(
+      {@required StreamableTableRowData rowData,
+      @required int rowIndex,
+      @required int sectionIndex})
+      : this(
+            rowData: rowData,
+            rowIndex: rowIndex,
+            sectionIndex: sectionIndex,
+            type: _SliverListChildDataType.row);
+
+  _SliverListChildData.forHeader(
+      {@required StreamableTableSectionData sectionData,
+      @required int sectionIndex})
+      : this(
+            sectionData: sectionData,
+            sectionIndex: sectionIndex,
+            type: _SliverListChildDataType.header);
 }

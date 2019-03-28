@@ -7,30 +7,23 @@ import 'package:consts/index.dart';
 import 'composition_field.dart';
 
 class FormTextAreaData extends FormCompositionFieldData {
-  FormTextAreaData(
-      {String title,
-      String placeholder,
-      String initialValue = "",
-      double size = 1,
-      bool autofocus,
-      ValueChanged<String> onSubmitted,
-      ValueChanged<String> onChanged,
-      ValueChanged<bool> onFocusChanged,
-      TextInputType keyboardType,
-      bool isOptional,
-      bool isHidden})
-      : super(
-            title: title,
-            placeholder: placeholder,
-            initialValue: initialValue,
-            onSubmitted: onSubmitted,
-            onChanged: onChanged,
-            onFocusChanged: onFocusChanged,
-            keyboardType: keyboardType,
-            autofocus: autofocus,
-            size: size,
-            isOptional: isOptional,
-            isHidden: isHidden);
+  FormTextAreaData({
+    @required String title,
+    String placeholder,
+    String initialValue = "",
+    double size = 1,
+    bool autofocus,
+    TextInputType keyboardType,
+    bool isOptional,
+  }) : super(
+          title: title,
+          placeholder: placeholder,
+          initialValue: initialValue,
+          keyboardType: keyboardType,
+          autofocus: autofocus,
+          size: size,
+          isOptional: isOptional,
+        );
 
   Future<void> validate() async {
     if (value.length > Consts.maxCharsInLongTextField) {

@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:stream/index.dart';
 
@@ -38,24 +36,19 @@ class StreamFormBuilder<T extends StreamFormBloc> extends StatelessWidget {
     //Add each sections that accept streamable updates.
     for (var i = 0; i < formData.sectionData.length; i++) {
       final sectionData = formData.sectionData[i];
-      final outSectionStream =
-          bloc.outSection.where((data) => data.key == sectionData.key);
 
       final sectionHeader = _createSectionHeader(
-          outSectionStream: outSectionStream,
-          sectionData: sectionData,
-          sectionIndex: i);
+          sectionData: sectionData, sectionIndex: i, context: context);
 
       rows.add(sectionHeader);
 
-      final section = _createSection(
-          bloc: bloc,
-          outSectionStream: outSectionStream,
+      final sectionRows = _createSectionRows(
           sectionData: sectionData,
           formData: formData,
-          sectionIndex: i);
+          sectionIndex: i,
+          context: context);
 
-      rows.add(section);
+      rows.addAll(sectionRows);
     }
 
     final form =
@@ -65,61 +58,27 @@ class StreamFormBuilder<T extends StreamFormBloc> extends StatelessWidget {
   }
 
   Widget _createSectionHeader(
-      {@required Stream outSectionStream,
-      @required StreamableFormSectionData sectionData,
-      @required int sectionIndex}) {
-    //Add the header if needed. If the section changes, check to make sure a header is still needed.
-    final sectionHeader = StreamBuilder<StreamableFormSectionData>(
-        stream: outSectionStream,
-        initialData: sectionData,
-        builder: (context, snapshot) {
-          final shouldShowSectionHeader = sectionData.headerData != null &&
-              sectionData.fieldData.isNotEmpty &&
-              buildSectionHeader != null;
+      {@required StreamableFormSectionData sectionData,
+      @required int sectionIndex,
+      @required BuildContext context}) {
+    final shouldShowSectionHeader = sectionData.headerData != null &&
+        sectionData.fieldData.isNotEmpty &&
+        buildSectionHeader != null;
 
-          if (!snapshot.hasData || !shouldShowSectionHeader) return _empty;
+    if (!shouldShowSectionHeader) return _empty;
 
-          final header = buildSectionHeader(
-              headerData: sectionData.headerData,
-              sectionIndex: sectionIndex,
-              context: context);
-
-          if (header == null) return _empty;
-
-          return header;
-        });
-    return sectionHeader;
+    return buildSectionHeader(
+            headerData: sectionData.headerData,
+            sectionIndex: sectionIndex,
+            context: context) ??
+        _empty;
   }
 
-  Widget _createSection(
-      {@required T bloc,
-      @required Stream outSectionStream,
-      @required StreamableFormSectionData sectionData,
+  List<Row> _createSectionRows(
+      {@required StreamableFormSectionData sectionData,
       @required StreamableFormData formData,
-      @required int sectionIndex}) {
-    final section = StreamBuilder<StreamableFormSectionData>(
-        stream: outSectionStream,
-        initialData: sectionData,
-        builder: (context, snapshot) {
-          if (!snapshot.hasData) return SliverToBoxAdapter();
-
-          final section = _createSectionBody(
-              bloc: bloc,
-              sectionData: snapshot.data,
-              formData: formData,
-              sectionIndex: sectionIndex);
-
-          return section;
-        });
-
-    return section;
-  }
-
-  Widget _createSectionBody(
-      {@required T bloc,
-      @required StreamableFormSectionData sectionData,
-      @required StreamableFormData formData,
-      @required int sectionIndex}) {
+      @required int sectionIndex,
+      @required BuildContext context}) {
     final rows = <Row>[];
 
     double percentRowFilled = 0;
@@ -130,15 +89,13 @@ class StreamFormBuilder<T extends StreamFormBloc> extends StatelessWidget {
 
     for (var i = 0; i < sectionData.fieldData.length; i++) {
       final fieldData = sectionData.fieldData[i];
-      final outFieldStream =
-          bloc.outField.where((data) => data.key == fieldData.key);
 
       final field = _createField(
-          outFieldStream: outFieldStream,
           fieldData: fieldData,
           formData: formData,
           fieldIndex: i,
-          sectionIndex: sectionIndex);
+          sectionIndex: sectionIndex,
+          context: context);
 
       bool isLastField = i == sectionData.fieldData.length - 1;
       double percentRowWillFill = percentRowFilled + fieldData.fieldSize;
@@ -174,9 +131,7 @@ class StreamFormBuilder<T extends StreamFormBloc> extends StatelessWidget {
       }
     }
 
-    final section = Column(children: rows);
-
-    return section;
+    return rows;
   }
 
   Flexible _remainingSpaceFiller(double percentRowFilled) {
@@ -186,29 +141,23 @@ class StreamFormBuilder<T extends StreamFormBloc> extends StatelessWidget {
   }
 
   Widget _createField(
-      {@required Stream outFieldStream,
-      @required StreamableFormFieldData fieldData,
+      {@required StreamableFormFieldData fieldData,
       @required StreamableFormData formData,
       @required int fieldIndex,
-      @required int sectionIndex}) {
-    return StreamBuilder<StreamableFormFieldData>(
-        stream: outFieldStream,
-        initialData: fieldData,
-        builder: (context, snapshot) {
-          if (!snapshot.hasData) return _empty;
-          final field = buildField(
-              fieldData: snapshot.data,
-              formData: formData,
-              fieldIndex: fieldIndex,
-              sectionIndex: sectionIndex,
-              context: context);
+      @required int sectionIndex,
+      @required BuildContext context}) {
+    final field = buildField(
+            fieldData: fieldData,
+            formData: formData,
+            fieldIndex: fieldIndex,
+            sectionIndex: sectionIndex,
+            context: context) ??
+        _empty;
 
-          if (field == null) return _empty;
+    final fieldHorizontalFlex = (fieldData.fieldSize * 100).floor();
 
-          final fieldHorizontalFlex = (fieldData.fieldSize * 100).floor();
-
-          return Expanded(flex: fieldHorizontalFlex, child: field);
-        });
+    return Expanded(
+        flex: fieldHorizontalFlex, child: field, key: ValueKey(fieldData.key));
   }
 }
 

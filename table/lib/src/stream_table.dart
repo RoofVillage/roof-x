@@ -29,7 +29,6 @@ abstract class StreamTable<
   }
 
   Widget buildRow({T rowData, int rowIndex, int sectionIndex}) => null;
-  SliverPersistentHeader buildSectionHeader({U headerData, int sectionIndex}) =>
-      null;
+  Widget buildSectionHeader({U headerData, int sectionIndex}) => null;
   SliverPersistentHeader buildTableHeader({V headerData}) => null;
 }

@@ -17,256 +17,149 @@ class StreamFormBloc extends BlocBase {
   //The stream responsible for communicating changes to the entire form.
   final _formController = StreamController<StreamableFormData>();
 
-  //The stream responsible for communicating changes to sections.
-  final _sectionController =
-      StreamController<StreamableFormSectionData>.broadcast();
-
-  //The stream responsible for communicating changes to fields within the form;
-  final _fieldController =
-      StreamController<StreamableFormFieldData>.broadcast();
-
-  //The stream responsible for communicating changes to field values within the form;
-  final _fieldValueController =
-      StreamController<StreamableFormFieldValueData>.broadcast();
-
   Sink<StreamableFormData> get _inForm => _formController.sink;
   Stream<StreamableFormData> get outForm => _formController.stream;
-
-  Sink<StreamableFormSectionData> get _inSection => _sectionController.sink;
-  Stream<StreamableFormSectionData> get outSection => _sectionController.stream;
-
-  Sink<StreamableFormFieldData> get _inField => _fieldController.sink;
-  Stream<StreamableFormFieldData> get outField => _fieldController.stream;
-
-  Sink<StreamableFormFieldValueData> get _inFieldValue =>
-      _fieldValueController.sink;
-  Stream<StreamableFormFieldValueData> get _outFieldValue =>
-      _fieldValueController.stream;
 
   //Override to handle field changes;
   void fieldChanged(String fieldKey, dynamic oldValue, dynamic newValue) {}
 
-  void toggleFieldDataVisibility(StreamableFormFieldData fieldData) {
-    fieldData.isHidden = !fieldData.isHidden;
-    updateFieldData(fieldData);
-  }
-
-  void toggleSectionDataVisibility(StreamableFormSectionData sectionData) {
-    sectionData.isHidden = !sectionData.isHidden;
-    updateSectionData(sectionData);
-  }
-
-  void updateFieldData(StreamableFormFieldData fieldData) {
-    _formData.updateFieldData(fieldData);
-    _inField.add(fieldData);
-  }
-
-  void updateSectionData(StreamableFormSectionData sectionData) {
-    _formData.updateSectionData(sectionData);
-    _inSection.add(sectionData);
-  }
-
   void update(StreamableFormData formData) {
     _addValueChangedStreamToForm(formData);
-
     _formData = formData;
     _inForm.add(_formData);
   }
 
+  void updateFieldData(StreamableFormFieldData fieldData) {
+    _formData.updateFieldData(fieldData);
+    update(_formData);
+  }
+
+  void updateSectionData(StreamableFormSectionData sectionData) {
+    _addValueChangedStreamToFields(sectionData.fieldData);
+    _formData.updateSectionData(sectionData);
+    _inForm.add(_formData);
+  }
+
   void batchUpdateSectionData(List<StreamableFormSectionData> sectionData) {
-    for (final sectionData in sectionData) {
-      updateSectionData(sectionData);
-    }
+    for (final data in sectionData) updateSectionData(data);
   }
 
   void batchUpdateFieldData(List<StreamableFormFieldData> fieldData) {
-    for (final fieldData in fieldData) {
-      updateFieldData(fieldData);
-    }
+    if (fieldData.isEmpty) return;
+    for (final data in fieldData) updateFieldData(data);
   }
 
   void insertFieldData(StreamableFormFieldData fieldData) {
     _addValueChangedStreamToField(fieldData);
-
-    //Add the fieldData to the form.
     _formData.addFieldData(fieldData);
-
-    //Find where the new location of the data is.
-    final newLocation = _formData.formLocationOfFieldData(fieldData);
-    final sectionData = _formData.sectionData[newLocation.sectionIndex];
-    _inSection.add(sectionData);
+    _inForm.add(_formData);
   }
 
   void batchInsertFieldData(List<StreamableFormFieldData> fieldData) {
-    if (fieldData == null || fieldData.isEmpty) return;
-
-    for (final fieldData in fieldData) {
-      _addValueChangedStreamToField(fieldData);
-    }
-
-    //Add the fieldData to the form.
+    if (fieldData.isEmpty) return;
+    for (final data in fieldData) _addValueChangedStreamToField(data);
     _formData.batchAddFieldData(fieldData);
-
-    //Find where the new location of the data is.
-    final newLocation = _formData.formLocationOfFieldData(fieldData.first);
-    final sectionData = _formData.sectionData[newLocation.sectionIndex];
-    _inSection.add(sectionData);
+    _inForm.add(_formData);
   }
 
   void insertFieldDataBefore(StreamableFormFieldData fieldData,
       StreamableFormFieldData beforeFieldData) {
     _addValueChangedStreamToField(fieldData);
-
-    //Add the fieldData to the form.
     _formData.addFieldDataBefore(fieldData, beforeFieldData);
-
-    //Find where the new location of the data is.
-    final newLocation = _formData.formLocationOfFieldData(fieldData);
-    final sectionData = _formData.sectionData[newLocation.sectionIndex];
-    _inSection.add(sectionData);
+    _inForm.add(_formData);
   }
 
   void batchInsertFieldDataBefore(List<StreamableFormFieldData> fieldData,
       StreamableFormFieldData beforeFieldData) {
-    if (fieldData == null || fieldData.isEmpty) return;
-    for (final fieldData in fieldData) {
-      _addValueChangedStreamToField(fieldData);
-    }
-
-    //Add the fieldData to the form.
+    if (fieldData.isEmpty) return;
+    for (final data in fieldData) _addValueChangedStreamToField(data);
     _formData.batchAddFieldDataBefore(fieldData, beforeFieldData);
-
-    //Find where the new location of the data is.
-    final newLocation = _formData.formLocationOfFieldData(fieldData.first);
-    final sectionData = _formData.sectionData[newLocation.sectionIndex];
-    _inSection.add(sectionData);
+    _inForm.add(_formData);
   }
 
   void insertFieldDataAfter(StreamableFormFieldData fieldData,
-      StreamableFormFieldData afterFieldData) {
+      StreamableFormFieldData afterFieldData) async {
     _addValueChangedStreamToField(fieldData);
-
-    //Add the fieldData to the form.
     _formData.addFieldDataAfter(fieldData, afterFieldData);
-
-    //Find where the new location of the data is.
-    final newLocation = _formData.formLocationOfFieldData(fieldData);
-    final sectionData = _formData.sectionData[newLocation.sectionIndex];
-    _inSection.add(sectionData);
+    _inForm.add(_formData);
   }
 
   void batchInsertFieldDataAfter(List<StreamableFormFieldData> fieldData,
       StreamableFormFieldData afterFieldData) {
-    if (fieldData == null || fieldData.isEmpty) return;
-
-    for (final fieldData in fieldData) {
-      _addValueChangedStreamToField(fieldData);
-    }
-
-    //Add the fieldData to the form.
+    if (fieldData.isEmpty) return;
+    for (final data in fieldData) _addValueChangedStreamToField(data);
     _formData.batchAddFieldDataAfter(fieldData, afterFieldData);
-
-    //Find where the new location of the data is.
-    final newLocation = _formData.formLocationOfFieldData(fieldData.first);
-    final sectionData = _formData.sectionData[newLocation.sectionIndex];
-    _inSection.add(sectionData);
+    _inForm.add(_formData);
   }
 
   void insertSectionData(StreamableFormSectionData sectionData) {
-    for (final fieldData in sectionData.fieldData) {
-      _addValueChangedStreamToField(fieldData);
+    for (final data in sectionData.fieldData) {
+      _addValueChangedStreamToField(data);
     }
-
-    //Add the sectionData to the form.
     _formData.addSectionData(sectionData);
-
     _inForm.add(_formData);
   }
 
   void batchInsertSectionData(List<StreamableFormSectionData> sectionData) {
-    for (final sectionData in sectionData) {
-      for (final fieldData in sectionData.fieldData) {
-        _addValueChangedStreamToField(fieldData);
-      }
-    }
-
-    //Add the fieldData to the form.
+    final fieldData = sectionData.expand((data) => data.fieldData);
+    for (final data in fieldData) _addValueChangedStreamToField(data);
     _formData.batchAddSectionData(sectionData);
-
     _inForm.add(_formData);
   }
 
   void insertSectionDataBefore(StreamableFormSectionData sectionData,
       StreamableFormSectionData beforeSectionData) {
-    for (final fieldData in sectionData.fieldData) {
-      _addValueChangedStreamToField(fieldData);
+    for (final data in sectionData.fieldData) {
+      _addValueChangedStreamToField(data);
     }
-
     _formData.addSectionDataBefore(sectionData, beforeSectionData);
-
     _inForm.add(_formData);
   }
 
   void batchInsertSectionDataBefore(List<StreamableFormSectionData> sectionData,
       StreamableFormSectionData beforeSectionData) {
-    for (final sectionData in sectionData) {
-      for (final fieldData in sectionData.fieldData) {
-        _addValueChangedStreamToField(fieldData);
-      }
-    }
-
+    final fieldData = sectionData.expand((data) => data.fieldData);
+    for (final data in fieldData) _addValueChangedStreamToField(data);
     _formData.batchAddSectionDataBefore(sectionData, beforeSectionData);
-
     _inForm.add(_formData);
   }
 
   void insertSectionDataAfter(StreamableFormSectionData sectionData,
       StreamableFormSectionData afterSectionData) {
-    for (final fieldData in sectionData.fieldData) {
-      _addValueChangedStreamToField(fieldData);
+    for (final data in sectionData.fieldData) {
+      _addValueChangedStreamToField(data);
     }
-
     _formData.addSectionDataAfter(sectionData, afterSectionData);
-
     _inForm.add(_formData);
   }
 
   void batchInsertSectionDataAfter(List<StreamableFormSectionData> sectionData,
       StreamableFormSectionData afterSectionData) {
-    for (final sectionData in sectionData) {
-      for (final fieldData in sectionData.fieldData) {
-        _addValueChangedStreamToField(fieldData);
-      }
-    }
-
+    final fieldData = sectionData.expand((data) => data.fieldData);
+    for (final data in fieldData) _addValueChangedStreamToField(data);
     _formData.batchAddSectionDataAfter(sectionData, afterSectionData);
-
     _inForm.add(_formData);
   }
 
   void removeFieldData(StreamableFormFieldData fieldData) {
-    //Get the location of the field being removed
-    final location = _formData.formLocationOfFieldData(fieldData);
-
-    //If the location cant be found, exit gracefully;
-    if (location == null) return;
-
     //Remove the data.
-    _formData.removeAtFormLocation(location);
+    _formData.removeFieldData(fieldData);
 
-    //Mark the row as isHidden.
-    fieldData.isHidden = true;
+    //Post a message that the form changed.
+    _inForm.add(_formData);
+  }
 
-    //Post a message that the row changed.
-    _inField.add(fieldData);
+  void removeSectionData(StreamableFormSectionData sectionData) {
+    //Remove the data.
+    _formData.removeSectionData(sectionData);
+
+    //Post a message that the form changed.
+    _inForm.add(_formData);
   }
 
   @override
   void dispose() {
     _formController.close();
-    _sectionController.close();
-    _fieldController.close();
-    _fieldValueController.close();
   }
 
   void _addValueChangedStreamToForm(StreamableFormData formData) {
@@ -280,33 +173,18 @@ class StreamFormBloc extends BlocBase {
   void _addValueChangedStreamToFields(List<StreamableFormFieldData> fieldData) {
     for (final fieldData in fieldData) {
       if (fieldData.tracked) continue;
-      fieldData.onChanged = (newValue) {
-        final fieldValueData = StreamableFormFieldValueData(
-            fieldKey: fieldData.key, value: newValue);
-        _inFieldValue.add(fieldValueData);
-      };
-      fieldData.onFocusChanged = (newFocusValue) {
-        final fieldValueData = StreamableFormFieldValueData(
-            fieldKey: fieldData.key, isInFocus: newFocusValue);
-        _inFieldValue.add(fieldValueData);
-      };
-      _outFieldValue
-          .where((valueData) => valueData.fieldKey == fieldData.key)
-          .listen((valueData) {
-        if (valueData.value != null) {
-          fieldData.value = valueData.value;
-          if (onValueChange != null) onValueChange();
-        }
-        if (valueData.isInFocus != null) {
-          final hasFocusedFieldBefore = _hasFocusedField();
-          fieldData.isInFocus = valueData.isInFocus;
+      fieldData.addOnChangedListener((newValue) {
+        if (onValueChange != null) onValueChange();
+      });
+      fieldData.addOnFocusChangedListener((newFocusValue) {
+        if (fieldData.isInFocus == newFocusValue) return;
+        final hasFocusedFieldBefore = _hasFocusedField();
 
-          if (valueData.isInFocus == !hasFocusedFieldBefore) {
-            if (valueData.isInFocus && onFocus != null) {
-              onFocus();
-            } else if (!valueData.isInFocus && onResignFocus != null) {
-              onResignFocus();
-            }
+        if (newFocusValue == !hasFocusedFieldBefore) {
+          if (newFocusValue && onFocus != null) {
+            onFocus();
+          } else if (!newFocusValue && onResignFocus != null) {
+            onResignFocus();
           }
         }
       });

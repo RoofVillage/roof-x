@@ -16,7 +16,7 @@ class SignUpArtboard extends FormFloatingArtboard {
 
   @override
   List<StreamableFormFieldData> get fieldData => [
-        _temp,
+        _temp2,
         _nameFieldData,
         _emailFieldData,
         _passwordFieldData,
@@ -26,6 +26,20 @@ class SignUpArtboard extends FormFloatingArtboard {
   final _emailFieldData = EmailFormTextFieldData();
   final _passwordFieldData = PasswordFormTextFieldData();
   final _temp = CurrencyFormTextFieldData();
+  final _temp2 = FormSwitchData(title: "Toggle field");
+
+  @override
+  void setup() {
+    _temp2.addOnChangedListener(_toggleField);
+  }
+
+  void _toggleField(bool showing) {
+    if (showing) {
+      form.insertFieldDataAfter(_temp, _temp2);
+    } else {
+      form.removeFieldData(_temp);
+    }
+  }
 
   @override
   Future<void> submit(BuildContext context) async {

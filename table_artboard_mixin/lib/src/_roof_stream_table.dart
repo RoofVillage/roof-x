@@ -27,11 +27,8 @@ class RoofStreamTable extends StreamTable<StreamableTableRowData,
     return null;
   }
 
-  SliverPersistentHeader buildSectionHeader(
+  Widget buildSectionHeader(
       {StreamableTableSectionHeaderData headerData, int sectionIndex}) {
-    return SliverPersistentHeader(
-        pinned: headerData.pinned,
-        floating: headerData.floating,
-        delegate: RoofTableSectionHeaderADelegate(title: headerData.title));
+    return RoofTableSectionHeaderA(title: headerData.title);
   }
 }

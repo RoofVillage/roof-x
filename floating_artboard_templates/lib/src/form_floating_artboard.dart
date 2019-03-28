@@ -60,6 +60,12 @@ class _FormFloatingArtboardState extends State<FormFloatingArtboard>
   final _buttonVerticalPadding = EdgeInsets.only(top: RoofDistance.d);
 
   @override
+  void initState() {
+    formArtboard.setup();
+    super.initState();
+  }
+
+  @override
   List<Widget> buildChildren(BuildContext context) {
     final theme = RoofTheme.of(context);
 
@@ -93,6 +99,12 @@ class _FormFloatingArtboardState extends State<FormFloatingArtboard>
     widget.form.onFocus = () => _onFocus(context);
     widget.form.onResignFocus = () => _onResignFocus(context);
     return super.build(context);
+  }
+
+  @override
+  void dispose() {
+    disposeOfForm();
+    super.dispose();
   }
 
   void _onFocus(BuildContext context) {
