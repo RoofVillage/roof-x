@@ -7,8 +7,6 @@ abstract class StreamableFormFieldData<T> extends StreamableData {
   final double size;
   final String title;
 
-  List<ValueChanged<T>> _onChangedListeners = [];
-  List<ValueChanged<bool>> _onFocusChangedListeners = [];
   ValueChanged<T> get onChanged => (value) {
         for (final listener in _onChangedListeners) listener(value);
       };
@@ -17,19 +15,16 @@ abstract class StreamableFormFieldData<T> extends StreamableData {
         for (final listener in _onFocusChangedListeners) listener(focusValue);
       };
 
-  bool _tracked = false;
   bool get tracked => _tracked;
-
-  bool enabled;
-
   double get fieldSize => size;
-
   T get value => _value;
-
   bool get isInFocus => _isInFocus;
 
+  List<ValueChanged<T>> _onChangedListeners = [];
+  List<ValueChanged<bool>> _onFocusChangedListeners = [];
+  bool _tracked = false;
+  bool enabled;
   T _value;
-
   bool _isInFocus;
 
   void addOnChangedListener(ValueChanged<T> fn) {

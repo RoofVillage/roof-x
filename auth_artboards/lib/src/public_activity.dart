@@ -36,7 +36,10 @@ class PublicActivityArtboard extends FullLogoTableFullScreenArtboard {
       });
 
   final _popButton = RoofIconNavButton(
-      iconReference: IconReference.backArrowNav, onTap: ArtboardNavigator.pop);
+      iconReference: IconReference.backArrowNav,
+      onTap: (context) {
+        ArtboardNavigator.of(context).pop(context);
+      });
 
   @override
   List<RoofNavButton> get actionButtons =>

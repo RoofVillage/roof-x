@@ -10,9 +10,19 @@ class StreamFormBloc extends BlocBase {
 
   StreamableFormData get formData => _formData;
 
-  ChangeListener onValueChange;
-  ChangeListener onFocus;
-  ChangeListener onResignFocus;
+  ChangeListener get onValueChanged => () {
+        for (final listener in _onValueChangedListeners) listener();
+      };
+  ChangeListener get onFocus => () {
+        for (final listener in _onFocusListeners) listener();
+      };
+  ChangeListener get onResignFocus => () {
+        for (final listener in _onResignFocusListeners) listener();
+      };
+
+  List<ChangeListener> _onValueChangedListeners = [];
+  List<ChangeListener> _onFocusListeners = [];
+  List<ChangeListener> _onResignFocusListeners = [];
 
   //The stream responsible for communicating changes to the entire form.
   final _formController = StreamController<StreamableFormData>();
@@ -22,6 +32,21 @@ class StreamFormBloc extends BlocBase {
 
   //Override to handle field changes;
   void fieldChanged(String fieldKey, dynamic oldValue, dynamic newValue) {}
+
+  void addOnValueChangedListener(ChangeListener listener) {
+    if (_onValueChangedListeners.contains(listener)) return;
+    _onValueChangedListeners.add(listener);
+  }
+
+  void addOnFocusListener(ChangeListener listener) {
+    if (_onFocusListeners.contains(listener)) return;
+    _onFocusListeners.add(listener);
+  }
+
+  void addOnResignFocusListener(ChangeListener listener) {
+    if (_onResignFocusListeners.contains(listener)) return;
+    _onResignFocusListeners.add(listener);
+  }
 
   void update(StreamableFormData formData) {
     _addValueChangedStreamToForm(formData);
@@ -46,7 +71,8 @@ class StreamFormBloc extends BlocBase {
 
   void batchUpdateFieldData(List<StreamableFormFieldData> fieldData) {
     if (fieldData.isEmpty) return;
-    for (final data in fieldData) updateFieldData(data);
+    _formData.batchUpdateFieldData(fieldData);
+    _inForm.add(_formData);
   }
 
   void insertFieldData(StreamableFormFieldData fieldData) {
@@ -157,9 +183,27 @@ class StreamFormBloc extends BlocBase {
     _inForm.add(_formData);
   }
 
+  void overwriteWithSectionData(List<StreamableFormSectionData> sectionData) {
+    final fieldData = sectionData.expand((data) => data.fieldData);
+    for (final data in fieldData) _addValueChangedStreamToField(data);
+    _formData.sectionData.clear();
+    _formData.batchAddSectionData(sectionData);
+    _inForm.add(_formData);
+  }
+
+  void overwriteWithFieldData(List<StreamableFormFieldData> fieldData) {
+    for (final data in fieldData) _addValueChangedStreamToField(data);
+    _formData.sectionData.clear();
+    _formData.batchAddFieldData(fieldData);
+    _inForm.add(_formData);
+  }
+
   @override
   void dispose() {
     _formController.close();
+    _onValueChangedListeners.clear();
+    _onFocusListeners.clear();
+    _onResignFocusListeners.clear();
   }
 
   void _addValueChangedStreamToForm(StreamableFormData formData) {
@@ -173,17 +217,15 @@ class StreamFormBloc extends BlocBase {
   void _addValueChangedStreamToFields(List<StreamableFormFieldData> fieldData) {
     for (final fieldData in fieldData) {
       if (fieldData.tracked) continue;
-      fieldData.addOnChangedListener((newValue) {
-        if (onValueChange != null) onValueChange();
-      });
+      fieldData.addOnChangedListener((newValue) => onValueChanged());
       fieldData.addOnFocusChangedListener((newFocusValue) {
         if (fieldData.isInFocus == newFocusValue) return;
         final hasFocusedFieldBefore = _hasFocusedField();
 
         if (newFocusValue == !hasFocusedFieldBefore) {
-          if (newFocusValue && onFocus != null) {
+          if (newFocusValue) {
             onFocus();
-          } else if (!newFocusValue && onResignFocus != null) {
+          } else if (!newFocusValue) {
             onResignFocus();
           }
         }

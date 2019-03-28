@@ -23,19 +23,21 @@ class FullScreenArtboardNavigatorState extends ArtboardNavigatorState {
         data: this, child: KeyboardAccessory(child: widget.child));
   }
 
-  Future goTo(Artboard artboard, {BuildContext context}) async {
+  Future<T> goTo<T>(Artboard artboard, {@required BuildContext context}) async {
     final theme = RoofTheme.of(context);
     if (artboard is FloatingArtboard) {
       final floatingNavigator = FloatingArtboardNavigator(artboard: artboard);
       final result = await Navigator.of(context).push<dynamic>(FloatingRoute(
           builder: (context) => floatingNavigator,
           currentTheme: theme.current));
-      if (result is Artboard)
-        return goTo(result, context: context);
-      else
+      if (result is Artboard) {
+        return await goTo<T>(result, context: context);
+      } else if (result is T) {
         return result;
+      }
+      return Future.value();
     } else {
-      return Navigator.of(context).push<dynamic>(FullScreenRoute(
+      return await Navigator.of(context).push<T>(FullScreenRoute(
         builder: (context) => FullScreenArtboardNavigator(artboard: artboard),
       ));
     }

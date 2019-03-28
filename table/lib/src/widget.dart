@@ -145,23 +145,6 @@ typedef _TableHeaderBuilder = SliverPersistentHeader Function(
 typedef _TableSectionHeaderBuilder = Widget Function(
     {@required StreamableTableSectionHeaderData headerData, int sectionIndex});
 
-class _EmptySliverPersistentHeaderDelegate
-    extends SliverPersistentHeaderDelegate {
-  @override
-  double get minExtent => 0;
-
-  @override
-  double get maxExtent => 0;
-
-  @override
-  Widget build(
-          BuildContext context, double shrinkOffset, bool overlapsContent) =>
-      Container();
-
-  @override
-  bool shouldRebuild(SliverPersistentHeaderDelegate oldDelegate) => true;
-}
-
 enum _SliverListChildDataType { header, row }
 
 class _SliverListChildData {

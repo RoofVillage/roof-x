@@ -93,16 +93,18 @@ class FloatingArtboardNavigatorState extends ArtboardNavigatorState {
   }
 
   @override
-  Future goTo(Artboard artboard, {BuildContext context}) async {
+  Future<T> goTo<T>(Artboard<T> artboard,
+      {@required BuildContext context}) async {
     if (artboard is FloatingArtboard) {
+      final panel = _buildPanelForArtboard<T>(artboard);
       setState(() {
-        final panel = _buildPanelForArtboard(artboard);
         _floatingArtboardPanels.add(panel);
       });
       _pageController.nextPage(duration: _slideDuration, curve: _slideCurve);
     } else {
       Navigator.pop(context, artboard);
     }
+    return artboard.popped;
   }
 
   void _onVerticalDragStart(details) {
@@ -115,8 +117,8 @@ class FloatingArtboardNavigatorState extends ArtboardNavigatorState {
     _downDistanceDelta = details.globalPosition.dy - _initialDragDy;
   }
 
-  FloatingArtboardNavigatorPanel _buildPanelForArtboard(
-      FloatingArtboard artboard) {
+  FloatingArtboardNavigatorPanel _buildPanelForArtboard<T>(
+      FloatingArtboard<T> artboard) {
     final artboardIsFirst = _floatingArtboardPanels.isEmpty ||
         artboard == _floatingArtboardPanels.first.artboard;
     final button = artboard.allowsBackNavigation && !artboardIsFirst
@@ -125,6 +127,8 @@ class FloatingArtboardNavigatorState extends ArtboardNavigatorState {
             onTap: (context) {
               _pageController.previousPage(
                   duration: _slideDuration, curve: _slideCurve);
+              artboard.didComplete();
+
               setState(() {
                 _floatingArtboardPanels.removeLast();
               });

@@ -7,6 +7,22 @@ import 'package:form_artboard_mixin/index.dart';
 import 'phone_number.dart';
 import 'challenge.dart';
 
+class DateTimeArtboard extends FormFloatingArtboard<DateTime> {
+  @override
+  Future<void> submit(BuildContext context) {
+    return null;
+  }
+
+  @override
+  String get submitButtonText => null;
+
+  @override
+  String get title => null;
+
+  @override
+  get result => DateTime.now();
+}
+
 class SignUpArtboard extends FormFloatingArtboard {
   @override
   String get title => "Create an account";
@@ -29,8 +45,16 @@ class SignUpArtboard extends FormFloatingArtboard {
   final _temp2 = FormSwitchData(title: "Toggle field");
 
   @override
-  void setup() {
-    _temp2.addOnChangedListener(_toggleField);
+  void setup(BuildContext context) {
+    super.setup(context);
+    // _temp2.addOnChangedListener(_toggleField);
+  }
+
+  @override
+  Future<DateTime> goToDatePicker(BuildContext context) async {
+    final time = await FloatingArtboardNavigator.of(context)
+        .goTo<DateTime>(DateTimeArtboard(), context: context);
+    print("TIME $time");
   }
 
   void _toggleField(bool showing) {

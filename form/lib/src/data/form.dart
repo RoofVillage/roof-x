@@ -39,6 +39,10 @@ class StreamableFormData extends StreamableData {
     sectionData.replace(index: formLocation.fieldIndex, fieldData: fieldData);
   }
 
+  void batchUpdateFieldData(List<StreamableFormFieldData> fieldData) {
+    for (final data in fieldData) updateFieldData(data);
+  }
+
   void updateSectionData(StreamableFormSectionData sectionData) {
     final sectionIndex = this.sectionData.indexOf(sectionData);
     _replace(index: sectionIndex, sectionData: sectionData);
@@ -93,13 +97,13 @@ class StreamableFormData extends StreamableData {
   }
 
   void addSectionData(StreamableFormSectionData sectionData, {int index}) {
-    final last = this.sectionData.length - 1;
+    final last = this.sectionData.length;
     _addSectionDataAt(sectionData, index ?? last);
   }
 
   void batchAddSectionData(List<StreamableFormSectionData> sectionData,
       {int index}) {
-    final last = this.sectionData.length - 1;
+    final last = this.sectionData.length;
     _batchAddSectionDataAt(sectionData, index ?? last);
   }
 

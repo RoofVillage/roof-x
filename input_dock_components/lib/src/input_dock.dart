@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:multi_image_picker/asset.dart';
 import 'package:spec/index.dart';

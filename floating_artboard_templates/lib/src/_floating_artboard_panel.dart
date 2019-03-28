@@ -1,17 +1,15 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:theme/index.dart';
 import 'package:spec/index.dart';
 import 'package:floating_artboard_templates/index.dart';
 import 'package:navigation_components/index.dart';
 import 'package:icon_library/index.dart';
-import 'package:artboard/index.dart';
-import 'package:keyboard_accessory/index.dart';
 
 class FloatingArtboardNavigatorPanel extends StatefulWidget {
   static final _defaultNavButton = RoofTransitionIconNavButton(
-      iconReference: IconReference.downArrowNav, onTap: ArtboardNavigator.pop);
+      iconReference: IconReference.downArrowNav,
+      onTap: (context) {
+        FloatingArtboardNavigator.of(context).pop(context);
+      });
 
   final FloatingArtboard artboard;
   final RoofTransitionIconNavButton navButton;
