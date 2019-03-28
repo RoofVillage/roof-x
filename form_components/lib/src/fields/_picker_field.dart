@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:spec/index.dart';
 
 import 'widgets/index.dart';
 
@@ -21,8 +20,8 @@ class RoofPickerField extends StatelessWidget {
     rowChildren.add(fieldBody);
 
     return Container(
-      padding: RoofObjectPadding.field1,
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: rowChildren,
       ),

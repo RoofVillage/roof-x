@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:spec/index.dart';
 
 import '_picker_field.dart';
 
@@ -43,8 +44,8 @@ class _RoofDatePickerFieldState extends State<RoofDatePickerField> {
   }
 
   selectDate() {
-    // open date picker with current value, set current value to returned value
-    final newValue = DateTime.now();
+    // open date picker with current value and return new value
+    DateTime newValue;
     setState(() {
       currentValue = newValue;
     });
@@ -56,6 +57,7 @@ class _RoofDatePickerFieldState extends State<RoofDatePickerField> {
       onTap: selectDate,
       child: Container(
         color: Colors.yellow,
+        padding: RoofObjectPadding.field1,
         child: Text(currentValue.toLocal().toIso8601String()),
       ),
     );

@@ -4,7 +4,6 @@ import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart'
 import 'package:floating_artboard_templates/index.dart';
 import 'package:theme/index.dart';
 import 'package:typography/index.dart';
-import 'package:button_components/index.dart';
 import 'package:haptics/index.dart';
 
 import 'mixins/index.dart';
@@ -38,7 +37,7 @@ class _DatePickerFloatingArtboardState extends State<DatePickerFloatingArtboard>
     });
   }
 
-  save(BuildContext context) {
+  save() {
     Haptic.triggerWith(HapticOption.medium);
     Navigator.pop(context, selectedDate);
   }
@@ -82,10 +81,6 @@ class _DatePickerFloatingArtboardState extends State<DatePickerFloatingArtboard>
           height: 400,
         ),
       ),
-      RoofSubmitButton(
-        text: "Save",
-        onTap: (context) => save(context),
-      )
     ];
   }
 }
