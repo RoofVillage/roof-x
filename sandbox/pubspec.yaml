@@ -21,8 +21,6 @@ dependencies:
     path: ../theme
   thread_artboards:
     path: ../thread_artboards
-  date_picker_artboard:
-    path: ../date_picker_artboard
 
 dev_dependencies:
   flutter_test:

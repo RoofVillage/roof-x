@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:artboard/index.dart';
-import 'package:date_picker_artboard/index.dart';
+import 'package:floating_artboard_templates/index.dart';
 import 'package:full_screen_artboard_templates/index.dart';
 
 class FieldsTestingArtboard extends FullScreenArtboard {
@@ -29,7 +29,7 @@ class FieldsTesterState extends State<FieldsTester> {
           context: context);
 
       setState(() {
-        selectedDate = newDate ?? DateTime.now();
+        if (newDate != null) selectedDate = newDate;
       });
     }
 

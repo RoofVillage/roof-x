@@ -11,6 +11,7 @@ mixin FloatingArtboardState {
     final children = buildChildren(context);
     return FloatingArtboardContainer(
         child: Column(
+            mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: children));
