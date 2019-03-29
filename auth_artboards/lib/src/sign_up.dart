@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:floating_artboard_templates/index.dart';
@@ -8,6 +9,9 @@ import 'phone_number.dart';
 import 'challenge.dart';
 
 class DateTimeArtboard extends FormFloatingArtboard<DateTime> {
+  final int seed;
+
+  DateTimeArtboard(this.seed);
   @override
   Future<void> submit(BuildContext context) {
     return null;
@@ -17,7 +21,7 @@ class DateTimeArtboard extends FormFloatingArtboard<DateTime> {
   String get submitButtonText => null;
 
   @override
-  String get title => null;
+  String get title => seed.toString();
 
   @override
   get result => DateTime.now();
@@ -52,8 +56,9 @@ class SignUpArtboard extends FormFloatingArtboard {
 
   @override
   Future<DateTime> goToDatePicker(BuildContext context) async {
+    final random = Random().nextInt(80);
     final time = await FloatingArtboardNavigator.of(context)
-        .goTo<DateTime>(DateTimeArtboard(), context: context);
+        .goTo<DateTime>(DateTimeArtboard(random), context: context);
     print("TIME $time");
   }
 

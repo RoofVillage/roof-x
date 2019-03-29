@@ -5,25 +5,27 @@ import 'package:navigation_components/index.dart';
 import 'package:icon_library/index.dart';
 
 class FloatingArtboardNavigatorPanel extends StatefulWidget {
-  static final _defaultNavButton = RoofTransitionIconNavButton(
-      iconReference: IconReference.downArrowNav,
-      onTap: (context) {
-        FloatingArtboardNavigator.of(context).pop(context);
-      });
+  static final RoofTransitionIconNavButton _defaultButton =
+      RoofTransitionIconNavButton(
+          iconReference: IconReference.downArrowNav,
+          onTap: (context) {
+            FloatingArtboardNavigator.of(context).pop(context);
+          });
 
   final FloatingArtboard artboard;
   final RoofTransitionIconNavButton navButton;
 
-  FloatingArtboardNavigatorPanel(
-      {this.artboard, RoofTransitionIconNavButton navButton})
-      : this.navButton = navButton ?? _defaultNavButton;
+  FloatingArtboardNavigatorPanel({
+    this.artboard,
+    RoofTransitionIconNavButton navButton,
+  }) : this.navButton = navButton ?? _defaultButton;
 
   @override
   State<StatefulWidget> createState() => FloatingArtboardNavigatorPanelState();
 
-  static InheritedArtboardNavigatorPanel of(BuildContext context) {
+  static InheritedFloatingArtboardNavigatorPanel of(BuildContext context) {
     return context
-        .inheritFromWidgetOfExactType(InheritedArtboardNavigatorPanel);
+        .inheritFromWidgetOfExactType(InheritedFloatingArtboardNavigatorPanel);
   }
 }
 
@@ -32,14 +34,13 @@ class FloatingArtboardNavigatorPanel extends StatefulWidget {
 class FloatingArtboardNavigatorPanelState
     extends State<FloatingArtboardNavigatorPanel>
     with AutomaticKeepAliveClientMixin {
-  final _buttonMarginBottom = RoofDistance.d;
-
   bool showsNavButton = true;
 
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-  }
+  // @override
+  bool get wantKeepAlive => _wantKeepAlive;
+
+  bool _wantKeepAlive = true;
+  final _buttonMarginBottom = RoofDistance.d;
 
   @override
   Widget build(BuildContext context) {
@@ -65,25 +66,27 @@ class FloatingArtboardNavigatorPanelState
     }
 
     final child = Stack(alignment: _alignment, children: children);
-    return InheritedArtboardNavigatorPanel(data: this, child: child);
+    return InheritedFloatingArtboardNavigatorPanel(data: this, child: child);
   }
 
   @override
-  bool get wantKeepAlive => true;
+  void dispose() {
+    _wantKeepAlive = false;
+    updateKeepAlive();
+    super.dispose();
+  }
 
   void toggleNavButtonVisibilityTo(bool shouldShow) {
-    setState(() {
-      showsNavButton = shouldShow;
-    });
+    setState(() => showsNavButton = shouldShow);
   }
 }
 
 typedef ToggleNavButtonVisibility = Function(bool shouldShow);
 
-class InheritedArtboardNavigatorPanel extends InheritedWidget {
+class InheritedFloatingArtboardNavigatorPanel extends InheritedWidget {
   final ToggleNavButtonVisibility toggleNavButtonVisibilityTo;
 
-  InheritedArtboardNavigatorPanel(
+  InheritedFloatingArtboardNavigatorPanel(
       {@required FloatingArtboardNavigatorPanelState data,
       @required Widget child})
       : toggleNavButtonVisibilityTo = data.toggleNavButtonVisibilityTo,
