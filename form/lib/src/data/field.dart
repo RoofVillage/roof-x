@@ -5,50 +5,52 @@ import 'package:stream/index.dart';
 
 abstract class StreamableFormFieldData<T> extends StreamableData {
   final double size;
-  ValueChanged<T> onChanged;
-  ValueChanged<bool> onFocusChanged;
+  final String title;
 
-  bool _tracked = false;
+  ValueChanged<T> get onChanged => (value) {
+        for (final listener in _onChangedListeners) listener(value);
+      };
+
+  ValueChanged<bool> get onFocusChanged => (focusValue) {
+        for (final listener in _onFocusChangedListeners) listener(focusValue);
+      };
+
   bool get tracked => _tracked;
-
-  bool enabled;
-
   double get fieldSize => size;
-
   T get value => _value;
-  set value(T value) {
-    _value = value;
-    if (_onChanged != null) _onChanged(value);
-  }
-
   bool get isInFocus => _isInFocus;
-  set isInFocus(bool focusValue) {
-    _isInFocus = focusValue;
-    if (_onFocusChanged != null) _onFocusChanged(focusValue);
-  }
 
-  final ValueChanged<T> _onChanged;
+  List<ValueChanged<T>> _onChangedListeners = [];
+  List<ValueChanged<bool>> _onFocusChangedListeners = [];
+  bool _tracked = false;
+  bool enabled;
   T _value;
-
-  final ValueChanged<bool> _onFocusChanged;
   bool _isInFocus;
 
+  void addOnChangedListener(ValueChanged<T> fn) {
+    if (_onChangedListeners.contains(fn)) return;
+    _onChangedListeners.add(fn);
+  }
+
+  void addOnFocusChangedListener(ValueChanged<bool> fn) {
+    if (_onFocusChangedListeners.contains(fn)) return;
+    _onFocusChangedListeners.add(fn);
+  }
+
   StreamableFormFieldData({
-    String title,
+    @required this.title,
     String placeholder,
     T initialValue,
     double size,
     bool enabled,
-    ValueChanged<T> onChanged,
-    ValueChanged<bool> onFocusChanged,
-    bool isHidden,
   })  : size = size ?? 1,
         enabled = enabled ?? true,
         _value = initialValue,
         _isInFocus = false,
-        _onChanged = onChanged,
-        _onFocusChanged = onFocusChanged,
-        super(isHidden: isHidden);
+        super() {
+    addOnChangedListener((newValue) => _value = newValue);
+    addOnFocusChangedListener((newFocusValue) => _isInFocus = newFocusValue);
+  }
 
   Future<void> validate() async {}
 

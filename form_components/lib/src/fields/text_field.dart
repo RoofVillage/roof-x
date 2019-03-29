@@ -25,20 +25,21 @@ class RoofTextField extends StatelessWidget {
   final Function onTap;
   final FocusNode focusNode;
 
-  RoofTextField(
-      {@required this.fieldName,
-      this.placeholder,
-      this.initialValue,
-      this.isPassword = false,
-      this.autofocus = false,
-      this.mask,
-      this.textInputAction,
-      this.keyboardType = TextInputType.text,
-      this.onChanged,
-      this.onSubmitted,
-      this.onFocusChanged,
-      this.onTap,
-      this.focusNode});
+  RoofTextField({
+    @required this.fieldName,
+    this.placeholder,
+    this.initialValue,
+    this.isPassword = false,
+    this.autofocus = false,
+    this.mask,
+    this.textInputAction,
+    this.keyboardType = TextInputType.text,
+    this.onChanged,
+    this.onSubmitted,
+    this.onFocusChanged,
+    this.onTap,
+    this.focusNode,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -86,19 +87,20 @@ class _FieldBody extends StatefulWidget {
   final Function onTap;
   final FocusNode focusNode;
 
-  _FieldBody(
-      {this.autofocus,
-      this.isPassword,
-      this.initialValue,
-      this.textInputAction,
-      this.mask,
-      this.keyboardType,
-      this.placeholder,
-      this.onChanged,
-      this.onSubmitted,
-      this.onFocusChanged,
-      this.onTap,
-      this.focusNode});
+  _FieldBody({
+    this.autofocus,
+    this.isPassword,
+    this.initialValue,
+    this.textInputAction,
+    this.mask,
+    this.keyboardType,
+    this.placeholder,
+    this.onChanged,
+    this.onSubmitted,
+    this.onFocusChanged,
+    this.onTap,
+    this.focusNode,
+  });
 
   _FieldBodyState createState() => _FieldBodyState();
 }
@@ -167,7 +169,7 @@ class _FieldBodyState extends State<_FieldBody> {
   @override
   void dispose() {
     _controller.dispose();
-    widget.focusNode.dispose();
+    widget.focusNode.removeListener(_focusUpdated);
     super.dispose();
   }
 
@@ -175,8 +177,7 @@ class _FieldBodyState extends State<_FieldBody> {
     if (widget.mask != null) {
       final formattedText =
           _formattedText(text: _controller.text, context: context);
-      if (formattedText == _controller.text) return;
-      _setText(formattedText);
+      if (formattedText != _controller.text) return _setText(formattedText);
     }
     widget.onChanged(_controller.text);
   }

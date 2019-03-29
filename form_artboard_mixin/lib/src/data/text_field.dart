@@ -5,29 +5,22 @@ import 'composition_field.dart';
 abstract class FormTextFieldData extends FormCompositionFieldData {
   MaskOption mask;
 
-  FormTextFieldData(
-      {this.mask,
-      String title,
-      String placeholder,
-      String initialValue,
-      TextInputType keyboardType,
-      double size,
-      bool autofocus,
-      ValueChanged<String> onSubmitted,
-      ValueChanged<String> onChanged,
-      ValueChanged<bool> onFocusChanged,
-      bool isOptional,
-      bool isHidden})
-      : super(
-            title: title,
-            placeholder: placeholder,
-            initialValue: initialValue,
-            keyboardType: keyboardType,
-            onSubmitted: onSubmitted,
-            onChanged: onChanged,
-            onFocusChanged: onFocusChanged,
-            autofocus: autofocus,
-            size: size,
-            isOptional: isOptional,
-            isHidden: isHidden);
+  FormTextFieldData({
+    this.mask,
+    @required String title,
+    String placeholder,
+    String initialValue,
+    TextInputType keyboardType,
+    double size,
+    bool autofocus,
+    bool isOptional,
+  }) : super(
+          title: title,
+          placeholder: placeholder,
+          initialValue: initialValue,
+          keyboardType: keyboardType,
+          autofocus: autofocus,
+          size: size,
+          isOptional: isOptional,
+        );
 }

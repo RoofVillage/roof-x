@@ -3,34 +3,36 @@ import 'package:form/index.dart';
 
 abstract class FormCompositionFieldData
     extends StreamableFormFieldData<String> {
-  String title;
   String placeholder;
   bool autofocus;
   TextInputAction inputAction;
-  ValueChanged<String> onSubmitted;
   TextInputType keyboardType;
   bool isOptional;
 
-  FormCompositionFieldData(
-      {this.title,
-      this.placeholder,
-      this.inputAction,
-      this.onSubmitted,
-      TextInputType keyboardType,
-      bool isOptional,
-      bool autofocus,
-      String initialValue,
-      double size,
-      ValueChanged<String> onChanged,
-      ValueChanged<bool> onFocusChanged,
-      bool isHidden})
-      : autofocus = autofocus ?? false,
+  List<ValueChanged<String>> _onSubmittedListeners = [];
+  ValueChanged<String> get onSubmitted => (value) {
+        for (final listener in _onSubmittedListeners) listener(value);
+      };
+
+  FormCompositionFieldData({
+    this.inputAction,
+    @required String title,
+    String placeholder,
+    TextInputType keyboardType,
+    bool isOptional,
+    bool autofocus,
+    String initialValue,
+    double size,
+  })  : autofocus = autofocus ?? false,
+        placeholder = placeholder ?? "",
         isOptional = isOptional ?? false,
         keyboardType = keyboardType ?? TextInputType.text,
         super(
-            initialValue: initialValue ?? "",
-            onChanged: onChanged,
-            onFocusChanged: onFocusChanged,
-            size: size,
-            isHidden: isHidden);
+          title: title,
+          initialValue: initialValue ?? "",
+          size: size,
+        );
+
+  void addOnSubmittedListener(ValueChanged<String> fn) =>
+      _onSubmittedListeners.add(fn);
 }

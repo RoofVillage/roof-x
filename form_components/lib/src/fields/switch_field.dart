@@ -7,45 +7,34 @@ import 'package:haptics/index.dart';
 
 class RoofSwitchField extends StatefulWidget {
   final String title;
-  final bool isOnInitially;
+  final bool initialValue;
   final int labelMaxLines;
   final Function(bool) onChanged;
 
-  static const int _defaultLabelMaxLines = 3;
-  static const bool _isOnInitially = false;
-
   const RoofSwitchField(
       {this.title,
-      this.isOnInitially = _isOnInitially,
-      this.labelMaxLines = _defaultLabelMaxLines,
+      this.initialValue = false,
+      this.labelMaxLines = 3,
       this.onChanged});
 
   @override
-  _RoofSwitchFieldState createState() => _RoofSwitchFieldState(
-      title: title,
-      isOn: isOnInitially,
-      labelMaxLines: labelMaxLines,
-      onChanged: onChanged);
+  _RoofSwitchFieldState createState() => _RoofSwitchFieldState();
 }
 
 class _RoofSwitchFieldState extends State<RoofSwitchField>
     with SingleTickerProviderStateMixin {
-  String title;
   bool isOn;
   int labelMaxLines;
   Animation<Color> animation;
   AnimationController controller;
-  Function(bool) onChanged;
 
   final _typographyStyle = RoofTypography.title;
   final _duration = RoofDuration.short;
 
-  _RoofSwitchFieldState(
-      {this.title, this.isOn, this.labelMaxLines, this.onChanged});
-
   initState() {
-    super.initState();
+    isOn = widget.initialValue;
     controller = AnimationController(duration: _duration, vsync: this);
+    super.initState();
   }
 
   @override
@@ -66,7 +55,7 @@ class _RoofSwitchFieldState extends State<RoofSwitchField>
 
     final labelContainer = Expanded(
       child: Text(
-        title,
+        widget.title,
         maxLines: labelMaxLines,
         style: _typographyStyle.textStyleWithColor(secondaryTextColor),
       ),
@@ -86,7 +75,7 @@ class _RoofSwitchFieldState extends State<RoofSwitchField>
 
   void _onTap() {
     Haptic.triggerWith(HapticOption.light);
-    onChanged(!isOn);
+    widget.onChanged(!isOn);
     setState(() {
       isOn = !isOn;
     });

@@ -36,7 +36,10 @@ class PublicActivityArtboard extends FullLogoTableFullScreenArtboard {
       });
 
   final _popButton = RoofIconNavButton(
-      iconReference: IconReference.backArrowNav, onTap: ArtboardNavigator.pop);
+      iconReference: IconReference.backArrowNav,
+      onTap: (context) {
+        ArtboardNavigator.of(context).pop(context);
+      });
 
   @override
   List<RoofNavButton> get actionButtons =>
@@ -85,14 +88,14 @@ class PublicActivityArtboard extends FullLogoTableFullScreenArtboard {
 
   @override
   Future<List<CellAData>> get loadRowData async {
-    return [];
-    // //Format it the activity into streamable data on different thread.
-    // final response = await PublicActivity().get(pageSize: 50);
+    // return [];
+    //Format it the activity into streamable data on different thread.
+    final response = await PublicActivity().get(pageSize: 50);
 
-    // final rowData = await compute<String, List<CellAData>>(
-    //     _streamableDataFromResponse, response);
+    final rowData = await compute<String, List<CellAData>>(
+        _streamableDataFromResponse, response);
 
-    // return rowData;
+    return rowData;
   }
 }
 

@@ -9,27 +9,20 @@ class EmailFormTextFieldData extends FormTextFieldData {
   static final regEx = RegExp(
       r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$");
 
-  EmailFormTextFieldData(
-      {String title = "Email",
-      String placeholder,
-      String initialValue,
-      double size,
-      bool autofocus,
-      ValueChanged<String> onSubmitted,
-      ValueChanged<String> onChanged,
-      ValueChanged<bool> onFocusChanged,
-      bool isHidden})
-      : super(
-            title: title,
-            placeholder: placeholder,
-            initialValue: initialValue,
-            onSubmitted: onSubmitted,
-            onChanged: onChanged,
-            onFocusChanged: onFocusChanged,
-            autofocus: autofocus,
-            keyboardType: TextInputType.emailAddress,
-            size: size,
-            isHidden: isHidden);
+  EmailFormTextFieldData({
+    String title = "Email",
+    String placeholder,
+    String initialValue,
+    double size,
+    bool autofocus,
+  }) : super(
+          title: title,
+          placeholder: placeholder,
+          initialValue: initialValue,
+          autofocus: autofocus,
+          keyboardType: TextInputType.emailAddress,
+          size: size,
+        );
 
   @override
   Future<void> validate() async {

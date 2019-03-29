@@ -31,35 +31,20 @@ class RoofSelectField extends StatefulWidget {
       this.onChanged});
 
   @override
-  _RoofSelectFieldState createState() => _RoofSelectFieldState(
-      title: title,
-      selectedOptions: selectedOptions,
-      options: options,
-      isMultiSelect: isMultiSelect,
-      onChanged: onChanged);
+  _RoofSelectFieldState createState() => _RoofSelectFieldState();
 }
 
 class _RoofSelectFieldState extends State<RoofSelectField>
     with SingleTickerProviderStateMixin {
-  String title;
-  String emptyText;
   List<RoofSelectFieldOptionData> selectedOptions;
   List<RoofSelectFieldOptionData> options;
-  bool isMultiSelect;
-  bool isExpanded;
-  Function(List<RoofSelectFieldOptionData>) onChanged;
-
-  _RoofSelectFieldState(
-      {this.title,
-      this.emptyText,
-      this.selectedOptions,
-      this.options,
-      this.isMultiSelect,
-      this.onChanged});
+  bool isExpanded = false;
 
   @override
   void initState() {
-    if (selectedOptions == null && !isMultiSelect)
+    selectedOptions = widget.selectedOptions;
+    options = widget.options;
+    if (selectedOptions == null && !widget.isMultiSelect)
       selectedOptions = [options[0]];
     isExpanded = false;
     super.initState();
@@ -67,30 +52,31 @@ class _RoofSelectFieldState extends State<RoofSelectField>
 
   @override
   Widget build(BuildContext context) {
-    Widget label = RoofFieldLabel(labelText: title);
+    Widget label = RoofFieldLabel(labelText: widget.title);
 
     final selectedOptionsContainer = _SelectedOptionsContainer(
         selectedOptionsText: _textForSelectedOptions(),
-        emptyText: emptyText,
+        emptyText: widget.emptyText,
         onTap: _expandDropdown,
         isExpanded: isExpanded);
 
     final dropdownContainer = _DropdownContainer(
         options: options,
         selectedOptions: selectedOptions,
-        isMultiSelect: isMultiSelect,
+        isMultiSelect: widget.isMultiSelect,
         isExpanded: isExpanded,
-        onTap: _updateSelectedOptions);
+        onTap: _onTap);
 
     return Container(
-        margin: RoofObjectPadding.field1,
-        child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [label, selectedOptionsContainer, dropdownContainer]));
+      margin: RoofObjectPadding.field1,
+      child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [label, selectedOptionsContainer, dropdownContainer]),
+    );
   }
 
-  _textForSelectedOptions() {
-    String text = "";
+  String _textForSelectedOptions() {
+    var text = "";
     for (var i = 0; i < selectedOptions.length; i++) {
       bool isLast = i == selectedOptions.length - 1;
       text += selectedOptions[i].title;
@@ -99,10 +85,19 @@ class _RoofSelectFieldState extends State<RoofSelectField>
     return text;
   }
 
-  _updateSelectedOptions(option) {
-    HapticOption hapticOption;
-    if (isMultiSelect) {
-      hapticOption = HapticOption.light;
+  void _onTap(RoofSelectFieldOptionData option) {
+    widget.onChanged(selectedOptions);
+    _updateSelectedOptions(option);
+    Haptic.triggerWith(_hapticOption);
+  }
+
+  HapticOption get _hapticOption {
+    if (widget.isMultiSelect) return HapticOption.light;
+    return (isExpanded) ? HapticOption.medium : HapticOption.light;
+  }
+
+  void _updateSelectedOptions(RoofSelectFieldOptionData option) {
+    if (widget.isMultiSelect) {
       final optionIsSelected = selectedOptions.contains(option);
       setState(() {
         optionIsSelected
@@ -110,17 +105,14 @@ class _RoofSelectFieldState extends State<RoofSelectField>
             : selectedOptions.add(option);
       });
     } else {
-      hapticOption = isExpanded ? HapticOption.medium : HapticOption.light;
       setState(() {
         selectedOptions.first = option;
         isExpanded = !isExpanded;
       });
     }
-    onChanged(selectedOptions);
-    Haptic.triggerWith(hapticOption);
   }
 
-  _expandDropdown() {
+  void _expandDropdown() {
     final hapticOption = isExpanded ? HapticOption.medium : HapticOption.light;
     Haptic.triggerWith(hapticOption);
     setState(() {

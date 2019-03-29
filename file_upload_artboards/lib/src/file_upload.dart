@@ -17,7 +17,7 @@ class FileUploadArtboard extends SegueFloatingArtboard {
       );
       if (file == null) return;
 
-      Navigator.of(context).pop(file);
+      FloatingArtboardNavigator.of(context).pop(context, file);
     },
   );
 
@@ -30,7 +30,7 @@ class FileUploadArtboard extends SegueFloatingArtboard {
       );
       if (file == null) return;
 
-      Navigator.of(context).pop(file);
+      FloatingArtboardNavigator.of(context).pop(context, file);
     },
   );
 

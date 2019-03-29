@@ -13,26 +13,20 @@ class PasswordFormTextFieldData extends FormTextFieldData {
   static const characterSet =
       r'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-?><,./|][}{]~';
 
-  PasswordFormTextFieldData(
-      {String title = "Password",
-      String placeholder = "8+ letters, numbers & symbols",
-      String initialValue,
-      double size,
-      bool autofocus,
-      ValueChanged<String> onSubmitted,
-      ValueChanged<String> onChanged,
-      ValueChanged<bool> onFocusChanged,
-      bool isHidden})
-      : super(
-            title: title,
-            placeholder: placeholder,
-            initialValue: initialValue,
-            onSubmitted: onSubmitted,
-            onChanged: onChanged,
-            onFocusChanged: onFocusChanged,
-            autofocus: autofocus,
-            size: size,
-            isHidden: isHidden);
+  PasswordFormTextFieldData({
+    String title = "Password",
+    String placeholder = "8+ letters, numbers & symbols",
+    String initialValue,
+    double size,
+    bool autofocus,
+    ValueChanged<String> onSubmitted,
+  }) : super(
+          title: title,
+          placeholder: placeholder,
+          initialValue: initialValue,
+          autofocus: autofocus,
+          size: size,
+        );
 
   Future<void> validate() async {
     if (value.length > Consts.maxCharsInPassword) {

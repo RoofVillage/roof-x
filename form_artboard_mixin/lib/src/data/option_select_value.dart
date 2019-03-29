@@ -6,6 +6,5 @@ class FormOptionSelectValueData extends StreamableData {
   String title;
   String data;
 
-  FormOptionSelectValueData({@required this.title, this.data, bool isHidden})
-      : super(isHidden: isHidden);
+  FormOptionSelectValueData({@required this.title, this.data}) : super();
 }

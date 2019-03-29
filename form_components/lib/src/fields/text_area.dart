@@ -18,18 +18,19 @@ class RoofTextArea extends StatelessWidget {
   final Function onTap;
   final FocusNode focusNode;
 
-  RoofTextArea(
-      {this.fieldName,
-      this.placeholder,
-      this.initialValue,
-      this.autofocus = false,
-      this.textInputAction,
-      this.keyboardType = TextInputType.text,
-      this.onChanged,
-      this.onSubmitted,
-      this.onFocusChanged,
-      this.onTap,
-      this.focusNode});
+  RoofTextArea({
+    this.fieldName,
+    this.placeholder,
+    this.initialValue,
+    this.autofocus = false,
+    this.textInputAction,
+    this.keyboardType = TextInputType.text,
+    this.onChanged,
+    this.onSubmitted,
+    this.onFocusChanged,
+    this.onTap,
+    this.focusNode,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -91,9 +92,7 @@ class _FieldBodyState extends State<_FieldBody> {
   final _typographyStyle = RoofTypography.bodyPrimary;
   final _controller = TextEditingController();
 
-  _controllerUpdated() {
-    widget.onChanged(_controller.text);
-  }
+  void _controllerUpdated() => widget.onChanged(_controller.text);
 
   @override
   void initState() {
@@ -125,15 +124,16 @@ class _FieldBodyState extends State<_FieldBody> {
     return Container(
         margin: EdgeInsets.fromLTRB(0, RoofDistance.a, 0, 0),
         child: TextField(
-            autofocus: widget.autofocus,
-            textInputAction: widget.textInputAction,
-            maxLines: _maxLines,
-            decoration: decoration,
-            keyboardType: widget.keyboardType,
-            onSubmitted: (value) => widget.onSubmitted(value, context),
-            focusNode: widget.focusNode,
-            onTap: widget.onTap,
-            controller: _controller));
+          autofocus: widget.autofocus,
+          textInputAction: widget.textInputAction,
+          maxLines: _maxLines,
+          decoration: decoration,
+          keyboardType: widget.keyboardType,
+          onSubmitted: (value) => widget.onSubmitted(value, context),
+          focusNode: widget.focusNode,
+          onTap: widget.onTap,
+          controller: _controller,
+        ));
   }
 
   @override
