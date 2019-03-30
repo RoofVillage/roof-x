@@ -1,28 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:spec/index.dart';
+import 'package:typography/index.dart';
+import 'package:theme/index.dart';
+import 'package:haptics/index.dart';
 
 import '_picker_field.dart';
 
 class RoofDatePickerField extends StatefulWidget {
-  final String fieldName;
-  final String placeholder;
+  final String title;
   final DateTime initialValue;
-  final DateTime startDateBound;
-  final DateTime endDateBound;
+  final DateTime startBound;
+  final DateTime endBound;
   final bool autofocus;
   final TextInputType keyboardType;
-  final Function(String) onChanged;
-  final Function(String, BuildContext) onSubmitted;
+  final Function(DateTime) onChanged;
+  final Function(DateTime, BuildContext) onSubmitted;
   final Function(bool) onFocusChanged;
   final Function onTap;
   final FocusNode focusNode;
 
   RoofDatePickerField({
-    this.fieldName,
-    this.placeholder,
+    this.title,
     this.initialValue,
-    this.startDateBound,
-    this.endDateBound,
+    this.startBound,
+    this.endBound,
     this.autofocus,
     this.keyboardType,
     this.onChanged,
@@ -44,26 +45,36 @@ class _RoofDatePickerFieldState extends State<RoofDatePickerField> {
   }
 
   selectDate() {
+    Haptic.triggerWith(HapticOption.light);
     // open date picker with current value and return new value
-    DateTime newValue;
-    setState(() {
-      currentValue = newValue;
-    });
+    // DateTime newValue;
+    // setState(() {
+    //   currentValue = newValue;
+    // });
   }
+
+  final _typographyStyle = RoofTypography.bodyPrimary;
 
   @override
   Widget build(BuildContext context) {
+    final String formattedValue = currentValue.toLocal().toIso8601String();
+    final TextStyle textStyle = _typographyStyle.textStyleWithColor(
+      RoofTheme.of(context).color.text.primary,
+    );
+
     final fieldBody = GestureDetector(
       onTap: selectDate,
       child: Container(
-        color: Colors.yellow,
         padding: RoofObjectPadding.field1,
-        child: Text(currentValue.toLocal().toIso8601String()),
+        child: Text(
+          formattedValue,
+          style: textStyle,
+        ),
       ),
     );
 
     return RoofPickerField(
-      name: widget.fieldName,
+      name: widget.title,
       fieldBody: fieldBody,
     );
   }

@@ -10,6 +10,7 @@ class RoofPickerField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("build picker field");
     List<Widget> rowChildren = [];
 
     if (name != null) {
@@ -21,8 +22,8 @@ class RoofPickerField extends StatelessWidget {
 
     return Container(
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: rowChildren,
       ),
     );
