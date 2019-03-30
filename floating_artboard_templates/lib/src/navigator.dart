@@ -126,24 +126,23 @@ class FloatingArtboardNavigatorState extends ArtboardNavigatorState {
     _downDistanceDelta = details.globalPosition.dy - _initialDragDy;
   }
 
+  void _back() async {
+    await _pageController.previousPage(
+        duration: _slideDuration, curve: _slideCurve);
+    setState(() => _floatingArtboardPanels.removeLast());
+  }
+
   FloatingArtboardNavigatorPanel _buildPanelForArtboard<T>(
       FloatingArtboard<T> artboard) {
     final artboardIsFirst = _floatingArtboardPanels.isEmpty ||
         artboard == _floatingArtboardPanels.first.artboard;
-    final button = artboard.allowsBackNavigation && !artboardIsFirst
-        ? RoofTransitionIconNavButton(
-            iconReference: IconReference.backArrowNav,
-            onTap: (context) async {
-              artboard.didComplete();
-              await _pageController.previousPage(
-                  duration: _slideDuration, curve: _slideCurve);
-              setState(() => _floatingArtboardPanels.removeLast());
-            })
-        : null;
+    final navButtonOption = artboard.allowsBackNavigation && !artboardIsFirst
+        ? FloatingArtboardButtonOption.previous
+        : FloatingArtboardButtonOption.close;
 
     final page = FloatingArtboardNavigatorPanel(
       artboard: artboard,
-      navButton: button,
+      navButtonOption: navButtonOption,
     );
 
     return page;
@@ -153,6 +152,7 @@ class FloatingArtboardNavigatorState extends ArtboardNavigatorState {
 class FloatingInheritedArtboardNavigator extends InheritedArtboardNavigator {
   final BuildContextPasser hideNavButtons;
   final BuildContextPasser showNavButtons;
+  final Function back;
 
   FloatingInheritedArtboardNavigator(
       {Key key,
@@ -160,6 +160,7 @@ class FloatingInheritedArtboardNavigator extends InheritedArtboardNavigator {
       @required Widget child})
       : hideNavButtons = data.hideNavButtons,
         showNavButtons = data.showNavButtons,
+        back = data._back,
         super(key: key, data: data, child: child);
 
   @override

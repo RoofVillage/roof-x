@@ -4,21 +4,17 @@ import 'package:floating_artboard_templates/index.dart';
 import 'package:navigation_components/index.dart';
 import 'package:icon_library/index.dart';
 
-class FloatingArtboardNavigatorPanel extends StatefulWidget {
-  static final RoofTransitionIconNavButton _defaultButton =
-      RoofTransitionIconNavButton(
-          iconReference: IconReference.downArrowNav,
-          onTap: (context) {
-            FloatingArtboardNavigator.of(context).pop(context);
-          });
+enum FloatingArtboardButtonOption { close, previous }
 
+class FloatingArtboardNavigatorPanel extends StatefulWidget {
   final FloatingArtboard artboard;
-  final RoofTransitionIconNavButton navButton;
+  final FloatingArtboardButtonOption navButtonOption;
 
   FloatingArtboardNavigatorPanel({
     this.artboard,
-    RoofTransitionIconNavButton navButton,
-  }) : this.navButton = navButton ?? _defaultButton;
+    FloatingArtboardButtonOption navButtonOption,
+  }) : this.navButtonOption =
+            navButtonOption ?? FloatingArtboardButtonOption.close;
 
   @override
   State<StatefulWidget> createState() => FloatingArtboardNavigatorPanelState();
@@ -42,6 +38,25 @@ class FloatingArtboardNavigatorPanelState
   bool _wantKeepAlive = true;
   final _buttonMarginBottom = RoofDistance.d;
 
+  RoofNavButton _navButton() {
+    switch (widget.navButtonOption) {
+      case FloatingArtboardButtonOption.close:
+        return RoofTransitionIconNavButton(
+            iconReference: IconReference.downArrowNav,
+            onTap: (context) {
+              FloatingArtboardNavigator.of(context).pop(context);
+            });
+      case FloatingArtboardButtonOption.previous:
+        return RoofTransitionIconNavButton(
+            iconReference: IconReference.backArrowNav,
+            onTap: (context) async {
+              widget.artboard.didComplete();
+              FloatingArtboardNavigator.of(context).back();
+            });
+    }
+    return null;
+  }
+
   @override
   Widget build(BuildContext context) {
     super.build(context); //necessary for the mixin.
@@ -62,7 +77,8 @@ class FloatingArtboardNavigatorPanelState
 
     List<Widget> children = [flexibleColumn];
     if (showsNavButton) {
-      children.add(widget.navButton);
+      final button = _navButton();
+      children.add(button);
     }
 
     final child = Stack(alignment: _alignment, children: children);
