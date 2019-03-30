@@ -5,7 +5,6 @@ import 'package:theme/index.dart';
 import 'package:spec/index.dart';
 import 'package:floating_artboard_templates/index.dart';
 import 'package:navigation_components/index.dart';
-import 'package:icon_library/index.dart';
 import 'package:artboard/index.dart';
 import 'package:keyboard_accessory/index.dart';
 
@@ -136,13 +135,13 @@ class FloatingArtboardNavigatorState extends ArtboardNavigatorState {
       FloatingArtboard<T> artboard) {
     final artboardIsFirst = _floatingArtboardPanels.isEmpty ||
         artboard == _floatingArtboardPanels.first.artboard;
-    final navButtonOption = artboard.allowsBackNavigation && !artboardIsFirst
-        ? FloatingArtboardButtonOption.previous
-        : FloatingArtboardButtonOption.close;
+    final defaultNavButtonOption = artboardIsFirst
+        ? FloatingArtboardButtonOption.close
+        : FloatingArtboardButtonOption.previous;
 
     final page = FloatingArtboardNavigatorPanel(
       artboard: artboard,
-      navButtonOption: navButtonOption,
+      defaultNavButtonOption: defaultNavButtonOption,
     );
 
     return page;

@@ -4,17 +4,17 @@ import 'package:floating_artboard_templates/index.dart';
 import 'package:navigation_components/index.dart';
 import 'package:icon_library/index.dart';
 
-enum FloatingArtboardButtonOption { close, previous }
+import 'floating_artboard_button_option.dart';
 
 class FloatingArtboardNavigatorPanel extends StatefulWidget {
   final FloatingArtboard artboard;
-  final FloatingArtboardButtonOption navButtonOption;
+  final FloatingArtboardButtonOption defaultNavButtonOption;
 
   FloatingArtboardNavigatorPanel({
     this.artboard,
-    FloatingArtboardButtonOption navButtonOption,
-  }) : this.navButtonOption =
-            navButtonOption ?? FloatingArtboardButtonOption.close;
+    FloatingArtboardButtonOption defaultNavButtonOption,
+  }) : this.defaultNavButtonOption =
+            defaultNavButtonOption ?? FloatingArtboardButtonOption.close;
 
   @override
   State<StatefulWidget> createState() => FloatingArtboardNavigatorPanelState();
@@ -39,7 +39,9 @@ class FloatingArtboardNavigatorPanelState
   final _buttonMarginBottom = RoofDistance.d;
 
   RoofNavButton _navButton() {
-    switch (widget.navButtonOption) {
+    final buttonOption =
+        widget.artboard.navButtonOption ?? widget.defaultNavButtonOption;
+    switch (buttonOption) {
       case FloatingArtboardButtonOption.close:
         return RoofTransitionIconNavButton(
             iconReference: IconReference.downArrowNav,
