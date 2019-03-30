@@ -1,31 +1,27 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:theme/index.dart';
 import 'package:spec/index.dart';
 import 'package:floating_artboard_templates/index.dart';
 import 'package:navigation_components/index.dart';
 import 'package:icon_library/index.dart';
-import 'package:artboard/index.dart';
-import 'package:keyboard_accessory/index.dart';
+
+import 'floating_artboard_button_option.dart';
 
 class FloatingArtboardNavigatorPanel extends StatefulWidget {
-  static final _defaultNavButton = RoofTransitionIconNavButton(
-      iconReference: IconReference.downArrowNav, onTap: ArtboardNavigator.pop);
-
   final FloatingArtboard artboard;
-  final RoofTransitionIconNavButton navButton;
+  final FloatingArtboardButtonOption defaultNavButtonOption;
 
-  FloatingArtboardNavigatorPanel(
-      {this.artboard, RoofTransitionIconNavButton navButton})
-      : this.navButton = navButton ?? _defaultNavButton;
+  FloatingArtboardNavigatorPanel({
+    this.artboard,
+    FloatingArtboardButtonOption defaultNavButtonOption,
+  }) : this.defaultNavButtonOption =
+            defaultNavButtonOption ?? FloatingArtboardButtonOption.close;
 
   @override
   State<StatefulWidget> createState() => FloatingArtboardNavigatorPanelState();
 
-  static InheritedArtboardNavigatorPanel of(BuildContext context) {
+  static InheritedFloatingArtboardNavigatorPanel of(BuildContext context) {
     return context
-        .inheritFromWidgetOfExactType(InheritedArtboardNavigatorPanel);
+        .inheritFromWidgetOfExactType(InheritedFloatingArtboardNavigatorPanel);
   }
 }
 
@@ -34,13 +30,33 @@ class FloatingArtboardNavigatorPanel extends StatefulWidget {
 class FloatingArtboardNavigatorPanelState
     extends State<FloatingArtboardNavigatorPanel>
     with AutomaticKeepAliveClientMixin {
-  final _buttonMarginBottom = RoofDistance.d;
-
   bool showsNavButton = true;
 
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
+  // @override
+  bool get wantKeepAlive => _wantKeepAlive;
+
+  bool _wantKeepAlive = true;
+  final _buttonMarginBottom = RoofDistance.d;
+
+  RoofNavButton _navButton() {
+    final buttonOption =
+        widget.artboard.navButtonOption ?? widget.defaultNavButtonOption;
+    switch (buttonOption) {
+      case FloatingArtboardButtonOption.close:
+        return RoofTransitionIconNavButton(
+            iconReference: IconReference.downArrowNav,
+            onTap: (context) {
+              FloatingArtboardNavigator.of(context).pop(context);
+            });
+      case FloatingArtboardButtonOption.previous:
+        return RoofTransitionIconNavButton(
+            iconReference: IconReference.backArrowNav,
+            onTap: (context) async {
+              widget.artboard.didComplete();
+              FloatingArtboardNavigator.of(context).back();
+            });
+    }
+    return null;
   }
 
   @override
@@ -63,29 +79,32 @@ class FloatingArtboardNavigatorPanelState
 
     List<Widget> children = [flexibleColumn];
     if (showsNavButton) {
-      children.add(widget.navButton);
+      final button = _navButton();
+      children.add(button);
     }
 
     final child = Stack(alignment: _alignment, children: children);
-    return InheritedArtboardNavigatorPanel(data: this, child: child);
+    return InheritedFloatingArtboardNavigatorPanel(data: this, child: child);
   }
 
   @override
-  bool get wantKeepAlive => true;
+  void dispose() {
+    _wantKeepAlive = false;
+    updateKeepAlive();
+    super.dispose();
+  }
 
   void toggleNavButtonVisibilityTo(bool shouldShow) {
-    setState(() {
-      showsNavButton = shouldShow;
-    });
+    setState(() => showsNavButton = shouldShow);
   }
 }
 
 typedef ToggleNavButtonVisibility = Function(bool shouldShow);
 
-class InheritedArtboardNavigatorPanel extends InheritedWidget {
+class InheritedFloatingArtboardNavigatorPanel extends InheritedWidget {
   final ToggleNavButtonVisibility toggleNavButtonVisibilityTo;
 
-  InheritedArtboardNavigatorPanel(
+  InheritedFloatingArtboardNavigatorPanel(
       {@required FloatingArtboardNavigatorPanelState data,
       @required Widget child})
       : toggleNavButtonVisibilityTo = data.toggleNavButtonVisibilityTo,

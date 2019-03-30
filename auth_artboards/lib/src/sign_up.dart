@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:floating_artboard_templates/index.dart';
@@ -6,6 +7,25 @@ import 'package:form_artboard_mixin/index.dart';
 
 import 'phone_number.dart';
 import 'challenge.dart';
+
+class DateTimeArtboard extends FormFloatingArtboard<DateTime> {
+  final int seed;
+
+  DateTimeArtboard(this.seed);
+  @override
+  Future<void> submit(BuildContext context) {
+    return null;
+  }
+
+  @override
+  String get submitButtonText => null;
+
+  @override
+  String get title => seed.toString();
+
+  @override
+  get result => DateTime.now();
+}
 
 class SignUpArtboard extends FormFloatingArtboard {
   @override
@@ -16,7 +36,7 @@ class SignUpArtboard extends FormFloatingArtboard {
 
   @override
   List<StreamableFormFieldData> get fieldData => [
-        _temp,
+        _temp2,
         _nameFieldData,
         _emailFieldData,
         _passwordFieldData,
@@ -26,6 +46,29 @@ class SignUpArtboard extends FormFloatingArtboard {
   final _emailFieldData = EmailFormTextFieldData();
   final _passwordFieldData = PasswordFormTextFieldData();
   final _temp = CurrencyFormTextFieldData();
+  final _temp2 = FormSwitchData(title: "Toggle field");
+
+  @override
+  void setup(BuildContext context) {
+    super.setup(context);
+    // _temp2.addOnChangedListener(_toggleField);
+  }
+
+  @override
+  Future<DateTime> goToDatePicker(BuildContext context) async {
+    final random = Random().nextInt(80);
+    final time = await FloatingArtboardNavigator.of(context)
+        .goTo<DateTime>(DateTimeArtboard(random), context: context);
+    print("TIME $time");
+  }
+
+  void _toggleField(bool showing) {
+    if (showing) {
+      form.insertFieldDataAfter(_temp, _temp2);
+    } else {
+      form.removeFieldData(_temp);
+    }
+  }
 
   @override
   Future<void> submit(BuildContext context) async {

@@ -5,15 +5,15 @@ import 'package:spec/index.dart';
 import 'package:form/index.dart';
 import 'package:exceptions/index.dart';
 import 'package:keyboard_accessory_components/index.dart';
-import 'package:keyboard_accessory/index.dart';
 import 'package:haptics/index.dart';
 
+import 'data/index.dart';
 import '_roof_stream_form.dart';
 
 enum FormSubmitState { normal, loading, exception }
 mixin FormArtboard {
-  List<StreamableFormFieldData> get fieldData => null;
-  List<StreamableFormSectionData> get sectionData => null;
+  List<StreamableFormFieldData> get fieldData => [];
+  List<StreamableFormSectionData> get sectionData => [];
   StreamableFormData get formData => null;
   String get submitButtonText;
   bool get canSubmitWitheyboardRaised => true;
@@ -21,82 +21,79 @@ mixin FormArtboard {
   double get fieldHorizontalSpacing => RoofDistance.c;
 
   Widget get submitKeyboardAccessory => PrimaryActionKeyboardAccessoryButton(
-      onTap: (context) {
-        _resignFocus(context);
-        submit(context);
-      },
-      title: submitButtonText);
+        onTap: (context) {
+          _form.resignFocus(context);
+          submit(context);
+        },
+        title: submitButtonText,
+      );
 
   Future<List<StreamableFormFieldData>> get loadedFieldData async {
-    return Future<List<StreamableFormFieldData>>.value(null);
+    return Future<List<StreamableFormFieldData>>.value([]);
   }
 
   Future<List<StreamableFormSectionData>> get loadedSectionData async {
-    return Future<List<StreamableFormSectionData>>.value(null);
+    return Future<List<StreamableFormSectionData>>.value([]);
   }
 
   StreamFormBloc get form => _form.bloc;
 
   final _form = RoofStreamForm();
 
-  //An opportunity for forms to throw an exception before being submitted.
+  // An opportunity for forms to throw an exception before being submitted.
   Future<void> validate() async {}
   Future<void> submit(BuildContext context);
 
+  // An opportunity for forms to setup additional properties before building.
+  void setup(BuildContext context) {
+    for (final data in fieldData) {
+      if (data is FormSwitchData) {
+        data.addOnChangedListener((value) async {
+          final datePicker = await goToDatePicker(context);
+        });
+      }
+    }
+  }
+
+  Future<DateTime> goToDatePicker(BuildContext context);
+
   _load() async {
     final sectionData = await loadedSectionData;
-    if (sectionData != null) {
-      return form.batchInsertSectionData(sectionData);
-    }
-
     final fieldData = await loadedFieldData;
-    if (fieldData != null) {
-      return form.batchInsertFieldData(fieldData);
+    if (sectionData.isNotEmpty) {
+      form.batchInsertSectionData(sectionData);
+    } else if (fieldData.isNotEmpty) {
+      form.batchInsertFieldData(fieldData);
     }
   }
 
   Future<void> _validateFields() async {
     return Future.wait(fieldData.map((data) async => await data.validate()));
   }
-
-  void _resignFocus(BuildContext context) {
-    FocusScope.of(context).requestFocus(FocusNode());
-    KeyboardAccessory.of(context).hide();
-  }
 }
 
 mixin FormArtboardState {
   FormValidationException exception;
   FormSubmitState formSubmitState = FormSubmitState.normal;
+  BuildContext get context;
 
   FormArtboard get formArtboard;
 
   void setState(dynamic());
 
+  bool _hasSetUp = false;
+
   RoofStreamForm buildForm(BuildContext context) {
-    StreamableFormData formData;
-    if (formArtboard.formData != null) {
-      formData = formArtboard.formData;
-    } else if (formArtboard.sectionData != null) {
-      formData = StreamableFormData(
-          sectionData: formArtboard.sectionData,
-          submitKeyboardAccessory: formArtboard.submitKeyboardAccessory,
-          canSubmitWithKeyboardRaised: formArtboard.canSubmitWitheyboardRaised);
-    } else {
-      formData = StreamableFormData.withFields(
-          fieldData: formArtboard.fieldData,
-          fieldHorizontalSpacing: formArtboard.fieldHorizontalSpacing,
-          submitKeyboardAccessory: formArtboard.submitKeyboardAccessory,
-          canSubmitWithKeyboardRaised: formArtboard.canSubmitWitheyboardRaised);
-    }
+    _setupIfNeeded();
 
-    if (formData != null) {
-      formArtboard.form.update(formData);
-    }
+    final formData = _createFormData();
 
-    formArtboard.form.onValueChange = () => _restoreState(context);
+    formArtboard.form.update(formData);
+
+    formArtboard.form.addOnValueChangedListener(_restoreState);
 
     formArtboard._load();
+
     return formArtboard._form;
   }
 
@@ -116,8 +113,33 @@ mixin FormArtboardState {
 
     _handleLoading(context);
     await formArtboard.submit(context);
-    _restoreState(context);
+    _restoreState();
     _enableForm();
+  }
+
+  void disposeOfForm() => formArtboard._form.dispose();
+
+  void _setupIfNeeded() {
+    if (_hasSetUp) return;
+    formArtboard.setup(context);
+    _hasSetUp = true;
+  }
+
+  StreamableFormData _createFormData() {
+    if (formArtboard.formData != null) {
+      return formArtboard.formData;
+    } else if (formArtboard.sectionData.isNotEmpty) {
+      return StreamableFormData(
+          sectionData: formArtboard.sectionData,
+          submitKeyboardAccessory: formArtboard.submitKeyboardAccessory,
+          canSubmitWithKeyboardRaised: formArtboard.canSubmitWitheyboardRaised);
+    } else {
+      return StreamableFormData.withFields(
+          fieldData: formArtboard.fieldData,
+          fieldHorizontalSpacing: formArtboard.fieldHorizontalSpacing,
+          submitKeyboardAccessory: formArtboard.submitKeyboardAccessory,
+          canSubmitWithKeyboardRaised: formArtboard.canSubmitWitheyboardRaised);
+    }
   }
 
   void _handleException(
@@ -132,22 +154,18 @@ mixin FormArtboardState {
     setState(() => formSubmitState = FormSubmitState.loading);
   }
 
-  void _restoreState(BuildContext context) {
+  void _restoreState() {
     if (formSubmitState == FormSubmitState.normal) return;
     setState(() => formSubmitState = FormSubmitState.normal);
   }
 
   void _enableForm() {
-    for (final fieldData in formArtboard.fieldData) {
-      fieldData.enabled = true;
-      formArtboard.form.updateFieldData(fieldData);
-    }
+    for (final data in formArtboard.fieldData) data.enabled = true;
+    formArtboard.form.batchUpdateFieldData(formArtboard.fieldData);
   }
 
   void _disableForm() {
-    for (final fieldData in formArtboard.fieldData) {
-      fieldData.enabled = false;
-      formArtboard.form.updateFieldData(fieldData);
-    }
+    for (final data in formArtboard.fieldData) data.enabled = false;
+    formArtboard.form.batchUpdateFieldData(formArtboard.fieldData);
   }
 }

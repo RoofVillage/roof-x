@@ -5,9 +5,7 @@ import 'package:input_dock_components/index.dart';
 
 class ThreadArtboard extends TitledTableInputDockFullScreenArtboard {
   final _settingsButton = RoofIconNavButton(
-    iconReference: IconReference.moreNav,
-    onTap: ArtboardNavigator.pop,
-  );
+      iconReference: IconReference.moreNav, onTap: (context) {});
 
   @override
   String get title => "Take out the trash";

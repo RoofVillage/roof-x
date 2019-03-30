@@ -1,15 +1,19 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:button_components/index.dart';
 import 'package:typography/index.dart';
 import 'package:spec/index.dart';
 import 'package:theme/index.dart';
 import 'package:form_artboard_mixin/index.dart';
+import 'package:artboard/index.dart';
 
 import 'floating_artboard.dart';
 import 'navigator.dart';
 import 'mixins/index.dart';
 
-abstract class FormFloatingArtboard extends FloatingArtboard with FormArtboard {
+abstract class FormFloatingArtboard<T> extends FloatingArtboard<T>
+    with FormArtboard {
   String get title;
   String get subtitle => null;
   String get auxiliaryDescription => null;
@@ -17,6 +21,12 @@ abstract class FormFloatingArtboard extends FloatingArtboard with FormArtboard {
 
   @override
   State<StatefulWidget> createState() => _FormFloatingArtboardState();
+
+  @override
+  Future<DateTime> goToDatePicker(BuildContext context) {
+    return Future.value(DateTime.now());
+    // FloatingArtboardNavigator.of(context).goTo(artboard);
+  }
 }
 
 class _FormFloatingArtboardState extends State<FormFloatingArtboard>
@@ -39,7 +49,7 @@ class _FormFloatingArtboardState extends State<FormFloatingArtboard>
         );
       case FormSubmitState.normal:
         return RoofSubmitButton(
-          text: widget.submitButtonText,
+          text: widget.submitButtonText ?? "Submit",
           buttonState: ButtonState.error,
         );
     }
@@ -70,7 +80,11 @@ class _FormFloatingArtboardState extends State<FormFloatingArtboard>
 
     final submitButton = _submitButton;
 
-    final widgets = <Widget>[Text(widget.title, style: headerStyle)];
+    final widgets = <Widget>[];
+
+    if (widget.title != null) {
+      widgets.add(Text(widget.title, style: headerStyle));
+    }
 
     if (widget.subtitle != null) {
       widgets.add(Text(widget.subtitle, style: subtitleStyle));
@@ -90,17 +104,23 @@ class _FormFloatingArtboardState extends State<FormFloatingArtboard>
 
   @override
   Widget build(BuildContext context) {
-    widget.form.onFocus = () => _onFocus(context);
-    widget.form.onResignFocus = () => _onResignFocus(context);
+    widget.form.addOnFocusListener(_onFocus);
+    widget.form.addOnResignFocusListener(_onResignFocus);
     return super.build(context);
   }
 
-  void _onFocus(BuildContext context) {
+  @override
+  void dispose() {
+    disposeOfForm();
+    super.dispose();
+  }
+
+  void _onFocus() {
     isFocused = true;
     FloatingArtboardNavigator.of(context).hideNavButtons(context);
   }
 
-  void _onResignFocus(BuildContext context) {
+  void _onResignFocus() {
     isFocused = false;
     FloatingArtboardNavigator.of(context).showNavButtons(context);
   }

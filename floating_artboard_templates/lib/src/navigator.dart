@@ -5,7 +5,6 @@ import 'package:theme/index.dart';
 import 'package:spec/index.dart';
 import 'package:floating_artboard_templates/index.dart';
 import 'package:navigation_components/index.dart';
-import 'package:icon_library/index.dart';
 import 'package:artboard/index.dart';
 import 'package:keyboard_accessory/index.dart';
 
@@ -30,6 +29,8 @@ class FloatingArtboardNavigator extends ArtboardNavigator {
 class FloatingArtboardNavigatorState extends ArtboardNavigatorState {
   List<FloatingArtboardNavigatorPanel> _floatingArtboardPanels = [];
 
+  final _pageController = PageController();
+
   @override
   void initState() {
     final initialPanel = _buildPanelForArtboard(this.widget.child);
@@ -39,7 +40,6 @@ class FloatingArtboardNavigatorState extends ArtboardNavigatorState {
 
   final _popMinDragDistanceDelta = 50;
   final _popMaxDragTimeDelta = 70;
-  final _pageController = PageController(keepPage: true);
 
   int _initialDragTime;
   double _initialDragDy;
@@ -65,44 +65,54 @@ class FloatingArtboardNavigatorState extends ArtboardNavigatorState {
     });
   }
 
+  get childrenDelegate => SliverChildBuilderDelegate((context, position) {
+        if (position >= _floatingArtboardPanels.length) return Container();
+        return _floatingArtboardPanels[position];
+      });
+
   @override
   Widget build(BuildContext context) {
-    final pageView = PageView(
-        controller: _pageController,
-        children: _floatingArtboardPanels,
-        physics: NeverScrollableScrollPhysics());
+    final pageView = PageView.custom(
+      childrenDelegate: childrenDelegate,
+      controller: _pageController,
+      physics: NeverScrollableScrollPhysics(),
+    );
 
     final theme = RoofTheme.of(context);
     final swippablePage = GestureDetector(
-        onTap: (() => Navigator.pop(context)),
-        onVerticalDragStart: _onVerticalDragStart,
-        onVerticalDragUpdate: (details) {
-          if (details.primaryDelta < 0) return;
-          _onDragDownUpdate(details);
-          if (_shouldPop) Navigator.pop(context);
-        },
-        behavior: HitTestBehavior.opaque,
-        child: pageView);
+      onTap: (() => Navigator.pop(context)),
+      onVerticalDragStart: _onVerticalDragStart,
+      onVerticalDragUpdate: (details) {
+        if (details.primaryDelta < 0) return;
+        _onDragDownUpdate(details);
+        if (_shouldPop) Navigator.pop(context);
+      },
+      behavior: HitTestBehavior.opaque,
+      child: pageView,
+    );
 
     final scaffold = Scaffold(
-        body: KeyboardAccessory(child: swippablePage),
-        backgroundColor: Colors.transparent);
+      body: KeyboardAccessory(child: swippablePage),
+      backgroundColor: Colors.transparent,
+    );
 
     return FloatingInheritedArtboardNavigator(
-        data: this, child: RoofTheme(theme.current, child: scaffold));
+      data: this,
+      child: RoofTheme(theme.current, child: scaffold),
+    );
   }
 
   @override
-  Future goTo(Artboard artboard, {BuildContext context}) async {
+  Future<T> goTo<T>(Artboard<T> artboard,
+      {@required BuildContext context}) async {
     if (artboard is FloatingArtboard) {
-      setState(() {
-        final panel = _buildPanelForArtboard(artboard);
-        _floatingArtboardPanels.add(panel);
-      });
+      final panel = _buildPanelForArtboard<T>(artboard);
+      setState(() => _floatingArtboardPanels.add(panel));
       _pageController.nextPage(duration: _slideDuration, curve: _slideCurve);
     } else {
       Navigator.pop(context, artboard);
     }
+    return artboard.popped;
   }
 
   void _onVerticalDragStart(details) {
@@ -115,24 +125,24 @@ class FloatingArtboardNavigatorState extends ArtboardNavigatorState {
     _downDistanceDelta = details.globalPosition.dy - _initialDragDy;
   }
 
-  FloatingArtboardNavigatorPanel _buildPanelForArtboard(
-      FloatingArtboard artboard) {
+  void _back() async {
+    await _pageController.previousPage(
+        duration: _slideDuration, curve: _slideCurve);
+    setState(() => _floatingArtboardPanels.removeLast());
+  }
+
+  FloatingArtboardNavigatorPanel _buildPanelForArtboard<T>(
+      FloatingArtboard<T> artboard) {
     final artboardIsFirst = _floatingArtboardPanels.isEmpty ||
         artboard == _floatingArtboardPanels.first.artboard;
-    final button = artboard.allowsBackNavigation && !artboardIsFirst
-        ? RoofTransitionIconNavButton(
-            iconReference: IconReference.backArrowNav,
-            onTap: (context) {
-              _pageController.previousPage(
-                  duration: _slideDuration, curve: _slideCurve);
-              setState(() {
-                _floatingArtboardPanels.removeLast();
-              });
-            })
-        : null;
+    final defaultNavButtonOption = artboardIsFirst
+        ? FloatingArtboardButtonOption.close
+        : FloatingArtboardButtonOption.previous;
 
-    final page =
-        FloatingArtboardNavigatorPanel(artboard: artboard, navButton: button);
+    final page = FloatingArtboardNavigatorPanel(
+      artboard: artboard,
+      defaultNavButtonOption: defaultNavButtonOption,
+    );
 
     return page;
   }
@@ -141,6 +151,7 @@ class FloatingArtboardNavigatorState extends ArtboardNavigatorState {
 class FloatingInheritedArtboardNavigator extends InheritedArtboardNavigator {
   final BuildContextPasser hideNavButtons;
   final BuildContextPasser showNavButtons;
+  final Function back;
 
   FloatingInheritedArtboardNavigator(
       {Key key,
@@ -148,6 +159,7 @@ class FloatingInheritedArtboardNavigator extends InheritedArtboardNavigator {
       @required Widget child})
       : hideNavButtons = data.hideNavButtons,
         showNavButtons = data.showNavButtons,
+        back = data._back,
         super(key: key, data: data, child: child);
 
   @override

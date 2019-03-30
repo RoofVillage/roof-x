@@ -39,6 +39,10 @@ class StreamableFormData extends StreamableData {
     sectionData.replace(index: formLocation.fieldIndex, fieldData: fieldData);
   }
 
+  void batchUpdateFieldData(List<StreamableFormFieldData> fieldData) {
+    for (final data in fieldData) updateFieldData(data);
+  }
+
   void updateSectionData(StreamableFormSectionData sectionData) {
     final sectionIndex = this.sectionData.indexOf(sectionData);
     _replace(index: sectionIndex, sectionData: sectionData);
@@ -93,13 +97,13 @@ class StreamableFormData extends StreamableData {
   }
 
   void addSectionData(StreamableFormSectionData sectionData, {int index}) {
-    final last = this.sectionData.length - 1;
+    final last = this.sectionData.length;
     _addSectionDataAt(sectionData, index ?? last);
   }
 
   void batchAddSectionData(List<StreamableFormSectionData> sectionData,
       {int index}) {
-    final last = this.sectionData.length - 1;
+    final last = this.sectionData.length;
     _batchAddSectionDataAt(sectionData, index ?? last);
   }
 
@@ -127,9 +131,21 @@ class StreamableFormData extends StreamableData {
     _batchAddSectionDataAt(sectionData, index + 1);
   }
 
-  void removeAtFormLocation(FormLocation location) {
+  void removeFieldData(StreamableFormFieldData fieldData) {
+    //Get the location of the field being removed
+    final location = formLocationOfFieldData(fieldData);
+
+    //If the location cant be found, exit gracefully;
+    if (location == null) return;
     final sectionData = this.sectionData[location.sectionIndex];
     sectionData.removeFieldDataAtIndex(location.fieldIndex);
+  }
+
+  void removeSectionData(
+    StreamableFormSectionData sectionData,
+  ) {
+    final index = this.sectionData.indexOf(sectionData);
+    this.sectionData.removeAt(index);
   }
 
   FormLocation formLocationOfFieldData(StreamableFormFieldData fieldData) {

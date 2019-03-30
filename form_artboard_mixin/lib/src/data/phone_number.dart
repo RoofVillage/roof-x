@@ -11,23 +11,16 @@ class PhoneNumberFormTextFieldData extends FormTextFieldData {
       String placeholder,
       String initialValue,
       double size,
-      bool autofocus,
-      ValueChanged<String> onSubmitted,
-      ValueChanged<String> onChanged,
-      ValueChanged<bool> onFocusChanged,
-      bool isHidden})
+      bool autofocus})
       : super(
-            mask: MaskOption.phoneNumber,
-            title: title,
-            placeholder: placeholder,
-            initialValue: initialValue,
-            onSubmitted: onSubmitted,
-            onChanged: onChanged,
-            onFocusChanged: onFocusChanged,
-            autofocus: autofocus,
-            keyboardType: TextInputType.phone,
-            size: size,
-            isHidden: isHidden);
+          mask: MaskOption.phoneNumber,
+          title: title,
+          placeholder: placeholder,
+          initialValue: initialValue,
+          autofocus: autofocus,
+          keyboardType: TextInputType.phone,
+          size: size,
+        );
 
   Future<void> validate() async {
     if (value.length < 5) {
