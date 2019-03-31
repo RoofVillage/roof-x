@@ -17,14 +17,13 @@ abstract class StreamableFormFieldData<T> extends StreamableData {
 
   bool get tracked => _tracked;
   double get fieldSize => size;
-  T get value => _value;
   bool get isInFocus => _isInFocus;
 
   List<ValueChanged<T>> _onChangedListeners = [];
   List<ValueChanged<bool>> _onFocusChangedListeners = [];
   bool _tracked = false;
   bool enabled;
-  T _value;
+  T value;
   bool _isInFocus;
 
   void addOnChangedListener(ValueChanged<T> fn) {
@@ -45,10 +44,10 @@ abstract class StreamableFormFieldData<T> extends StreamableData {
     bool enabled,
   })  : size = size ?? 1,
         enabled = enabled ?? true,
-        _value = initialValue,
+        value = initialValue,
         _isInFocus = false,
         super() {
-    addOnChangedListener((newValue) => _value = newValue);
+    addOnChangedListener((newValue) => value = newValue);
     addOnFocusChangedListener((newFocusValue) => _isInFocus = newFocusValue);
   }
 

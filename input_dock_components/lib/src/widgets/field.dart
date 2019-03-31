@@ -22,7 +22,7 @@ class _DockInputFieldState extends State<DockInputField> {
   InheritedInputDock _dock;
 
   _textChanged() {
-    _dock.setText(_textController.text);
+    _dock.text = _textController.text;
   }
 
   _resetText() {
@@ -211,14 +211,14 @@ class _SubmitButton extends StatelessWidget {
       secondChild: inactiveSendIcon,
     );
 
-    onTap() {
-      Haptic.triggerWith(HapticOption.light);
-      dock.onSubmit();
+    void onTap() {
+      Haptic().triggerWith(HapticOption.light);
+      dock.widget.onSubmit();
       submitCallback();
     }
 
-    inactiveTap() {
-      Haptic.triggerWith(HapticOption.click);
+    void inactiveTap() {
+      Haptic().triggerWith(HapticOption.click);
     }
 
     final tapAction = dock.showSubmitButton && canSubmit ? onTap : null;

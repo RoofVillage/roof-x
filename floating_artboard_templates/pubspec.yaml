@@ -18,6 +18,10 @@ dependencies:
     path: ../artboard
   keyboard_accessory:
     path: ../keyboard_accessory
+  date_picker_artboard_mixin:
+    path: ../date_picker_artboard_mixin
+  date:
+    path: ../date
 
 dev_dependencies:
   flutter_test:

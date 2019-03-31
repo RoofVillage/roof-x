@@ -155,7 +155,7 @@ class _DockActionButtonState extends State<DockActionButton>
         builder: (context) => AlertDialog(title: Text(widget.actionTitle)),
         context: context,
       );
-      Haptic.triggerWith(HapticOption.medium);
+      Haptic().triggerWith(HapticOption.medium);
       widget.action();
     }
 

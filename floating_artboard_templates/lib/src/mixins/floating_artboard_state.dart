@@ -10,9 +10,12 @@ mixin FloatingArtboardState {
   Widget build(BuildContext context) {
     final children = buildChildren(context);
     return FloatingArtboardContainer(
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: children));
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: children,
+      ),
+    );
   }
 }

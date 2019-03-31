@@ -4,49 +4,33 @@ import 'package:flutter/services.dart';
 import 'semantic_color.dart';
 import 'option.dart';
 
-typedef _UseTheme = Function(RoofThemeOption theme);
-
 class RoofTheme extends StatefulWidget {
   final Widget child;
   final RoofThemeOption theme;
 
   RoofTheme(this.theme, {this.child});
 
-  static RoofInheritedTheme of(BuildContext context) {
-    return context.inheritFromWidgetOfExactType(RoofInheritedTheme);
-  }
-
   @override
-  State<StatefulWidget> createState() => RoofThemeState();
+  State<StatefulWidget> createState() => RoofInheritedTheme();
+
+  static RoofInheritedTheme of(BuildContext context,
+      {bool shouldRebuild = true}) {
+    final inheritedWidget = (shouldRebuild
+        ? context.inheritFromWidgetOfExactType(_RoofInheritedTheme)
+        : context.ancestorWidgetOfExactType(_RoofInheritedTheme));
+
+    return (inheritedWidget as _RoofInheritedTheme).data;
+  }
 }
 
-class RoofThemeState extends State<RoofTheme> {
+class RoofInheritedTheme extends State<RoofTheme> {
   RoofThemeOption _current;
 
-  @override
-  void initState() {
-    _current = widget.theme;
-    super.initState();
-  }
-
-  void use(RoofThemeOption theme) {
-    setState(() => this._current = theme);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return RoofInheritedTheme(data: this, child: widget.child);
-  }
-}
-
-class RoofInheritedTheme extends InheritedWidget {
-  final RoofThemeOption current;
-  final RoofSemanticColor color;
-
-  final _UseTheme use;
+  get current => _current;
+  get color => RoofSemanticColor(current: current);
 
   SystemUiOverlayStyle get systemChromeStyle {
-    switch (current) {
+    switch (_current) {
       case RoofThemeOption.light:
         return SystemUiOverlayStyle.dark;
       case RoofThemeOption.dark:
@@ -58,7 +42,7 @@ class RoofInheritedTheme extends InheritedWidget {
   BoxShadow get shadow {
     double blurRadius;
     double opacity;
-    switch (current) {
+    switch (_current) {
       case RoofThemeOption.light:
         blurRadius = 12;
         opacity = 0.2;
@@ -74,17 +58,26 @@ class RoofInheritedTheme extends InheritedWidget {
         offset: Offset(0, 5));
   }
 
-  set current(RoofThemeOption newCurrent) {
-    use(newCurrent);
+  @override
+  void initState() {
+    _current = widget.theme;
+    super.initState();
   }
 
-  RoofInheritedTheme(
-      {Key key, @required RoofThemeState data, @required Widget child})
-      : current = data._current,
-        use = data.use,
-        color = RoofSemanticColor(current: data._current),
-        super(key: key, child: child);
+  void use(RoofThemeOption theme) => setState(() => this._current = theme);
 
   @override
-  bool updateShouldNotify(RoofInheritedTheme oldWidget) => true;
+  Widget build(BuildContext context) {
+    return _RoofInheritedTheme(data: this, child: widget.child);
+  }
+}
+
+class _RoofInheritedTheme extends InheritedWidget {
+  final RoofInheritedTheme data;
+
+  _RoofInheritedTheme({@required this.data, @required Widget child})
+      : super(child: child);
+
+  @override
+  bool updateShouldNotify(_RoofInheritedTheme old) => true;
 }

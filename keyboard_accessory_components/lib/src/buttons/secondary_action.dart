@@ -20,7 +20,7 @@ class SecondaryActionKeyboardAccessoryButton
         .textStyleWithColor(theme.color.text.transitionAction);
 
     _onTap() {
-      Haptic.triggerWith(HapticOption.click);
+      Haptic().triggerWith(HapticOption.click);
       onTap(context);
     }
 
