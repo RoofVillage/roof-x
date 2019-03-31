@@ -20,11 +20,6 @@ class DatePickerFloatingArtboard extends FloatingArtboard<Date>
 
   _DatePickerFloatingArtboardState createState() =>
       _DatePickerFloatingArtboardState();
-
-  @override
-  void didComplete([Date result]) {
-    super.didComplete(result);
-  }
 }
 
 class _DatePickerFloatingArtboardState extends State<DatePickerFloatingArtboard>

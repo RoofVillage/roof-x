@@ -146,4 +146,6 @@ class Date extends DateTime {
 
   Date.fromDateTime(DateTime dateTime)
       : super.fromMillisecondsSinceEpoch(dateTime.millisecondsSinceEpoch);
+
+  Date.now() : super.now();
 }

@@ -6,6 +6,7 @@ import 'package:form/index.dart';
 import 'package:exceptions/index.dart';
 import 'package:keyboard_accessory_components/index.dart';
 import 'package:haptics/index.dart';
+import 'package:date/index.dart';
 
 import 'data/index.dart';
 import '_roof_stream_form.dart';
@@ -49,7 +50,8 @@ mixin FormArtboard {
     for (final data in fieldData) {
       if (data is FormDateFieldData) {
         data.addonTapListener(() async {
-          final newDate = await goToDatePicker(context);
+          final newDate =
+              await goToDatePicker(context: context, selectedDate: data.value);
           data.value = newDate;
           form.updateFieldData(data);
         });
@@ -57,7 +59,8 @@ mixin FormArtboard {
     }
   }
 
-  Future<DateTime> goToDatePicker(BuildContext context);
+  Future<Date> goToDatePicker(
+      {@required BuildContext context, @required Date selectedDate});
 
   _load() async {
     final sectionData = await loadedSectionData;

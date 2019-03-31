@@ -23,6 +23,8 @@ dependencies:
     path: ../keyboard_accessory
   keyboard_accessory_components:
     path: ../keyboard_accessory_components
+  date:
+    path: ../date
 
 dev_dependencies:
   flutter_test:

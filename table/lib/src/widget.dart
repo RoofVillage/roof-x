@@ -71,19 +71,24 @@ class StreamTableBuilder<T extends StreamTableBloc> extends StatelessWidget {
 
     final delegate = SliverChildBuilderDelegate((context, index) {
       final data = childData[index];
-      switch (data.type) {
-        case _SliverListChildDataType.header:
-          return _createSectionHeader(
-              sectionData: data.sectionData, sectionIndex: data.sectionIndex);
-        case _SliverListChildDataType.row:
-          return buildRow(
-              rowData: data.rowData,
-              rowIndex: data.rowIndex,
-              sectionIndex: data.sectionIndex);
-      }
+      return Container(key: data.key, child: _child(data));
     }, childCount: childData.length);
 
     return delegate;
+  }
+
+  Widget _child(_SliverListChildData data) {
+    switch (data.type) {
+      case _SliverListChildDataType.header:
+        return _createSectionHeader(
+            sectionData: data.sectionData, sectionIndex: data.sectionIndex);
+      case _SliverListChildDataType.row:
+        return buildRow(
+            rowData: data.rowData,
+            rowIndex: data.rowIndex,
+            sectionIndex: data.sectionIndex);
+    }
+    return null;
   }
 
   List<_SliverListChildData> _sliverListChildDataForTableData(
@@ -95,7 +100,7 @@ class StreamTableBuilder<T extends StreamTableBloc> extends StatelessWidget {
       final sectionData = tableData.sectionData[i];
 
       final sectionHeaderRowData = _SliverListChildData.forHeader(
-          sectionData: sectionData, sectionIndex: i);
+          key: sectionData.key, sectionData: sectionData, sectionIndex: i);
 
       childData.add(sectionHeaderRowData);
 
@@ -114,7 +119,10 @@ class StreamTableBuilder<T extends StreamTableBloc> extends StatelessWidget {
     for (var i = 0; i < sectionData.rowData.length; i++) {
       final rowData = sectionData.rowData[i];
       final data = _SliverListChildData.forRow(
-          rowData: rowData, rowIndex: i, sectionIndex: sectionIndex);
+          key: rowData.key,
+          rowData: rowData,
+          rowIndex: i,
+          sectionIndex: sectionIndex);
       childData.add(data);
     }
     return childData;
@@ -153,9 +161,11 @@ class _SliverListChildData {
   final int rowIndex;
   final int sectionIndex;
   final _SliverListChildDataType type;
+  final Key key;
 
   _SliverListChildData(
-      {this.rowData,
+      {this.key,
+      this.rowData,
       this.sectionData,
       this.rowIndex,
       this.sectionIndex,
@@ -164,8 +174,10 @@ class _SliverListChildData {
   _SliverListChildData.forRow(
       {@required StreamableTableRowData rowData,
       @required int rowIndex,
+      @required String key,
       @required int sectionIndex})
       : this(
+            key: ValueKey(key),
             rowData: rowData,
             rowIndex: rowIndex,
             sectionIndex: sectionIndex,
@@ -173,8 +185,10 @@ class _SliverListChildData {
 
   _SliverListChildData.forHeader(
       {@required StreamableTableSectionData sectionData,
+      @required String key,
       @required int sectionIndex})
       : this(
+            key: ValueKey(key),
             sectionData: sectionData,
             sectionIndex: sectionIndex,
             type: _SliverListChildDataType.header);

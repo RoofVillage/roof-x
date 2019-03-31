@@ -26,10 +26,11 @@ abstract class FormFloatingArtboard<T> extends FloatingArtboard<T>
   State<StatefulWidget> createState() => _FormFloatingArtboardState();
 
   @override
-  Future<DateTime> goToDatePicker(BuildContext context) async {
-    final time = await ArtboardNavigator.of(context)
-        .goTo<Date>(DatePickerFloatingArtboard());
-    return time;
+  Future<Date> goToDatePicker({BuildContext context, Date selectedDate}) async {
+    final dateTime = await ArtboardNavigator.of(context)
+        .goTo<Date>(DatePickerFloatingArtboard(selectedDate: selectedDate));
+
+    return Date.fromDateTime(dateTime);
   }
 }
 
