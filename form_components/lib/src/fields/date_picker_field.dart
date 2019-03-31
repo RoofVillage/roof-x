@@ -37,15 +37,10 @@ class RoofDatePickerField extends StatefulWidget {
 }
 
 class _RoofDatePickerFieldState extends State<RoofDatePickerField> {
-  DateTime currentValue;
+  void _onTap() {
+    Haptic().triggerWith(HapticOption.light);
+    widget.onTap();
 
-  void initState() {
-    super.initState();
-    currentValue = widget.initialValue;
-  }
-
-  selectDate() {
-    Haptic.triggerWith(HapticOption.light);
     // open date picker with current value and return new value
     // DateTime newValue;
     // setState(() {
@@ -57,13 +52,14 @@ class _RoofDatePickerFieldState extends State<RoofDatePickerField> {
 
   @override
   Widget build(BuildContext context) {
-    final String formattedValue = currentValue.toLocal().toIso8601String();
+    final String formattedValue =
+        widget.initialValue.toLocal().toIso8601String();
     final TextStyle textStyle = _typographyStyle.textStyleWithColor(
       RoofTheme.of(context).color.text.primary,
     );
 
     final fieldBody = GestureDetector(
-      onTap: selectDate,
+      onTap: _onTap,
       child: Container(
         padding: RoofObjectPadding.field1,
         child: Text(

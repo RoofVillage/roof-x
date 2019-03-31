@@ -115,6 +115,7 @@ class RoofStreamForm extends StreamForm<StreamableFormFieldData,
         initialValue: fieldData.value,
         startBound: fieldData.startBound,
         endBound: fieldData.endBound,
+        onTap: fieldData.onTap,
         onChanged: (value) {
           fieldData.onChanged(value);
         });

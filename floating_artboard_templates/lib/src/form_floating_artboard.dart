@@ -7,10 +7,13 @@ import 'package:spec/index.dart';
 import 'package:theme/index.dart';
 import 'package:form_artboard_mixin/index.dart';
 import 'package:artboard/index.dart';
+import 'package:date/index.dart';
 
 import 'floating_artboard.dart';
 import 'navigator.dart';
 import 'mixins/index.dart';
+
+import '_date_picker_floating_artboard.dart';
 
 abstract class FormFloatingArtboard<T> extends FloatingArtboard<T>
     with FormArtboard {
@@ -23,10 +26,10 @@ abstract class FormFloatingArtboard<T> extends FloatingArtboard<T>
   State<StatefulWidget> createState() => _FormFloatingArtboardState();
 
   @override
-  Future<DateTime> goToDatePicker(BuildContext context) {
-    return Future.value(DateTime.now());
-    //TODO
-    // FloatingArtboardNavigator.of(context).goTo(artboard);
+  Future<DateTime> goToDatePicker(BuildContext context) async {
+    final time = await ArtboardNavigator.of(context)
+        .goTo<Date>(DatePickerFloatingArtboard());
+    return time;
   }
 }
 

@@ -8,12 +8,14 @@ class FormDateFieldData extends PickerFieldData<DateTime> {
     DateTime initialValue,
     DateTime startBound,
     DateTime endBound,
+    Function onTap,
     double size,
   }) : super(
           title: title,
           initialValue: initialValue ?? DateTime.now(),
           startBound: startBound,
           endBound: endBound,
+          onTap: onTap,
           size: size,
         );
 }

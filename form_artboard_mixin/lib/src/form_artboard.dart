@@ -47,9 +47,11 @@ mixin FormArtboard {
   // An opportunity for forms to setup additional properties before building.
   void setup(BuildContext context) {
     for (final data in fieldData) {
-      if (data is FormSwitchData) {
-        data.addOnChangedListener((value) async {
-          final datePicker = await goToDatePicker(context);
+      if (data is FormDateFieldData) {
+        data.addonTapListener(() async {
+          final newDate = await goToDatePicker(context);
+          data.value = newDate;
+          form.updateFieldData(data);
         });
       }
     }

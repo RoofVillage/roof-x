@@ -10,7 +10,6 @@ class RoofPickerField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("build picker field");
     List<Widget> rowChildren = [];
 
     if (name != null) {

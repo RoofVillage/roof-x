@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:floating_artboard_templates/index.dart';
 import 'package:form_artboard_mixin/index.dart';
-import 'package:date/index.dart';
 
 import 'phone_number.dart';
 import 'challenge.dart';
@@ -17,7 +16,7 @@ class SignUpArtboard extends FormFloatingArtboard {
 
   @override
   List<StreamableFormFieldData> get fieldData => [
-        _temp2,
+        _temp3,
         _nameFieldData,
         _emailFieldData,
         _passwordFieldData,
@@ -28,19 +27,12 @@ class SignUpArtboard extends FormFloatingArtboard {
   final _passwordFieldData = PasswordFormTextFieldData();
   final _temp = CurrencyFormTextFieldData();
   final _temp2 = FormSwitchData(title: "Toggle field");
+  final _temp3 = FormDateFieldData(title: "Sup");
 
   @override
   void setup(BuildContext context) {
     super.setup(context);
     // _temp2.addOnChangedListener(_toggleField);
-  }
-
-  @override
-  Future<DateTime> goToDatePicker(BuildContext context) async {
-    final time = await ArtboardNavigator.of(context)
-        .goTo<Date>(DatePickerFloatingArtboard());
-    print("TIME $time");
-    return time;
   }
 
   void _toggleField(bool showing) {
