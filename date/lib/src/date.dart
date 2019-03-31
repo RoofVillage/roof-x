@@ -143,4 +143,7 @@ class Date extends DateTime {
 
   Date.fromSecondsSinceEpoch(int seconds)
       : super.fromMillisecondsSinceEpoch(seconds * 100);
+
+  Date.fromDateTime(DateTime dateTime)
+      : super.fromMillisecondsSinceEpoch(dateTime.millisecondsSinceEpoch);
 }

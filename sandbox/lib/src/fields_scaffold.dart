@@ -23,10 +23,10 @@ class FieldsTesterState extends State<FieldsTester> {
   Widget build(BuildContext context) {
     _updateText() async {
       final DateTime newDate = await ArtboardNavigator.of(context).goTo(
-          DatePickerFloatingArtboard(
-            selectedDate: selectedDate,
-          ),
-          context: context);
+        DatePickerFloatingArtboard(
+          selectedDate: selectedDate,
+        ),
+      );
 
       setState(() {
         if (newDate != null) selectedDate = newDate;
