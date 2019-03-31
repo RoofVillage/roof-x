@@ -23,7 +23,7 @@ class AuxiliaryWidget extends StatelessWidget {
     final baseHeight = RoofInputDock.of(context).baseHeight;
 
     onTap() {
-      Haptic.triggerWith(HapticOption.medium);
+      Haptic().triggerWith(HapticOption.medium);
       action(context);
     }
 

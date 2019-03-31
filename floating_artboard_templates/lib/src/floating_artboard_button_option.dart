@@ -1,0 +1,1 @@
+enum FloatingArtboardButtonOption { close, previous }

@@ -5,15 +5,20 @@ class KeyboardAccessory extends StatefulWidget {
 
   KeyboardAccessory({this.child});
 
-  static InheritedKeyboardAccessory of(BuildContext context) {
-    return context.inheritFromWidgetOfExactType(InheritedKeyboardAccessory);
+  static InheritedKeyboardAccessory of(BuildContext context,
+      {bool shouldRebuild = true}) {
+    final inheritedWidget = (shouldRebuild
+        ? context.inheritFromWidgetOfExactType(_InheritedKeyboardAccessory)
+        : context.ancestorWidgetOfExactType(_InheritedKeyboardAccessory));
+
+    return (inheritedWidget as _InheritedKeyboardAccessory).data;
   }
 
   @override
-  State<StatefulWidget> createState() => _KeyboardAccessoryState();
+  State<StatefulWidget> createState() => InheritedKeyboardAccessory();
 }
 
-class _KeyboardAccessoryState extends State<KeyboardAccessory> {
+class InheritedKeyboardAccessory extends State<KeyboardAccessory> {
   Widget _child;
 
   bool _isHidden = false;
@@ -25,40 +30,28 @@ class _KeyboardAccessoryState extends State<KeyboardAccessory> {
     });
   }
 
-  hide() {
-    setState(() => _isHidden = true);
-  }
+  void hide() => setState(() => _isHidden = true);
 
   @override
   Widget build(BuildContext context) {
     List<Widget> children = [Expanded(child: widget.child)];
 
-    if (!_isHidden && _child != null) {
-      children.add(_child);
-    }
+    if (!_isHidden && _child != null) children.add(_child);
 
-    return InheritedKeyboardAccessory(
-        state: this,
+    return _InheritedKeyboardAccessory(
+        data: this,
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: children));
   }
 }
 
-class InheritedKeyboardAccessory extends InheritedWidget {
-  final _KeyboardAccessoryState _state;
+class _InheritedKeyboardAccessory extends InheritedWidget {
+  final InheritedKeyboardAccessory data;
 
-  void hide() => _state.hide();
-
-  set child(Widget child) => _state.child = child;
-
-  InheritedKeyboardAccessory(
-      {Key key,
-      @required _KeyboardAccessoryState state,
-      @required Widget child})
-      : _state = state,
-        super(key: key, child: child);
+  _InheritedKeyboardAccessory({@required this.data, @required Widget child})
+      : super(child: child);
 
   @override
-  bool updateShouldNotify(InheritedKeyboardAccessory oldWidget) => true;
+  bool updateShouldNotify(_InheritedKeyboardAccessory old) => true;
 }

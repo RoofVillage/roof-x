@@ -104,6 +104,23 @@ class RoofStreamForm extends StreamForm<StreamableFormFieldData,
         });
   }
 
+  Widget buildDateField(
+      {FormDateFieldData fieldData,
+      StreamableFormData formData,
+      int fieldIndex,
+      int sectionIndex,
+      BuildContext context}) {
+    return RoofDatePickerField(
+        title: fieldData.title,
+        initialValue: fieldData.value,
+        startBound: fieldData.startBound,
+        endBound: fieldData.endBound,
+        onTap: fieldData.onTap,
+        onChanged: (value) {
+          fieldData.onChanged(value);
+        });
+  }
+
   Widget buildOptionSelect(
       {FormOptionSelectData fieldData, int fieldIndex, int sectionIndex}) {
     List<RoofSelectFieldOptionData> options = fieldData.options.map((option) {
@@ -154,6 +171,11 @@ class RoofStreamForm extends StreamForm<StreamableFormFieldData,
           context: context);
     } else if (fieldData is FormOptionSelectData) {
       return buildOptionSelect(
+          fieldData: fieldData,
+          fieldIndex: fieldIndex,
+          sectionIndex: sectionIndex);
+    } else if (fieldData is FormDateFieldData) {
+      return buildDateField(
           fieldData: fieldData,
           fieldIndex: fieldIndex,
           sectionIndex: sectionIndex);

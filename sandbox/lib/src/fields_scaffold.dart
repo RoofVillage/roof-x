@@ -71,7 +71,7 @@ class TimePickerState extends State<TimePicker> {
   }
 
   void _updateClockType() {
-    Haptic.triggerWith(HapticOption.click);
+    Haptic().triggerWith(HapticOption.click);
 
     if (clockType == ClockType.am)
       setState(() {
@@ -113,7 +113,7 @@ class TimePickerState extends State<TimePicker> {
       () => controller.animateTo(
             animateTo,
             duration: RoofDuration.short,
-            curve: RoofCurve.slow,
+            curve: RoofCurve.quick,
           ),
     );
   }
@@ -127,7 +127,7 @@ class TimePickerState extends State<TimePicker> {
     if (clockType == ClockType.pm) selectedHour += 12;
 
     if (selectedHour != selectedTime.hour) {
-      Haptic.triggerWith(HapticOption.click);
+      Haptic().triggerWith(HapticOption.click);
       setState(() {
         selectedTime = TimeOfDay(
           hour: selectedHour,
@@ -144,7 +144,7 @@ class TimePickerState extends State<TimePicker> {
     );
 
     if (selectedMinute != selectedTime.minute) {
-      Haptic.triggerWith(HapticOption.click);
+      Haptic().triggerWith(HapticOption.click);
       setState(() {
         selectedTime = TimeOfDay(
           hour: selectedTime.hour,

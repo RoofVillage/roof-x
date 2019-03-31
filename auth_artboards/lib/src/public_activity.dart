@@ -25,14 +25,13 @@ class PublicActivityArtboard extends FullLogoTableFullScreenArtboard {
   final _showFloatingArtboardButton = RoofIconNavButton(
       iconReference: IconReference.addNav,
       onTap: (context) {
-        ArtboardNavigator.of(context).goTo(SignUpArtboard(), context: context);
+        ArtboardNavigator.of(context).goTo(SignUpArtboard());
       });
 
   final _showFullScreenArtboardButton = RoofIconNavButton(
       iconReference: IconReference.settingsNav,
       onTap: (context) {
-        ArtboardNavigator.of(context)
-            .goTo(PublicActivityArtboard(), context: context);
+        ArtboardNavigator.of(context).goTo(PublicActivityArtboard());
       });
 
   final _popButton = RoofIconNavButton(

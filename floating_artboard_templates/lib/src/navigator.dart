@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:theme/index.dart';
 import 'package:spec/index.dart';
 import 'package:floating_artboard_templates/index.dart';
-import 'package:navigation_components/index.dart';
-import 'package:icon_library/index.dart';
 import 'package:artboard/index.dart';
 import 'package:keyboard_accessory/index.dart';
 
@@ -14,27 +12,35 @@ import '_floating_artboard_panel.dart';
 final _slideDuration = RoofDuration.medium;
 final _slideCurve = RoofCurve.easy;
 
-class FloatingArtboardNavigator extends ArtboardNavigator {
-  FloatingArtboardNavigator({FloatingArtboard artboard})
-      : super(child: artboard);
+class FloatingArtboardNavigator extends StatefulWidget {
+  final Artboard artboard;
+
+  FloatingArtboardNavigator({this.artboard});
 
   @override
-  State<StatefulWidget> createState() => FloatingArtboardNavigatorState();
+  State<StatefulWidget> createState() => FloatingInheritedArtboardNavigator();
 
-  static FloatingInheritedArtboardNavigator of(BuildContext context) {
-    return context
-        .inheritFromWidgetOfExactType(FloatingInheritedArtboardNavigator);
+  static FloatingInheritedArtboardNavigator of(BuildContext context,
+      {bool shouldRebuild = false}) {
+    final inheritedWidget = (shouldRebuild
+        ? context
+            .inheritFromWidgetOfExactType(_FloatingInheritedArtboardNavigator)
+        : context
+            .ancestorWidgetOfExactType(_FloatingInheritedArtboardNavigator));
+
+    return (inheritedWidget as _FloatingInheritedArtboardNavigator).data;
   }
 }
 
-class FloatingArtboardNavigatorState extends ArtboardNavigatorState {
+class FloatingInheritedArtboardNavigator
+    extends State<FloatingArtboardNavigator> {
   List<FloatingArtboardNavigatorPanel> _floatingArtboardPanels = [];
 
   final _pageController = PageController();
 
   @override
   void initState() {
-    final initialPanel = _buildPanelForArtboard(this.widget.child);
+    final initialPanel = _buildPanelForArtboard(this.widget.artboard);
     _floatingArtboardPanels.add(initialPanel);
     super.initState();
   }
@@ -92,19 +98,20 @@ class FloatingArtboardNavigatorState extends ArtboardNavigatorState {
       child: pageView,
     );
 
+    final navigator =
+        ArtboardNavigator(child: swippablePage, goTo: _goTo, pop: _pop);
     final scaffold = Scaffold(
-      body: KeyboardAccessory(child: swippablePage),
+      body: KeyboardAccessory(child: navigator),
       backgroundColor: Colors.transparent,
     );
 
-    return FloatingInheritedArtboardNavigator(
+    return _FloatingInheritedArtboardNavigator(
       data: this,
       child: RoofTheme(theme.current, child: scaffold),
     );
   }
 
-  @override
-  Future<T> goTo<T>(Artboard<T> artboard,
+  Future<T> _goTo<T>(Artboard<T> artboard,
       {@required BuildContext context}) async {
     if (artboard is FloatingArtboard) {
       final panel = _buildPanelForArtboard<T>(artboard);
@@ -114,6 +121,11 @@ class FloatingArtboardNavigatorState extends ArtboardNavigatorState {
       Navigator.pop(context, artboard);
     }
     return artboard.popped;
+  }
+
+  bool _pop<T>([T result]) {
+    widget.artboard.didComplete();
+    return Navigator.pop(context, result);
   }
 
   void _onVerticalDragStart(details) {
@@ -126,42 +138,36 @@ class FloatingArtboardNavigatorState extends ArtboardNavigatorState {
     _downDistanceDelta = details.globalPosition.dy - _initialDragDy;
   }
 
+  void back() async {
+    await _pageController.previousPage(
+        duration: _slideDuration, curve: _slideCurve);
+    setState(() => _floatingArtboardPanels.removeLast());
+  }
+
   FloatingArtboardNavigatorPanel _buildPanelForArtboard<T>(
       FloatingArtboard<T> artboard) {
     final artboardIsFirst = _floatingArtboardPanels.isEmpty ||
         artboard == _floatingArtboardPanels.first.artboard;
-    final button = artboard.allowsBackNavigation && !artboardIsFirst
-        ? RoofTransitionIconNavButton(
-            iconReference: IconReference.backArrowNav,
-            onTap: (context) async {
-              artboard.didComplete();
-              await _pageController.previousPage(
-                  duration: _slideDuration, curve: _slideCurve);
-              setState(() => _floatingArtboardPanels.removeLast());
-            })
-        : null;
+    final defaultNavButtonOption = artboardIsFirst
+        ? FloatingArtboardButtonOption.close
+        : FloatingArtboardButtonOption.previous;
 
-    final page = FloatingArtboardNavigatorPanel(
+    final page = FloatingArtboardNavigatorPanel<T>(
       artboard: artboard,
-      navButton: button,
+      defaultNavButtonOption: defaultNavButtonOption,
     );
 
     return page;
   }
 }
 
-class FloatingInheritedArtboardNavigator extends InheritedArtboardNavigator {
-  final BuildContextPasser hideNavButtons;
-  final BuildContextPasser showNavButtons;
+class _FloatingInheritedArtboardNavigator extends InheritedWidget {
+  final FloatingInheritedArtboardNavigator data;
 
-  FloatingInheritedArtboardNavigator(
-      {Key key,
-      @required FloatingArtboardNavigatorState data,
-      @required Widget child})
-      : hideNavButtons = data.hideNavButtons,
-        showNavButtons = data.showNavButtons,
-        super(key: key, data: data, child: child);
+  _FloatingInheritedArtboardNavigator(
+      {@required this.data, @required Widget child})
+      : super(child: child);
 
   @override
-  bool updateShouldNotify(InheritedWidget oldWidget) => false;
+  bool updateShouldNotify(_FloatingInheritedArtboardNavigator old) => false;
 }

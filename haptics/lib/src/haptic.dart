@@ -5,7 +5,8 @@ import 'package:flutter/services.dart';
 enum HapticOption { light, medium, heavy, click }
 
 class Haptic {
-  static Future<void> triggerWith(HapticOption option) async {
+  const Haptic();
+  Future<void> triggerWith(HapticOption option) async {
     String typeString = "HapticFeedbackType.";
 
     switch (option) {
