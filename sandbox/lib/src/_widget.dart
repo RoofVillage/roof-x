@@ -19,9 +19,9 @@ class RootWidget extends StatelessWidget {
 
         Artboard startingArtboard;
         if (appState.isInSession) {
-          startingArtboard = FieldsTestingArtboard();
+          startingArtboard = TestingArtboard();
         } else {
-          startingArtboard = FieldsTestingArtboard();
+          startingArtboard = TestingArtboard();
         }
 
         return FullScreenArtboardNavigator(artboard: startingArtboard);
