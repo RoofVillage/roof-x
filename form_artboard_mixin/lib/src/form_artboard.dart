@@ -146,7 +146,7 @@ mixin FormArtboardState {
       BuildContext context, FormValidationException exception) {
     this.exception = exception;
     setState(() => formSubmitState = FormSubmitState.exception);
-    Haptic.triggerWith(HapticOption.medium);
+    Haptic().triggerWith(HapticOption.medium);
   }
 
   void _handleLoading(BuildContext context) {

@@ -88,7 +88,7 @@ class _RoofSelectFieldState extends State<RoofSelectField>
   void _onTap(RoofSelectFieldOptionData option) {
     widget.onChanged(selectedOptions);
     _updateSelectedOptions(option);
-    Haptic.triggerWith(_hapticOption);
+    Haptic().triggerWith(_hapticOption);
   }
 
   HapticOption get _hapticOption {
@@ -114,7 +114,7 @@ class _RoofSelectFieldState extends State<RoofSelectField>
 
   void _expandDropdown() {
     final hapticOption = isExpanded ? HapticOption.medium : HapticOption.light;
-    Haptic.triggerWith(hapticOption);
+    Haptic().triggerWith(hapticOption);
     setState(() {
       isExpanded = !isExpanded;
     });

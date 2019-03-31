@@ -1,31 +1,12 @@
 import 'dart:async';
-import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:floating_artboard_templates/index.dart';
 import 'package:form_artboard_mixin/index.dart';
+import 'package:date/index.dart';
 
 import 'phone_number.dart';
 import 'challenge.dart';
-
-class DateTimeArtboard extends FormFloatingArtboard<DateTime> {
-  final int seed;
-
-  DateTimeArtboard(this.seed);
-  @override
-  Future<void> submit(BuildContext context) {
-    return null;
-  }
-
-  @override
-  String get submitButtonText => null;
-
-  @override
-  String get title => seed.toString();
-
-  @override
-  get result => DateTime.now();
-}
 
 class SignUpArtboard extends FormFloatingArtboard {
   @override
@@ -56,10 +37,10 @@ class SignUpArtboard extends FormFloatingArtboard {
 
   @override
   Future<DateTime> goToDatePicker(BuildContext context) async {
-    final random = Random().nextInt(80);
-    final time = await FloatingArtboardNavigator.of(context)
-        .goTo<DateTime>(DateTimeArtboard(random), context: context);
+    final time = await ArtboardNavigator.of(context)
+        .goTo<Date>(DatePickerFloatingArtboard());
     print("TIME $time");
+    return time;
   }
 
   void _toggleField(bool showing) {
@@ -72,9 +53,9 @@ class SignUpArtboard extends FormFloatingArtboard {
 
   @override
   Future<void> submit(BuildContext context) async {
-    FloatingArtboardNavigator.of(context).goTo(
-        PhoneNumberArtboard(onSubmit: _phoneNumberDependentSubmit),
-        context: context);
+    ArtboardNavigator.of(context).goTo(
+      PhoneNumberArtboard(onSubmit: _phoneNumberDependentSubmit),
+    );
   }
 
   Future<void> _phoneNumberDependentSubmit(
@@ -85,10 +66,10 @@ class SignUpArtboard extends FormFloatingArtboard {
     //     password: _passwordFieldData.value,
     //     phoneNumber: phoneNumber);
 
-    FloatingArtboardNavigator.of(context).goTo(
-        AuthChallengeArtboard(
-          phoneNumber: phoneNumber,
-        ),
-        context: context);
+    ArtboardNavigator.of(context).goTo(
+      AuthChallengeArtboard(
+        phoneNumber: phoneNumber,
+      ),
+    );
   }
 }

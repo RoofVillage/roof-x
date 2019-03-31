@@ -13,39 +13,33 @@ class RoofInputDock extends StatefulWidget {
 
   RoofInputDock({this.actionButton, this.onSubmit, this.auxiliaryWidgets});
 
-  static InheritedInputDock of(BuildContext context) {
-    return context.inheritFromWidgetOfExactType(InheritedInputDock);
-  }
-
   @override
-  State<StatefulWidget> createState() => _RoofInputDockState();
+  State<StatefulWidget> createState() => InheritedInputDock();
+
+  static InheritedInputDock of(BuildContext context,
+      {bool shouldRebuild = true}) {
+    final inheritedWidget = (shouldRebuild
+        ? context.inheritFromWidgetOfExactType(_InheritedInputDock)
+        : context.ancestorWidgetOfExactType(_InheritedInputDock));
+
+    return (inheritedWidget as _InheritedInputDock).data;
+  }
 }
 
-class _RoofInputDockState extends State<RoofInputDock> {
-  static const double _baseHeight = 40;
+class InheritedInputDock extends State<RoofInputDock> {
+  final double baseHeight = 40;
+  final double previewHeight = 120;
+  final double previewWidth = 160;
 
-  String _text = "";
-  List<Asset> _files = [];
+  String _text = '';
+  List<Asset> files = [];
 
-  void _setText(String text) {
-    setState(() {
-      _text = text;
-    });
-  }
+  bool get showSubmitButton => _text.isNotEmpty || files.isNotEmpty;
+  set text(String text) => setState(() => _text = text);
 
-  void _addFiles(List<Asset> files) {
-    setState(() {
-      _files.addAll(files);
-    });
-  }
-
-  void _removeFile(Asset file) {
-    setState(() {
-      _files.remove(file);
-    });
-  }
-
-  void _submit() {
+  void addFiles(List<Asset> files) => setState(() => files.addAll(files));
+  void removeFile(Asset file) => setState(() => files.remove(file));
+  void submit() {
     _showDialogDev();
 
     // Format data and make API call
@@ -60,7 +54,7 @@ class _RoofInputDockState extends State<RoofInputDock> {
 
   void _resetDock() {
     setState(() {
-      _files = [];
+      files = [];
       _text = "";
     });
   }
@@ -70,8 +64,8 @@ class _RoofInputDockState extends State<RoofInputDock> {
     if (_text.isNotEmpty) {
       displayText += "\nText: " + _text;
     }
-    if (_files.isNotEmpty) {
-      displayText += "\nFiles: " + _files.length.toString();
+    if (files.isNotEmpty) {
+      displayText += "\nFiles: " + files.length.toString();
     }
     showDialog(
       builder: (context) => AlertDialog(
@@ -122,43 +116,16 @@ class _RoofInputDockState extends State<RoofInputDock> {
       ),
     );
 
-    return InheritedInputDock(
-      child: dock,
-      setText: _setText,
-      addFiles: _addFiles,
-      removeFile: _removeFile,
-      onSubmit: _submit,
-      baseHeight: _baseHeight,
-      showSubmitButton: (_text.isNotEmpty || _files.isNotEmpty),
-      files: _files,
-    );
+    return _InheritedInputDock(data: this, child: dock);
   }
 }
 
-class InheritedInputDock extends InheritedWidget {
-  final Function(String) setText;
-  final Function(List<Asset>) addFiles;
-  final Function(Asset) removeFile;
-  final VoidCallback onSubmit;
-  final double baseHeight;
-  final bool showSubmitButton;
-  final List<Asset> files;
+class _InheritedInputDock extends InheritedWidget {
+  final InheritedInputDock data;
 
-  final double previewHeight = 120;
-  final double previewWidth = 160;
-
-  InheritedInputDock({
-    Key key,
-    @required Widget child,
-    @required this.setText,
-    @required this.addFiles,
-    @required this.removeFile,
-    @required this.onSubmit,
-    this.showSubmitButton,
-    this.baseHeight,
-    this.files,
-  }) : super(key: key, child: child);
+  _InheritedInputDock({@required this.data, @required Widget child})
+      : super(child: child);
 
   @override
-  bool updateShouldNotify(InheritedWidget oldWidget) => true;
+  bool updateShouldNotify(_InheritedInputDock old) => true;
 }

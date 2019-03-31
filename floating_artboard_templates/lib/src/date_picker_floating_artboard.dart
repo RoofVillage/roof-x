@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:floating_artboard_templates/index.dart';
+import 'package:date_picker_artboard_mixin/index.dart';
+import 'package:date/index.dart';
 
 import 'mixins/index.dart';
+import '_floating_artboard_panel.dart';
 
-class DatePickerFloatingArtboard extends FloatingArtboard with CalendarArtboard {
-  final DateTime selectedDate;
-  final DateTime startBound;
-  final DateTime endBound;
+class DatePickerFloatingArtboard extends FloatingArtboard<Date>
+    with DatePickerArtboard {
+  final Date selectedDate;
+  final Date startBound;
+  final Date endBound;
 
   DatePickerFloatingArtboard({
     this.selectedDate,
@@ -16,21 +20,26 @@ class DatePickerFloatingArtboard extends FloatingArtboard with CalendarArtboard 
 
   _DatePickerFloatingArtboardState createState() =>
       _DatePickerFloatingArtboardState();
+
+  @override
+  void didComplete([Date result]) {
+    super.didComplete(result);
+  }
 }
 
 class _DatePickerFloatingArtboardState extends State<DatePickerFloatingArtboard>
-    with FloatingArtboardState, CalendarArtboardState {
-  get calendarArtboard => widget;
+    with FloatingArtboardState, DatePickerArtboardState {
+  @override
+  get datePickerArtboard => widget;
 
-  void initState() {
-    super.initState();
-    selectedDate = widget.selectedDate;
+  @override
+  Date get date => FloatingArtboardNavigatorPanel.of(context).result;
+
+  @override
+  set date(Date newDate) {
+    FloatingArtboardNavigatorPanel.of(context).result = newDate;
   }
 
   @override
-  List<Widget> buildChildren(BuildContext context) {
-    final calendarPicker = buildCalendar(context);
-
-    return [calendarPicker];
-  }
+  List<Widget> buildChildren(BuildContext context) => [buildCalendar(context)];
 }

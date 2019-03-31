@@ -20,7 +20,7 @@ class PrimaryActionKeyboardAccessoryButton
         RoofTypography.button.textStyleWithColor(theme.color.text.submitAction);
 
     _onTap() {
-      Haptic.triggerWith(HapticOption.light);
+      Haptic().triggerWith(HapticOption.light);
       onTap(context);
     }
 

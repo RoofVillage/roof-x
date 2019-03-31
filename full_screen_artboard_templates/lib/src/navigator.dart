@@ -9,21 +9,37 @@ import 'package:keyboard_accessory/index.dart';
 
 import 'routing.dart';
 
-class FullScreenArtboardNavigator extends ArtboardNavigator {
-  FullScreenArtboardNavigator({FullScreenArtboard artboard})
-      : super(child: artboard);
+class FullScreenArtboardNavigator extends StatefulWidget {
+  final Artboard artboard;
+
+  FullScreenArtboardNavigator({this.artboard});
 
   @override
-  State<StatefulWidget> createState() => FullScreenArtboardNavigatorState();
+  State<StatefulWidget> createState() => FullScreenInheritedArtboardNavigator();
+
+  static FullScreenInheritedArtboardNavigator of(BuildContext context,
+      {bool shouldRebuild = true}) {
+    final inheritedWidget = (shouldRebuild
+        ? context
+            .inheritFromWidgetOfExactType(_FullScreenInheritedArtboardNavigator)
+        : context
+            .ancestorWidgetOfExactType(_FullScreenInheritedArtboardNavigator));
+
+    return (inheritedWidget as _FullScreenInheritedArtboardNavigator).data;
+  }
 }
 
-class FullScreenArtboardNavigatorState extends ArtboardNavigatorState {
+class FullScreenInheritedArtboardNavigator
+    extends State<FullScreenArtboardNavigator> {
   Widget build(BuildContext context) {
-    return InheritedArtboardNavigator(
-        data: this, child: KeyboardAccessory(child: widget.child));
+    final navigator =
+        ArtboardNavigator(child: widget.artboard, goTo: _goTo, pop: _pop);
+    return _FullScreenInheritedArtboardNavigator(
+        data: this, child: KeyboardAccessory(child: navigator));
   }
 
-  Future<T> goTo<T>(Artboard artboard, {@required BuildContext context}) async {
+  Future<T> _goTo<T>(Artboard artboard,
+      {@required BuildContext context}) async {
     final theme = RoofTheme.of(context);
     if (artboard is FloatingArtboard) {
       final floatingNavigator = FloatingArtboardNavigator(artboard: artboard);
@@ -31,7 +47,7 @@ class FullScreenArtboardNavigatorState extends ArtboardNavigatorState {
           builder: (context) => floatingNavigator,
           currentTheme: theme.current));
       if (result is Artboard) {
-        return await goTo<T>(result, context: context);
+        return await _goTo<T>(result, context: context);
       } else if (result is T) {
         return result;
       }
@@ -42,4 +58,17 @@ class FullScreenArtboardNavigatorState extends ArtboardNavigatorState {
       ));
     }
   }
+
+  bool _pop<T>([T result]) => Navigator.pop(context, result);
+}
+
+class _FullScreenInheritedArtboardNavigator extends InheritedWidget {
+  final FullScreenInheritedArtboardNavigator data;
+
+  _FullScreenInheritedArtboardNavigator(
+      {@required this.data, @required Widget child})
+      : super(child: child);
+
+  @override
+  bool updateShouldNotify(_FullScreenInheritedArtboardNavigator old) => false;
 }

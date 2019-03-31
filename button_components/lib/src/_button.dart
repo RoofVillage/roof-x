@@ -86,7 +86,7 @@ class _RoofButtonState extends State<RoofButton> {
   }
 
   void _onTap() {
-    Haptic.triggerWith(HapticOption.light);
+    Haptic().triggerWith(HapticOption.light);
     if (widget.onTap != null) widget.onTap(context);
   }
 

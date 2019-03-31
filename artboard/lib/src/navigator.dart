@@ -7,36 +7,48 @@ import 'artboard.dart';
 typedef GoToArtboard = Future<T> Function<T>(Artboard<T> artboard,
     {@required BuildContext context});
 
-typedef PopTo = bool Function<T>(BuildContext context, [T result]);
+typedef PopTo = bool Function<T>([T result]);
 
-abstract class ArtboardNavigator extends StatefulWidget {
-  final Artboard child;
-
-  ArtboardNavigator({this.child});
-
-  static InheritedArtboardNavigator of(BuildContext context) {
-    return context.inheritFromWidgetOfExactType(InheritedArtboardNavigator);
-  }
-}
-
-abstract class ArtboardNavigatorState extends State<ArtboardNavigator> {
-  Future<T> goTo<T>(Artboard<T> artboard, {@required BuildContext context});
-  bool pop<T>(BuildContext context, [T result]) {
-    widget.child.didComplete();
-    return Navigator.pop(context, result ?? widget.child.result);
-  }
-}
-
-class InheritedArtboardNavigator extends InheritedWidget {
+class ArtboardNavigator extends StatefulWidget {
+  final Widget child;
   final GoToArtboard goTo;
   final PopTo pop;
 
-  InheritedArtboardNavigator(
-      {Key key, @required ArtboardNavigatorState data, @required Widget child})
-      : goTo = data.goTo,
-        pop = data.pop,
-        super(key: key, child: child);
+  ArtboardNavigator(
+      {@required this.child, @required this.goTo, @required this.pop});
 
   @override
-  bool updateShouldNotify(InheritedWidget oldWidget) => false;
+  State<StatefulWidget> createState() => InheritedArtboardNavigator();
+
+  static InheritedArtboardNavigator of(BuildContext context,
+      {bool shouldRebuild = false}) {
+    final inheritedWidget = (shouldRebuild
+        ? context.inheritFromWidgetOfExactType(_InheritedArtboardNavigator)
+        : context.ancestorWidgetOfExactType(_InheritedArtboardNavigator));
+
+    return (inheritedWidget as _InheritedArtboardNavigator).data;
+  }
+}
+
+class InheritedArtboardNavigator extends State<ArtboardNavigator> {
+  Future<T> goTo<T>(Artboard<T> artboard) {
+    return widget.goTo(artboard, context: context);
+  }
+
+  bool pop<T>([T result]) => widget.pop(result);
+
+  @override
+  Widget build(BuildContext context) {
+    return _InheritedArtboardNavigator(data: this, child: widget.child);
+  }
+}
+
+class _InheritedArtboardNavigator extends InheritedWidget {
+  final InheritedArtboardNavigator data;
+
+  _InheritedArtboardNavigator({@required this.data, @required Widget child})
+      : super(child: child);
+
+  @override
+  bool updateShouldNotify(_InheritedArtboardNavigator old) => false;
 }
