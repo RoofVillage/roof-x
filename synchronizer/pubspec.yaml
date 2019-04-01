@@ -10,7 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   network:
-    path: ../network
+    path: ../lib/network
 
 dev_dependencies:
   flutter_test:

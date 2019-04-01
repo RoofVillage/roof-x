@@ -1,13 +1,14 @@
 import 'package:meta/meta.dart';
 import 'package:types/index.dart';
 import 'package:date/index.dart';
+
+import 'feed_object.dart';
 import '../utils/index.dart';
 import '../properties/index.dart';
 import '../objects/index.dart';
 import '../abstract/index.dart';
 import '../mixins/index.dart';
-
-import 'feed_object.dart';
+import '../key.dart' as _key;
 
 class CommentableObject extends FeedObject {
   final int commentCount;
@@ -46,7 +47,7 @@ class CommentableObject extends FeedObject {
 
   factory CommentableObject.fromMap(Map<String, Object> map) {
     final feedObject = FeedObject.fromMap(map);
-    final counts = map[Key.counts] as Map;
+    final counts = map[_key.counts] as Map;
     return CommentableObject(
         contractDomainUsers: feedObject.contractDomainUsers.toSet(),
         contractUsers: feedObject.contractUsers.toSet(),
@@ -56,25 +57,25 @@ class CommentableObject extends FeedObject {
         contractPropertyName: feedObject.contractPropertyName,
         feePayerType: feedObject.feePayerType,
         clientReferenceId: feedObject.clientReferenceId,
-        commentCount: counts[Key.comment],
-        name: map[Key.name],
-        note: map[Key.note],
-        latestActivity: map[Key.latestActivity],
-        unread: map[Key.unread],
-        pinned: map[Key.pinned],
-        subscribers: map[Key.subscribers]);
+        commentCount: counts[_key.comment],
+        name: map[_key.name],
+        note: map[_key.note],
+        latestActivity: map[_key.latestActivity],
+        unread: map[_key.unread],
+        pinned: map[_key.pinned],
+        subscribers: map[_key.subscribers]);
   }
 
   Map<String, Object> toMap() {
     final map = super.toMap();
     map.addAll({
-      Key.counts: {Key.comment: commentCount},
-      Key.name: name,
-      Key.note: note,
-      Key.latestActivity: latestActivity.secondsSinceEpoch,
-      Key.unread: unread,
-      Key.pinned: pinned,
-      Key.subscribers: subscribers.map((subscriber) => subscriber.toMap())
+      _key.counts: {_key.comment: commentCount},
+      _key.name: name,
+      _key.note: note,
+      _key.latestActivity: latestActivity.secondsSinceEpoch,
+      _key.unread: unread,
+      _key.pinned: pinned,
+      _key.subscribers: subscribers.map((subscriber) => subscriber.toMap())
     });
     return map;
   }

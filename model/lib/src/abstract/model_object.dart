@@ -1,7 +1,8 @@
 import 'package:meta/meta.dart';
 import 'package:date/index.dart';
 
-import '../utils/index.dart';
+import '../mixins/index.dart';
+import '../key.dart' as _key;
 
 class ModelObject extends Object with Mappable {
   final String guid;
@@ -21,12 +22,12 @@ class ModelObject extends Object with Mappable {
 
   static fromMap(Map<String, Object> map) {
     return ModelObject(
-        guid: map[Key.guid],
-        dateCreated: map[Key.dateCreated],
-        creatorGuid: map[Key.creator]);
+        guid: map[_key.guid],
+        dateCreated: map[_key.dateCreated],
+        creatorGuid: map[_key.creator]);
   }
 
   Map<String, Object> toMap() {
-    return {Key.guid: guid};
+    return {_key.guid: guid};
   }
 }

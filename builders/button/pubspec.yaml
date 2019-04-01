@@ -1,0 +1,25 @@
+name: button_builder
+description: Button functionality for artboards.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  spec:
+    path: ../../spec
+  icon_library:
+    path: ../../icon_library
+  typography:
+    path: ../../typography
+  theme:
+    path: ../../theme
+  haptics:
+    path: ../../lib/haptics
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

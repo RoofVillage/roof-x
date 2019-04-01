@@ -1,7 +1,8 @@
 import 'package:types/index.dart';
+
 import '../objects/index.dart';
 import '../properties/index.dart';
-import '../utils/index.dart';
+import '../key.dart' as _key;
 
 class Transaction extends Completion {
   final int amount;
@@ -56,13 +57,13 @@ class Transaction extends Completion {
         completingUsers: completion.completingUsers,
         task: completion.task,
         completionPrize: completion.completionPrize,
-        amount: map[Key.amount]);
+        amount: map[_key.amount]);
   }
 
   Map<String, Object> toMap() {
     final map = super.toMap();
     map.addAll({
-      Key.amount: amount,
+      _key.amount: amount,
     });
     return map;
   }

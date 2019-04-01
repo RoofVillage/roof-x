@@ -1,9 +1,10 @@
 import 'package:types/index.dart';
 import 'package:date/index.dart';
-import '../utils/index.dart';
+
 import '../properties/index.dart';
 import '../objects/index.dart';
 import '../abstract/index.dart';
+import '../key.dart' as _key;
 
 class Thread extends CommentableObject {
   final ThreadType type;
@@ -62,12 +63,12 @@ class Thread extends CommentableObject {
         unread: commentableObject.unread,
         pinned: commentableObject.pinned,
         subscribers: commentableObject.subscribers,
-        type: ThreadType.fromString(map[Key.kind]));
+        type: ThreadType.fromString(map[_key.kind]));
   }
 
   Map<String, Object> toMap() {
     final map = super.toMap();
-    map.addAll({Key.kind: type.toString()});
+    map.addAll({_key.kind: type.toString()});
     return map;
   }
 }

@@ -1,8 +1,8 @@
-import '../utils/index.dart';
-
 import 'bank_owner_reference.dart';
+import '../mixins/index.dart';
+import '../key.dart' as _key;
 
-class Balance extends Mappable {
+class Balance with Mappable {
   final int aOwesB;
   final BankOwnerReference bankOwnerA;
   final BankOwnerReference bankOwnerB;
@@ -11,17 +11,17 @@ class Balance extends Mappable {
 
   factory Balance.fromMap(Map<String, Object> map) {
     return Balance(
-        aOwesB: map[Key.guid],
-        bankOwnerA: BankOwnerReference.fromMap(map[Key.bankOwnerA]),
-        bankOwnerB: BankOwnerReference.fromMap(map[Key.bankOwnerB]));
+        aOwesB: map[_key.guid],
+        bankOwnerA: BankOwnerReference.fromMap(map[_key.bankOwnerA]),
+        bankOwnerB: BankOwnerReference.fromMap(map[_key.bankOwnerB]));
   }
 
   @override
   Map<String, Object> toMap() {
     return {
-      Key.aOwesB: aOwesB,
-      Key.bankOwnerA: bankOwnerA.toMap(),
-      Key.bankOwnerB: bankOwnerB.toMap()
+      _key.aOwesB: aOwesB,
+      _key.bankOwnerA: bankOwnerA.toMap(),
+      _key.bankOwnerB: bankOwnerB.toMap()
     };
   }
 }

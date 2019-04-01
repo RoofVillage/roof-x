@@ -1,0 +1,28 @@
+name: floating_artboard_templates
+description: Templates the define the visual organization for floating artboards.
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  artboard:
+    path: ../artboard
+  nav_bar_builder:
+    path: ../../builders/nav_bar
+  button_builder:
+    path: ../../builders/button
+  form_builder:
+    path: ../../builders/form
+  keyboard_accessory_bar_builder:
+    path: ../../builders/keyboard_accessory_bar
+  date_picker_builder:
+    path: ../../builders/date_picker
+  date:
+    path: ../../lib/date
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

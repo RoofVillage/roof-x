@@ -1,0 +1,39 @@
+name: form_builder
+description: Form functionality for artboards.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  form:
+    path: ../../lib/form
+  exceptions:
+    path: ../../exceptions
+  consts:
+    path: ../../consts
+  mask:
+    path: ../../lib/mask
+  keyboard_accessory:
+    path: ../../lib/keyboard_accessory
+  keyboard_accessory_bar_builder:
+    path: ../keyboard_accessory_bar
+  date:
+    path: ../../lib/date
+  spec:
+    path: ../../spec
+  typography:
+    path: ../../typography
+  theme:
+    path: ../../theme
+  haptics:
+    path: ../../lib/haptics
+  icon_library:
+    path: ../../icon_library
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

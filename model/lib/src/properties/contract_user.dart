@@ -1,6 +1,6 @@
 import 'name_user.dart';
 import '../abstract/index.dart';
-import '../utils/index.dart';
+import '../key.dart' as _key;
 
 class ContractUser extends NameUser {
   final int amount;
@@ -20,14 +20,14 @@ class ContractUser extends NameUser {
         guid: nameUser.guid,
         firstName: nameUser.firstName,
         lastName: nameUser.lastName,
-        contract: Contract.fromMap(map[Key.contract]),
-        amount: map[Key.amount]);
+        contract: Contract.fromMap(map[_key.contract]),
+        amount: map[_key.amount]);
   }
 
   @override
   Map<String, Object> toMap() {
     final map = super.toMap();
-    map.addAll({Key.contract: contract.toMap(), Key.amount: amount});
+    map.addAll({_key.contract: contract.toMap(), _key.amount: amount});
 
     return map;
   }

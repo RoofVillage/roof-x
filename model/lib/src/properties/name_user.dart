@@ -1,4 +1,5 @@
-import '../utils/index.dart';
+import '../mixins/index.dart';
+import '../key.dart' as _key;
 
 class NameUser with Mappable {
   final String guid;
@@ -10,18 +11,18 @@ class NameUser with Mappable {
   NameUser({this.guid, this.firstName, this.lastName});
 
   factory NameUser.fromMap(Map<String, Object> map) {
-    final name = map[Key.name] as Map;
+    final name = map[_key.name] as Map;
     return NameUser(
-        guid: map[Key.guid],
-        firstName: name[Key.first],
-        lastName: name[Key.last]);
+        guid: map[_key.guid],
+        firstName: name[_key.first],
+        lastName: name[_key.last]);
   }
 
   @override
   Map<String, Object> toMap() {
     return {
-      Key.guid: guid,
-      Key.name: {Key.first: firstName, Key.last: lastName}
+      _key.guid: guid,
+      _key.name: {_key.first: firstName, _key.last: lastName}
     };
   }
 }

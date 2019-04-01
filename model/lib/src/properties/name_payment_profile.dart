@@ -1,6 +1,7 @@
-import '../utils/index.dart';
+import '../mixins/index.dart';
+import '../key.dart' as _key;
 
-class NamePaymentProfile extends Mappable {
+class NamePaymentProfile with Mappable {
   final String guid;
   final String nickname;
   final String bankNickname;
@@ -20,23 +21,23 @@ class NamePaymentProfile extends Mappable {
 
   factory NamePaymentProfile.fromMap(Map<String, Object> map) {
     return NamePaymentProfile(
-        guid: map[Key.guid],
-        nickname: map[Key.nickname],
-        bankNickname: map[Key.bankNickname],
-        bankGuid: map[Key.bankGuid],
-        bankStatusType: map[Key.bankStatusKind],
-        authorizationEmail: map[Key.authorizationEmail]);
+        guid: map[_key.guid],
+        nickname: map[_key.nickname],
+        bankNickname: map[_key.bankNickname],
+        bankGuid: map[_key.bankGuid],
+        bankStatusType: map[_key.bankStatusKind],
+        authorizationEmail: map[_key.authorizationEmail]);
   }
 
   @override
   Map<String, Object> toMap() {
     return {
-      Key.guid: guid,
-      Key.nickname: nickname,
-      Key.bankNickname: bankNickname,
-      Key.bankGuid: bankGuid,
-      Key.bankStatusKind: bankStatusType,
-      Key.authorizationEmail: authorizationEmail
+      _key.guid: guid,
+      _key.nickname: nickname,
+      _key.bankNickname: bankNickname,
+      _key.bankGuid: bankGuid,
+      _key.bankStatusKind: bankStatusType,
+      _key.authorizationEmail: authorizationEmail
     };
   }
 }

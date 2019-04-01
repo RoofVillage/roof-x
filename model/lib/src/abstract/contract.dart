@@ -1,10 +1,10 @@
 import 'package:meta/meta.dart';
 import 'package:types/index.dart';
 import 'package:date/index.dart';
-import '../utils/index.dart';
 
-import '../properties/index.dart';
 import 'context.dart';
+import '../properties/index.dart';
+import '../key.dart' as _key;
 
 class Contract extends Context {
   final Date startDate;
@@ -72,12 +72,12 @@ class Contract extends Context {
 
   factory Contract.fromMap(Map<String, Object> map) {
     final context = Context.fromMap(map);
-    final counts = map[Key.counts] as Map;
+    final counts = map[_key.counts] as Map;
 
     final users =
-        (map[Key.users] as List ?? []).map((map) => ContractUser.fromMap(map));
+        (map[_key.users] as List ?? []).map((map) => ContractUser.fromMap(map));
 
-    final formerUsers = (map[Key.formerUsers] as List ?? [])
+    final formerUsers = (map[_key.formerUsers] as List ?? [])
         .map((map) => ContractUser.fromMap(map))
         .toSet();
 
@@ -87,34 +87,34 @@ class Contract extends Context {
         creatorGuid: context.creatorGuid,
         unreadCommentableObjectCount: context.unreadCommentableObjectCount,
         pinnedCommentableObjectCount: context.pinnedCommentableObjectCount,
-        invoiceCount: counts[Key.invoice] ?? 0,
-        startDate: Date.fromSecondsSinceEpoch(map[Key.startTimestamp]),
-        endDate: Date.fromSecondsSinceEpoch(map[Key.endTimestamp]),
-        name: map[Key.name],
-        amount: map[Key.amount],
+        invoiceCount: counts[_key.invoice] ?? 0,
+        startDate: Date.fromSecondsSinceEpoch(map[_key.startTimestamp]),
+        endDate: Date.fromSecondsSinceEpoch(map[_key.endTimestamp]),
+        name: map[_key.name],
+        amount: map[_key.amount],
         users: users.toSet(),
         formerUsers: formerUsers.toSet(),
-        schedule: Schedule.fromMap(map[Key.schedule]),
-        domain: NameContractDomain.fromMap(map[Key.domain]),
-        feePayerType: FeePayerType.fromString(map[Key.feePayerKind]),
-        monthToMonth: map[Key.monthToMonth]);
+        schedule: Schedule.fromMap(map[_key.schedule]),
+        domain: NameContractDomain.fromMap(map[_key.domain]),
+        feePayerType: FeePayerType.fromString(map[_key.feePayerKind]),
+        monthToMonth: map[_key.monthToMonth]);
   }
 
   Map<String, Object> toMap() {
     final map = super.toMap();
-    (map[Key.counts] as Map).addAll({Key.invoice: invoiceCount});
+    (map[_key.counts] as Map).addAll({_key.invoice: invoiceCount});
 
     map.addAll({
-      Key.startTimestamp: startDate.secondsSinceEpoch,
-      Key.endTimestamp: endDate.secondsSinceEpoch,
-      Key.name: name,
-      Key.amount: amount,
-      Key.users: users.map((user) => user.toMap()),
-      Key.formerUsers: users.map((formerUsers) => formerUsers.toMap()),
-      Key.schedule: schedule.toMap(),
-      Key.domain: domain.toMap(),
-      Key.feePayerKind: feePayerType.toString(),
-      Key.monthToMonth: monthToMonth
+      _key.startTimestamp: startDate.secondsSinceEpoch,
+      _key.endTimestamp: endDate.secondsSinceEpoch,
+      _key.name: name,
+      _key.amount: amount,
+      _key.users: users.map((user) => user.toMap()),
+      _key.formerUsers: users.map((formerUsers) => formerUsers.toMap()),
+      _key.schedule: schedule.toMap(),
+      _key.domain: domain.toMap(),
+      _key.feePayerKind: feePayerType.toString(),
+      _key.monthToMonth: monthToMonth
     });
 
     return map;

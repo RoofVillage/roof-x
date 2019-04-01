@@ -1,9 +1,10 @@
 import 'package:types/index.dart';
-import '../utils/index.dart';
 
 import 'name_payment_profile.dart';
+import '../mixins/index.dart';
+import '../key.dart' as _key;
 
-class PaymentDefault extends Mappable {
+class PaymentDefault with Mappable {
   final PaymentDefaultType type;
   final NamePaymentProfile namePaymentProfile;
   final String contractGuid;
@@ -12,17 +13,17 @@ class PaymentDefault extends Mappable {
 
   factory PaymentDefault.fromMap(Map<String, Object> map) {
     return PaymentDefault(
-        type: PaymentDefaultType.fromString(map[Key.kind]),
-        namePaymentProfile: map[Key.paymentProfile],
-        contractGuid: map[Key.contract]);
+        type: PaymentDefaultType.fromString(map[_key.kind]),
+        namePaymentProfile: map[_key.paymentProfile],
+        contractGuid: map[_key.contract]);
   }
 
   @override
   Map<String, Object> toMap() {
     return {
-      Key.kind: type.toString(),
-      Key.paymentProfile: namePaymentProfile,
-      Key.contract: contractGuid
+      _key.kind: type.toString(),
+      _key.paymentProfile: namePaymentProfile,
+      _key.contract: contractGuid
     };
   }
 }

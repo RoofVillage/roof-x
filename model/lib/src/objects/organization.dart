@@ -1,10 +1,9 @@
 import 'package:date/index.dart';
 import 'package:meta/meta.dart';
 
-import '../utils/index.dart';
-
 import '../abstract/index.dart';
 import '../properties/index.dart';
+import '../key.dart' as _key;
 
 const _MAP_NO_DAYS = 0;
 const _MAP_DAYS_IN_WEEK = 7;
@@ -85,9 +84,9 @@ class Organization extends Domain {
     assert(map != null);
 
     final domain = Domain.fromMap(map);
-    final counts = map[Key.counts] as Map ?? {};
-    final earnedAmounts = map[Key.earned] as List ?? [];
-    final owedAmounts = map[Key.owed] as List ?? [];
+    final counts = map[_key.counts] as Map ?? {};
+    final earnedAmounts = map[_key.earned] as List ?? [];
+    final owedAmounts = map[_key.owed] as List ?? [];
 
     return Organization(
       guid: domain.guid,
@@ -102,73 +101,73 @@ class Organization extends Domain {
         users: domain.users,
         formerUsers: domain.formerUsers,
         location: domain.location,
-        propertyCount: counts[Key.property],
-        emergencyServiceRequestCount: counts[Key.emergencyServiceRequest] ?? 0,
-        unseenServiceRequestCount: counts[Key.unseenServiceRequest] ?? 0,
-        incompleteServiceRequestCount: counts[Key.incompleteServiceRequest] ?? 0,
-        overdueAmount: (owedAmounts.firstWhere((amount) => amount[Key.dayBound] == _MAP_NO_DAYS) ?? {})[Key.amount] ?? 0,
-        owedWeekAmount: (owedAmounts.firstWhere((amount) => amount[Key.dayBound] == _MAP_DAYS_IN_WEEK) ?? {})[Key.amount] ?? 0,
-        owedMonthAmount: (owedAmounts.firstWhere((amount) => amount[Key.dayBound] == _MAP_DAYS_IN_MONTH) ?? {})[Key.amount] ?? 0,
-        owedYearAmount: (owedAmounts.firstWhere((amount) => amount[Key.dayBound] == _MAP_DAYS_IN_YEAR) ?? {})[Key.amount] ?? 0,
-        owedAllTimeAmount:(owedAmounts.firstWhere((amount) => amount[Key.dayBound] == null) ?? {})[Key.amount] ?? 0,
-        earnedWeekAmount: (earnedAmounts.firstWhere((amount) => amount[Key.dayBound] == _MAP_DAYS_IN_WEEK) ?? {})[Key.amount] ?? 0,
-        earnedMonthAmount: (earnedAmounts.firstWhere((amount) => amount[Key.dayBound] == _MAP_DAYS_IN_MONTH) ?? {})[Key.amount] ?? 0,
-        earnedYearAmount: (earnedAmounts.firstWhere((amount) => amount[Key.dayBound] == _MAP_DAYS_IN_YEAR) ?? {})[Key.amount] ?? 0,
-        earnedAllTimeAmount: (earnedAmounts.firstWhere((amount) => amount[Key.dayBound] == null) ?? {})[Key.amount] ?? 0,
-        billing: Billing.fromMap(map[Key.billing]));
+        propertyCount: counts[_key.property],
+        emergencyServiceRequestCount: counts[_key.emergencyServiceRequest] ?? 0,
+        unseenServiceRequestCount: counts[_key.unseenServiceRequest] ?? 0,
+        incompleteServiceRequestCount: counts[_key.incompleteServiceRequest] ?? 0,
+        overdueAmount: (owedAmounts.firstWhere((amount) => amount[_key.dayBound] == _MAP_NO_DAYS) ?? {})[_key.amount] ?? 0,
+        owedWeekAmount: (owedAmounts.firstWhere((amount) => amount[_key.dayBound] == _MAP_DAYS_IN_WEEK) ?? {})[_key.amount] ?? 0,
+        owedMonthAmount: (owedAmounts.firstWhere((amount) => amount[_key.dayBound] == _MAP_DAYS_IN_MONTH) ?? {})[_key.amount] ?? 0,
+        owedYearAmount: (owedAmounts.firstWhere((amount) => amount[_key.dayBound] == _MAP_DAYS_IN_YEAR) ?? {})[_key.amount] ?? 0,
+        owedAllTimeAmount:(owedAmounts.firstWhere((amount) => amount[_key.dayBound] == null) ?? {})[_key.amount] ?? 0,
+        earnedWeekAmount: (earnedAmounts.firstWhere((amount) => amount[_key.dayBound] == _MAP_DAYS_IN_WEEK) ?? {})[_key.amount] ?? 0,
+        earnedMonthAmount: (earnedAmounts.firstWhere((amount) => amount[_key.dayBound] == _MAP_DAYS_IN_MONTH) ?? {})[_key.amount] ?? 0,
+        earnedYearAmount: (earnedAmounts.firstWhere((amount) => amount[_key.dayBound] == _MAP_DAYS_IN_YEAR) ?? {})[_key.amount] ?? 0,
+        earnedAllTimeAmount: (earnedAmounts.firstWhere((amount) => amount[_key.dayBound] == null) ?? {})[_key.amount] ?? 0,
+        billing: Billing.fromMap(map[_key.billing]));
   }
 
   Map<String, Object> toMap() {
     final map = super.toMap();
-    (map[Key.counts] as Map).addAll({
-      Key.property: propertyCount,
-      Key.emergencyServiceRequest: emergencyServiceRequestCount,
-      Key.unseenServiceRequest: unseenServiceRequestCount,
-      Key.incompleteServiceRequest: incompleteServiceRequestCount
+    (map[_key.counts] as Map).addAll({
+      _key.property: propertyCount,
+      _key.emergencyServiceRequest: emergencyServiceRequestCount,
+      _key.unseenServiceRequest: unseenServiceRequestCount,
+      _key.incompleteServiceRequest: incompleteServiceRequestCount
     });
 
-    map.addAll({Key.amounts: {
-      Key.earned: [
+    map.addAll({_key.amounts: {
+      _key.earned: [
         {
-          Key.dayBound: _MAP_DAYS_IN_WEEK,
-          Key.amount: earnedWeekAmount
+          _key.dayBound: _MAP_DAYS_IN_WEEK,
+          _key.amount: earnedWeekAmount
         },
         {
-          Key.dayBound: _MAP_DAYS_IN_MONTH,
-          Key.amount: earnedMonthAmount
+          _key.dayBound: _MAP_DAYS_IN_MONTH,
+          _key.amount: earnedMonthAmount
         },
         {
-          Key.dayBound: _MAP_DAYS_IN_YEAR,
-          Key.amount: earnedYearAmount
+          _key.dayBound: _MAP_DAYS_IN_YEAR,
+          _key.amount: earnedYearAmount
         },
         {
-          Key.dayBound: null,
-          Key.amount: earnedAllTimeAmount
+          _key.dayBound: null,
+          _key.amount: earnedAllTimeAmount
         }
       ],
-      Key.owed: [
+      _key.owed: [
         {
-          Key.dayBound: _MAP_NO_DAYS,
-          Key.amount: overdueAmount
+          _key.dayBound: _MAP_NO_DAYS,
+          _key.amount: overdueAmount
         },
         {
-          Key.dayBound: _MAP_DAYS_IN_WEEK,
-          Key.amount: owedWeekAmount
+          _key.dayBound: _MAP_DAYS_IN_WEEK,
+          _key.amount: owedWeekAmount
         },
         {
-          Key.dayBound: _MAP_DAYS_IN_MONTH,
-          Key.amount: owedMonthAmount
+          _key.dayBound: _MAP_DAYS_IN_MONTH,
+          _key.amount: owedMonthAmount
         },
         {
-          Key.dayBound: _MAP_DAYS_IN_YEAR,
-          Key.amount: owedYearAmount
+          _key.dayBound: _MAP_DAYS_IN_YEAR,
+          _key.amount: owedYearAmount
         },
         {
-          Key.dayBound: null,
-          Key.amount: owedAllTimeAmount
+          _key.dayBound: null,
+          _key.amount: owedAllTimeAmount
         }
       ]},
-      Key.billing: billing.toMap()
+      _key.billing: billing.toMap()
     });
 
     return map;

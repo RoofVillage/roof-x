@@ -1,7 +1,8 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:device_info/device_info.dart';
-import 'package:service/index.dart';
+
+import '../_param.dart' as _param;
 
 class DeviceInfo {
   static Map<String, Object> _params;
@@ -16,49 +17,49 @@ class DeviceInfo {
     if (Platform.isIOS) {
       final ios = await DeviceInfoPlugin().iosInfo;
       return {
-        Param.platform: 'ios',
-        Param.systemName: ios.systemName,
-        Param.systemVersion: ios.systemVersion,
-        Param.name: ios.name,
-        Param.model: ios.model,
-        Param.localizedModel: ios.localizedModel,
-        Param.identifierForVendor: ios.identifierForVendor,
-        Param.utsName: ios.utsname,
-        Param.isPhysicalDevice: ios.isPhysicalDevice
+        _param.platform: 'ios',
+        _param.systemName: ios.systemName,
+        _param.systemVersion: ios.systemVersion,
+        _param.name: ios.name,
+        _param.model: ios.model,
+        _param.localizedModel: ios.localizedModel,
+        _param.identifierForVendor: ios.identifierForVendor,
+        _param.utsName: ios.utsname,
+        _param.isPhysicalDevice: ios.isPhysicalDevice
       };
     } else if (Platform.isAndroid) {
       final android = await DeviceInfoPlugin().androidInfo;
       return {
-        Param.platform: 'android',
-        Param.version: android.version,
-        Param.board: android.board,
-        Param.bootloader: android.bootloader,
-        Param.brand: android.brand,
-        Param.device: android.device,
-        Param.display: android.display,
-        Param.fingerprint: android.fingerprint,
-        Param.hardware: android.hardware,
-        Param.host: android.host,
-        Param.id: android.id,
-        Param.manufacturer: android.manufacturer,
-        Param.model: android.model,
-        Param.product: android.product,
-        Param.supported32BitAbis: android.supported32BitAbis,
-        Param.supported64BitAbis: android.supported64BitAbis,
-        Param.supportedAbis: android.supportedAbis,
-        Param.tags: android.tags,
-        Param.type: android.type,
-        Param.isPhysicalDevice: android.isPhysicalDevice,
-        Param.androidId: android.androidId
+        _param.platform: 'android',
+        _param.version: android.version,
+        _param.board: android.board,
+        _param.bootloader: android.bootloader,
+        _param.brand: android.brand,
+        _param.device: android.device,
+        _param.display: android.display,
+        _param.fingerprint: android.fingerprint,
+        _param.hardware: android.hardware,
+        _param.host: android.host,
+        _param.id: android.id,
+        _param.manufacturer: android.manufacturer,
+        _param.model: android.model,
+        _param.product: android.product,
+        _param.supported32BitAbis: android.supported32BitAbis,
+        _param.supported64BitAbis: android.supported64BitAbis,
+        _param.supportedAbis: android.supportedAbis,
+        _param.tags: android.tags,
+        _param.type: android.type,
+        _param.isPhysicalDevice: android.isPhysicalDevice,
+        _param.androidId: android.androidId
       };
     } else if (Platform.isMacOS) {
-      return {Param.platform: 'macos'};
+      return {_param.platform: 'macos'};
     } else if (Platform.isWindows) {
-      return {Param.platform: 'windows'};
+      return {_param.platform: 'windows'};
     } else if (Platform.isLinux) {
-      return {Param.platform: 'linux'};
+      return {_param.platform: 'linux'};
     } else if (Platform.isFuchsia) {
-      return {Param.platform: 'fuschia'};
+      return {_param.platform: 'fuschia'};
     }
     return null;
   }

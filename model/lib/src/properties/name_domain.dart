@@ -1,4 +1,5 @@
 import 'package:types/index.dart';
+
 import 'name_context.dart';
 
 class NameDomain extends NameContext {

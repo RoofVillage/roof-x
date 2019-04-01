@@ -10,9 +10,9 @@ dependencies:
   flutter:
     sdk: flutter
   date:
-    path: ../date
+    path: ../lib/date
   string_from_enum_string:
-    path: ../string_from_enum_string
+    path: ../lib/string_from_enum_string
 
 dev_dependencies:
   flutter_test:

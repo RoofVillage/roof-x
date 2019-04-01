@@ -1,9 +1,10 @@
 import 'package:date/index.dart';
 import 'package:meta/meta.dart';
 import 'package:types/index.dart';
+
 import '../abstract/index.dart';
 import '../properties/index.dart';
-import '../utils/index.dart';
+import '../key.dart' as _key;
 
 class User extends ModelObject {
   final String firstName;
@@ -61,38 +62,39 @@ class User extends ModelObject {
     assert(map != null);
 
     final object = ModelObject.fromMap(map);
-    final name = map[Key.name] as Map;
+    final name = map[_key.name] as Map;
     final nameDomains =
-        (map[Key.domains] as List).map((map) => NameDomain.fromMap(map));
+        (map[_key.domains] as List).map((map) => NameDomain.fromMap(map));
     final nameContracts =
-        (map[Key.domains] as List).map((map) => NameContract.fromMap(map));
-    final namePaymentProfiles = (map[Key.paymentProfiles] as List)
+        (map[_key.domains] as List).map((map) => NameContract.fromMap(map));
+    final namePaymentProfiles = (map[_key.paymentProfiles] as List)
         .map((map) => NamePaymentProfile.fromMap(map));
-    final paymentDefaults = (map[Key.paymentDefaults] as List)
+    final paymentDefaults = (map[_key.paymentDefaults] as List)
         .map((map) => PaymentDefault.fromMap(map));
-    final emailUnsubscribes = (map[Key.emailUnsubscribes] as List).map(
+    final emailUnsubscribes = (map[_key.emailUnsubscribes] as List).map(
         (emailUnsubscribe) => EmailCategoryType.fromString(emailUnsubscribe));
-    final notificationUnsubscribes = (map[Key.notificationUnsubscribes] as List)
-        .map((notificationUnsubscribe) =>
-            NotificationCategoryType.fromString(notificationUnsubscribe));
-    final billing = Billing.fromMap(map[Key.billing]);
+    final notificationUnsubscribes =
+        (map[_key.notificationUnsubscribes] as List).map(
+            (notificationUnsubscribe) =>
+                NotificationCategoryType.fromString(notificationUnsubscribe));
+    final billing = Billing.fromMap(map[_key.billing]);
 
     return User(
         guid: object.guid,
         dateCreated: object.dateCreated,
         creatorGuid: object.creatorGuid,
-        firstName: name[Key.first],
-        lastName: name[Key.last],
-        email: map[Key.email],
-        phoneNumber: map[Key.phoneNumber],
+        firstName: name[_key.first],
+        lastName: name[_key.last],
+        email: map[_key.email],
+        phoneNumber: map[_key.phoneNumber],
         nameDomains: nameDomains.toSet(),
         nameContracts: nameContracts.toSet(),
         namePaymentProfiles: namePaymentProfiles.toSet(),
         paymentDefaults: paymentDefaults.toSet(),
-        privacyType: map[Key.defaultPrivacyKind],
-        tfaEnabled: map[Key.tfaEnabled],
-        textNotificationsEnabled: map[Key.textNotificationsEnabled],
-        badgeCount: map[Key.badgeCount] ?? 0,
+        privacyType: map[_key.defaultPrivacyKind],
+        tfaEnabled: map[_key.tfaEnabled],
+        textNotificationsEnabled: map[_key.textNotificationsEnabled],
+        badgeCount: map[_key.badgeCount] ?? 0,
         notificationUnsubscribes: notificationUnsubscribes.toSet(),
         emailUnsubscribes: emailUnsubscribes.toSet(),
         billing: billing);
@@ -102,24 +104,24 @@ class User extends ModelObject {
   Map<String, Object> toMap() {
     final map = super.toMap();
     map.addAll({
-      Key.name: {Key.first: firstName, Key.last: lastName},
-      Key.email: email,
-      Key.phoneNumber: phoneNumber,
-      Key.domains: nameDomains.map((nameDomain) => nameDomain.toMap()),
-      Key.contracts: nameContracts.map((nameContract) => nameContract.toMap()),
-      Key.paymentProfiles: namePaymentProfiles
+      _key.name: {_key.first: firstName, _key.last: lastName},
+      _key.email: email,
+      _key.phoneNumber: phoneNumber,
+      _key.domains: nameDomains.map((nameDomain) => nameDomain.toMap()),
+      _key.contracts: nameContracts.map((nameContract) => nameContract.toMap()),
+      _key.paymentProfiles: namePaymentProfiles
           .map((namePaymentProfile) => namePaymentProfile.toMap()),
-      Key.paymentDefaults:
+      _key.paymentDefaults:
           paymentDefaults.map((paymentDefaults) => paymentDefaults.toMap()),
-      Key.defaultPrivacyKind: privacyType.toString(),
-      Key.tfaEnabled: tfaEnabled,
-      Key.textNotificationsEnabled: textNotificationsEnabled,
-      Key.badgeCount: badgeCount,
-      Key.notificationUnsubscribes: notificationUnsubscribes
+      _key.defaultPrivacyKind: privacyType.toString(),
+      _key.tfaEnabled: tfaEnabled,
+      _key.textNotificationsEnabled: textNotificationsEnabled,
+      _key.badgeCount: badgeCount,
+      _key.notificationUnsubscribes: notificationUnsubscribes
           .map((notificationUnsubscribe) => notificationUnsubscribe.toString()),
-      Key.emailUnsubscribes: emailUnsubscribes
+      _key.emailUnsubscribes: emailUnsubscribes
           .map((emailUnsubscribe) => emailUnsubscribe.toString()),
-      Key.billing: billing.toMap()
+      _key.billing: billing.toMap()
     });
 
     return map;

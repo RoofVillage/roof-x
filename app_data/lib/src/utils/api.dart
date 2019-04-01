@@ -1,26 +1,26 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:network/index.dart';
 import 'package:synchronizer/index.dart';
-import 'package:service/index.dart';
-import 'package:session/index.dart';
+import 'package:network/index.dart';
+import 'package:session/index.dart' as session;
 
-import '_device_info.dart';
+import '../_param.dart' as _param;
+import 'service.dart';
 
 class Api {
   final _bearerTokenPrefix = 'Bearer ';
   Future<String> post({Service service, Map<String, Object> params}) async {
-    // params.addAll({Param.client: await DeviceInfo.params});
+    // params.addAll({_param.client: await DeviceInfo.params});
 
     if (service.doesNeedSession) {
       //refresh.
     }
 
     Map<String, String> headers;
-    final token = await Session.token;
+    final token = await session.token;
     if (token != null) {
-      headers[Param.authorizationHeader] = _bearerTokenPrefix + token;
+      headers[_param.authorizationHeader] = _bearerTokenPrefix + token;
     } else if (service.doesNeedSession) {
       throw ArgumentError.value(
         service,
@@ -34,17 +34,17 @@ class Api {
 
     final Map<String, Object> dataConvertedToJson = json.decode(response);
 
-    if (dataConvertedToJson.containsKey(Param.sessionToken) &&
-        dataConvertedToJson.containsKey(Param.refreshToken)) {
-      Session.start(
-          sessionToken: dataConvertedToJson[Param.sessionToken],
-          refreshToken: dataConvertedToJson[Param.refreshToken]);
-    } else if (dataConvertedToJson.containsKey(Param.verificationToken)) {
-      Session.standby(
-          verificationToken: dataConvertedToJson[Param.verificationToken]);
+    if (dataConvertedToJson.containsKey(_param.sessionToken) &&
+        dataConvertedToJson.containsKey(_param.refreshToken)) {
+      session.start(
+          sessionToken: dataConvertedToJson[_param.sessionToken],
+          refreshToken: dataConvertedToJson[_param.refreshToken]);
+    } else if (dataConvertedToJson.containsKey(_param.verificationToken)) {
+      session.standby(
+          verificationToken: dataConvertedToJson[_param.verificationToken]);
     }
     final Map<String, Object> objectsToSync =
-        dataConvertedToJson[Param.objectsToSync];
+        dataConvertedToJson[_param.objectsToSync];
 
     await Synchronizer().synchronize(objectsToSync);
 

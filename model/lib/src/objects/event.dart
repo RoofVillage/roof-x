@@ -1,11 +1,12 @@
 import 'package:meta/meta.dart';
 import 'package:types/index.dart';
+
+import 'stub.dart';
 import '../utils/index.dart';
 import '../properties/index.dart';
 import '../abstract/index.dart';
 import '../mixins/index.dart';
-
-import 'stub.dart';
+import '../key.dart' as _key;
 
 class Event extends FeedObject {
   final String detail;
@@ -49,14 +50,14 @@ class Event extends FeedObject {
 
     final feedObject = FeedObject.fromMap(map);
 
-    final actingUsers =
-        (map[Key.actingUsers] as List).map((map) => UserReference.fromMap(map));
+    final actingUsers = (map[_key.actingUsers] as List)
+        .map((map) => UserReference.fromMap(map));
 
-    final affectedUsers = (map[Key.affectedUsers] as List)
+    final affectedUsers = (map[_key.affectedUsers] as List)
         .map((map) => UserReference.fromMap(map));
 
     final metadata =
-        (map[Key.meta] as List).map((map) => Metadata.fromMap(map));
+        (map[_key.meta] as List).map((map) => Metadata.fromMap(map));
 
     return Event(
         contractDomainUsers: feedObject.contractDomainUsers,
@@ -67,28 +68,28 @@ class Event extends FeedObject {
         contractPropertyName: feedObject.contractPropertyName,
         feePayerType: feedObject.feePayerType,
         clientReferenceId: feedObject.clientReferenceId,
-        detail: map[Key.detail],
-        secondaryDetail: map[Key.secondaryDetail],
+        detail: map[_key.detail],
+        secondaryDetail: map[_key.secondaryDetail],
         actingUsers: actingUsers.toSet(),
         affectedUsers: affectedUsers.toSet(),
-        type: EventType.fromString(map[Key.kind]),
-        objectType: EventObjectType.fromString(map[Key.objectKind]),
-        objectGuid: map[Key.objectGuid],
+        type: EventType.fromString(map[_key.kind]),
+        objectType: EventObjectType.fromString(map[_key.objectKind]),
+        objectGuid: map[_key.objectGuid],
         metadata: metadata);
   }
 
   Map<String, Object> toMap() {
     final map = super.toMap();
     map.addAll({
-      Key.detail: detail,
-      Key.secondaryDetail: secondaryDetail,
-      Key.actingUsers: actingUsers.map((actingUser) => actingUser.toMap()),
-      Key.affectedUsers:
+      _key.detail: detail,
+      _key.secondaryDetail: secondaryDetail,
+      _key.actingUsers: actingUsers.map((actingUser) => actingUser.toMap()),
+      _key.affectedUsers:
           affectedUsers.map((affectedUser) => affectedUser.toMap()),
-      Key.kind: type.toString(),
-      Key.objectKind: objectType.toString(),
-      Key.objectGuid: objectGuid,
-      Key.meta: metadata.map((metadata) => metadata.toMap())
+      _key.kind: type.toString(),
+      _key.objectKind: objectType.toString(),
+      _key.objectGuid: objectGuid,
+      _key.meta: metadata.map((metadata) => metadata.toMap())
     });
     return map;
   }

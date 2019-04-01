@@ -1,10 +1,9 @@
 import 'package:date/index.dart';
 import 'package:meta/meta.dart';
 
-import '../utils/index.dart';
-
 import '../abstract/index.dart';
 import '../properties/index.dart';
+import '../key.dart' as _key;
 
 class Roof extends Domain {
   final Set<Balance> balances;
@@ -51,10 +50,10 @@ class Roof extends Domain {
     assert(map != null);
 
     final domain = Domain.fromMap(map);
-    final counts = map[Key.counts] as Map ?? {};
+    final counts = map[_key.counts] as Map ?? {};
 
     final balances =
-        (map[Key.balances] as List ?? []).map((map) => Balance.fromMap(map));
+        (map[_key.balances] as List ?? []).map((map) => Balance.fromMap(map));
 
     return Roof(
         guid: domain.guid,
@@ -70,24 +69,24 @@ class Roof extends Domain {
         formerUsers: domain.formerUsers,
         location: domain.location,
         balances: balances.toSet(),
-        reminderCompletionCount: counts[Key.reminderCompletion] ?? 0,
-        assignedReminderCount: counts[Key.assignedReminder] ?? 0,
-        dueReminderCount: counts[Key.dueReminder] ?? 0,
-        outOfStockShoppingItemCount: counts[Key.outOfStockShoppingItem] ?? 0,
-        shoppingItemCompletionCount: counts[Key.shoppingItemCompletion] ?? 0);
+        reminderCompletionCount: counts[_key.reminderCompletion] ?? 0,
+        assignedReminderCount: counts[_key.assignedReminder] ?? 0,
+        dueReminderCount: counts[_key.dueReminder] ?? 0,
+        outOfStockShoppingItemCount: counts[_key.outOfStockShoppingItem] ?? 0,
+        shoppingItemCompletionCount: counts[_key.shoppingItemCompletion] ?? 0);
   }
 
   Map<String, Object> toMap() {
     final map = super.toMap();
-    (map[Key.counts] as Map).addAll({
-      Key.reminderCompletion: reminderCompletionCount,
-      Key.assignedReminder: assignedReminderCount,
-      Key.dueReminder: dueReminderCount,
-      Key.outOfStockShoppingItem: outOfStockShoppingItemCount,
-      Key.shoppingItemCompletion: shoppingItemCompletionCount
+    (map[_key.counts] as Map).addAll({
+      _key.reminderCompletion: reminderCompletionCount,
+      _key.assignedReminder: assignedReminderCount,
+      _key.dueReminder: dueReminderCount,
+      _key.outOfStockShoppingItem: outOfStockShoppingItemCount,
+      _key.shoppingItemCompletion: shoppingItemCompletionCount
     });
 
-    map.addAll({Key.balances: balances.map((balance) => balance.toMap())});
+    map.addAll({_key.balances: balances.map((balance) => balance.toMap())});
 
     return map;
   }

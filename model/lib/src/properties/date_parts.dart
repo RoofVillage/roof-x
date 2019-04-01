@@ -1,6 +1,7 @@
-import '../utils/index.dart';
+import '../mixins/index.dart';
+import '../key.dart' as _key;
 
-class DateParts extends Mappable {
+class DateParts with Mappable {
   final int time;
   final int day;
   final int month;
@@ -10,14 +11,14 @@ class DateParts extends Mappable {
 
   factory DateParts.fromMap(Map<String, Object> map) {
     return DateParts(
-        time: map[Key.time],
-        day: map[Key.day],
-        month: map[Key.month],
-        year: map[Key.year]);
+        time: map[_key.time],
+        day: map[_key.day],
+        month: map[_key.month],
+        year: map[_key.year]);
   }
 
   @override
   Map<String, Object> toMap() {
-    return {Key.time: time, Key.day: day, Key.month: month, Key.year: year};
+    return {_key.time: time, _key.day: day, _key.month: month, _key.year: year};
   }
 }

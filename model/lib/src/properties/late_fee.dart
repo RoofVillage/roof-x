@@ -1,6 +1,7 @@
-import '../utils/index.dart';
+import '../mixins/index.dart';
+import '../key.dart' as _key;
 
-class LateFee extends Mappable {
+class LateFee with Mappable {
   final int amount;
   final int numDaysWhenLate;
 
@@ -10,11 +11,11 @@ class LateFee extends Mappable {
     if (map == null) return null;
 
     return LateFee(
-        amount: map[Key.amount], numDaysWhenLate: map[Key.numDaysWhenLate]);
+        amount: map[_key.amount], numDaysWhenLate: map[_key.numDaysWhenLate]);
   }
 
   @override
   Map<String, Object> toMap() {
-    return {Key.amount: amount, Key.numDaysWhenLate: numDaysWhenLate};
+    return {_key.amount: amount, _key.numDaysWhenLate: numDaysWhenLate};
   }
 }
