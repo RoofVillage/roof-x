@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:floating_artboard_templates/index.dart';
-import 'package:form_artboard_mixin/index.dart';
 
 import 'phone_number.dart';
 import 'challenge.dart';
@@ -15,7 +14,7 @@ class SignUpArtboard extends FormFloatingArtboard {
   String get submitButtonText => "Create";
 
   @override
-  List<StreamableFormFieldData> get fieldData => [
+  Future<List<StreamableFormFieldData>> get fieldData async => [
         _temp3,
         _nameFieldData,
         _emailFieldData,
@@ -30,8 +29,8 @@ class SignUpArtboard extends FormFloatingArtboard {
   final _temp3 = FormDateFieldData(title: "Sup");
 
   @override
-  void setup(BuildContext context) {
-    super.setup(context);
+  void setup(BuildContext context, {List<StreamableFormFieldData> fieldData}) {
+    super.setup(context, fieldData: fieldData);
     // _temp2.addOnChangedListener(_toggleField);
   }
 

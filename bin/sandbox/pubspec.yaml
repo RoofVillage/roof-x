@@ -10,17 +10,15 @@ dependencies:
   flutter:
     sdk: flutter
   auth_artboards:
-    path: ../auth_artboards
-  input_dock_artboard_mixin:
-    path: ../input_dock_artboard_mixin
-  input_dock_components:
-    path: ../input_dock_components
+    path: ../../artboards/auth
+  input_dock_builder:
+    path: ../../builders/input_dock
   icon_library:
-    path: ../icon_library
+    path: ../../icon_library
   theme:
-    path: ../theme
-  thread_artboards:
-    path: ../thread_artboards
+    path: ../../theme
+  # thread_artboards:
+  #   path: ../thread_artboards
 
 dev_dependencies:
   flutter_test:

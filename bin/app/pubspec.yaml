@@ -10,11 +10,13 @@ dependencies:
   flutter:
     sdk: flutter
   theme:
-    path: ../theme
+    path: ../../theme
   stream:
-    path: ../stream
-  auth_artboards:
-    path: ../auth_artboards
+    path: ../../lib/stream
+  public_activity_artboards:
+    path: ../../artboards/public_activity
+  full_screen_artboard_templates:
+    path: ../../artboard_templates/full_screen
 
 dev_dependencies:
   flutter_test:

@@ -10,10 +10,10 @@ class FormValidationException implements Exception {
       "Looks like this phone number isn't valid. Reach out to us if you think we've got it wrong.");
 
   static const longPassword = FormValidationException(
-      "This password is too long. Try something under ${Consts.maxCharsInPassword} characters.");
+      "This password is too long. Try something under $maxCharsInPassword characters.");
 
   static const shortPassword = FormValidationException(
-      "This password is too short. Try something at least ${Consts.minCharsInPassword} characters long.");
+      "This password is too short. Try something at least $minCharsInPassword characters long.");
 
   static const unsafePassword = FormValidationException(
       "This password isn't safe enough. Try something with a letter, number, and symbol over 8 characters long.");
@@ -23,17 +23,17 @@ class FormValidationException implements Exception {
 
   static FormValidationException longSmallString(String fieldTitle) {
     return FormValidationException(
-        "$fieldTitle is too long. Try something under ${Consts.maxCharsInSmallTextField} characters.");
+        "$fieldTitle is too long. Try something under $maxCharsInSmallTextField characters.");
   }
 
   static FormValidationException longMediumString(String fieldTitle) {
     return FormValidationException(
-        "$fieldTitle is too long. Try something under ${Consts.maxCharsInMediumTextField} characters.");
+        "$fieldTitle is too long. Try something under $maxCharsInMediumTextField characters.");
   }
 
   static FormValidationException longLongString(String fieldTitle) {
     return FormValidationException(
-        "$fieldTitle is too long. Try something under ${Consts.maxCharsInLongTextField} characters.");
+        "$fieldTitle is too long. Try something under $maxCharsInLongTextField characters.");
   }
 
   const FormValidationException(this.message);

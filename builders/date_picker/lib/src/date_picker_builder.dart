@@ -11,7 +11,7 @@ mixin DatePickerBuilder {
 }
 
 mixin DatePickerBuilderState {
-  DatePickerBuilder get datePickerArtboard;
+  DatePickerBuilder get datePickerBuilder;
 
   Date _date;
 
@@ -22,9 +22,9 @@ mixin DatePickerBuilderState {
 
   Widget buildDatePicker(BuildContext context) {
     return RoofCalendarDatePicker(
-      selectedDate: date ?? datePickerArtboard.selectedDate,
-      startBound: datePickerArtboard.startBound,
-      endBound: datePickerArtboard.endBound,
+      selectedDate: date ?? datePickerBuilder.selectedDate,
+      startBound: datePickerBuilder.startBound,
+      endBound: datePickerBuilder.endBound,
       onDayPressed: _onDayPressed,
     );
   }

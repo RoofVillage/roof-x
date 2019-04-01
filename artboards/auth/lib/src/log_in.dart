@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:floating_artboard_templates/index.dart';
-import 'package:form_artboard_mixin/index.dart';
 
 import 'reset_password.dart';
 
@@ -20,7 +19,7 @@ class LogInArtboard extends FormFloatingArtboard {
   String get submitButtonText => "Log in";
 
   @override
-  List<StreamableFormFieldData> get fieldData =>
+  Future<List<StreamableFormFieldData>> get fieldData async =>
       [_usernameFieldData, _passwordFieldData];
 
   final _usernameFieldData = EmailFormTextFieldData(title: "Email or phone");

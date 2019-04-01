@@ -15,8 +15,10 @@ import 'mixins/index.dart';
 
 import 'widgets/index.dart';
 
-mixin FormFloatingArtboard<T>
-    implements FloatingArtboard<T>, FormBuilder, SubmitButtonBuilder {
+export 'package:form_builder/index.dart';
+
+abstract class FormFloatingArtboard<T> extends FloatingArtboard<T>
+    with FormBuilder, SubmitButtonBuilder {
   String get title;
   String get subtitle => null;
   String get auxiliaryDescription => null;

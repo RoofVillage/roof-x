@@ -13,29 +13,17 @@ import 'components/index.dart';
 enum FormSubmitState { normal, loading, exception }
 
 mixin FormBuilder {
-  List<StreamableFormFieldData> get fieldData => [];
-  List<StreamableFormSectionData> get sectionData => [];
-  StreamableFormData get formData => null;
+  Future<List<StreamableFormFieldData>> get fieldData async => Future.value([]);
+
+  Future<List<StreamableFormSectionData>> get sectionData async =>
+      Future.value([]);
+
+  Future<StreamableFormData> get formData => null;
+
   String get submitButtonText;
   bool get canSubmitWitheyboardRaised => true;
 
   double get fieldHorizontalSpacing => RoofDistance.c;
-
-  Widget get submitKeyboardAccessory => PrimaryActionKeyboardAccessoryButton(
-        onTap: (context) {
-          _form.resignFocus(context);
-          submit(context);
-        },
-        title: submitButtonText,
-      );
-
-  Future<List<StreamableFormFieldData>> get loadedFieldData async {
-    return Future<List<StreamableFormFieldData>>.value([]);
-  }
-
-  Future<List<StreamableFormSectionData>> get loadedSectionData async {
-    return Future<List<StreamableFormSectionData>>.value([]);
-  }
 
   StreamFormBloc get form => _form.bloc;
 
@@ -46,34 +34,39 @@ mixin FormBuilder {
   Future<void> submit(BuildContext context);
 
   // An opportunity for forms to setup additional properties before building.
-  void setup(BuildContext context) {
+  void setup(BuildContext context,
+      {@required List<StreamableFormFieldData> fieldData}) async {
     for (final data in fieldData) {
-      if (data is FormDateFieldData) {
-        data.addonTapListener(() async {
-          final newDate =
-              await goToDatePicker(context: context, selectedDate: data.value);
-          data.value = newDate;
-          form.updateFieldData(data);
-        });
-      }
+      if (data is FormDateFieldData) _setupDateFieldData(context, data: data);
     }
   }
 
   Future<Date> goToDatePicker(
       {@required BuildContext context, @required Date selectedDate});
 
-  _load() async {
-    final sectionData = await loadedSectionData;
-    final fieldData = await loadedFieldData;
-    if (sectionData.isNotEmpty) {
-      form.batchInsertSectionData(sectionData);
-    } else if (fieldData.isNotEmpty) {
-      form.batchInsertFieldData(fieldData);
-    }
+  Future<void> _validateFields() async {
+    return Future.wait(
+        (await fieldData).map((data) async => await data.validate()));
   }
 
-  Future<void> _validateFields() async {
-    return Future.wait(fieldData.map((data) async => await data.validate()));
+  Widget _buildSubmitKeyboardAccessory(BuildContext context) {
+    return PrimaryActionKeyboardAccessoryButton(
+      onTap: (context) {
+        _form.resignFocus(context);
+        submit(context);
+      },
+      title: submitButtonText,
+    );
+  }
+
+  void _setupDateFieldData(BuildContext context,
+      {@required FormDateFieldData data}) {
+    data.addOnTapListener(() async {
+      final newDate =
+          await goToDatePicker(context: context, selectedDate: data.value);
+      data.value = newDate;
+      form.updateFieldData(data);
+    });
   }
 }
 
@@ -85,20 +78,11 @@ mixin FormBuilderState {
   FormBuilder get formBuilder;
 
   void setState(dynamic());
-
   bool _hasSetUp = false;
 
   RoofStreamForm buildForm(BuildContext context) {
-    _setupIfNeeded();
-
-    final formData = _createFormData();
-
-    formBuilder.form.update(formData);
-
+    _load(context);
     formBuilder.form.addOnValueChangedListener(_restoreState);
-
-    formBuilder._load();
-
     return formBuilder._form;
   }
 
@@ -124,27 +108,44 @@ mixin FormBuilderState {
 
   void disposeOfForm() => formBuilder._form.dispose();
 
-  void _setupIfNeeded() {
-    if (_hasSetUp) return;
-    formBuilder.setup(context);
-    _hasSetUp = true;
+  void _load(BuildContext context) async {
+    final formData = await _createFormData(context);
+    if (formData == null) return;
+    _setupIfNeeded(context, fieldData: formData.fieldData);
+    formBuilder.form.update(formData);
   }
 
-  StreamableFormData _createFormData() {
-    if (formBuilder.formData != null) {
-      return formBuilder.formData;
-    } else if (formBuilder.sectionData.isNotEmpty) {
+  Future<StreamableFormData> _createFormData(BuildContext context) async {
+    final formData = await formBuilder.formData;
+    if (formData != null) return formData;
+
+    final sectionData = await formBuilder.sectionData;
+    if (sectionData.isNotEmpty) {
       return StreamableFormData(
-          sectionData: formBuilder.sectionData,
-          submitKeyboardAccessory: formBuilder.submitKeyboardAccessory,
-          canSubmitWithKeyboardRaised: formBuilder.canSubmitWitheyboardRaised);
-    } else {
-      return StreamableFormData.withFields(
-          fieldData: formBuilder.fieldData,
-          fieldHorizontalSpacing: formBuilder.fieldHorizontalSpacing,
-          submitKeyboardAccessory: formBuilder.submitKeyboardAccessory,
+          sectionData: sectionData,
+          submitKeyboardAccessory:
+              formBuilder._buildSubmitKeyboardAccessory(context),
           canSubmitWithKeyboardRaised: formBuilder.canSubmitWitheyboardRaised);
     }
+
+    final fieldData = await formBuilder.fieldData;
+    if (fieldData.isNotEmpty) {
+      return StreamableFormData.withFields(
+          fieldData: fieldData,
+          fieldHorizontalSpacing: formBuilder.fieldHorizontalSpacing,
+          submitKeyboardAccessory:
+              formBuilder._buildSubmitKeyboardAccessory(context),
+          canSubmitWithKeyboardRaised: formBuilder.canSubmitWitheyboardRaised);
+    }
+
+    return null;
+  }
+
+  void _setupIfNeeded(BuildContext context,
+      {@required List<StreamableFormFieldData> fieldData}) {
+    if (_hasSetUp) return;
+    formBuilder.setup(context, fieldData: fieldData);
+    _hasSetUp = true;
   }
 
   void _handleException(
@@ -164,13 +165,13 @@ mixin FormBuilderState {
     setState(() => formSubmitState = FormSubmitState.normal);
   }
 
-  void _enableForm() {
-    for (final data in formBuilder.fieldData) data.enabled = true;
-    formBuilder.form.batchUpdateFieldData(formBuilder.fieldData);
+  void _enableForm() async {
+    for (final data in await formBuilder.fieldData) data.enabled = true;
+    formBuilder.form.batchUpdateFieldData(await formBuilder.fieldData);
   }
 
-  void _disableForm() {
-    for (final data in formBuilder.fieldData) data.enabled = false;
-    formBuilder.form.batchUpdateFieldData(formBuilder.fieldData);
+  void _disableForm() async {
+    for (final data in await formBuilder.fieldData) data.enabled = false;
+    formBuilder.form.batchUpdateFieldData(await formBuilder.fieldData);
   }
 }

@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:consts/index.dart';
 import 'package:exceptions/index.dart';
 import 'text_field.dart';
@@ -22,7 +21,7 @@ class MediumFormTextFieldData extends FormTextFieldData {
 
   @override
   Future<void> validate() async {
-    if (value.length > Consts.maxCharsInMediumTextField) {
+    if (value.length > maxCharsInMediumTextField) {
       throw FormValidationException.longMediumString(title);
     }
   }

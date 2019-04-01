@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:floating_artboard_templates/index.dart';
-import 'package:form_artboard_mixin/index.dart';
+import 'package:form_builder/index.dart';
 
 typedef Future<void> PhoneNumberDependentSubmit(
     {@required String phoneNumber, @required BuildContext context});
@@ -20,7 +20,8 @@ class PhoneNumberArtboard extends FormFloatingArtboard {
   String get submitButtonText => "Send code";
 
   @override
-  List<StreamableFormFieldData> get fieldData => [_phoneNumberFieldData];
+  Future<List<StreamableFormFieldData>> get fieldData async =>
+      [_phoneNumberFieldData];
 
   final _phoneNumberFieldData = PhoneNumberFormTextFieldData();
 

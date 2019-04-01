@@ -9,9 +9,9 @@ dependencies:
   flutter:
     sdk: flutter
   floating_artboard_templates:
-    path: ../floating_artboard_templates
+    path: ../../artboard_templates/floating
   app_data:
-    path: ../app_data
+    path: ../../app_data
 
 dev_dependencies:
   flutter_test:

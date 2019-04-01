@@ -21,7 +21,7 @@ class ShortFormTextFieldData extends FormTextFieldData {
         );
 
   Future<void> validate() async {
-    if (value.length > Consts.maxCharsInSmallTextField) {
+    if (value.length > maxCharsInSmallTextField) {
       throw FormValidationException.longSmallString(title);
     }
   }

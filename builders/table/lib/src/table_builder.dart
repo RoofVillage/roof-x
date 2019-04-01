@@ -6,44 +6,34 @@ import 'package:table/index.dart';
 import 'components/index.dart';
 
 mixin TableBuilder {
-  List<StreamableTableRowData> get rowData => null;
-  List<StreamableTableSectionData> get sectionData => null;
-  StreamableTableData get tableData => null;
-
-  Future<List<StreamableTableRowData>> get loadRowData async {
-    return Future<List<StreamableTableRowData>>.value(null);
-  }
+  Future<List<StreamableTableRowData>> get rowData => null;
+  Future<List<StreamableTableSectionData>> get sectionData => null;
+  Future<StreamableTableData> get tableData => null;
 
   StreamTableBloc get table => _table.bloc;
 
   final _table = RoofStreamTable();
 
   RoofStreamTable buildTable(BuildContext context) {
-    StreamableTableData tableData;
-    List<StreamableTableRowData> rowData = this.rowData ?? [];
-
-    if (this.tableData != null)
-      tableData = this.tableData;
-    else if (this.sectionData != null) {
-      tableData =
-          StreamableTableData(sectionData: this.sectionData, rowData: rowData);
-    } else {
-      tableData = StreamableTableData.withoutSections(rowData: rowData);
-    }
-
-    if (tableData != null) {
-      table.update(tableData);
-    }
-
-    _load();
+    _load(context);
     return _table;
   }
 
-  _load() async {
-    final rowData = await loadRowData;
+  void _load(BuildContext context) async {
+    final tableData = await _createTableData(context);
+    if (tableData == null) return;
+    table.update(tableData);
+  }
 
-    if (rowData == null) return;
+  Future<StreamableTableData> _createTableData(BuildContext context) async {
+    final tableData = await this.tableData;
+    if (tableData != null) return tableData;
 
-    table.batchInsertRowData(rowData);
+    final sectionData = await this.sectionData;
+    final rowData = await this.rowData;
+    if (sectionData.isNotEmpty) {
+      return StreamableTableData(sectionData: sectionData, rowData: rowData);
+    }
+    return StreamableTableData.withoutSections(rowData: rowData);
   }
 }

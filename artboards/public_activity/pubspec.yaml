@@ -1,5 +1,5 @@
-name: auth_artboards
-description: The artboards that make up the authentication flow.
+name: public_activity_artboards
+description: The artboards that show public activity.
 version: 1.0.0+1
 
 environment:
@@ -14,12 +14,12 @@ dependencies:
     path: ../../artboard_templates/floating
   app_data:
     path: ../../app_data
-  challenge_artboards:
-    path: ../challenge
   nav_button_builder:
     path: ../../builders/nav_button
   icon_library:
     path: ../../icon_library
+  model:
+    path: ../../model
 
 dev_dependencies:
   flutter_test:

@@ -29,10 +29,10 @@ class PasswordFormTextFieldData extends FormTextFieldData {
         );
 
   Future<void> validate() async {
-    if (value.length > Consts.maxCharsInPassword) {
+    if (value.length > maxCharsInPassword) {
       throw FormValidationException.longPassword;
     }
-    if (value.length < Consts.minCharsInPassword) {
+    if (value.length < minCharsInPassword) {
       throw FormValidationException.shortPassword;
     }
     if (!value.contains(RegExp(numberSet)) ||

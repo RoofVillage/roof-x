@@ -20,6 +20,6 @@ class User {
       _param.password: password
     };
 
-    return await Api().post(service: Service.signUp, params: params);
+    return await post(service: Service.signUp, params: params);
   }
 }

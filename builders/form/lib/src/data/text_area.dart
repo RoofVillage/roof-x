@@ -26,7 +26,7 @@ class FormTextAreaData extends FormCompositionFieldData {
         );
 
   Future<void> validate() async {
-    if (value.length > Consts.maxCharsInLongTextField) {
+    if (value.length > maxCharsInLongTextField) {
       throw FormValidationException.longLongString(title);
     }
   }

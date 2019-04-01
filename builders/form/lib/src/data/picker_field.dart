@@ -11,7 +11,7 @@ abstract class PickerFieldData<T> extends StreamableFormFieldData<T> {
 
   List<Function> _onTapListeners = [];
 
-  void addonTapListener(Function fn) {
+  void addOnTapListener(Function fn) {
     if (_onTapListeners.contains(fn)) return;
     _onTapListeners.add(fn);
   }

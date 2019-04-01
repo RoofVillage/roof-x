@@ -3,10 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:spec/index.dart';
 import 'package:theme/index.dart';
 
-import '../buttons/index.dart';
-
 mixin RoofNavBar implements StatelessWidget {
-  List<RoofNavButton> get actionButtons;
+  List<Widget> get actionButtons;
   List<Widget> buildNavigationWidgets(BuildContext context);
 
   final _padding = EdgeInsets.fromLTRB(RoofDistance.a, 0, RoofDistance.a, 0);

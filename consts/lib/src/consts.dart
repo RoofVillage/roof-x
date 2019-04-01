@@ -1,7 +1,5 @@
-class Consts {
-  static const maxCharsInSmallTextField = 40;
-  static const maxCharsInMediumTextField = 50;
-  static const maxCharsInLongTextField = 750;
-  static const minCharsInPassword = 8;
-  static const maxCharsInPassword = 30;
-}
+const maxCharsInSmallTextField = 40;
+const maxCharsInMediumTextField = 50;
+const maxCharsInLongTextField = 750;
+const minCharsInPassword = 8;
+const maxCharsInPassword = 30;

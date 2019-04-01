@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'components/index.dart';
 
 mixin FullLogoNavBarBuilder {
-  List<RoofNavButton> get actionButtons;
+  List<Widget> buildActionButtons(BuildContext context);
 
   RoofNavBar buildFullLogoNavBar(BuildContext context) {
-    return RoofFullLogoNavBar(actionButtons: actionButtons);
+    return RoofFullLogoNavBar(actionButtons: buildActionButtons(context));
   }
 }

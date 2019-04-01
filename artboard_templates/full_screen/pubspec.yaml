@@ -15,7 +15,7 @@ dependencies:
   input_dock_builder:
     path: ../../builders/input_dock
   floating_artboard_templates:
-    path: ../floating_artboard_templates
+    path: ../floating
   keyboard_accessory:
     path: ../../lib/keyboard_accessory
 

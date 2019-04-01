@@ -3,13 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:theme/index.dart';
 import 'package:typography/index.dart';
 
-import '../buttons/index.dart';
 import 'nav_bar.dart';
 import 'widgets/index.dart';
 
 class RoofTitleNavBar extends StatelessWidget with RoofNavBar {
-  final List<RoofNavButton> actionButtons;
-  final RoofNavButton navButton;
+  final List<Widget> actionButtons;
+  final Widget navButton;
   final String title;
 
   final _typographyStyle = RoofTypography.heading1;

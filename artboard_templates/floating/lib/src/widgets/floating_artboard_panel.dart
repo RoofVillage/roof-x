@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:spec/index.dart';
 import 'package:floating_artboard_templates/index.dart';
 import 'package:icon_library/index.dart';
+import 'package:nav_button_builder/index.dart';
 
 import '../floating_artboard_button_option.dart';
-import '_floating_icon_nav_button.dart';
 
 class FloatingArtboardNavigatorPanel<T> extends StatefulWidget {
   final FloatingArtboard artboard;
@@ -35,7 +35,7 @@ class FloatingArtboardNavigatorPanel<T> extends StatefulWidget {
 // https://github.com/flutter/flutter/issues/13080#issuecomment-399320752
 class InheritedFloatingArtboardNavigatorPanel<T>
     extends State<FloatingArtboardNavigatorPanel<T>>
-    with AutomaticKeepAliveClientMixin {
+    with AutomaticKeepAliveClientMixin, IconNavButtonBuilder {
   bool showsNavButton = true;
 
   bool _wantKeepAlive = true;
@@ -88,24 +88,21 @@ class InheritedFloatingArtboardNavigatorPanel<T>
     setState(() => showsNavButton = shouldShow);
   }
 
-  FloatingIconNavButton _navButton() {
+  Widget _navButton() {
     final buttonOption =
         widget.artboard.navButtonOption ?? widget.defaultNavButtonOption;
     switch (buttonOption) {
       case FloatingArtboardButtonOption.close:
-        return FloatingIconNavButton(
-            iconReference: IconReference.downArrowNav,
-            onTap: (context) {
-              ArtboardNavigator.of(context).pop(_result);
-            });
+        return buildIconNavButton(context,
+            iconReference: IconReference.downArrowNav, onTap: (context) {
+          ArtboardNavigator.of(context).pop(_result);
+        });
       case FloatingArtboardButtonOption.previous:
-        return FloatingIconNavButton(
-            iconReference: IconReference.backArrowNav,
-            onTap: (context) async {
-              widget.artboard.didComplete(_result);
-              FloatingArtboardNavigator.of(context, shouldRebuild: false)
-                  .back();
-            });
+        return buildIconNavButton(context,
+            iconReference: IconReference.backArrowNav, onTap: (context) {
+          widget.artboard.didComplete(_result);
+          FloatingArtboardNavigator.of(context, shouldRebuild: false).back();
+        });
     }
 
     return null;

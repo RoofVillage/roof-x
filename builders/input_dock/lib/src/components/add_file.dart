@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:icon_library/index.dart';
-import 'package:image_picker_mixin/index.dart';
+import 'package:image_picker_builder/index.dart';
 
 import 'mixins/auxiliary_widget.dart';
 import 'input_dock.dart';

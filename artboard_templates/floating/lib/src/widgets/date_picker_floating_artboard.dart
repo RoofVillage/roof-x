@@ -25,7 +25,7 @@ class DatePickerFloatingArtboard extends FloatingArtboard<Date>
 class _DatePickerFloatingArtboardState extends State<DatePickerFloatingArtboard>
     with FloatingArtboardState, DatePickerBuilderState {
   @override
-  get datePickerArtboard => widget;
+  get datePickerBuilder => widget;
 
   @override
   Date get date => FloatingArtboardNavigatorPanel.of(context).result;
@@ -36,6 +36,7 @@ class _DatePickerFloatingArtboardState extends State<DatePickerFloatingArtboard>
   }
 
   @override
-  List<Widget> buildChildren(BuildContext context) =>
-      [buildDatePicker(context)];
+  List<Widget> buildChildren(BuildContext context) {
+    return [buildDatePicker(context)];
+  }
 }

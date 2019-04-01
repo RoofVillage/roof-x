@@ -20,6 +20,8 @@ dependencies:
     path: ../../builders/keyboard_accessory_bar
   date_picker_builder:
     path: ../../builders/date_picker
+  nav_button_builder:
+    path: ../../builders/nav_button
   date:
     path: ../../lib/date
 

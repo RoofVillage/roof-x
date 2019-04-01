@@ -1,5 +1,5 @@
-name: nav_bar_builder
-description: Nav bar functionality for artboards.
+name: nav_button_builder
+description: Nav bar button functionality for artboards.
 
 version: 1.0.0+1
 
@@ -19,8 +19,6 @@ dependencies:
     path: ../../typography
   icon_library:
     path: ../../icon_library
-  nav_button_builder:
-    path: ../nav_button
 
 dev_dependencies:
   flutter_test:

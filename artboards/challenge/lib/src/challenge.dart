@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:floating_artboard_templates/index.dart';
-import 'package:form_artboard_mixin/index.dart';
+import 'package:form_builder/index.dart';
 
 class ChallengeArtboard extends FormFloatingArtboard {
   final String phoneNumber;
@@ -23,7 +23,7 @@ class ChallengeArtboard extends FormFloatingArtboard {
   String get submitButtonText => "Submit";
 
   @override
-  List<StreamableFormFieldData> get fieldData => [_codeFieldData];
+  Future<List<StreamableFormFieldData>> get fieldData async => [_codeFieldData];
 
   final _codeFieldData = ShortFormTextFieldData(title: "Enter code");
 
