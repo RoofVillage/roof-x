@@ -1,5 +1,5 @@
 name: full_screen_artboard_templates
-description: Templates the define the visual organization for full screen artboards.
+description: Full screen frames for building a widget hierarchy in.
 version: 1.0.0+1
 
 environment:

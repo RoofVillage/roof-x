@@ -1,11 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:floating_artboard_templates/index.dart';
-import 'package:form/index.dart';
+import 'package:form_builder/index.dart';
 
-class ChallengeArtboard extends FormFloatingArtboard {
-  final String phoneNumber;
+mixin ChallengeArtboardBuilder implements FormBuilder {
+  String get phoneNumber;
 
   @override
   String get title => "Confirm";
@@ -27,10 +26,9 @@ class ChallengeArtboard extends FormFloatingArtboard {
 
   final _codeFieldData = ShortFormTextFieldData(title: "Enter code");
 
-  ChallengeArtboard({this.phoneNumber});
-
   @override
   Future<void> submit(BuildContext context) async {
-    return null;
+    ///do work;
+    return;
   }
 }

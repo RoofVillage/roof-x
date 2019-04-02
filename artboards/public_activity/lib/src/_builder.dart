@@ -1,16 +1,11 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
-import 'package:navigation/index.dart';
 import 'package:table_builder/index.dart';
 import 'package:icon_library/index.dart';
 import 'package:decorated_text/index.dart';
-import 'package:full_screen_artboard_templates/index.dart';
-import 'package:nav_button_builder/index.dart';
 import 'package:app_data/index.dart';
 import 'package:sorting/index.dart';
 import 'package:model/index.dart';
-import 'package:auth_artboards/index.dart';
 
 enum Section {
   completions,
@@ -20,8 +15,7 @@ enum Section {
   maintenance
 }
 
-class PublicActivityArtboard extends FullLogoTableFullScreenArtboard
-    with IconNavButtonBuilder {
+mixin PublicActivityArtboardBuilder implements TableBuilder {
   Future<List<StreamableTableSectionData>> get sectionData async => [
         _completionsSectionData,
         _expenseSectionData,
@@ -77,25 +71,6 @@ class PublicActivityArtboard extends FullLogoTableFullScreenArtboard
           criteria: (data) =>
               data.section == Section.values.indexOf(Section.maintenance),
           sort: revCron);
-
-  List<Widget> buildActionButtons(BuildContext context) {
-    final button1 = buildIconNavButton(context,
-        iconReference: IconReference.addNav, onTap: (context) {
-      ArtboardNavigator.of(context).goTo(SignUpArtboard());
-    });
-
-    final button2 = buildIconNavButton(context,
-        iconReference: IconReference.settingsNav, onTap: (context) {
-      ArtboardNavigator.of(context).goTo(PublicActivityArtboard());
-    });
-
-    final popButton = buildIconNavButton(context,
-        iconReference: IconReference.backArrowNav, onTap: (context) {
-      ArtboardNavigator.of(context).pop(context);
-    });
-
-    return [button1, button2, popButton];
-  }
 
   CellAData _dataForCompletion(PublicCompletion publicCompletion) {
     final decoratedTitle = WeightDecoratedText();

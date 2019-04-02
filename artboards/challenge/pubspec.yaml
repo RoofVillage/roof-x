@@ -1,5 +1,5 @@
-name: challenge_artboards
-description: The artboards that make up the phone number challenge flow.
+name: challenge_artboard
+description: Asks the user to input a code sent to them.
 version: 1.0.0+1
 
 environment:
@@ -10,6 +10,8 @@ dependencies:
     sdk: flutter
   floating_artboard_templates:
     path: ../../artboard_templates/floating
+  form_builder:
+    path: ../../builders/form
   app_data:
     path: ../../app_data
 

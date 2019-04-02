@@ -1,13 +1,8 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
-import 'package:floating_artboard_templates/index.dart';
-import 'package:navigation/index.dart';
-import 'package:form/index.dart';
+import 'package:form_builder/index.dart';
 
-import 'reset_password.dart';
-
-class LogInArtboard extends FormFloatingArtboard {
+mixin LogInArtboardBuilder implements FormBuilder {
   @override
   String get title => "Log in";
 
@@ -26,9 +21,4 @@ class LogInArtboard extends FormFloatingArtboard {
 
   final _usernameFieldData = EmailFormTextFieldData(title: "Email or phone");
   final _passwordFieldData = PasswordFormTextFieldData();
-
-  @override
-  Future<void> submit(BuildContext context) async {
-    ArtboardNavigator.of(context).goTo(ResetPasswordArtboard());
-  }
 }

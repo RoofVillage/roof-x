@@ -1,21 +1,19 @@
-name: auth_artboards
-description: The artboards that make up the authentication flow.
+name: resend_challenge_artboard
+description: The artboard that lets a user request another challenge.
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+  sdk: ">=2.1.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
   floating_artboard_templates:
     path: ../../artboard_templates/floating
+  form_builder:
+    path: ../../builders/form
   app_data:
     path: ../../app_data
-  challenge_artboards:
-    path: ../challenge
-  icon_library:
-    path: ../../icon_library
   navigation:
     path: ../../navigation
 

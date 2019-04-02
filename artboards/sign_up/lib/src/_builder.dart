@@ -1,14 +1,12 @@
 import 'dart:async';
 
-import 'package:navigation/index.dart';
 import 'package:flutter/material.dart';
-import 'package:floating_artboard_templates/index.dart';
-import 'package:form/index.dart';
+import 'package:form_builder/index.dart';
+import 'package:challenge_artboard/index.dart';
+import 'package:phone_number_sign_up_artboard/index.dart';
+import 'package:navigation/index.dart';
 
-import 'phone_number.dart';
-import 'challenge.dart';
-
-class SignUpArtboard extends FormFloatingArtboard {
+mixin SignUpArtboardBuilder implements FormBuilder {
   @override
   String get title => "Create an account";
 
@@ -31,8 +29,8 @@ class SignUpArtboard extends FormFloatingArtboard {
   final _temp3 = FormDateFieldData(title: "Sup");
 
   @override
-  void setup(BuildContext context, {List<StreamableFormFieldData> fieldData}) {
-    super.setup(context, fieldData: fieldData);
+  void setupFields(BuildContext context,
+      {List<StreamableFormFieldData> fieldData}) {
     // _temp2.addOnChangedListener(_toggleField);
   }
 
@@ -47,7 +45,7 @@ class SignUpArtboard extends FormFloatingArtboard {
   @override
   Future<void> submit(BuildContext context) async {
     ArtboardNavigator.of(context).goTo(
-      PhoneNumberArtboard(onSubmit: _phoneNumberDependentSubmit),
+      PhoneNumberSignUpFloatingArtboard(onSubmit: _phoneNumberDependentSubmit),
     );
   }
 
@@ -60,7 +58,7 @@ class SignUpArtboard extends FormFloatingArtboard {
     //     phoneNumber: phoneNumber);
 
     ArtboardNavigator.of(context).goTo(
-      AuthChallengeArtboard(
+      ChallengeFloatingArtboard(
         phoneNumber: phoneNumber,
       ),
     );

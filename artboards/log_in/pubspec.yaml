@@ -1,0 +1,24 @@
+name: log_in_artboard
+description: The artboard that lets a user log in to an account.
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  floating_artboard_templates:
+    path: ../../artboard_templates/floating
+  form_builder:
+    path: ../../builders/form
+  app_data:
+    path: ../../app_data
+  navigation:
+    path: ../../navigation
+  reset_password_artboard:
+    path: ../reset_password
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

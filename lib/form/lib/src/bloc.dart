@@ -6,6 +6,7 @@ import 'data/section.dart';
 import 'data/form.dart';
 
 typedef void ChangeListener();
+typedef void FlagListener(bool flag);
 
 class StreamFormBloc extends BlocBase {
   StreamableFormData _formData;
@@ -15,16 +16,12 @@ class StreamFormBloc extends BlocBase {
   ChangeListener get onValueChanged => () {
         for (final listener in _onValueChangedListeners) listener();
       };
-  ChangeListener get onFocus => () {
-        for (final listener in _onFocusListeners) listener();
-      };
-  ChangeListener get onResignFocus => () {
-        for (final listener in _onResignFocusListeners) listener();
+  FlagListener get onFocusChanged => (bool isInFocus) {
+        for (final listener in _onFocusChangedListeners) listener(isInFocus);
       };
 
   List<ChangeListener> _onValueChangedListeners = [];
-  List<ChangeListener> _onFocusListeners = [];
-  List<ChangeListener> _onResignFocusListeners = [];
+  List<FlagListener> _onFocusChangedListeners = [];
 
   //The stream responsible for communicating changes to the entire form.
   final _formController = StreamController<StreamableFormData>();
@@ -40,14 +37,9 @@ class StreamFormBloc extends BlocBase {
     _onValueChangedListeners.add(listener);
   }
 
-  void addOnFocusListener(ChangeListener listener) {
-    if (_onFocusListeners.contains(listener)) return;
-    _onFocusListeners.add(listener);
-  }
-
-  void addOnResignFocusListener(ChangeListener listener) {
-    if (_onResignFocusListeners.contains(listener)) return;
-    _onResignFocusListeners.add(listener);
+  void addOnFocusChangedListener(FlagListener listener) {
+    if (_onFocusChangedListeners.contains(listener)) return;
+    _onFocusChangedListeners.add(listener);
   }
 
   void update(StreamableFormData formData) {
@@ -204,8 +196,7 @@ class StreamFormBloc extends BlocBase {
   void dispose() {
     _formController.close();
     _onValueChangedListeners.clear();
-    _onFocusListeners.clear();
-    _onResignFocusListeners.clear();
+    _onFocusChangedListeners.clear();
   }
 
   void _addValueChangedStreamToForm(StreamableFormData formData) {
@@ -225,11 +216,7 @@ class StreamFormBloc extends BlocBase {
         final hasFocusedFieldBefore = _hasFocusedField();
 
         if (newFocusValue == !hasFocusedFieldBefore) {
-          if (newFocusValue) {
-            onFocus();
-          } else if (!newFocusValue) {
-            onResignFocus();
-          }
+          onFocusChanged(newFocusValue);
         }
       });
       fieldData.markAsTracked();

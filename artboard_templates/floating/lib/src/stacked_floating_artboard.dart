@@ -7,7 +7,7 @@ import 'package:artboard/index.dart';
 import 'floating_artboard.dart';
 
 abstract class StackFloatingArtboard extends StatefulWidget
-    with Artboard, FloatingArtboard {
+    with FloatingArtboard {
   List<Widget> get stackedWidgets => [];
   String get title;
 

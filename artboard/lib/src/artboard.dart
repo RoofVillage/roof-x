@@ -10,17 +10,17 @@ mixin Artboard<T> implements StatefulWidget {
 }
 
 mixin ArtboardState<T extends Artboard> implements State<T> {
-  static final smallScreenMaxWidth = 500;
+  // static final smallScreenMaxWidth = 500;
 
-  @override
-  Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-    if (width > smallScreenMaxWidth) return buildMedium(context);
-    return buildSmall(context);
-  }
+  // @override
+  // Widget build(BuildContext context) {
+  //   final width = MediaQuery.of(context).size.width;
+  //   if (width > smallScreenMaxWidth) return buildMedium(context);
+  //   return buildSmall(context);
+  // }
 
-  Widget buildSmall(BuildContext context) => null;
-  Widget buildMedium(BuildContext context) {
-    return buildSmall(context);
-  }
+  // Widget buildSmall(BuildContext context) => null;
+  // Widget buildMedium(BuildContext context) {
+  //   return buildSmall(context);
+  // }
 }

@@ -1,10 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:floating_artboard_templates/index.dart';
-import 'package:form/index.dart';
+import 'package:form_builder/index.dart';
 
-class ResetPasswordArtboard extends FormFloatingArtboard {
+mixin ResetPasswordArtboardBuilder implements FormBuilder {
   @override
   String get title => "Reset password";
 
@@ -19,7 +18,4 @@ class ResetPasswordArtboard extends FormFloatingArtboard {
       [_emailFieldData];
 
   final _emailFieldData = EmailFormTextFieldData();
-
-  @override
-  Future<void> submit(BuildContext context) async {}
 }

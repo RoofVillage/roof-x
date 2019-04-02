@@ -1,14 +1,13 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:floating_artboard_templates/index.dart';
-import 'package:form/index.dart';
+import 'package:form_builder/index.dart';
 
 typedef Future<void> PhoneNumberDependentSubmit(
     {@required String phoneNumber, @required BuildContext context});
 
-class PhoneNumberArtboard extends FormFloatingArtboard {
-  final PhoneNumberDependentSubmit onSubmit;
+mixin PhoneNumberSignUpArtboardBuilder implements FormBuilder {
+  PhoneNumberDependentSubmit get onSubmit;
 
   @override
   String get title => "Enter your phone number";
@@ -24,8 +23,6 @@ class PhoneNumberArtboard extends FormFloatingArtboard {
       [_phoneNumberFieldData];
 
   final _phoneNumberFieldData = PhoneNumberFormTextFieldData();
-
-  PhoneNumberArtboard({@required this.onSubmit});
 
   @override
   Future<void> submit(BuildContext context) async {

@@ -3,13 +3,13 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:theme/index.dart';
 import 'package:spec/index.dart';
-import 'package:floating_artboard_templates/index.dart';
 import 'package:artboard/index.dart';
 import 'package:navigation/index.dart';
 import 'package:keyboard_accessory/index.dart';
 
 import 'panel.dart';
 import 'button_option.dart';
+import '../floating_artboard.dart';
 
 final _slideDuration = RoofDuration.medium;
 final _slideCurve = RoofCurve.easy;
@@ -60,17 +60,10 @@ class FloatingInheritedArtboardNavigator
       _timeDelta < _popMinDragDistanceDelta &&
       _downDistanceDelta > _popMaxDragTimeDelta;
 
-  void showNavButtons(BuildContext context) {
+  void toggleNavButtonsHidden(bool isHidden) {
     setState(() {
       FloatingArtboardNavigatorPanel.of(context)
-          .toggleNavButtonVisibilityTo(true);
-    });
-  }
-
-  void hideNavButtons(BuildContext context) {
-    setState(() {
-      FloatingArtboardNavigatorPanel.of(context)
-          .toggleNavButtonVisibilityTo(false);
+          .toggleNavButtonVisibilityTo(!isHidden);
     });
   }
 
@@ -100,8 +93,14 @@ class FloatingInheritedArtboardNavigator
       child: pageView,
     );
 
-    final navigator =
-        ArtboardNavigator(child: swippablePage, goTo: _goTo, pop: _pop);
+    final navigator = ArtboardNavigator(
+      child: swippablePage,
+      goTo: _goTo,
+      pop: _pop,
+      toggleNavButtonsHidden: (isHidden) {
+        FloatingArtboardNavigator.of(context).toggleNavButtonsHidden(isHidden);
+      },
+    );
     final scaffold = Scaffold(
       body: KeyboardAccessory(child: navigator),
       backgroundColor: Colors.transparent,

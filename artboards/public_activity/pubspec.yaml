@@ -1,5 +1,5 @@
-name: public_activity_artboards
-description: The artboards that show public activity.
+name: public_activity_artboard
+description: The artboard that show public activity.
 version: 1.0.0+1
 
 environment:
@@ -10,8 +10,8 @@ dependencies:
     sdk: flutter
   full_screen_artboard_templates:
     path: ../../artboard_templates/full_screen
-  auth_artboards:
-    path: ../auth
+  sign_up_artboard:
+    path: ../sign_up
   app_data:
     path: ../../app_data
   nav_button_builder:

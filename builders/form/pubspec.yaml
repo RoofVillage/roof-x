@@ -1,38 +1,20 @@
 name: form_builder
-description: Form functionality for artboards.
+description: A form with information and buttons.
 
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.0.0-dev.68.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  keyboard_accessory_bar_builder:
-    path: ../keyboard_accessory_bar
-  date_picker_builder:
-    path: ../date_picker
-  spec:
-    path: ../../spec
-  typography:
-    path: ../../typography
-  icon_library:
-    path: ../../icon_library
-  theme:
-    path: ../../theme
-  mask:
-    path: ../../lib/mask
-  form:
-    path: ../../lib/form
-  keyboard_accessory:
-    path: ../../lib/keyboard_accessory
-  date:
-    path: ../../lib/date
-  haptics:
-    path: ../../lib/haptics
-  form_validation_exception:
-    path: ../../lib/form_validation_exception
+  artboard:
+    path: ../../artboard
+  button_builder:
+    path: ../button
+  form_body_builder:
+    path: ../form_body
 
 dev_dependencies:
   flutter_test:
