@@ -33,6 +33,8 @@ dependencies:
     path: ../../lib/haptics
   icon_library:
     path: ../../icon_library
+  date_picker_builder:
+    path: ../date_picker
 
 dev_dependencies:
   flutter_test:

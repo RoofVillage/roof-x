@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:navigation/index.dart';
 import 'package:flutter/material.dart';
 import 'package:floating_artboard_templates/index.dart';
 

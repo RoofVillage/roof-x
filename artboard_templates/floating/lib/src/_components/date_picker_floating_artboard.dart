@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:floating_artboard_templates/index.dart';
 import 'package:date_picker_builder/index.dart';
 import 'package:date/index.dart';
+import 'package:artboard/index.dart';
 
-import '../mixins/index.dart';
-import 'floating_artboard_panel.dart';
-
-class DatePickerFloatingArtboard extends FloatingArtboard<Date>
-    with DatePickerBuilder {
+class DatePickerFloatingArtboard extends StatefulWidget
+    with FloatingArtboard<Date>, Artboard<Date>, DatePickerBuilder {
   final Date selectedDate;
   final Date startBound;
   final Date endBound;
@@ -23,10 +21,9 @@ class DatePickerFloatingArtboard extends FloatingArtboard<Date>
 }
 
 class _DatePickerFloatingArtboardState extends State<DatePickerFloatingArtboard>
-    with FloatingArtboardState, DatePickerBuilderState {
-  @override
-  get datePickerBuilder => widget;
-
+    with
+        FloatingArtboardState<DatePickerFloatingArtboard>,
+        DatePickerBuilderState<DatePickerFloatingArtboard> {
   @override
   Date get date => FloatingArtboardNavigatorPanel.of(context).result;
 

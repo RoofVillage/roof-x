@@ -20,6 +20,8 @@ dependencies:
     path: ../../builders/nav_button
   icon_library:
     path: ../../icon_library
+  navigation:
+    path: ../../navigation
 
 dev_dependencies:
   flutter_test:

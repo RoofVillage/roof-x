@@ -1,8 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-
-import 'artboard.dart';
+import 'package:artboard/index.dart';
 
 typedef GoToArtboard = Future<T> Function<T>(Artboard<T> artboard,
     {@required BuildContext context});

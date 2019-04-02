@@ -1,5 +1,5 @@
 name: artboard
-description: A template that defines the visual organization.
+description: A page of the app.
 version: 1.0.0+1
 
 environment:

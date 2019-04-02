@@ -17,6 +17,8 @@ dependencies:
     path: ../../artboards/public_activity
   full_screen_artboard_templates:
     path: ../../artboard_templates/full_screen
+  artboard:
+    path: ../../artboard
 
 dev_dependencies:
   flutter_test:

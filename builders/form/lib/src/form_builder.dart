@@ -6,6 +6,8 @@ import 'package:form/index.dart';
 import 'package:exceptions/index.dart';
 import 'package:haptics/index.dart';
 import 'package:date/index.dart';
+import 'package:date_picker_builder/index.dart';
+import 'package:artboard/index.dart';
 
 import 'data/index.dart';
 import 'components/index.dart';
@@ -41,8 +43,10 @@ mixin FormBuilder {
     }
   }
 
-  Future<Date> goToDatePicker(
-      {@required BuildContext context, @required Date selectedDate});
+  DatePickerBuilder buildDatePicker(BuildContext context,
+      {@required Date selectedDate});
+
+  Future<T> goTo<T>({BuildContext context, Artboard<T> artboard});
 
   Future<void> _validateFields() async {
     return Future.wait(
@@ -62,9 +66,8 @@ mixin FormBuilder {
   void _setupDateFieldData(BuildContext context,
       {@required FormDateFieldData data}) {
     data.addOnTapListener(() async {
-      final newDate =
-          await goToDatePicker(context: context, selectedDate: data.value);
-      data.value = newDate;
+      final artboard = buildDatePicker(context, selectedDate: data.value);
+      data.value = await goTo<Date>(context: context, artboard: artboard);
       form.updateFieldData(data);
     });
   }

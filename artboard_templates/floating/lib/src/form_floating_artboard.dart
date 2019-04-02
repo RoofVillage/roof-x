@@ -6,19 +6,20 @@ import 'package:typography/index.dart';
 import 'package:spec/index.dart';
 import 'package:theme/index.dart';
 import 'package:form_builder/index.dart';
+import 'package:navigation/index.dart';
 import 'package:artboard/index.dart';
 import 'package:date/index.dart';
+import 'package:date_picker_builder/index.dart';
 
 import 'floating_artboard.dart';
-import 'navigator.dart';
-import 'mixins/index.dart';
 
-import 'widgets/index.dart';
+import '_components/date_picker_floating_artboard.dart';
+import 'navigation/navigator.dart';
 
 export 'package:form_builder/index.dart';
 
-abstract class FormFloatingArtboard<T> extends FloatingArtboard<T>
-    with FormBuilder, SubmitButtonBuilder {
+abstract class FormFloatingArtboard<T> extends StatefulWidget
+    with FloatingArtboard<T>, Artboard<T>, FormBuilder, SubmitButtonBuilder {
   String get title;
   String get subtitle => null;
   String get auxiliaryDescription => null;
@@ -27,17 +28,20 @@ abstract class FormFloatingArtboard<T> extends FloatingArtboard<T>
   @override
   State<StatefulWidget> createState() => _FormFloatingArtboardState();
 
-  @override
-  Future<Date> goToDatePicker({BuildContext context, Date selectedDate}) async {
-    final dateTime = await ArtboardNavigator.of(context)
-        .goTo<Date>(DatePickerFloatingArtboard(selectedDate: selectedDate));
+  DatePickerBuilder buildDatePicker(BuildContext context,
+      {@required Date selectedDate}) {
+    return DatePickerFloatingArtboard(selectedDate: selectedDate);
+  }
 
-    return Date.fromDateTime(dateTime);
+  @override
+  Future<T> goTo<T>(
+      {@required BuildContext context, @required Artboard artboard}) async {
+    return await ArtboardNavigator.of(context).goTo<T>(artboard);
   }
 }
 
 class _FormFloatingArtboardState extends State<FormFloatingArtboard>
-    with FloatingArtboardState, FormBuilderState {
+    with FloatingArtboardState<FormFloatingArtboard>, FormBuilderState {
   @override
   FormBuilder get formBuilder => widget;
 

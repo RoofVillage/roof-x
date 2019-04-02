@@ -5,9 +5,11 @@ import 'package:theme/index.dart';
 import 'package:spec/index.dart';
 import 'package:floating_artboard_templates/index.dart';
 import 'package:artboard/index.dart';
+import 'package:navigation/index.dart';
 import 'package:keyboard_accessory/index.dart';
 
-import 'widgets/index.dart';
+import 'panel.dart';
+import 'button_option.dart';
 
 final _slideDuration = RoofDuration.medium;
 final _slideCurve = RoofCurve.easy;

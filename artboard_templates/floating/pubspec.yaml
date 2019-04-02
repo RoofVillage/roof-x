@@ -8,8 +8,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  navigation:
+    path: ../../navigation
   artboard:
-    path: ../artboard
+    path: ../../artboard
   nav_bar_builder:
     path: ../../builders/nav_bar
   button_builder:

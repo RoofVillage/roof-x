@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:floating_artboard_templates/index.dart';
+import 'package:navigation/index.dart';
 import 'package:challenge_artboards/index.dart';
 
 import 'resend_challenge.dart';

@@ -18,6 +18,8 @@ dependencies:
     path: ../../theme
   typography:
     path: ../../typography
+  artboard:
+    path: ../../artboard
 
 dev_dependencies:
   flutter_test:
