@@ -10,6 +10,7 @@ import 'package:nav_button_builder/index.dart';
 import 'package:app_data/index.dart';
 import 'package:sorting/index.dart';
 import 'package:model/index.dart';
+import 'package:auth_artboards/index.dart';
 
 enum Section {
   completions,
@@ -80,7 +81,7 @@ class PublicActivityArtboard extends FullLogoTableFullScreenArtboard
   List<Widget> buildActionButtons(BuildContext context) {
     final button1 = buildIconNavButton(context,
         iconReference: IconReference.addNav, onTap: (context) {
-      // ArtboardNavigator.of(context).goTo(SignUpArtboard());
+      ArtboardNavigator.of(context).goTo(SignUpArtboard());
     });
 
     final button2 = buildIconNavButton(context,

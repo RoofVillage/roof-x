@@ -12,7 +12,8 @@ mixin DatePickerBuilder implements Artboard<Date> {
   Date get endBound;
 }
 
-mixin DatePickerBuilderState<T extends DatePickerBuilder> implements State<T> {
+mixin DatePickerBuilderState<T extends DatePickerBuilder>
+    implements ArtboardState<T> {
   Date _date;
 
   Date get date => _date;

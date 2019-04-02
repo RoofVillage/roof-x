@@ -7,7 +7,7 @@ import 'package:artboard/index.dart';
 import 'floating_artboard.dart';
 
 abstract class StackFloatingArtboard extends StatefulWidget
-    with FloatingArtboard, Artboard {
+    with Artboard, FloatingArtboard {
   List<Widget> get stackedWidgets => [];
   String get title;
 
@@ -16,7 +16,9 @@ abstract class StackFloatingArtboard extends StatefulWidget
 }
 
 class _StackFloatingArtboardState extends State<StackFloatingArtboard>
-    with FloatingArtboardState<StackFloatingArtboard> {
+    with
+        ArtboardState<StackFloatingArtboard>,
+        FloatingArtboardState<StackFloatingArtboard> {
   final _headerStyle = RoofTypography.heading2;
   final _buttonVerticalPadding = EdgeInsets.only(top: RoofDistance.d);
 

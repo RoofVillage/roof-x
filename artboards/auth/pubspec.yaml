@@ -8,8 +8,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  full_screen_artboard_templates:
-    path: ../../artboard_templates/full_screen
   floating_artboard_templates:
     path: ../../artboard_templates/floating
   app_data:

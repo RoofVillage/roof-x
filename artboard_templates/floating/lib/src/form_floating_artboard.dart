@@ -19,7 +19,7 @@ import 'navigation/navigator.dart';
 export 'package:form_builder/index.dart';
 
 abstract class FormFloatingArtboard<T> extends StatefulWidget
-    with FloatingArtboard<T>, Artboard<T>, FormBuilder, SubmitButtonBuilder {
+    with Artboard<T>, FloatingArtboard<T>, FormBuilder, SubmitButtonBuilder {
   String get title;
   String get subtitle => null;
   String get auxiliaryDescription => null;
@@ -35,13 +35,14 @@ abstract class FormFloatingArtboard<T> extends StatefulWidget
 
   @override
   Future<T> goTo<T>(
-      {@required BuildContext context, @required Artboard artboard}) async {
+      {@required BuildContext context, @required Artboard<T> artboard}) async {
     return await ArtboardNavigator.of(context).goTo<T>(artboard);
   }
 }
 
 class _FormFloatingArtboardState extends State<FormFloatingArtboard>
     with
+        ArtboardState<FormFloatingArtboard>,
         FloatingArtboardState<FormFloatingArtboard>,
         FormBuilderState<FormFloatingArtboard> {
   Widget get _submitButton {

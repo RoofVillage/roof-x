@@ -67,7 +67,9 @@ mixin FormBuilder implements StatefulWidget {
       {@required FormDateFieldData data}) {
     data.addOnTapListener(() async {
       final artboard = buildDatePicker(context, selectedDate: data.value);
-      data.value = await goTo<Date>(context: context, artboard: artboard);
+      final time = await goTo<Date>(context: context, artboard: artboard);
+      if (time == null) return;
+      data.value = time;
       form.updateFieldData(data);
     });
   }

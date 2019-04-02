@@ -40,12 +40,6 @@ class _RoofDatePickerFieldState extends State<RoofDatePickerField> {
   void _onTap() {
     triggerHapticWith(HapticOption.light);
     widget.onTap();
-
-    // open date picker with current value and return new value
-    // DateTime newValue;
-    // setState(() {
-    //   currentValue = newValue;
-    // });
   }
 
   final _typographyStyle = RoofTypography.bodyPrimary;

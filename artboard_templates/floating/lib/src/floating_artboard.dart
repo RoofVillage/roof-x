@@ -9,11 +9,13 @@ mixin FloatingArtboard<T> implements Artboard<T> {
   FloatingArtboardButtonOption get navButtonOption => null;
 }
 
-mixin FloatingArtboardState<T extends FloatingArtboard> implements State<T> {
+mixin FloatingArtboardState<T extends FloatingArtboard>
+    implements ArtboardState<T> {
   List<Widget> buildChildren(BuildContext context);
 
-  Widget build(BuildContext context) {
+  Widget buildSmall(BuildContext context) {
     final children = buildChildren(context);
+
     return FloatingArtboardContainer(
       child: Column(
         mainAxisSize: MainAxisSize.min,

@@ -10,9 +10,9 @@ mixin FullScreenArtboard implements Artboard {
 }
 
 mixin FullScreenArtboardState<T extends FullScreenArtboard>
-    implements State<T> {
+    implements ArtboardState<T> {
   @override
-  Widget build(BuildContext context) {
+  Widget buildSmall(BuildContext context) {
     final theme = RoofTheme.of(context);
     final scaffold = Scaffold(
         backgroundColor: theme.color.background.general,
@@ -23,4 +23,4 @@ mixin FullScreenArtboardState<T extends FullScreenArtboard>
 }
 
 class _FullScreenScreenArtboardState extends State<FullScreenArtboard>
-    with FullScreenArtboardState {}
+    with ArtboardState<FullScreenArtboard>, FullScreenArtboardState {}

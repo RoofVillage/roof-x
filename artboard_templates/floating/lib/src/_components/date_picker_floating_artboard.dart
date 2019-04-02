@@ -22,10 +22,12 @@ class DatePickerFloatingArtboard extends StatefulWidget
 
 class _DatePickerFloatingArtboardState extends State<DatePickerFloatingArtboard>
     with
+        ArtboardState<DatePickerFloatingArtboard>,
         FloatingArtboardState<DatePickerFloatingArtboard>,
         DatePickerBuilderState<DatePickerFloatingArtboard> {
   @override
-  Date get date => FloatingArtboardNavigatorPanel.of(context).result;
+  Date get date =>
+      FloatingArtboardNavigatorPanel.of(context, shouldRebuild: false).result;
 
   @override
   set date(Date newDate) {
