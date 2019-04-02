@@ -1,0 +1,42 @@
+name: time_picker_sandbox
+description: Sandbox view for time picker
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  theme:
+    path: ../../theme
+  stream:
+    path: ../../lib/stream
+  public_activity_artboards:
+    path: ../../artboards/public_activity
+  full_screen_artboard_templates:
+    path: ../../artboard_templates/full_screen
+  artboard:
+    path: ../../artboard
+  time_picker_builder:
+    path: ../../builders/time_picker
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  fonts:
+    - family: azo
+      fonts:
+        - asset: packages/typography/fonts/azo/AzoSans-Thin.otf
+          weight: 100
+        - asset: packages/typography/fonts/azo/AzoSans-Light.otf
+          weight: 200
+        - asset: packages/typography/fonts/azo/AzoSans-Regular.otf
+          weight: 300
+        - asset: packages/typography/fonts/azo/AzoSans-Medium.otf
+          weight: 400
+        - asset: packages/typography/fonts/azo/AzoSans-Bold.otf
+          weight: 500
