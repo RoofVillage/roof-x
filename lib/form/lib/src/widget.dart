@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:stream/index.dart';
 
 import 'bloc.dart';
-import 'data/index.dart';
+import 'data/field.dart';
+import 'data/section_header.dart';
+import 'data/section.dart';
+import 'data/form.dart';
 
 class StreamFormBuilder<T extends StreamFormBloc> extends StatelessWidget {
   final _FieldBuilder buildField;

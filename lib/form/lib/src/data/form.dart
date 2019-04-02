@@ -4,7 +4,7 @@ import 'package:stream/index.dart';
 import 'section.dart';
 import 'field.dart';
 
-import '../util/index.dart';
+import '_utils/location.dart';
 
 class StreamableFormData extends StreamableData {
   final List<StreamableFormSectionData> sectionData;

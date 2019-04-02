@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'components/index.dart';
+import '_components/short_bar.dart';
 
 mixin KeyboardAccessoryBarBuilder {
   RoofKeyboardAccessoryShortBar buildKeybordAccessoryShortBar(

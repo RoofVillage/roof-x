@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'components/index.dart';
-import 'components/mixins/index.dart';
+import '_components/submit.dart';
 
-export 'components/submit.dart' show SubmitButtonStateOption;
+export '_components/submit.dart' show SubmitButtonStateOption;
 
 mixin SubmitButtonBuilder {
   RoofSubmitButton buildSubmitButton(BuildContext context,

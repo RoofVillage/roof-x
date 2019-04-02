@@ -41,10 +41,9 @@ abstract class FormFloatingArtboard<T> extends StatefulWidget
 }
 
 class _FormFloatingArtboardState extends State<FormFloatingArtboard>
-    with FloatingArtboardState<FormFloatingArtboard>, FormBuilderState {
-  @override
-  FormBuilder get formBuilder => widget;
-
+    with
+        FloatingArtboardState<FormFloatingArtboard>,
+        FormBuilderState<FormFloatingArtboard> {
   Widget get _submitButton {
     return widget.buildSubmitButton(context,
         text: _submitButtonText,

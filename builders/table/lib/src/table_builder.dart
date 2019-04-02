@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:table/index.dart';
 
-import 'components/index.dart';
+import '_components/roof_stream_table.dart';
 
 mixin TableBuilder {
   Future<List<StreamableTableRowData>> get rowData => null;

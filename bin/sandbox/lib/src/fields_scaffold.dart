@@ -28,7 +28,6 @@ class FieldsTesterState extends State<FieldsTester> {
       //     ),
       //     context: context);
 
-
       // setState(() {
       //   if (newDate != null) selectedDate = newDate;
       // });

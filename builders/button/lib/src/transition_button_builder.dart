@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:icon_library/index.dart';
 
-import 'components/index.dart';
-import 'components/mixins/index.dart';
+import '_components/transition.dart';
 
 mixin TransitionButtonBuilder {
   RoofTransitionButton buildTransitionButton(BuildContext context,

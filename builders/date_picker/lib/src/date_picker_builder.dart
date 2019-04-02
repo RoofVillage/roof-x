@@ -3,7 +3,7 @@ import 'package:date/index.dart';
 import 'package:haptics/index.dart';
 import 'package:artboard/index.dart';
 
-import 'components/index.dart';
+import '_components/date_picker.dart';
 
 //Date pickers must be an artboard
 mixin DatePickerBuilder implements Artboard<Date> {

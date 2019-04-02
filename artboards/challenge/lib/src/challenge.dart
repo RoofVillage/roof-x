@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:floating_artboard_templates/index.dart';
-import 'package:form_builder/index.dart';
+import 'package:form/index.dart';
 
 class ChallengeArtboard extends FormFloatingArtboard {
   final String phoneNumber;

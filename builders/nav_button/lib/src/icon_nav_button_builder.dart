@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:icon_library/index.dart';
 
-import 'components/index.dart';
+import '_components/nav_button.dart';
+import '_components/icon.dart';
 
 mixin IconNavButtonBuilder {
   RoofIconNavButton buildIconNavButton(BuildContext context,

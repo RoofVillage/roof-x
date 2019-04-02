@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:stream/index.dart';
-import 'package:artboard/index.dart';
-import 'package:auth_artboards/index.dart';
-// import 'package:thread_artboards/index.dart';
+import 'package:full_screen_artboard_templates/index.dart';
 
-import '_bloc.dart';
 import 'data/index.dart';
-import 'fields_scaffold.dart';
 
 class RootWidget extends StatelessWidget {
   Widget build(BuildContext context) {

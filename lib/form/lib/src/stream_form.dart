@@ -3,7 +3,9 @@ import 'package:stream/index.dart';
 
 import 'bloc.dart';
 import 'widget.dart';
-import 'data/index.dart';
+import 'data/field.dart';
+import 'data/section_header.dart';
+import 'data/form.dart';
 
 abstract class StreamForm<T extends StreamableFormFieldData,
     U extends StreamableFormSectionHeaderData> extends StatelessWidget {

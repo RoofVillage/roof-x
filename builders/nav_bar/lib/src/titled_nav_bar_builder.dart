@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'components/index.dart';
+import '_components/title.dart';
+import '_components/nav_bar.dart';
 
 mixin TitledNavBarBuilder {
   String get title => null;

@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'package:stream/index.dart';
 
-import 'data/index.dart';
+import 'data/field.dart';
+import 'data/section.dart';
+import 'data/form.dart';
 
 typedef void ChangeListener();
 

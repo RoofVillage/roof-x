@@ -9,32 +9,30 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  form:
-    path: ../../lib/form
-  exceptions:
-    path: ../../exceptions
-  consts:
-    path: ../../consts
-  mask:
-    path: ../../lib/mask
-  keyboard_accessory:
-    path: ../../lib/keyboard_accessory
   keyboard_accessory_bar_builder:
     path: ../keyboard_accessory_bar
-  date:
-    path: ../../lib/date
+  date_picker_builder:
+    path: ../date_picker
   spec:
     path: ../../spec
   typography:
     path: ../../typography
-  theme:
-    path: ../../theme
-  haptics:
-    path: ../../lib/haptics
   icon_library:
     path: ../../icon_library
-  date_picker_builder:
-    path: ../date_picker
+  theme:
+    path: ../../theme
+  mask:
+    path: ../../lib/mask
+  form:
+    path: ../../lib/form
+  keyboard_accessory:
+    path: ../../lib/keyboard_accessory
+  date:
+    path: ../../lib/date
+  haptics:
+    path: ../../lib/haptics
+  form_validation_exception:
+    path: ../../lib/form_validation_exception
 
 dev_dependencies:
   flutter_test:

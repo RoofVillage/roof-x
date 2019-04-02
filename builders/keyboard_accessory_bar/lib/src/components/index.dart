@@ -1,1 +1,0 @@
-export 'bars/index.dart';

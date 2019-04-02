@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:floating_artboard_templates/index.dart';
-import 'package:form_builder/index.dart';
+import 'package:form/index.dart';
 
 typedef Future<void> PhoneNumberDependentSubmit(
     {@required String phoneNumber, @required BuildContext context});
