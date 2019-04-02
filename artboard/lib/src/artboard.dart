@@ -19,7 +19,7 @@ mixin ArtboardState<T extends Artboard> implements State<T> {
     return buildSmall(context);
   }
 
-  Widget buildSmall(BuildContext context);
+  Widget buildSmall(BuildContext context) => null;
   Widget buildMedium(BuildContext context) {
     return buildSmall(context);
   }

@@ -35,7 +35,5 @@ class _DatePickerFloatingArtboardState extends State<DatePickerFloatingArtboard>
   }
 
   @override
-  List<Widget> buildChildren(BuildContext context) {
-    return [buildDatePicker(context)];
-  }
+  Widget buildBody(BuildContext context) => buildDatePicker(context);
 }

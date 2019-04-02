@@ -11,18 +11,11 @@ mixin FloatingArtboard<T> implements Artboard<T> {
 
 mixin FloatingArtboardState<T extends FloatingArtboard>
     implements ArtboardState<T> {
-  List<Widget> buildChildren(BuildContext context);
+  Widget buildBody(BuildContext context);
 
-  Widget buildSmall(BuildContext context) {
-    final children = buildChildren(context);
+  Widget build(BuildContext context) {
+    final child = buildBody(context);
 
-    return FloatingArtboardContainer(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: children,
-      ),
-    );
+    return FloatingArtboardContainer(child: child);
   }
 }

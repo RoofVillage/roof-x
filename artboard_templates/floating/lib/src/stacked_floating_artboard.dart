@@ -23,13 +23,13 @@ class _StackFloatingArtboardState extends State<StackFloatingArtboard>
   final _buttonVerticalPadding = EdgeInsets.only(top: RoofDistance.d);
 
   @override
-  List<Widget> buildChildren(BuildContext context) {
+  Widget buildBody(BuildContext context) {
     final theme = RoofTheme.of(context);
 
-    final List<Widget> children = [];
+    final List<Widget> widgets = [];
 
     if (widget.title != null)
-      children.add(
+      widgets.add(
         Text(
           widget.title,
           style: _headerStyle.textStyleWithColor(theme.color.text.primary),
@@ -37,7 +37,7 @@ class _StackFloatingArtboardState extends State<StackFloatingArtboard>
       );
 
     for (final button in widget.stackedWidgets) {
-      children.add(
+      widgets.add(
         Padding(
           child: button,
           padding: _buttonVerticalPadding,
@@ -45,7 +45,7 @@ class _StackFloatingArtboardState extends State<StackFloatingArtboard>
       );
     }
 
-    return children;
+    return Column(children: widgets);
   }
 
   @override

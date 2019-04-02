@@ -90,7 +90,7 @@ class _FormFloatingArtboardState extends State<FormFloatingArtboard>
   final _buttonVerticalPadding = EdgeInsets.only(top: RoofDistance.d);
 
   @override
-  List<Widget> buildChildren(BuildContext context) {
+  Widget buildBody(BuildContext context) {
     final theme = RoofTheme.of(context);
 
     final headerColor = theme.color.text.brand;
@@ -119,7 +119,7 @@ class _FormFloatingArtboardState extends State<FormFloatingArtboard>
           .add(Padding(padding: _buttonVerticalPadding, child: submitButton));
     }
 
-    return widgets;
+    return Column(children: widgets);
   }
 
   @override
