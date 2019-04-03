@@ -6,12 +6,8 @@ import 'package:input_dock_builder/index.dart';
 import '_scaffolds/full_screen_with_nav_and_dock.dart';
 import 'full_screen_artboard.dart';
 
-abstract class TitledTableInputDockFullScreenArtboard extends StatefulWidget
-    with
-        FullScreenArtboard,
-        TableBuilder,
-        InputDockBuilder,
-        TitledNavBarBuilder {
+abstract class TitledTableInputDockFullScreenArtboard extends FullScreenArtboard
+    with TableBuilder, InputDockBuilder, TitledNavBarBuilder {
   @override
   Widget buildBody(BuildContext context) {
     return FullScreenWithNavAndDock(

@@ -1,5 +1,5 @@
 name: sign_up_artboard
-description: The artboard that lets a user create an account.
+description: Allows the user to create an account.
 version: 1.0.0+1
 
 environment:

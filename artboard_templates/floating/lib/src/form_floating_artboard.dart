@@ -11,23 +11,18 @@ import 'package:navigation/index.dart';
 import 'package:artboard/index.dart';
 import 'package:date/index.dart';
 import 'package:date_picker_builder/index.dart';
+import 'package:date_picker_artboard/index.dart';
 
 import 'floating_artboard.dart';
 
-import '_components/date_picker_floating_artboard.dart';
-
 export 'package:form_builder/index.dart';
 
-abstract class FormFloatingArtboard<T> extends StatefulWidget
-    with
-        Artboard<T>,
-        FloatingArtboard<T>,
-        FormBuilder,
-        FormBodyBuilder,
-        SubmitButtonBuilder {
+abstract class FormFloatingArtboard<T> extends FloatingArtboard<T>
+    with FormBuilder, FormBodyBuilder, SubmitButtonBuilder {
   @override
   State<StatefulWidget> createState() => _FormFloatingArtboardState();
 
+  @override
   DatePickerBuilder buildDatePicker(BuildContext context,
       {@required Date selectedDate}) {
     return DatePickerFloatingArtboard(selectedDate: selectedDate);
@@ -46,11 +41,11 @@ abstract class FormFloatingArtboard<T> extends StatefulWidget
   }
 }
 
-class _FormFloatingArtboardState extends State<FormFloatingArtboard>
+class _FormFloatingArtboardState
+    extends FloatingArtboardState<FormFloatingArtboard>
     with
         FormBodyBuilderState<FormFloatingArtboard>,
-        FormBuilderState<FormFloatingArtboard>,
-        FloatingArtboardState<FormFloatingArtboard> {
+        FormBuilderState<FormFloatingArtboard> {
   final _headerStyle = RoofTypography.heading1;
   final _subtitleStyle = RoofTypography.bodyPrimary;
 

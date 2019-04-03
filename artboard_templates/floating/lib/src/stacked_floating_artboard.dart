@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:typography/index.dart';
 import 'package:spec/index.dart';
 import 'package:theme/index.dart';
-import 'package:artboard/index.dart';
 
 import 'floating_artboard.dart';
 
-abstract class StackFloatingArtboard extends StatefulWidget
-    with FloatingArtboard {
+abstract class StackFloatingArtboard extends FloatingArtboard {
   List<Widget> get stackedWidgets => [];
   String get title;
 
@@ -15,10 +13,8 @@ abstract class StackFloatingArtboard extends StatefulWidget
   State<StatefulWidget> createState() => _StackFloatingArtboardState();
 }
 
-class _StackFloatingArtboardState extends State<StackFloatingArtboard>
-    with
-        ArtboardState<StackFloatingArtboard>,
-        FloatingArtboardState<StackFloatingArtboard> {
+class _StackFloatingArtboardState
+    extends FloatingArtboardState<StackFloatingArtboard> {
   final _headerStyle = RoofTypography.heading2;
   final _buttonVerticalPadding = EdgeInsets.only(top: RoofDistance.d);
 

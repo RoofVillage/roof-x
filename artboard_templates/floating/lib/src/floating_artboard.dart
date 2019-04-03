@@ -5,12 +5,13 @@ import 'navigation/button_option.dart';
 import '_scaffolds/floating_artboard_container.dart';
 
 typedef ChildrenBuilder = List<Widget> Function(BuildContext context);
-mixin FloatingArtboard<T> implements Artboard<T> {
+
+abstract class FloatingArtboard<T> extends StatefulWidget with Artboard<T> {
   FloatingArtboardButtonOption get navButtonOption => null;
 }
 
-mixin FloatingArtboardState<T extends FloatingArtboard>
-    implements ArtboardState<T> {
+abstract class FloatingArtboardState<T extends FloatingArtboard>
+    extends State<T> with ArtboardState<T> {
   Widget buildBody(BuildContext context);
 
   Widget build(BuildContext context) {

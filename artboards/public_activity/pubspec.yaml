@@ -1,5 +1,5 @@
 name: public_activity_artboard
-description: The artboard that show public activity.
+description: Allows the user to see a public activity feed.
 version: 1.0.0+1
 
 environment:

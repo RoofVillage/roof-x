@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:form_builder/index.dart';
 
 mixin ResetPasswordArtboardBuilder implements FormBuilder {

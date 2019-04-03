@@ -1,5 +1,5 @@
 name: log_in_artboard
-description: The artboard that lets a user log in to an account.
+description: Allows the user to authenticate their account.
 version: 1.0.0+1
 
 environment:

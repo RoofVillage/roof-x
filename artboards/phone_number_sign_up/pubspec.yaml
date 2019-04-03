@@ -1,5 +1,5 @@
 name: phone_number_sign_up_artboard
-description: The artboard that asks a user for their phone number while signing up.
+description: Allows the user to input their phone number while signing up.
 version: 1.0.0+1
 
 environment:

@@ -1,5 +1,5 @@
-name: challenge_artboard
-description: Allows a user to confirm their account by inputing a code sent to them.
+name: date_picker_artboard
+description: Allows the user to chose a date.
 version: 1.0.0+1
 
 environment:
@@ -12,8 +12,8 @@ dependencies:
     path: ../../artboard_templates/floating
   form_builder:
     path: ../../builders/form
-  app_data:
-    path: ../../app_data
+  date_picker_builder:
+    path: ../../builders/date_picker
 
 dev_dependencies:
   flutter_test:
