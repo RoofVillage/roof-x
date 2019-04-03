@@ -6,11 +6,10 @@ abstract class FullScreenArtboard extends StatefulWidget with Artboard {
   Widget buildBody(BuildContext context);
 
   @override
-  State<StatefulWidget> createState() => _FullScreenScreenArtboardState();
+  State<StatefulWidget> createState() => FullScreenArtboardState();
 }
 
-abstract class FullScreenArtboardState<T extends FullScreenArtboard>
-    extends State<T> {
+class FullScreenArtboardState<T extends FullScreenArtboard> extends State<T> {
   @override
   Widget build(BuildContext context) {
     final theme = RoofTheme.of(context);
@@ -21,6 +20,3 @@ abstract class FullScreenArtboardState<T extends FullScreenArtboard>
     return RoofTheme(theme.current, child: scaffold);
   }
 }
-
-class _FullScreenScreenArtboardState
-    extends FullScreenArtboardState<FullScreenArtboard> {}

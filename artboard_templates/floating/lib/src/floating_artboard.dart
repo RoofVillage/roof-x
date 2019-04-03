@@ -13,7 +13,6 @@ abstract class FloatingArtboard<T> extends StatefulWidget with Artboard<T> {
 abstract class FloatingArtboardState<T extends FloatingArtboard>
     extends State<T> with ArtboardState<T> {
   Widget buildBody(BuildContext context);
-
   Widget build(BuildContext context) {
     final child = buildBody(context);
 

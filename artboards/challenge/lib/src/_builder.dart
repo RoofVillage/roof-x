@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:form_builder/index.dart';
 
 mixin ChallengeArtboardBuilder implements FormBuilder {
@@ -25,10 +24,4 @@ mixin ChallengeArtboardBuilder implements FormBuilder {
   Future<List<StreamableFormFieldData>> get fieldData async => [_codeFieldData];
 
   final _codeFieldData = ShortFormTextFieldData(title: "Enter code");
-
-  @override
-  Future<void> submit(BuildContext context) async {
-    ///do work;
-    return;
-  }
 }
