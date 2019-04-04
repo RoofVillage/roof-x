@@ -2,10 +2,11 @@ import 'package:meta/meta.dart';
 
 import '../utils/index.dart';
 import '../mixins/index.dart';
+import '../key.dart' as _key;
 
 import 'bank_owner_reference.dart';
 
-class ExpensePart extends Mappable {
+class ExpensePart with Mappable {
   final int amount;
   final BankOwnerReference splitter;
   final BankOwnerReference payer;
@@ -14,17 +15,17 @@ class ExpensePart extends Mappable {
 
   factory ExpensePart.fromMap(Map<String, Object> map) {
     return ExpensePart(
-        amount: map[Key.amount],
-        splitter: BankOwnerReference.fromMap(map[Key.splitter]),
-        payer: BankOwnerReference.fromMap(map[Key.payer]));
+        amount: map[_key.amount],
+        splitter: BankOwnerReference.fromMap(map[_key.splitter]),
+        payer: BankOwnerReference.fromMap(map[_key.payer]));
   }
 
   @override
   Map<String, Object> toMap() {
     return {
-      Key.amount: amount,
-      Key.splitter: splitter.toMap(),
-      Key.payer: payer.toMap()
+      _key.amount: amount,
+      _key.splitter: splitter.toMap(),
+      _key.payer: payer.toMap()
     };
   }
 

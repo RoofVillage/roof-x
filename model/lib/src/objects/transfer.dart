@@ -1,10 +1,10 @@
 import 'package:types/index.dart';
-import '../properties/index.dart';
-import '../abstract/index.dart';
-import '../utils/index.dart';
 
 import 'stub.dart';
 import 'expense.dart';
+import '../properties/index.dart';
+import '../abstract/index.dart';
+import '../key.dart' as _key;
 
 class Transfer extends OneToOneTransaction {
   final TransferType type;
@@ -72,14 +72,14 @@ class Transfer extends OneToOneTransaction {
         task: oneToOneTransaction.task,
         completionPrize: oneToOneTransaction.completionPrize,
         amount: oneToOneTransaction.amount,
-        type: TransferType.fromString(map[Key.kind]),
-        statusType: TransferStatusType.fromString(map[Key.statusKind]));
+        type: TransferType.fromString(map[_key.kind]),
+        statusType: TransferStatusType.fromString(map[_key.statusKind]));
   }
 
   Map<String, Object> toMap() {
     final map = super.toMap();
     map.addAll(
-        {Key.kind: type.toString(), Key.statusKind: statusType.toString()});
+        {_key.kind: type.toString(), _key.statusKind: statusType.toString()});
     return map;
   }
 }

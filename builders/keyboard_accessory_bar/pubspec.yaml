@@ -1,0 +1,26 @@
+name: keyboard_accessory_bar_builder
+description: Keyboard accessory bar functionality for artboards.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  multi_image_picker: ^3.0.23
+  flutter:
+    sdk: flutter
+  spec:
+    path: ../../spec
+  theme:
+    path: ../../theme
+  typography:
+    path: ../../typography
+  haptics:
+    path: ../../lib/haptics
+  icon_library:
+    path: ../../icon_library
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

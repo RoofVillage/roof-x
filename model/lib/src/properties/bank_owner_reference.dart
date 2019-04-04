@@ -1,8 +1,8 @@
 import 'package:meta/meta.dart';
 import 'package:types/index.dart';
 
-import '../utils/index.dart';
 import 'billing.dart';
+import '../key.dart' as _key;
 
 import 'actor_reference.dart';
 
@@ -27,17 +27,17 @@ class BankOwnerReference extends ActorReference {
         guid: actorReference.guid,
         domainGuid: actorReference.domainGuid,
         domainType: actorReference.domainType,
-        type: BankOwnerType.fromString(map[Key.kind]),
-        billing: Billing.fromMap(map[Key.billing]));
+        type: BankOwnerType.fromString(map[_key.kind]),
+        billing: Billing.fromMap(map[_key.billing]));
   }
 
   @override
   Map<String, Object> toMap() {
     return {
-      Key.domainKind: domainType.toString(),
-      Key.domainGuid: domainGuid,
-      Key.guid: guid,
-      Key.billing: billing.toMap()
+      _key.domainKind: domainType.toString(),
+      _key.domainGuid: domainGuid,
+      _key.guid: guid,
+      _key.billing: billing.toMap()
     };
   }
 }

@@ -1,7 +1,9 @@
 import 'package:types/index.dart';
-import '../utils/index.dart';
 
-class CommentableObjectReference extends Mappable {
+import '../mixins/index.dart';
+import '../key.dart' as _key;
+
+class CommentableObjectReference with Mappable {
   final String guid;
   final String name;
   final CommentableObjectType type;
@@ -10,13 +12,13 @@ class CommentableObjectReference extends Mappable {
 
   factory CommentableObjectReference.fromMap(Map<String, Object> map) {
     return CommentableObjectReference(
-        guid: map[Key.guid],
-        name: map[Key.name],
-        type: CommentableObjectType.fromString(map[Key.kind]));
+        guid: map[_key.guid],
+        name: map[_key.name],
+        type: CommentableObjectType.fromString(map[_key.kind]));
   }
 
   @override
   Map<String, Object> toMap() {
-    return {Key.guid: guid, Key.name: name, Key.kind: type.toString()};
+    return {_key.guid: guid, _key.name: name, _key.kind: type.toString()};
   }
 }

@@ -1,0 +1,29 @@
+name: table_builder
+description: Table functionality for artboards.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  table:
+    path: ../../lib/table
+  decorated_text:
+    path: ../../lib/decorated_text
+  sorting:
+    path: ../../lib/sorting
+  icon_library:
+    path: ../../icon_library
+  spec:
+    path: ../../spec
+  theme:
+    path: ../../theme
+  typography:
+    path: ../../typography
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

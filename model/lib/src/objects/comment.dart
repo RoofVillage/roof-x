@@ -1,11 +1,12 @@
 import 'package:meta/meta.dart';
 import 'package:types/index.dart';
+
+import 'stub.dart';
 import '../utils/index.dart';
 import '../properties/index.dart';
 import '../abstract/index.dart';
 import '../mixins/index.dart';
-
-import 'stub.dart';
+import '../key.dart' as _key;
 
 class Comment extends FeedObject {
   final String name;
@@ -53,23 +54,24 @@ class Comment extends FeedObject {
         contractPropertyName: feedObject.contractPropertyName,
         feePayerType: feedObject.feePayerType,
         clientReferenceId: feedObject.clientReferenceId,
-        name: map[Key.name],
-        body: map[Key.body],
-        edited: map[Key.edited],
-        unread: map[Key.unread],
-        user: UserReference.fromMap(map[Key.user]),
-        commentableObject: CommentableObjectReference.fromMap(map[Key.object]));
+        name: map[_key.name],
+        body: map[_key.body],
+        edited: map[_key.edited],
+        unread: map[_key.unread],
+        user: UserReference.fromMap(map[_key.user]),
+        commentableObject:
+            CommentableObjectReference.fromMap(map[_key.object]));
   }
 
   Map<String, Object> toMap() {
     final map = super.toMap();
     map.addAll({
-      Key.name: name,
-      Key.body: body,
-      Key.edited: edited,
-      Key.unread: unread,
-      Key.user: user.toMap(),
-      Key.object: commentableObject.toMap()
+      _key.name: name,
+      _key.body: body,
+      _key.edited: edited,
+      _key.unread: unread,
+      _key.user: user.toMap(),
+      _key.object: commentableObject.toMap()
     });
     return map;
   }

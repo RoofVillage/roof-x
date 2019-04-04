@@ -1,1 +1,0 @@
-enum ButtonState { inactive, error, normal }

@@ -1,0 +1,36 @@
+name: floating_artboard_templates
+description: Floating frames for building a widget hierarchy in.
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  navigation:
+    path: ../../navigation
+  artboard:
+    path: ../../artboard
+  nav_bar_builder:
+    path: ../../builders/nav_bar
+  button_builder:
+    path: ../../builders/button
+  form_builder:
+    path: ../../builders/form
+  form_body_builder:
+    path: ../../builders/form_body
+  button_stack_builder:
+    path: ../../builders/button_stack
+  keyboard_accessory_bar_builder:
+    path: ../../builders/keyboard_accessory_bar
+  date_picker_artboard:
+    path: ../../artboards/date_picker
+  nav_button_builder:
+    path: ../../builders/nav_button
+  date:
+    path: ../../lib/date
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

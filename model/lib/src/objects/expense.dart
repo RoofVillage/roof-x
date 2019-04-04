@@ -1,11 +1,12 @@
 import 'package:meta/meta.dart';
 import 'package:types/index.dart';
+
+import 'stub.dart';
 import '../properties/index.dart';
 import '../abstract/index.dart';
 import '../utils/index.dart';
 import '../mixins/index.dart';
-
-import 'stub.dart';
+import '../key.dart' as _key;
 
 class Expense extends Transaction {
   final Set<Splitter> payers;
@@ -57,11 +58,11 @@ class Expense extends Transaction {
 
     final transaction = Transaction.fromMap(map);
     final payers =
-        (map[Key.payers] as List).map((map) => Splitter.fromMap(map));
+        (map[_key.payers] as List).map((map) => Splitter.fromMap(map));
     final splitters =
-        (map[Key.splitters] as List).map((map) => Splitter.fromMap(map));
+        (map[_key.splitters] as List).map((map) => Splitter.fromMap(map));
     final parts =
-        (map[Key.parts] as List).map((map) => ExpensePart.fromMap(map));
+        (map[_key.parts] as List).map((map) => ExpensePart.fromMap(map));
 
     return Expense(
         contractDomainUsers: transaction.contractDomainUsers,
@@ -81,18 +82,18 @@ class Expense extends Transaction {
         payers: payers.toSet(),
         splitters: splitters.toSet(),
         parts: parts.toSet(),
-        thread: ThreadReference.fromMap(map[Key.thread]),
-        type: ExpenseType.fromString(map[Key.kind]));
+        thread: ThreadReference.fromMap(map[_key.thread]),
+        type: ExpenseType.fromString(map[_key.kind]));
   }
 
   Map<String, Object> toMap() {
     final map = super.toMap();
     map.addAll({
-      Key.payers: payers.map((payer) => payer.toMap()),
-      Key.splitters: splitters.map((splitter) => splitter.toMap()),
-      Key.parts: parts.map((part) => part.toMap()),
-      Key.thread: thread.toMap(),
-      Key.kind: type.toString()
+      _key.payers: payers.map((payer) => payer.toMap()),
+      _key.splitters: splitters.map((splitter) => splitter.toMap()),
+      _key.parts: parts.map((part) => part.toMap()),
+      _key.thread: thread.toMap(),
+      _key.kind: type.toString()
     });
     return map;
   }

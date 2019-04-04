@@ -1,0 +1,3 @@
+mixin TimeSortable {
+  int timestamp;
+}

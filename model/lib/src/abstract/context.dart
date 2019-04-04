@@ -1,9 +1,9 @@
 import 'package:date/index.dart';
 import 'package:meta/meta.dart';
-import '../utils/index.dart';
-import '../mixins/index.dart';
 
 import 'model_object.dart';
+import '../mixins/index.dart';
+import '../key.dart' as _key;
 
 class Context extends ModelObject with NameDefiningObject {
   final int unreadCommentableObjectCount;
@@ -24,20 +24,21 @@ class Context extends ModelObject with NameDefiningObject {
 
   static Context fromMap(Map<String, Object> map) {
     final modelObject = ModelObject.fromMap(map);
-    final counts = map[Key.counts] as Map;
+    final counts = map[_key.counts] as Map;
     return Context(
         guid: modelObject.guid,
         dateCreated: modelObject.dateCreated,
         creatorGuid: modelObject.creatorGuid,
-        unreadCommentableObjectCount: counts[Key.unreadCommentableObject] ?? 0,
-        pinnedCommentableObjectCount: counts[Key.pinnedCommentableObject] ?? 0);
+        unreadCommentableObjectCount: counts[_key.unreadCommentableObject] ?? 0,
+        pinnedCommentableObjectCount:
+            counts[_key.pinnedCommentableObject] ?? 0);
   }
 
   Map<String, Object> toMap() {
     return {
-      Key.counts: {
-        Key.unreadCommentableObject: unreadCommentableObjectCount,
-        Key.pinnedCommentableObject: pinnedCommentableObjectCount
+      _key.counts: {
+        _key.unreadCommentableObject: unreadCommentableObjectCount,
+        _key.pinnedCommentableObject: pinnedCommentableObjectCount
       }
     };
   }

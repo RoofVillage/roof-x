@@ -1,10 +1,9 @@
 import 'package:date/index.dart';
 import 'package:meta/meta.dart';
 
-import '../utils/index.dart';
-
 import 'context.dart';
 import '../properties/index.dart';
+import '../key.dart' as _key;
 
 class Domain extends Context {
   final String name;
@@ -59,12 +58,12 @@ class Domain extends Context {
 
   factory Domain.fromMap(Map<String, Object> map) {
     final context = Context.fromMap(map);
-    final counts = map[Key.counts] as Map;
+    final counts = map[_key.counts] as Map;
 
     final users =
-        (map[Key.users] as List ?? []).map((map) => DomainUser.fromMap(map));
+        (map[_key.users] as List ?? []).map((map) => DomainUser.fromMap(map));
 
-    final formerUsers = (map[Key.formerUsers] as List ?? [])
+    final formerUsers = (map[_key.formerUsers] as List ?? [])
         .map((map) => DomainUser.fromMap(map));
 
     return Domain(
@@ -73,28 +72,28 @@ class Domain extends Context {
       creatorGuid: context.creatorGuid,
       unreadCommentableObjectCount: context.unreadCommentableObjectCount,
       pinnedCommentableObjectCount: context.pinnedCommentableObjectCount,
-      expenseCount: counts[Key.expense] ?? 0,
-      reminderCount: counts[Key.reminder] ?? 0,
-      transferCount: counts[Key.transfer] ?? 0,
-      name: map[Key.name],
+      expenseCount: counts[_key.expense] ?? 0,
+      reminderCount: counts[_key.reminder] ?? 0,
+      transferCount: counts[_key.transfer] ?? 0,
+      name: map[_key.name],
       users: users.toSet(),
       formerUsers: formerUsers.toSet(),
-      location: Location.fromMap(map[Key.location]),
+      location: Location.fromMap(map[_key.location]),
     );
   }
 
   Map<String, Object> toMap() {
     final map = super.toMap();
-    (map[Key.counts] as Map).addAll({
-      Key.expense: expenseCount,
-      Key.reminder: reminderCount,
-      Key.transfer: transferCount
+    (map[_key.counts] as Map).addAll({
+      _key.expense: expenseCount,
+      _key.reminder: reminderCount,
+      _key.transfer: transferCount
     });
     map.addAll({
-      Key.name: name,
-      Key.users: users.map((user) => user.toMap()),
-      Key.formerUsers: formerUsers.map((formerUser) => formerUser.toMap()),
-      Key.location: location.toMap()
+      _key.name: name,
+      _key.users: users.map((user) => user.toMap()),
+      _key.formerUsers: formerUsers.map((formerUser) => formerUser.toMap()),
+      _key.location: location.toMap()
     });
 
     return map;

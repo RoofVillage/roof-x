@@ -11,11 +11,11 @@ dependencies:
     sdk: flutter
   strings: ^0.1.0
   disk:
-    path: ../disk
+    path: ../lib/disk
+  date:
+    path: ../lib/date
   types:
     path: ../types
-  date:
-    path: ../date
 
 dev_dependencies:
   flutter_test:

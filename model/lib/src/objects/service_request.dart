@@ -1,9 +1,10 @@
 import 'package:types/index.dart';
 import 'package:date/index.dart';
-import '../utils/index.dart';
+
 import '../properties/index.dart';
 import '../objects/index.dart';
 import '../abstract/index.dart';
+import '../key.dart' as _key;
 
 class ServiceRequest extends Task {
   final bool permissionToEnter;
@@ -108,20 +109,20 @@ class ServiceRequest extends Task {
         currentlyCompleted: task.currentlyCompleted,
         completionCount: task.completionCount,
         completionPrize: task.completionPrize,
-        permissionToEnter: map[Key.permissionToEnter],
-        permissionToEnterNote: map[Key.permissionToEnterNote],
-        isEmergency: map[Key.isEmergency],
-        seen: map[Key.seen]);
+        permissionToEnter: map[_key.permissionToEnter],
+        permissionToEnterNote: map[_key.permissionToEnterNote],
+        isEmergency: map[_key.isEmergency],
+        seen: map[_key.seen]);
   }
 
   Map<String, Object> toMap() {
     final map = super.toMap();
 
     map.addAll({
-      Key.permissionToEnter: permissionToEnter,
-      Key.permissionToEnterNote: permissionToEnterNote,
-      Key.isEmergency: isEmergency,
-      Key.seen: seen
+      _key.permissionToEnter: permissionToEnter,
+      _key.permissionToEnterNote: permissionToEnterNote,
+      _key.isEmergency: isEmergency,
+      _key.seen: seen
     });
     return map;
   }

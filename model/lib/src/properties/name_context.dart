@@ -1,5 +1,7 @@
 import 'package:types/index.dart';
-import '../utils/index.dart';
+
+import '../mixins/index.dart';
+import '../key.dart' as _key;
 
 class NameContext with Mappable {
   final String guid;
@@ -10,11 +12,11 @@ class NameContext with Mappable {
 
   factory NameContext.fromMap(Map<String, Object> map) {
     return NameContext(
-        guid: map[Key.guid], name: map[Key.name], type: map[Key.kind]);
+        guid: map[_key.guid], name: map[_key.name], type: map[_key.kind]);
   }
 
   @override
   Map<String, Object> toMap() {
-    return {Key.guid: guid, Key.name: name, Key.kind: type};
+    return {_key.guid: guid, _key.name: name, _key.kind: type};
   }
 }

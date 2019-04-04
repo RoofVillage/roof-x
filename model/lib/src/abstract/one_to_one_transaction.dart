@@ -1,12 +1,13 @@
 import 'package:meta/meta.dart';
 import 'package:types/index.dart';
+
+import 'transaction.dart';
 import '../properties/index.dart';
 import '../objects/index.dart';
 import '../utils/index.dart';
 import '../abstract/index.dart';
 import '../mixins/index.dart';
-
-import 'transaction.dart';
+import '../key.dart' as _key;
 
 class OneToOneTransaction extends Transaction {
   final BankOwnerReference receiver;
@@ -65,14 +66,14 @@ class OneToOneTransaction extends Transaction {
       completingUsers: transaction.completingUsers,
       task: transaction.task,
       completionPrize: transaction.completionPrize,
-      receiver: BankOwnerReference.fromMap(map[Key.receiver]),
-      sender: BankOwnerReference.fromMap(map[Key.sender]),
+      receiver: BankOwnerReference.fromMap(map[_key.receiver]),
+      sender: BankOwnerReference.fromMap(map[_key.sender]),
     );
   }
 
   Map<String, Object> toMap() {
     final map = super.toMap();
-    map.addAll({Key.receiver: receiver.toMap(), Key.sender: sender.toMap()});
+    map.addAll({_key.receiver: receiver.toMap(), _key.sender: sender.toMap()});
     return map;
   }
 

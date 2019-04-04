@@ -1,0 +1,40 @@
+name: app
+description: Delightful renting for roommates and landlords.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  theme:
+    path: ../../theme
+  public_activity_artboard:
+    path: ../../artboards/public_activity
+  full_screen_artboard_templates:
+    path: ../../artboard_templates/full_screen
+  artboard:
+    path: ../../artboard
+  device_screen:
+    path: ../../lib/device_screen
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  fonts:
+    - family: azo
+      fonts:
+        - asset: packages/typography/fonts/azo/AzoSans-Thin.otf
+          weight: 100
+        - asset: packages/typography/fonts/azo/AzoSans-Light.otf
+          weight: 200
+        - asset: packages/typography/fonts/azo/AzoSans-Regular.otf
+          weight: 300
+        - asset: packages/typography/fonts/azo/AzoSans-Medium.otf
+          weight: 400
+        - asset: packages/typography/fonts/azo/AzoSans-Bold.otf
+          weight: 500

@@ -1,0 +1,29 @@
+name: input_dock_builder
+description: Input dock functionality for artboards.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  decorated_text:
+    path: ../../lib/decorated_text
+  haptics:
+    path: ../../lib/haptics
+  icon_library:
+    path: ../../icon_library
+  image_picker_builder:
+    path: ../image_picker
+  spec:
+    path: ../../spec
+  theme:
+    path: ../../theme
+  typography:
+    path: ../../typography
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

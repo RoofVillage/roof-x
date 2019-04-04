@@ -2,14 +2,12 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 
-class Synchronizer {
-  Future<int> synchronize(
-    Map<String, Object> objectsToSync,
-  ) async {
-    final objectsToSyncEncoded = json.encode(objectsToSync);
-    final k = await compute<String, int>(_synchronize, objectsToSyncEncoded);
-    return k;
-  }
+Future<int> synchronize(
+  Map<String, Object> objectsToSync,
+) async {
+  final objectsToSyncEncoded = json.encode(objectsToSync);
+  final k = await compute<String, int>(_synchronize, objectsToSyncEncoded);
+  return k;
 }
 
 int _synchronize(String objectsToSyncEncoded) {

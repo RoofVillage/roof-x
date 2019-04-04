@@ -10,11 +10,11 @@ dependencies:
   flutter:
     sdk: flutter
   cache:
-    path: ../cache
+    path: ../lib/cache
   secure_storage:
-    path: ../secure_storage
+    path: ../lib/secure_storage
   date:
-    path: ../date
+    path: ../lib/date
   model:
     path: ../model
 

@@ -1,0 +1,21 @@
+name: form_builder
+description: A form with information and buttons.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  artboard:
+    path: ../../artboard
+  button_builder:
+    path: ../button
+  form_body_builder:
+    path: ../form_body
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

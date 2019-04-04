@@ -14,3 +14,4 @@ export 'invoice.dart';
 export 'service_request.dart';
 export 'comment.dart';
 export 'event.dart';
+export 'public.dart';

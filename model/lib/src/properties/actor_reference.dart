@@ -1,8 +1,10 @@
 import 'package:meta/meta.dart';
 import 'package:types/index.dart';
-import '../utils/index.dart';
 
-class ActorReference extends Mappable {
+import '../mixins/index.dart';
+import '../key.dart' as _key;
+
+class ActorReference with Mappable {
   final String guid;
   final String domainGuid;
   final DomainType domainType;
@@ -14,17 +16,17 @@ class ActorReference extends Mappable {
     if (map == null) return null;
 
     return ActorReference(
-        guid: map[Key.guid],
-        domainGuid: map[Key.domainGuid],
-        domainType: DomainType.fromString(map[Key.domainKind]));
+        guid: map[_key.guid],
+        domainGuid: map[_key.domainGuid],
+        domainType: DomainType.fromString(map[_key.domainKind]));
   }
 
   @override
   Map<String, Object> toMap() {
     return {
-      Key.domainKind: domainType.toString(),
-      Key.domainGuid: domainGuid,
-      Key.guid: guid
+      _key.domainKind: domainType.toString(),
+      _key.domainGuid: domainGuid,
+      _key.guid: guid
     };
   }
 }

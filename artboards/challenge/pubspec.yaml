@@ -1,0 +1,20 @@
+name: challenge_artboard
+description: Allows a user to confirm their account by inputing a code sent to them.
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  floating_artboard_templates:
+    path: ../../artboard_templates/floating
+  form_builder:
+    path: ../../builders/form
+  app_data:
+    path: ../../app_data
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

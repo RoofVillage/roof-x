@@ -1,10 +1,10 @@
 import 'package:date/index.dart';
 import 'package:meta/meta.dart';
 import 'package:types/index.dart';
-import '../utils/index.dart';
 
 import '../abstract/index.dart';
 import '../properties/index.dart';
+import '../key.dart' as _key;
 
 class Lease extends Contract {
   final LateFee lateFee;
@@ -65,7 +65,7 @@ class Lease extends Contract {
     assert(map != null);
 
     final contract = Contract.fromMap(map);
-    final counts = map[Key.counts] as Map;
+    final counts = map[_key.counts] as Map;
 
     return Lease(
         guid: contract.guid,
@@ -84,30 +84,30 @@ class Lease extends Contract {
         invoiceCount: contract.invoiceCount,
         feePayerType: contract.feePayerType,
         monthToMonth: contract.monthToMonth,
-        lateFee: LateFee.fromMap(map[Key.lateFee]),
-        property: NameProperty.fromMap(map[Key.property]),
+        lateFee: LateFee.fromMap(map[_key.lateFee]),
+        property: NameProperty.fromMap(map[_key.property]),
         nextInvoiceDeadline:
-            Date.fromSecondsSinceEpoch(map[Key.nextInvoiceDeadline]),
-        nextInvoiceType: InvoiceType.fromString(map[Key.nextInvoiceKind]),
-        openServiceRequestCount: counts[Key.openServiceRequest] ?? 0,
+            Date.fromSecondsSinceEpoch(map[_key.nextInvoiceDeadline]),
+        nextInvoiceType: InvoiceType.fromString(map[_key.nextInvoiceKind]),
+        openServiceRequestCount: counts[_key.openServiceRequest] ?? 0,
         serviceRequestCompletionCount:
-            counts[Key.serviceRequestCompletion] ?? 0,
-        serviceRequestCount: counts[Key.serviceRequest] ?? 0);
+            counts[_key.serviceRequestCompletion] ?? 0,
+        serviceRequestCount: counts[_key.serviceRequest] ?? 0);
   }
 
   Map<String, Object> toMap() {
     final map = super.toMap();
-    (map[Key.counts] as Map).addAll({
-      Key.openServiceRequest: openServiceRequestCount,
-      Key.serviceRequestCompletion: serviceRequestCompletionCount,
-      Key.serviceRequest: serviceRequestCount
+    (map[_key.counts] as Map).addAll({
+      _key.openServiceRequest: openServiceRequestCount,
+      _key.serviceRequestCompletion: serviceRequestCompletionCount,
+      _key.serviceRequest: serviceRequestCount
     });
 
     map.addAll({
-      Key.lateFee: lateFee.toMap(),
-      Key.property: property.toMap(),
-      Key.nextInvoiceDeadline: nextInvoiceDeadline.secondsSinceEpoch,
-      Key.nextInvoiceKind: nextInvoiceType.toString()
+      _key.lateFee: lateFee.toMap(),
+      _key.property: property.toMap(),
+      _key.nextInvoiceDeadline: nextInvoiceDeadline.secondsSinceEpoch,
+      _key.nextInvoiceKind: nextInvoiceType.toString()
     });
 
     return map;

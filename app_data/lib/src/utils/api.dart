@@ -1,57 +1,55 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:network/index.dart';
 import 'package:synchronizer/index.dart';
-import 'package:service/index.dart';
-import 'package:session/index.dart';
+import 'package:network/index.dart';
+import 'package:session/index.dart' as _session;
 
-import '_device_info.dart';
+import '../_param.dart' as _param;
+import 'service.dart';
 
-class Api {
-  final _bearerTokenPrefix = 'Bearer ';
-  Future<String> post({Service service, Map<String, Object> params}) async {
-    // params.addAll({Param.client: await DeviceInfo.params});
+final _bearerTokenPrefix = 'Bearer ';
+Future<String> post({Service service, Map<String, Object> params}) async {
+  // params.addAll({_param.client: await DeviceInfo.params});
 
-    if (service.doesNeedSession) {
-      //refresh.
-    }
-
-    Map<String, String> headers;
-    final token = await Session.token;
-    if (token != null) {
-      headers[Param.authorizationHeader] = _bearerTokenPrefix + token;
-    } else if (service.doesNeedSession) {
-      throw ArgumentError.value(
-        service,
-        'service',
-        "Service cannot be accessed without an active session.",
-      );
-    }
-
-    final response = await Network()
-        .post(address: service.address, params: params, headers: headers);
-
-    final Map<String, Object> dataConvertedToJson = json.decode(response);
-
-    if (dataConvertedToJson.containsKey(Param.sessionToken) &&
-        dataConvertedToJson.containsKey(Param.refreshToken)) {
-      Session.start(
-          sessionToken: dataConvertedToJson[Param.sessionToken],
-          refreshToken: dataConvertedToJson[Param.refreshToken]);
-    } else if (dataConvertedToJson.containsKey(Param.verificationToken)) {
-      Session.standby(
-          verificationToken: dataConvertedToJson[Param.verificationToken]);
-    }
-    final Map<String, Object> objectsToSync =
-        dataConvertedToJson[Param.objectsToSync];
-
-    await Synchronizer().synchronize(objectsToSync);
-
-    return response;
+  if (service.doesNeedSession) {
+    //refresh.
   }
 
-  Map<String, Object> addStandardParams(Map<String, Object> params) {
-    return params;
+  Map<String, String> headers;
+  final token = await _session.token;
+  if (token != null) {
+    headers[_param.authorizationHeader] = _bearerTokenPrefix + token;
+  } else if (service.doesNeedSession) {
+    throw ArgumentError.value(
+      service,
+      'service',
+      "Service cannot be accessed without an active session.",
+    );
   }
+
+  final response = await Network()
+      .post(address: service.address, params: params, headers: headers);
+
+  final Map<String, Object> dataConvertedToJson = json.decode(response);
+
+  if (dataConvertedToJson.containsKey(_param.sessionToken) &&
+      dataConvertedToJson.containsKey(_param.refreshToken)) {
+    _session.start(
+        sessionToken: dataConvertedToJson[_param.sessionToken],
+        refreshToken: dataConvertedToJson[_param.refreshToken]);
+  } else if (dataConvertedToJson.containsKey(_param.verificationToken)) {
+    _session.standby(
+        verificationToken: dataConvertedToJson[_param.verificationToken]);
+  }
+  final Map<String, Object> objectsToSync =
+      dataConvertedToJson[_param.objectsToSync];
+
+  await synchronize(objectsToSync);
+
+  return response;
+}
+
+Map<String, Object> addStandardParams(Map<String, Object> params) {
+  return params;
 }

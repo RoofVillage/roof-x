@@ -1,0 +1,27 @@
+name: nav_bar_builder
+description: Nav bar functionality for artboards.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  haptics:
+    path: ../../lib/haptics
+  spec:
+    path: ../../spec
+  theme:
+    path: ../../theme
+  typography:
+    path: ../../typography
+  icon_library:
+    path: ../../icon_library
+  nav_button_builder:
+    path: ../nav_button
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

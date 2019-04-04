@@ -1,6 +1,6 @@
 import 'name_user.dart';
 import '../abstract/index.dart';
-import '../utils/index.dart';
+import '../key.dart' as _key;
 
 class DomainUser extends NameUser {
   final Domain domain;
@@ -22,18 +22,18 @@ class DomainUser extends NameUser {
         guid: superMap.guid,
         firstName: superMap.firstName,
         lastName: superMap.lastName,
-        domain: Domain.fromMap(map[Key.domain]),
-        formerDomain: Domain.fromMap(map[Key.formerDomain]),
-        nickname: map[Key.nickname]);
+        domain: Domain.fromMap(map[_key.domain]),
+        formerDomain: Domain.fromMap(map[_key.formerDomain]),
+        nickname: map[_key.nickname]);
   }
 
   @override
   Map<String, Object> toMap() {
     final map = super.toMap();
     map.addAll({
-      Key.domain: domain.toMap(),
-      Key.formerDomain: formerDomain.toMap(),
-      Key.nickname: nickname
+      _key.domain: domain.toMap(),
+      _key.formerDomain: formerDomain.toMap(),
+      _key.nickname: nickname
     });
 
     return map;

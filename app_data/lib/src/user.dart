@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:meta/meta.dart';
-import 'package:service/index.dart';
 
 import 'utils/index.dart';
+import '_param.dart' as _param;
 
 class User {
   Future<String> create(
@@ -13,13 +13,13 @@ class User {
       @required String password}) async {
     //validate
     final params = {
-      Param.firstName: name,
-      Param.lastName: name,
-      Param.email: email,
-      Param.phoneNumber: phoneNumber,
-      Param.password: password
+      _param.firstName: name,
+      _param.lastName: name,
+      _param.email: email,
+      _param.phoneNumber: phoneNumber,
+      _param.password: password
     };
 
-    return await Api().post(service: Service.signUp, params: params);
+    return await post(service: Service.signUp, params: params);
   }
 }

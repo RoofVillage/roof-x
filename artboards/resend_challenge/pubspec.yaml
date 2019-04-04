@@ -1,0 +1,22 @@
+name: resend_challenge_artboard
+description: Allows the user to request that another code be sent to them.
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  floating_artboard_templates:
+    path: ../../artboard_templates/floating
+  form_builder:
+    path: ../../builders/form
+  app_data:
+    path: ../../app_data
+  navigation:
+    path: ../../navigation
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

@@ -1,4 +1,5 @@
-import '../utils/index.dart';
+import '../mixins/index.dart';
+import '../key.dart' as _key;
 
 class Location with Mappable {
   final String postalCode;
@@ -14,21 +15,21 @@ class Location with Mappable {
     if (map == null) return null;
 
     return Location(
-        postalCode: map[Key.postalCode],
-        countryCode: map[Key.countryCode],
-        city: map[Key.city],
-        state: map[Key.state],
-        street: map[Key.street]);
+        postalCode: map[_key.postalCode],
+        countryCode: map[_key.countryCode],
+        city: map[_key.city],
+        state: map[_key.state],
+        street: map[_key.street]);
   }
 
   @override
   Map<String, Object> toMap() {
     return {
-      Key.postalCode: postalCode,
-      Key.countryCode: countryCode,
-      Key.city: city,
-      Key.state: state,
-      Key.street: street
+      _key.postalCode: postalCode,
+      _key.countryCode: countryCode,
+      _key.city: city,
+      _key.state: state,
+      _key.street: street
     };
   }
 }

@@ -1,0 +1,23 @@
+name: form
+description: Form tools.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  stream:
+    path: ../stream
+  mask:
+    path: ../mask
+  date:
+    path: ../date
+  form_validation_exception:
+    path: ../form_validation_exception
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

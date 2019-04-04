@@ -1,0 +1,232 @@
+import 'dart:async';
+import 'package:stream/index.dart';
+
+import 'data/field.dart';
+import 'data/section.dart';
+import 'data/form.dart';
+
+typedef void ChangeListener();
+typedef void FlagListener(bool flag);
+
+class StreamFormBloc extends BlocBase {
+  StreamableFormData _formData;
+
+  StreamableFormData get formData => _formData;
+
+  ChangeListener get onValueChanged => () {
+        for (final listener in _onValueChangedListeners) listener();
+      };
+  FlagListener get onFocusChanged => (bool isInFocus) {
+        for (final listener in _onFocusChangedListeners) listener(isInFocus);
+      };
+
+  List<ChangeListener> _onValueChangedListeners = [];
+  List<FlagListener> _onFocusChangedListeners = [];
+
+  //The stream responsible for communicating changes to the entire form.
+  final _formController = StreamController<StreamableFormData>();
+
+  Sink<StreamableFormData> get _inForm => _formController.sink;
+  Stream<StreamableFormData> get outForm => _formController.stream;
+
+  //Override to handle field changes;
+  void fieldChanged(String fieldKey, dynamic oldValue, dynamic newValue) {}
+
+  void addOnValueChangedListener(ChangeListener listener) {
+    if (_onValueChangedListeners.contains(listener)) return;
+    _onValueChangedListeners.add(listener);
+  }
+
+  void addOnFocusChangedListener(FlagListener listener) {
+    if (_onFocusChangedListeners.contains(listener)) return;
+    _onFocusChangedListeners.add(listener);
+  }
+
+  void update(StreamableFormData formData) {
+    _addValueChangedStreamToForm(formData);
+    _formData = formData;
+    _inForm.add(_formData);
+  }
+
+  void updateFieldData(StreamableFormFieldData fieldData) {
+    _formData.updateFieldData(fieldData);
+    update(_formData);
+  }
+
+  void updateSectionData(StreamableFormSectionData sectionData) {
+    _addValueChangedStreamToFields(sectionData.fieldData);
+    _formData.updateSectionData(sectionData);
+    _inForm.add(_formData);
+  }
+
+  void batchUpdateSectionData(List<StreamableFormSectionData> sectionData) {
+    for (final data in sectionData) updateSectionData(data);
+  }
+
+  void batchUpdateFieldData(List<StreamableFormFieldData> fieldData) {
+    if (fieldData.isEmpty) return;
+    _formData.batchUpdateFieldData(fieldData);
+    _inForm.add(_formData);
+  }
+
+  void insertFieldData(StreamableFormFieldData fieldData) {
+    _addValueChangedStreamToField(fieldData);
+    _formData.addFieldData(fieldData);
+    _inForm.add(_formData);
+  }
+
+  void batchInsertFieldData(List<StreamableFormFieldData> fieldData) {
+    if (fieldData.isEmpty) return;
+    for (final data in fieldData) _addValueChangedStreamToField(data);
+    _formData.batchAddFieldData(fieldData);
+    _inForm.add(_formData);
+  }
+
+  void insertFieldDataBefore(StreamableFormFieldData fieldData,
+      StreamableFormFieldData beforeFieldData) {
+    _addValueChangedStreamToField(fieldData);
+    _formData.addFieldDataBefore(fieldData, beforeFieldData);
+    _inForm.add(_formData);
+  }
+
+  void batchInsertFieldDataBefore(List<StreamableFormFieldData> fieldData,
+      StreamableFormFieldData beforeFieldData) {
+    if (fieldData.isEmpty) return;
+    for (final data in fieldData) _addValueChangedStreamToField(data);
+    _formData.batchAddFieldDataBefore(fieldData, beforeFieldData);
+    _inForm.add(_formData);
+  }
+
+  void insertFieldDataAfter(StreamableFormFieldData fieldData,
+      StreamableFormFieldData afterFieldData) async {
+    _addValueChangedStreamToField(fieldData);
+    _formData.addFieldDataAfter(fieldData, afterFieldData);
+    _inForm.add(_formData);
+  }
+
+  void batchInsertFieldDataAfter(List<StreamableFormFieldData> fieldData,
+      StreamableFormFieldData afterFieldData) {
+    if (fieldData.isEmpty) return;
+    for (final data in fieldData) _addValueChangedStreamToField(data);
+    _formData.batchAddFieldDataAfter(fieldData, afterFieldData);
+    _inForm.add(_formData);
+  }
+
+  void insertSectionData(StreamableFormSectionData sectionData) {
+    for (final data in sectionData.fieldData) {
+      _addValueChangedStreamToField(data);
+    }
+    _formData.addSectionData(sectionData);
+    _inForm.add(_formData);
+  }
+
+  void batchInsertSectionData(List<StreamableFormSectionData> sectionData) {
+    final fieldData = sectionData.expand((data) => data.fieldData);
+    for (final data in fieldData) _addValueChangedStreamToField(data);
+    _formData.batchAddSectionData(sectionData);
+    _inForm.add(_formData);
+  }
+
+  void insertSectionDataBefore(StreamableFormSectionData sectionData,
+      StreamableFormSectionData beforeSectionData) {
+    for (final data in sectionData.fieldData) {
+      _addValueChangedStreamToField(data);
+    }
+    _formData.addSectionDataBefore(sectionData, beforeSectionData);
+    _inForm.add(_formData);
+  }
+
+  void batchInsertSectionDataBefore(List<StreamableFormSectionData> sectionData,
+      StreamableFormSectionData beforeSectionData) {
+    final fieldData = sectionData.expand((data) => data.fieldData);
+    for (final data in fieldData) _addValueChangedStreamToField(data);
+    _formData.batchAddSectionDataBefore(sectionData, beforeSectionData);
+    _inForm.add(_formData);
+  }
+
+  void insertSectionDataAfter(StreamableFormSectionData sectionData,
+      StreamableFormSectionData afterSectionData) {
+    for (final data in sectionData.fieldData) {
+      _addValueChangedStreamToField(data);
+    }
+    _formData.addSectionDataAfter(sectionData, afterSectionData);
+    _inForm.add(_formData);
+  }
+
+  void batchInsertSectionDataAfter(List<StreamableFormSectionData> sectionData,
+      StreamableFormSectionData afterSectionData) {
+    final fieldData = sectionData.expand((data) => data.fieldData);
+    for (final data in fieldData) _addValueChangedStreamToField(data);
+    _formData.batchAddSectionDataAfter(sectionData, afterSectionData);
+    _inForm.add(_formData);
+  }
+
+  void removeFieldData(StreamableFormFieldData fieldData) {
+    //Remove the data.
+    _formData.removeFieldData(fieldData);
+
+    //Post a message that the form changed.
+    _inForm.add(_formData);
+  }
+
+  void removeSectionData(StreamableFormSectionData sectionData) {
+    //Remove the data.
+    _formData.removeSectionData(sectionData);
+
+    //Post a message that the form changed.
+    _inForm.add(_formData);
+  }
+
+  void overwriteWithSectionData(List<StreamableFormSectionData> sectionData) {
+    final fieldData = sectionData.expand((data) => data.fieldData);
+    for (final data in fieldData) _addValueChangedStreamToField(data);
+    _formData.sectionData.clear();
+    _formData.batchAddSectionData(sectionData);
+    _inForm.add(_formData);
+  }
+
+  void overwriteWithFieldData(List<StreamableFormFieldData> fieldData) {
+    for (final data in fieldData) _addValueChangedStreamToField(data);
+    _formData.sectionData.clear();
+    _formData.batchAddFieldData(fieldData);
+    _inForm.add(_formData);
+  }
+
+  @override
+  void dispose() {
+    _formController.close();
+    _onValueChangedListeners.clear();
+    _onFocusChangedListeners.clear();
+  }
+
+  void _addValueChangedStreamToForm(StreamableFormData formData) {
+    _addValueChangedStreamToFields(formData.fieldData);
+  }
+
+  void _addValueChangedStreamToField(StreamableFormFieldData fieldData) {
+    _addValueChangedStreamToFields([fieldData]);
+  }
+
+  void _addValueChangedStreamToFields(List<StreamableFormFieldData> fieldData) {
+    for (final fieldData in fieldData) {
+      if (fieldData.tracked) continue;
+      fieldData.addOnChangedListener((newValue) => onValueChanged());
+      fieldData.addOnFocusChangedListener((newFocusValue) {
+        if (fieldData.isInFocus == newFocusValue) return;
+        final hasFocusedFieldBefore = _hasFocusedField();
+
+        if (newFocusValue == !hasFocusedFieldBefore) {
+          onFocusChanged(newFocusValue);
+        }
+      });
+      fieldData.markAsTracked();
+    }
+  }
+
+  bool _hasFocusedField() {
+    for (final fieldData in _formData.fieldData) {
+      if (fieldData.isInFocus) return true;
+    }
+    return false;
+  }
+}

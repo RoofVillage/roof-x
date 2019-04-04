@@ -1,7 +1,9 @@
 import 'package:types/index.dart';
-import '../utils/index.dart';
 
-class Metadata extends Mappable {
+import '../mixins/index.dart';
+import '../key.dart' as _key;
+
+class Metadata with Mappable {
   final String key;
   final String value;
   final EventMetaValueType valueType;
@@ -10,11 +12,11 @@ class Metadata extends Mappable {
   Metadata({this.key, this.value, this.priority, this.valueType});
 
   factory Metadata.fromMap(Map<String, Object> map) {
-    final priority = map[Key.priority];
-    final key = map[Key.key];
-    final valueType = EventMetaValueType.fromString(map[Key.valueKind]);
+    final priority = map[_key.priority];
+    final key = map[_key.key];
+    final valueType = EventMetaValueType.fromString(map[_key.valueKind]);
 
-    final value = valueType.decode(map[Key.value]);
+    final value = valueType.decode(map[_key.value]);
 
     return Metadata(key: key, value: value, priority: priority);
   }
@@ -22,10 +24,10 @@ class Metadata extends Mappable {
   @override
   Map<String, Object> toMap() {
     return {
-      Key.priority: priority,
-      Key.key: key,
-      Key.value: value,
-      Key.valueKind: valueType.toString()
+      _key.priority: priority,
+      _key.key: key,
+      _key.value: value,
+      _key.valueKind: valueType.toString()
     };
   }
 }

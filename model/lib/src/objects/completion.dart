@@ -1,12 +1,13 @@
 import 'package:meta/meta.dart';
 import 'package:types/index.dart';
+
+import 'stub.dart';
+import 'expense.dart';
 import '../utils/index.dart';
 import '../properties/index.dart';
 import '../abstract/index.dart';
 import '../mixins/index.dart';
-
-import 'stub.dart';
-import 'expense.dart';
+import '../key.dart' as _key;
 
 class Completion extends FeedObject {
   final String name;
@@ -46,7 +47,7 @@ class Completion extends FeedObject {
 
     final feedObject = FeedObject.fromMap(map);
 
-    final completingUsers = (map[Key.completingUsers] as List)
+    final completingUsers = (map[_key.completingUsers] as List)
         .map((map) => UserReference.fromMap(map));
 
     return Completion(
@@ -58,24 +59,24 @@ class Completion extends FeedObject {
         contractPropertyName: feedObject.contractPropertyName,
         feePayerType: feedObject.feePayerType,
         clientReferenceId: feedObject.clientReferenceId,
-        name: map[Key.name],
-        note: map[Key.note],
-        privacyType: PrivacyType.fromString(map[Key.privacyKind]),
+        name: map[_key.name],
+        note: map[_key.note],
+        privacyType: PrivacyType.fromString(map[_key.privacyKind]),
         completingUsers: completingUsers.toSet(),
-        task: TaskReference.fromMap(map[Key.task]),
-        completionPrize: Expense.fromMap(map[Key.prizeCompletion]));
+        task: TaskReference.fromMap(map[_key.task]),
+        completionPrize: Expense.fromMap(map[_key.prizeCompletion]));
   }
 
   Map<String, Object> toMap() {
     final map = super.toMap();
     map.addAll({
-      Key.name: name,
-      Key.note: note,
-      Key.privacyKind: privacyType.toString(),
-      Key.completingUsers:
+      _key.name: name,
+      _key.note: note,
+      _key.privacyKind: privacyType.toString(),
+      _key.completingUsers:
           completingUsers.map((completingUser) => completingUser.toMap()),
-      Key.task: task.toMap(),
-      Key.prizeCompletion: completionPrize.toMap()
+      _key.task: task.toMap(),
+      _key.prizeCompletion: completionPrize.toMap()
     });
     return map;
   }

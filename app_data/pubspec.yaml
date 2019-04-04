@@ -5,21 +5,19 @@ version: 1.0.0+1
 
 environment:
   sdk: ">=2.1.0"
-  
+
 dependencies:
   flutter:
     sdk: flutter
   device_info: ^0.4.0+1
   network:
-    path: ../network
+    path: ../lib/network
   synchronizer:
     path: ../synchronizer
-  string_from_enum_string:
-    path: ../string_from_enum_string
-  service:
-    path: ../service
   session:
     path: ../session
+  model:
+    path: ../model
 
 dev_dependencies:
   flutter_test:

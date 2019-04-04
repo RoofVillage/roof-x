@@ -1,8 +1,9 @@
 import 'package:date/index.dart';
 import 'package:meta/meta.dart';
 import 'package:types/index.dart';
+
 import '../abstract/index.dart';
-import '../utils/index.dart';
+import '../key.dart' as _key;
 
 class Stub extends ModelObject {
   final String name;
@@ -24,15 +25,15 @@ class Stub extends ModelObject {
     assert(map != null);
 
     final object = ModelObject.fromMap(map);
-    final name = map[Key.name];
-    final objectGuid = map[Key.object];
+    final name = map[_key.name];
+    final objectGuid = map[_key.object];
 
     return Stub(
         guid: object.guid,
         dateCreated: object.dateCreated,
         creatorGuid: object.creatorGuid,
         name: name,
-        type: StubType.fromString(map[Key.kind]),
+        type: StubType.fromString(map[_key.kind]),
         objectGuid: objectGuid);
   }
 
@@ -40,9 +41,9 @@ class Stub extends ModelObject {
   Map<String, Object> toMap() {
     final map = super.toMap();
     map.addAll({
-      Key.name: name,
-      Key.kind: type.toString(),
-      Key.object: objectGuid,
+      _key.name: name,
+      _key.kind: type.toString(),
+      _key.object: objectGuid,
     });
 
     return map;

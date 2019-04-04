@@ -1,9 +1,9 @@
 import 'package:types/index.dart';
 import 'package:date/index.dart';
-import '../utils/index.dart';
 import '../properties/index.dart';
 import '../objects/index.dart';
 import '../abstract/index.dart';
+import '../key.dart' as _key;
 
 class Invoice extends Task {
   final InvoiceType type;
@@ -81,7 +81,7 @@ class Invoice extends Task {
 
     final task = Task.fromMap(map);
 
-    final payers = (map[Key.payers] as List).map((map) => Payer.fromMap(map));
+    final payers = (map[_key.payers] as List).map((map) => Payer.fromMap(map));
 
     return Invoice(
         contractDomainUsers: task.contractDomainUsers,
@@ -112,22 +112,22 @@ class Invoice extends Task {
         currentlyCompleted: task.currentlyCompleted,
         completionCount: task.completionCount,
         completionPrize: task.completionPrize,
-        type: InvoiceType.fromString(map[Key.kind]),
-        amount: map[Key.amount],
-        paid: map[Key.paid],
+        type: InvoiceType.fromString(map[_key.kind]),
+        amount: map[_key.amount],
+        paid: map[_key.paid],
         payers: payers.toSet(),
-        overridePaymentBuffer: map[Key.overridePaymentBuffer]);
+        overridePaymentBuffer: map[_key.overridePaymentBuffer]);
   }
 
   Map<String, Object> toMap() {
     final map = super.toMap();
 
     map.addAll({
-      Key.kind: type.toString(),
-      Key.amount: amount,
-      Key.paid: paid,
-      Key.payers: payers.map((payer) => payer.toMap()),
-      Key.overridePaymentBuffer: overridePaymentBuffer
+      _key.kind: type.toString(),
+      _key.amount: amount,
+      _key.paid: paid,
+      _key.payers: payers.map((payer) => payer.toMap()),
+      _key.overridePaymentBuffer: overridePaymentBuffer
     });
     return map;
   }

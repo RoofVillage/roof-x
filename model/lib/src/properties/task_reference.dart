@@ -1,8 +1,10 @@
 import 'package:types/index.dart';
 import 'package:date/index.dart';
-import '../utils/index.dart';
 
-class TaskReference extends Mappable {
+import '../mixins/index.dart';
+import '../key.dart' as _key;
+
+class TaskReference with Mappable {
   final String guid;
   final String name;
   final TaskType type;
@@ -12,19 +14,19 @@ class TaskReference extends Mappable {
 
   factory TaskReference.fromMap(Map<String, Object> map) {
     return TaskReference(
-        guid: map[Key.guid],
-        name: map[Key.name],
-        type: TaskType.fromString(map[Key.kind]),
-        deadline: Date.fromSecondsSinceEpoch(map[Key.deadline]));
+        guid: map[_key.guid],
+        name: map[_key.name],
+        type: TaskType.fromString(map[_key.kind]),
+        deadline: Date.fromSecondsSinceEpoch(map[_key.deadline]));
   }
 
   @override
   Map<String, Object> toMap() {
     return {
-      Key.guid: guid,
-      Key.name: name,
-      Key.kind: type.toString(),
-      Key.deadline: deadline.secondsSinceEpoch
+      _key.guid: guid,
+      _key.name: name,
+      _key.kind: type.toString(),
+      _key.deadline: deadline.secondsSinceEpoch
     };
   }
 }

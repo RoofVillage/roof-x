@@ -1,8 +1,8 @@
-import '../utils/index.dart';
-
 import 'bank_owner_reference.dart';
+import '../mixins/index.dart';
+import '../key.dart' as _key;
 
-class Splitter extends Mappable {
+class Splitter with Mappable {
   final BankOwnerReference bankOwner;
   final int percentage;
 
@@ -10,12 +10,12 @@ class Splitter extends Mappable {
 
   factory Splitter.fromMap(Map<String, Object> map) {
     return Splitter(
-        bankOwner: BankOwnerReference.fromMap(map[Key.bankOwner]),
-        percentage: map[Key.percentage]);
+        bankOwner: BankOwnerReference.fromMap(map[_key.bankOwner]),
+        percentage: map[_key.percentage]);
   }
 
   @override
   Map<String, Object> toMap() {
-    return {Key.bankOwner: bankOwner.toMap(), Key.percentage: percentage};
+    return {_key.bankOwner: bankOwner.toMap(), _key.percentage: percentage};
   }
 }

@@ -1,7 +1,7 @@
 import 'package:types/index.dart';
-import '../utils/index.dart';
 
 import 'name_domain.dart';
+import '../key.dart' as _key;
 
 class NameContractDomain extends NameDomain {
   final String phoneNumber;
@@ -25,18 +25,18 @@ class NameContractDomain extends NameDomain {
         guid: nameDomain.guid,
         name: nameDomain.name,
         type: nameDomain.type,
-        phoneNumber: map[Key.phoneNumber],
-        allowPartialPayments: map[Key.allowPartialPayments],
-        invoicePaymentBuffer: map[Key.invoicePaymentBuffer]);
+        phoneNumber: map[_key.phoneNumber],
+        allowPartialPayments: map[_key.allowPartialPayments],
+        invoicePaymentBuffer: map[_key.invoicePaymentBuffer]);
   }
 
   @override
   Map<String, Object> toMap() {
     final map = super.toMap();
     map.addAll({
-      Key.phoneNumber: phoneNumber,
-      Key.allowPartialPayments: allowPartialPayments,
-      Key.invoicePaymentBuffer: invoicePaymentBuffer
+      _key.phoneNumber: phoneNumber,
+      _key.allowPartialPayments: allowPartialPayments,
+      _key.invoicePaymentBuffer: invoicePaymentBuffer
     });
 
     return map;

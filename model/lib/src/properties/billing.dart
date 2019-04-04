@@ -1,7 +1,9 @@
 import 'package:types/index.dart';
-import '../utils/index.dart';
 
-class Billing extends Mappable {
+import '../mixins/index.dart';
+import '../key.dart' as _key;
+
+class Billing with Mappable {
   final String email;
   final bool isEmailVerified;
   final String firstName;
@@ -29,31 +31,31 @@ class Billing extends Mappable {
     if (map == null) return null;
 
     return Billing(
-        email: map[Key.email],
-        isEmailVerified: map[Key.isEmailVerified],
-        firstName: map[Key.firstName],
-        lastName: map[Key.lastName],
-        statusType: BillingStatusType.fromString(map[Key.statusKind]),
-        type: BillingType.fromString(map[Key.kind]),
-        address1: map[Key.address1],
-        address2: map[Key.address2],
-        city: map[Key.city],
-        postalCode: map[Key.postalCode]);
+        email: map[_key.email],
+        isEmailVerified: map[_key.isEmailVerified],
+        firstName: map[_key.firstName],
+        lastName: map[_key.lastName],
+        statusType: BillingStatusType.fromString(map[_key.statusKind]),
+        type: BillingType.fromString(map[_key.kind]),
+        address1: map[_key.address1],
+        address2: map[_key.address2],
+        city: map[_key.city],
+        postalCode: map[_key.postalCode]);
   }
 
   @override
   Map<String, Object> toMap() {
     return {
-      Key.email: email,
-      Key.isEmailVerified: isEmailVerified,
-      Key.firstName: firstName,
-      Key.lastName: lastName,
-      Key.statusKind: statusType.toString(),
-      Key.kind: type.toString(),
-      Key.address1: address1,
-      Key.address2: address2,
-      Key.city: city,
-      Key.postalCode: postalCode
+      _key.email: email,
+      _key.isEmailVerified: isEmailVerified,
+      _key.firstName: firstName,
+      _key.lastName: lastName,
+      _key.statusKind: statusType.toString(),
+      _key.kind: type.toString(),
+      _key.address1: address1,
+      _key.address2: address2,
+      _key.city: city,
+      _key.postalCode: postalCode
     };
   }
 }

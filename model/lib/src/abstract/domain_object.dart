@@ -1,10 +1,10 @@
 import 'package:types/index.dart';
-import '../utils/index.dart';
+
+import 'model_object.dart';
 import '../properties/index.dart';
 import '../objects/index.dart';
 import '../mixins/index.dart';
-
-import 'model_object.dart';
+import '../key.dart' as _key;
 
 class DomainObject extends ModelObject with NameDefiningObject {
   final Set<NameUser> contractDomainUsers;
@@ -41,47 +41,47 @@ class DomainObject extends ModelObject with NameDefiningObject {
       this.feePayerType});
 
   factory DomainObject.fromMap(Map<String, Object> map) {
-    final contract = map[Key.contract] as Map;
-    final property = contract[Key.property] as Map;
+    final contract = map[_key.contract] as Map;
+    final property = contract[_key.property] as Map;
 
-    final contractDomainUsers =
-        (contract[Key.domainUsers] as List).map((map) => NameUser.fromMap(map));
+    final contractDomainUsers = (contract[_key.domainUsers] as List)
+        .map((map) => NameUser.fromMap(map));
 
     final contractUsers =
-        (contract[Key.users] as List).map((map) => NameUser.fromMap(map));
+        (contract[_key.users] as List).map((map) => NameUser.fromMap(map));
 
-    final formerContractUsers =
-        (contract[Key.formerUsers] as List).map((map) => NameUser.fromMap(map));
+    final formerContractUsers = (contract[_key.formerUsers] as List)
+        .map((map) => NameUser.fromMap(map));
 
     final contractStubs =
-        (contract[Key.stubs] as List).map((map) => Stub.fromMap(map));
+        (contract[_key.stubs] as List).map((map) => Stub.fromMap(map));
 
     final formerContractStubs =
-        (contract[Key.formerStubs] as List).map((map) => Stub.fromMap(map));
+        (contract[_key.formerStubs] as List).map((map) => Stub.fromMap(map));
     return DomainObject(
         contractDomainUsers: contractDomainUsers.toSet(),
         contractUsers: contractUsers.toSet(),
         formerContractUsers: formerContractUsers.toSet(),
         contractStubs: contractStubs.toSet(),
         formerContractStubs: formerContractStubs.toSet(),
-        contractPropertyName: property[Key.name],
-        feePayerType: FeePayerType.fromString(map[Key.feePayerKind]));
+        contractPropertyName: property[_key.name],
+        feePayerType: FeePayerType.fromString(map[_key.feePayerKind]));
   }
 
   Map<String, Object> toMap() {
     final map = super.toMap();
     map.addAll({
-      Key.contract: {
-        Key.domainUsers: contractDomainUsers
+      _key.contract: {
+        _key.domainUsers: contractDomainUsers
             .map((contractDomainUser) => contractDomainUser.toMap()),
-        Key.users: contractUsers.map((contractUser) => contractUser.toMap()),
-        Key.formerUsers: formerContractUsers
+        _key.users: contractUsers.map((contractUser) => contractUser.toMap()),
+        _key.formerUsers: formerContractUsers
             .map((formerContractUser) => formerContractUser.toMap()),
-        Key.stubs: contractStubs.map((contractStub) => contractStub.toMap()),
-        Key.formerStubs: formerContractStubs
+        _key.stubs: contractStubs.map((contractStub) => contractStub.toMap()),
+        _key.formerStubs: formerContractStubs
             .map((formerContractStubs) => formerContractStubs.toMap()),
-        Key.feePayerKind: feePayerType.toString(),
-        Key.property: {Key.name: contractPropertyName}
+        _key.feePayerKind: feePayerType.toString(),
+        _key.property: {_key.name: contractPropertyName}
       }
     });
     return map;

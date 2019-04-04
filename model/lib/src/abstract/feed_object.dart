@@ -1,9 +1,9 @@
 import 'package:types/index.dart';
-import '../utils/index.dart';
-import '../properties/index.dart';
-import '../objects/index.dart';
 
 import 'domain_object.dart';
+import '../properties/index.dart';
+import '../objects/index.dart';
+import '../key.dart' as _key;
 
 class FeedObject extends DomainObject {
   final String clientReferenceId;
@@ -36,12 +36,12 @@ class FeedObject extends DomainObject {
         formerContractStubs: domainObject.formerContractStubs,
         contractPropertyName: domainObject.contractPropertyName,
         feePayerType: domainObject.feePayerType,
-        clientReferenceId: map[Key.clientReferenceId]);
+        clientReferenceId: map[_key.clientReferenceId]);
   }
 
   Map<String, Object> toMap() {
     final map = super.toMap();
-    map.addAll({Key.clientReferenceId: clientReferenceId});
+    map.addAll({_key.clientReferenceId: clientReferenceId});
     return map;
   }
 }

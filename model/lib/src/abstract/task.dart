@@ -1,13 +1,14 @@
 import 'package:meta/meta.dart';
 import 'package:types/index.dart';
 import 'package:date/index.dart';
+
+import 'commentable_object.dart';
+import 'context.dart';
 import '../utils/index.dart';
 import '../properties/index.dart';
 import '../objects/index.dart';
 import '../mixins/index.dart';
-
-import 'commentable_object.dart';
-import 'context.dart';
+import '../key.dart' as _key;
 
 class Task extends CommentableObject {
   final Set<UserReference> participants;
@@ -73,16 +74,16 @@ class Task extends CommentableObject {
   factory Task.fromMap(Map<String, Object> map) {
     final commentableObject = CommentableObject.fromMap(map);
 
-    final participants = (map[Key.participants] as List)
+    final participants = (map[_key.participants] as List)
         .map((map) => UserReference.fromMap(map));
-    final completingUsers = (map[Key.completingUsers] as List)
+    final completingUsers = (map[_key.completingUsers] as List)
         .map((map) => UserReference.fromMap(map));
-    final assignedUsers = (map[Key.assignedUsers] as List)
+    final assignedUsers = (map[_key.assignedUsers] as List)
         .map((map) => UserReference.fromMap(map));
-    final completionCounts = (map[Key.completionCounts] as List)
+    final completionCounts = (map[_key.completionCounts] as List)
         .map((map) => CompletionCount.fromMap(map));
 
-    final counts = map[Key.counts] as Map;
+    final counts = map[_key.counts] as Map;
 
     return Task(
         contractDomainUsers: commentableObject.contractDomainUsers,
@@ -103,38 +104,40 @@ class Task extends CommentableObject {
         participants: participants.toSet(),
         completingUsers: completingUsers.toSet(),
         assignedUsers: assignedUsers.toSet(),
-        latestActivation: Date.fromSecondsSinceEpoch(map[Key.latestActivation]),
-        latestCompletion: Date.fromSecondsSinceEpoch(map[Key.latestCompletion]),
+        latestActivation:
+            Date.fromSecondsSinceEpoch(map[_key.latestActivation]),
+        latestCompletion:
+            Date.fromSecondsSinceEpoch(map[_key.latestCompletion]),
         completionCounts: completionCounts.toSet(),
-        schedule: Schedule.fromMap(map[Key.schedule]),
-        deadline: Date.fromSecondsSinceEpoch(map[Key.deadline]),
-        assignmentType: AssignmentType.fromString(map[Key.assigmentKind]),
-        deadlineParts: DateParts.fromMap(map[Key.deadlineParts]),
-        currentlyCompleted: map[Key.currentlyCompleted],
-        completionCount: counts[Key.completion],
-        completionPrize: map[Key.completionPrize]);
+        schedule: Schedule.fromMap(map[_key.schedule]),
+        deadline: Date.fromSecondsSinceEpoch(map[_key.deadline]),
+        assignmentType: AssignmentType.fromString(map[_key.assigmentKind]),
+        deadlineParts: DateParts.fromMap(map[_key.deadlineParts]),
+        currentlyCompleted: map[_key.currentlyCompleted],
+        completionCount: counts[_key.completion],
+        completionPrize: map[_key.completionPrize]);
   }
 
   Map<String, Object> toMap() {
     final map = super.toMap();
-    (map[Key.counts] as Map).addAll({Key.completion: completionCount});
+    (map[_key.counts] as Map).addAll({_key.completion: completionCount});
 
     map.addAll({
-      Key.participants: participants.map((participant) => participant.toMap()),
-      Key.completingUsers:
+      _key.participants: participants.map((participant) => participant.toMap()),
+      _key.completingUsers:
           completingUsers.map((completingUser) => completingUser.toMap()),
-      Key.assignedUsers:
+      _key.assignedUsers:
           assignedUsers.map((assignedUser) => assignedUser.toMap()),
-      Key.latestActivation: latestActivation.secondsSinceEpoch,
-      Key.latestCompletion: latestCompletion.secondsSinceEpoch,
-      Key.completionCounts:
+      _key.latestActivation: latestActivation.secondsSinceEpoch,
+      _key.latestCompletion: latestCompletion.secondsSinceEpoch,
+      _key.completionCounts:
           completionCounts.map((completionCount) => completionCount.toMap()),
-      Key.schedule: schedule.toMap(),
-      Key.deadline: deadline.secondsSinceEpoch,
-      Key.assigmentKind: assignmentType.toString(),
-      Key.deadlineParts: deadlineParts.toMap(),
-      Key.currentlyCompleted: currentlyCompleted,
-      Key.completionPrize: completionPrize
+      _key.schedule: schedule.toMap(),
+      _key.deadline: deadline.secondsSinceEpoch,
+      _key.assigmentKind: assignmentType.toString(),
+      _key.deadlineParts: deadlineParts.toMap(),
+      _key.currentlyCompleted: currentlyCompleted,
+      _key.completionPrize: completionPrize
     });
     return map;
   }

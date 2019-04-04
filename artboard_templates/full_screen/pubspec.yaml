@@ -1,0 +1,26 @@
+name: full_screen_artboard_templates
+description: Full screen frames for building a widget hierarchy in.
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  table_builder:
+    path: ../../builders/table
+  nav_bar_builder:
+    path: ../../builders/nav_bar
+  input_dock_builder:
+    path: ../../builders/input_dock
+  floating_artboard_templates:
+    path: ../floating
+  keyboard_accessory:
+    path: ../../lib/keyboard_accessory
+  artboard:
+    path: ../../artboard
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

@@ -1,0 +1,23 @@
+name: time_picker_builder
+description: Component for selecting a time of day
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  theme:
+    path: ../../theme
+  spec:
+    path: ../../spec
+  haptics:
+    path: ../../lib/haptics
+  typography:
+    path: ../../typography
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
