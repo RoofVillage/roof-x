@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:spec/index.dart';
 import 'package:haptics/index.dart';
 import 'package:typography/index.dart';
@@ -27,71 +30,89 @@ class TimePickerState extends State<TimePicker> {
     50,
     55
   ];
-  final List<int> _hoursList = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+  final List<int> _hoursList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
   final List<ClockType> _clockTypeList = [ClockType.am, ClockType.pm];
   final double _stepHeight = 40;
-  final int _stepsVisible = 5;
+  final int _boundaryStepCount = 1;
 
   TimeOfDay selectedTime;
-  ScrollController hoursScrollController;
-  ScrollController minutesScrollController;
-  ScrollController clockTypeScrollController;
-  ClockType clockType;
+  ScrollController _hoursScrollController;
+  ScrollController _minutesScrollController;
+  ScrollController _clockTypeScrollController;
+  ClockType _clockType;
 
+  @override
   void initState() {
     super.initState();
     selectedTime = widget.initialValue ?? TimeOfDay.now();
 
     if (selectedTime.hour > 11)
-      clockType = ClockType.pm;
+      _clockType = ClockType.pm;
     else
-      clockType = ClockType.am;
+      _clockType = ClockType.am;
 
-    hoursScrollController = ScrollController(
-      initialScrollOffset: (_hoursList.length +
-              _hoursList.indexOf(selectedTime.hour % _hoursList.length) -
-              1) *
-          _stepHeight,
+    final int hoursInitialOffsetSteps = _hoursList.length -
+        _boundaryStepCount +
+        _hoursList.indexOf((selectedTime.hour) % 12);
+
+    _hoursScrollController = ScrollController(
+      initialScrollOffset: hoursInitialOffsetSteps * _stepHeight,
     );
 
-    int initialMinutesListIndex = 0;
+    if (!_minutesList.contains(selectedTime.minute)) {
+      // Find minutes value nearest to current time
+      if (selectedTime.minute > 57 || selectedTime.minute < 3) {
+        selectedTime = TimeOfDay(
+          hour: selectedTime.hour,
+          minute: _minutesList[0],
+        );
+      } else {
+        for (var i = 0; i < _minutesList.length; i++) {
+          final minutesGap = _minutesList[1] - _minutesList[0];
 
-    for (var i = 0; i < _minutesList.length; i++) {
-      final minutesGap = _minutesList[1] - _minutesList[0];
-
-      if ((_minutesList[i] - selectedTime.minute).abs() < minutesGap / 2) {
-        initialMinutesListIndex = i;
-
-        if (!_minutesList.contains(selectedTime.minute)) {
-          selectedTime = TimeOfDay(
-              hour: selectedTime.hour,
-              minute: _minutesList[initialMinutesListIndex]);
+          if ((_minutesList[i] - selectedTime.minute).abs() < minutesGap / 2) {
+            selectedTime =
+                TimeOfDay(hour: selectedTime.hour, minute: _minutesList[i]);
+          }
         }
       }
     }
 
-    minutesScrollController = ScrollController(
-      initialScrollOffset:
-          (_minutesList.length + initialMinutesListIndex) * _stepHeight,
+    final int minutesInitialOffset = _minutesList.length -
+        _boundaryStepCount +
+        _minutesList.indexOf(selectedTime.minute);
+
+    _minutesScrollController = ScrollController(
+      initialScrollOffset: minutesInitialOffset * _stepHeight,
     );
 
-    clockTypeScrollController = ScrollController(
-      initialScrollOffset:
-          (1 + _clockTypeList.indexOf(clockType)) * _stepHeight,
+    _clockTypeScrollController = ScrollController(
+      initialScrollOffset: _clockTypeList.indexOf(_clockType) * _stepHeight,
     );
   }
 
-  _getSelectedValue({double scrollOffset, List list}) {
-    for (var i = 0; i < list.length * 3; i++) {
-      if (((_stepHeight * i - _stepHeight * .5) - scrollOffset).abs() <
-          _stepHeight) {
-        return list[i % list.length];
-      }
-    }
-    return null;
+  @override
+  dispose() {
+    _hoursScrollController.dispose();
+    _minutesScrollController.dispose();
+    _clockTypeScrollController.dispose();
+    super.dispose();
   }
 
-  void snapScroll({ScrollController controller, int listLength}) {
+  void _handleRollover({controller, segmentLength}) {
+    final double segmentHeight = segmentLength * _stepHeight;
+
+    /*
+    Rollers are divided into three repeated segments. 
+    To create perceived infinite scroll, adjust controller position to keep scroll window in the middle segment.
+    */
+    if (controller.offset > segmentHeight * 2)
+      controller.position.correctBy(-segmentHeight);
+    else if (controller.offset < segmentHeight)
+      controller.position.correctBy(segmentHeight);
+  }
+
+  void _snapScroll({ScrollController controller, int listLength}) {
     double animateTo = 0;
 
     if (controller.offset % _stepHeight == 0) return;
@@ -112,13 +133,25 @@ class TimePickerState extends State<TimePicker> {
     );
   }
 
+  _getSelectedValue({double scrollOffset, List list}) {
+    for (var i = 0; i < list.length * 3; i++) {
+      final double stepCenterOffset =
+          (i - _boundaryStepCount - .5) * _stepHeight;
+
+      if ((stepCenterOffset - scrollOffset).abs() < _stepHeight) {
+        return list[i % list.length];
+      }
+    }
+    return null;
+  }
+
   void _onHoursScroll() {
     int selectedHour = _getSelectedValue(
-      scrollOffset: hoursScrollController.offset,
+      scrollOffset: _hoursScrollController.offset,
       list: _hoursList,
     );
 
-    if (clockType == ClockType.pm) selectedHour += 12;
+    if (_clockType == ClockType.pm) selectedHour += 12;
 
     if (selectedHour != selectedTime.hour) {
       triggerHapticWith(HapticOption.click);
@@ -130,15 +163,15 @@ class TimePickerState extends State<TimePicker> {
       });
     }
 
-    handleRollover(
-      controller: hoursScrollController,
+    _handleRollover(
+      controller: _hoursScrollController,
       segmentLength: _hoursList.length,
     );
   }
 
   void _onMinutesScroll() {
     int selectedMinute = _getSelectedValue(
-      scrollOffset: minutesScrollController.offset,
+      scrollOffset: _minutesScrollController.offset,
       list: _minutesList,
     );
 
@@ -152,59 +185,56 @@ class TimePickerState extends State<TimePicker> {
       });
     }
 
-    handleRollover(
-      controller: minutesScrollController,
+    _handleRollover(
+      controller: _minutesScrollController,
       segmentLength: _minutesList.length,
     );
   }
 
-  void _onClockTypeScroll() {
-    ClockType selectedClockType = _getSelectedValue(
-      scrollOffset: clockTypeScrollController.offset,
-      list: _clockTypeList,
-    );
+  _getClockTypeValue() {
+    if (_clockTypeScrollController.offset > _stepHeight / 2)
+      return ClockType.pm;
+    else
+      return ClockType.am;
+  }
 
-    if (selectedClockType != clockType) {
+  void _onClockTypeScroll() {
+    ClockType selectedClockType = _getClockTypeValue();
+
+    if (selectedClockType != _clockType) {
       triggerHapticWith(HapticOption.click);
       int newHourVal = selectedClockType == ClockType.pm
           ? selectedTime.hour + 12
           : selectedTime.hour - 12;
       setState(() {
-        clockType = selectedClockType;
+        _clockType = selectedClockType;
         selectedTime = TimeOfDay(hour: newHourVal, minute: selectedTime.minute);
       });
     }
   }
 
-  void handleRollover({controller, segmentLength}) {
-    final segmentPixels = segmentLength * _stepHeight;
-
-    if (controller.offset > segmentPixels * 2)
-      controller.position.correctBy(-segmentPixels);
-    else if (controller.offset < segmentPixels)
-      controller.position.correctBy(segmentPixels);
-  }
-
   @override
   Widget build(BuildContext context) {
-    final paddingSteps = (_stepsVisible - 1) / 2;
-    final padding = EdgeInsets.symmetric(
-      vertical: paddingSteps * _stepHeight,
-    );
-
-    final columnWidth = _stepHeight * 1.5;
+    final double columnWidth = _stepHeight * 1.5;
 
     hoursTextMask(list, i) {
-      return (list[i % list.length] + 1).toString();
+      return (list[i % list.length]).toString();
+    }
+
+    adjustHours(int hourVal) {
+      if (_clockType == ClockType.pm)
+        return hourVal - 12;
+      else
+        return hourVal;
     }
 
     final Widget hoursColumn = Container(
       width: columnWidth,
-      child: NotificationListener<ScrollNotification>(
+      child: NotificationListener<Notification>(
         onNotification: (scrollNotification) {
           if (scrollNotification is ScrollEndNotification) {
-            snapScroll(
-              controller: hoursScrollController,
+            _snapScroll(
+              controller: _hoursScrollController,
               listLength: _hoursList.length * 3,
             );
           } else if (scrollNotification is ScrollUpdateNotification) {
@@ -212,17 +242,15 @@ class TimePickerState extends State<TimePicker> {
           }
         },
         child: ListView(
-          controller: hoursScrollController,
-          padding: padding,
+          controller: _hoursScrollController,
+          padding: EdgeInsets.all(0),
           children: [
-            _RollerColumn(
+            _OverflowRollerColumn<int>(
               selectedValue: selectedTime.hour,
-              height: _stepHeight,
+              stepHeight: _stepHeight,
               list: _hoursList,
-              stepsVisible: _stepsVisible,
               textMask: hoursTextMask,
-              canRollover: true,
-              adjustForClockType: clockType,
+              adjustValue: adjustHours,
             )
           ],
         ),
@@ -251,8 +279,8 @@ class TimePickerState extends State<TimePicker> {
       child: NotificationListener<ScrollNotification>(
         onNotification: (scrollNotification) {
           if (scrollNotification is ScrollEndNotification) {
-            snapScroll(
-              controller: minutesScrollController,
+            _snapScroll(
+              controller: _minutesScrollController,
               listLength: _minutesList.length * 3,
             );
           } else if (scrollNotification is ScrollUpdateNotification) {
@@ -260,36 +288,27 @@ class TimePickerState extends State<TimePicker> {
           }
         },
         child: ListView(
-          controller: minutesScrollController,
-          padding: padding,
+          controller: _minutesScrollController,
+          padding: EdgeInsets.all(0),
           children: [
-            _RollerColumn(
+            _OverflowRollerColumn<int>(
               selectedValue: selectedTime.minute,
-              height: _stepHeight,
+              stepHeight: _stepHeight,
               list: _minutesList,
-              stepsVisible: _stepsVisible,
               textMask: minutesTextMask,
-              canRollover: true,
             ),
           ],
         ),
       ),
     );
 
-    clockTypeTextMask(list, i) {
-      if (list[i] == ClockType.am)
-        return "am";
-      else if (list[i] == ClockType.pm) return "pm";
-      return "";
-    }
-
     final Widget clockTypeColumn = Container(
       width: _stepHeight,
       child: NotificationListener<ScrollNotification>(
         onNotification: (scrollNotification) {
           if (scrollNotification is ScrollEndNotification) {
-            snapScroll(
-              controller: minutesScrollController,
+            _snapScroll(
+              controller: _clockTypeScrollController,
               listLength: _clockTypeList.length,
             );
           } else if (scrollNotification is ScrollUpdateNotification) {
@@ -297,23 +316,24 @@ class TimePickerState extends State<TimePicker> {
           }
         },
         child: ListView(
-          controller: clockTypeScrollController,
-          padding: EdgeInsets.symmetric(vertical: _stepHeight * 2),
+          controller: _clockTypeScrollController,
+          padding: EdgeInsets.symmetric(
+            vertical: _boundaryStepCount * _stepHeight,
+          ),
           children: [
-            _RollerColumn(
-              selectedValue: clockType,
-              height: _stepHeight,
-              list: _clockTypeList,
-              stepsVisible: _stepsVisible,
-              textMask: clockTypeTextMask,
+            _ClockTypeRollerColumn(
+              stepHeight: _stepHeight,
+              selectedClockType: _clockType,
             )
           ],
         ),
       ),
     );
 
+    final int totalSteps = _boundaryStepCount * 2 + 1;
+
     return Container(
-      height: _stepsVisible * _stepHeight,
+      height: totalSteps * _stepHeight,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
@@ -327,24 +347,20 @@ class TimePickerState extends State<TimePicker> {
   }
 }
 
-class _RollerColumn extends StatelessWidget {
-  final dynamic selectedValue;
-  final List<dynamic> list;
-  final double height;
-  final int stepsVisible;
-  final Function(List<dynamic>, int) textMask;
-  final ClockType adjustForClockType;
-  final bool canRollover;
+class _OverflowRollerColumn<T> extends StatelessWidget {
+  final T selectedValue;
+  final List<T> list;
+  final double stepHeight;
+  final Function(List<T>, int) textMask;
+  final Function(T) adjustValue;
 
-  _RollerColumn({
+  _OverflowRollerColumn({
     @required this.selectedValue,
     @required this.list,
-    @required this.height,
-    @required this.stepsVisible,
+    @required this.stepHeight,
     @required this.textMask,
-    this.adjustForClockType,
-    this.canRollover: false,
-  }) : assert(stepsVisible.isOdd);
+    this.adjustValue,
+  });
 
   final _inactiveTypography = RoofTypography.bodyPrimary;
   final _activeTypography = RoofTypography.bodyPrimaryThick;
@@ -357,28 +373,26 @@ class _RollerColumn extends StatelessWidget {
     final inactiveStyle =
         _inactiveTypography.textStyleWithColor(inactiveTextColor);
 
-    final widgetsLength = canRollover ? list.length * 3 : list.length;
+    final widgetsLength = list.length * 3;
 
     List<Widget> widgets = [];
 
     for (var i = 0; i < widgetsLength; i++) {
-      final text = textMask(list, i % list.length);
+      final displayText = textMask(list, i % list.length);
 
-      final adjustedValue = adjustForClockType == ClockType.pm
-          ? selectedValue - 12
-          : selectedValue;
+      T adjustedValue =
+          (adjustValue != null) ? adjustValue(selectedValue) : selectedValue;
 
-      final style = i % list.length == list.indexOf(adjustedValue)
+      final style = (i % list.length == list.indexOf(adjustedValue))
           ? activeStyle
           : inactiveStyle;
 
       widgets.add(
         Container(
-          height: height,
-          width: height,
+          height: stepHeight,
           child: Center(
             child: Text(
-              text,
+              displayText,
               style: style,
             ),
           ),
@@ -387,7 +401,60 @@ class _RollerColumn extends StatelessWidget {
     }
 
     return Container(
-      height: widgets.length * height,
+      height: widgets.length * stepHeight,
+      child: Column(children: widgets),
+    );
+  }
+}
+
+class _ClockTypeRollerColumn extends StatelessWidget {
+  final ClockType selectedClockType;
+  final double stepHeight;
+
+  _ClockTypeRollerColumn({
+    this.selectedClockType,
+    this.stepHeight,
+  });
+
+  final _inactiveTypography = RoofTypography.bodyPrimary;
+  final _activeTypography = RoofTypography.bodyPrimaryThick;
+
+  @override
+  Widget build(BuildContext context) {
+    final activeTextColor = RoofTheme.of(context).color.text.primary;
+    final inactiveTextColor = RoofTheme.of(context).color.text.secondary;
+    final activeStyle = _activeTypography.textStyleWithColor(activeTextColor);
+    final inactiveStyle =
+        _inactiveTypography.textStyleWithColor(inactiveTextColor);
+
+    List<Widget> widgets = [];
+
+    final Widget amBlock = Container(
+      height: stepHeight,
+      child: Center(
+        child: Text(
+          "am",
+          style:
+              selectedClockType == ClockType.am ? activeStyle : inactiveStyle,
+        ),
+      ),
+    );
+
+    final Widget pmBlock = Container(
+      height: stepHeight,
+      child: Center(
+        child: Text(
+          "pm",
+          style:
+              selectedClockType == ClockType.pm ? activeStyle : inactiveStyle,
+        ),
+      ),
+    );
+
+    widgets.addAll([amBlock, pmBlock]);
+
+    return Container(
+      height: widgets.length * stepHeight,
       child: Column(children: widgets),
     );
   }
