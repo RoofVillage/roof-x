@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 
+import 'submit_button_state_option.dart';
 import '_components/submit.dart';
-
-export '_components/submit.dart' show SubmitButtonStateOption;
 
 mixin SubmitButtonBuilder {
   RoofSubmitButton buildSubmitButton(BuildContext context,
       {@required String text,
-      @required OnTap onTap,
+      @required Function(BuildContext) onTap,
       SubmitButtonStateOption state}) {
     return RoofSubmitButton(text: text, onTap: onTap, state: state);
   }

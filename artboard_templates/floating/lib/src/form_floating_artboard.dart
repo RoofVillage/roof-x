@@ -6,28 +6,23 @@ import 'package:typography/index.dart';
 import 'package:spec/index.dart';
 import 'package:theme/index.dart';
 import 'package:form_builder/index.dart';
+import 'package:form_body_builder/index.dart';
 import 'package:navigation/index.dart';
 import 'package:artboard/index.dart';
 import 'package:date/index.dart';
 import 'package:date_picker_builder/index.dart';
+import 'package:date_picker_artboard/index.dart';
 
 import 'floating_artboard.dart';
 
-import '_components/date_picker_floating_artboard.dart';
-import 'navigation/navigator.dart';
-
 export 'package:form_builder/index.dart';
 
-abstract class FormFloatingArtboard<T> extends StatefulWidget
-    with Artboard<T>, FloatingArtboard<T>, FormBuilder, SubmitButtonBuilder {
-  String get title;
-  String get subtitle => null;
-  String get auxiliaryDescription => null;
-  String get auxiliaryButtonText => null;
-
+abstract class FormFloatingArtboard<T> extends FloatingArtboard<T>
+    with FormBuilder, FormBodyBuilder, SubmitButtonBuilder {
   @override
   State<StatefulWidget> createState() => _FormFloatingArtboardState();
 
+  @override
   DatePickerBuilder buildDatePicker(BuildContext context,
       {@required Date selectedDate}) {
     return DatePickerFloatingArtboard(selectedDate: selectedDate);
@@ -38,51 +33,19 @@ abstract class FormFloatingArtboard<T> extends StatefulWidget
       {@required BuildContext context, @required Artboard<T> artboard}) async {
     return await ArtboardNavigator.of(context).goTo<T>(artboard);
   }
+
+  @override
+  void onFocusChanged(
+      {@required BuildContext context, @required bool isInFocus}) {
+    ArtboardNavigator.of(context).toggleNavButtonsHidden(!isInFocus);
+  }
 }
 
-class _FormFloatingArtboardState extends State<FormFloatingArtboard>
+class _FormFloatingArtboardState
+    extends FloatingArtboardState<FormFloatingArtboard>
     with
-        ArtboardState<FormFloatingArtboard>,
-        FloatingArtboardState<FormFloatingArtboard>,
+        FormBodyBuilderState<FormFloatingArtboard>,
         FormBuilderState<FormFloatingArtboard> {
-  Widget get _submitButton {
-    return widget.buildSubmitButton(context,
-        text: _submitButtonText,
-        onTap: onSubmitButtonTap,
-        state: _submitButtonState);
-  }
-
-  SubmitButtonStateOption get _submitButtonState {
-    switch (formSubmitState) {
-      case FormSubmitState.exception:
-        return SubmitButtonStateOption.error;
-      case FormSubmitState.loading:
-        return SubmitButtonStateOption.loading;
-      case FormSubmitState.normal:
-        return SubmitButtonStateOption.ready;
-    }
-    return null;
-  }
-
-  String get _submitButtonText {
-    switch (formSubmitState) {
-      case FormSubmitState.exception:
-        return exception.message;
-      case FormSubmitState.loading:
-        return "Loading";
-      case FormSubmitState.normal:
-        return widget.submitButtonText ?? "Submit";
-    }
-    return null;
-  }
-
-  bool _isFocused = false;
-  set isFocused(bool isFocused) {
-    setState(() {
-      _isFocused = isFocused;
-    });
-  }
-
   final _headerStyle = RoofTypography.heading1;
   final _subtitleStyle = RoofTypography.bodyPrimary;
 
@@ -98,8 +61,6 @@ class _FormFloatingArtboardState extends State<FormFloatingArtboard>
     final headerStyle = _headerStyle.textStyleWithColor(headerColor);
     final subtitleStyle = _subtitleStyle.textStyleWithColor(subtitleColor);
 
-    final submitButton = _submitButton;
-
     final widgets = <Widget>[];
 
     if (widget.title != null) {
@@ -114,34 +75,11 @@ class _FormFloatingArtboardState extends State<FormFloatingArtboard>
       Padding(padding: _bodyVerticalPadding, child: buildForm(context)),
     );
 
-    if (!_isFocused) {
+    if (!isFocused) {
       widgets
           .add(Padding(padding: _buttonVerticalPadding, child: submitButton));
     }
 
     return Column(children: widgets);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    widget.form.addOnFocusListener(_onFocus);
-    widget.form.addOnResignFocusListener(_onResignFocus);
-    return super.build(context);
-  }
-
-  @override
-  void dispose() {
-    disposeOfForm();
-    super.dispose();
-  }
-
-  void _onFocus() {
-    isFocused = true;
-    FloatingArtboardNavigator.of(context).hideNavButtons(context);
-  }
-
-  void _onResignFocus() {
-    isFocused = false;
-    FloatingArtboardNavigator.of(context).showNavButtons(context);
   }
 }

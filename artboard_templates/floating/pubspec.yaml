@@ -1,5 +1,5 @@
 name: floating_artboard_templates
-description: Templates the define the visual organization for floating artboards.
+description: Floating frames for building a widget hierarchy in.
 version: 1.0.0+1
 
 environment:
@@ -18,10 +18,14 @@ dependencies:
     path: ../../builders/button
   form_builder:
     path: ../../builders/form
+  form_body_builder:
+    path: ../../builders/form_body
+  button_stack_builder:
+    path: ../../builders/button_stack
   keyboard_accessory_bar_builder:
     path: ../../builders/keyboard_accessory_bar
-  date_picker_builder:
-    path: ../../builders/date_picker
+  date_picker_artboard:
+    path: ../../artboards/date_picker
   nav_button_builder:
     path: ../../builders/nav_button
   date:

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:spec/index.dart';
-import 'package:floating_artboard_templates/index.dart';
 import 'package:icon_library/index.dart';
 import 'package:nav_button_builder/index.dart';
 import 'package:navigation/index.dart';
 
 import '../navigation/index.dart';
+import '../floating_artboard.dart';
 
 class FloatingArtboardNavigatorPanel<T> extends StatefulWidget {
   final FloatingArtboard artboard;

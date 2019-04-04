@@ -2,15 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:theme/index.dart';
 import 'package:artboard/index.dart';
 
-mixin FullScreenArtboard implements Artboard {
+abstract class FullScreenArtboard extends StatefulWidget with Artboard {
   Widget buildBody(BuildContext context);
 
   @override
-  State<StatefulWidget> createState() => _FullScreenScreenArtboardState();
+  State<StatefulWidget> createState() => FullScreenArtboardState();
 }
 
-mixin FullScreenArtboardState<T extends FullScreenArtboard>
-    implements ArtboardState<T> {
+class FullScreenArtboardState<T extends FullScreenArtboard> extends State<T> {
   @override
   Widget build(BuildContext context) {
     final theme = RoofTheme.of(context);
@@ -21,6 +20,3 @@ mixin FullScreenArtboardState<T extends FullScreenArtboard>
     return RoofTheme(theme.current, child: scaffold);
   }
 }
-
-class _FullScreenScreenArtboardState extends State<FullScreenArtboard>
-    with ArtboardState<FullScreenArtboard>, FullScreenArtboardState {}

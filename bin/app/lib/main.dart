@@ -17,7 +17,10 @@ class _Roof extends StatelessWidget {
       child: MaterialApp(
         title: 'Roof',
         debugShowCheckedModeBanner: false,
-        home: BlocProvider(bloc: AppBloc(), child: RootWidget()),
+        home: BlocProvider(
+          bloc: AppBloc(),
+          child: RootWidget(),
+        ),
       ),
     );
   }

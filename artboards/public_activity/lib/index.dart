@@ -1,1 +1,1 @@
-export 'src/public_activity.dart';
+export 'src/full_screen.dart';

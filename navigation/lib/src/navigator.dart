@@ -7,14 +7,19 @@ typedef GoToArtboard = Future<T> Function<T>(Artboard<T> artboard,
     {@required BuildContext context});
 
 typedef PopTo = bool Function<T>([T result]);
+typedef Toggle = Function(bool);
 
 class ArtboardNavigator extends StatefulWidget {
   final Widget child;
   final GoToArtboard goTo;
   final PopTo pop;
+  final Toggle toggleNavButtonsHidden;
 
   ArtboardNavigator(
-      {@required this.child, @required this.goTo, @required this.pop});
+      {@required this.child,
+      @required this.goTo,
+      @required this.pop,
+      this.toggleNavButtonsHidden});
 
   @override
   State<StatefulWidget> createState() => InheritedArtboardNavigator();
@@ -35,6 +40,10 @@ class InheritedArtboardNavigator extends State<ArtboardNavigator> {
   }
 
   bool pop<T>([T result]) => widget.pop(result);
+  void toggleNavButtonsHidden(bool isHidden) {
+    if (widget.toggleNavButtonsHidden == null) return;
+    widget.toggleNavButtonsHidden(isHidden);
+  }
 
   @override
   Widget build(BuildContext context) {
