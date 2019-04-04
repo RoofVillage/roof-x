@@ -20,6 +20,8 @@ dependencies:
     path: ../../builders/form
   form_body_builder:
     path: ../../builders/form_body
+  button_stack_builder:
+    path: ../../builders/button_stack
   keyboard_accessory_bar_builder:
     path: ../../builders/keyboard_accessory_bar
   date_picker_artboard:

@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:theme/index.dart';
 
 import '_mixins/button.dart';
-
-export '_mixins/button.dart';
-
-enum SubmitButtonStateOption { error, loading, ready }
+import '../submit_button_state_option.dart';
 
 class RoofSubmitButton extends StatefulWidget with RoofButton {
   final OnTap onTap;
