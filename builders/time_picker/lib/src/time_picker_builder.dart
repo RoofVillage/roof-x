@@ -39,6 +39,9 @@ class TimePickerState extends State<TimePicker> {
   ScrollController _hoursScrollController;
   ScrollController _minutesScrollController;
   ScrollController _clockTypeScrollController;
+  bool _shouldSnapHours = true;
+  bool _shouldSnapMinutes = true;
+  bool _shouldSnapClockType = true;
   ClockType _clockType;
 
   @override
@@ -113,24 +116,25 @@ class TimePickerState extends State<TimePicker> {
   }
 
   void _snapScroll({ScrollController controller, int listLength}) {
-    double animateTo = 0;
+    Future.delayed(Duration(milliseconds: 50), () {
+      double targetOffset = 0;
 
-    if (controller.offset % _stepHeight == 0) return;
+      if (controller.offset % _stepHeight == 0) return;
 
-    for (var i = 0; i < listLength; i++) {
-      final distanceFromMiddle =
-          ((_stepHeight * i + _stepHeight * .5) - controller.offset).abs();
-      if (distanceFromMiddle < _stepHeight) animateTo = _stepHeight * i;
-    }
-
-    Future.delayed(
-      Duration(seconds: 0),
-      () => controller.animateTo(
-            animateTo,
-            duration: RoofDuration.short,
-            curve: RoofCurve.quick,
-          ),
-    );
+      for (var i = 0; i < listLength; i++) {
+        final distanceFromMiddle =
+            ((_stepHeight * i + _stepHeight * .5) - controller.offset).abs();
+        if (distanceFromMiddle < _stepHeight) targetOffset = _stepHeight * i;
+      }
+      if ((controller == _minutesScrollController && _shouldSnapMinutes) ||
+          (controller == _hoursScrollController && _shouldSnapHours) ||
+          (controller == _clockTypeScrollController && _shouldSnapClockType))
+        controller.animateTo(
+          targetOffset,
+          duration: RoofDuration.short,
+          curve: RoofCurve.quick,
+        );
+    });
   }
 
   _getSelectedValue({double scrollOffset, List list}) {
@@ -199,6 +203,8 @@ class TimePickerState extends State<TimePicker> {
   }
 
   void _onClockTypeScroll() {
+    _shouldSnapClockType = true;
+
     ClockType selectedClockType = _getClockTypeValue();
 
     if (selectedClockType != _clockType) {
@@ -233,11 +239,13 @@ class TimePickerState extends State<TimePicker> {
       child: NotificationListener<Notification>(
         onNotification: (scrollNotification) {
           if (scrollNotification is ScrollEndNotification) {
+            _shouldSnapHours = true;
             _snapScroll(
               controller: _hoursScrollController,
               listLength: _hoursList.length * 3,
             );
           } else if (scrollNotification is ScrollUpdateNotification) {
+            _shouldSnapHours = false;
             _onHoursScroll();
           }
         },
@@ -279,11 +287,13 @@ class TimePickerState extends State<TimePicker> {
       child: NotificationListener<ScrollNotification>(
         onNotification: (scrollNotification) {
           if (scrollNotification is ScrollEndNotification) {
+            _shouldSnapMinutes = true;
             _snapScroll(
               controller: _minutesScrollController,
               listLength: _minutesList.length * 3,
             );
           } else if (scrollNotification is ScrollUpdateNotification) {
+            _shouldSnapMinutes = false;
             _onMinutesScroll();
           }
         },
@@ -307,11 +317,13 @@ class TimePickerState extends State<TimePicker> {
       child: NotificationListener<ScrollNotification>(
         onNotification: (scrollNotification) {
           if (scrollNotification is ScrollEndNotification) {
+            _shouldSnapClockType = true;
             _snapScroll(
               controller: _clockTypeScrollController,
               listLength: _clockTypeList.length,
             );
           } else if (scrollNotification is ScrollUpdateNotification) {
+            _shouldSnapClockType = false;
             _onClockTypeScroll();
           }
         },
