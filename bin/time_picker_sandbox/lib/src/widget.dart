@@ -9,11 +9,13 @@ import 'package:time_picker_builder/index.dart';
 import 'bloc.dart';
 import 'data/index.dart';
 
-class RootWidget extends StatelessWidget {
+class RootWidget extends StatelessWidget with TimePickerBuilder {
   Widget build(BuildContext context) {
     final theme = RoofTheme.of(context);
 
     final AppBloc tableBloc = BlocProvider.of<AppBloc>(context);
+
+    final timePicker = buildTimePicker(context);
 
     return StreamBuilder<StreamableAppStateData>(
       stream: tableBloc.outAppState,
@@ -21,9 +23,8 @@ class RootWidget extends StatelessWidget {
         return Scaffold(
           backgroundColor: theme.color.background.general,
           body: Center(
-              child: TimePicker(
-            initialValue: TimeOfDay.now(),
-          )),
+            child: timePicker,
+          ),
         );
       },
     );
