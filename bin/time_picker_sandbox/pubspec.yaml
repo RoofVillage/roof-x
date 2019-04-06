@@ -13,7 +13,7 @@ dependencies:
     path: ../../theme
   stream:
     path: ../../lib/stream
-  public_activity_artboards:
+  public_activity_artboard:
     path: ../../artboards/public_activity
   full_screen_artboard_templates:
     path: ../../artboard_templates/full_screen
