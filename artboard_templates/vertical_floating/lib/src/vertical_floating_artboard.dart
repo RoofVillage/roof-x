@@ -15,8 +15,6 @@ abstract class VerticalFloatingArtboardState<T extends VerticalFloatingArtboard>
     extends State<T> with ArtboardState<T> {
   Widget buildBody(BuildContext context);
   Widget build(BuildContext context) {
-    final child = buildBody(context);
-
-    return VerticalFloatingArtboardScaffold(child: child);
+    return VerticalFloatingArtboardScaffold(child: buildBody(context));
   }
 }

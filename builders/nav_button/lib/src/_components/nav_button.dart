@@ -18,7 +18,10 @@ mixin RoofNavButton implements StatelessWidget {
 
     return GestureDetector(
         onTap: () => _onTap(context),
-        child: Container(padding: _padding, child: iconForTheme(theme)));
+        child: Container(
+          padding: _padding,
+          child: iconForTheme(theme),
+        ));
   }
 
   void _onTap(BuildContext context) {

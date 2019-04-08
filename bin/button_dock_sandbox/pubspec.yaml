@@ -1,0 +1,42 @@
+name: button_dock_sandbox
+description: Sandbox view for button dock
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  theme:
+    path: ../../theme
+  stream:
+    path: ../../lib/stream
+  public_activity_artboard:
+    path: ../../artboards/public_activity
+  vertical_full_screen_artboard_templates:
+    path: ../../artboard_templates/vertical_full_screen
+  artboard:
+    path: ../../artboard
+  button_dock_builder:
+    path: ../../builders/button_dock
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  fonts:
+    - family: azo
+      fonts:
+        - asset: packages/typography/fonts/azo/AzoSans-Thin.otf
+          weight: 100
+        - asset: packages/typography/fonts/azo/AzoSans-Light.otf
+          weight: 200
+        - asset: packages/typography/fonts/azo/AzoSans-Regular.otf
+          weight: 300
+        - asset: packages/typography/fonts/azo/AzoSans-Medium.otf
+          weight: 400
+        - asset: packages/typography/fonts/azo/AzoSans-Bold.otf
+          weight: 500
