@@ -1,34 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:floating_artboard_templates/index.dart';
+import 'package:vertical_floating_artboard_templates/index.dart';
 import 'package:date/index.dart';
 import 'package:date_picker_builder/index.dart';
 
-class DatePickerFloatingArtboard extends FloatingArtboard<Date>
+class DatePickerVerticalFloatingArtboard extends VerticalFloatingArtboard<Date>
     with DatePickerBuilder {
   final Date selectedDate;
   final Date startBound;
   final Date endBound;
 
-  DatePickerFloatingArtboard({
+  DatePickerVerticalFloatingArtboard({
     this.selectedDate,
     this.startBound,
     this.endBound,
   });
 
-  _DatePickerFloatingArtboardState createState() =>
-      _DatePickerFloatingArtboardState();
+  _DatePickerVerticalFloatingArtboardState createState() =>
+      _DatePickerVerticalFloatingArtboardState();
 }
 
-class _DatePickerFloatingArtboardState
-    extends FloatingArtboardState<DatePickerFloatingArtboard>
-    with DatePickerBuilderState<DatePickerFloatingArtboard> {
+class _DatePickerVerticalFloatingArtboardState
+    extends VerticalFloatingArtboardState<DatePickerVerticalFloatingArtboard>
+    with DatePickerBuilderState<DatePickerVerticalFloatingArtboard> {
   @override
   Date get date =>
-      FloatingArtboardNavigatorPanel.of(context, shouldRebuild: false).result;
+      VerticalFloatingArtboardNavigatorPanel.of(context, shouldRebuild: false)
+          .result;
 
   @override
   set date(Date newDate) {
-    FloatingArtboardNavigatorPanel.of(context).result = newDate;
+    VerticalFloatingArtboardNavigatorPanel.of(context).result = newDate;
   }
 
   @override

@@ -13,8 +13,8 @@ dependencies:
     path: ../../theme
   public_activity_artboard:
     path: ../../artboards/public_activity
-  full_screen_artboard_templates:
-    path: ../../artboard_templates/full_screen
+  vertical_full_screen_artboard_templates:
+    path: ../../artboard_templates/vertical_full_screen
   artboard:
     path: ../../artboard
   device_screen:

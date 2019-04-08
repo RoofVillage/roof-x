@@ -1,14 +1,14 @@
 import 'dart:async';
 
-import 'package:floating_artboard_templates/index.dart';
+import 'package:vertical_floating_artboard_templates/index.dart';
 import 'package:flutter/material.dart';
 
 import '_builder.dart';
 
-class ChallengeFloatingArtboard extends FormFloatingArtboard
+class ChallengeVerticalFloatingArtboard extends FormVerticalFloatingArtboard
     with ChallengeArtboardBuilder {
   final String phoneNumber;
-  ChallengeFloatingArtboard({this.phoneNumber});
+  ChallengeVerticalFloatingArtboard({this.phoneNumber});
 
   @override
   Future<void> submit(BuildContext context) async {
