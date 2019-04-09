@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:vertical_floating_artboard_templates/index.dart';
+import 'package:horizontal_floating_artboard_templates/index.dart';
 import 'package:theme/index.dart';
 import 'package:artboard/index.dart';
 import 'package:navigation/index.dart';
@@ -48,6 +49,19 @@ class VerticalFullScreenInheritedArtboardNavigator
           VerticalFloatingArtboardNavigator(artboard: artboard);
       final result = await Navigator.of(context).push<dynamic>(
           VerticalFloatingRoute(
+              builder: (context) => floatingNavigator,
+              currentTheme: theme.current));
+      if (result is Artboard) {
+        return await _goTo<T>(result, context: context);
+      } else if (result is T) {
+        return result;
+      }
+      return Future.value();
+    } else if (artboard is HorizontalFloatingArtboard) {
+      final floatingNavigator =
+          HorizontalFloatingArtboardNavigator(artboard: artboard);
+      final result = await Navigator.of(context).push<dynamic>(
+          HorizontalFloatingRoute(
               builder: (context) => floatingNavigator,
               currentTheme: theme.current));
       if (result is Artboard) {

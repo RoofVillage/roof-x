@@ -1,0 +1,25 @@
+name: horizontal_floating_artboard_templates
+description: horizontal floating frames for building a widget hierarchy in.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  navigation:
+    path: ../../navigation
+  artboard:
+    path: ../../artboard
+  theme:
+    path: ../../theme
+  spec:
+    path: ../../spec
+  keyboard_accessory:
+    path: ../../lib/keyboard_accessory
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

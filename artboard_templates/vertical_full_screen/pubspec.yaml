@@ -16,6 +16,8 @@ dependencies:
     path: ../../builders/input_dock
   vertical_floating_artboard_templates:
     path: ../vertical_floating
+  horizontal_floating_artboard_templates:
+    path: ../horizontal_floating
   keyboard_accessory:
     path: ../../lib/keyboard_accessory
   artboard:

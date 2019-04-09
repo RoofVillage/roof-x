@@ -4,8 +4,9 @@ import 'package:icon_library/index.dart';
 import 'package:nav_button_builder/index.dart';
 import 'package:navigation/index.dart';
 
-import '../navigation/index.dart';
 import '../vertical_floating_artboard.dart';
+import 'button_option.dart';
+import 'navigator.dart';
 
 class VerticalFloatingArtboardNavigatorPanel<T> extends StatefulWidget {
   final VerticalFloatingArtboard artboard;

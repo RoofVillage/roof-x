@@ -4,15 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:spec/index.dart';
 import 'package:theme/index.dart';
 
-class VerticalFloatingArtboardScaffold extends StatelessWidget {
+class HorizontalFloatingArtboardScaffold extends StatelessWidget {
   final Widget child;
 
   final _margin = EdgeInsets.fromLTRB(
-      RoofDistance.c, RoofDistance.e, RoofDistance.c, RoofDistance.c);
+      RoofDistance.e, RoofDistance.c, RoofDistance.c, RoofDistance.c);
   final _padding = EdgeInsets.fromLTRB(
-      RoofDistance.c, RoofDistance.c, RoofDistance.c, RoofDistance.f);
+      RoofDistance.c, RoofDistance.c, RoofDistance.c, RoofDistance.c);
 
-  VerticalFloatingArtboardScaffold({@required this.child});
+  HorizontalFloatingArtboardScaffold({@required this.child});
 
   @override
   Widget build(BuildContext context) {
