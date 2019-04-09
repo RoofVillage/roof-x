@@ -1,4 +1,4 @@
-name: button_dock_builder
+name: button_row_dock_builder
 description: Button dock that arranges two buttons horizontally at the bottom of the screen.
 
 version: 1.0.0+1

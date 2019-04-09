@@ -38,7 +38,7 @@ class RoofCalendarDatePicker extends StatelessWidget {
         RoofTypography.bodySecondary.textStyleWithColor(theme.color.text.brand);
 
     final todayTextStyle = RoofTypography.bodyPrimaryThick
-        .textStyleWithColor(theme.color.text.transitionAction);
+        .textStyleWithColor(theme.color.text.secondaryAction);
 
     return Container(
       child: CalendarCarousel(

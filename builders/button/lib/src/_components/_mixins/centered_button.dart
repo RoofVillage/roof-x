@@ -7,17 +7,16 @@ import 'package:haptics/index.dart';
 typedef ColorGetter = Color Function(BuildContext context);
 typedef OnTap = void Function(BuildContext context);
 
-mixin RoofButton {
+mixin RoofCenteredButton {
   OnTap get onTap;
   String get text => null;
   StandardIconReference get iconReference => null;
   ColorGetter get backgroundColor;
-  ColorGetter get borderColor;
   ColorGetter get textColor;
 }
 
 mixin RoofButtonState {
-  RoofButton get button;
+  RoofCenteredButton get button;
   BuildContext get context;
 
   bool _tapped = false;
@@ -57,7 +56,6 @@ mixin RoofButtonState {
 
     final decoration = BoxDecoration(
       color: button.backgroundColor(context).withOpacity(opacity),
-      border: Border.all(width: 1, color: button.borderColor(context)),
       borderRadius: BorderRadius.all(RoofCornerRadius.regular),
     );
 

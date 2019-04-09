@@ -19,7 +19,7 @@ export 'package:form_builder/index.dart';
 
 abstract class FormVerticalFloatingArtboard<T>
     extends VerticalFloatingArtboard<T>
-    with FormBuilder, FormBodyBuilder, SubmitButtonBuilder {
+    with FormBuilder, FormBodyBuilder, CenteredButtonBuilder {
   @override
   State<StatefulWidget> createState() => _FormVerticalFloatingArtboardState();
 
