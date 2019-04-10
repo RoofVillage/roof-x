@@ -6,17 +6,18 @@ import 'package:typography/index.dart' as typography;
 import 'package:haptics/index.dart';
 import 'package:typedefs/index.dart';
 
-mixin RoofButton {
+mixin RoofLeftButton {
   ContextPasser get onTap;
-  String get text => null;
+  String get text;
   StandardIconReference get iconReference => null;
+  bool get hasArrow => true;
+  ColorGetter get arrowColor;
   ColorGetter get backgroundColor;
-  ColorGetter get borderColor;
   ColorGetter get textColor;
 }
 
-mixin RoofButtonState {
-  RoofButton get button;
+mixin RoofLeftButtonState {
+  RoofLeftButton get button;
   BuildContext get context;
 
   bool _tapped = false;
@@ -29,7 +30,7 @@ mixin RoofButtonState {
   Widget buildButton(BuildContext context) {
     List<Widget> buttonChildren = [];
 
-    final color = button.textColor(context);
+    final textColor = button.textColor(context);
 
     if (button.iconReference != null) {
       final iconPadding = button.text != null
@@ -38,25 +39,29 @@ mixin RoofButtonState {
 
       final buttonIcon = Container(
           padding: iconPadding,
-          child: button.iconReference.buildSvg(color: color));
+          child: button.iconReference.buildSvg(color: textColor));
 
       buttonChildren.add(buttonIcon);
     }
 
-    if (button.text != null) {
-      final textDecoration = _textStyle.textStyleWithColor(color);
+    final textDecoration = _textStyle.textStyleWithColor(textColor);
 
-      final styledButtonText =
-          Text(button.text, style: textDecoration, textAlign: TextAlign.center);
+    final styledButtonText =
+        Text(button.text, style: textDecoration, textAlign: TextAlign.center);
 
-      buttonChildren.add(styledButtonText);
-    }
+    final textContainer = Expanded(child: styledButtonText);
+
+    buttonChildren.add(textContainer);
+
+    final rightArrowIcon =
+        IconReference.upArrow.buildSvg(color: button.arrowColor(context));
+
+    buttonChildren.add(rightArrowIcon);
 
     double opacity = _tapped ? _tappedOpacity : 1;
 
     final decoration = BoxDecoration(
       color: button.backgroundColor(context).withOpacity(opacity),
-      border: Border.all(width: 1, color: button.borderColor(context)),
       borderRadius: BorderRadius.all(corner_radius.regular),
     );
 

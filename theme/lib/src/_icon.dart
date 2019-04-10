@@ -36,7 +36,7 @@ class RoofIconColor {
     return null;
   }
 
-  Color get transitionAction {
+  Color get action {
     switch (_current) {
       case RoofThemeOption.light:
         return color.blue;

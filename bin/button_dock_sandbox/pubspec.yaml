@@ -19,8 +19,8 @@ dependencies:
     path: ../../artboard_templates/vertical_full_screen
   artboard:
     path: ../../artboard
-  button_dock_builder:
-    path: ../../builders/button_dock
+  button_row_dock_builder:
+    path: ../../builders/button_row_dock
 
 dev_dependencies:
   flutter_test:

@@ -18,7 +18,7 @@ class SecondaryActionKeyboardAccessoryButton extends StatelessWidget
     final theme = RoofTheme.of(context);
 
     final textStyle =
-        typography.button.textStyleWithColor(theme.color.text.transitionAction);
+        typography.button.textStyleWithColor(theme.color.text.secondaryAction);
 
     _onTap() {
       triggerHapticWith(HapticOption.click);
@@ -29,7 +29,7 @@ class SecondaryActionKeyboardAccessoryButton extends StatelessWidget
       context: context,
       onTap: _onTap,
       child: Container(
-        color: theme.color.background.transitionButton,
+        color: theme.color.background.secondaryAction,
         child: Center(
           child: Text(
             title,

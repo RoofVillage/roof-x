@@ -28,7 +28,7 @@ class RoofStrokeColor {
     return null;
   }
 
-  Color get transitionAction {
+  Color get secondaryAction {
     switch (_current) {
       case RoofThemeOption.light:
         return color.blue;

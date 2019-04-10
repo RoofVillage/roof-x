@@ -56,12 +56,32 @@ class RoofTextColor {
     return null;
   }
 
-  Color get submitAction {
+  Color get primaryAction {
     switch (_current) {
       case RoofThemeOption.light:
         return color.white1;
       case RoofThemeOption.dark:
         return color.white1;
+    }
+    return null;
+  }
+
+  Color get secondaryAction {
+    switch (_current) {
+      case RoofThemeOption.light:
+        return color.blue;
+      case RoofThemeOption.dark:
+        return color.blue;
+    }
+    return null;
+  }
+
+  Color get inactiveAction {
+    switch (_current) {
+      case RoofThemeOption.light:
+        return color.gray4;
+      case RoofThemeOption.dark:
+        return color.gray2;
     }
     return null;
   }
@@ -72,16 +92,6 @@ class RoofTextColor {
         return color.alert;
       case RoofThemeOption.dark:
         return color.alert;
-    }
-    return null;
-  }
-
-  Color get transitionAction {
-    switch (_current) {
-      case RoofThemeOption.light:
-        return color.blue;
-      case RoofThemeOption.dark:
-        return color.blue;
     }
     return null;
   }

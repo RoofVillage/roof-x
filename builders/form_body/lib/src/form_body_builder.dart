@@ -11,8 +11,7 @@ import 'package:artboard/index.dart';
 
 import '_components/keyboard_accessory_buttons/index.dart';
 import '_components/roof_stream_form.dart';
-
-enum FormSubmitState { normal, loading, exception }
+import 'form_status.dart';
 
 mixin FormBodyBuilder implements StatefulWidget {
   Future<List<StreamableFormFieldData>> get fieldData async => Future.value([]);
@@ -86,7 +85,7 @@ mixin FormBodyBuilder implements StatefulWidget {
 
 mixin FormBodyBuilderState<T extends FormBodyBuilder> implements State<T> {
   FormValidationException exception;
-  FormSubmitState formSubmitState = FormSubmitState.normal;
+  FormSubmitStatus formSubmitState = FormSubmitStatus.ready;
 
   bool _hasSetUp = false;
 
@@ -173,18 +172,18 @@ mixin FormBodyBuilderState<T extends FormBodyBuilder> implements State<T> {
   void _handleException(
       BuildContext context, FormValidationException exception) {
     this.exception = exception;
-    setState(() => formSubmitState = FormSubmitState.exception);
+    setState(() => formSubmitState = FormSubmitStatus.exception);
     triggerHapticWith(HapticOption.medium);
   }
 
   void _handleLoading(BuildContext context) {
-    if (formSubmitState == FormSubmitState.loading) return;
-    setState(() => formSubmitState = FormSubmitState.loading);
+    if (formSubmitState == FormSubmitStatus.loading) return;
+    setState(() => formSubmitState = FormSubmitStatus.loading);
   }
 
   void _restoreState() {
-    if (formSubmitState == FormSubmitState.normal) return;
-    setState(() => formSubmitState = FormSubmitState.normal);
+    if (formSubmitState == FormSubmitStatus.ready) return;
+    setState(() => formSubmitState = FormSubmitStatus.ready);
   }
 
   void _enableForm() async {

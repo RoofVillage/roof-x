@@ -58,7 +58,7 @@ class RoofBackgroundColor {
     return null;
   }
 
-  Color get submitButton {
+  Color get primaryAction {
     switch (_current) {
       case RoofThemeOption.light:
         return color.blue;
@@ -68,7 +68,7 @@ class RoofBackgroundColor {
     return null;
   }
 
-  Color get transitionButton {
+  Color get secondaryAction {
     switch (_current) {
       case RoofThemeOption.light:
         return color.white1;
@@ -78,7 +78,7 @@ class RoofBackgroundColor {
     return null;
   }
 
-  Color get errorButton {
+  Color get errorAction {
     switch (_current) {
       case RoofThemeOption.light:
         return color.alert;
@@ -88,7 +88,7 @@ class RoofBackgroundColor {
     return null;
   }
 
-  Color get inactiveButton {
+  Color get inactiveAction {
     switch (_current) {
       case RoofThemeOption.light:
         return color.gray4;

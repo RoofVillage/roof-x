@@ -38,7 +38,7 @@ class RoofCalendarDatePicker extends StatelessWidget {
         typography.bodySecondary.textStyleWithColor(theme.color.text.brand);
 
     final todayTextStyle = typography.bodyPrimaryThick
-        .textStyleWithColor(theme.color.text.transitionAction);
+        .textStyleWithColor(theme.color.text.secondaryAction);
 
     return Container(
       child: CalendarCarousel(
@@ -53,7 +53,7 @@ class RoofCalendarDatePicker extends StatelessWidget {
         todayBorderColor: Colors.transparent,
         selectedDayTextStyle: daysPrimaryStyle,
         todayTextStyle: todayTextStyle,
-        selectedDayButtonColor: theme.color.background.submitButton,
+        selectedDayButtonColor: theme.color.background.primaryAction,
         inactiveDaysTextStyle: inactiveTextStyle,
         nextDaysTextStyle: inactiveTextStyle,
         prevDaysTextStyle: inactiveTextStyle,

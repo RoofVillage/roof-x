@@ -58,7 +58,7 @@ class _DockActionButtonState extends State<DockActionButton>
     dock.showSubmitButton ? _animateForward() : _animateReverse();
 
     final buttonDecoration = BoxDecoration(
-      border: Border.all(color: theme.color.stroke.transitionAction),
+      border: Border.all(color: theme.color.stroke.secondaryAction),
       borderRadius: BorderRadius.all(corner_radius.regular),
     );
 
@@ -73,8 +73,8 @@ class _DockActionButtonState extends State<DockActionButton>
 
     final buttonIcon = Container(
       key: _buttonIconKey,
-      child: widget.actionIconReference
-          .buildSvg(color: theme.color.icon.transitionAction),
+      child:
+          widget.actionIconReference.buildSvg(color: theme.color.icon.action),
     );
 
     final buttonText = _ButtonText(
@@ -187,7 +187,7 @@ class _ButtonText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final buttonTextColor = RoofTheme.of(context).color.text.transitionAction;
+    final buttonTextColor = RoofTheme.of(context).color.text.secondaryAction;
 
     final textContainerPadding = EdgeInsets.fromLTRB(distance.b, 0, 0, 0);
 

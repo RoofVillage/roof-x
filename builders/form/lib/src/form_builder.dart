@@ -5,7 +5,7 @@ import 'package:typography/index.dart' as typography;
 import 'package:distance/index.dart' as distance;
 import 'package:theme/index.dart';
 
-mixin FormBuilder implements FormBodyBuilder, SubmitButtonBuilder {
+mixin FormBuilder implements FormBodyBuilder, PrimaryCenterButtonBuilder {
   String get title;
   String get subtitle => null;
   String get auxiliaryDescription => null;
@@ -15,31 +15,33 @@ mixin FormBuilder implements FormBodyBuilder, SubmitButtonBuilder {
 mixin FormBuilderState<T extends FormBuilder>
     implements FormBodyBuilderState<T> {
   Widget get submitButton {
-    return widget.buildSubmitButton(context,
-        text: submitButtonText,
-        onTap: onSubmitButtonTap,
-        state: _submitButtonState);
+    return widget.buildPrimaryCenterButton(
+      context,
+      text: submitButtonText,
+      onTap: onSubmitButtonTap,
+      status: _submitButtonState,
+    );
   }
 
-  SubmitButtonStateOption get _submitButtonState {
+  ButtonStatusOption get _submitButtonState {
     switch (formSubmitState) {
-      case FormSubmitState.exception:
-        return SubmitButtonStateOption.error;
-      case FormSubmitState.loading:
-        return SubmitButtonStateOption.loading;
-      case FormSubmitState.normal:
-        return SubmitButtonStateOption.ready;
+      case FormSubmitStatus.exception:
+        return ButtonStatusOption.error;
+      case FormSubmitStatus.loading:
+        return ButtonStatusOption.loading;
+      case FormSubmitStatus.ready:
+        return ButtonStatusOption.ready;
     }
     return null;
   }
 
   String get submitButtonText {
     switch (formSubmitState) {
-      case FormSubmitState.exception:
+      case FormSubmitStatus.exception:
         return exception.message;
-      case FormSubmitState.loading:
+      case FormSubmitStatus.loading:
         return "Loading";
-      case FormSubmitState.normal:
+      case FormSubmitStatus.ready:
         return widget.submitButtonText ?? "Submit";
     }
     return null;

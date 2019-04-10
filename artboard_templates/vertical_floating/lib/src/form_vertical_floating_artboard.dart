@@ -8,6 +8,7 @@ import 'package:artboard/index.dart';
 import 'package:date/index.dart';
 import 'package:date_picker_builder/index.dart';
 import 'package:date_picker_artboard/index.dart';
+import 'package:button_builder/index.dart';
 
 import 'utils/vertical_floating_artboard.dart';
 
@@ -19,7 +20,7 @@ abstract class FormVerticalFloatingArtboard<T> extends StatefulWidget
         Artboard<T>,
         FormBuilder,
         FormBodyBuilder,
-        SubmitButtonBuilder {
+        PrimaryCenterButtonBuilder {
   @override
   State<StatefulWidget> createState() => _FormVerticalFloatingArtboardState();
 
