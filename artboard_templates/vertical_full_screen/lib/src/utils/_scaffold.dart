@@ -13,8 +13,13 @@ class VerticalFullScreenScaffold extends StatelessWidget {
 
     if (navBar != null) children.add(navBar);
     final stretchedBody = Expanded(
-        child: MediaQuery.removePadding(
-            context: context, removeTop: true, child: body));
+      child: MediaQuery.removePadding(
+        context: context,
+        removeTop: true,
+        child: body,
+      ),
+    );
+
     children.add(stretchedBody);
     if (dock != null) children.add(dock);
 
