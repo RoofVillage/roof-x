@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:decorated_text/index.dart';
 import 'package:icon_library/index.dart';
 
-import 'package:spec/index.dart';
+import 'package:distance/index.dart' as distance;
 import 'package:theme/index.dart';
-import 'package:typography/index.dart';
+import 'package:typography/index.dart' as typography;
 
 class RoofCellA extends StatelessWidget {
   final WeightDecoratedText titleText;
@@ -12,8 +12,8 @@ class RoofCellA extends StatelessWidget {
   final StandardIconReference iconReference;
   final VoidCallback onTap;
 
-  final _horizontalPadding = RoofDistance.b;
-  final _minHeight = RoofDistance.f;
+  final _horizontalPadding = distance.b;
+  final _minHeight = distance.f;
 
   RoofCellA(
       {Key key,
@@ -58,9 +58,9 @@ class _Body extends StatelessWidget {
   final String detailText;
   final StandardIconReference iconReference;
 
-  final _verticalPadding = RoofDistance.b;
-  final _imagePaddingRight = RoofDistance.b;
-  final _detailPaddingTop = RoofDistance.a;
+  final _verticalPadding = distance.b;
+  final _imagePaddingRight = distance.b;
+  final _detailPaddingTop = distance.a;
 
   _Body(
       {Key key,
@@ -108,7 +108,7 @@ class _Body extends StatelessWidget {
 class _DetailLabel extends StatelessWidget {
   final String text;
 
-  final _typographyStyle = RoofTypography.bodyPrimary;
+  final _typographyStyle = typography.bodyPrimary;
 
   _DetailLabel({Key key, @required this.text}) : super(key: key);
   @override
@@ -134,8 +134,8 @@ class _CellDivider extends StatelessWidget {
 class _TitleLabel extends StatelessWidget {
   final WeightDecoratedText decoratedText;
 
-  final _defaultTypographyStyle = RoofTypography.title;
-  final _thinTypographyStyle = RoofTypography.bodySecondary;
+  final _defaultTypographyStyle = typography.title;
+  final _thinTypographyStyle = typography.bodySecondary;
 
   _TitleLabel({Key key, @required this.decoratedText}) : super(key: key);
 

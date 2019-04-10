@@ -2,7 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:multi_image_picker/asset.dart';
-import 'package:spec/index.dart';
+import 'package:duration/index.dart' as duration;
+import 'package:curve/index.dart' as curve;
+import 'package:distance/index.dart' as distance;
+import 'package:corner_radius/index.dart' as corner_radius;
 import 'package:icon_library/index.dart';
 import 'package:haptics/index.dart';
 
@@ -18,11 +21,11 @@ class DockFilePreviewState extends State<DockFilePreview>
 
   @override
   void didChangeDependencies() {
-    Future.delayed(RoofDuration.short, () {
+    Future.delayed(duration.short, () {
       _listViewController.animateTo(
         _listViewController.position.maxScrollExtent,
-        duration: RoofDuration.short,
-        curve: RoofCurve.quick,
+        duration: duration.short,
+        curve: curve.quick,
       );
     });
     super.didChangeDependencies();
@@ -50,7 +53,7 @@ class DockFilePreviewState extends State<DockFilePreview>
       height: dock.files.isNotEmpty ? dock.previewHeight : 0,
       child: ListView(
         controller: _listViewController,
-        padding: EdgeInsets.symmetric(horizontal: RoofDistance.c),
+        padding: EdgeInsets.symmetric(horizontal: distance.c),
         scrollDirection: Axis.horizontal,
         children: previews,
       ),
@@ -58,8 +61,8 @@ class DockFilePreviewState extends State<DockFilePreview>
 
     return AnimatedSize(
       vsync: this,
-      curve: RoofCurve.quick,
-      duration: RoofDuration.short,
+      curve: curve.quick,
+      duration: duration.short,
       child: previewRow,
     );
   }
@@ -94,7 +97,7 @@ class _FilePreviewState extends State<_FilePreview>
 
     if (widget.animateOnRemove) {
       setState(() => _show = false);
-      Future.delayed(RoofDuration.short, () {
+      Future.delayed(duration.short, () {
         widget.removeFile();
         widget.file.release();
       });
@@ -114,7 +117,7 @@ class _FilePreviewState extends State<_FilePreview>
       onTap: _remove,
       child: Container(
         width: _show ? null : 0,
-        padding: EdgeInsets.all(RoofDistance.a),
+        padding: EdgeInsets.all(distance.a),
         child: removeIcon,
       ),
     );
@@ -126,15 +129,15 @@ class _FilePreviewState extends State<_FilePreview>
     );
 
     final imageWidget = ClipRRect(
-      borderRadius: BorderRadius.all(RoofCornerRadius.small),
+      borderRadius: BorderRadius.all(corner_radius.small),
       clipBehavior: Clip.antiAliasWithSaveLayer,
       child: thumbnail,
     );
 
     final animatedWidthContainer = AnimatedSize(
       vsync: this,
-      curve: RoofCurve.quick,
-      duration: RoofDuration.short,
+      curve: curve.quick,
+      duration: duration.short,
       alignment: Alignment.topLeft,
       child: Container(
         width: _show ? widget.previewWidth : 0,
@@ -144,12 +147,12 @@ class _FilePreviewState extends State<_FilePreview>
 
     return AnimatedOpacity(
       opacity: _show ? 1 : 0,
-      curve: RoofCurve.quick,
-      duration: RoofDuration.short,
+      curve: curve.quick,
+      duration: duration.short,
       child: Container(
         margin: EdgeInsets.only(
-          top: RoofDistance.c,
-          right: widget.isRightPadded ? RoofDistance.a : 0,
+          top: distance.c,
+          right: widget.isRightPadded ? distance.a : 0,
         ),
         child: Stack(
           children: [animatedWidthContainer, removeButton],

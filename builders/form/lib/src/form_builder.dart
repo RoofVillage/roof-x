@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:button_builder/index.dart';
 import 'package:form_body_builder/index.dart';
-import 'package:typography/index.dart';
-import 'package:spec/index.dart';
+import 'package:typography/index.dart' as typography;
+import 'package:distance/index.dart' as distance;
 import 'package:theme/index.dart';
 
 mixin FormBuilder implements FormBodyBuilder, SubmitButtonBuilder {
@@ -45,11 +45,11 @@ mixin FormBuilderState<T extends FormBuilder>
     return null;
   }
 
-  final _headerStyle = RoofTypography.heading1;
-  final _subtitleStyle = RoofTypography.bodyPrimary;
+  final _headerStyle = typography.heading1;
+  final _subtitleStyle = typography.bodyPrimary;
 
-  final _bodyVerticalPadding = EdgeInsets.only(top: RoofDistance.d);
-  final _buttonVerticalPadding = EdgeInsets.only(top: RoofDistance.d);
+  final _bodyVerticalPadding = EdgeInsets.only(top: distance.d);
+  final _buttonVerticalPadding = EdgeInsets.only(top: distance.d);
 
   Widget buildForm(BuildContext context) {
     addFocusChangedListeners();

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-typedef ContextPasser = Function(BuildContext context);
+import 'package:typedefs/index.dart';
 
 mixin ActionKeyboardAccessoryButton implements StatelessWidget {
   String get title;

@@ -26,12 +26,18 @@ dependencies:
     path: ../../artboards/date_picker
   nav_button_builder:
     path: ../../builders/nav_button
+  vertical_floating_artboard_button_option:
+    path: ../../vertical_floating_artboard_button_option
   date:
     path: ../../lib/date
   theme:
     path: ../../theme
-  spec:
-    path: ../../spec
+  duration:
+    path: ../../duration
+  curve:
+    path: ../../curve
+  distance:
+    path: ../../distance
 
 dev_dependencies:
   flutter_test:

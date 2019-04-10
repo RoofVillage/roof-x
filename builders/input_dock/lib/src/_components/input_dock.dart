@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:multi_image_picker/asset.dart';
-import 'package:spec/index.dart';
+import 'package:padding/index.dart' as padding;
 import 'package:theme/index.dart';
 
 import '_file_preview.dart';
@@ -105,7 +105,7 @@ class InheritedInputDock extends State<RoofInputDock> {
     if (widget.actionButton != null) rowChildren.add(widget.actionButton);
 
     final Widget fieldRow = Container(
-      padding: RoofObjectPadding.container1,
+      padding: padding.container1,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: rowChildren,
@@ -114,10 +114,10 @@ class InheritedInputDock extends State<RoofInputDock> {
     columnChildren.add(fieldRow);
 
     final safeArea = MediaQuery.of(context).padding.bottom;
-    final padding = EdgeInsets.only(bottom: safeArea);
+    final bottomPadding = EdgeInsets.only(bottom: safeArea);
 
     final Widget dock = Container(
-      padding: padding,
+      padding: bottomPadding,
       color: theme.color.background.brandPrimary,
       child: Column(
         children: columnChildren,

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:typography/index.dart';
+import 'package:typography/index.dart' as typography;
 import 'package:theme/index.dart';
 import 'package:haptics/index.dart';
+import 'package:typedefs/index.dart';
 
 import 'mixins/index.dart';
 
@@ -18,7 +19,7 @@ class PrimaryActionKeyboardAccessoryButton extends StatelessWidget
     final theme = RoofTheme.of(context);
 
     final textStyle =
-        RoofTypography.button.textStyleWithColor(theme.color.text.submitAction);
+        typography.button.textStyleWithColor(theme.color.text.submitAction);
 
     _onTap() {
       triggerHapticWith(HapticOption.light);

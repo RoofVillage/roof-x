@@ -9,8 +9,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  spec:
-    path: ../../spec
+  distance:
+    path: ../../distance
   theme:
     path: ../../theme
   typography:

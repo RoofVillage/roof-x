@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:typography/index.dart';
+import 'package:typography/index.dart' as typography;
 import 'package:theme/index.dart';
 
 class RoofFieldLabel extends StatelessWidget {
   final String labelText;
   final int maxLines;
 
-  final _labelStyle = RoofTypography.title;
+  final _labelStyle = typography.title;
 
   static const _defaultMaxLines = 3;
 

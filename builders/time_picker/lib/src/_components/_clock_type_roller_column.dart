@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:theme/index.dart';
-import 'package:typography/index.dart';
+import 'package:typography/index.dart' as typography;
 
 import '_clock_type.dart';
 
@@ -13,8 +13,8 @@ class ClockTypeRollerColumn extends StatelessWidget {
     this.stepHeight,
   });
 
-  final _inactiveTypography = RoofTypography.bodyPrimary;
-  final _activeTypography = RoofTypography.bodyPrimaryThick;
+  final _inactiveTypography = typography.bodyPrimary;
+  final _activeTypography = typography.bodyPrimaryThick;
 
   @override
   Widget build(BuildContext context) {

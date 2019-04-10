@@ -1,24 +1,18 @@
-import 'typography_style.dart';
+import '_typography_style.dart';
+
 import 'utils/index.dart';
 
-class RoofButtonIos extends _RoofButton {}
+class RoofButtonIos with _RoofButton, TypographyStyle {}
 
-class RoofButtonAndroid extends _RoofButton {}
+class RoofButtonAndroid with _RoofButton, TypographyStyle {}
 
-class _RoofButton extends RoofTypographyStyle {
-  static const _fontSize = RoofFontSize.small;
-  static const _fontWeight = RoofFontWeight.thick;
-  static const double _leading = _fontSize;
-  static const double _tracking = 0;
-
-  _RoofButton(
-      {fontSize = _fontSize,
-      fontWeight = _fontWeight,
-      leading = _leading,
-      tracking = _tracking})
-      : super(
-            fontSize: fontSize,
-            fontWeight: fontWeight,
-            leading: leading,
-            tracking: tracking);
+mixin _RoofButton implements TypographyStyle {
+  @override
+  final fontSize = RoofFontSize.small;
+  @override
+  final fontWeight = RoofFontWeight.thick;
+  @override
+  final leading = RoofFontSize.small;
+  @override
+  final tracking = 0;
 }

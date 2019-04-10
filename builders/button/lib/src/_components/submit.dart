@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:theme/index.dart';
+import 'package:typedefs/index.dart';
 
 import '_mixins/button.dart';
 import '../submit_button_state_option.dart';
 
 class RoofSubmitButton extends StatefulWidget with RoofButton {
-  final OnTap onTap;
+  final ContextPasser onTap;
   final String text;
 
   final SubmitButtonStateOption state;

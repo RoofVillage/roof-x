@@ -1,4 +1,5 @@
-export 'src/horizontal_floating_artboard.dart';
-export 'src/navigation/navigator.dart';
-export 'src/navigation/panel.dart';
-export 'src/navigation/routing.dart';
+export 'src/empty_horizontal_floating_artboard.dart';
+export 'src/utils/navigator.dart';
+export 'src/utils/panel.dart';
+export 'src/utils/routing.dart';
+export 'src/utils/horizontal_floating_artboard.dart';

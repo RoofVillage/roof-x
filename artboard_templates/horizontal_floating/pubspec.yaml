@@ -15,8 +15,14 @@ dependencies:
     path: ../../artboard
   theme:
     path: ../../theme
-  spec:
-    path: ../../spec
+  curve:
+    path: ../../curve
+  distance:
+    path: ../../distance
+  duration:
+    path: ../../duration
+  corner_radius:
+    path: ../../corner_radius
   keyboard_accessory:
     path: ../../lib/keyboard_accessory
 

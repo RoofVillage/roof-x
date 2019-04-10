@@ -10,8 +10,8 @@ dependencies:
   multi_image_picker: ^3.0.23
   flutter:
     sdk: flutter
-  spec:
-    path: ../../spec
+  distance:
+    path: ../../distance
   theme:
     path: ../../theme
   typography:

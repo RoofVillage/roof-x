@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'color.dart';
+import '_color.dart' as color;
 import 'option.dart';
 
 class RoofBorderColor {
@@ -19,9 +19,9 @@ class RoofBorderColor {
   Color get transitionButton {
     switch (_current) {
       case RoofThemeOption.light:
-        return RoofColor.blue;
+        return color.blue;
       case RoofThemeOption.dark:
-        return RoofColor.blue;
+        return color.blue;
     }
     return null;
   }
@@ -29,9 +29,9 @@ class RoofBorderColor {
   Color get inactiveButton {
     switch (_current) {
       case RoofThemeOption.light:
-        return RoofColor.blue.withAlpha(100);
+        return color.blue.withAlpha(100);
       case RoofThemeOption.dark:
-        return RoofColor.blue.withAlpha(100);
+        return color.blue.withAlpha(100);
     }
     return null;
   }

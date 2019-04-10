@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:typography/index.dart';
+import 'package:typography/index.dart' as typography;
 import 'package:theme/index.dart';
 
 class RoofTableSectionHeaderA extends StatelessWidget {
@@ -18,7 +18,7 @@ class RoofTableSectionHeaderA extends StatelessWidget {
 
 class _TitleLabel extends StatelessWidget {
   final String text;
-  final _typographyStyle = RoofTypography.heading2;
+  final _typographyStyle = typography.heading2;
 
   _TitleLabel({Key key, @required this.text}) : super(key: key);
 

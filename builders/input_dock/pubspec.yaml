@@ -17,8 +17,16 @@ dependencies:
     path: ../../icon_library
   image_picker_builder:
     path: ../image_picker
-  spec:
-    path: ../../spec
+  padding:
+    path: ../../padding
+  corner_radius:
+    path: ../../corner_radius
+  distance:
+    path: ../../distance
+  duration:
+    path: ../../duration
+  curve:
+    path: ../../curve
   theme:
     path: ../../theme
   typography:

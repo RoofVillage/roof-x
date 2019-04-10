@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:theme/index.dart';
 import 'package:icon_library/index.dart';
-import 'package:spec/index.dart';
+import 'package:distance/index.dart' as distance;
 import 'package:haptics/index.dart';
 
 import '../input_dock.dart';
@@ -22,7 +22,7 @@ mixin AuxiliaryWidget implements StatelessWidget {
       onTap: () => _onTap(context),
       child: Container(
         height: baseHeight,
-        margin: EdgeInsets.only(right: RoofDistance.c),
+        margin: EdgeInsets.only(right: distance.c),
         child: Center(
           child: icon,
         ),

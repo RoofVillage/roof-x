@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:typedefs/index.dart';
 
 import '_components/full_logo.dart';
-import '_components/nav_button.dart';
 
 mixin FullLogoNavButtonBuilder {
   RoofFullLogoNavButton buildFullLogoNavButton(BuildContext context,
-      {@required BuildContextPasser onTap}) {
+      {@required ContextPasser onTap}) {
     return RoofFullLogoNavButton(
       onTap: onTap,
     );

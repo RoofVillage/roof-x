@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:theme/index.dart';
-import 'package:typography/index.dart';
-import 'package:spec/index.dart';
+import 'package:typography/index.dart' as typography;
+import 'package:padding/index.dart' as padding;
 import 'package:mask/index.dart';
 
 import '_widgets/index.dart';
@@ -66,7 +66,7 @@ class RoofTextField extends StatelessWidget {
     fieldChildren.add(fieldBody);
 
     return Container(
-        padding: RoofObjectPadding.field1,
+        padding: padding.field1,
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: fieldChildren));
@@ -107,7 +107,7 @@ class _FieldBody extends StatefulWidget {
 
 class _FieldBodyState extends State<_FieldBody> {
   final _controller = TextEditingController();
-  final _typographyStyle = RoofTypography.bodyPrimary;
+  final _typographyStyle = typography.bodyPrimary;
 
   String _formattedPlaceholder = "";
   bool _didSetInitialValue = false;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'color.dart';
+import '_color.dart' as color;
 import 'option.dart';
 
 class RoofBackgroundColor {
@@ -9,9 +9,9 @@ class RoofBackgroundColor {
   Color get brandSolid {
     switch (_current) {
       case RoofThemeOption.light:
-        return RoofColor.white1;
+        return color.white1;
       case RoofThemeOption.dark:
-        return RoofColor.black2;
+        return color.black2;
     }
     return null;
   }
@@ -20,9 +20,9 @@ class RoofBackgroundColor {
     final opacity = 0.98;
     switch (_current) {
       case RoofThemeOption.light:
-        return RoofColor.white1.withOpacity(opacity);
+        return color.white1.withOpacity(opacity);
       case RoofThemeOption.dark:
-        return RoofColor.black2.withOpacity(opacity);
+        return color.black2.withOpacity(opacity);
     }
     return null;
   }
@@ -31,9 +31,9 @@ class RoofBackgroundColor {
     final opacity = 0.95;
     switch (_current) {
       case RoofThemeOption.light:
-        return RoofColor.white1.withOpacity(opacity);
+        return color.white1.withOpacity(opacity);
       case RoofThemeOption.dark:
-        return RoofColor.black2.withOpacity(opacity);
+        return color.black2.withOpacity(opacity);
     }
     return null;
   }
@@ -41,9 +41,9 @@ class RoofBackgroundColor {
   Color get general {
     switch (_current) {
       case RoofThemeOption.light:
-        return RoofColor.white2;
+        return color.white2;
       case RoofThemeOption.dark:
-        return RoofColor.black3;
+        return color.black3;
     }
     return null;
   }
@@ -51,9 +51,9 @@ class RoofBackgroundColor {
   Color get scrim {
     switch (_current) {
       case RoofThemeOption.light:
-        return RoofColor.black3.withOpacity(0.3);
+        return color.black3.withOpacity(0.3);
       case RoofThemeOption.dark:
-        return RoofColor.black3.withOpacity(0.7);
+        return color.black3.withOpacity(0.7);
     }
     return null;
   }
@@ -61,9 +61,9 @@ class RoofBackgroundColor {
   Color get submitButton {
     switch (_current) {
       case RoofThemeOption.light:
-        return RoofColor.blue;
+        return color.blue;
       case RoofThemeOption.dark:
-        return RoofColor.blue;
+        return color.blue;
     }
     return null;
   }
@@ -71,9 +71,9 @@ class RoofBackgroundColor {
   Color get transitionButton {
     switch (_current) {
       case RoofThemeOption.light:
-        return RoofColor.white1;
+        return color.white1;
       case RoofThemeOption.dark:
-        return RoofColor.black2;
+        return color.black2;
     }
     return null;
   }
@@ -81,9 +81,9 @@ class RoofBackgroundColor {
   Color get errorButton {
     switch (_current) {
       case RoofThemeOption.light:
-        return RoofColor.alert;
+        return color.alert;
       case RoofThemeOption.dark:
-        return RoofColor.alert;
+        return color.alert;
     }
     return null;
   }
@@ -91,9 +91,9 @@ class RoofBackgroundColor {
   Color get inactiveButton {
     switch (_current) {
       case RoofThemeOption.light:
-        return RoofColor.gray4;
+        return color.gray4;
       case RoofThemeOption.dark:
-        return RoofColor.blue.withAlpha(100);
+        return color.blue.withAlpha(100);
     }
     return null;
   }

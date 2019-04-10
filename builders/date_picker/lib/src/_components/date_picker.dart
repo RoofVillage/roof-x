@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:theme/index.dart';
-import 'package:typography/index.dart';
+import 'package:typography/index.dart' as typography;
 import 'package:date/index.dart';
 import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart';
 
@@ -26,18 +26,18 @@ class RoofCalendarDatePicker extends StatelessWidget {
     final theme = RoofTheme.of(context);
 
     final headerStyle =
-        RoofTypography.heading2.textStyleWithColor(theme.color.text.brand);
+        typography.heading2.textStyleWithColor(theme.color.text.brand);
 
-    final daysPrimaryStyle = RoofTypography.bodyPrimaryThick
+    final daysPrimaryStyle = typography.bodyPrimaryThick
         .textStyleWithColor(theme.color.text.primary);
 
-    final inactiveTextStyle = RoofTypography.bodyPrimary
-        .textStyleWithColor(theme.color.text.secondary);
+    final inactiveTextStyle =
+        typography.bodyPrimary.textStyleWithColor(theme.color.text.secondary);
 
     final smallTextStyle =
-        RoofTypography.bodySecondary.textStyleWithColor(theme.color.text.brand);
+        typography.bodySecondary.textStyleWithColor(theme.color.text.brand);
 
-    final todayTextStyle = RoofTypography.bodyPrimaryThick
+    final todayTextStyle = typography.bodyPrimaryThick
         .textStyleWithColor(theme.color.text.transitionAction);
 
     return Container(

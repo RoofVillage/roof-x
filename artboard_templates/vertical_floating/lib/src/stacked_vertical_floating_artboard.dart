@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:button_stack_builder/index.dart';
+import 'package:artboard/index.dart';
 
-import 'vertical_floating_artboard.dart';
+import 'utils/vertical_floating_artboard.dart';
 
-abstract class StackVerticalFloatingArtboard extends VerticalFloatingArtboard
-    with ButtonStackBuilder {
+abstract class StackVerticalFloatingArtboard extends StatefulWidget
+    with VerticalFloatingArtboard, Artboard, ButtonStackBuilder {
   List<Widget> get buttons;
   List<Widget> get auxiliaryButtons => [];
   String get auxiliaryText => null;
@@ -16,7 +17,8 @@ abstract class StackVerticalFloatingArtboard extends VerticalFloatingArtboard
 }
 
 class _StackVerticalFloatingArtboardState
-    extends VerticalFloatingArtboardState<StackVerticalFloatingArtboard> {
+    extends State<StackVerticalFloatingArtboard>
+    with VerticalFloatingArtboardState<StackVerticalFloatingArtboard> {
   @override
   Widget buildBody(BuildContext context) {
     return widget.buildButtonStack(context, buttons: widget.buttons);

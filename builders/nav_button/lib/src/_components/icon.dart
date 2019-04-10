@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:icon_library/index.dart';
 import 'package:theme/index.dart';
+import 'package:typedefs/index.dart';
 
 import 'nav_button.dart';
 
 class RoofIconNavButton extends StatelessWidget with RoofNavButton {
-  final BuildContextPasser onTap;
+  final ContextPasser onTap;
 
   final NavigationIconReference iconReference;
 

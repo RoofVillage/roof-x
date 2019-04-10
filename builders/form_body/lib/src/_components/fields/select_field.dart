@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:icon_library/index.dart';
-import 'package:spec/index.dart';
+import 'package:padding/index.dart' as padding;
+import 'package:distance/index.dart' as distance;
+import 'package:duration/index.dart' as duration;
+import 'package:curve/index.dart' as curve;
+import 'package:corner_radius/index.dart' as corner_radius;
 import 'package:theme/index.dart';
-import 'package:typography/index.dart';
+import 'package:typography/index.dart' as typography;
 import 'package:haptics/index.dart';
 
 import '_widgets/index.dart';
@@ -68,7 +72,7 @@ class _RoofSelectFieldState extends State<RoofSelectField>
         onTap: _onTap);
 
     return Container(
-      margin: RoofObjectPadding.field1,
+      margin: padding.field1,
       child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [label, selectedOptionsContainer, dropdownContainer]),
@@ -127,7 +131,7 @@ class _SelectedOptionsContainer extends StatelessWidget {
   final Function onTap;
   final bool isExpanded;
 
-  final _typographyStyle = RoofTypography.bodyPrimary;
+  final _typographyStyle = typography.bodyPrimary;
   final _maxLines = 10;
 
   final _upArrowIconReferece = IconReference.upArrow;
@@ -162,13 +166,13 @@ class _SelectedOptionsContainer extends StatelessWidget {
     final animatedArrow = Expanded(
       flex: 0,
       child: Padding(
-        padding: EdgeInsets.fromLTRB(RoofDistance.d, 0, 0, 0),
+        padding: EdgeInsets.fromLTRB(distance.d, 0, 0, 0),
         child: _AnimatedIconReference(
             icon1: upArrow, icon2: downArrow, showIcon1: isExpanded),
       ),
     );
 
-    final verticalPadding = EdgeInsets.symmetric(vertical: RoofDistance.b);
+    final verticalPadding = EdgeInsets.symmetric(vertical: distance.b);
 
     return Container(
         decoration: BoxDecoration(
@@ -197,7 +201,7 @@ class _AnimatedIconReference extends StatelessWidget {
     return AnimatedCrossFade(
         firstChild: icon1,
         secondChild: icon2,
-        duration: RoofDuration.short,
+        duration: duration.short,
         crossFadeState:
             showIcon1 ? CrossFadeState.showFirst : CrossFadeState.showSecond);
   }
@@ -210,8 +214,8 @@ class _DropdownContainer extends StatelessWidget {
   final bool isExpanded;
   final Function onTap;
 
-  final _closeDuration = RoofDuration.short;
-  final _showDuration = RoofDuration.short;
+  final _closeDuration = duration.short;
+  final _showDuration = duration.short;
 
   _DropdownContainer(
       {this.options,
@@ -225,8 +229,7 @@ class _DropdownContainer extends StatelessWidget {
     final theme = RoofTheme.of(context);
     final decoration = BoxDecoration(
         borderRadius: BorderRadius.only(
-            bottomLeft: RoofCornerRadius.small,
-            bottomRight: RoofCornerRadius.small),
+            bottomLeft: corner_radius.small, bottomRight: corner_radius.small),
         color: theme.color.background.general,
         boxShadow: [theme.shadow]);
 
@@ -243,7 +246,7 @@ class _DropdownContainer extends StatelessWidget {
             secondChild: Container(),
             firstCurve: Curves.easeIn,
             secondCurve: Curves.easeIn,
-            sizeCurve: RoofCurve.easy,
+            sizeCurve: curve.easy,
             crossFadeState: isExpanded
                 ? CrossFadeState.showFirst
                 : CrossFadeState.showSecond,
@@ -296,7 +299,7 @@ class _DropdownOption extends StatelessWidget {
   final bool isMultiSelect;
   final bool selected;
 
-  final _typographyStyle = RoofTypography.bodySecondary;
+  final _typographyStyle = typography.bodySecondary;
   final _checkIcon = IconReference.boxChecked;
   final _uncheckedIcon = IconReference.boxUnchecked;
 
@@ -316,10 +319,10 @@ class _DropdownOption extends StatelessWidget {
     if (isMultiSelect) {
       final generalIconColor = theme.color.icon.general;
       Widget checkedIcon = Padding(
-          padding: EdgeInsets.fromLTRB(0, 0, RoofDistance.b, 0),
+          padding: EdgeInsets.fromLTRB(0, 0, distance.b, 0),
           child: _checkIcon.buildSvg(color: generalIconColor));
       Widget uncheckedIcon = Padding(
-          padding: EdgeInsets.fromLTRB(0, 0, RoofDistance.b, 0),
+          padding: EdgeInsets.fromLTRB(0, 0, distance.b, 0),
           child: _uncheckedIcon.buildSvg(color: generalIconColor));
 
       selected ? rowChildren.add(checkedIcon) : rowChildren.add(uncheckedIcon);
@@ -332,15 +335,14 @@ class _DropdownOption extends StatelessWidget {
         ? theme.color.background.general
         : Colors.transparent;
 
-    final optionPadding = EdgeInsets.fromLTRB(
-        RoofDistance.b, RoofDistance.c, RoofDistance.b, RoofDistance.c);
+    final optionPadding =
+        EdgeInsets.fromLTRB(distance.b, distance.c, distance.b, distance.c);
 
     rowChildren.add(optionTitle);
 
     return Container(
         decoration: BoxDecoration(
           color: optionBackgroundColor,
-          // border: Border(bottom: BorderSide(color: RoofColor.neutralColorC))
         ),
         height: optionHeight,
         child: GestureDetector(

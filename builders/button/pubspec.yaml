@@ -9,8 +9,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  spec:
-    path: ../../spec
   icon_library:
     path: ../../icon_library
   typography:
@@ -19,6 +17,12 @@ dependencies:
     path: ../../theme
   haptics:
     path: ../../lib/haptics
+  distance:
+    path: ../../distance
+  corner_radius:
+    path: ../../corner_radius
+  typedefs:
+    path: ../../lib/typedefs
 
 dev_dependencies:
   flutter_test:

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:spec/index.dart';
+import 'package:padding/index.dart' as padding;
+import 'package:corner_radius/index.dart' as corner_radius;
+import 'package:distance/index.dart' as distance;
 import 'package:theme/index.dart';
-import 'package:typography/index.dart';
+import 'package:typography/index.dart' as typography;
 
 import '_widgets/index.dart';
 
@@ -53,7 +55,7 @@ class RoofTextArea extends StatelessWidget {
     fieldChildren.add(body);
 
     return Container(
-        margin: RoofObjectPadding.field1,
+        margin: padding.field1,
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: fieldChildren));
@@ -89,7 +91,7 @@ class _FieldBody extends StatefulWidget {
 
 class _FieldBodyState extends State<_FieldBody> {
   final int _maxLines = 3;
-  final _typographyStyle = RoofTypography.bodyPrimary;
+  final _typographyStyle = typography.bodyPrimary;
   final _controller = TextEditingController();
 
   void _controllerUpdated() => widget.onChanged(_controller.text);
@@ -114,15 +116,15 @@ class _FieldBodyState extends State<_FieldBody> {
         border: OutlineInputBorder(),
         enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: theme.color.stroke.light),
-            borderRadius: BorderRadius.all(RoofCornerRadius.regular)),
+            borderRadius: BorderRadius.all(corner_radius.regular)),
         focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(color: theme.color.stroke.focus),
-            borderRadius: BorderRadius.all(RoofCornerRadius.regular)),
+            borderRadius: BorderRadius.all(corner_radius.regular)),
         hintStyle:
             _typographyStyle.textStyleWithColor(theme.color.text.placeholder));
 
     return Container(
-        margin: EdgeInsets.fromLTRB(0, RoofDistance.a, 0, 0),
+        margin: EdgeInsets.fromLTRB(0, distance.a, 0, 0),
         child: TextField(
           autofocus: widget.autofocus,
           textInputAction: widget.textInputAction,

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:spec/index.dart';
+import 'package:duration/index.dart' as duration;
+import 'package:curve/index.dart' as curve;
+import 'package:distance/index.dart' as distance;
 import 'package:icon_library/index.dart';
 import 'package:theme/index.dart';
-import 'package:typography/index.dart';
+import 'package:typography/index.dart' as typography;
 import 'package:haptics/index.dart';
 
 import 'input_dock.dart';
@@ -99,7 +101,7 @@ class _TextFieldComponent extends StatelessWidget {
 
   static const String _hintText = "Add comment";
 
-  final _commentTextStyle = RoofTypography.bodyPrimary;
+  final _commentTextStyle = typography.bodyPrimary;
 
   final _enabledBorder =
       OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent));
@@ -172,12 +174,12 @@ class _TextCounter extends StatelessWidget {
     final bool showTextCounter = charCount > charShowCount;
     final bool showAlert = charCount > charMaxCount;
 
-    final textCounterStyle = RoofTypography.detailSecondary.textStyleWithColor(
+    final textCounterStyle = typography.detailSecondary.textStyleWithColor(
       showAlert ? theme.color.text.alert : theme.color.text.placeholder,
     );
 
     return Container(
-      padding: EdgeInsets.symmetric(vertical: RoofDistance.a),
+      padding: EdgeInsets.symmetric(vertical: distance.a),
       height: showTextCounter ? null : 0,
       child: Text(
         showTextCounter ? "$charCount/$charMaxCount" : "",
@@ -205,9 +207,9 @@ class _SubmitButton extends StatelessWidget {
     final inactiveSendIcon = sendIcon.buildSvg(color: inactiveIconColor);
 
     final animatedSubmitButton = AnimatedCrossFade(
-      duration: RoofDuration.short,
-      firstCurve: RoofCurve.easy,
-      secondCurve: RoofCurve.quick,
+      duration: duration.short,
+      firstCurve: curve.easy,
+      secondCurve: curve.quick,
       crossFadeState:
           canSubmit ? CrossFadeState.showFirst : CrossFadeState.showSecond,
       firstChild: activeSendIcon,
@@ -230,12 +232,12 @@ class _SubmitButton extends StatelessWidget {
 
     return Container(
       alignment: Alignment.centerRight,
-      padding: EdgeInsets.only(right: RoofDistance.c),
+      padding: EdgeInsets.only(right: distance.c),
       height: dock.baseHeight,
       child: AnimatedOpacity(
         opacity: dock.showSubmitButton ? 1 : 0,
-        duration: RoofDuration.short,
-        curve: RoofCurve.easy,
+        duration: duration.short,
+        curve: curve.easy,
         child: GestureDetector(
             onTap: tapAction,
             onTapDown: tapDownAction,

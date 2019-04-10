@@ -8,7 +8,7 @@ class RoofTheme extends StatefulWidget {
   final Widget child;
   final RoofThemeOption theme;
 
-  RoofTheme(this.theme, {this.child});
+  RoofTheme(this.theme, {@required this.child});
 
   @override
   State<StatefulWidget> createState() => RoofInheritedTheme();
@@ -27,7 +27,12 @@ class RoofInheritedTheme extends State<RoofTheme> {
   RoofThemeOption _current;
 
   get current => _current;
-  get color => RoofSemanticColor(current: current);
+  set current(RoofThemeOption newValue) {
+    _current = newValue;
+    color = RoofSemanticColor(current: newValue);
+  }
+
+  RoofSemanticColor color;
 
   SystemUiOverlayStyle get systemChromeStyle {
     switch (_current) {
@@ -60,11 +65,11 @@ class RoofInheritedTheme extends State<RoofTheme> {
 
   @override
   void initState() {
-    _current = widget.theme;
+    current = widget.theme;
     super.initState();
   }
 
-  void use(RoofThemeOption theme) => setState(() => this._current = theme);
+  void use(RoofThemeOption theme) => setState(() => current = theme);
 
   @override
   Widget build(BuildContext context) {

@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:theme/index.dart';
 import 'package:icon_library/index.dart';
+import 'package:typedefs/index.dart';
 
 import '_mixins/button.dart';
 
 export '_mixins/button.dart';
 
 class RoofTransitionButton extends StatefulWidget with RoofButton {
-  final OnTap onTap;
+  final ContextPasser onTap;
   final String text;
   final StandardIconReference iconReference;
 

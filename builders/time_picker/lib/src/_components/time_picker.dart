@@ -2,9 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:spec/index.dart';
+import 'package:duration/index.dart' as duration;
+import 'package:curve/index.dart' as curve;
 import 'package:haptics/index.dart';
-import 'package:typography/index.dart';
+import 'package:typography/index.dart' as typography;
 import 'package:theme/index.dart';
 
 import '_overflow_roller_column.dart';
@@ -135,8 +136,8 @@ class RoofTimePickerState extends State<RoofTimePicker> {
           (controller == _clockTypeScrollController && _shouldSnapClockType))
         controller.animateTo(
           targetOffset,
-          duration: RoofDuration.short,
-          curve: RoofCurve.quick,
+          duration: duration.short,
+          curve: curve.quick,
         );
     });
   }
@@ -269,7 +270,7 @@ class RoofTimePickerState extends State<RoofTimePicker> {
       ),
     );
 
-    final timeDividerTextStyle = RoofTypography.bodyPrimary.textStyleWithColor(
+    final timeDividerTextStyle = typography.bodyPrimary.textStyleWithColor(
       RoofTheme.of(context).color.text.secondary,
     );
     final Widget timeDivider = Container(

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:spec/index.dart';
+import 'package:distance/index.dart' as distance;
 
 class RoofKeyboardAccessoryShortBar extends StatelessWidget {
-  static const _height = RoofDistance.e;
+  static const _height = distance.e;
 
   final List<Widget> children;
 

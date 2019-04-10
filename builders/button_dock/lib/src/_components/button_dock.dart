@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:theme/index.dart';
-import 'package:typography/index.dart';
-import 'package:spec/index.dart';
+import 'package:typography/index.dart' as typography;
+import 'package:distance/index.dart' as distance;
 import '_button_dock_button.dart';
 
 class RoofButtonDock extends StatelessWidget {
@@ -17,8 +17,8 @@ class RoofButtonDock extends StatelessWidget {
     this.rightButtonTitle,
   });
 
-  final _typographyStyle = RoofTypography.button;
-  final _paddingSize = RoofDistance.c;
+  final _typographyStyle = typography.button;
+  final _paddingSize = distance.c;
 
   @override
   Widget build(BuildContext context) {

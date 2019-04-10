@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'color.dart';
+import '_color.dart' as color;
 import 'option.dart';
 
 class RoofStrokeColor {
@@ -10,9 +10,9 @@ class RoofStrokeColor {
     final opacity = 0.1;
     switch (_current) {
       case RoofThemeOption.light:
-        return RoofColor.black3.withOpacity(opacity);
+        return color.black3.withOpacity(opacity);
       case RoofThemeOption.dark:
-        return RoofColor.white1.withOpacity(opacity);
+        return color.white1.withOpacity(opacity);
     }
     return null;
   }
@@ -21,9 +21,9 @@ class RoofStrokeColor {
     final opacity = 0.2;
     switch (_current) {
       case RoofThemeOption.light:
-        return RoofColor.black3.withOpacity(opacity);
+        return color.black3.withOpacity(opacity);
       case RoofThemeOption.dark:
-        return RoofColor.white1.withOpacity(opacity);
+        return color.white1.withOpacity(opacity);
     }
     return null;
   }
@@ -31,9 +31,9 @@ class RoofStrokeColor {
   Color get transitionAction {
     switch (_current) {
       case RoofThemeOption.light:
-        return RoofColor.blue;
+        return color.blue;
       case RoofThemeOption.dark:
-        return RoofColor.blue;
+        return color.blue;
     }
     return null;
   }
@@ -41,9 +41,9 @@ class RoofStrokeColor {
   Color get alert {
     switch (_current) {
       case RoofThemeOption.light:
-        return RoofColor.alert;
+        return color.alert;
       case RoofThemeOption.dark:
-        return RoofColor.alert;
+        return color.alert;
     }
     return null;
   }

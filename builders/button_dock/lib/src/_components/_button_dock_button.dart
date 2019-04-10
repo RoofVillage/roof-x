@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:spec/index.dart';
+import 'package:corner_radius/index.dart' as corner_radius;
 
 class ButtonDockButton extends StatelessWidget {
   final String title;
@@ -24,7 +24,7 @@ class ButtonDockButton extends StatelessWidget {
           height: 50,
           decoration: BoxDecoration(
               color: buttonColor,
-              borderRadius: BorderRadius.all(RoofCornerRadius.regular)),
+              borderRadius: BorderRadius.all(corner_radius.regular)),
           child: Center(
             child: Text(
               title,
