@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:button_builder/index.dart';
 import 'package:form_body_builder/index.dart';
 
-mixin FormBuilder implements FormBodyBuilder, CenteredButtonBuilder {
+mixin FormBuilder implements FormBodyBuilder, PrimaryCenterButtonBuilder {
   String get title;
   String get subtitle => null;
   String get auxiliaryDescription => null;
@@ -12,10 +12,12 @@ mixin FormBuilder implements FormBodyBuilder, CenteredButtonBuilder {
 mixin FormBuilderState<T extends FormBuilder>
     implements FormBodyBuilderState<T> {
   Widget get submitButton {
-    return widget.buildPrimaryCenteredButton(context,
-        text: submitButtonText,
-        onTap: onSubmitButtonTap,
-        status: _submitButtonState);
+    return widget.buildPrimaryCenterButton(
+      context,
+      text: submitButtonText,
+      onTap: onSubmitButtonTap,
+      status: _submitButtonState,
+    );
   }
 
   ButtonStatusOption get _submitButtonState {
@@ -24,7 +26,7 @@ mixin FormBuilderState<T extends FormBuilder>
         return ButtonStatusOption.error;
       case FormSubmitStatus.loading:
         return ButtonStatusOption.loading;
-      case FormSubmitStatus.normal:
+      case FormSubmitStatus.ready:
         return ButtonStatusOption.ready;
     }
     return null;
@@ -36,7 +38,7 @@ mixin FormBuilderState<T extends FormBuilder>
         return exception.message;
       case FormSubmitStatus.loading:
         return "Loading";
-      case FormSubmitStatus.normal:
+      case FormSubmitStatus.ready:
         return widget.submitButtonText ?? "Submit";
     }
     return null;

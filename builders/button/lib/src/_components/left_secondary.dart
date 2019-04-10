@@ -17,7 +17,7 @@ class RoofSecondaryLeftButton extends StatefulWidget with RoofLeftButton {
       };
   get textColor => (context) {
         final theme = RoofTheme.of(context);
-        return theme.color.text.secondaryAction;
+        return theme.color.text.secondary;
       };
   get arrowColor => (context) {
         final theme = RoofTheme.of(context);

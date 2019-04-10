@@ -85,7 +85,7 @@ mixin FormBodyBuilder implements StatefulWidget {
 
 mixin FormBodyBuilderState<T extends FormBodyBuilder> implements State<T> {
   FormValidationException exception;
-  FormSubmitStatus formSubmitState = FormSubmitStatus.normal;
+  FormSubmitStatus formSubmitState = FormSubmitStatus.ready;
 
   bool _hasSetUp = false;
 
@@ -178,8 +178,8 @@ mixin FormBodyBuilderState<T extends FormBodyBuilder> implements State<T> {
   }
 
   void _restoreState() {
-    if (formSubmitState == FormSubmitStatus.normal) return;
-    setState(() => formSubmitState = FormSubmitStatus.normal);
+    if (formSubmitState == FormSubmitStatus.ready) return;
+    setState(() => formSubmitState = FormSubmitStatus.ready);
   }
 
   void _enableForm() async {

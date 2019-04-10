@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:spec/index.dart';
-import 'package:icon_library/index.dart';
 import 'package:typography/index.dart';
 import 'package:haptics/index.dart';
 
@@ -10,12 +9,11 @@ typedef OnTap = void Function(BuildContext context);
 mixin RoofCenteredButton {
   OnTap get onTap;
   String get text => null;
-  StandardIconReference get iconReference => null;
   ColorGetter get backgroundColor;
   ColorGetter get textColor;
 }
 
-mixin RoofButtonState {
+mixin RoofCenteredButtonState {
   RoofCenteredButton get button;
   BuildContext get context;
 
@@ -31,26 +29,15 @@ mixin RoofButtonState {
 
     final color = button.textColor(context);
 
-    if (button.iconReference != null) {
-      final iconPadding = button.text != null
-          ? EdgeInsets.only(right: RoofDistance.b)
-          : EdgeInsets.all(0);
+    final textDecoration = _textStyle.textStyleWithColor(color);
 
-      final buttonIcon = Container(
-          padding: iconPadding,
-          child: button.iconReference.buildSvg(color: color));
+    final styledButtonText = Text(
+      button.text,
+      style: textDecoration,
+      textAlign: TextAlign.center,
+    );
 
-      buttonChildren.add(buttonIcon);
-    }
-
-    if (button.text != null) {
-      final textDecoration = _textStyle.textStyleWithColor(color);
-
-      final styledButtonText =
-          Text(button.text, style: textDecoration, textAlign: TextAlign.center);
-
-      buttonChildren.add(styledButtonText);
-    }
+    buttonChildren.add(styledButtonText);
 
     double opacity = _tapped ? _tappedOpacity : 1;
 

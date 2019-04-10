@@ -4,7 +4,7 @@ import 'package:icon_library/index.dart';
 import '_components/left_primary.dart';
 import '_components/left_secondary.dart';
 
-mixin LeftButtonBuilder {
+mixin PrimaryLeftButtonBuilder {
   RoofPrimaryLeftButton buildPrimaryLeftButton(
     BuildContext context, {
     @required OnTap onTap,
@@ -13,21 +13,6 @@ mixin LeftButtonBuilder {
     bool hasArrow,
   }) {
     return RoofPrimaryLeftButton(
-      onTap: onTap,
-      text: text,
-      iconReference: iconReference,
-      hasArrow: hasArrow,
-    );
-  }
-
-  RoofSecondaryLeftButton buildSecondaryLeftButton(
-    BuildContext context, {
-    @required OnTap onTap,
-    @required String text,
-    StandardIconReference iconReference,
-    bool hasArrow,
-  }) {
-    return RoofSecondaryLeftButton(
       onTap: onTap,
       text: text,
       iconReference: iconReference,

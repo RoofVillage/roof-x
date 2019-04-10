@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:theme/index.dart';
-import 'package:icon_library/index.dart';
 
 import '_mixins/centered_button.dart';
 export '_mixins/centered_button.dart';
 import '../button_status_option.dart';
 
-class RoofPrimaryCenteredButton extends StatefulWidget with RoofCenteredButton {
+class RoofPrimaryCenterButton extends StatefulWidget with RoofCenteredButton {
   final OnTap onTap;
   final String text;
-  final StandardIconReference iconReference;
   final ButtonStatusOption status;
 
   get backgroundColor => (context) {
@@ -27,19 +25,18 @@ class RoofPrimaryCenteredButton extends StatefulWidget with RoofCenteredButton {
         return theme.color.text.primaryAction;
       };
 
-  RoofPrimaryCenteredButton({
+  RoofPrimaryCenterButton({
     @required this.onTap,
     @required this.text,
-    this.iconReference,
     this.status = ButtonStatusOption.ready,
   });
 
   @override
-  State<StatefulWidget> createState() => _RoofPrimaryCenteredButtonState();
+  State<StatefulWidget> createState() => _RoofPrimaryCenterButtonState();
 }
 
-class _RoofPrimaryCenteredButtonState extends State<RoofPrimaryCenteredButton>
-    with RoofButtonState {
+class _RoofPrimaryCenterButtonState extends State<RoofPrimaryCenterButton>
+    with RoofCenteredButtonState {
   @override
   Widget build(BuildContext context) => buildButton(context);
 

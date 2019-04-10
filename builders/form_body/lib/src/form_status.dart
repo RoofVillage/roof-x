@@ -1,1 +1,1 @@
-enum FormSubmitStatus { normal, loading, exception }
+enum FormSubmitStatus { ready, loading, exception }
