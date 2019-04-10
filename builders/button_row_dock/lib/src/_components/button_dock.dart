@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:spec/index.dart';
+import 'package:distance/index.dart' as distance;
 
 class RoofButtonDock extends StatelessWidget {
   final List<Widget> buttons;
 
   RoofButtonDock({this.buttons});
 
-  final _paddingSize = RoofDistance.c;
+  final _paddingSize = distance.c;
 
   @override
   Widget build(BuildContext context) {

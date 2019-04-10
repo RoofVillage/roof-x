@@ -46,8 +46,8 @@ class _RoofSwitchFieldState extends State<RoofSwitchField>
     final theme = RoofTheme.of(context);
 
     final secondaryTextColor = theme.color.text.secondary;
-    final isOnColor = theme.color.background.submitButton;
-    final isOffColor = theme.color.background.inactiveButton;
+    final isOnColor = theme.color.background.primaryAction;
+    final isOffColor = theme.color.background.inactiveAction;
 
     animation =
         ColorTween(begin: isOffColor, end: isOnColor).animate(controller)

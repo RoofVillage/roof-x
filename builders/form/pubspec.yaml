@@ -17,6 +17,8 @@ dependencies:
     path: ../form_body
   distance:
     path: ../../distance
+  button_status_option:
+    path: ../../button_status_option
 
 dev_dependencies:
   flutter_test:

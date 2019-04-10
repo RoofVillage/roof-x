@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:button_status_option/index.dart';
 
-import 'button_status_option.dart';
 import '_components/centered_primary.dart';
 import '_components/centered_secondary.dart';
 

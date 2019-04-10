@@ -4,6 +4,7 @@ import 'package:form_body_builder/index.dart';
 import 'package:typography/index.dart' as typography;
 import 'package:distance/index.dart' as distance;
 import 'package:theme/index.dart';
+import 'package:button_status_option/index.dart';
 
 mixin FormBuilder implements FormBodyBuilder, PrimaryCenterButtonBuilder {
   String get title;

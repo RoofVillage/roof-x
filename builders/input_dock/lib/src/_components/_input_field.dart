@@ -200,8 +200,8 @@ class _SubmitButton extends StatelessWidget {
     final dock = RoofInputDock.of(context);
     final theme = RoofTheme.of(context);
 
-    final activeIconColor = theme.color.background.submitButton;
-    final inactiveIconColor = theme.color.background.inactiveButton;
+    final activeIconColor = theme.color.background.primaryAction;
+    final inactiveIconColor = theme.color.background.inactiveAction;
     final sendIcon = IconReference.sendFilled;
     final activeSendIcon = sendIcon.buildSvg(color: activeIconColor);
     final inactiveSendIcon = sendIcon.buildSvg(color: inactiveIconColor);

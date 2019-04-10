@@ -23,6 +23,8 @@ dependencies:
     path: ../../corner_radius
   typedefs:
     path: ../../lib/typedefs
+  button_status_option:
+    path: ../../button_status_option
 
 dev_dependencies:
   flutter_test:

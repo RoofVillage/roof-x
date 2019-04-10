@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:spec/index.dart';
-import 'package:typography/index.dart';
+import 'package:typography/index.dart' as typography;
+import 'package:corner_radius/index.dart' as corner_radius;
 import 'package:haptics/index.dart';
 
 typedef ColorGetter = Color Function(BuildContext context);
@@ -19,7 +19,7 @@ mixin RoofCenteredButtonState {
 
   bool _tapped = false;
   double _tappedOpacity = 0.75;
-  final _textStyle = RoofTypography.button;
+  final _textStyle = typography.button;
   final double _height = 50;
 
   void setState(dynamic());
@@ -43,7 +43,7 @@ mixin RoofCenteredButtonState {
 
     final decoration = BoxDecoration(
       color: button.backgroundColor(context).withOpacity(opacity),
-      borderRadius: BorderRadius.all(RoofCornerRadius.regular),
+      borderRadius: BorderRadius.all(corner_radius.regular),
     );
 
     return GestureDetector(

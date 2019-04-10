@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:theme/index.dart';
+import 'package:button_status_option/index.dart';
 
 import '_mixins/centered_button.dart';
 export '_mixins/centered_button.dart';
-import '../button_status_option.dart';
 
 class RoofPrimaryCenterButton extends StatefulWidget with RoofCenteredButton {
   final OnTap onTap;

@@ -33,7 +33,6 @@ dependencies:
     path: ../../typography
   button_builder:
     path: ../../builders/button
-  
 
 dev_dependencies:
   flutter_test:

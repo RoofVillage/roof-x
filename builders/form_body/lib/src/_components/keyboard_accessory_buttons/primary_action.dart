@@ -19,7 +19,7 @@ class PrimaryActionKeyboardAccessoryButton extends StatelessWidget
     final theme = RoofTheme.of(context);
 
     final textStyle =
-        typography.button.textStyleWithColor(theme.color.text.submitAction);
+        typography.button.textStyleWithColor(theme.color.text.primaryAction);
 
     _onTap() {
       triggerHapticWith(HapticOption.light);
@@ -30,7 +30,7 @@ class PrimaryActionKeyboardAccessoryButton extends StatelessWidget
       context: context,
       onTap: _onTap,
       child: Container(
-        color: theme.color.background.submitButton,
+        color: theme.color.background.primaryAction,
         child: Center(
           child: Text(
             title,

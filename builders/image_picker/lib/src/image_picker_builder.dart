@@ -16,9 +16,9 @@ mixin ImagePickerBuilder {
       maxImages: maxFiles,
       enableCamera: true,
       options: CupertinoOptions(
-        selectionFillColor: _convertToHex(theme.color.background.submitButton),
+        selectionFillColor: _convertToHex(theme.color.background.primaryAction),
         selectionStrokeColor:
-            _convertToHex(theme.color.background.submitButton),
+            _convertToHex(theme.color.background.primaryAction),
         selectionShadowColor: _convertToHex(theme.shadow.color),
         selectionTextColor: _convertToHex(Colors.white),
       ),

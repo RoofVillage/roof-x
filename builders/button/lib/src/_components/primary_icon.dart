@@ -12,7 +12,7 @@ class RoofPrimaryIconButton extends StatelessWidget with RoofIconButton {
   get context => (context);
   get iconColor => (context) {
         final theme = RoofTheme.of(context);
-        return theme.color.text.action;
+        return theme.color.text.primaryAction;
       };
 
   RoofPrimaryIconButton({
