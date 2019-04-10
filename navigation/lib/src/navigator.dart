@@ -40,6 +40,7 @@ class InheritedArtboardNavigator extends State<ArtboardNavigator> {
   }
 
   bool pop<T>([T result]) => widget.pop(result);
+
   void toggleNavButtonsHidden(bool isHidden) {
     if (widget.toggleNavButtonsHidden == null) return;
     widget.toggleNavButtonsHidden(isHidden);

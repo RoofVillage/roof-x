@@ -10,9 +10,7 @@ import 'package:keyboard_accessory/index.dart';
 import 'panel.dart';
 import 'button_option.dart';
 import '../vertical_floating_artboard.dart';
-
-final _slideDuration = RoofDuration.medium;
-final _slideCurve = RoofCurve.easy;
+import 'nav_button_state_manager.dart';
 
 class VerticalFloatingArtboardNavigator extends StatefulWidget {
   final Artboard artboard;
@@ -41,6 +39,8 @@ class VerticalFloatingInheritedArtboardNavigator
   List<VerticalFloatingArtboardNavigatorPanel> _floatingArtboardPanels = [];
 
   final _pageController = PageController();
+  final _slideDuration = RoofDuration.medium;
+  final _slideCurve = RoofCurve.easy;
 
   @override
   void initState() {
@@ -61,13 +61,6 @@ class VerticalFloatingInheritedArtboardNavigator
   get _shouldPop =>
       _timeDelta < _popMinDragDistanceDelta &&
       _downDistanceDelta > _popMaxDragTimeDelta;
-
-  void toggleNavButtonsHidden(bool isHidden) {
-    setState(() {
-      VerticalFloatingArtboardNavigatorPanel.of(context)
-          .toggleNavButtonVisibilityTo(!isHidden);
-    });
-  }
 
   get childrenDelegate => SliverChildBuilderDelegate((context, position) {
         if (position >= _floatingArtboardPanels.length) return Container();
@@ -96,14 +89,11 @@ class VerticalFloatingInheritedArtboardNavigator
     );
 
     final navigator = ArtboardNavigator(
-      child: swippablePage,
-      goTo: _goTo,
-      pop: _pop,
-      toggleNavButtonsHidden: (isHidden) {
-        VerticalFloatingArtboardNavigator.of(context)
-            .toggleNavButtonsHidden(isHidden);
-      },
-    );
+        child: swippablePage,
+        goTo: _goTo,
+        pop: _pop,
+        toggleNavButtonsHidden: toggleNavButtonsHidden);
+
     final scaffold = Scaffold(
       body: KeyboardAccessory(child: navigator),
       backgroundColor: Colors.transparent,
@@ -113,6 +103,12 @@ class VerticalFloatingInheritedArtboardNavigator
       data: this,
       child: RoofTheme(theme.current, child: scaffold),
     );
+  }
+
+  void back() async {
+    await _pageController.previousPage(
+        duration: _slideDuration, curve: _slideCurve);
+    setState(() => _floatingArtboardPanels.removeLast());
   }
 
   Future<T> _goTo<T>(Artboard<T> artboard,
@@ -142,10 +138,11 @@ class VerticalFloatingInheritedArtboardNavigator
     _downDistanceDelta = details.globalPosition.dy - _initialDragDy;
   }
 
-  void back() async {
-    await _pageController.previousPage(
-        duration: _slideDuration, curve: _slideCurve);
-    setState(() => _floatingArtboardPanels.removeLast());
+  void toggleNavButtonsHidden(bool isHidden) {
+    setState(() {
+      VerticalFloatingArtboardNavigationButtonStateManager.of(context)
+          .toggleNavButtonVisibilityTo(!isHidden);
+    });
   }
 
   VerticalFloatingArtboardNavigatorPanel _buildPanelForArtboard<T>(
@@ -156,7 +153,7 @@ class VerticalFloatingInheritedArtboardNavigator
         ? VerticalFloatingArtboardButtonOption.close
         : VerticalFloatingArtboardButtonOption.previous;
 
-    final page = VerticalFloatingArtboardNavigatorPanel<T>(
+    final page = VerticalFloatingArtboardNavigatorPanel(
       artboard: artboard,
       defaultNavButtonOption: defaultNavButtonOption,
     );

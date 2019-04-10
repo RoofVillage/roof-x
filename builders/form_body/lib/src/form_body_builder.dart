@@ -89,7 +89,13 @@ mixin FormBodyBuilderState<T extends FormBodyBuilder> implements State<T> {
 
   bool _hasSetUp = false;
 
-  RoofStreamForm buildForm(BuildContext context) {
+  bool _shouldHideButtons = false;
+  get shouldHideButtons => _shouldHideButtons;
+  set shouldHideButtons(bool shouldHide) {
+    setState(() => _shouldHideButtons = shouldHide);
+  }
+
+  RoofStreamForm buildFormBody(BuildContext context) {
     _load(context);
     widget.form.addOnValueChangedListener(_restoreState);
     return widget._form;
@@ -116,9 +122,7 @@ mixin FormBodyBuilderState<T extends FormBodyBuilder> implements State<T> {
   }
 
   void addFocusChangedListeners() {
-    widget.form.addOnFocusChangedListener((isInFocus) {
-      widget.onFocusChanged(context: context, isInFocus: isInFocus);
-    });
+    widget.form.addOnFocusChangedListener(_focusChangedListener);
   }
 
   void removeFocusListeners() {
@@ -192,11 +196,8 @@ mixin FormBodyBuilderState<T extends FormBodyBuilder> implements State<T> {
     widget.form.batchUpdateFieldData(await widget.fieldData);
   }
 
-  bool _isFocused = false;
-  get isFocused => _isFocused;
-  set isFocused(bool isFocused) {
-    setState(() {
-      _isFocused = isFocused;
-    });
+  void _focusChangedListener(bool isInFocus) {
+    shouldHideButtons = isInFocus;
+    widget.onFocusChanged(context: context, isInFocus: isInFocus);
   }
 }
