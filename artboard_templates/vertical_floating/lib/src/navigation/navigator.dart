@@ -10,6 +10,7 @@ import 'package:keyboard_accessory/index.dart';
 import 'panel.dart';
 import 'button_option.dart';
 import '../vertical_floating_artboard.dart';
+import 'nav_button_state_manager.dart';
 
 class VerticalFloatingArtboardNavigator extends StatefulWidget {
   final Artboard artboard;
@@ -91,7 +92,7 @@ class VerticalFloatingInheritedArtboardNavigator
         child: swippablePage,
         goTo: _goTo,
         pop: _pop,
-        toggleNavButtonsHidden: _toggleNavButtonsHidden);
+        toggleNavButtonsHidden: toggleNavButtonsHidden);
 
     final scaffold = Scaffold(
       body: KeyboardAccessory(child: navigator),
@@ -137,9 +138,9 @@ class VerticalFloatingInheritedArtboardNavigator
     _downDistanceDelta = details.globalPosition.dy - _initialDragDy;
   }
 
-  void _toggleNavButtonsHidden(bool isHidden) {
+  void toggleNavButtonsHidden(bool isHidden) {
     setState(() {
-      VerticalFloatingArtboardNavigatorPanel.of(context)
+      VerticalFloatingArtboardNavigationButtonStateManager.of(context)
           .toggleNavButtonVisibilityTo(!isHidden);
     });
   }
@@ -152,7 +153,7 @@ class VerticalFloatingInheritedArtboardNavigator
         ? VerticalFloatingArtboardButtonOption.close
         : VerticalFloatingArtboardButtonOption.previous;
 
-    final page = VerticalFloatingArtboardNavigatorPanel<T>(
+    final page = VerticalFloatingArtboardNavigatorPanel(
       artboard: artboard,
       defaultNavButtonOption: defaultNavButtonOption,
     );

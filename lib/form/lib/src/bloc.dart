@@ -211,20 +211,27 @@ class StreamFormBloc extends BlocBase {
     for (final fieldData in fieldData) {
       if (fieldData.tracked) continue;
       fieldData.addOnChangedListener((newValue) => onValueChanged());
-      fieldData.addOnFocusChangedListener((newFocusValue) {
-        if (fieldData.isInFocus == newFocusValue) return;
-        final hasFocusedFieldBefore = _hasFocusedField();
+      fieldData.addOnFocusChangedListener((fieldHasFocus) {
+        //Determine if the form previously had focus before this change.
+        //If the field is resigning focus, the form had focus before.
+        //Otherwise if the field is gaining focus, see if there is another field
+        //currently with focus.
+        final formHadFocusedFieldBefore =
+            !fieldHasFocus || _hasFocusedField(ignoreFields: [fieldData]);
 
-        if (newFocusValue == !hasFocusedFieldBefore) {
-          onFocusChanged(newFocusValue);
+        if (fieldHasFocus == !formHadFocusedFieldBefore) {
+          onFocusChanged(fieldHasFocus);
         }
       });
       fieldData.markAsTracked();
     }
   }
 
-  bool _hasFocusedField() {
-    for (final fieldData in _formData.fieldData) {
+  bool _hasFocusedField({List<StreamableFormFieldData> ignoreFields}) {
+    final fieldsToCheck =
+        _formData.fieldData.toSet().difference(ignoreFields.toSet());
+
+    for (final fieldData in fieldsToCheck) {
       if (fieldData.isInFocus) return true;
     }
     return false;

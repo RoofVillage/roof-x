@@ -7,6 +7,7 @@ import 'package:navigation/index.dart';
 import '../vertical_floating_artboard.dart';
 import 'button_option.dart';
 import 'navigator.dart';
+import 'nav_button_state_manager.dart';
 
 class VerticalFloatingArtboardNavigatorPanel<T> extends StatefulWidget {
   final VerticalFloatingArtboard artboard;
@@ -40,10 +41,8 @@ class VerticalFloatingArtboardNavigatorPanel<T> extends StatefulWidget {
 class InheritedVerticalFloatingArtboardNavigatorPanel<T>
     extends State<VerticalFloatingArtboardNavigatorPanel<T>>
     with AutomaticKeepAliveClientMixin, IconNavButtonBuilder {
-  bool showsNavButton = true;
-
   bool _wantKeepAlive = true;
-  final _buttonMarginBottom = RoofDistance.d;
+  final _buttonMarginBottom = RoofDistance.b;
   T _result;
 
   set result(T value) => setState(() => _result = value);
@@ -72,7 +71,8 @@ class InheritedVerticalFloatingArtboardNavigatorPanel<T>
     final _alignment = Alignment(0, ratio);
 
     List<Widget> children = [flexibleColumn];
-    if (showsNavButton) {
+    if (VerticalFloatingArtboardNavigationButtonStateManager.of(context)
+        .showsNavButton) {
       final button = _navButton();
       children.add(button);
     }
@@ -87,10 +87,6 @@ class InheritedVerticalFloatingArtboardNavigatorPanel<T>
     _wantKeepAlive = false;
     updateKeepAlive();
     super.dispose();
-  }
-
-  void toggleNavButtonVisibilityTo(bool shouldShow) {
-    setState(() => showsNavButton = shouldShow);
   }
 
   Widget _navButton() {
