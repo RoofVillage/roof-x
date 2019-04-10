@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:theme/index.dart';
 import 'package:artboard/index.dart';
 
-import '_scaffold.dart';
-
 mixin VerticalFullScreenArtboard implements StatefulWidget, Artboard {
   Widget buildBody(BuildContext context);
   Widget buildNavBar(BuildContext context) => null;
@@ -19,15 +17,32 @@ mixin VerticalFullScreenArtboardState<T extends VerticalFullScreenArtboard>
   Widget build(BuildContext context) {
     final theme = RoofTheme.of(context);
 
-    final body = VerticalFullScreenScaffold(
-      navBar: widget.buildNavBar(context),
-      body: widget.buildBody(context),
-      dock: widget.buildDock(context),
+    final navBar = widget.buildNavBar(context);
+    final body = widget.buildBody(context);
+    final dock = widget.buildDock(context);
+
+    final children = <Widget>[];
+
+    if (navBar != null) children.add(navBar);
+    final stretchedBody = Expanded(
+      child: MediaQuery.removePadding(
+        context: context,
+        removeTop: true,
+        child: body,
+      ),
+    );
+
+    children.add(stretchedBody);
+    if (dock != null) children.add(dock);
+
+    final column = Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: children,
     );
 
     final scaffold = Scaffold(
       backgroundColor: theme.color.background.general,
-      body: body,
+      body: column,
     );
 
     return RoofTheme(theme.current, child: scaffold);
