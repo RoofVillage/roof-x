@@ -13,8 +13,10 @@ dependencies:
     path: ../../theme
   typography:
     path: ../../typography
-  spec:
-    path: ../../spec
+  distance:
+    path: ../../distance
+  corner_radius:
+    path: ../../corner_radius
 
 dev_dependencies:
   flutter_test:

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:spec/index.dart';
-import 'package:typography/index.dart';
+import 'package:padding/index.dart' as padding;
+import 'package:typography/index.dart' as typography;
 import 'package:theme/index.dart';
 import 'package:haptics/index.dart';
 
@@ -42,7 +42,7 @@ class _RoofDatePickerFieldState extends State<RoofDatePickerField> {
     widget.onTap();
   }
 
-  final _typographyStyle = RoofTypography.bodyPrimary;
+  final _typographyStyle = typography.bodyPrimary;
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +55,7 @@ class _RoofDatePickerFieldState extends State<RoofDatePickerField> {
     final fieldBody = GestureDetector(
       onTap: _onTap,
       child: Container(
-        padding: RoofObjectPadding.field1,
+        padding: padding.field1,
         child: Text(
           formattedValue,
           style: textStyle,

@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:theme/index.dart';
-import 'package:spec/index.dart';
+import 'package:distance/index.dart' as distance;
 import 'package:haptics/index.dart';
-
-typedef BuildContextPasser = void Function(BuildContext context);
+import 'package:typedefs/index.dart';
 
 mixin RoofNavButton implements StatelessWidget {
-  BuildContextPasser get onTap;
+  ContextPasser get onTap;
 
   Widget iconForTheme(RoofInheritedTheme theme);
 
-  final _padding = EdgeInsets.all(RoofDistance.b);
+  final _padding = EdgeInsets.all(distance.b);
 
   @override
   Widget build(BuildContext context) {

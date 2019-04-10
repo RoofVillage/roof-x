@@ -1,24 +1,18 @@
-import 'typography_style.dart';
+import '_typography_style.dart';
+
 import 'utils/index.dart';
 
-class RoofDetailPrimaryIos extends _DetailPrimary {}
+class RoofDetailPrimaryIos with _DetailPrimary, TypographyStyle {}
 
-class RoofDetailPrimaryAndroid extends _DetailPrimary {}
+class RoofDetailPrimaryAndroid with _DetailPrimary, TypographyStyle {}
 
-class _DetailPrimary extends RoofTypographyStyle {
-  static const _fontSize = RoofFontSize.extraSmall;
-  static const _fontWeight = RoofFontWeight.thick;
-  static const double _leading = _fontSize;
-  static const double _tracking = 0;
-
-  _DetailPrimary(
-      {fontSize = _fontSize,
-      fontWeight = _fontWeight,
-      leading = _leading,
-      tracking = _tracking})
-      : super(
-            fontSize: fontSize,
-            fontWeight: fontWeight,
-            leading: leading,
-            tracking: tracking);
+mixin _DetailPrimary implements TypographyStyle {
+  @override
+  final fontSize = RoofFontSize.extraSmall;
+  @override
+  final fontWeight = RoofFontWeight.thick;
+  @override
+  final leading = RoofFontSize.extraSmall;
+  @override
+  final tracking = 0;
 }

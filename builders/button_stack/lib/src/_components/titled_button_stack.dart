@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:theme/index.dart';
-import 'package:typography/index.dart';
+import 'package:typography/index.dart' as typography;
 
 import 'button_stack.dart';
 
@@ -10,7 +10,7 @@ class RoofTitledButtonStack extends StatelessWidget {
 
   RoofTitledButtonStack({@required this.title, @required this.buttons});
 
-  final _titleStyle = RoofTypography.heading2;
+  final _titleStyle = typography.heading2;
 
   @override
   Widget build(BuildContext context) {

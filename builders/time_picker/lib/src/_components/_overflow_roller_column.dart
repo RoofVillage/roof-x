@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:typography/index.dart';
+import 'package:typography/index.dart' as typography;
 import 'package:theme/index.dart';
 
 class OverflowRollerColumn extends StatelessWidget {
@@ -19,8 +19,8 @@ class OverflowRollerColumn extends StatelessWidget {
     this.adjustValue,
   });
 
-  final _inactiveTypography = RoofTypography.bodyPrimary;
-  final _activeTypography = RoofTypography.bodyPrimaryThick;
+  final _inactiveTypography = typography.bodyPrimary;
+  final _activeTypography = typography.bodyPrimaryThick;
 
   @override
   Widget build(BuildContext context) {

@@ -47,13 +47,9 @@ class VerticalFullScreenInheritedArtboardNavigator
     if (artboard is VerticalFloatingArtboard) {
       final floatingNavigator =
           VerticalFloatingArtboardNavigator(artboard: artboard);
-      final floatingNavigatorButtonManager =
-          VerticalFloatingArtboardNavigationButtonStateManager(
-        child: floatingNavigator,
-      );
       final result = await Navigator.of(context).push<dynamic>(
           VerticalFloatingRoute(
-              builder: (context) => floatingNavigatorButtonManager,
+              builder: (context) => floatingNavigator,
               currentTheme: theme.current));
       if (result is Artboard) {
         return await _goTo<T>(result, context: context);

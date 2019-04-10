@@ -3,8 +3,8 @@ import 'package:vertical_floating_artboard_templates/index.dart';
 import 'package:date/index.dart';
 import 'package:date_picker_builder/index.dart';
 
-class DatePickerVerticalFloatingArtboard extends VerticalFloatingArtboard<Date>
-    with DatePickerBuilder {
+class DatePickerVerticalFloatingArtboard
+    extends EmptyVerticalFloatingArtboard<Date> with DatePickerBuilder {
   final Date selectedDate;
   final Date startBound;
   final Date endBound;
@@ -20,8 +20,10 @@ class DatePickerVerticalFloatingArtboard extends VerticalFloatingArtboard<Date>
 }
 
 class _DatePickerVerticalFloatingArtboardState
-    extends VerticalFloatingArtboardState<DatePickerVerticalFloatingArtboard>
-    with DatePickerBuilderState<DatePickerVerticalFloatingArtboard> {
+    extends State<DatePickerVerticalFloatingArtboard>
+    with
+        VerticalFloatingArtboardState<DatePickerVerticalFloatingArtboard>,
+        DatePickerBuilderState<DatePickerVerticalFloatingArtboard> {
   @override
   Date get date =>
       VerticalFloatingArtboardNavigatorPanel.of(context, shouldRebuild: false)

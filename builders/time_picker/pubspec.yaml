@@ -11,8 +11,10 @@ dependencies:
     sdk: flutter
   theme:
     path: ../../theme
-  spec:
-    path: ../../spec
+  duration:
+    path: ../../duration
+  curve:
+    path: ../../curve
   haptics:
     path: ../../lib/haptics
   typography:

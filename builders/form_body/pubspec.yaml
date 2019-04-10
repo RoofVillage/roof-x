@@ -13,8 +13,16 @@ dependencies:
     path: ../keyboard_accessory_bar
   date_picker_builder:
     path: ../date_picker
-  spec:
-    path: ../../spec
+  distance:
+    path: ../../distance
+  duration:
+    path: ../../duration
+  padding:
+    path: ../../padding
+  corner_radius:
+    path: ../../corner_radius
+  curve:
+    path: ../../curve
   typography:
     path: ../../typography
   icon_library:
@@ -33,6 +41,8 @@ dependencies:
     path: ../../lib/haptics
   form_validation_exception:
     path: ../../lib/form_validation_exception
+  typedefs:
+    path: ../../lib/typedefs
 
 dev_dependencies:
   flutter_test:

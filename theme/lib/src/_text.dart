@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'color.dart';
+import '_color.dart' as color;
 import 'option.dart';
 
 class RoofTextColor {
@@ -9,9 +9,9 @@ class RoofTextColor {
   Color get brand {
     switch (_current) {
       case RoofThemeOption.light:
-        return RoofColor.red;
+        return color.red;
       case RoofThemeOption.dark:
-        return RoofColor.red;
+        return color.red;
     }
     return null;
   }
@@ -19,9 +19,9 @@ class RoofTextColor {
   Color get primary {
     switch (_current) {
       case RoofThemeOption.light:
-        return RoofColor.black3;
+        return color.black3;
       case RoofThemeOption.dark:
-        return RoofColor.white1;
+        return color.white1;
     }
     return null;
   }
@@ -29,9 +29,9 @@ class RoofTextColor {
   Color get secondary {
     switch (_current) {
       case RoofThemeOption.light:
-        return RoofColor.gray4;
+        return color.gray4;
       case RoofThemeOption.dark:
-        return RoofColor.gray2;
+        return color.gray2;
     }
     return null;
   }
@@ -39,9 +39,9 @@ class RoofTextColor {
   Color get placeholder {
     switch (_current) {
       case RoofThemeOption.light:
-        return RoofColor.gray3;
+        return color.gray3;
       case RoofThemeOption.dark:
-        return RoofColor.gray3;
+        return color.gray3;
     }
     return null;
   }
@@ -49,9 +49,9 @@ class RoofTextColor {
   Color get fill {
     switch (_current) {
       case RoofThemeOption.light:
-        return RoofColor.black2;
+        return color.black2;
       case RoofThemeOption.dark:
-        return RoofColor.white1;
+        return color.white1;
     }
     return null;
   }
@@ -59,9 +59,9 @@ class RoofTextColor {
   Color get primaryAction {
     switch (_current) {
       case RoofThemeOption.light:
-        return RoofColor.white1;
+        return color.white1;
       case RoofThemeOption.dark:
-        return RoofColor.white1;
+        return color.white1;
     }
     return null;
   }
@@ -69,9 +69,9 @@ class RoofTextColor {
   Color get secondaryAction {
     switch (_current) {
       case RoofThemeOption.light:
-        return RoofColor.blue;
+        return color.blue;
       case RoofThemeOption.dark:
-        return RoofColor.blue;
+        return color.blue;
     }
     return null;
   }
@@ -79,9 +79,9 @@ class RoofTextColor {
   Color get inactiveAction {
     switch (_current) {
       case RoofThemeOption.light:
-        return RoofColor.gray4;
+        return color.gray4;
       case RoofThemeOption.dark:
-        return RoofColor.gray2;
+        return color.gray2;
     }
     return null;
   }
@@ -89,9 +89,9 @@ class RoofTextColor {
   Color get alert {
     switch (_current) {
       case RoofThemeOption.light:
-        return RoofColor.alert;
+        return color.alert;
       case RoofThemeOption.dark:
-        return RoofColor.alert;
+        return color.alert;
     }
     return null;
   }

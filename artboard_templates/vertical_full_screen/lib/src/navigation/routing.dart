@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:spec/index.dart';
+import 'package:duration/index.dart' as duration;
+import 'package:curve/index.dart' as curve;
 
 class VerticalFullScreenRoute<T> extends PageRoute<T> {
   WidgetBuilder builder;
 
   @override
-  Duration get transitionDuration => RoofDuration.short;
+  Duration get transitionDuration => duration.short;
 
   @override
   bool get opaque => false;
@@ -20,9 +21,7 @@ class VerticalFullScreenRoute<T> extends PageRoute<T> {
   bool get maintainState => true;
 
   Animation<double> get animation => CurvedAnimation(
-      curve: RoofCurve.quick,
-      reverseCurve: RoofCurve.quick,
-      parent: controller);
+      curve: curve.quick, reverseCurve: curve.quick, parent: controller);
 
   final _fadeTween = Tween<double>(begin: 0.8, end: 1);
   final _slideTween = Tween<Offset>(begin: Offset(0.5, 0.0), end: Offset.zero);

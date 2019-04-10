@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:spec/index.dart';
+import 'package:distance/index.dart' as distance;
 
 import '../input_dock.dart';
 
@@ -12,7 +12,7 @@ mixin AuxiliaryWidget implements StatelessWidget {
 
     return Container(
       height: baseHeight,
-      margin: EdgeInsets.only(right: RoofDistance.c),
+      margin: EdgeInsets.only(right: distance.c),
       child: Center(
         child: child,
       ),

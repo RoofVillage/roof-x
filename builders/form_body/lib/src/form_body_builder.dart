@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:spec/index.dart';
+import 'package:distance/index.dart' as distance;
 import 'package:form/index.dart';
 import 'package:form_validation_exception/index.dart';
 import 'package:haptics/index.dart';
@@ -24,7 +24,7 @@ mixin FormBodyBuilder implements StatefulWidget {
   String get submitButtonText;
   bool get canSubmitWitheyboardRaised => true;
 
-  double get fieldHorizontalSpacing => RoofDistance.c;
+  double get fieldHorizontalSpacing => distance.c;
 
   StreamFormBloc get form => _form.bloc;
 

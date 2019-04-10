@@ -17,6 +17,8 @@ dependencies:
     path: ../date
   form_validation_exception:
     path: ../form_validation_exception
+  typedefs:
+    path: ../typedefs
 
 dev_dependencies:
   flutter_test:

@@ -1,26 +1,24 @@
 import 'dart:async';
 import 'package:stream/index.dart';
+import 'package:typedefs/index.dart';
 
 import 'data/field.dart';
 import 'data/section.dart';
 import 'data/form.dart';
-
-typedef void ChangeListener();
-typedef void FlagListener(bool flag);
 
 class StreamFormBloc extends BlocBase {
   StreamableFormData _formData;
 
   StreamableFormData get formData => _formData;
 
-  ChangeListener get onValueChanged => () {
+  EventListener get onValueChanged => () {
         for (final listener in _onValueChangedListeners) listener();
       };
   FlagListener get onFocusChanged => (bool isInFocus) {
         for (final listener in _onFocusChangedListeners) listener(isInFocus);
       };
 
-  List<ChangeListener> _onValueChangedListeners = [];
+  List<EventListener> _onValueChangedListeners = [];
   List<FlagListener> _onFocusChangedListeners = [];
 
   //The stream responsible for communicating changes to the entire form.
@@ -32,7 +30,7 @@ class StreamFormBloc extends BlocBase {
   //Override to handle field changes;
   void fieldChanged(String fieldKey, dynamic oldValue, dynamic newValue) {}
 
-  void addOnValueChangedListener(ChangeListener listener) {
+  void addOnValueChangedListener(EventListener listener) {
     if (_onValueChangedListeners.contains(listener)) return;
     _onValueChangedListeners.add(listener);
   }

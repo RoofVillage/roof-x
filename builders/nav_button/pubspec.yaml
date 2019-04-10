@@ -11,14 +11,16 @@ dependencies:
     sdk: flutter
   haptics:
     path: ../../lib/haptics
-  spec:
-    path: ../../spec
+  distance:
+    path: ../../distance
   theme:
     path: ../../theme
   typography:
     path: ../../typography
   icon_library:
     path: ../../icon_library
+  typedefs:
+    path: ../../lib/typedefs
 
 dev_dependencies:
   flutter_test:

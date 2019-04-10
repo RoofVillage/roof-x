@@ -2,24 +2,24 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:artboard/index.dart';
+import 'package:typedefs/index.dart';
 
 typedef GoToArtboard = Future<T> Function<T>(Artboard<T> artboard,
     {@required BuildContext context});
 
 typedef PopTo = bool Function<T>([T result]);
-typedef Toggle = Function(bool);
 
 class ArtboardNavigator extends StatefulWidget {
   final Widget child;
   final GoToArtboard goTo;
   final PopTo pop;
-  final Toggle toggleNavButtonsHidden;
+  final FlagListener onNavButtonVisibilityChange;
 
   ArtboardNavigator(
       {@required this.child,
       @required this.goTo,
       @required this.pop,
-      this.toggleNavButtonsHidden});
+      this.onNavButtonVisibilityChange});
 
   @override
   State<StatefulWidget> createState() => InheritedArtboardNavigator();
@@ -42,8 +42,8 @@ class InheritedArtboardNavigator extends State<ArtboardNavigator> {
   bool pop<T>([T result]) => widget.pop(result);
 
   void toggleNavButtonsHidden(bool isHidden) {
-    if (widget.toggleNavButtonsHidden == null) return;
-    widget.toggleNavButtonsHidden(isHidden);
+    if (widget.onNavButtonVisibilityChange == null) return;
+    widget.onNavButtonVisibilityChange(isHidden);
   }
 
   @override

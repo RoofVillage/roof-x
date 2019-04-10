@@ -17,8 +17,8 @@ dependencies:
     path: ../../lib/sorting
   icon_library:
     path: ../../icon_library
-  spec:
-    path: ../../spec
+  distance:
+    path: ../../distance
   theme:
     path: ../../theme
   typography:

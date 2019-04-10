@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:spec/index.dart';
+import 'package:distance/index.dart' as distance;
+import 'package:corner_radius/index.dart' as corner_radius;
 import 'package:icon_library/index.dart';
-import 'package:typography/index.dart';
+import 'package:typography/index.dart' as typography;
 import 'package:haptics/index.dart';
-
-typedef ColorGetter = Color Function(BuildContext context);
-typedef OnTap = void Function(BuildContext context);
+import 'package:typedefs/index.dart';
 
 mixin RoofLeftButton {
-  OnTap get onTap;
+  ContextPasser get onTap;
   String get text;
   StandardIconReference get iconReference => null;
   bool get hasArrow => true;
@@ -23,7 +22,7 @@ mixin RoofLeftButtonState {
 
   bool _tapped = false;
   double _tappedOpacity = 0.75;
-  final _textStyle = RoofTypography.button;
+  final _textStyle = typography.button;
   final double _height = 50;
 
   void setState(dynamic());
@@ -35,7 +34,7 @@ mixin RoofLeftButtonState {
 
     if (button.iconReference != null) {
       final iconPadding = button.text != null
-          ? EdgeInsets.only(right: RoofDistance.b)
+          ? EdgeInsets.only(right: distance.b)
           : EdgeInsets.all(0);
 
       final buttonIcon = Container(
@@ -63,7 +62,7 @@ mixin RoofLeftButtonState {
 
     final decoration = BoxDecoration(
       color: button.backgroundColor(context).withOpacity(opacity),
-      borderRadius: BorderRadius.all(RoofCornerRadius.regular),
+      borderRadius: BorderRadius.all(corner_radius.regular),
     );
 
     return GestureDetector(

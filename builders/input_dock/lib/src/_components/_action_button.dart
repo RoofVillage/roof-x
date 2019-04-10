@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:icon_library/index.dart';
-import 'package:spec/index.dart';
-import 'package:typography/index.dart';
+import 'package:curve/index.dart' as curve;
+import 'package:duration/index.dart' as duration;
+import 'package:distance/index.dart' as distance;
+import 'package:corner_radius/index.dart' as corner_radius;
+import 'package:typography/index.dart' as typography;
 import 'package:theme/index.dart';
 import 'package:haptics/index.dart';
 
@@ -25,7 +28,7 @@ class _DockActionButtonState extends State<DockActionButton>
     with TickerProviderStateMixin {
   final GlobalKey _buttonKey = GlobalKey();
   final GlobalKey _buttonIconKey = GlobalKey();
-  final double _buttonHorizontalPadding = RoofDistance.b;
+  final double _buttonHorizontalPadding = distance.b;
 
   double minWidthToShowText = 0;
   double maxButtonWidth;
@@ -40,9 +43,9 @@ class _DockActionButtonState extends State<DockActionButton>
     WidgetsBinding.instance.addPostFrameCallback(_buildButtonAnimation);
 
     widthAnimationController =
-        AnimationController(duration: RoofDuration.short, vsync: this);
+        AnimationController(duration: duration.short, vsync: this);
     opacityAnimationController =
-        AnimationController(duration: RoofDuration.short, vsync: this);
+        AnimationController(duration: duration.short, vsync: this);
 
     super.initState();
   }
@@ -56,23 +59,22 @@ class _DockActionButtonState extends State<DockActionButton>
 
     final buttonDecoration = BoxDecoration(
       border: Border.all(color: theme.color.stroke.secondaryAction),
-      borderRadius: BorderRadius.all(RoofCornerRadius.regular),
+      borderRadius: BorderRadius.all(corner_radius.regular),
     );
 
     final animatedWidth = widthAnimation != null ? widthAnimation.value : null;
     final showText =
         animatedWidth == null || animatedWidth >= minWidthToShowText;
 
-    final containerPadding = showText
-        ? EdgeInsets.fromLTRB(RoofDistance.b, 0, RoofDistance.b, 0)
-        : null;
+    final containerPadding =
+        showText ? EdgeInsets.fromLTRB(distance.b, 0, distance.b, 0) : null;
 
     final buttonChildren = <Widget>[];
 
     final buttonIcon = Container(
       key: _buttonIconKey,
-      child: widget.actionIconReference
-          .buildSvg(color: theme.color.icon.action),
+      child:
+          widget.actionIconReference.buildSvg(color: theme.color.icon.action),
     );
 
     final buttonText = _ButtonText(
@@ -146,14 +148,14 @@ class _DockActionButtonState extends State<DockActionButton>
 
     final widthCurve = CurvedAnimation(
       parent: widthAnimationController,
-      curve: RoofCurve.quick,
-      reverseCurve: RoofCurve.quick.flipped,
+      curve: curve.quick,
+      reverseCurve: curve.quick.flipped,
     );
 
     final opacityCurve = CurvedAnimation(
       parent: opacityAnimationController,
-      curve: RoofCurve.slow,
-      reverseCurve: RoofCurve.slow.flipped,
+      curve: curve.slow,
+      reverseCurve: curve.slow.flipped,
     );
 
     widthAnimation = Tween(
@@ -181,13 +183,13 @@ class _ButtonText extends StatelessWidget {
 
   _ButtonText({this.text, this.show, this.opacity});
 
-  final _buttonTextStyle = RoofTypography.button;
+  final _buttonTextStyle = typography.button;
 
   @override
   Widget build(BuildContext context) {
     final buttonTextColor = RoofTheme.of(context).color.text.secondaryAction;
 
-    final textContainerPadding = EdgeInsets.fromLTRB(RoofDistance.b, 0, 0, 0);
+    final textContainerPadding = EdgeInsets.fromLTRB(distance.b, 0, 0, 0);
 
     return Flexible(
       child: Container(

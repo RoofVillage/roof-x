@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:spec/index.dart';
+import 'package:distance/index.dart' as distance;
 import 'package:theme/index.dart';
 
 mixin RoofNavBar implements StatelessWidget {
   List<Widget> get actionButtons;
   List<Widget> buildNavigationWidgets(BuildContext context);
 
-  final _padding = EdgeInsets.fromLTRB(RoofDistance.a, 0, RoofDistance.a, 0);
+  final _padding = EdgeInsets.fromLTRB(distance.a, 0, distance.a, 0);
 
   Widget build(BuildContext context) {
     final theme = RoofTheme.of(context);

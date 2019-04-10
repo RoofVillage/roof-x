@@ -1,7 +1,11 @@
 import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
-import 'package:spec/index.dart';
-import 'package:typography/index.dart';
+import 'package:padding/index.dart' as padding;
+import 'package:distance/index.dart' as distance;
+import 'package:duration/index.dart' as duration;
+import 'package:curve/index.dart' as curve;
+import 'package:corner_radius/index.dart' as corner_radius;
+import 'package:typography/index.dart' as typography;
 import 'package:theme/index.dart';
 import 'package:haptics/index.dart';
 
@@ -28,8 +32,8 @@ class _RoofSwitchFieldState extends State<RoofSwitchField>
   Animation<Color> animation;
   AnimationController controller;
 
-  final _typographyStyle = RoofTypography.title;
-  final _duration = RoofDuration.short;
+  final _typographyStyle = typography.title;
+  final _duration = duration.short;
 
   initState() {
     isOn = widget.initialValue;
@@ -67,7 +71,7 @@ class _RoofSwitchFieldState extends State<RoofSwitchField>
     return GestureDetector(
         onTap: _onTap,
         child: Container(
-            margin: RoofObjectPadding.field2,
+            margin: padding.field2,
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [labelContainer, switchButton])));
@@ -90,9 +94,9 @@ class _RoofAnimatedSwitch extends StatelessWidget {
   final double _animatedContainerWidth = 24;
   final double _height = 34;
   final double _innerSpacing = 4.0;
-  final _duration = RoofDuration.short;
+  final _duration = duration.short;
 
-  double get _leftMargin => RoofDistance.d;
+  double get _leftMargin => distance.d;
   double get _radius => _height * 0.5;
   double get _aimatedContainerRadius => _animatedContainerWidth * 0.5;
 
@@ -119,7 +123,7 @@ class _RoofAnimatedSwitch extends StatelessWidget {
                   ),
                 ),
                 alignment: isOn ? Alignment(1.0, 0.0) : Alignment(-1.0, 0.0),
-                curve: RoofCurve.easy,
+                curve: curve.easy,
                 duration: _duration)));
   }
 }
