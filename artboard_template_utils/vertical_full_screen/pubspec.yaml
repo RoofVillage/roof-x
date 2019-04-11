@@ -23,8 +23,8 @@ dependencies:
     path: ../../curve
   theme:
     path: ../../theme
-  navigation:
-    path: ../../navigation
+  navigator:
+    path: ../../navigator
 
 dev_dependencies:
   flutter_test:

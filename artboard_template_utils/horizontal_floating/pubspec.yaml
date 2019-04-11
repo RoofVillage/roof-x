@@ -23,8 +23,8 @@ dependencies:
     path: ../../corner_radius
   theme:
     path: ../../theme
-  navigation:
-    path: ../../navigation
+  navigator:
+    path: ../../navigator
 
 dev_dependencies:
   flutter_test:

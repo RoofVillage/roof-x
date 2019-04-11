@@ -12,8 +12,8 @@ dependencies:
     path: ../../artboard_templates/vertical_full_screen
   vertical_floating_artboard_templates:
     path: ../../artboard_templates/vertical_floating
-  navigation:
-    path: ../../navigation
+  navigator:
+    path: ../../navigator
   icon_library:
     path: ../../icon_library
   image_picker: ^0.5.0+6

@@ -18,8 +18,8 @@ dependencies:
     path: ../challenge
   phone_number_sign_up_artboard:
     path: ../phone_number_sign_up
-  navigation:
-    path: ../../navigation
+  navigator:
+    path: ../../navigator
 
 dev_dependencies:
   flutter_test:

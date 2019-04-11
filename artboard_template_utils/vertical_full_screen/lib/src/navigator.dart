@@ -5,7 +5,7 @@ import 'package:vertical_floating_artboard_template_utils/index.dart';
 import 'package:horizontal_floating_artboard_template_utils/index.dart';
 import 'package:theme/index.dart';
 import 'package:artboard/index.dart';
-import 'package:navigation/index.dart';
+import 'package:navigator/index.dart';
 import 'package:keyboard_accessory/index.dart';
 
 import 'routing.dart';

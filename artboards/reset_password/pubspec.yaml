@@ -14,8 +14,8 @@ dependencies:
     path: ../../builders/form
   app_data:
     path: ../../app_data
-  navigation:
-    path: ../../navigation
+  navigator:
+    path: ../../navigator
 
 dev_dependencies:
   flutter_test:

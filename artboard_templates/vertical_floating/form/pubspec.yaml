@@ -16,8 +16,8 @@ dependencies:
     path: ../../../builders/form
   form_body_builder:
     path: ../../../builders/form_body
-  navigation:
-    path: ../../../navigation
+  navigator:
+    path: ../../../navigator
   date:
     path: ../../../lib/date
   date_picker_builder:

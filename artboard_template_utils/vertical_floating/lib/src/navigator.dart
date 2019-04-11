@@ -5,7 +5,7 @@ import 'package:theme/index.dart';
 import 'package:duration/index.dart' as duration;
 import 'package:curve/index.dart' as curve;
 import 'package:artboard/index.dart';
-import 'package:navigation/index.dart';
+import 'package:navigator/index.dart';
 import 'package:keyboard_accessory/index.dart';
 import 'package:vertical_floating_artboard_button_option/index.dart';
 

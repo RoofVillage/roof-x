@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:theme/index.dart';
 import 'package:artboard/index.dart';
-import 'package:navigation/index.dart';
+import 'package:navigator/index.dart';
 import 'package:keyboard_accessory/index.dart';
 
 import 'panel.dart';

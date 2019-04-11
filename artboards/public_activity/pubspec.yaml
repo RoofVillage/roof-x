@@ -20,8 +20,8 @@ dependencies:
     path: ../../icon_library
   model:
     path: ../../model
-  navigation:
-    path: ../../navigation
+  navigator:
+    path: ../../navigator
 
 dev_dependencies:
   flutter_test:

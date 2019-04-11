@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:stream/index.dart';
 import 'package:artboard/index.dart';
 import 'package:public_activity_artboard/index.dart';
-import 'package:vertical_full_screen_artboard_templates/index.dart';
+import 'package:vertical_full_screen_artboard_template_utils/index.dart';
 import 'package:device_screen/index.dart';
 
 import 'bloc.dart';

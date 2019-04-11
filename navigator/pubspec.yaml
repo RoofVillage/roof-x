@@ -1,4 +1,4 @@
-name: navigation
+name: navigator
 description: Defines how the app's artboards change focus.
 version: 1.0.0+1
 
