@@ -8,10 +8,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  vertical_floating_artboard_templates:
-    path: ../../artboard_templates/vertical_floating
-  horizontal_floating_artboard_templates:
-    path: ../../artboard_templates/horizontal_floating
+  form_vertical_floating_artboard_template:
+    path: ../../artboard_templates/vertical_floating/form
   form_builder:
     path: ../../builders/form
   app_data:

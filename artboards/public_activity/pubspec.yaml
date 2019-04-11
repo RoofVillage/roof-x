@@ -8,8 +8,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  vertical_full_screen_artboard_templates:
-    path: ../../artboard_templates/vertical_full_screen
+  full_logo_table_vertical_full_screen_artboard_template:
+    path: ../../artboard_templates/vertical_full_screen/full_logo_table
   sign_up_artboard:
     path: ../sign_up
   app_data:

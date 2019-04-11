@@ -1,0 +1,37 @@
+name: vertical_floating_artboard_template_utils
+description: Tools to for scaffolding and navigating to a vertical floating artboard.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  keyboard_accessory:
+    path: ../../lib/keyboard_accessory
+  artboard:
+    path: ../../artboard
+  curve:
+    path: ../../curve
+  distance:
+    path: ../../distance
+  duration:
+    path: ../../duration
+  corner_radius:
+    path: ../../corner_radius
+  theme:
+    path: ../../theme
+  navigation:
+    path: ../../navigation
+  vertical_floating_artboard_button_option:
+    path: ../../vertical_floating_artboard_button_option
+  nav_button_builder:
+    path: ../../builders/nav_button
+  icon_library:
+    path: ../../icon_library
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:vertical_floating_artboard_templates/index.dart';
+import 'package:form_vertical_floating_artboard_template/index.dart';
 import 'package:challenge_artboard/index.dart';
 import 'package:phone_number_sign_up_artboard/index.dart';
 import 'package:navigation/index.dart';

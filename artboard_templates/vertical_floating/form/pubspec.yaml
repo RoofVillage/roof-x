@@ -1,0 +1,32 @@
+name: form_vertical_floating_artboard_template
+description: A vertical floating frame with a form for building a widget hierarchy in.
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  artboard:
+    path: ../../../artboard
+  vertical_floating_artboard_template_utils:
+    path: ../../../artboard_template_utils/vertical_floating
+  form_builder:
+    path: ../../../builders/form
+  form_body_builder:
+    path: ../../../builders/form_body
+  navigation:
+    path: ../../../navigation
+  date:
+    path: ../../../lib/date
+  date_picker_builder:
+    path: ../../../builders/date_picker
+  button_builder:
+    path: ../../../builders/button
+  date_picker_artboard:
+    path: ../../../artboards/date_picker
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

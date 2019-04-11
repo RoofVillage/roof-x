@@ -1,0 +1,20 @@
+name: stack_vertical_floating_artboard_template
+description: An vertical floating frame with a button stack for building a widget hierarchy in.
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  artboard:
+    path: ../../../artboard
+  vertical_floating_artboard_template_utils:
+    path: ../../../artboard_template_utils/vertical_floating
+  button_stack_builder:
+    path: ../../../builders/button_stack
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

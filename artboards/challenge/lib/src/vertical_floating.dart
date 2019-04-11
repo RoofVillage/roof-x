@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:vertical_floating_artboard_templates/index.dart';
+import 'package:form_vertical_floating_artboard_template/index.dart';
 import 'package:flutter/material.dart';
 
 import '_builder.dart';

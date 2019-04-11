@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vertical_floating_artboard_templates/index.dart';
+import 'package:form_vertical_floating_artboard_template/index.dart';
 
 import '_builder.dart';
 
