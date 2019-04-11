@@ -29,8 +29,8 @@ mixin RoofNavBar implements StatelessWidget {
           ])
         ]));
 
-    final safeArea = MediaQuery.of(context).padding.top;
-    final padding = EdgeInsets.fromLTRB(_padding.left, _padding.top + safeArea,
+    final safeAreaTop = MediaQuery.of(context).padding.top;
+    final padding = EdgeInsets.fromLTRB(_padding.left, _padding.top + safeAreaTop,
         _padding.right, _padding.bottom);
 
     return Container(
