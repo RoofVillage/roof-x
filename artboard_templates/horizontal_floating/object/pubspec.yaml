@@ -1,0 +1,23 @@
+name: object_horizontal_floating_artboard_template
+description: A horizontal floating frame that represents and object for building a widget hierarchy in.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  artboard:
+    path: ../../../artboard
+  horizontal_floating_artboard_scaffold:
+    path: ../../../artboard_scaffolds/horizontal_floating
+  tabs_builder:
+    path: ../../../builders/tabs
+  grid_builder:
+    path: ../../../builders/grid
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
