@@ -9,7 +9,7 @@ import 'package:date/index.dart';
 import 'package:date_picker_builder/index.dart';
 import 'package:date_picker_artboard/index.dart';
 import 'package:button_builder/index.dart';
-import 'package:vertical_floating_artboard_template_utils/index.dart';
+import 'package:vertical_floating_artboard_scaffold/index.dart';
 
 abstract class FormVerticalFloatingArtboard<T> extends StatefulWidget
     with

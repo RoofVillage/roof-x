@@ -11,8 +11,8 @@ dependencies:
     sdk: flutter
   artboard:
     path: ../../../artboard
-  horizontal_floating_artboard_template_utils:
-    path: ../../../artboard_template_utils/horizontal_floating
+  horizontal_floating_artboard_scaffold:
+    path: ../../../artboard_scaffolds/horizontal_floating
 
 dev_dependencies:
   flutter_test:

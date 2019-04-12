@@ -1,5 +1,5 @@
-name: vertical_full_screen_artboard_template_utils
-description: Tools to for scaffolding and navigating to a vertical full screen artboard.
+name: horizontal_floating_artboard_scaffold
+description: Tools to for scaffolding and navigating to a horizontal floating artboard.
 
 version: 1.0.0+1
 
@@ -9,18 +9,18 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  vertical_floating_artboard_template_utils:
-    path: ../vertical_floating
-  horizontal_floating_artboard_template_utils:
-    path: ../horizontal_floating
   keyboard_accessory:
     path: ../../lib/keyboard_accessory
   artboard:
     path: ../../artboard
-  duration:
-    path: ../../duration
   curve:
     path: ../../curve
+  distance:
+    path: ../../distance
+  duration:
+    path: ../../duration
+  corner_radius:
+    path: ../../corner_radius
   theme:
     path: ../../theme
   navigator:

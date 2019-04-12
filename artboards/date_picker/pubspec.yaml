@@ -10,8 +10,8 @@ dependencies:
     sdk: flutter
   empty_vertical_floating_artboard_template:
     path: ../../artboard_templates/vertical_floating/empty
-  vertical_floating_artboard_template_utils:
-    path: ../../artboard_template_utils/vertical_floating
+  vertical_floating_artboard_scaffold:
+    path: ../../artboard_scaffolds/vertical_floating
   form_builder:
     path: ../../builders/form
   date_picker_builder:

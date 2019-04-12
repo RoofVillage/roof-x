@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:vertical_floating_artboard_template_utils/index.dart';
-import 'package:horizontal_floating_artboard_template_utils/index.dart';
+import 'package:vertical_floating_artboard_scaffold/index.dart';
+import 'package:horizontal_floating_artboard_scaffold/index.dart';
 import 'package:theme/index.dart';
 import 'package:artboard/index.dart';
 import 'package:navigator/index.dart';

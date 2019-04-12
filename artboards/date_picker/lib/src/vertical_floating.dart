@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:empty_vertical_floating_artboard_template/index.dart';
-import 'package:vertical_floating_artboard_template_utils/index.dart';
+import 'package:vertical_floating_artboard_scaffold/index.dart';
 import 'package:date/index.dart';
 import 'package:date_picker_builder/index.dart';
 

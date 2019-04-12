@@ -10,8 +10,8 @@ dependencies:
     sdk: flutter
   artboard:
     path: ../../../artboard
-  vertical_floating_artboard_template_utils:
-    path: ../../../artboard_template_utils/vertical_floating
+  vertical_floating_artboard_scaffold:
+    path: ../../../artboard_scaffolds/vertical_floating
   form_builder:
     path: ../../../builders/form
   form_body_builder:

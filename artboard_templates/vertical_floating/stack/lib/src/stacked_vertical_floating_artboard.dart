@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:button_stack_builder/index.dart';
 import 'package:artboard/index.dart';
-import 'package:vertical_floating_artboard_template_utils/index.dart';
+import 'package:vertical_floating_artboard_scaffold/index.dart';
 
 abstract class StackVerticalFloatingArtboard extends StatefulWidget
     with VerticalFloatingArtboard, Artboard, ButtonStackBuilder {

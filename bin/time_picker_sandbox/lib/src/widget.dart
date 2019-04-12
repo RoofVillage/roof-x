@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stream/index.dart';
-import 'package:vertical_full_screen_artboard_template_utils/index.dart';
+import 'package:vertical_full_screen_artboard_scaffold/index.dart';
 import 'package:theme/index.dart';
 import 'package:time_picker_builder/index.dart';
 

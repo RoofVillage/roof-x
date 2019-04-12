@@ -15,8 +15,8 @@ dependencies:
     path: ../../lib/stream
   public_activity_artboard:
     path: ../../artboards/public_activity
-  vertical_full_screen_artboard_template_utils:
-    path: ../../artboard_template_utils/vertical_full_screen
+  vertical_full_screen_artboard_scaffold:
+    path: ../../artboard_scaffolds/vertical_full_screen
   artboard:
     path: ../../artboard
   time_picker_builder:
