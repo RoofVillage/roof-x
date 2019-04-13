@@ -12,11 +12,11 @@ dependencies:
   haptics:
     path: ../../lib/haptics
   distance:
-    path: ../../distance
+    path: ../../spec/distance
   theme:
     path: ../../theme
   typography:
-    path: ../../typography
+    path: ../../spec/typography
   icon_library:
     path: ../../icon_library
   nav_button_builder:

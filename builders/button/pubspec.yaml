@@ -12,19 +12,19 @@ dependencies:
   icon_library:
     path: ../../icon_library
   typography:
-    path: ../../typography
+    path: ../../spec/typography
   theme:
     path: ../../theme
   haptics:
     path: ../../lib/haptics
   distance:
-    path: ../../distance
+    path: ../../spec/distance
   corner_radius:
-    path: ../../corner_radius
+    path: ../../spec/corner_radius
   typedefs:
     path: ../../lib/typedefs
   button_status_option:
-    path: ../../button_status_option
+    path: ../../options/button_status
 
 dev_dependencies:
   flutter_test:

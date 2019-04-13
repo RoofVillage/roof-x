@@ -17,7 +17,7 @@ dependencies:
   theme:
     path: ../../theme
   typography:
-    path: ../../typography
+    path: ../../spec/typography
   artboard:
     path: ../../lib/artboard
 

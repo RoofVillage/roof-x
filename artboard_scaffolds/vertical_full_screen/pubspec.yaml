@@ -18,9 +18,9 @@ dependencies:
   artboard:
     path: ../../lib/artboard
   duration:
-    path: ../../duration
+    path: ../../spec/duration
   curve:
-    path: ../../curve
+    path: ../../spec/curve
   theme:
     path: ../../theme
   navigator:

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:color/index.dart' as color;
 
-import '_color.dart' as color;
 import 'option.dart';
 
 class RoofTextColor {

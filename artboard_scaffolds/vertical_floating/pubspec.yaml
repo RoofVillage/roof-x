@@ -14,19 +14,19 @@ dependencies:
   artboard:
     path: ../../lib/artboard
   curve:
-    path: ../../curve
+    path: ../../spec/curve
   distance:
-    path: ../../distance
+    path: ../../spec/distance
   duration:
-    path: ../../duration
+    path: ../../spec/duration
   corner_radius:
-    path: ../../corner_radius
+    path: ../../spec/corner_radius
   theme:
     path: ../../theme
   navigator:
     path: ../../lib/navigator
   vertical_floating_artboard_button_option:
-    path: ../../vertical_floating_artboard_button_option
+    path: ../../options/vertical_floating_artboard_button
   nav_button_builder:
     path: ../../builders/nav_button
   icon_library:
