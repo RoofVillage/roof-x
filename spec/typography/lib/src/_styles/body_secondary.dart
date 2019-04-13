@@ -1,4 +1,4 @@
-import '_typography_style.dart';
+import 'typography_style.dart';
 
 import '_utils/font_size.dart' as font_size;
 import '_utils/font_weight.dart' as font_weight;
