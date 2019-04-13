@@ -16,8 +16,8 @@ dependencies:
     path: ../synchronizer
   session:
     path: ../session
-  model:
-    path: ../model
+  public:
+    path: ../model/objects/public
 
 dev_dependencies:
   flutter_test:

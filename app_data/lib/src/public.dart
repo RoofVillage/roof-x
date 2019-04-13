@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
-import 'package:model/index.dart';
+import 'package:public/index.dart';
 
 import 'utils/index.dart';
 import '_param.dart' as _param;

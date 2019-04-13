@@ -1,0 +1,34 @@
+name: commentable_object
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  key:
+    path: ../../key
+  feed_object:
+    path: ../feed_object
+  fee_payer_type:
+    path: ../../../types/fee_payer
+  stub:
+    path: ../../objects/stub
+  name_defining_object:
+    path: ../../mixins/name_defining_object
+  name_user:
+    path: ../../properties/name_user
+  location:
+    path: ../../properties/location
+  date:
+    path: ../../../lib/date
+  user_reference:
+    path: ../../properties/user_reference
+  name_formatter:
+    path: ../../name_formatter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

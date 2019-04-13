@@ -18,8 +18,8 @@ dependencies:
     path: ../../builders/nav_button
   icon_library:
     path: ../../icon_library
-  model:
-    path: ../../model
+  public:
+    path: ../../model/objects/public
   navigator:
     path: ../../navigator
 

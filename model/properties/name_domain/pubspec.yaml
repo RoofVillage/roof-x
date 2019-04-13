@@ -1,0 +1,18 @@
+name: name_domain
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  context_type:
+    path: ../../../types/context
+  name_context:
+    path: ../name_context
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

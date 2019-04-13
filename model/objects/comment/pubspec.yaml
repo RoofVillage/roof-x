@@ -1,0 +1,34 @@
+name: comment
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  fee_payer_type:
+    path: ../../../types/fee_payer
+  privacy_type:
+    path: ../../../types/privacy
+  feed_object:
+    path: ../../abstract/feed_object
+  user_reference:
+    path: ../../properties/user_reference
+  name_defining_object:
+    path: ../../mixins/name_defining_object
+  name_user:
+    path: ../../properties/name_user
+  name_formatter:
+    path: ../../name_formatter
+  commentable_object_reference:
+    path: ../../properties/commentable_object_reference
+  stub:
+    path: ../stub
+  key:
+    path: ../../key
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

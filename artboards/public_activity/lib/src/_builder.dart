@@ -5,7 +5,7 @@ import 'package:icon_library/index.dart';
 import 'package:decorated_text/index.dart';
 import 'package:app_data/index.dart';
 import 'package:sorting/index.dart';
-import 'package:model/index.dart';
+import 'package:public/index.dart';
 
 enum Section {
   completions,
