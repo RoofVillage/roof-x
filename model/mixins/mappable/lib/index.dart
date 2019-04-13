@@ -1,3 +1,1 @@
-mixin Mappable {
-  Map<String, Object> toMap();
-}
+export 'src/mappable.dart';
