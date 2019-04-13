@@ -9,8 +9,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  artboard:
-    path: ../../artboard
   button_builder:
     path: ../button
   form_body_builder:

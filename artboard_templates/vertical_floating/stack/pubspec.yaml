@@ -9,7 +9,7 @@ dependencies:
   flutter:
     sdk: flutter
   artboard:
-    path: ../../../artboard
+    path: ../../../lib/artboard
   vertical_floating_artboard_scaffold:
     path: ../../../artboard_scaffolds/vertical_floating
   button_stack_builder:

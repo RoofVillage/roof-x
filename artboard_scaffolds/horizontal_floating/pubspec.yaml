@@ -12,7 +12,7 @@ dependencies:
   keyboard_accessory:
     path: ../../lib/keyboard_accessory
   artboard:
-    path: ../../artboard
+    path: ../../lib/artboard
   curve:
     path: ../../curve
   distance:
@@ -24,7 +24,7 @@ dependencies:
   theme:
     path: ../../theme
   navigator:
-    path: ../../navigator
+    path: ../../lib/navigator
 
 dev_dependencies:
   flutter_test:

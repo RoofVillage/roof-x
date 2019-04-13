@@ -19,7 +19,7 @@ dependencies:
   typography:
     path: ../../typography
   artboard:
-    path: ../../artboard
+    path: ../../lib/artboard
 
 dev_dependencies:
   flutter_test:

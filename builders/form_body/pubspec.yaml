@@ -43,6 +43,8 @@ dependencies:
     path: ../../lib/form_validation_exception
   typedefs:
     path: ../../lib/typedefs
+  artboard:
+    path: ../../lib/artboard
 
 dev_dependencies:
   flutter_test:

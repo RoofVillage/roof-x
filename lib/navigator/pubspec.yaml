@@ -11,7 +11,7 @@ dependencies:
   artboard:
     path: ../artboard
   typedefs:
-    path: ../lib/typedefs
+    path: ../typedefs
 
 dev_dependencies:
   flutter_test:

@@ -10,7 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   artboard:
-    path: ../../../artboard
+    path: ../../../lib/artboard
   horizontal_floating_artboard_scaffold:
     path: ../../../artboard_scaffolds/horizontal_floating
   tabs_builder:
