@@ -80,7 +80,7 @@ class Comment extends FeedObject {
       {String sessionOwnerGuid,
       @required NameDefiningObject nameDefiningObject,
       bool firstPerson = false}) {
-    return formatName(
+    return formatNames(
         guids: [user.guid],
         sessionOwnerGuid: sessionOwnerGuid,
         nameDefiningObject: nameDefiningObject,

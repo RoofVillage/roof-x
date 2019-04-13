@@ -81,7 +81,7 @@ class OneToOneTransaction extends Transaction {
       {String sessionOwnerGuid,
       @required NameDefiningObject nameDefiningObject,
       bool firstPerson = false}) {
-    return formatName(
+    return formatNames(
         guids: [sender.guid],
         sessionOwnerGuid: sessionOwnerGuid,
         nameDefiningObject: nameDefiningObject,
@@ -92,7 +92,7 @@ class OneToOneTransaction extends Transaction {
       {String sessionOwnerGuid,
       @required NameDefiningObject nameDefiningObject,
       bool firstPerson = false}) {
-    return formatName(
+    return formatNames(
         guids: [receiver.guid],
         sessionOwnerGuid: sessionOwnerGuid,
         nameDefiningObject: nameDefiningObject,

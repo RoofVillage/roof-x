@@ -99,7 +99,7 @@ class Event extends FeedObject {
       @required NameDefiningObject nameDefiningObject,
       bool firstPerson = false,
       bool useNicknames = true}) {
-    return formatName(
+    return formatNames(
         guids: actingUsers.map((user) => user.guid),
         sessionOwnerGuid: sessionOwnerGuid,
         nameDefiningObject: nameDefiningObject,
@@ -112,7 +112,7 @@ class Event extends FeedObject {
       @required NameDefiningObject nameDefiningObject,
       bool firstPerson = false,
       bool useNicknames = true}) {
-    return formatName(
+    return formatNames(
         guids: affectedUsers.map((user) => user.guid),
         sessionOwnerGuid: sessionOwnerGuid,
         nameDefiningObject: nameDefiningObject,

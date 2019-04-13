@@ -1,0 +1,22 @@
+name: billing
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  billing_status_type:
+    path: ../../../../../types/billing_status
+  billing_type:
+    path: ../../../../../types/billing
+  mappable:
+    path: ../../mixins/mappable
+  key:
+    path: ../../key
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

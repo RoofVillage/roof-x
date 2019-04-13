@@ -103,7 +103,7 @@ class Expense extends Transaction {
     @required NameDefiningObject nameDefiningObject,
     bool firstPerson = false,
   }) {
-    return formatName(
+    return formatNames(
         guids: payers.map((payer) => payer.bankOwner.guid),
         sessionOwnerGuid: sessionOwnerGuid,
         nameDefiningObject: nameDefiningObject,
@@ -115,7 +115,7 @@ class Expense extends Transaction {
     @required NameDefiningObject nameDefiningObject,
     bool firstPerson = false,
   }) {
-    return formatName(
+    return formatNames(
         guids: splitters.map((splitter) => splitter.bankOwner.guid),
         sessionOwnerGuid: sessionOwnerGuid,
         nameDefiningObject: nameDefiningObject,

@@ -86,7 +86,7 @@ class Completion extends FeedObject {
     @required NameDefiningObject nameDefiningObject,
     bool firstPerson = false,
   }) {
-    return formatName(
+    return formatNames(
         guids: completingUsers.map((user) => user.guid),
         sessionOwnerGuid: sessionOwnerGuid,
         nameDefiningObject: nameDefiningObject,

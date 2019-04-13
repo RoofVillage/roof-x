@@ -1,0 +1,22 @@
+name: payment_default
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  payment_default_type:
+    path: ../../../../../types/payment_default
+  mappable:
+    path: ../../mixins/mappable
+  name_payment_profile:
+    path: ../name_payment_profile
+  key:
+    path: ../../key
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
