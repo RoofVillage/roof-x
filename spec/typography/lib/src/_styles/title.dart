@@ -1,14 +1,15 @@
 import '_typography_style.dart';
 
-import 'utils/index.dart';
+import '_utils/font_size.dart' as font_size;
+import '_utils/font_weight.dart' as font_weight;
 
 class RoofTitleIos with _RoofTitle1, TypographyStyle {}
 
 class RoofTitleAndroid with _RoofTitle1, TypographyStyle {}
 
 mixin _RoofTitle1 implements TypographyStyle {
-  final fontSize = RoofFontSize.small;
-  final fontWeight = RoofFontWeight.medium;
-  final leading = RoofFontSize.small;
+  final fontSize = font_size.small;
+  final fontWeight = font_weight.medium;
+  final leading = font_size.small;
   final tracking = 0;
 }

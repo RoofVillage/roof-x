@@ -1,15 +1,15 @@
 import 'dart:io' show Platform;
 
-import '_detail_primary.dart';
-import '_detail_secondary.dart';
-import '_body_primary.dart';
-import '_body_primary_thick.dart';
-import '_body_secondary.dart';
-import '_button.dart';
-import '_heading_1.dart';
-import '_heading_2.dart';
-import '_title.dart';
-import '_typography_style.dart';
+import '_styles/detail_primary.dart';
+import '_styles/detail_secondary.dart';
+import '_styles/body_primary.dart';
+import '_styles/body_primary_thick.dart';
+import '_styles/body_secondary.dart';
+import '_styles/button.dart';
+import '_styles/heading_1.dart';
+import '_styles/heading_2.dart';
+import '_styles/title.dart';
+import '_styles/typography_style.dart';
 
 TypographyStyle get detailPrimary {
   if (Platform.isIOS) {

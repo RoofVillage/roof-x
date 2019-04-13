@@ -1,6 +1,7 @@
 import '_typography_style.dart';
 
-import 'utils/index.dart';
+import '_utils/font_size.dart' as font_size;
+import '_utils/font_weight.dart' as font_weight;
 
 class RoofDetailSecondaryIos with _DetailSecondary, TypographyStyle {}
 
@@ -8,11 +9,11 @@ class RoofDetailSecondaryAndroid with _DetailSecondary, TypographyStyle {}
 
 mixin _DetailSecondary implements TypographyStyle {
   @override
-  final fontSize = RoofFontSize.extraSmall;
+  final fontSize = font_size.extraSmall;
   @override
-  final fontWeight = RoofFontWeight.medium;
+  final fontWeight = font_weight.medium;
   @override
-  final leading = RoofFontSize.extraSmall;
+  final leading = font_size.extraSmall;
   @override
   final tracking = 0;
 }

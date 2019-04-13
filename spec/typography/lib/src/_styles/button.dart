@@ -1,6 +1,7 @@
 import '_typography_style.dart';
 
-import 'utils/index.dart';
+import '_utils/font_size.dart' as font_size;
+import '_utils/font_weight.dart' as font_weight;
 
 class RoofButtonIos with _RoofButton, TypographyStyle {}
 
@@ -8,11 +9,11 @@ class RoofButtonAndroid with _RoofButton, TypographyStyle {}
 
 mixin _RoofButton implements TypographyStyle {
   @override
-  final fontSize = RoofFontSize.small;
+  final fontSize = font_size.small;
   @override
-  final fontWeight = RoofFontWeight.thick;
+  final fontWeight = font_weight.thick;
   @override
-  final leading = RoofFontSize.small;
+  final leading = font_size.small;
   @override
   final tracking = 0;
 }

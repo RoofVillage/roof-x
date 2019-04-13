@@ -1,5 +1,6 @@
-import '_typography_style.dart';
-import 'utils/index.dart';
+import 'typography_style.dart';
+import '_utils/font_size.dart' as font_size;
+import '_utils/font_weight.dart' as font_weight;
 
 class RoofBodyPrimaryThickIos with _RoofBodyPrimaryThick, TypographyStyle {}
 
@@ -7,13 +8,13 @@ class RoofBodyPrimaryThickAndroid with _RoofBodyPrimaryThick, TypographyStyle {}
 
 mixin _RoofBodyPrimaryThick implements TypographyStyle {
   @override
-  final fontSize = RoofFontSize.medium;
+  final fontSize = font_size.medium;
 
   @override
-  final fontWeight = RoofFontWeight.thick;
+  final fontWeight = font_weight.thick;
 
   @override
-  final leading = RoofFontSize.medium;
+  final leading = font_size.medium;
 
   @override
   final tracking = 0;
