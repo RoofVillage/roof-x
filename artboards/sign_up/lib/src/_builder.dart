@@ -12,6 +12,7 @@ mixin SignUpArtboardBuilder implements FormBuilder {
 
   @override
   Future<List<StreamableFormFieldData>> get fieldData async => [
+        _temp2,
         _temp3,
         _nameFieldData,
         _emailFieldData,

@@ -9,17 +9,20 @@ import 'package:typography/index.dart' as typography;
 import 'package:theme/index.dart';
 import 'package:haptics/index.dart';
 
+import '_widgets/index.dart';
+
 class RoofSwitchField extends StatefulWidget {
   final String title;
   final bool initialValue;
   final int labelMaxLines;
   final Function(bool) onChanged;
 
-  const RoofSwitchField(
-      {this.title,
-      this.initialValue = false,
-      this.labelMaxLines = 3,
-      this.onChanged});
+  const RoofSwitchField({
+    this.title,
+    this.initialValue = false,
+    this.labelMaxLines = 3,
+    this.onChanged,
+  });
 
   @override
   _RoofSwitchFieldState createState() => _RoofSwitchFieldState();
@@ -49,11 +52,13 @@ class _RoofSwitchFieldState extends State<RoofSwitchField>
     final isOnColor = theme.color.background.primaryAction;
     final isOffColor = theme.color.background.inactiveAction;
 
-    animation =
-        ColorTween(begin: isOffColor, end: isOnColor).animate(controller)
-          ..addListener(() {
-            setState(() {});
-          });
+    animation = ColorTween(
+      begin: isOffColor,
+      end: isOnColor,
+    ).animate(controller)
+      ..addListener(() {
+        setState(() {});
+      });
 
     isOn ? controller.forward() : controller.reverse();
 
@@ -69,12 +74,14 @@ class _RoofSwitchFieldState extends State<RoofSwitchField>
     final switchButton = _RoofAnimatedSwitch(isOn: isOn, color: switchColor);
 
     return GestureDetector(
-        onTap: _onTap,
-        child: Container(
-            margin: padding.field2,
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [labelContainer, switchButton])));
+      onTap: _onTap,
+      child: RoofFieldContainer(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [labelContainer, switchButton],
+        ),
+      ),
+    );
   }
 
   void _onTap() {
@@ -105,25 +112,28 @@ class _RoofAnimatedSwitch extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: _width,
-        height: _height,
-        margin: EdgeInsets.only(left: _leftMargin),
-        decoration: BoxDecoration(
-            border: Border.all(color: color),
-            borderRadius: BorderRadius.all(Radius.circular(_radius))),
-        child: Padding(
-            padding: EdgeInsets.all(_innerSpacing),
-            child: AnimatedAlign(
-                child: Container(
-                  width: _animatedContainerWidth,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(
-                        Radius.circular(_aimatedContainerRadius)),
-                    color: color,
-                  ),
-                ),
-                alignment: isOn ? Alignment(1.0, 0.0) : Alignment(-1.0, 0.0),
-                curve: curve.easy,
-                duration: _duration)));
+      width: _width,
+      height: _height,
+      margin: EdgeInsets.only(left: _leftMargin),
+      decoration: BoxDecoration(
+          border: Border.all(color: color),
+          borderRadius: BorderRadius.all(Radius.circular(_radius))),
+      child: Padding(
+        padding: EdgeInsets.all(_innerSpacing),
+        child: AnimatedAlign(
+          child: Container(
+            width: _animatedContainerWidth,
+            decoration: BoxDecoration(
+              borderRadius:
+                  BorderRadius.all(Radius.circular(_aimatedContainerRadius)),
+              color: color,
+            ),
+          ),
+          alignment: isOn ? Alignment(1.0, 0.0) : Alignment(-1.0, 0.0),
+          curve: curve.easy,
+          duration: _duration,
+        ),
+      ),
+    );
   }
 }

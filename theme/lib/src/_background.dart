@@ -43,7 +43,17 @@ class RoofBackgroundColor {
       case RoofThemeOption.light:
         return color.white2;
       case RoofThemeOption.dark:
-        return color.black3;
+        return color.black2;
+    }
+    return null;
+  }
+
+  Color get secondary {
+    switch (_current) {
+      case RoofThemeOption.light:
+        return color.white2;
+      case RoofThemeOption.dark:
+        return color.black1;
     }
     return null;
   }
