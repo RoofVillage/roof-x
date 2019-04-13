@@ -1,0 +1,28 @@
+name: domain_object
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  fee_payer_type:
+    path: ../../../types/fee_payer
+  key:
+    path: ../../key
+  name_defining_object:
+    path: ../../mixins/name_defining_object
+  name_user:
+    path: ../../properties/name_user
+  stub:
+    path: ../../objects/stub
+  model_object:
+    path: ../model_object
+  name_context:
+    path: ../../properties/name_context
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

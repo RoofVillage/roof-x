@@ -1,0 +1,30 @@
+name: thread
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  commentable_object:
+    path: ../../abstract/commentable_object
+  fee_payer_type:
+    path: ../../../types/fee_payer
+  thread_type:
+    path: ../../../types/thread
+  user_reference:
+    path: ../../properties/user_reference
+  name_user:
+    path: ../../properties/name_user
+  stub:
+    path: ../stub
+  date:
+    path: ../../../lib/date
+  key:
+    path: ../../key
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

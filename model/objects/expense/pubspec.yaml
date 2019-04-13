@@ -1,0 +1,42 @@
+name: expense
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  expense_type:
+    path: ../../../types/expense
+  fee_payer_type:
+    path: ../../../types/fee_payer
+  privacy_type:
+    path: ../../../types/privacy
+  transaction:
+    path: ../../abstract/transaction
+  splitter:
+    path: ../../properties/splitter
+  expense_part:
+    path: ../../properties/expense_part
+  thread_reference:
+    path: ../../properties/thread_reference
+  task_reference:
+    path: ../../properties/task_reference
+  user_reference:
+    path: ../../properties/user_reference
+  name_defining_object:
+    path: ../../mixins/name_defining_object
+  name_user:
+    path: ../../properties/name_user
+  name_formatter:
+    path: ../../name_formatter
+  stub:
+    path: ../stub
+  key:
+    path: ../../key
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

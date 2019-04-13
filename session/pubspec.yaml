@@ -15,8 +15,12 @@ dependencies:
     path: ../lib/secure_storage
   date:
     path: ../lib/date
-  model:
-    path: ../model
+  user:
+    path: ../model/objects/user
+  context:
+    path: ../model/abstract/context
+  model_object_cache:
+    path: ../model/object_cache
 
 dev_dependencies:
   flutter_test:

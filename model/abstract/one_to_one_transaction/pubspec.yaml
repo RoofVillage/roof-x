@@ -1,0 +1,38 @@
+name: one_to_one_transaction
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  fee_payer_type:
+    path: ../../../types/fee_payer
+  privacy_type:
+    path: ../../../types/privacy
+  key:
+    path: ../../key
+  name_defining_object:
+    path: ../../mixins/name_defining_object
+  user_reference:
+    path: ../../properties/user_reference
+  transaction:
+    path: ../transaction
+  bank_owner_reference:
+    path: ../../properties/bank_owner_reference
+  task_reference:
+    path: ../../properties/task_reference
+  name_user:
+    path: ../../properties/name_user
+  name_formatter:
+    path: ../../name_formatter
+  stub:
+    path: ../../objects/stub
+  expense:
+    path: ../../objects/expense
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

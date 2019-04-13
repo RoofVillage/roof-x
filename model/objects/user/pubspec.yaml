@@ -1,0 +1,36 @@
+name: user
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  privacy_type:
+    path: ../../../types/privacy
+  notification_category_type:
+    path: ../../../types/notification_category
+  email_category_type:
+    path: ../../../types/email_category
+  model_object:
+    path: ../../abstract/model_object
+  name_domain:
+    path: ../../properties/name_domain
+  name_contract:
+    path: ../../properties/name_contract
+  name_payment_profile:
+    path: ../../properties/name_payment_profile
+  billing:
+    path: ../../properties/billing
+  payment_default:
+    path: ../../properties/payment_default
+  key:
+    path: ../../key
+  date:
+    path: ../../../lib/date
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

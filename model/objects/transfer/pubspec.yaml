@@ -1,0 +1,42 @@
+name: transfer
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  one_to_one_transaction:
+    path: ../../abstract/one_to_one_transaction
+  fee_payer_type:
+    path: ../../../types/fee_payer
+  privacy_type:
+    path: ../../../types/privacy
+  transfer_type:
+    path: ../../../types/transfer
+  transfer_status_type:
+    path: ../../../types/transfer_status
+  expense:
+    path: ../expense
+  task_reference:
+    path: ../../properties/task_reference
+  user_reference:
+    path: ../../properties/user_reference
+  domain:
+    path: ../../abstract/domain
+  contract:
+    path: ../../abstract/contract
+  name_user:
+    path: ../../properties/name_user
+  bank_owner_reference:
+    path: ../../properties/bank_owner_reference
+  stub:
+    path: ../stub
+  key:
+    path: ../../key
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

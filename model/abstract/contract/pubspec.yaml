@@ -1,0 +1,34 @@
+name: contract
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  key:
+    path: ../../key
+  context:
+    path: ../context
+  fee_payer_type:
+    path: ../../../types/fee_payer
+  contract_user:
+    path: ../../properties/contract_user
+  name_contract_domain:
+    path: ../../properties/name_contract_domain
+  name_user:
+    path: ../../properties/name_user
+  location:
+    path: ../../properties/location
+  date:
+    path: ../../../lib/date
+  schedule:
+    path: ../../properties/schedule
+  name_context:
+    path: ../../properties/name_context
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

@@ -1,0 +1,32 @@
+name: transaction
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  fee_payer_type:
+    path: ../../../types/fee_payer
+  privacy_type:
+    path: ../../../types/privacy
+  key:
+    path: ../../key
+  user_reference:
+    path: ../../properties/user_reference
+  task_reference:
+    path: ../../properties/task_reference
+  name_user:
+    path: ../../properties/name_user
+  stub:
+    path: ../../objects/stub
+  expense:
+    path: ../../objects/expense
+  completion:
+    path: ../../objects/completion
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

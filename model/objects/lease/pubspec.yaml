@@ -1,0 +1,34 @@
+name: lease
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  contract:
+    path: ../../abstract/contract
+  fee_payer_type:
+    path: ../../../types/fee_payer
+  invoice_type:
+    path: ../../../types/invoice
+  contract_user:
+    path: ../../properties/contract_user
+  name_contract_domain:
+    path: ../../properties/name_contract_domain
+  name_property:
+    path: ../../properties/name_property
+  late_fee:
+    path: ../../properties/late_fee
+  schedule:
+    path: ../../properties/schedule
+  date:
+    path: ../../../lib/date
+  key:
+    path: ../../key
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
