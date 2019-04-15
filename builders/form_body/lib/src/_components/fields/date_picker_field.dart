@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:padding/index.dart' as padding;
 import 'package:typography/index.dart' as typography;
+import 'package:distance/index.dart' as distance;
 import 'package:theme/index.dart';
 import 'package:haptics/index.dart';
 
@@ -51,14 +51,18 @@ class _RoofDatePickerFieldState extends State<RoofDatePickerField> {
     final TextStyle textStyle = _typographyStyle.textStyleWithColor(
       RoofTheme.of(context).color.text.primary,
     );
+    final verticalPadding = EdgeInsets.symmetric(vertical: distance.b);
 
-    final fieldBody = GestureDetector(
-      onTap: _onTap,
-      child: Container(
-        padding: padding.field1,
-        child: Text(
-          formattedValue,
-          style: textStyle,
+    final fieldBody = Expanded(
+      child: GestureDetector(
+        onTap: _onTap,
+        child: Container(
+          padding: verticalPadding,
+          child: Text(
+            formattedValue,
+            style: textStyle,
+            textAlign: TextAlign.right,
+          ),
         ),
       ),
     );

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:theme/index.dart';
 import 'package:typography/index.dart' as typography;
-import 'package:padding/index.dart' as padding;
+import 'package:distance/index.dart' as distance;
 import 'package:mask/index.dart';
-
-import '_widgets/index.dart';
 
 //TODO
 //for animating:
@@ -41,35 +39,49 @@ class RoofTextField extends StatelessWidget {
     this.focusNode,
   });
 
+  final _labelTypographyStyle = typography.title;
+
   @override
   Widget build(BuildContext context) {
-    List<Widget> fieldChildren = [];
+    final theme = RoofTheme.of(context);
+    final secondaryTextColor = theme.color.text.secondary;
 
-    if (fieldName != null) {
-      fieldChildren.add(RoofFieldLabel(labelText: fieldName));
-    }
+    final labelContainer = Flexible(
+      flex: 0,
+      child: Text(
+        fieldName,
+        style: _labelTypographyStyle.textStyleWithColor(secondaryTextColor),
+      ),
+    );
+
+    final spacer = Container(
+      width: distance.c,
+    );
 
     final fieldBody = _FieldBody(
-        autofocus: autofocus,
-        isPassword: isPassword,
-        textInputAction: textInputAction,
-        initialValue: initialValue,
-        mask: mask,
-        placeholder: placeholder,
-        keyboardType: keyboardType,
-        onChanged: onChanged,
-        onSubmitted: onSubmitted,
-        onFocusChanged: onFocusChanged,
-        onTap: onTap,
-        focusNode: focusNode);
-
-    fieldChildren.add(fieldBody);
+      autofocus: autofocus,
+      isPassword: isPassword,
+      textInputAction: textInputAction,
+      initialValue: initialValue,
+      mask: mask,
+      placeholder: placeholder,
+      keyboardType: keyboardType,
+      onChanged: onChanged,
+      onSubmitted: onSubmitted,
+      onFocusChanged: onFocusChanged,
+      onTap: onTap,
+      focusNode: focusNode,
+    );
 
     return Container(
-        padding: padding.field1,
-        child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: fieldChildren));
+      child: Row(
+        children: <Widget>[
+          labelContainer,
+          spacer,
+          fieldBody,
+        ],
+      ),
+    );
   }
 }
 
@@ -144,26 +156,34 @@ class _FieldBodyState extends State<_FieldBody> {
   Widget build(BuildContext context) {
     final theme = RoofTheme.of(context);
     final decoration = InputDecoration(
-        hintText: _formattedPlaceholder,
-        enabledBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: theme.color.stroke.light)),
-        focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: theme.color.stroke.focus)),
-        hintStyle:
-            _typographyStyle.textStyleWithColor(theme.color.text.placeholder));
+      hintText: _formattedPlaceholder,
+      enabledBorder: UnderlineInputBorder(
+        borderSide: BorderSide(color: Colors.transparent),
+      ),
+      focusedBorder: UnderlineInputBorder(
+        borderSide: BorderSide(color: Colors.transparent),
+      ),
+      hintStyle: _typographyStyle.textStyleWithColor(
+        theme.color.text.placeholder,
+      ),
+    );
 
-    return TextField(
+    return Expanded(
+      child: TextField(
         autofocus: widget.autofocus,
         obscureText: widget.isPassword,
         textInputAction: widget.textInputAction,
         keyboardType: widget.keyboardType,
         style: _typographyStyle.textStyleWithColor(theme.color.text.primary),
+        textAlign: TextAlign.right,
         decoration: decoration,
         focusNode: widget.focusNode,
         keyboardAppearance: _brightnessForTheme(theme.current),
         onSubmitted: (value) => widget.onSubmitted(value, context),
         onTap: widget.onTap,
-        controller: _controller);
+        controller: _controller,
+      ),
+    );
   }
 
   @override

@@ -18,7 +18,7 @@ mixin RoofCenteredButtonState {
   BuildContext get context;
 
   bool _tapped = false;
-  double _tappedOpacity = 0.75;
+  final double _tappedOpacity = 0.75;
   final _textStyle = typography.button;
   final double _height = 50;
 

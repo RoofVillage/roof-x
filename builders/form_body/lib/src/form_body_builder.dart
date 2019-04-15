@@ -22,7 +22,7 @@ mixin FormBodyBuilder implements StatefulWidget {
   Future<StreamableFormData> get formData => null;
 
   String get submitButtonText;
-  bool get canSubmitWitheyboardRaised => true;
+  bool get canSubmitWithKeyboardRaised => true;
 
   double get fieldHorizontalSpacing => distance.c;
 
@@ -143,20 +143,20 @@ mixin FormBodyBuilderState<T extends FormBodyBuilder> implements State<T> {
     final sectionData = await widget.sectionData;
     if (sectionData.isNotEmpty) {
       return StreamableFormData(
-          sectionData: sectionData,
-          submitKeyboardAccessory:
-              widget._buildSubmitKeyboardAccessory(context),
-          canSubmitWithKeyboardRaised: widget.canSubmitWitheyboardRaised);
+        sectionData: sectionData,
+        submitKeyboardAccessory: widget._buildSubmitKeyboardAccessory(context),
+        canSubmitWithKeyboardRaised: widget.canSubmitWithKeyboardRaised,
+      );
     }
 
     final fieldData = await widget.fieldData;
     if (fieldData.isNotEmpty) {
       return StreamableFormData.withFields(
-          fieldData: fieldData,
-          fieldHorizontalSpacing: widget.fieldHorizontalSpacing,
-          submitKeyboardAccessory:
-              widget._buildSubmitKeyboardAccessory(context),
-          canSubmitWithKeyboardRaised: widget.canSubmitWitheyboardRaised);
+        fieldData: fieldData,
+        fieldHorizontalSpacing: widget.fieldHorizontalSpacing,
+        submitKeyboardAccessory: widget._buildSubmitKeyboardAccessory(context),
+        canSubmitWithKeyboardRaised: widget.canSubmitWithKeyboardRaised,
+      );
     }
 
     return null;

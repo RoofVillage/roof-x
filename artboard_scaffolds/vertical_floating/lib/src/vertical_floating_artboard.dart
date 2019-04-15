@@ -14,35 +14,43 @@ mixin VerticalFloatingArtboardState<T extends VerticalFloatingArtboard>
     implements State<T>, ArtboardState<T> {
   final _margin =
       EdgeInsets.fromLTRB(distance.c, distance.e, distance.c, distance.c);
-  final _padding =
-      EdgeInsets.fromLTRB(distance.c, distance.c, distance.c, distance.f);
+  final _padding = EdgeInsets.fromLTRB(0, distance.c, 0, distance.f);
 
   Widget buildBody(BuildContext context);
 
   Widget build(BuildContext context) {
     final theme = RoofTheme.of(context);
     final decoration = BoxDecoration(
-        color: theme.color.background.brandSolid,
-        borderRadius: BorderRadius.all(corner_radius.large),
-        boxShadow: [
-          theme.shadow,
-        ]);
+      color: theme.color.background.general,
+      borderRadius: BorderRadius.all(corner_radius.large),
+      boxShadow: [
+        theme.shadow,
+      ],
+    );
 
-    final pageContent = Container(padding: _padding, child: buildBody(context));
+    final pageContent = Container(
+      padding: _padding,
+      child: buildBody(context),
+    );
 
     final safeArea = MediaQuery.of(context).padding;
     final safeAreaMargin = EdgeInsets.fromLTRB(
-        _margin.left,
-        max(_margin.top, safeArea.top),
-        _margin.right,
-        max(_margin.bottom, safeArea.bottom));
+      _margin.left,
+      max(_margin.top, safeArea.top),
+      _margin.right,
+      max(_margin.bottom, safeArea.bottom),
+    );
 
     final nonClickableSurface = GestureDetector(
-        behavior: HitTestBehavior.opaque, onTap: () {}, child: pageContent);
+      behavior: HitTestBehavior.opaque,
+      onTap: () {},
+      child: pageContent,
+    );
 
     return Container(
-        margin: safeAreaMargin,
-        decoration: decoration,
-        child: nonClickableSurface);
+      margin: safeAreaMargin,
+      decoration: decoration,
+      child: nonClickableSurface,
+    );
   }
 }

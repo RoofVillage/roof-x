@@ -4,6 +4,7 @@ import 'package:keyboard_accessory/index.dart';
 import 'package:keyboard_accessory_bar_builder/index.dart';
 
 import 'keyboard_accessory_buttons/index.dart';
+import 'field_container.dart';
 import 'fields/text_area.dart';
 import 'fields/text_field.dart';
 import 'fields/switch_field.dart';
@@ -154,39 +155,43 @@ class RoofStreamForm
       StreamableFormData formData,
       int fieldIndex,
       int sectionIndex}) {
+    Widget fieldBody;
+
     if (fieldData is FormTextFieldData) {
-      return buildTextField(
+      fieldBody = buildTextField(
           fieldData: fieldData,
           formData: formData,
           fieldIndex: fieldIndex,
           sectionIndex: sectionIndex,
           context: context);
     } else if (fieldData is FormTextAreaData) {
-      return buildTextArea(
+      fieldBody = buildTextArea(
           fieldData: fieldData,
           formData: formData,
           fieldIndex: fieldIndex,
           sectionIndex: sectionIndex,
           context: context);
     } else if (fieldData is FormSwitchData) {
-      return buildSwitch(
+      fieldBody = buildSwitch(
           fieldData: fieldData,
           fieldIndex: fieldIndex,
           sectionIndex: sectionIndex,
           context: context);
     } else if (fieldData is FormOptionSelectData) {
-      return buildOptionSelect(
+      fieldBody = buildOptionSelect(
           fieldData: fieldData,
           fieldIndex: fieldIndex,
           sectionIndex: sectionIndex);
     } else if (fieldData is FormDateFieldData) {
-      return buildDateField(
+      fieldBody = buildDateField(
           fieldData: fieldData,
           fieldIndex: fieldIndex,
           sectionIndex: sectionIndex);
     }
 
-    return null;
+    return RoofFieldContainer(
+      child: fieldBody,
+    );
   }
 
   void resignFocus(BuildContext context) {

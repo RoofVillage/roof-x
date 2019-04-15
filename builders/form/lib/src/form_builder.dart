@@ -52,7 +52,11 @@ mixin FormBuilderState<T extends FormBuilder>
   final _subtitleStyle = typography.bodyPrimary;
 
   final _bodyVerticalPadding = EdgeInsets.only(top: distance.d);
-  final _buttonVerticalPadding = EdgeInsets.only(top: distance.d);
+  final _buttonPadding = EdgeInsets.only(
+    top: distance.d,
+    left: distance.c,
+    right: distance.c,
+  );
 
   Widget buildForm(BuildContext context) {
     addFocusChangedListeners();
@@ -66,20 +70,37 @@ mixin FormBuilderState<T extends FormBuilder>
     final widgets = <Widget>[];
 
     if (widget.title != null) {
-      widgets.add(Text(widget.title, style: headerStyle));
+      widgets.add(
+        Text(
+          widget.title,
+          style: headerStyle,
+        ),
+      );
     }
 
     if (widget.subtitle != null) {
-      widgets.add(Text(widget.subtitle, style: subtitleStyle));
+      widgets.add(
+        Text(
+          widget.subtitle,
+          style: subtitleStyle,
+        ),
+      );
     }
 
     widgets.add(
-      Padding(padding: _bodyVerticalPadding, child: buildFormBody(context)),
+      Padding(
+        padding: _bodyVerticalPadding,
+        child: buildFormBody(context),
+      ),
     );
 
     if (!shouldHideButtons) {
-      widgets
-          .add(Padding(padding: _buttonVerticalPadding, child: submitButton));
+      widgets.add(
+        Padding(
+          padding: _buttonPadding,
+          child: submitButton,
+        ),
+      );
     }
 
     return Column(children: widgets);

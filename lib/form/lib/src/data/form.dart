@@ -15,10 +15,11 @@ class StreamableFormData extends StreamableData {
     return sectionData.expand((sectionData) => sectionData.fieldData).toList();
   }
 
-  StreamableFormData(
-      {this.sectionData,
-      this.submitKeyboardAccessory,
-      this.canSubmitWithKeyboardRaised});
+  StreamableFormData({
+    this.sectionData,
+    this.submitKeyboardAccessory,
+    this.canSubmitWithKeyboardRaised,
+  });
 
   StreamableFormData.withFields(
       {List<StreamableFormFieldData> fieldData,
@@ -27,8 +28,9 @@ class StreamableFormData extends StreamableData {
       Widget submitKeyboardAccessory})
       : sectionData = [
           StreamableFormSectionData(
-              fieldData: fieldData ?? [],
-              fieldHorizontalSpacing: fieldHorizontalSpacing ?? 0)
+            fieldData: fieldData ?? [],
+            fieldHorizontalSpacing: fieldHorizontalSpacing ?? 0,
+          )
         ],
         canSubmitWithKeyboardRaised = canSubmitWithKeyboardRaised,
         submitKeyboardAccessory = submitKeyboardAccessory;

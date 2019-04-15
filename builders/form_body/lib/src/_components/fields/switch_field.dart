@@ -75,7 +75,7 @@ class _RoofSwitchFieldState extends State<RoofSwitchField>
 
     return GestureDetector(
       onTap: _onTap,
-      child: RoofFieldContainer(
+      child: Container(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [labelContainer, switchButton],

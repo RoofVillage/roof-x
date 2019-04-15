@@ -19,7 +19,7 @@ class RoofPickerField extends StatelessWidget {
 
     rowChildren.add(fieldBody);
 
-    return RoofFieldContainer(
+    return Container(
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

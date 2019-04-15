@@ -19,8 +19,13 @@ mixin SignUpArtboardBuilder implements FormBuilder {
         _passwordFieldData,
       ];
 
-  final _nameFieldData = MediumFormTextFieldData(title: "Full name");
-  final _emailFieldData = EmailFormTextFieldData();
+  final _nameFieldData = MediumFormTextFieldData(
+    title: "Full name",
+    placeholder: "ty hay",
+  );
+  final _emailFieldData = EmailFormTextFieldData(
+    placeholder: "tyhay@email.com",
+  );
   final _passwordFieldData = PasswordFormTextFieldData();
   final _temp = CurrencyFormTextFieldData();
   final _temp2 = FormSwitchData(title: "Toggle field");
