@@ -17,9 +17,9 @@ dependencies:
   theme:
     path: ../../theme
   typography:
-    path: ../../typography
+    path: ../../spec/typography
   artboard:
-    path: ../../artboard
+    path: ../../lib/artboard
 
 dev_dependencies:
   flutter_test:

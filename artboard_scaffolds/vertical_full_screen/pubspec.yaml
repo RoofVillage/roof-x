@@ -16,15 +16,15 @@ dependencies:
   keyboard_accessory:
     path: ../../lib/keyboard_accessory
   artboard:
-    path: ../../artboard
+    path: ../../lib/artboard
   duration:
-    path: ../../duration
+    path: ../../spec/duration
   curve:
-    path: ../../curve
+    path: ../../spec/curve
   theme:
     path: ../../theme
   navigator:
-    path: ../../navigator
+    path: ../../lib/navigator
 
 dev_dependencies:
   flutter_test:

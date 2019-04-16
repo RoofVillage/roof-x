@@ -8,12 +8,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  full_screen_artboard_templates:
-    path: ../full_screen_artboard_templates
-  navigation_components:
-    path: ../navigator_components
-  input_dock_components:
-    path: ../input_dock_components
 
 dev_dependencies:
   flutter_test:

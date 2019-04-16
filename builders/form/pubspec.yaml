@@ -9,16 +9,16 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  artboard:
-    path: ../../artboard
   button_builder:
     path: ../button
   form_body_builder:
     path: ../form_body
   distance:
-    path: ../../distance
+    path: ../../spec/distance
+  typography:
+    path: ../../spec/typography
   button_status_option:
-    path: ../../button_status_option
+    path: ../../options/button_status
 
 dev_dependencies:
   flutter_test:

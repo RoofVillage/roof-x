@@ -18,19 +18,19 @@ dependencies:
   image_picker_builder:
     path: ../image_picker
   padding:
-    path: ../../padding
+    path: ../../spec/padding
   corner_radius:
-    path: ../../corner_radius
+    path: ../../spec/corner_radius
   distance:
-    path: ../../distance
+    path: ../../spec/distance
   duration:
-    path: ../../duration
+    path: ../../spec/duration
   curve:
-    path: ../../curve
+    path: ../../spec/curve
   theme:
     path: ../../theme
   typography:
-    path: ../../typography
+    path: ../../spec/typography
   button_builder:
     path: ../../builders/button
 

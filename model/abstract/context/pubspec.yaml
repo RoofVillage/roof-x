@@ -1,0 +1,22 @@
+name: context
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  domain_type:
+    path: ../../../types/domain
+  name_defining_object:
+    path: ../../mixins/name_defining_object
+  key:
+    path: ../../key
+  model_object:
+    path: ../model_object
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

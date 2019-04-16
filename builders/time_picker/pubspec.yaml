@@ -12,13 +12,13 @@ dependencies:
   theme:
     path: ../../theme
   duration:
-    path: ../../duration
+    path: ../../spec/duration
   curve:
-    path: ../../curve
+    path: ../../spec/curve
   haptics:
     path: ../../lib/haptics
   typography:
-    path: ../../typography
+    path: ../../spec/typography
 
 dev_dependencies:
   flutter_test:

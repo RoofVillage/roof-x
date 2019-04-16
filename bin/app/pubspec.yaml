@@ -16,7 +16,7 @@ dependencies:
   vertical_full_screen_artboard_scaffold:
     path: ../../artboard_scaffolds/vertical_full_screen
   artboard:
-    path: ../../artboard
+    path: ../../lib/artboard
   device_screen:
     path: ../../lib/device_screen
 

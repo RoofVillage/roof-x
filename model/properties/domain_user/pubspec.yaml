@@ -1,0 +1,20 @@
+name: domain_user
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  name_user:
+    path: ../name_user
+  key:
+    path: ../../key
+  domain:
+    path: ../../abstract/domain
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

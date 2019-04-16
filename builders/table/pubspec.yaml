@@ -18,11 +18,11 @@ dependencies:
   icon_library:
     path: ../../icon_library
   distance:
-    path: ../../distance
+    path: ../../spec/distance
   theme:
     path: ../../theme
   typography:
-    path: ../../typography
+    path: ../../spec/typography
 
 dev_dependencies:
   flutter_test:

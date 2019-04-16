@@ -15,7 +15,7 @@ dependencies:
   app_data:
     path: ../../app_data
   navigator:
-    path: ../../navigator
+    path: ../../lib/navigator
   reset_password_artboard:
     path: ../reset_password
 

@@ -8,16 +8,16 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  artboard:
-    path: ../../../artboard
   vertical_floating_artboard_scaffold:
     path: ../../../artboard_scaffolds/vertical_floating
   form_builder:
     path: ../../../builders/form
   form_body_builder:
     path: ../../../builders/form_body
+  artboard:
+    path: ../../../lib/artboard
   navigator:
-    path: ../../../navigator
+    path: ../../../lib/navigator
   date:
     path: ../../../lib/date
   date_picker_builder:

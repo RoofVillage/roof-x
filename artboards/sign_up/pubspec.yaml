@@ -19,7 +19,7 @@ dependencies:
   phone_number_sign_up_artboard:
     path: ../phone_number_sign_up
   navigator:
-    path: ../../navigator
+    path: ../../lib/navigator
 
 dev_dependencies:
   flutter_test:

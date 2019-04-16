@@ -47,12 +47,12 @@ class VerticalFloatingRoute<T> extends ModalRoute<T> {
   @override
   Widget buildTransitions(BuildContext context, Animation<double> animation,
       Animation<double> secondaryAnimation, Widget child) {
-    final slidingFullScreenWidget =
+    final slidingFloatingWidget =
         SlideTransition(position: animation.drive(_slideTween), child: child);
 
-    final fadeSlidingFullScreenWidget = FadeTransition(
-        opacity: animation.drive(_fadeTween), child: slidingFullScreenWidget);
+    final fadeSlidingFloatingWidget = FadeTransition(
+        opacity: animation.drive(_fadeTween), child: slidingFloatingWidget);
 
-    return fadeSlidingFullScreenWidget;
+    return fadeSlidingFloatingWidget;
   }
 }

@@ -14,17 +14,17 @@ dependencies:
   date_picker_builder:
     path: ../date_picker
   distance:
-    path: ../../distance
+    path: ../../spec/distance
   duration:
-    path: ../../duration
+    path: ../../spec/duration
   padding:
-    path: ../../padding
+    path: ../../spec/padding
   corner_radius:
-    path: ../../corner_radius
+    path: ../../spec/corner_radius
   curve:
-    path: ../../curve
+    path: ../../spec/curve
   typography:
-    path: ../../typography
+    path: ../../spec/typography
   icon_library:
     path: ../../icon_library
   theme:
@@ -43,6 +43,8 @@ dependencies:
     path: ../../lib/form_validation_exception
   typedefs:
     path: ../../lib/typedefs
+  artboard:
+    path: ../../lib/artboard
 
 dev_dependencies:
   flutter_test:

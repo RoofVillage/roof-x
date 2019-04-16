@@ -9,7 +9,7 @@ dependencies:
   flutter:
     sdk: flutter
   artboard:
-    path: ../../../artboard
+    path: ../../../lib/artboard
   vertical_full_screen_artboard_scaffold:
     path: ../../../artboard_scaffolds/vertical_full_screen
   nav_bar_builder:

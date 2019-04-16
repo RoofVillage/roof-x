@@ -11,11 +11,11 @@ dependencies:
   flutter:
     sdk: flutter
   distance:
-    path: ../../distance
+    path: ../../spec/distance
   theme:
     path: ../../theme
   typography:
-    path: ../../typography
+    path: ../../spec/typography
   haptics:
     path: ../../lib/haptics
   icon_library:

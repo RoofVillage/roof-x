@@ -12,11 +12,11 @@ dependencies:
   theme:
     path: ../../theme
   typography:
-    path: ../../typography
+    path: ../../spec/typography
   distance:
-    path: ../../distance
+    path: ../../spec/distance
   corner_radius:
-    path: ../../corner_radius
+    path: ../../spec/corner_radius
 
 dev_dependencies:
   flutter_test:

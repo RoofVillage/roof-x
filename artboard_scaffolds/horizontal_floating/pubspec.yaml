@@ -12,19 +12,19 @@ dependencies:
   keyboard_accessory:
     path: ../../lib/keyboard_accessory
   artboard:
-    path: ../../artboard
+    path: ../../lib/artboard
   curve:
-    path: ../../curve
+    path: ../../spec/curve
   distance:
-    path: ../../distance
+    path: ../../spec/distance
   duration:
-    path: ../../duration
+    path: ../../spec/duration
   corner_radius:
-    path: ../../corner_radius
+    path: ../../spec/corner_radius
   theme:
     path: ../../theme
   navigator:
-    path: ../../navigator
+    path: ../../lib/navigator
 
 dev_dependencies:
   flutter_test:

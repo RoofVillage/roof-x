@@ -1,0 +1,26 @@
+name: roof
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  domain:
+    path: ../../abstract/domain
+  balance:
+    path: ../../properties/balance
+  domain_user:
+    path: ../../properties/domain_user
+  location:
+    path: ../../properties/location
+  date:
+    path: ../../../lib/date
+  key:
+    path: ../../key
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

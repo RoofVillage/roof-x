@@ -1,0 +1,42 @@
+name: invoice
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  task:
+    path: ../../abstract/task
+  context:
+    path: ../../abstract/context
+  fee_payer_type:
+    path: ../../../types/fee_payer
+  assignment_type:
+    path: ../../../types/assignment
+  invoice_type:
+    path: ../../../types/invoice
+  user_reference:
+    path: ../../properties/user_reference
+  name_user:
+    path: ../../properties/name_user
+  completion_count:
+    path: ../../properties/completion_count
+  date_parts:
+    path: ../../properties/date_parts
+  payer:
+    path: ../../properties/payer
+  schedule:
+    path: ../../properties/schedule
+  stub:
+    path: ../stub
+  date:
+    path: ../../../lib/date
+  key:
+    path: ../../key
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

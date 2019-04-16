@@ -1,0 +1,20 @@
+name: completion_count
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  user_reference:
+    path: ../user_reference
+  mappable:
+    path: ../../mixins/mappable
+  key:
+    path: ../../key
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

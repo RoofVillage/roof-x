@@ -9,6 +9,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  color:
+    path: ../spec/color
 
 dev_dependencies:
   flutter_test:

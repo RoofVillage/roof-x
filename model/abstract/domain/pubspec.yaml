@@ -1,0 +1,26 @@
+name: domain
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  key:
+    path: ../../key
+  context:
+    path: ../context
+  domain_user:
+    path: ../../properties/domain_user
+  name_user:
+    path: ../../properties/name_user
+  location:
+    path: ../../properties/location
+  date:
+    path: ../../../lib/date
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
