@@ -1,15 +1,11 @@
 import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
-import 'package:padding/index.dart' as padding;
 import 'package:distance/index.dart' as distance;
 import 'package:duration/index.dart' as duration;
 import 'package:curve/index.dart' as curve;
-import 'package:corner_radius/index.dart' as corner_radius;
 import 'package:typography/index.dart' as typography;
 import 'package:theme/index.dart';
 import 'package:haptics/index.dart';
-
-import '_widgets/index.dart';
 
 class RoofSwitchField extends StatefulWidget {
   final String title;
@@ -34,34 +30,49 @@ class _RoofSwitchFieldState extends State<RoofSwitchField>
   int labelMaxLines;
   Animation<Color> animation;
   AnimationController controller;
+  Color isOnColor;
+  Color isOffColor;
 
   final _typographyStyle = typography.title;
   final _duration = duration.short;
 
   initState() {
     isOn = widget.initialValue;
+
     controller = AnimationController(duration: _duration, vsync: this);
+
     super.initState();
   }
 
   @override
-  Widget build(BuildContext context) {
+  void didChangeDependencies() {
     final theme = RoofTheme.of(context);
 
-    final secondaryTextColor = theme.color.text.secondary;
-    final isOnColor = theme.color.background.primaryAction;
-    final isOffColor = theme.color.background.inactiveAction;
+    isOnColor = theme.color.background.primaryAction;
+    isOffColor = theme.color.background.inactiveAction;
 
     animation = ColorTween(
       begin: isOffColor,
       end: isOnColor,
-    ).animate(controller)
-      ..addListener(() {
-        setState(() {});
-      });
+    )
+        .chain(CurveTween(
+          curve: isOn ? curve.easy.flipped : curve.easy.flipped,
+        ))
+        .animate(controller)
+          ..addListener(() {
+            setState(() {});
+          });
 
+    super.didChangeDependencies();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     isOn ? controller.forward() : controller.reverse();
 
+    final theme = RoofTheme.of(context);
+
+    final secondaryTextColor = theme.color.text.secondary;
     final labelContainer = Expanded(
       child: Text(
         widget.title,
@@ -70,7 +81,7 @@ class _RoofSwitchFieldState extends State<RoofSwitchField>
       ),
     );
 
-    final switchColor = isOn ? isOnColor : isOffColor;
+    final switchColor = animation.value;
     final switchButton = _RoofAnimatedSwitch(isOn: isOn, color: switchColor);
 
     return GestureDetector(
@@ -98,9 +109,9 @@ class _RoofAnimatedSwitch extends StatelessWidget {
   final Color color;
 
   final double _width = 52;
-  final double _animatedContainerWidth = 24;
   final double _height = 34;
   final double _innerSpacing = 4.0;
+  final double _animatedContainerWidth = 24;
   final _duration = duration.short;
 
   double get _leftMargin => distance.d;
@@ -116,16 +127,18 @@ class _RoofAnimatedSwitch extends StatelessWidget {
       height: _height,
       margin: EdgeInsets.only(left: _leftMargin),
       decoration: BoxDecoration(
-          border: Border.all(color: color),
-          borderRadius: BorderRadius.all(Radius.circular(_radius))),
+        border: Border.all(color: color),
+        borderRadius: BorderRadius.all(Radius.circular(_radius)),
+      ),
       child: Padding(
         padding: EdgeInsets.all(_innerSpacing),
         child: AnimatedAlign(
           child: Container(
             width: _animatedContainerWidth,
             decoration: BoxDecoration(
-              borderRadius:
-                  BorderRadius.all(Radius.circular(_aimatedContainerRadius)),
+              borderRadius: BorderRadius.all(
+                Radius.circular(_aimatedContainerRadius),
+              ),
               color: color,
             ),
           ),
