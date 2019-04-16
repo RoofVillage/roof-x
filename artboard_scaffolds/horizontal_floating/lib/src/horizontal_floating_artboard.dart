@@ -20,27 +20,33 @@ mixin HorizontalFloatingArtboardState<T extends HorizontalFloatingArtboard>
   Widget build(BuildContext context) {
     final theme = RoofTheme.of(context);
     final decoration = BoxDecoration(
-        color: theme.color.background.brandSolid,
-        borderRadius: BorderRadius.all(corner_radius.large),
-        boxShadow: [
-          theme.shadow,
-        ]);
+      color: theme.color.background.generalSecondary,
+      borderRadius: BorderRadius.all(corner_radius.large),
+      boxShadow: [
+        theme.shadow,
+      ],
+    );
 
     final pageContent = Container(padding: _padding, child: buildBody(context));
 
     final safeArea = MediaQuery.of(context).padding;
     final safeAreaMargin = EdgeInsets.fromLTRB(
-        _margin.left,
-        max(_margin.top, safeArea.top),
-        _margin.right,
-        max(_margin.bottom, safeArea.bottom));
+      _margin.left,
+      max(_margin.top, safeArea.top),
+      _margin.right,
+      max(_margin.bottom, safeArea.bottom),
+    );
 
     final nonClickableSurface = GestureDetector(
-        behavior: HitTestBehavior.opaque, onTap: () {}, child: pageContent);
+      behavior: HitTestBehavior.opaque,
+      onTap: () {},
+      child: pageContent,
+    );
 
     return Container(
-        margin: safeAreaMargin,
-        decoration: decoration,
-        child: nonClickableSurface);
+      margin: safeAreaMargin,
+      decoration: decoration,
+      child: nonClickableSurface,
+    );
   }
 }

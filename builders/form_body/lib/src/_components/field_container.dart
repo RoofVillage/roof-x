@@ -8,13 +8,14 @@ class RoofFieldContainer extends StatelessWidget {
   RoofFieldContainer({this.child});
 
   final double _minHeight = 50.0;
+  final double _verticalSpacing = 1;
 
   @override
   Widget build(BuildContext context) {
     final theme = RoofTheme.of(context);
 
     final margin = EdgeInsets.only(
-      top: distance.a,
+      top: _verticalSpacing,
     );
 
     final padding = EdgeInsets.symmetric(
@@ -22,7 +23,7 @@ class RoofFieldContainer extends StatelessWidget {
       horizontal: distance.c,
     );
 
-    final backgroundColor = theme.color.background.brandSolid;
+    final backgroundColor = theme.color.background.generalPrimary;
 
     return Container(
       margin: margin,

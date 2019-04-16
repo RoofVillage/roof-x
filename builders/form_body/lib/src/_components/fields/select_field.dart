@@ -230,7 +230,7 @@ class _DropdownContainer extends StatelessWidget {
     final decoration = BoxDecoration(
         borderRadius: BorderRadius.only(
             bottomLeft: corner_radius.small, bottomRight: corner_radius.small),
-        color: theme.color.background.general,
+        color: theme.color.background.generalSecondary,
         boxShadow: [theme.shadow]);
 
     final Widget expandedChild = _DropdownContents(
@@ -332,7 +332,7 @@ class _DropdownOption extends StatelessWidget {
         style: _typographyStyle.textStyleWithColor(theme.color.text.primary));
 
     final optionBackgroundColor = (selected && !isMultiSelect)
-        ? theme.color.background.general
+        ? theme.color.background.generalPrimary
         : Colors.transparent;
 
     final optionPadding =

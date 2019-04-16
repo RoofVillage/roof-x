@@ -11,8 +11,11 @@ class RoofTableSectionHeaderA extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = RoofTheme.of(context);
     return Container(
-        color: theme.color.background.general,
-        child: Center(child: _TitleLabel(text: title)));
+      color: theme.color.background.generalSecondary,
+      child: Center(
+        child: _TitleLabel(text: title),
+      ),
+    );
   }
 }
 

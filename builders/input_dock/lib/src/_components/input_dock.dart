@@ -118,7 +118,7 @@ class InheritedInputDock extends State<RoofInputDock> {
 
     final Widget dock = Container(
       padding: bottomPadding,
-      color: theme.color.background.brandPrimary,
+      color: theme.color.background.generalSecondary,
       child: Column(
         children: columnChildren,
       ),

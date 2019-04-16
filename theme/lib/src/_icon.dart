@@ -19,7 +19,7 @@ class RoofIconColor {
   Color get general {
     switch (_current) {
       case RoofThemeOption.light:
-        return color.black1;
+        return color.black3;
       case RoofThemeOption.dark:
         return color.gray2;
     }

@@ -21,7 +21,7 @@ mixin VerticalFloatingArtboardState<T extends VerticalFloatingArtboard>
   Widget build(BuildContext context) {
     final theme = RoofTheme.of(context);
     final decoration = BoxDecoration(
-      color: theme.color.background.general,
+      color: theme.color.background.generalSecondary,
       borderRadius: BorderRadius.all(corner_radius.large),
       boxShadow: [
         theme.shadow,

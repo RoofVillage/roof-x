@@ -27,29 +27,34 @@ class RoofCellA extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = RoofTheme.of(context);
     return ConstrainedBox(
-        constraints: BoxConstraints(minHeight: _minHeight),
-        child: GestureDetector(
-            onTap: this.onTap,
-            child: Container(
-                decoration:
-                    BoxDecoration(color: theme.color.background.general),
-                // Everything in the cell is relative to the horizontal padding.
-                child: Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: _horizontalPadding),
+      constraints: BoxConstraints(minHeight: _minHeight),
+      child: GestureDetector(
+        onTap: this.onTap,
+        child: Container(
+          decoration: BoxDecoration(
+            color: theme.color.background.generalSecondary,
+          ),
+          // Everything in the cell is relative to the horizontal padding.
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: _horizontalPadding),
 
-                    ///This column contains the body of the cell, and the divider;
-                    child: Column(
-
-                        ///Maximizes space between body and divider
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          _Body(
-                              iconReference: iconReference,
-                              titleText: titleText,
-                              detailText: detailText),
-                          _CellDivider()
-                        ])))));
+            ///This column contains the body of the cell, and the divider;
+            child: Column(
+              ///Maximizes space between body and divider
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                _Body(
+                  iconReference: iconReference,
+                  titleText: titleText,
+                  detailText: detailText,
+                ),
+                _CellDivider()
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
 
@@ -73,33 +78,39 @@ class _Body extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = RoofTheme.of(context);
     return Container(
-        padding: EdgeInsets.symmetric(vertical: _verticalPadding),
-        //The body of the cell contains the icon and the labels.
-        child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Container(
-                  padding: EdgeInsets.only(right: _imagePaddingRight),
-                  child:
-                      iconReference.buildSvg(color: theme.color.icon.general)),
+      padding: EdgeInsets.symmetric(vertical: _verticalPadding),
+      //The body of the cell contains the icon and the labels.
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Container(
+            padding: EdgeInsets.only(right: _imagePaddingRight),
+            child: iconReference.buildSvg(color: theme.color.icon.general),
+          ),
 
-              ///This child should expand to occupy remaining space.
-              Expanded(
-                  child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: _relevantLabels(),
-              ))
-            ]));
+          ///This child should expand to occupy remaining space.
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: _relevantLabels(),
+            ),
+          )
+        ],
+      ),
+    );
   }
 
   List<Widget> _relevantLabels() {
     var list = <Widget>[_TitleLabel(decoratedText: titleText)];
     if (detailText != null && detailText.trim().isNotEmpty) {
-      list.add(Container(
+      list.add(
+        Container(
           padding: EdgeInsets.only(top: _detailPaddingTop),
-          child: _DetailLabel(text: detailText)));
+          child: _DetailLabel(text: detailText),
+        ),
+      );
     }
     return list;
   }
@@ -115,8 +126,10 @@ class _DetailLabel extends StatelessWidget {
   Widget build(BuildContext context) {
     final secondaryTextColor = RoofTheme.of(context).color.text.secondary;
 
-    return Text(text,
-        style: _typographyStyle.textStyleWithColor(secondaryTextColor));
+    return Text(
+      text,
+      style: _typographyStyle.textStyleWithColor(secondaryTextColor),
+    );
   }
 }
 

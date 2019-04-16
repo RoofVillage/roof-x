@@ -43,34 +43,57 @@ mixin PublicActivityArtboardBuilder implements TableBuilder {
   }
 
   final _completionsSectionData =
-      StreamableTableSectionData<CellAData>.withTitle("Completions",
-          criteria: (data) =>
-              data.section == Section.values.indexOf(Section.completions),
-          sort: revCron);
+      StreamableTableSectionData<CellAData>.withTitle(
+    "Completions",
+    criteria: (data) =>
+        data.section ==
+        Section.values.indexOf(
+          Section.completions,
+        ),
+    sort: revCron,
+  );
 
   final _expenseSectionData = StreamableTableSectionData<CellAData>.withTitle(
-      "Expenses",
-      criteria: (data) =>
-          data.section == Section.values.indexOf(Section.expenses),
-      sort: revCron);
+    "Expenses",
+    criteria: (data) =>
+        data.section ==
+        Section.values.indexOf(
+          Section.expenses,
+        ),
+    sort: revCron,
+  );
 
   final _transferSectionData = StreamableTableSectionData<CellAData>.withTitle(
-      "Transfers",
-      criteria: (data) =>
-          data.section == Section.values.indexOf(Section.transfers),
-      sort: revCron);
+    "Transfers",
+    criteria: (data) =>
+        data.section ==
+        Section.values.indexOf(
+          Section.transfers,
+        ),
+    sort: revCron,
+  );
 
   final _landlordTransfersSectionData =
-      StreamableTableSectionData<CellAData>.withTitle("Landlord Transfers",
-          criteria: (data) =>
-              data.section == Section.values.indexOf(Section.landlordTransfers),
-          sort: revCron);
+      StreamableTableSectionData<CellAData>.withTitle(
+    "Landlord Transfers",
+    criteria: (data) =>
+        data.section ==
+        Section.values.indexOf(
+          Section.landlordTransfers,
+        ),
+    sort: revCron,
+  );
 
   final _maintenanceSectionData =
-      StreamableTableSectionData<CellAData>.withTitle("Maintenance",
-          criteria: (data) =>
-              data.section == Section.values.indexOf(Section.maintenance),
-          sort: revCron);
+      StreamableTableSectionData<CellAData>.withTitle(
+    "Maintenance",
+    criteria: (data) =>
+        data.section ==
+        Section.values.indexOf(
+          Section.maintenance,
+        ),
+    sort: revCron,
+  );
 
   CellAData _dataForCompletion(PublicCompletion publicCompletion) {
     final decoratedTitle = WeightDecoratedText();
@@ -82,11 +105,12 @@ mixin PublicActivityArtboardBuilder implements TableBuilder {
     decoratedTitle.addSection(text: publicCompletion.roof);
 
     return CellAData(
-        title: decoratedTitle,
-        description: publicCompletion.note,
-        iconReference: IconReference.complete,
-        section: Section.values.indexOf(Section.completions),
-        timestamp: 12221);
+      title: decoratedTitle,
+      description: publicCompletion.note,
+      iconReference: IconReference.complete,
+      section: Section.values.indexOf(Section.completions),
+      timestamp: 12221,
+    );
   }
 
   CellAData _dataForExpense(PublicExpense publicExpense) {
@@ -97,11 +121,12 @@ mixin PublicActivityArtboardBuilder implements TableBuilder {
     decoratedTitle.addSection(text: publicExpense.roof);
 
     return CellAData(
-        title: decoratedTitle,
-        description: publicExpense.note,
-        iconReference: IconReference.piggyBank,
-        section: Section.values.indexOf(Section.expenses),
-        timestamp: 9012);
+      title: decoratedTitle,
+      description: publicExpense.note,
+      iconReference: IconReference.piggyBank,
+      section: Section.values.indexOf(Section.expenses),
+      timestamp: 9012,
+    );
   }
 
   CellAData _dataForTransfer(PublicTransfer publicTransfer) {
@@ -114,11 +139,12 @@ mixin PublicActivityArtboardBuilder implements TableBuilder {
     decoratedTitle.addSection(text: publicTransfer.roof);
 
     return CellAData(
-        title: decoratedTitle,
-        description: publicTransfer.note,
-        iconReference: IconReference.cashSack,
-        section: Section.values.indexOf(Section.transfers),
-        timestamp: 122);
+      title: decoratedTitle,
+      description: publicTransfer.note,
+      iconReference: IconReference.cashSack,
+      section: Section.values.indexOf(Section.transfers),
+      timestamp: 122,
+    );
   }
 
   CellAData _dataForLandlordTransfer(
@@ -134,11 +160,12 @@ mixin PublicActivityArtboardBuilder implements TableBuilder {
     decoratedTitle.addSection(text: publicLandlordTransfer.landlord);
 
     return CellAData(
-        title: decoratedTitle,
-        description: publicLandlordTransfer.note,
-        iconReference: IconReference.cashSack,
-        section: Section.values.indexOf(Section.landlordTransfers),
-        timestamp: 201);
+      title: decoratedTitle,
+      description: publicLandlordTransfer.note,
+      iconReference: IconReference.cashSack,
+      section: Section.values.indexOf(Section.landlordTransfers),
+      timestamp: 201,
+    );
   }
 
   CellAData _dataForMaintenance(
@@ -152,10 +179,11 @@ mixin PublicActivityArtboardBuilder implements TableBuilder {
     decoratedTitle.addSection(text: publicMaintenanceRequest.home);
 
     return CellAData(
-        title: decoratedTitle,
-        description: publicMaintenanceRequest.note,
-        iconReference: IconReference.toolbox,
-        section: Section.values.indexOf(Section.maintenance),
-        timestamp: 1901);
+      title: decoratedTitle,
+      description: publicMaintenanceRequest.note,
+      iconReference: IconReference.toolbox,
+      section: Section.values.indexOf(Section.maintenance),
+      timestamp: 1901,
+    );
   }
 }
