@@ -16,9 +16,11 @@ class FormOptionSelectData
     @required String title,
     List<FormOptionSelectValueData> initialValue,
     double size,
+    bool isVisible,
   }) : super(
           title: title,
           initialValue: initialValue,
           size: size,
+          isVisible: isVisible,
         );
 }

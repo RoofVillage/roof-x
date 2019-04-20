@@ -30,6 +30,7 @@ abstract class FormCompositionFieldData
       bool autofocus,
       String initialValue,
       double size,
+      bool isVisible,
       String exceptionTitle})
       : autofocus = autofocus ?? false,
         placeholder = placeholder ?? "",
@@ -37,10 +38,10 @@ abstract class FormCompositionFieldData
         keyboardType = keyboardType ?? TextInputType.text,
         exceptionTitle = exceptionTitle ?? title,
         super(
-          title: title,
-          initialValue: initialValue ?? "",
-          size: size,
-        );
+            title: title,
+            initialValue: initialValue ?? "",
+            size: size,
+            isVisible: isVisible);
 
   void addOnSubmittedListener(ValueChanged<String> fn) =>
       _onSubmittedListeners.add(fn);

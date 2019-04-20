@@ -6,6 +6,7 @@ class MediumFormTextFieldData extends FormTextFieldData {
     String placeholder,
     String initialValue,
     double size,
+    bool isVisible,
     bool autofocus,
     String exceptionTitle,
   }) : super(
@@ -14,6 +15,7 @@ class MediumFormTextFieldData extends FormTextFieldData {
           initialValue: initialValue,
           autofocus: autofocus,
           size: size,
+          isVisible: isVisible,
           max: 50,
           exceptionTitle: exceptionTitle,
         );

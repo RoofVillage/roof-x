@@ -10,6 +10,7 @@ class CurrencyFormTextFieldData extends FormTextFieldData {
       String placeholder = "0.00",
       String initialValue,
       double size,
+      bool isVisible,
       bool autofocus,
       String exceptionTitle})
       : super(
@@ -22,6 +23,7 @@ class CurrencyFormTextFieldData extends FormTextFieldData {
               decimal: true,
             ),
             size: size,
+            isVisible: isVisible,
             exceptionTitle: exceptionTitle);
 
   Future<void> validate() async {}

@@ -28,6 +28,8 @@ List<Object> _streamableDataFromResponse(String response) {
   final dataConvertedToJson = json.decode(response);
   final List publicActivity = dataConvertedToJson[_param.publicActivity];
 
+  if (publicActivity == null) return [];
+
   final data = publicActivity.map((json) {
     switch (json[_param.activityType]) {
       case _param.completion:

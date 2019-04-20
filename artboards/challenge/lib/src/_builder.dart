@@ -21,7 +21,8 @@ mixin ChallengeArtboardBuilder implements FormBuilder {
   String get submitButtonText => "Submit";
 
   @override
-  Future<List<StreamableFormFieldData>> get fieldData async => [_codeFieldData];
+  Future<List<StreamableFormFieldData>> get initialFieldData async =>
+      [_codeFieldData];
 
   final _codeFieldData = ShortFormTextFieldData(title: "Enter code");
 }

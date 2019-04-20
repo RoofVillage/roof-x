@@ -15,14 +15,14 @@ abstract class StreamableFormFieldData<T> extends StreamableData {
         for (final listener in _onFocusChangedListeners) listener(focusValue);
       };
 
-  bool get tracked => _tracked;
+  bool get isTracked => _isTracked;
   double get fieldSize => size;
   bool get isInFocus => _isInFocus;
 
   List<ValueChanged<T>> _onChangedListeners = [];
   List<ValueChanged<bool>> _onFocusChangedListeners = [];
-  bool _tracked = false;
-  bool enabled;
+  bool _isTracked = false;
+  bool isEnabled;
   T value;
   bool _isInFocus;
 
@@ -41,17 +41,20 @@ abstract class StreamableFormFieldData<T> extends StreamableData {
     String placeholder,
     T initialValue,
     double size,
-    bool enabled,
+    bool isEnabled,
+    bool isVisible,
   })  : size = size ?? 1,
-        enabled = enabled ?? true,
+        isEnabled = isEnabled ?? true,
         value = initialValue,
         _isInFocus = false,
-        super() {
-    addOnChangedListener((newValue) => value = newValue);
-    addOnFocusChangedListener((newFocusValue) => _isInFocus = newFocusValue);
-  }
+        super(isVisible: isVisible);
 
   Future<void> validate() async {}
 
-  void markAsTracked() => _tracked = true;
+  void markAsTracked() {
+    if (_isTracked) return;
+    addOnChangedListener((newValue) => value = newValue);
+    addOnFocusChangedListener((newFocusValue) => _isInFocus = newFocusValue);
+    _isTracked = true;
+  }
 }

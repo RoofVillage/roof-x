@@ -190,6 +190,16 @@ class StreamFormBloc extends BlocBase {
     _inForm.add(_formData);
   }
 
+  void enableFields() async {
+    for (final data in formData.fieldData) data.isEnabled = true;
+    batchUpdateFieldData(formData.fieldData);
+  }
+
+  void disableFields() async {
+    for (final data in formData.fieldData) data.isEnabled = false;
+    batchUpdateFieldData(formData.fieldData);
+  }
+
   @override
   void dispose() {
     _formController.close();
@@ -207,7 +217,7 @@ class StreamFormBloc extends BlocBase {
 
   void _addValueChangedStreamToFields(List<StreamableFormFieldData> fieldData) {
     for (final fieldData in fieldData) {
-      if (fieldData.tracked) continue;
+      if (fieldData.isTracked) continue;
       fieldData.addOnChangedListener((newValue) => onValueChanged());
       fieldData.addOnFocusChangedListener((fieldHasFocus) {
         //Determine if the form previously had focus before this change.

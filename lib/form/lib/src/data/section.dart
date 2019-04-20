@@ -14,19 +14,38 @@ class StreamableFormSectionData extends StreamableData {
       {this.headerData, this.fieldData, this.fieldHorizontalSpacing});
 
   void replace({@required int index, StreamableFormFieldData fieldData}) {
-    this.fieldData.replaceRange(index, index + 1, [fieldData]);
+    final currentFieldDataAtIndex = this.fieldData[index];
+
+    if (currentFieldDataAtIndex == null) return;
+
+    currentFieldDataAtIndex.isVisible = false;
+
+    addFieldData(fieldData: fieldData, index: index);
   }
 
   void addFieldData({@required StreamableFormFieldData fieldData, int index}) {
-    this.fieldData.insert(index, fieldData);
+    if (this.fieldData.contains(fieldData)) {
+      fieldData.isVisible = true;
+    } else {
+      this.fieldData.insert(index, fieldData);
+    }
   }
 
   void batchAddFieldData(
       {@required List<StreamableFormFieldData> fieldData, int index}) {
-    this.fieldData.insertAll(index, fieldData);
+    List<StreamableFormFieldData> fieldsToInsert = [];
+    for (final data in fieldData) {
+      if (this.fieldData.contains(data)) {
+        data.isVisible = true;
+      } else {
+        fieldsToInsert.add(data);
+      }
+    }
+    this.fieldData.insertAll(index, fieldsToInsert);
   }
 
   void removeFieldDataAtIndex(int index) {
+    fieldData[index].isVisible = false;
     this.fieldData.removeAt(index);
   }
 

@@ -14,12 +14,13 @@ import '_components/roof_stream_form.dart';
 import 'form_status.dart';
 
 mixin FormBodyBuilder implements StatefulWidget {
-  Future<List<StreamableFormFieldData>> get fieldData async => Future.value([]);
-
-  Future<List<StreamableFormSectionData>> get sectionData async =>
+  Future<List<StreamableFormFieldData>> get initialFieldData async =>
       Future.value([]);
 
-  Future<StreamableFormData> get formData => null;
+  Future<List<StreamableFormSectionData>> get initialSectionData async =>
+      Future.value([]);
+
+  Future<StreamableFormData> get initialFormData => null;
 
   String get submitButtonText;
   bool get canSubmitWithKeyboardRaised => true;
@@ -55,8 +56,9 @@ mixin FormBodyBuilder implements StatefulWidget {
   }
 
   Future<void> _validateFields() async {
-    return Future.wait(
-        (await fieldData).map((data) async => await data.validate()));
+    return Future.wait(form.formData.fieldData
+        .where((data) => data.isVisible)
+        .map((data) async => await data.validate()));
   }
 
   Widget _buildSubmitKeyboardAccessory(BuildContext context) {
@@ -102,14 +104,14 @@ mixin FormBodyBuilderState<T extends FormBodyBuilder> implements State<T> {
   }
 
   Future<void> onSubmitButtonTap(BuildContext context) async {
-    _disableForm();
+    widget.form.disableFields();
 
     try {
       await widget._validateFields();
       await widget.validate();
     } on FormValidationException catch (e) {
       _handleException(context, e);
-      _enableForm();
+      widget.form.enableFields();
 
       ///commented out for testing;
       // return;
@@ -118,7 +120,7 @@ mixin FormBodyBuilderState<T extends FormBodyBuilder> implements State<T> {
     _handleLoading(context);
     await widget.submit(context);
     _restoreState();
-    _enableForm();
+    widget.form.enableFields();
   }
 
   void addFocusChangedListeners() {
@@ -130,17 +132,22 @@ mixin FormBodyBuilderState<T extends FormBodyBuilder> implements State<T> {
   }
 
   void _load(BuildContext context) async {
-    final formData = await _createFormData(context);
+    //No need to load twice. This line also allows artboards to
+    //only need to define the formData that will initially be on screen
+    if (widget.form.formData != null) return;
+
+    final formData = await _createInitialFormData(context);
     if (formData == null) return;
     _setupIfNeeded(context, fieldData: formData.fieldData);
     widget.form.update(formData);
   }
 
-  Future<StreamableFormData> _createFormData(BuildContext context) async {
-    final formData = await widget.formData;
+  Future<StreamableFormData> _createInitialFormData(
+      BuildContext context) async {
+    final formData = await widget.initialFormData;
     if (formData != null) return formData;
 
-    final sectionData = await widget.sectionData;
+    final sectionData = await widget.initialSectionData;
     if (sectionData.isNotEmpty) {
       return StreamableFormData(
         sectionData: sectionData,
@@ -149,7 +156,7 @@ mixin FormBodyBuilderState<T extends FormBodyBuilder> implements State<T> {
       );
     }
 
-    final fieldData = await widget.fieldData;
+    final fieldData = await widget.initialFieldData;
     if (fieldData.isNotEmpty) {
       return StreamableFormData.withFields(
         fieldData: fieldData,
@@ -184,16 +191,6 @@ mixin FormBodyBuilderState<T extends FormBodyBuilder> implements State<T> {
   void _restoreState() {
     if (formSubmitState == FormSubmitStatus.ready) return;
     setState(() => formSubmitState = FormSubmitStatus.ready);
-  }
-
-  void _enableForm() async {
-    for (final data in await widget.fieldData) data.enabled = true;
-    widget.form.batchUpdateFieldData(await widget.fieldData);
-  }
-
-  void _disableForm() async {
-    for (final data in await widget.fieldData) data.enabled = false;
-    widget.form.batchUpdateFieldData(await widget.fieldData);
   }
 
   void _focusChangedListener(bool isInFocus) {

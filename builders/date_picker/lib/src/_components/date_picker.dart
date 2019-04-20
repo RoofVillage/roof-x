@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:theme/index.dart';
 import 'package:typography/index.dart' as typography;
+import 'package:icon_library/index.dart';
 import 'package:date/index.dart';
 import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart';
 
@@ -63,6 +64,8 @@ class RoofCalendarDatePicker extends StatelessWidget {
         weekFormat: false,
         daysHaveCircularBorder: true,
         height: _height,
+        leftButtonIcon: IconReference.backArrow.buildSvg(color: Colors.pink),
+        rightButtonIcon: IconReference.backArrow.buildSvg(color: Colors.pink),
       ),
     );
   }

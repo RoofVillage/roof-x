@@ -23,8 +23,10 @@ class RoofStreamForm
 
   List<FormCompositionFieldData> get _allCompositionFieldData {
     final allFieldData = bloc.formData.fieldData;
-    final allTextFieldData =
-        allFieldData.whereType<FormTextFieldData>().toList();
+    final allTextFieldData = allFieldData
+        .where((data) => data.isVisible)
+        .whereType<FormTextFieldData>()
+        .toList();
     final allTextAreaData = allFieldData.whereType<FormTextAreaData>().toList();
     List<FormCompositionFieldData> allCompositionFieldData = [];
     allCompositionFieldData.addAll(allTextFieldData);

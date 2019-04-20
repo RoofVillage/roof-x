@@ -7,6 +7,17 @@ class Network {
   static const _jsonContentType = 'application/json';
   static const _jsonAccept = 'application/json';
 
+  Future<String> get({String address}) async {
+    final response = await http.get(Uri.encodeFull(address));
+    print(response);
+    switch (response.statusCode) {
+      case 200:
+        return utf8.decode(response.bodyBytes);
+      default:
+        throw Error();
+    }
+  }
+
   Future<String> post(
       {String address,
       Map<String, Object> params,
