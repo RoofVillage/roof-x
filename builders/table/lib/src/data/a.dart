@@ -11,13 +11,13 @@ class CellAData extends StreamableTableRowData with TimeSortable {
   final int section;
   final int timestamp;
 
-  CellAData(
-      {@required this.title,
-      @required this.description,
-      @required this.iconReference,
-      @required this.timestamp,
-      int section,
-      String key})
-      : section = section ?? 0,
+  CellAData({
+    @required this.title,
+    @required this.description,
+    @required this.iconReference,
+    @required this.timestamp,
+    int section,
+    String key,
+  })  : section = section ?? 0,
         super(key: key);
 }

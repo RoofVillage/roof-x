@@ -19,10 +19,16 @@ dependencies:
     path: ../../icon_library
   distance:
     path: ../../spec/distance
+  corner_radius:
+    path: ../../spec/corner_radius
   theme:
     path: ../../theme
   typography:
     path: ../../spec/typography
+  key_value_builder:
+    path: ../key_value
+  spaced_grid_builder:
+    path: ../spaced_grid
 
 dev_dependencies:
   flutter_test:
