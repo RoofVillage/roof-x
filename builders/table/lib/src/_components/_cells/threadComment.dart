@@ -3,12 +3,12 @@ import 'package:distance/index.dart' as distance;
 import 'package:theme/index.dart';
 import 'package:typography/index.dart' as typography;
 
-class RoofThreadComment extends StatelessWidget {
+class RoofThreadCommentCell extends StatelessWidget {
   final String creator;
   final int timestamp;
   final String note;
 
-  RoofThreadComment({
+  RoofThreadCommentCell({
     @required this.creator,
     @required this.timestamp,
     @required this.note,

@@ -40,14 +40,14 @@ class CellsSandbox extends StatelessWidget {
       iconReference: IconReference.cashSack,
     );
 
-    final commentCell = RoofThreadComment(
+    final commentCell = RoofThreadCommentCell(
       creator: "Yung jo",
       timestamp: 42069,
       note:
           "Blaze it bitches Blaze it bitches Blaze it bitches Blaze it bitches Blaze it bitches Blaze it bitches Blaze it bitches Blaze it bitches",
     );
 
-    final eventCell = RoofThreadEvent(
+    final eventCell = RoofThreadEventCell(
       timestamp: 696969420,
       title: "Event title",
       note: "Did an event here's a note bishhh",
@@ -67,21 +67,65 @@ class CellsSandbox extends StatelessWidget {
         ),
         KeyValueData(
           title: "more shit",
-          value: "Detail value 222 asdf asdf asdfasdf alkjlkj asdfasdf alkjlkj asdfasdf alkjlkj",
+          value:
+              "Detail value 222 asdf asdf asdfasdf alkjlkj asdfasdf alkjlkj asdfasdf alkjlkj",
         )
       ],
+    );
+
+    final emptyEventCell = RoofThreadEventCell(
+      title: "Jo did a chore",
+      timestamp: 121212,
+    );
+
+    final standardThreadCellSecondaryText = WeightDecoratedText()
+      ..addSection(text: "Here's a")
+      ..addSection(text: "thin part", thin: true)
+      ..addSection(text: "title");
+
+    final standardThreadCell = RoofStandardThreadCell(
+      title: "Feed baby shark",
+      secondaryText: standardThreadCellSecondaryText,
+      iconReference: IconReference.thread,
+      timestamp: 7843879,
+    );
+
+    final overdueThreadCell = RoofOverdueThreadCell(
+      title: "Feed baby shark overdue",
+      secondaryText: standardThreadCellSecondaryText,
+      iconReference: IconReference.thread,
+      timestamp: 7843879,
+    );
+
+    final dueSoonThreadCell = RoofDueSoonThreadCell(
+      title: "Feed baby shark due soon",
+      secondaryText: standardThreadCellSecondaryText,
+      iconReference: IconReference.thread,
+      timestamp: 7843879,
+    );
+
+    final noSecondaryThreadCell = RoofStandardThreadCell(
+      title: "Feed baby shark is alone",
+      iconReference: IconReference.thread,
+      timestamp: 7843879,
     );
 
     return Scaffold(
       backgroundColor: theme.color.background.brand,
       body: ListView(
         children: [
+          standardThreadCell,
+          dueSoonThreadCell,
+          overdueThreadCell,
+          noSecondaryThreadCell,
           activityCell,
           activityCell,
           activityCell,
           commentCell,
           commentCell,
           commentCell,
+          emptyEventCell,
+          emptyEventCell,
           eventCell,
           eventCell,
           eventCell,

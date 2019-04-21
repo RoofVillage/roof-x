@@ -7,17 +7,17 @@ import 'package:icon_library/index.dart';
 import 'package:key_value_builder/index.dart';
 import 'package:spaced_grid_builder/index.dart';
 
-class RoofThreadEvent extends StatelessWidget {
-  final StandardIconReference iconReference;
+class RoofThreadEventCell extends StatelessWidget {
   final String title;
   final int timestamp;
+  final StandardIconReference iconReference;
   final String note;
   final List<KeyValueData> details;
 
-  RoofThreadEvent({
-    @required this.iconReference,
+  RoofThreadEventCell({
     @required this.title,
     @required this.timestamp,
+    this.iconReference,
     this.note,
     this.details,
   });
@@ -28,11 +28,13 @@ class RoofThreadEvent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _iconReference = iconReference?? IconReference.event;
+
     return Container(
       margin: EdgeInsets.symmetric(vertical: _verticalMargin),
       padding: EdgeInsets.symmetric(horizontal: _horizontalPadding),
       child: _Body(
-        iconReference: iconReference,
+        iconReference: _iconReference,
         title: title,
         timestamp: timestamp,
         note: note,
@@ -60,6 +62,7 @@ class _Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         _Icon(
@@ -89,7 +92,9 @@ class _Icon extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = RoofTheme.of(context);
 
-    final iconWidget = iconReference.buildSvg(color: theme.color.icon.general);
+    final iconColor = theme.color.icon.general;
+
+    final iconWidget = iconReference.buildSvg(color: iconColor);
 
     return Padding(
       padding: EdgeInsets.only(
@@ -149,6 +154,7 @@ class _Content extends StatelessWidget with KeyValueBuilder, SpacedGridBuilder {
     );
 
     final titleRow = Row(
+      mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.end,
       children: <Widget>[titleWidget, timestampWidget],
     );
@@ -195,7 +201,7 @@ class _Content extends StatelessWidget with KeyValueBuilder, SpacedGridBuilder {
       verticalChildren.add(detailsContainer);
     }
 
-    return Expanded(
+    return Flexible(
       child: Container(
         padding: EdgeInsets.all(_outerPadding),
         decoration: BoxDecoration(
@@ -207,61 +213,6 @@ class _Content extends StatelessWidget with KeyValueBuilder, SpacedGridBuilder {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: verticalChildren,
         ),
-      ),
-    );
-  }
-}
-
-class _Detail extends StatelessWidget {
-  final String title;
-  final String value;
-
-  _Detail({
-    @required this.title,
-    @required this.value,
-  });
-
-  final _titleTypographyStyle = typography.detailPrimary;
-  final _valueTypographyStyle = typography.bodyPrimary;
-  final _verticalSpacing = distance.a;
-  final _verticalMargin = distance.d;
-  final _horizontalMargin = distance.c;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
-
-    final titleWidget = Text(
-      title,
-      style: _titleTypographyStyle.textStyleWithColor(
-        theme.color.text.secondary,
-      ),
-    );
-
-    final valueWidget = Container(
-      margin: EdgeInsets.only(
-        top: _verticalSpacing,
-      ),
-      child: Text(
-        value,
-        style: _valueTypographyStyle.textStyleWithColor(
-          theme.color.text.primary,
-        ),
-        softWrap: true,
-      ),
-    );
-
-    return Container(
-      margin: EdgeInsets.only(
-        right: _horizontalMargin,
-        top: _verticalMargin,
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          titleWidget,
-          valueWidget,
-        ],
       ),
     );
   }

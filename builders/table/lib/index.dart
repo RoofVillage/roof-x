@@ -6,3 +6,6 @@ export 'src/data/index.dart';
 export 'src/_components/_cells/activity.dart';
 export 'src/_components/_cells/threadComment.dart';
 export 'src/_components/_cells/threadEvent.dart';
+export 'src/_components/_cells/standardThread.dart';
+export 'src/_components/_cells/dueSoonThread.dart';
+export 'src/_components/_cells/overdueThread.dart';

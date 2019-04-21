@@ -1,0 +1,46 @@
+import 'package:flutter/material.dart';
+import 'package:icon_library/index.dart';
+import 'package:decorated_text/index.dart';
+import 'package:typography/index.dart' as typography;
+import 'package:theme/index.dart';
+
+import '_thread.dart';
+
+class RoofDueSoonThreadCell extends StatelessWidget {
+  final String title;
+  final WeightDecoratedText secondaryText;
+  final StandardIconReference iconReference;
+  final int timestamp;
+
+  RoofDueSoonThreadCell({
+    this.title,
+    this.secondaryText,
+    this.iconReference,
+    this.timestamp,
+  });
+
+  final _titleTypographyStyle = typography.bodyPrimary;
+  final _timestampTypographyStyle = typography.bodyPrimary;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = RoofTheme.of(context);
+
+    final titleTextStyle = _titleTypographyStyle.textStyleWithColor(
+      theme.color.text.secondaryAction,
+    );
+
+    final timestampTextStyle = _timestampTypographyStyle.textStyleWithColor(
+      theme.color.text.primary,
+    );
+
+    return RoofThreadCell(
+      title: title,
+      titleTextStyle: titleTextStyle,
+      secondaryText: secondaryText,
+      iconReference: iconReference,
+      timestamp: timestamp,
+      timestampTextStyle: timestampTextStyle,
+    );
+  }
+}
