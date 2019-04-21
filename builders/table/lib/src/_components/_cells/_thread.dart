@@ -4,6 +4,7 @@ import 'package:decorated_text/index.dart';
 import 'package:typography/index.dart' as typography;
 import 'package:distance/index.dart' as distance;
 import 'package:theme/index.dart';
+import 'package:haptics/index.dart';
 
 class RoofThreadCell extends StatelessWidget {
   final StandardIconReference iconReference;
@@ -12,6 +13,7 @@ class RoofThreadCell extends StatelessWidget {
   final WeightDecoratedText secondaryText;
   final int timestamp;
   final TextStyle timestampTextStyle;
+  final VoidCallback onTap;
 
   RoofThreadCell({
     @required this.iconReference,
@@ -20,10 +22,16 @@ class RoofThreadCell extends StatelessWidget {
     this.secondaryText,
     @required this.timestamp,
     @required this.timestampTextStyle,
+    @required this.onTap,
   });
 
   final _horizontalPadding = distance.b;
   final _verticalPadding = distance.c;
+
+  _onTap() {
+    triggerHapticWith(HapticOption.light);
+    onTap();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,17 +50,20 @@ class RoofThreadCell extends StatelessWidget {
       timestampTextStyle: timestampTextStyle,
     );
 
-    return Container(
-      padding: EdgeInsets.symmetric(
-        horizontal: _horizontalPadding,
-        vertical: _verticalPadding,
-      ),
-      child: Row(
-        children: <Widget>[
-          paddedIconWidget,
-          body,
-          timestampWidget,
-        ],
+    return GestureDetector(
+      onTap: _onTap,
+      child: Container(
+        padding: EdgeInsets.symmetric(
+          horizontal: _horizontalPadding,
+          vertical: _verticalPadding,
+        ),
+        child: Row(
+          children: <Widget>[
+            paddedIconWidget,
+            body,
+            timestampWidget,
+          ],
+        ),
       ),
     );
   }

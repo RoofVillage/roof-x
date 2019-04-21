@@ -88,6 +88,7 @@ class CellsSandbox extends StatelessWidget {
       secondaryText: standardThreadCellSecondaryText,
       iconReference: IconReference.thread,
       timestamp: 7843879,
+      onTap: () => print("tap"),
     );
 
     final overdueThreadCell = RoofOverdueThreadCell(
@@ -95,6 +96,7 @@ class CellsSandbox extends StatelessWidget {
       secondaryText: standardThreadCellSecondaryText,
       iconReference: IconReference.thread,
       timestamp: 7843879,
+      onTap: () => print("tap"),
     );
 
     final dueSoonThreadCell = RoofDueSoonThreadCell(
@@ -102,12 +104,21 @@ class CellsSandbox extends StatelessWidget {
       secondaryText: standardThreadCellSecondaryText,
       iconReference: IconReference.thread,
       timestamp: 7843879,
+      onTap: () => print("tap"),
     );
 
     final noSecondaryThreadCell = RoofStandardThreadCell(
       title: "Feed baby shark is alone",
       iconReference: IconReference.thread,
       timestamp: 7843879,
+      onTap: () => print("tap"),
+    );
+    
+    final segueBar = RoofSegueBar(
+      title: "Balances",
+      iconReference: IconReference.piggyBank,
+      auxiliaryText: "-\$14.50",
+      onTap: () => print("tap"),
     );
 
     return Scaffold(
@@ -117,6 +128,7 @@ class CellsSandbox extends StatelessWidget {
           standardThreadCell,
           dueSoonThreadCell,
           overdueThreadCell,
+          segueBar,
           noSecondaryThreadCell,
           activityCell,
           activityCell,

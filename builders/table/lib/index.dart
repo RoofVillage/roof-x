@@ -9,3 +9,4 @@ export 'src/_components/_cells/thread_event.dart';
 export 'src/_components/_cells/standard_thread.dart';
 export 'src/_components/_cells/due_soon_thread.dart';
 export 'src/_components/_cells/overdue_thread.dart';
+export 'src/_components/_cells/segue_bar.dart';

@@ -29,6 +29,8 @@ dependencies:
     path: ../key_value
   spaced_grid_builder:
     path: ../spaced_grid
+  haptics:
+    path: ../../lib/haptics
 
 dev_dependencies:
   flutter_test:

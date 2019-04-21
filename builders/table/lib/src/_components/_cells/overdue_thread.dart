@@ -11,12 +11,14 @@ class RoofOverdueThreadCell extends StatelessWidget {
   final WeightDecoratedText secondaryText;
   final StandardIconReference iconReference;
   final int timestamp;
+  final VoidCallback onTap;
 
   RoofOverdueThreadCell({
-    this.title,
+    @required this.title,
     this.secondaryText,
-    this.iconReference,
-    this.timestamp,
+    @required this.iconReference,
+    @required this.timestamp,
+    @required this.onTap,
   });
 
   final _titleTypographyStyle = typography.bodyPrimary;
@@ -41,6 +43,7 @@ class RoofOverdueThreadCell extends StatelessWidget {
       iconReference: iconReference,
       timestamp: timestamp,
       timestampTextStyle: timestampTextStyle,
+      onTap: onTap,
     );
   }
 }
