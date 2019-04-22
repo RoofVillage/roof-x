@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class CellsSandbox extends StatelessWidget {
+class CellsSandbox extends StatelessWidget with KeyValueBuilder {
   @override
   Widget build(BuildContext context) {
     final theme = RoofTheme.of(context);
@@ -53,19 +53,23 @@ class CellsSandbox extends StatelessWidget {
       note: "Did an event here's a note bishhh",
       iconReference: IconReference.livingRoom,
       details: [
-        KeyValueData(
+        buildKeyValue(
+          context,
           title: "Permission to enter",
           value: "Fuck yea",
         ),
-        KeyValueData(
+        buildKeyValue(
+          context,
           title: "Another detail",
           value: "Detail value",
         ),
-        KeyValueData(
+        buildKeyValue(
+          context,
           title: "Another detail 222",
           value: "Detail value 222",
         ),
-        KeyValueData(
+        buildKeyValue(
+          context,
           title: "more shit",
           value:
               "Detail value 222 asdf asdf asdfasdf alkjlkj asdfasdf alkjlkj asdfasdf alkjlkj",
@@ -113,7 +117,7 @@ class CellsSandbox extends StatelessWidget {
       timestamp: 7843879,
       onTap: () => print("tap"),
     );
-    
+
     final segueBar = RoofSegueBar(
       title: "Balances",
       iconReference: IconReference.piggyBank,

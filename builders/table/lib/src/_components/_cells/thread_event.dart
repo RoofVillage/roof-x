@@ -12,7 +12,7 @@ class RoofThreadEventCell extends StatelessWidget {
   final int timestamp;
   final StandardIconReference iconReference;
   final String note;
-  final List<KeyValueData> details;
+  final List<KeyValue> details;
 
   RoofThreadEventCell({
     @required this.title,
@@ -28,7 +28,7 @@ class RoofThreadEventCell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _iconReference = iconReference?? IconReference.event;
+    final _iconReference = iconReference ?? IconReference.event;
 
     return Container(
       margin: EdgeInsets.symmetric(vertical: _verticalMargin),
@@ -49,7 +49,7 @@ class _Body extends StatelessWidget {
   final String title;
   final int timestamp;
   final String note;
-  final List<KeyValueData> details;
+  final List<KeyValue> details;
 
   _Body({
     @required this.iconReference,
@@ -110,7 +110,7 @@ class _Content extends StatelessWidget with KeyValueBuilder, SpacedGridBuilder {
   final String title;
   final int timestamp;
   final String note;
-  final List<KeyValueData> details;
+  final List<KeyValue> details;
 
   _Content({
     @required this.title,
@@ -176,23 +176,11 @@ class _Content extends StatelessWidget with KeyValueBuilder, SpacedGridBuilder {
     }
 
     if (details != null) {
-      List<Widget> detailsWidgets = [];
-
-      for (KeyValueData detail in details) {
-        final keyValueWidget = buildKeyValue(
-          context,
-          title: detail.title,
-          value: detail.value,
-        );
-
-        detailsWidgets.add(keyValueWidget);
-      }
-
       final detailsContainer = Padding(
         padding: EdgeInsets.only(top: _detailsSpacing),
         child: buildSpacedGrid(
           context,
-          children: detailsWidgets,
+          children: details,
           horizontalSpacing: _detailsSpacing,
           verticalSpacing: _detailsSpacing,
         ),
