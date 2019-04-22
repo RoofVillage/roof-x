@@ -110,6 +110,7 @@ class _PaddedBody extends StatelessWidget {
     final titleWidget = Text(
       title,
       style: titleTextStyle,
+      overflow: TextOverflow.ellipsis,
     );
 
     columnChildren.add(titleWidget);

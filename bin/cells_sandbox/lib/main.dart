@@ -108,7 +108,7 @@ class CellsSandbox extends StatelessWidget {
     );
 
     final noSecondaryThreadCell = RoofStandardThreadCell(
-      title: "Feed baby shark is alone",
+      title: "Feed baby shark is alone and real real long long long",
       iconReference: IconReference.thread,
       timestamp: 7843879,
       onTap: () => print("tap"),
