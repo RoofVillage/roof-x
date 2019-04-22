@@ -18,7 +18,7 @@ mixin PhoneNumberSignUpArtboardBuilder implements FormBuilder {
   String get submitButtonText => "Send code";
 
   @override
-  Future<List<StreamableFormFieldData>> get fieldData async =>
+  Future<List<StreamableFormFieldData>> get initialFieldData async =>
       [_phoneNumberFieldData];
 
   final _phoneNumberFieldData = PhoneNumberFormTextFieldData();

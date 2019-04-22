@@ -7,9 +7,11 @@ class FormSwitchData extends StreamableFormFieldData<bool> {
     @required String title,
     bool initialValue = false,
     double size,
+    bool isVisible,
   }) : super(
           title: title,
           initialValue: initialValue,
           size: size,
+          isVisible: isVisible,
         );
 }

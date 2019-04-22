@@ -11,7 +11,7 @@ mixin SignUpArtboardBuilder implements FormBuilder {
   String get submitButtonText => "Create";
 
   @override
-  Future<List<StreamableFormFieldData>> get fieldData async => [
+  Future<List<StreamableFormFieldData>> get initialFieldData async => [
         _temp2,
         _temp3,
         _nameFieldData,
@@ -34,7 +34,7 @@ mixin SignUpArtboardBuilder implements FormBuilder {
   @override
   void setupFields(BuildContext context,
       {List<StreamableFormFieldData> fieldData}) {
-    // _temp2.addOnChangedListener(_toggleField);
+    _temp2.addOnChangedListener(_toggleField);
   }
 
   void _toggleField(bool showing) {

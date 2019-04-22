@@ -14,6 +14,7 @@ class EmailFormTextFieldData extends FormTextFieldData {
     String placeholder,
     String initialValue,
     double size,
+    bool isVisible,
     bool autofocus,
     String exceptionTitle,
   }) : super(
@@ -23,6 +24,7 @@ class EmailFormTextFieldData extends FormTextFieldData {
           autofocus: autofocus,
           keyboardType: TextInputType.emailAddress,
           size: size,
+          isVisible: isVisible,
           exceptionTitle: exceptionTitle,
         );
 

@@ -12,6 +12,7 @@ class PhoneNumberFormTextFieldData extends FormTextFieldData {
       String placeholder,
       String initialValue,
       double size,
+      bool isVisible,
       bool autofocus,
       String exceptionTitle})
       : super(
@@ -22,6 +23,7 @@ class PhoneNumberFormTextFieldData extends FormTextFieldData {
             autofocus: autofocus,
             keyboardType: TextInputType.phone,
             size: size,
+            isVisible: isVisible,
             exceptionTitle: exceptionTitle);
 
   Future<void> validate() async {

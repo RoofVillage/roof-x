@@ -23,10 +23,12 @@ abstract class PickerFieldData<T> extends StreamableFormFieldData<T> {
       T startBound,
       T endBound,
       double size,
+      bool isVisible,
       Function onTap})
       : super(
           title: title,
           initialValue: initialValue,
           size: size,
+          isVisible: isVisible,
         );
 }

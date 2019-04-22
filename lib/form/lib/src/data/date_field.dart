@@ -11,6 +11,7 @@ class FormDateFieldData extends PickerFieldData<Date> {
     DateTime endBound,
     Function onTap,
     double size,
+    bool isVisible,
   }) : super(
           title: title,
           initialValue: initialValue ?? Date.now(),
@@ -18,5 +19,6 @@ class FormDateFieldData extends PickerFieldData<Date> {
           endBound: endBound,
           onTap: onTap,
           size: size,
+          isVisible: isVisible,
         );
 }

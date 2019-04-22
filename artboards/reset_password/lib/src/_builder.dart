@@ -13,7 +13,7 @@ mixin ResetPasswordArtboardBuilder implements FormBuilder {
   String get submitButtonText => "Send";
 
   @override
-  Future<List<StreamableFormFieldData>> get fieldData async =>
+  Future<List<StreamableFormFieldData>> get initialFieldData async =>
       [_emailFieldData];
 
   final _emailFieldData = EmailFormTextFieldData();

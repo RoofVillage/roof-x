@@ -16,7 +16,7 @@ mixin LogInArtboardBuilder implements FormBuilder {
   String get submitButtonText => "Log in";
 
   @override
-  Future<List<StreamableFormFieldData>> get fieldData async =>
+  Future<List<StreamableFormFieldData>> get initialFieldData async =>
       [_usernameFieldData, _passwordFieldData];
 
   final _usernameFieldData = EmailFormTextFieldData(title: "Email or phone");

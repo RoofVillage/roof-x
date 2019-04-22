@@ -17,18 +17,21 @@ class PasswordFormTextFieldData extends FormTextFieldData {
     String placeholder = "8+ letters, numbers & symbols",
     String initialValue,
     double size,
+    bool isVisible,
     bool autofocus,
     ValueChanged<String> onSubmitted,
     String exceptionTitle,
   }) : super(
-            title: title,
-            placeholder: placeholder,
-            initialValue: initialValue,
-            autofocus: autofocus,
-            size: size,
-            min: 8,
-            max: 30,
-            exceptionTitle: exceptionTitle);
+          title: title,
+          placeholder: placeholder,
+          initialValue: initialValue,
+          autofocus: autofocus,
+          size: size,
+          isVisible: isVisible,
+          min: 8,
+          max: 30,
+          exceptionTitle: exceptionTitle,
+        );
 
   Future<void> validate() async {
     if (!value.contains(RegExp(numberSet)) ||
