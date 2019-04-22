@@ -33,10 +33,12 @@ class RoofBreadcrumb extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = RoofTheme.of(context);
 
-    final inactiveTextStyle =
-        _inactiveTypographyStyle.textStyleWithColor(theme.color.text.primary);
-    final activeTextStyle =
-        _activeTypographyStyle.textStyleWithColor(theme.color.text.brand);
+    final inactiveTextStyle = _inactiveTypographyStyle.textStyleWithColor(
+      theme.color.text.primary,
+    );
+    final activeTextStyle = _activeTypographyStyle.textStyleWithColor(
+      theme.color.text.brand,
+    );
 
     final inactiveIconColor = theme.color.icon.general;
     final activeIconColor = theme.color.icon.logo;
@@ -62,7 +64,7 @@ class RoofBreadcrumb extends StatelessWidget {
     rowChildren.add(textWidget);
 
     if (!isActive) {
-      final arrowWidgetWithRightMargin = Padding(
+      final arrowWidget = Padding(
         padding: EdgeInsets.only(
           left: _horizontalSpacing,
           right: _rightMargin,
@@ -72,13 +74,23 @@ class RoofBreadcrumb extends StatelessWidget {
         ),
       );
 
-      rowChildren.add(arrowWidgetWithRightMargin);
+      rowChildren.add(arrowWidget);
     }
+
+    final activeBorder = Border(
+      bottom: BorderSide(
+        color: theme.color.stroke.light,
+      ),
+    );
 
     return GestureDetector(
       onTap: _onTap,
       child: Container(
-        margin: EdgeInsets.only(bottom: _bottomMargin),
+        padding: EdgeInsets.only(bottom: _bottomMargin),
+        margin: EdgeInsets.only(right: _rightMargin),
+        decoration: BoxDecoration(
+          border: isActive ? activeBorder : null,
+        ),
         child: Row(
           children: rowChildren,
         ),

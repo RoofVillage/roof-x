@@ -65,11 +65,12 @@ class _RoofSelectFieldState extends State<RoofSelectField>
         isExpanded: isExpanded);
 
     final dropdownContainer = _DropdownContainer(
-        options: options,
-        selectedOptions: selectedOptions,
-        isMultiSelect: widget.isMultiSelect,
-        isExpanded: isExpanded,
-        onTap: _onTap);
+      options: options,
+      selectedOptions: selectedOptions,
+      isMultiSelect: widget.isMultiSelect,
+      isExpanded: isExpanded,
+      onTap: _onTap,
+    );
 
     return Container(
       margin: padding.field1,
