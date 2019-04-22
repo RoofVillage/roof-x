@@ -4,6 +4,8 @@ class IconReference {
   static final boxChecked = SmallIconReference(path: 'box_checked.svg');
   static final boxUnchecked = SmallIconReference(path: 'box_unchecked.svg');
   static final removeFilled = SmallIconReference(path: 'remove_filled.svg');
+  static final leftArrow = SmallIconReference(path: 'left_arrow.svg');
+  static final rightArrow = SmallIconReference(path: 'right_arrow.svg');
 
   static final add = StandardIconReference(path: 'add.svg');
   static final addImage = StandardIconReference(path: 'add_image.svg');

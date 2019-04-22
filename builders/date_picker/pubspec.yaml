@@ -9,7 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_calendar_carousel: ^1.3.15
+  flutter_calendar_carousel: ^1.3.16
   haptics:
     path: ../../lib/haptics
   date:
@@ -20,6 +20,8 @@ dependencies:
     path: ../../spec/typography
   artboard:
     path: ../../lib/artboard
+  icon_library:
+    path: ../../icon_library
 
 dev_dependencies:
   flutter_test:

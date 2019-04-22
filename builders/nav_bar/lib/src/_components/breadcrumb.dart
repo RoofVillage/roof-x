@@ -67,7 +67,7 @@ class RoofBreadcrumb extends StatelessWidget {
           left: _horizontalSpacing,
           right: _rightMargin,
         ),
-        child: IconReference.alarmClock.buildSvg(
+        child: IconReference.rightArrow.buildSvg(
           color: theme.color.icon.general,
         ),
       );

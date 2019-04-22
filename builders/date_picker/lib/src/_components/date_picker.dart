@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:icon_library/index.dart';
 import 'package:theme/index.dart';
 import 'package:typography/index.dart' as typography;
 import 'package:date/index.dart';
@@ -25,20 +26,30 @@ class RoofCalendarDatePicker extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = RoofTheme.of(context);
 
-    final headerStyle =
-        typography.heading2.textStyleWithColor(theme.color.text.brand);
+    final headerStyle = typography.heading2.textStyleWithColor(
+      theme.color.text.brand,
+    );
 
-    final daysPrimaryStyle = typography.bodyPrimaryThick
-        .textStyleWithColor(theme.color.text.primary);
+    final daysPrimaryStyle = typography.bodyPrimaryThick.textStyleWithColor(
+      theme.color.text.primary,
+    );
 
-    final inactiveTextStyle =
-        typography.bodyPrimary.textStyleWithColor(theme.color.text.secondary);
+    final inactiveTextStyle = typography.bodyPrimary.textStyleWithColor(
+      theme.color.text.secondary,
+    );
 
-    final smallTextStyle =
-        typography.bodySecondary.textStyleWithColor(theme.color.text.brand);
+    final smallTextStyle = typography.bodySecondary.textStyleWithColor(
+      theme.color.text.brand,
+    );
 
-    final todayTextStyle = typography.bodyPrimaryThick
-        .textStyleWithColor(theme.color.text.secondaryAction);
+    final todayTextStyle = typography.bodyPrimaryThick.textStyleWithColor(
+      theme.color.text.secondaryAction,
+    );
+
+    final arrowIconColor = theme.color.text.brand;
+
+    final leftIcon = IconReference.leftArrow.buildSvg(color: arrowIconColor);
+    final rightIcon = IconReference.rightArrow.buildSvg(color: arrowIconColor);
 
     return Container(
       child: CalendarCarousel(
@@ -63,6 +74,8 @@ class RoofCalendarDatePicker extends StatelessWidget {
         weekFormat: false,
         daysHaveCircularBorder: true,
         height: _height,
+        leftButtonIcon: leftIcon,
+        rightButtonIcon: rightIcon,
       ),
     );
   }
