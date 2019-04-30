@@ -1,0 +1,15 @@
+name: messaging
+description: Tools for receiving messages.
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  firebase_messaging: ^4.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

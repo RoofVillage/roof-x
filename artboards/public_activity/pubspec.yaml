@@ -22,6 +22,8 @@ dependencies:
     path: ../../model/objects/public
   navigator:
     path: ../../lib/navigator
+  messaging:
+    path: ../../lib/messaging
 
 dev_dependencies:
   flutter_test:
