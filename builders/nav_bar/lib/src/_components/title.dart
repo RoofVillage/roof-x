@@ -21,8 +21,10 @@ class RoofTitleNavBar extends StatelessWidget with RoofNavBar {
       navigationWidgets.add(navButton);
     }
     if (title != null) {
-      final text = Text(title,
-          style: _typographyStyle.textStyleWithColor(theme.color.text.brand));
+      final text = Text(
+        title,
+        style: _typographyStyle.textStyleWithColor(theme.color.text.brand),
+      );
       navigationWidgets.add(NavTitleBaseline(text: text));
     }
 

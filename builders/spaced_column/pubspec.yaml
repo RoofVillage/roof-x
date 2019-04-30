@@ -1,0 +1,19 @@
+name: spaced_column_builder
+description: Places provided widgets into a column with given spacing..
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  distance:
+    path: ../../spec/distance
+  theme:
+    path: ../../theme
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

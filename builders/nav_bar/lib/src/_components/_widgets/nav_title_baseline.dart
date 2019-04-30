@@ -10,6 +10,9 @@ class NavTitleBaseline extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Baseline(
-        baseline: baseline, baselineType: TextBaseline.alphabetic, child: text);
+      baseline: baseline,
+      baselineType: TextBaseline.alphabetic,
+      child: text,
+    );
   }
 }
