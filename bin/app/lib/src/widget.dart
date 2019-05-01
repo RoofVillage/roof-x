@@ -58,7 +58,7 @@ class ConnectionWidgetState extends State<ConnectionWidget> {
   int port = 443;
 
   String clientId =
-      'projects/roof-6b388/locations/us-central1/registries/app/devices/phil';
+      'projects/roof-6b388/locations/us-central1/registries/app/devices/tommy';
 
   String username = "unused";
 
@@ -74,7 +74,7 @@ class ConnectionWidgetState extends State<ConnectionWidget> {
   String get _payload {
     final payload = {
       "aud": "roof-6b388",
-      "isa": (DateTime.now().millisecondsSinceEpoch / 1000).round(),
+      "iat": (DateTime.now().millisecondsSinceEpoch / 1000).round(),
       "exp": (DateTime.now().add(Duration(minutes: 60)).millisecondsSinceEpoch /
               1000)
           .round()
@@ -97,14 +97,17 @@ class ConnectionWidgetState extends State<ConnectionWidget> {
     print("making key pair");
     final keyPair =
         await keyHelper.computeRSAKeyPair(keyHelper.getSecureRandom());
+
+    final formattedPublicKey =
+        keyHelper.encodePublicKeyToPemPKCS1(keyPair.publicKey);
+    final formattedPrivateKey =
+        keyHelper.encodePrivateKeyToPemPKCS1(keyPair.privateKey);
+    print("public key: $formattedPublicKey");
+    print("private key: $formattedPrivateKey");
+
     final header = _header;
     final payload = _payload;
-    print("pair $keyPair");
-    print("private key ${keyPair.privateKey}");
-    final param = PrivateKeyParameter(keyPair.privateKey);
-    print("param $param");
 
-    print("dun");
     final content = header + "." + payload;
     print("content $content");
 
@@ -113,13 +116,6 @@ class ConnectionWidgetState extends State<ConnectionWidget> {
     print("signature $signature");
     final jwtToken = content + "." + signature;
     print("jwtToken $jwtToken");
-
-    final formattedPublicKey =
-        keyHelper.encodePublicKeyToPemPKCS1(keyPair.publicKey);
-    final formattedPrivateKey =
-        keyHelper.encodePrivateKeyToPemPKCS1(keyPair.privateKey);
-    print("public key: $formattedPublicKey");
-    print("private key: $formattedPrivateKey");
     final device = await _gcp(formattedPublicKey);
 
     print("new device! $device");
@@ -162,7 +158,7 @@ class ConnectionWidgetState extends State<ConnectionWidget> {
     const parentName = "projects/$projectId/locations/$cloudRegion";
     const registryName = "$parentName/registries/$registryId";
     final request = cloud.Device.fromJson({
-      "id": "phil",
+      "id": "tommy",
       "credentials": [
         {
           "publicKey": {
@@ -586,41 +582,6 @@ class RsaKeyHelper {
   ///
   /// Given [RSAPrivateKey] returns a base64 encoded [String] with standard PEM headers and footers
   String encodePrivateKeyToPemPKCS1(RSAPrivateKey privateKey) {
-    // var topLevel = new ASN1Sequence();
-
-    // var version = ASN1Integer(BigInt.from(0));
-    // var modulus = ASN1Integer(privateKey.n);
-    // var publicExponent = ASN1Integer(privateKey.exponent);
-    // var privateExponent = ASN1Integer(privateKey.d);
-    // var p = ASN1Integer(privateKey.p);
-    // var q = ASN1Integer(privateKey.q);
-    // var dP = privateKey.d % (privateKey.p - BigInt.from(1));
-    // var exp1 = ASN1Integer(dP);
-    // var dQ = privateKey.d % (privateKey.q - BigInt.from(1));
-    // var exp2 = ASN1Integer(dQ);
-    // var iQ = privateKey.q.modInverse(privateKey.p);
-    // var co = ASN1Integer(iQ);
-
-    // topLevel.add(version);
-    // topLevel.add(modulus);
-    // topLevel.add(publicExponent);
-    // topLevel.add(privateExponent);
-    // topLevel.add(p);
-    // topLevel.add(q);
-    // topLevel.add(exp1);
-    // topLevel.add(exp2);
-    // topLevel.add(co);
-    // var publicKeySeqOctetString = new ASN1OctetString(Uint8List.fromList(privateKeySeq.encodedBytes));
-
-    // var topLevelSeq = new ASN1Sequence();
-    // topLevelSeq.add(version);
-    // topLevelSeq.add(algorithmSeq);
-    // topLevelSeq.add(publicKeySeqOctetString);
-    // var dataBase64 = base64.encode(topLevelSeq.encodedBytes);
-
-    // // var dataBase64 = base64UrlEncode(topLevel.encodedBytes);
-
-    // return """-----BEGIN RSA PRIVATE KEY-----\r\n$dataBase64\r\n-----END RSA PRIVATE KEY-----""";
     var version = ASN1Integer(BigInt.from(0));
 
     var algorithmSeq = new ASN1Sequence();
@@ -669,13 +630,6 @@ class RsaKeyHelper {
   ///
   /// Given [RSAPublicKey] returns a base64 encoded [String] with standard PEM headers and footers
   String encodePublicKeyToPemPKCS1(RSAPublicKey publicKey) {
-    // var topLevel = new ASN1Sequence();
-
-    // topLevel.add(ASN1Integer(publicKey.modulus));
-    // topLevel.add(ASN1Integer(publicKey.exponent));
-
-    // var dataBase64 = base64UrlEncode(topLevel.encodedBytes);
-    // return """-----BEGIN PUBLIC KEY-----\r\n$dataBase64\r\n-----END PUBLIC KEY-----""";
     var algorithmSeq = new ASN1Sequence();
     var algorithmAsn1Obj = new ASN1Object.fromBytes(Uint8List.fromList(
         [0x6, 0x9, 0x2a, 0x86, 0x48, 0x86, 0xf7, 0xd, 0x1, 0x1, 0x1]));
