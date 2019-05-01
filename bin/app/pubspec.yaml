@@ -22,6 +22,8 @@ dependencies:
   mqtt_client: ^5.5.3
   pointycastle: ^1.0.1
   asn1lib: ^0.5.8
+  googleapis_auth: ^0.2.7
+  googleapis: ^0.53.0
 
 dev_dependencies:
   flutter_test:

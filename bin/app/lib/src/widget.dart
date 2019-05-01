@@ -12,6 +12,8 @@ import 'package:mqtt_client/mqtt_client.dart';
 import 'dart:convert';
 import 'package:pointycastle/pointycastle.dart';
 import 'dart:typed_data';
+import 'package:googleapis_auth/auth_io.dart' as auth;
+import 'package:googleapis/cloudiot/v1.dart' as cloud;
 
 import "package:asn1lib/asn1lib.dart";
 
@@ -53,38 +55,43 @@ class ConnectionWidgetState extends State<ConnectionWidget> {
   StreamSubscription subscription;
 
   String url = 'mqtt.googleapis.com';
-  int port = 8883; //443;
+  int port = 443;
 
   String clientId =
-      'projects/roof-6b388/locations/us-central1/registries/app/devices/app';
+      'projects/roof-6b388/locations/us-central1/registries/app/devices/phil';
 
   String username = "unused";
 
-  // final password =
-  //     "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1NTY2MDQ5NTUsImV4cCI6MTU1NjYwODU1NSwiYXVkIjoicm9vZi02YjM4OCJ9.YnR-3MXhxO09bPPa5xkXQpByM50Bpg3QcrKeS8HD1NUGgpAOQx25E0Gv9d8JXyEXjayrTFaDEXJgrtmLNNe7QCJT0ruNNrPoszDIBvnUBd6wSCcKNuWMbaowuSMfZ_EynRK0cHHNmlUHRJ5aQEl_2YP7wj5ygWZdSc4P6t5vOd0kaXkYDIVRD8lbpTUpRhMMGXqmrk6eWRDYhYO5usOwmyeLjDERfHVaFnYzF59QP_6D8r3yES7fxWEEHjK9huUpHjTwFSfG58t7v2gtqJahVZXSzJk3b6W-4TOgdWo54lQwDaxOTdq26aHS7llhiWwBEcDz6m6gwz6pEZXDW1iOmw";
   String get _header {
     final header = {"alg": "RS256", "typ": "JWT"};
     final headerString = json.encode(header);
+    print("header string $header");
     final headerBytes = headerString.codeUnits;
-    final encodedHeader = base64UrlEncode(headerBytes);
+    final encodedHeader = base64Encode(headerBytes);
     return encodedHeader;
   }
 
   String get _payload {
-    final content = {
+    final payload = {
       "aud": "roof-6b388",
-      "isa": DateTime.now().millisecondsSinceEpoch / 1000,
-      "exp": DateTime.now().add(Duration(minutes: 60)).millisecondsSinceEpoch /
-          1000
+      "isa": (DateTime.now().millisecondsSinceEpoch / 1000).round(),
+      "exp": (DateTime.now().add(Duration(minutes: 60)).millisecondsSinceEpoch /
+              1000)
+          .round()
     };
 
-    final contentString = json.encode(content);
-    final contentBytes = contentString.codeUnits;
-    final encodedContent = base64UrlEncode(contentBytes);
-    return encodedContent;
+    final payloadString = json.encode(payload);
+    print("payload string $payloadString");
+    final payloadBytes = payloadString.codeUnits;
+    final payloadContent = base64Encode(payloadBytes);
+    return payloadContent;
   }
 
+  // final _jwt =
+  //     "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJyb29mLTZiMzg4IiwiaXNhIjoxNTU2Njk4OTI3LCJleHAiOjE1NTY3MDI1Mjd9.LRQbLyZEfryVgfYjD3pkRwWoyDdfg3zE8pHoNa6SoqgxVvq2_SMBQxzq4s26TL4ILgPp4rVs103f0a71v-_MVyXaSwvWEuWJPaFPgG4tK6EqwXfiVOibQoMhEpFq4LZjOjtJT1_LLmQtcBcM5P_-Wyn4yNB8DFoCJiVjb3Oo16uePot1vdc6OkcGRfTCmeSA5s8CzLHXCYwvwwxp1V5JMFryNwOqPMe2gr0H9JfR0ty8TdqR_osGCbmj44E6jvr9AgrjF2tUTxqBgKCa_p62gemikNnSBGWaXNWVH_UQFeRZr1oOJKjMy3jHuqOH7-9njSFSxdDIPU3shqlG5x-OGQ==";
+
   Future<String> get jwtToken async {
+    // if (_jwt != null) return _jwt;
     print("making token");
     final keyHelper = RsaKeyHelper();
     print("making key pair");
@@ -107,115 +114,17 @@ class ConnectionWidgetState extends State<ConnectionWidget> {
     final jwtToken = content + "." + signature;
     print("jwtToken $jwtToken");
 
+    final formattedPublicKey =
+        keyHelper.encodePublicKeyToPemPKCS1(keyPair.publicKey);
+    final formattedPrivateKey =
+        keyHelper.encodePrivateKeyToPemPKCS1(keyPair.privateKey);
+    print("public key: $formattedPublicKey");
+    print("private key: $formattedPrivateKey");
+    final device = await _gcp(formattedPublicKey);
+
+    print("new device! $device");
     return jwtToken;
-    // print("priv $encodedPrivateKey");
-    //     , (string) {
-    //   return base64UrlEncode(string.codeUnits);
-    // });
-
-    // final keyParams = RSAKeyGeneratorParameters(BigInt.from(65537), 2048, 5);
-
-    // print("1");
-    // final secureRandom = FortunaRandom();
-    // final random = Random.secure();
-    // final seeds = <int>[];
-    // for (int i = 0; i < 32; i++) {
-    //   seeds.add(random.nextInt(255));
-    // }
-    // secureRandom.seed(KeyParameter(Uint8List.fromList(seeds)));
-    // print("2");
-
-    // final params = ParametersWithRandom(keyParams, secureRandom);
-    // final k = RSAKeyGenerator();
-    ////////
-
-    // final rnd = FortunaRandom();
-
-    // final domainParams = ECDomainParameters("prime192v1");
-    // final ecParams = ECKeyGeneratorParameters(domainParams);
-    // final params =
-    //     ParametersWithRandom<ECKeyGeneratorParameters>(ecParams, rnd);
-
-    // final k = ECKeyGenerator();
-    // final secureRandom = FortunaRandom();
-    // final random = Random.secure();
-    // final seeds = <int>[];
-    // for (int i = 0; i < 32; i++) {
-    //   seeds.add(random.nextInt(255));
-    // }
-    // secureRandom.seed(KeyParameter(Uint8List.fromList(seeds)));
-
-    // final rsapars = RSAKeyGeneratorParameters(BigInt.parse("65537"), 2048, 12);
-    // final params = ParametersWithRandom(rsapars, secureRandom);
-
-    // final k = RSAKeyGenerator();
-
-    // print("1");
-    // k.init(params);
-    // print("2");
-
-    // final keyPair = k.generateKeyPair();
-    // print("3");
-
-    // final header = _header;
-    // final payload = _payload;
-    // print("pair $keyPair");
-    // print("private key ${keyPair.privateKey}");
-    // final cipher = RSAEngine()
-    //   ..init(true, PrivateKeyParameter(keyPair.privateKey));
-
-    // print("dun");
-    // final content = header + "." + payload;
-
-    // final cipherText = cipher.process(Uint8List.fromList(content.codeUnits));
-
-    // final signature = String.fromCharCodes(cipherText);
-
-    // final jwtToken = content + "." + signature;
-    // return jwtToken;
-
-    // final privateKeyFile = "rsa_private.pem";
-    // final privateKey =
-    //     DefaultAssetBundle.of(context).loadString(privateKeyFile);
   }
-
-  // Future<String> get password async {
-  //   // print("c");
-  //   // final signature = signer.sign(message.codeUnits);
-  //   // print("d");
-
-  //   // print("Signing '$content'");
-  //   // print("Signature: ${signature.data}");
-
-  //   // final token = message + "." + base64UrlEncode(signature.data);
-  //   // return token;
-
-  //   // final claims = new JsonWebTokenClaims.fromJson({
-  //   // });
-  //   // final builder = JsonWebSignatureBuilder();
-  //   // builder.jsonContent = claims.toJson();
-  //   // print("000");
-  //   // builder.addRecipient(
-  //   //   JsonWebKey.fromJson({"kty": "oct", "k": privateKey}),
-  //   //   algorithm: "ES256",
-  //   // );
-  //   // print("1111");
-  //   // final jws = builder.build();
-  //   // print(jws.toJson());
-  //   // print(jws.toCompactSerialization());
-  //   // print("2222");
-
-  //   // return jws.toCompactSerialization();
-
-  //   // final claimSet = JwtClaim(
-  //   //   audience: [],
-  //   //   issuedAt: DateTime.now(),
-  //   //   expiry: DateTime.now(),
-  //   // );
-  //   // String token = issueJwtHS256(claimSet, privateKey);
-  //   // print(token);
-  //   // return token;
-  // }
 
   // Create the client
   MqttClient client;
@@ -226,6 +135,51 @@ class ConnectionWidgetState extends State<ConnectionWidget> {
   void initState() {
     _addRoot();
     super.initState();
+  }
+
+  _gcp(String publicKey) async {
+    final accountCredentials = new auth.ServiceAccountCredentials.fromJson(r'''
+{
+  "type": "service_account",
+  "project_id": "roof-6b388",
+  "private_key_id": "f789b4bb18c02042b2c4d419ddc512761c938717",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCjUdz3JWioCx24\nfvCIVKuFCR+dPJ2+Yk2ETSIoA0MTDGUXwp7iHYRxfU/N+mkQi7Gn+wgXP6/yJDIa\nW3JqsGgv8OIJUY0JSnb7epSx72PyXnDVKp5ufFlkPZkD1L1qwINixClnTXCs2qHf\nkA+oAwqInh7p2MS0CFTgY4kBMAy21NIHLSY+64OHKic61tIc9GGsoxkjotBtBWwZ\nwVBblLF8Z3fL6hz/N3Ui9fHbFiGSe/k7cS4UgKDVIOAj7FIgrjFHDI1cqnHFeqgo\npgx44VloZHuJnIRWPhBpp8iZ7BCMhTALhUircK4j1Q/3QsRum6XPZwG40R5/T81W\nY+082uxVAgMBAAECggEAJtxRwZTrJCEQ/1dlEGtlLJCRLy6/Mg/d9f8Mg4zTJvMq\nEs9CUvdHDmIM3SwaV8+FhDzdHfsPeIRYT6E2xmAXSmD8x87Zyj4ntYrjWrtlgsQq\nAO7VJ+D6vDlT8W9rar1IBfY7C9OHXfnfznxO3WFr3joRjP8BPv1EhOfqL5gpTk9Q\nCqXzv9PnNfbHnLIQg38vH9xuKcsXav0NCZsHZetKRc2+ZWYZH5q3zVrCChHJa/kN\ngoRPwyfRsUM+YfajR0rdNEuYMTE7kPMOstP47BAdFum7O6OVwLbfY0v/dEyQ4/45\noCIh+Y1U1LIM6tYcTlONxCFNacqPIMNpj+w4HOWmAQKBgQDV1PEYaSPxWlcGFgPQ\nmuL7MrLcBoHcWdY7JKpRTzCUKNJJ4ECX0V8qvtF1RQtHP8W5c5c5TpneoHfDp8ik\nSMbJ0UDfAqPkE2UWTCXimPVTZ6+3tfaACtt+1NJ96wYIcgCVcGpEcSERlQGTzaRC\nBpw5qkhEdiDaqDE1wVnf3reulQKBgQDDhuDnGHgp1WPl0q5YIQ0OXis9Tp7ZP7sw\n+rxtDoOQyF60tvT2U7Q/4iWc6cUO08VtMisEPwecVNJbAyHrJNzKd0KP1jXBTmzp\nZXgwcNSYMR8b7av4NPuJXszGjsmUILSDhK85OcOjOPxeXkyrozK9NxhYJjj//D6y\nlPopD4GWwQKBgH7H/56ykA4Euz4vhVmEy/mWKLgN36cPWNa+OYF2C159CZmlrYaW\nK+/DLZtzMWmwJQJ8x3fB47c8u2W1MGA/iiWUvPq8rQGIglIDGh9NA3/NJUEuURW/\n2j5L3vWriGsvdKsl+MvVq36qM0I4FiDTnIMQNELrKzWZrXuqxSfX/F41AoGAJhiE\nf2JMH1J9WUz4PSGLaq48XICSAKAjN8LSrajzR2VS1oEDL29VolDMpUsC4wWt5L2u\nlfA16ma4aZUtqaQQBL7B0EabSKOgIsVranzBXznK5uUi6YRhMf2vhkxRyDOrGCjk\n/xBbJtU2jqhu5c4xV56BdsNTvcSG7sKKDy//PsECgYEAlSypYIS+HT3MoShDwmM3\nVLRii5fb7hABRPWRST9SrFAu7cdXUStifGITnUR9TnwwEzKF6wRumz+mS6JI9c7j\nmD6G0tc2n8hFt8D7LytZxkpjFG/5MfJqlCmBQWKBkHrEbbAqo8ER5pv3f5Ubrt2z\n3cceaAzkiGRtyINxz9jlf/M=\n-----END PRIVATE KEY-----\n",
+  "client_email": "device-registerer@roof-6b388.iam.gserviceaccount.com",
+  "client_id": "110793645455474461985",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/device-registerer%40roof-6b388.iam.gserviceaccount.com"
+}''');
+
+    final scopes = [cloud.CloudiotApi.CloudiotScope];
+    final client =
+        await auth.clientViaServiceAccount(accountCredentials, scopes);
+    const cloudRegion = 'us-central1';
+    const projectId = 'roof-6b388';
+    const registryId = 'app';
+    final api = cloud.CloudiotApi(client);
+    const parentName = "projects/$projectId/locations/$cloudRegion";
+    const registryName = "$parentName/registries/$registryId";
+    final request = cloud.Device.fromJson({
+      "id": "phil",
+      "credentials": [
+        {
+          "publicKey": {
+            "format": 'RSA_PEM',
+            "key": publicKey,
+          },
+        }
+      ]
+    });
+
+    try {
+      final device = await api.projects.locations.registries.devices
+          .create(request, registryName);
+      print("devi: $device");
+    } catch (err) {
+      print("err $err");
+    }
   }
 
   _addRoot() async {
@@ -323,7 +277,6 @@ class ConnectionWidgetState extends State<ConnectionWidget> {
     ///
     client.logging(on: true);
 
-    client.keepAlivePeriod = 60;
     client.onDisconnected = _onDisconnected;
     client.onConnected = _onConnected;
     // final MqttConnectMessage connMess = MqttConnectMessage()
@@ -633,11 +586,54 @@ class RsaKeyHelper {
   ///
   /// Given [RSAPrivateKey] returns a base64 encoded [String] with standard PEM headers and footers
   String encodePrivateKeyToPemPKCS1(RSAPrivateKey privateKey) {
-    var topLevel = new ASN1Sequence();
+    // var topLevel = new ASN1Sequence();
 
+    // var version = ASN1Integer(BigInt.from(0));
+    // var modulus = ASN1Integer(privateKey.n);
+    // var publicExponent = ASN1Integer(privateKey.exponent);
+    // var privateExponent = ASN1Integer(privateKey.d);
+    // var p = ASN1Integer(privateKey.p);
+    // var q = ASN1Integer(privateKey.q);
+    // var dP = privateKey.d % (privateKey.p - BigInt.from(1));
+    // var exp1 = ASN1Integer(dP);
+    // var dQ = privateKey.d % (privateKey.q - BigInt.from(1));
+    // var exp2 = ASN1Integer(dQ);
+    // var iQ = privateKey.q.modInverse(privateKey.p);
+    // var co = ASN1Integer(iQ);
+
+    // topLevel.add(version);
+    // topLevel.add(modulus);
+    // topLevel.add(publicExponent);
+    // topLevel.add(privateExponent);
+    // topLevel.add(p);
+    // topLevel.add(q);
+    // topLevel.add(exp1);
+    // topLevel.add(exp2);
+    // topLevel.add(co);
+    // var publicKeySeqOctetString = new ASN1OctetString(Uint8List.fromList(privateKeySeq.encodedBytes));
+
+    // var topLevelSeq = new ASN1Sequence();
+    // topLevelSeq.add(version);
+    // topLevelSeq.add(algorithmSeq);
+    // topLevelSeq.add(publicKeySeqOctetString);
+    // var dataBase64 = base64.encode(topLevelSeq.encodedBytes);
+
+    // // var dataBase64 = base64UrlEncode(topLevel.encodedBytes);
+
+    // return """-----BEGIN RSA PRIVATE KEY-----\r\n$dataBase64\r\n-----END RSA PRIVATE KEY-----""";
     var version = ASN1Integer(BigInt.from(0));
+
+    var algorithmSeq = new ASN1Sequence();
+    var algorithmAsn1Obj = new ASN1Object.fromBytes(Uint8List.fromList(
+        [0x6, 0x9, 0x2a, 0x86, 0x48, 0x86, 0xf7, 0xd, 0x1, 0x1, 0x1]));
+    var paramsAsn1Obj =
+        new ASN1Object.fromBytes(Uint8List.fromList([0x5, 0x0]));
+    algorithmSeq.add(algorithmAsn1Obj);
+    algorithmSeq.add(paramsAsn1Obj);
+
+    var privateKeySeq = new ASN1Sequence();
     var modulus = ASN1Integer(privateKey.n);
-    var publicExponent = ASN1Integer(privateKey.exponent);
+    var publicExponent = ASN1Integer(BigInt.parse('65537'));
     var privateExponent = ASN1Integer(privateKey.d);
     var p = ASN1Integer(privateKey.p);
     var q = ASN1Integer(privateKey.q);
@@ -648,17 +644,23 @@ class RsaKeyHelper {
     var iQ = privateKey.q.modInverse(privateKey.p);
     var co = ASN1Integer(iQ);
 
-    topLevel.add(version);
-    topLevel.add(modulus);
-    topLevel.add(publicExponent);
-    topLevel.add(privateExponent);
-    topLevel.add(p);
-    topLevel.add(q);
-    topLevel.add(exp1);
-    topLevel.add(exp2);
-    topLevel.add(co);
+    privateKeySeq.add(version);
+    privateKeySeq.add(modulus);
+    privateKeySeq.add(publicExponent);
+    privateKeySeq.add(privateExponent);
+    privateKeySeq.add(p);
+    privateKeySeq.add(q);
+    privateKeySeq.add(exp1);
+    privateKeySeq.add(exp2);
+    privateKeySeq.add(co);
+    var publicKeySeqOctetString =
+        new ASN1OctetString(Uint8List.fromList(privateKeySeq.encodedBytes));
 
-    var dataBase64 = base64.encode(topLevel.encodedBytes);
+    var topLevelSeq = new ASN1Sequence();
+    topLevelSeq.add(version);
+    topLevelSeq.add(algorithmSeq);
+    topLevelSeq.add(publicKeySeqOctetString);
+    var dataBase64 = base64.encode(topLevelSeq.encodedBytes);
 
     return """-----BEGIN PRIVATE KEY-----\r\n$dataBase64\r\n-----END PRIVATE KEY-----""";
   }
@@ -667,12 +669,32 @@ class RsaKeyHelper {
   ///
   /// Given [RSAPublicKey] returns a base64 encoded [String] with standard PEM headers and footers
   String encodePublicKeyToPemPKCS1(RSAPublicKey publicKey) {
-    var topLevel = new ASN1Sequence();
+    // var topLevel = new ASN1Sequence();
 
-    topLevel.add(ASN1Integer(publicKey.modulus));
-    topLevel.add(ASN1Integer(publicKey.exponent));
+    // topLevel.add(ASN1Integer(publicKey.modulus));
+    // topLevel.add(ASN1Integer(publicKey.exponent));
 
-    var dataBase64 = base64.encode(topLevel.encodedBytes);
+    // var dataBase64 = base64UrlEncode(topLevel.encodedBytes);
+    // return """-----BEGIN PUBLIC KEY-----\r\n$dataBase64\r\n-----END PUBLIC KEY-----""";
+    var algorithmSeq = new ASN1Sequence();
+    var algorithmAsn1Obj = new ASN1Object.fromBytes(Uint8List.fromList(
+        [0x6, 0x9, 0x2a, 0x86, 0x48, 0x86, 0xf7, 0xd, 0x1, 0x1, 0x1]));
+    var paramsAsn1Obj =
+        new ASN1Object.fromBytes(Uint8List.fromList([0x5, 0x0]));
+    algorithmSeq.add(algorithmAsn1Obj);
+    algorithmSeq.add(paramsAsn1Obj);
+
+    var publicKeySeq = new ASN1Sequence();
+    publicKeySeq.add(ASN1Integer(publicKey.modulus));
+    publicKeySeq.add(ASN1Integer(publicKey.exponent));
+    var publicKeySeqBitString =
+        new ASN1BitString(Uint8List.fromList(publicKeySeq.encodedBytes));
+
+    var topLevelSeq = new ASN1Sequence();
+    topLevelSeq.add(algorithmSeq);
+    topLevelSeq.add(publicKeySeqBitString);
+    var dataBase64 = base64.encode(topLevelSeq.encodedBytes);
+
     return """-----BEGIN PUBLIC KEY-----\r\n$dataBase64\r\n-----END PUBLIC KEY-----""";
   }
 }
