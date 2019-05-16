@@ -12,12 +12,9 @@ class RoofTabView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 300,
-      child: TabBarView(
-        children: views,
-        controller: tabController,
-      ),
+    return TabBarView(
+      children: views,
+      controller: tabController,
     );
   }
 }

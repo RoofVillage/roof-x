@@ -3,6 +3,13 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 const _localPath = "lib/src/";
 
+class XSmallIconReference extends _IconReference {
+  static const double _size = 20;
+
+  XSmallIconReference({String path = ""})
+      : super(path: _localPath + "xSmall/$path", height: _size, width: _size);
+}
+
 class SmallIconReference extends _IconReference {
   static const double _size = 24;
 

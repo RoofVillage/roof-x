@@ -7,7 +7,7 @@ class RoofStrokeColor {
   RoofThemeOption _current;
 
   Color get light {
-    final opacity = 0.1;
+    final opacity = 0.07;
     switch (_current) {
       case RoofThemeOption.light:
         return color.black1.withOpacity(opacity);

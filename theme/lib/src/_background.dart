@@ -86,5 +86,25 @@ class RoofBackgroundColor {
     return null;
   }
 
+  Color get markerGray {
+    switch (_current) {
+      case RoofThemeOption.light:
+        return color.gray3;
+      case RoofThemeOption.dark:
+        return color.gray2;
+    }
+    return null;
+  }
+
+  Color get markerGreen {
+    switch (_current) {
+      case RoofThemeOption.light:
+        return Colors.green;
+      case RoofThemeOption.dark:
+        return Colors.green;
+    }
+    return null;
+  }
+
   RoofBackgroundColor(this._current);
 }

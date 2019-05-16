@@ -29,11 +29,15 @@ class RoofTabBar extends StatelessWidget {
 
     final labelColor = theme.color.text.primary;
     final activeLabelColor = theme.color.text.brand;
-    final unselectedLabelStyle = _labelTypography.textStyleWithColor(labelColor);
+    final unselectedLabelStyle =
+        _labelTypography.textStyleWithColor(labelColor);
     final labelStyle = _labelTypography.textStyleWithColor(activeLabelColor);
 
     return Container(
       alignment: Alignment(-1, 0),
+      decoration: BoxDecoration(
+        border: Border(bottom: BorderSide(color: theme.color.stroke.light)),
+      ),
       child: TabBar(
         tabs: tabWidgets,
         controller: tabController,
@@ -43,7 +47,10 @@ class RoofTabBar extends StatelessWidget {
         unselectedLabelColor: labelColor,
         labelColor: activeLabelColor,
         indicatorColor: activeLabelColor,
-        labelPadding: EdgeInsets.symmetric(vertical: distance.a, horizontal: distance.e),
+        labelPadding: EdgeInsets.symmetric(
+          vertical: distance.a,
+          horizontal: distance.d,
+        ),
       ),
     );
   }

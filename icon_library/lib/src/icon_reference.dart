@@ -1,6 +1,10 @@
 import 'references.dart';
 
 class IconReference {
+  static final houseXSmall = XSmallIconReference(path: 'house.svg');
+  static final rightArrowXSmall = XSmallIconReference(path: 'right_arrow.svg');
+  static final leaseXSmall = XSmallIconReference(path: 'lease.svg');
+  
   static final boxChecked = SmallIconReference(path: 'box_checked.svg');
   static final boxUnchecked = SmallIconReference(path: 'box_unchecked.svg');
   static final removeFilled = SmallIconReference(path: 'remove_filled.svg');

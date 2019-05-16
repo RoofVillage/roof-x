@@ -4,6 +4,8 @@ const red = Color.fromRGBO(255, 90, 100, 1);
 const blue = Color.fromRGBO(0, 187, 184, 1);
 
 const alert = Color.fromRGBO(249, 210, 69, 1);
+const good = Colors.green;
+const emergency = Colors.red;
 
 const white1 = Color.fromRGBO(255, 255, 255, 1);
 const white2 = Color.fromRGBO(250, 250, 250, 1);

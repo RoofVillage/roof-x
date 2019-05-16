@@ -7,7 +7,7 @@ import 'package:haptics/index.dart';
 
 class RoofBreadcrumb extends StatelessWidget {
   final String title;
-  final SmallIconReference iconReference;
+  final XSmallIconReference iconReference;
   final VoidCallback onTap;
 
   RoofBreadcrumb({
@@ -16,10 +16,9 @@ class RoofBreadcrumb extends StatelessWidget {
     this.onTap,
   });
 
-  final _typographyStyle = typography.detailSecondary;
+  final _typographyStyle = typography.bodySecondary;
   final _horizontalSpacing = distance.b;
   final _horizontalMargin = distance.b;
-  final _topMargin = distance.a;
 
   _onTap() {
     triggerHapticWith(HapticOption.light);
@@ -31,12 +30,10 @@ class RoofBreadcrumb extends StatelessWidget {
     final theme = RoofTheme.of(context);
 
     final textStyle = _typographyStyle.textStyleWithColor(
-      theme.color.text.secondary,
+      theme.color.text.primary,
     );
 
     final iconColor = theme.color.icon.general;
-
-    final backgroundColor = theme.color.background.generalSecondary;
 
     List<Widget> rowChildren = [];
 
@@ -55,21 +52,9 @@ class RoofBreadcrumb extends StatelessWidget {
 
     rowChildren.add(textWidget);
 
-    final arrowWidget = Padding(
-      padding: EdgeInsets.only(
-        left: _horizontalSpacing,
-      ),
-      child: IconReference.rightArrow.buildSvg(
-        color: theme.color.icon.general,
-      ),
-    );
-
-    // rowChildren.add(arrowWidget);
-
     return GestureDetector(
       onTap: _onTap,
       child: Container(
-        margin: EdgeInsets.only(bottom: _topMargin),
         padding: EdgeInsets.symmetric(horizontal: _horizontalMargin),
         child: Row(
           mainAxisSize: MainAxisSize.min,

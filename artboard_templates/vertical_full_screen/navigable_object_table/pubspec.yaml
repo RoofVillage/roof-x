@@ -18,8 +18,6 @@ dependencies:
     path: ../../../builders/input_dock
   table_builder:
     path: ../../../builders/table
-  spaced_column_builder:
-    path: ../../../builders/spaced_column
   key_value_row_builder:
     path: ../../../builders/key_value_row
   breadcrumb_stack_builder:

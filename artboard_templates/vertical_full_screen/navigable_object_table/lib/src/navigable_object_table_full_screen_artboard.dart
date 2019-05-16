@@ -4,10 +4,10 @@ import 'package:table_builder/index.dart';
 import 'package:input_dock_builder/index.dart';
 import 'package:artboard/index.dart';
 import 'package:vertical_full_screen_artboard_scaffold/index.dart';
-import 'package:spaced_column_builder/index.dart';
 import 'package:key_value_row_builder/index.dart';
 import 'package:tabbed_container_builder/index.dart';
 import 'package:breadcrumb_stack_builder/index.dart';
+import 'package:distance/index.dart' as distance;
 
 abstract class NavigableObjectFullScreenArtboard extends StatefulWidget
     with
@@ -16,7 +16,6 @@ abstract class NavigableObjectFullScreenArtboard extends StatefulWidget
         TableBuilder,
         InputDockBuilder,
         TitledNavBarBuilder,
-        SpacedColumnBuilder,
         RoofBreadcrumbBuilder,
         KeyValueRowBuilder,
         RoofTabbedContainerBuilder {
@@ -25,7 +24,7 @@ abstract class NavigableObjectFullScreenArtboard extends StatefulWidget
 
   List<RoofBreadcrumb> get breadcrumbs;
   List<KeyValueRow> get infoRows;
-  List<RoofTab> get tabs;
+  List<RoofTab> buildTabs(BuildContext context);
 
   @override
   Widget buildBody(BuildContext context) {
@@ -34,24 +33,29 @@ abstract class NavigableObjectFullScreenArtboard extends StatefulWidget
       breadcrumbs: breadcrumbs,
     );
 
-    final infoSection = buildSpacedColumn(
-      context,
-      children: infoRows,
+    final infoSection = Container(
+      padding: EdgeInsets.symmetric(horizontal: distance.b),
+      margin: EdgeInsets.only(bottom: distance.c),
+      child: Column(
+        children: infoRows,
+      ),
     );
 
     final tabbedContainer = buildTabbedContainer(
       context,
-      tabs,
+      buildTabs(context),
     );
 
-    return Container(
-      child: Column(
-        children: <Widget>[
-          breadcrumbStack,
-          infoSection,
-          tabbedContainer,
-        ],
-      ),
+    return NestedScrollView(
+      physics: BouncingScrollPhysics(),
+      headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+        return [
+          SliverList(
+            delegate: SliverChildListDelegate([breadcrumbStack, infoSection]),
+          ),
+        ];
+      },
+      body: tabbedContainer,
     );
   }
 }

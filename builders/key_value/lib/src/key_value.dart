@@ -13,7 +13,7 @@ class KeyValue extends StatelessWidget {
   });
 
   final _titleTypographyStyle = typography.detailPrimary;
-  final _valueTypographyStyle = typography.bodySecondary;
+  final _valueTypographyStyle = typography.bodyPrimary;
   final _verticalSpacing = distance.a;
   final _verticalMargin = distance.d;
   final _horizontalMargin = distance.c;
@@ -23,7 +23,7 @@ class KeyValue extends StatelessWidget {
     final theme = RoofTheme.of(context);
 
     final titleWidget = Text(
-      title,
+      title.toUpperCase(),
       style: _titleTypographyStyle.textStyleWithColor(
         theme.color.text.secondary,
       ),

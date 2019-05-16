@@ -12,12 +12,13 @@ mixin TypographyStyle {
     final letterSpacing = (tracking ?? 0) * fontSize / 1000;
 
     final style = TextStyle(
-        fontFamily: fontFamily,
-        fontSize: fontSize,
-        fontWeight: fontWeight,
-        height: height,
-        letterSpacing: letterSpacing,
-        color: color);
+      fontFamily: fontFamily,
+      fontSize: fontSize,
+      fontWeight: fontWeight,
+      height: height,
+      letterSpacing: letterSpacing,
+      color: color,
+    );
 
     return style;
   }

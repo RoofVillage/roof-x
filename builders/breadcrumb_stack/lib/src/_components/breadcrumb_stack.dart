@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:theme/index.dart';
+import 'package:icon_library/index.dart';
 import 'package:distance/index.dart' as distance;
 
 import '../breadcrumb.dart';
@@ -14,23 +15,39 @@ class RoofBreadcrumbStack extends StatelessWidget {
   });
 
   final _verticalMargin = distance.c;
+  final _verticalSpacing = distance.b;
 
   @override
   Widget build(BuildContext context) {
     final theme = RoofTheme.of(context);
 
-    List<Widget> columnChildren = [];
+    final arrowWidget = IconReference.rightArrowXSmall.buildSvg(
+      color: theme.color.icon.general,
+    );
 
-    columnChildren.addAll(breadcrumbs);
+    List<Widget> wrapChildren = [];
+
+    for (int i = 0; i < breadcrumbs.length; i++) {
+      List<Widget> breadcrumbRowChildren = [breadcrumbs[i]];
+
+      if (i < breadcrumbs.length - 1) {
+        breadcrumbRowChildren.add(arrowWidget);
+      }
+
+      wrapChildren.add(
+        Row(
+          children: breadcrumbRowChildren,
+          crossAxisAlignment: CrossAxisAlignment.center,
+        ),
+      );
+    }
 
     return Container(
       margin: EdgeInsets.symmetric(vertical: _verticalMargin),
-      child: Row(
-        children: [
-          Wrap(
-            children: columnChildren,
-          ),
-        ],
+      child: Wrap(
+        runSpacing: _verticalSpacing,
+        children: wrapChildren,
+        crossAxisAlignment: WrapCrossAlignment.center,
       ),
     );
   }

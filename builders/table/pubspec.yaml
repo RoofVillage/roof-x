@@ -15,6 +15,8 @@ dependencies:
     path: ../../lib/decorated_text
   sorting:
     path: ../../lib/sorting
+  mask:
+    path: ../../lib/mask
   icon_library:
     path: ../../icon_library
   distance:
@@ -27,10 +29,14 @@ dependencies:
     path: ../../spec/typography
   key_value_builder:
     path: ../key_value
+  key_value_row_builder:
+    path: ../key_value_row
   spaced_grid_builder:
     path: ../spaced_grid
   haptics:
     path: ../../lib/haptics
+  date:
+    path: ../../lib/date
 
 dev_dependencies:
   flutter_test:

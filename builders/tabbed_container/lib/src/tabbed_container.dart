@@ -26,22 +26,24 @@ class _RoofTabbedContainerState extends State<RoofTabbedContainer>
     );
   }
 
-  final _verticalMargin = distance.d;
+  final _verticalMargin = distance.c;
 
   @override
   Widget build(BuildContext context) {
     final List<String> tabTitles = widget.tabs.map((tab) => tab.title).toList();
-
-    final tabBar = RoofTabBar(
-      tabs: tabTitles,
-      tabController: tabController,
+    final tabBar = Container(
+      child: RoofTabBar(
+        tabs: tabTitles,
+        tabController: tabController,
+      ),
     );
 
     final List<Widget> tabViews = widget.tabs.map((tab) => tab.view).toList();
-
-    final tabView = RoofTabView(
-      views: tabViews,
-      tabController: tabController,
+    final tabView = Flexible(
+      child: RoofTabView(
+        views: tabViews,
+        tabController: tabController,
+      ),
     );
 
     return Container(

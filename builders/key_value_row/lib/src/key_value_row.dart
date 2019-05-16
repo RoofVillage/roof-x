@@ -6,44 +6,69 @@ import 'package:theme/index.dart';
 class KeyValueRow extends StatelessWidget {
   final String title;
   final String value;
+  final TextStyle titleStyle;
+  final TextStyle valueStyle;
+  final bool hasBorder;
 
   KeyValueRow({
-    @required this.title,
-    @required this.value,
-  });
+    this.title,
+    this.value,
+    this.titleStyle,
+    this.valueStyle,
+    hasBorder,
+  }) : this.hasBorder = hasBorder ?? true;
 
-  final _titleTypographyStyle = typography.detailPrimary;
-  final _valueTypographyStyle = typography.bodySecondary;
+  final _titleTypographyStyle = typography.detailSecondary;
+  final _valueTypographyStyle = typography.detailPrimary;
 
-  final _verticalMargin = distance.a;
-  final _horizontalMargin = distance.b;
+  final _horizontalSpacing = distance.c;
+  final _verticalSpacing = distance.b;
+  final double _minTitleWidth = 110;
 
   @override
   Widget build(BuildContext context) {
     final theme = RoofTheme.of(context);
 
-    final titleWidget = Text(
-      title,
-      style: _titleTypographyStyle.textStyleWithColor(
-        theme.color.text.secondary,
+    final titleWidget = Container(
+      constraints: BoxConstraints(
+        minWidth: _minTitleWidth,
+      ),
+      margin: EdgeInsets.only(
+        right: _horizontalSpacing,
+      ),
+      child: Text(
+        title,
+        style: titleStyle ??
+            _titleTypographyStyle.textStyleWithColor(
+              theme.color.text.placeholder,
+            ),
+        overflow: TextOverflow.ellipsis,
       ),
     );
 
-    final valueWidget = Text(
-      value,
-      textAlign: TextAlign.right,
-      style: _valueTypographyStyle.textStyleWithColor(
-        theme.color.text.primary,
+    final valueWidget = Expanded(
+      child: Text(
+        value,
+        style: valueStyle ??
+            _valueTypographyStyle.textStyleWithColor(
+              theme.color.text.primary,
+            ),
+        overflow: TextOverflow.ellipsis,
       ),
-      softWrap: true,
     );
+
+    final border = hasBorder
+        ? Border(bottom: BorderSide(color: theme.color.stroke.light))
+        : Border(bottom: BorderSide(color: Colors.transparent));
 
     return Container(
-      padding: EdgeInsets.symmetric(
-        horizontal: _horizontalMargin,
+      padding: hasBorder
+          ? EdgeInsets.symmetric(vertical: _verticalSpacing)
+          : EdgeInsets.only(top: _verticalSpacing),
+      decoration: BoxDecoration(
+        border: border,
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         textBaseline: TextBaseline.alphabetic,
         crossAxisAlignment: CrossAxisAlignment.baseline,
         children: [
