@@ -88,7 +88,7 @@ class _DockActionButtonState extends State<DockActionButton>
     buttonChildren.add(buttonText);
 
     return GestureDetector(
-      onTapDown: (details) => _fireHaptic(),
+      onTapDown: (details) => triggerHapticWith(_tapHapticOption),
       onTap: _onTap,
       child: Container(
         key: _buttonKey,
@@ -113,10 +113,6 @@ class _DockActionButtonState extends State<DockActionButton>
   void _animateReverse() {
     widthAnimationController.reverse();
     opacityAnimationController.reverse();
-  }
-
-  void _fireHaptic() {
-    if (onTap != null) triggerHapticWith(_tapHapticOption);
   }
 
   void _onTap() {
