@@ -13,7 +13,7 @@ class Tag extends StatelessWidget {
     this.color,
   });
 
-  final _padding = distance.b;
+  final _padding = distance.b * .7;
 
   @override
   Widget build(BuildContext context) {

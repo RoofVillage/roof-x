@@ -91,7 +91,7 @@ class RoofBackgroundColor {
       case RoofThemeOption.light:
         return color.gray3;
       case RoofThemeOption.dark:
-        return color.gray2;
+        return color.black3;
     }
     return null;
   }

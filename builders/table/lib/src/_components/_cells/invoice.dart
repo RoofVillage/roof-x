@@ -32,7 +32,7 @@ class InvoiceCell extends StatelessWidget with KeyValueRowBuilder {
   final _radius = radius.regular;
   final _cellPadding = distance.c;
   final _spacing = distance.b;
-  final _bottomMargin = distance.b;
+  final _topMargin = distance.b;
   final _tapHapticOption = HapticOption.light;
 
   void _fireHaptic() {
@@ -48,6 +48,7 @@ class InvoiceCell extends StatelessWidget with KeyValueRowBuilder {
       case InvoiceType.other:
         return "Other";
     }
+    return "";
   }
 
   @override
@@ -136,7 +137,7 @@ class InvoiceCell extends StatelessWidget with KeyValueRowBuilder {
       onTap: onTap,
       child: Container(
         padding: EdgeInsets.all(_cellPadding),
-        margin: EdgeInsets.only(top: _bottomMargin),
+        margin: EdgeInsets.only(top: _topMargin),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(_radius),
           border: Border.all(color: theme.color.stroke.light),

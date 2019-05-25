@@ -33,7 +33,7 @@ class HomeCell extends StatelessWidget {
   final _cellPadding = distance.c;
   final _spacing = distance.b;
   final _sectionSpacing = distance.d;
-  final _bottomMargin = distance.b;
+  final _topMargin = distance.b;
   final _tapHapticOption = HapticOption.light;
 
   void _fireHaptic() {
@@ -98,7 +98,7 @@ class HomeCell extends StatelessWidget {
       onTap: onTap,
       child: Container(
         padding: EdgeInsets.all(_cellPadding),
-        margin: EdgeInsets.only(top: _bottomMargin),
+        margin: EdgeInsets.only(top: _topMargin),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(_radius),
           border: Border.all(color: theme.color.stroke.light),

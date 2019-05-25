@@ -27,8 +27,8 @@ class MaintenaceRequestCell extends StatelessWidget with KeyValueRowBuilder {
   final _radius = radius.regular;
   final _cellPadding = distance.c;
   final _spacing = distance.b;
-  final _bottomMargin = distance.b;
-    final _tapHapticOption = HapticOption.light;
+  final _topMargin = distance.b;
+  final _tapHapticOption = HapticOption.light;
 
   void _fireHaptic() {
     if (onTap != null) triggerHapticWith(_tapHapticOption);
@@ -81,7 +81,7 @@ class MaintenaceRequestCell extends StatelessWidget with KeyValueRowBuilder {
       onTap: onTap,
       child: Container(
         padding: EdgeInsets.all(_cellPadding),
-        margin: EdgeInsets.only(top: _bottomMargin),
+        margin: EdgeInsets.only(top: _topMargin),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(_radius),
           border: Border.all(color: theme.color.stroke.light),

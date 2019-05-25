@@ -135,10 +135,10 @@ class InvoiceVerticalFullScreenArtboard
       padding: EdgeInsets.only(
         left: distance.b,
         right: distance.b,
-        bottom: distance.b,
       ),
       color: theme.color.background.generalSecondary,
       child: ListView(
+        padding: EdgeInsets.only(bottom: distance.c),
         children: [
           homeCell,
           homeCell,
@@ -155,10 +155,10 @@ class InvoiceVerticalFullScreenArtboard
       padding: EdgeInsets.only(
         left: distance.b,
         right: distance.b,
-        bottom: distance.b,
       ),
       color: theme.color.background.generalSecondary,
       child: ListView(
+        padding: EdgeInsets.only(bottom: distance.c),
         children: [
           invoiceCell,
           invoiceCell,
@@ -175,10 +175,10 @@ class InvoiceVerticalFullScreenArtboard
       padding: EdgeInsets.only(
         left: distance.b,
         right: distance.b,
-        bottom: distance.b,
       ),
       color: theme.color.background.generalSecondary,
       child: ListView(
+        padding: EdgeInsets.only(bottom: distance.c),
         children: [
           messageCell,
           messageCell,
@@ -186,6 +186,7 @@ class InvoiceVerticalFullScreenArtboard
           messageCell,
           messageCell,
           messageCell,
+          LoadMoreCell()
         ],
       ),
     );
@@ -194,10 +195,10 @@ class InvoiceVerticalFullScreenArtboard
       padding: EdgeInsets.only(
         left: distance.b,
         right: distance.b,
-        bottom: distance.b,
       ),
       color: theme.color.background.generalSecondary,
       child: ListView(
+        padding: EdgeInsets.only(bottom: distance.c),
         children: [
           maintenanceRequestCell,
           maintenanceRequestCell,
@@ -213,10 +214,10 @@ class InvoiceVerticalFullScreenArtboard
       padding: EdgeInsets.only(
         left: distance.b,
         right: distance.b,
-        bottom: distance.b,
       ),
       color: theme.color.background.generalSecondary,
       child: ListView(
+        padding: EdgeInsets.only(bottom: distance.c),
         children: [
           leaseCell,
           leaseCell,
@@ -233,10 +234,10 @@ class InvoiceVerticalFullScreenArtboard
       padding: EdgeInsets.only(
         left: distance.b,
         right: distance.b,
-        bottom: distance.b,
       ),
       color: theme.color.background.generalSecondary,
       child: ListView(
+        padding: EdgeInsets.only(bottom: distance.c),
         children: [
           tenantCell1,
           tenantCell2,
