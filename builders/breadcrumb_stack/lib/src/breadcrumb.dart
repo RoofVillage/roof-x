@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:distance/index.dart' as distance;
 import 'package:icon_library/index.dart';
-import 'package:typography/index.dart' as typography;
 import 'package:theme/index.dart';
 import 'package:haptics/index.dart';
+import 'package:typography/index.dart' as typography;
+import 'package:distance/index.dart' as distance;
 
 class RoofBreadcrumb extends StatelessWidget {
   final String title;
@@ -19,10 +19,10 @@ class RoofBreadcrumb extends StatelessWidget {
   final _typographyStyle = typography.bodySecondary;
   final _horizontalSpacing = distance.b;
   final _horizontalMargin = distance.b;
+  final _tapHapticOption = HapticOption.light;
 
-  _onTap() {
-    triggerHapticWith(HapticOption.light);
-    onTap();
+  void _fireHaptic() {
+    if (onTap != null) triggerHapticWith(_tapHapticOption);
   }
 
   @override
@@ -53,7 +53,8 @@ class RoofBreadcrumb extends StatelessWidget {
     rowChildren.add(textWidget);
 
     return GestureDetector(
-      onTap: _onTap,
+      onTapDown: (details) => _fireHaptic(),
+      onTap: onTap,
       child: Container(
         padding: EdgeInsets.only(left: _horizontalMargin),
         child: Row(

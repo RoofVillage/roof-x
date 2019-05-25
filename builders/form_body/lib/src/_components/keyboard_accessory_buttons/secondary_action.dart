@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:typography/index.dart' as typography;
 import 'package:theme/index.dart';
 import 'package:haptics/index.dart';
 import 'package:typedefs/index.dart';
+import 'package:typography/index.dart' as typography;
 
 import 'mixins/index.dart';
 

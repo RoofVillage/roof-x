@@ -21,6 +21,7 @@ mixin RoofCenteredButtonState {
   final double _tappedOpacity = 0.75;
   final _textStyle = typography.button;
   final double _height = 50;
+  final _tapHapticOption = HapticOption.light;
 
   void setState(dynamic());
 
@@ -63,11 +64,11 @@ mixin RoofCenteredButtonState {
   }
 
   void _onTap() {
-    triggerHapticWith(HapticOption.light);
     if (button.onTap != null) button.onTap(context);
   }
 
   void _onTapDown(TapDownDetails details) {
+    triggerHapticWith(_tapHapticOption);
     setState(() => _tapped = true);
   }
 

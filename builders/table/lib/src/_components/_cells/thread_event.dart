@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:distance/index.dart' as distance;
 import 'package:theme/index.dart';
-import 'package:typography/index.dart' as typography;
-import 'package:corner_radius/index.dart' as radius;
 import 'package:icon_library/index.dart';
 import 'package:key_value_builder/index.dart';
 import 'package:spaced_grid_builder/index.dart';
 import 'package:date/index.dart';
+import 'package:haptics/index.dart';
+import 'package:distance/index.dart' as distance;
+import 'package:typography/index.dart' as typography;
+import 'package:corner_radius/index.dart' as radius;
 
 class RoofThreadEventCell extends StatelessWidget {
   final String title;
@@ -14,6 +15,7 @@ class RoofThreadEventCell extends StatelessWidget {
   final StandardIconReference iconReference;
   final String note;
   final List<KeyValue> details;
+  final VoidCallback onTap;
 
   RoofThreadEventCell({
     @required this.title,
@@ -21,25 +23,34 @@ class RoofThreadEventCell extends StatelessWidget {
     this.iconReference,
     this.note,
     this.details,
+    this.onTap,
   });
 
   final double _horizontalPadding = distance.b;
-  final _verticalMargin = distance.c;
-  final _horizontalSpacing = distance.b;
+  final double _verticalMargin = distance.c;
+  final double _horizontalSpacing = distance.b;
+  final _tapHapticOption = HapticOption.light;
+
+  void _fireHaptic() {
+    if (onTap != null) triggerHapticWith(_tapHapticOption);
+  }
 
   @override
   Widget build(BuildContext context) {
     final _iconReference = iconReference ?? IconReference.event;
 
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: _verticalMargin),
-      padding: EdgeInsets.symmetric(horizontal: _horizontalPadding),
-      child: _Body(
-        iconReference: _iconReference,
-        title: title,
-        timestamp: timestamp,
-        note: note,
-        details: details,
+    return GestureDetector(
+      onTapDown: (details) => _fireHaptic(),
+      child: Container(
+        margin: EdgeInsets.symmetric(vertical: _verticalMargin),
+        padding: EdgeInsets.symmetric(horizontal: _horizontalPadding),
+        child: _Body(
+          iconReference: _iconReference,
+          title: title,
+          timestamp: timestamp,
+          note: note,
+          details: details,
+        ),
       ),
     );
   }
@@ -144,7 +155,8 @@ class _Content extends StatelessWidget with KeyValueBuilder, SpacedGridBuilder {
       ),
     );
 
-    final formattedTimestamp = Date.fromSecondsSinceEpoch(timestamp).toAdaptiveString;
+    final formattedTimestamp =
+        Date.fromSecondsSinceEpoch(timestamp).toAdaptiveString;
 
     final timestampWidget = Padding(
       padding: EdgeInsets.only(left: _horizontalSpacing),
@@ -193,7 +205,7 @@ class _Content extends StatelessWidget with KeyValueBuilder, SpacedGridBuilder {
       verticalChildren.add(detailsContainer);
     }
 
-    return Flexible( 
+    return Flexible(
       child: Container(
         padding: EdgeInsets.all(_outerPadding),
         decoration: BoxDecoration(

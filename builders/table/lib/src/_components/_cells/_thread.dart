@@ -28,10 +28,10 @@ class RoofThreadCell extends StatelessWidget {
 
   final _horizontalPadding = distance.b;
   final _verticalPadding = distance.c;
+  final _tapHapticOption = HapticOption.light;
 
-  _onTap() {
-    triggerHapticWith(HapticOption.light);
-    onTap();
+  void _fireHaptic() {
+    if (onTap != null) triggerHapticWith(_tapHapticOption);
   }
 
   @override
@@ -52,7 +52,8 @@ class RoofThreadCell extends StatelessWidget {
     );
 
     return GestureDetector(
-      onTap: _onTap,
+      onTapDown: (details) => _fireHaptic(),
+      onTap: onTap,
       child: Container(
         padding: EdgeInsets.symmetric(
           horizontal: _horizontalPadding,
@@ -161,7 +162,8 @@ class _Timestamp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String formattedTimestamp = Date.fromSecondsSinceEpoch(timestamp).toAdaptiveString;
+    final String formattedTimestamp =
+        Date.fromSecondsSinceEpoch(timestamp).toAdaptiveString;
 
     final timestampWidget = Text(
       formattedTimestamp,

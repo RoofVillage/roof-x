@@ -10,6 +10,7 @@ mixin RoofIconButton {
   StandardIconReference get iconReference;
   ColorGetter get iconColor;
   BuildContext get context;
+  final _tapHapticOption = HapticOption.light;
 
   Widget buildButton(BuildContext context) {
     final iconWidget = iconReference.buildSvg(
@@ -17,15 +18,11 @@ mixin RoofIconButton {
     );
 
     return GestureDetector(
-      onTap: _onTap,
+      onTapDown: (details) => triggerHapticWith(_tapHapticOption),
+      onTap: () => onTap(context),
       child: Container(
         child: iconWidget,
       ),
     );
-  }
-
-  void _onTap() {
-    triggerHapticWith(HapticOption.light);
-    onTap(context);
   }
 }

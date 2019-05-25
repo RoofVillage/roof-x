@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:decorated_text/index.dart';
 import 'package:icon_library/index.dart';
 import 'package:date/index.dart';
+import 'package:haptics/index.dart';
 import 'package:distance/index.dart' as distance;
 import 'package:theme/index.dart';
 import 'package:typography/index.dart' as typography;
@@ -25,11 +26,18 @@ class RoofActivityCell extends StatelessWidget {
     Key key,
   }) : super(key: key);
 
+  final _tapHapticOption = HapticOption.light;
+
+  void _fireHaptic() {
+    if (onTap != null) triggerHapticWith(_tapHapticOption);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
       child: GestureDetector(
-        onTap: this.onTap,
+        onTapDown: (details) => _fireHaptic(),
+        onTap: onTap,
         child: Container(
           // Everything in the cell is relative to the horizontal padding.
           child: Padding(

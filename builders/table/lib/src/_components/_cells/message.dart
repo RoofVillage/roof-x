@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:theme/index.dart';
+import 'package:haptics/index.dart';
+import 'package:key_value_row_builder/index.dart';
+import 'package:date/index.dart';
 import 'package:typography/index.dart' as typography;
 import 'package:distance/index.dart' as distance;
 import 'package:corner_radius/index.dart' as radius;
-import 'package:key_value_row_builder/index.dart';
-import 'package:date/index.dart';
 
 class MessageCell extends StatelessWidget with KeyValueRowBuilder {
   final String subject;
   final String message;
   final int latestActivityTimestamp;
+  final VoidCallback onTap;
 
   MessageCell({
     this.subject,
     this.message,
     @required this.latestActivityTimestamp,
+    this.onTap,
   });
 
   final _radius = radius.regular;
@@ -22,6 +25,11 @@ class MessageCell extends StatelessWidget with KeyValueRowBuilder {
   final _spacing = distance.c;
   final _sectionSpacing = distance.b;
   final _bottomMargin = distance.b;
+  final _tapHapticOption = HapticOption.light;
+
+  void _fireHaptic() {
+    if (onTap != null) triggerHapticWith(_tapHapticOption);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,14 +38,14 @@ class MessageCell extends StatelessWidget with KeyValueRowBuilder {
     final titleWidget = Expanded(
       child: Text(
         subject,
-        style: typography.bodyPrimaryThick.textStyleWithColor(
-          theme.color.text.secondaryAction
-        ),
+        style: typography.bodyPrimaryThick
+            .textStyleWithColor(theme.color.text.secondaryAction),
         overflow: TextOverflow.ellipsis,
       ),
     );
 
-    final formattedDateText = Date.fromSecondsSinceEpoch(latestActivityTimestamp).toAdaptiveString;
+    final formattedDateText =
+        Date.fromSecondsSinceEpoch(latestActivityTimestamp).toAdaptiveString;
 
     final dateWidget = Container(
       margin: EdgeInsets.only(left: _spacing),
@@ -79,15 +87,19 @@ class MessageCell extends StatelessWidget with KeyValueRowBuilder {
       children: columnChildren,
     );
 
-    return Container(
-      padding: EdgeInsets.all(_cellPadding),
-      margin: EdgeInsets.only(top: _bottomMargin),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(_radius),
-        border: Border.all(color: theme.color.stroke.light),
-        color: theme.color.background.generalPrimary,
+    return GestureDetector(
+      onTapDown: (details) => _fireHaptic(),
+      onTap: onTap,
+      child: Container(
+        padding: EdgeInsets.all(_cellPadding),
+        margin: EdgeInsets.only(top: _bottomMargin),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(_radius),
+          border: Border.all(color: theme.color.stroke.light),
+          color: theme.color.background.generalPrimary,
+        ),
+        child: bodyColumn,
       ),
-      child: bodyColumn,
     );
   }
 }

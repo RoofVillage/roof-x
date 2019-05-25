@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:theme/index.dart';
 import 'package:mask/index.dart';
 import 'package:date/index.dart';
+import 'package:haptics/index.dart';
 import 'package:typography/index.dart' as typography;
 import 'package:distance/index.dart' as distance;
 import 'package:corner_radius/index.dart' as radius;
@@ -16,6 +17,7 @@ class InvoiceCell extends StatelessWidget with KeyValueRowBuilder {
   final int dueTimestamp;
   final InvoiceType invoiceType;
   final InvoiceStatus invoiceStatus;
+  final VoidCallback onTap;
 
   InvoiceCell({
     @required this.name,
@@ -24,12 +26,18 @@ class InvoiceCell extends StatelessWidget with KeyValueRowBuilder {
     @required this.dueTimestamp,
     @required this.invoiceType,
     @required this.invoiceStatus,
+    this.onTap,
   });
 
   final _radius = radius.regular;
   final _cellPadding = distance.c;
   final _spacing = distance.b;
   final _bottomMargin = distance.b;
+  final _tapHapticOption = HapticOption.light;
+
+  void _fireHaptic() {
+    if (onTap != null) triggerHapticWith(_tapHapticOption);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +66,8 @@ class InvoiceCell extends StatelessWidget with KeyValueRowBuilder {
     );
     List<Widget> columnChildren = [titleRow];
 
-    final dueText = Date.fromSecondsSinceEpoch(dueTimestamp).toLongMonthAbbreviatedString;
+    final dueText =
+        Date.fromSecondsSinceEpoch(dueTimestamp).toLongMonthAbbreviatedString;
 
     final dueRow = buildKeyValueRow(
       context,
@@ -112,15 +121,19 @@ class InvoiceCell extends StatelessWidget with KeyValueRowBuilder {
       children: columnChildren,
     );
 
-    return Container(
-      padding: EdgeInsets.all(_cellPadding),
-      margin: EdgeInsets.only(top: _bottomMargin),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(_radius),
-        border: Border.all(color: theme.color.stroke.light),
-        color: theme.color.background.generalPrimary,
+    return GestureDetector(
+      onTapDown: (details) => _fireHaptic(),
+      onTap: onTap,
+      child: Container(
+        padding: EdgeInsets.all(_cellPadding),
+        margin: EdgeInsets.only(top: _bottomMargin),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(_radius),
+          border: Border.all(color: theme.color.stroke.light),
+          color: theme.color.background.generalPrimary,
+        ),
+        child: bodyColumn,
       ),
-      child: bodyColumn,
     );
   }
 }

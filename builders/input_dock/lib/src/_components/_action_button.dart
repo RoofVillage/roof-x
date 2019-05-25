@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:icon_library/index.dart';
+import 'package:theme/index.dart';
+import 'package:haptics/index.dart';
 import 'package:curve/index.dart' as curve;
 import 'package:duration/index.dart' as duration;
 import 'package:distance/index.dart' as distance;
 import 'package:corner_radius/index.dart' as corner_radius;
 import 'package:typography/index.dart' as typography;
-import 'package:theme/index.dart';
-import 'package:haptics/index.dart';
 
 import 'input_dock.dart';
 
@@ -29,6 +29,7 @@ class _DockActionButtonState extends State<DockActionButton>
   final GlobalKey _buttonKey = GlobalKey();
   final GlobalKey _buttonIconKey = GlobalKey();
   final double _buttonHorizontalPadding = distance.b;
+  final _tapHapticOption = HapticOption.light;
 
   double minWidthToShowText = 0;
   double maxButtonWidth;
@@ -87,6 +88,7 @@ class _DockActionButtonState extends State<DockActionButton>
     buttonChildren.add(buttonText);
 
     return GestureDetector(
+      onTapDown: (details) => _fireHaptic(),
       onTap: _onTap,
       child: Container(
         key: _buttonKey,
@@ -113,12 +115,15 @@ class _DockActionButtonState extends State<DockActionButton>
     opacityAnimationController.reverse();
   }
 
+  void _fireHaptic() {
+    if (onTap != null) triggerHapticWith(_tapHapticOption);
+  }
+
   void _onTap() {
     showDialog(
       builder: (context) => AlertDialog(title: Text(widget.actionTitle)),
       context: context,
     );
-    triggerHapticWith(HapticOption.medium);
     widget.action();
   }
 

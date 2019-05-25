@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:theme/index.dart';
 import 'package:date/index.dart';
+import 'package:haptics/index.dart';
 import 'package:typography/index.dart' as typography;
 import 'package:distance/index.dart' as distance;
 import 'package:corner_radius/index.dart' as radius;
@@ -13,18 +14,25 @@ class MaintenaceRequestCell extends StatelessWidget with KeyValueRowBuilder {
   final String note;
   final int receivedTimestamp;
   final MaintenanceRequestStatus status;
+  final VoidCallback onTap;
 
   MaintenaceRequestCell({
     @required this.name,
     this.note,
     @required this.receivedTimestamp,
     @required this.status,
+    this.onTap,
   });
 
   final _radius = radius.regular;
   final _cellPadding = distance.c;
   final _spacing = distance.b;
   final _bottomMargin = distance.b;
+    final _tapHapticOption = HapticOption.light;
+
+  void _fireHaptic() {
+    if (onTap != null) triggerHapticWith(_tapHapticOption);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +61,8 @@ class MaintenaceRequestCell extends StatelessWidget with KeyValueRowBuilder {
     );
     List<Widget> columnChildren = [titleRow];
 
-    final receivedText = Date.fromSecondsSinceEpoch(receivedTimestamp).toAdaptiveString;
+    final receivedText =
+        Date.fromSecondsSinceEpoch(receivedTimestamp).toAdaptiveString;
 
     final receivedRow = buildKeyValueRow(
       context,
@@ -67,15 +76,19 @@ class MaintenaceRequestCell extends StatelessWidget with KeyValueRowBuilder {
       children: columnChildren,
     );
 
-    return Container(
-      padding: EdgeInsets.all(_cellPadding),
-      margin: EdgeInsets.only(top: _bottomMargin),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(_radius),
-        border: Border.all(color: theme.color.stroke.light),
-        color: theme.color.background.generalPrimary,
+    return GestureDetector(
+      onTapDown: (details) => _fireHaptic(),
+      onTap: onTap,
+      child: Container(
+        padding: EdgeInsets.all(_cellPadding),
+        margin: EdgeInsets.only(top: _bottomMargin),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(_radius),
+          border: Border.all(color: theme.color.stroke.light),
+          color: theme.color.background.generalPrimary,
+        ),
+        child: bodyColumn,
       ),
-      child: bodyColumn,
     );
   }
 }

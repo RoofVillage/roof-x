@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:distance/index.dart' as distance;
-import 'package:corner_radius/index.dart' as corner_radius;
 import 'package:icon_library/index.dart';
-import 'package:typography/index.dart' as typography;
 import 'package:haptics/index.dart';
 import 'package:typedefs/index.dart';
+import 'package:distance/index.dart' as distance;
+import 'package:corner_radius/index.dart' as corner_radius;
+import 'package:typography/index.dart' as typography;
 
 mixin RoofLeftButton {
   ContextPasser get onTap;
@@ -24,6 +24,7 @@ mixin RoofLeftButtonState {
   double _tappedOpacity = 0.75;
   final _textStyle = typography.button;
   final double _height = 50;
+  final _tapHapticOption = HapticOption.light;
 
   void setState(dynamic());
 
@@ -82,11 +83,11 @@ mixin RoofLeftButtonState {
   }
 
   void _onTap() {
-    triggerHapticWith(HapticOption.light);
     if (button.onTap != null) button.onTap(context);
   }
 
   void _onTapDown(TapDownDetails details) {
+    triggerHapticWith(_tapHapticOption);
     setState(() => _tapped = true);
   }
 
