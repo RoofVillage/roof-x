@@ -7,10 +7,10 @@ import 'package:key_value_row_builder/index.dart';
 import 'package:tabbed_container_builder/index.dart';
 import 'package:theme/index.dart';
 import 'package:table_builder/index.dart';
-import 'package:distance/index.dart' as distance;
+import 'package:padded_list_builder/index.dart';
 
 class InvoiceVerticalFullScreenArtboard
-    extends NavigableObjectFullScreenArtboard {
+    extends NavigableObjectFullScreenArtboard with PaddedListBuilder {
   final String title = "Invoice due soon yaa";
 
   @override
@@ -49,8 +49,6 @@ class InvoiceVerticalFullScreenArtboard
 
   @override
   List<RoofTab> buildTabs(BuildContext context) {
-    final theme = RoofTheme.of(context);
-
     final leaseCell = LeaseCell(
       name: "2019-2020 Lease",
       tenants: [
@@ -131,125 +129,72 @@ class InvoiceVerticalFullScreenArtboard
       ],
     );
 
-    final homesView = Container(
-      padding: EdgeInsets.only(
-        left: distance.b,
-        right: distance.b,
-      ),
-      color: theme.color.background.generalSecondary,
-      child: ListView(
-        padding: EdgeInsets.only(bottom: distance.c),
-        children: [
-          homeCell,
-          homeCell,
-          homeCell,
-          homeCell,
-          homeCell,
-          homeCell,
-          homeCell,
-        ],
-      ),
-    );
+    final List<Widget> homesCells = [
+      homeCell,
+      homeCell,
+      homeCell,
+      homeCell,
+      homeCell,
+      homeCell,
+      homeCell,
+    ];
+    final homesView = buildPaddedList(context, children: homesCells);
 
-    final invoicesView = Container(
-      padding: EdgeInsets.only(
-        left: distance.b,
-        right: distance.b,
-      ),
-      color: theme.color.background.generalSecondary,
-      child: ListView(
-        padding: EdgeInsets.only(bottom: distance.c),
-        children: [
-          invoiceCell,
-          invoiceCell,
-          invoiceCell,
-          invoiceCell,
-          invoiceCell,
-          invoiceCell,
-          invoiceCell,
-        ],
-      ),
-    );
+    final List<Widget> invoicesCells = [
+      invoiceCell,
+      invoiceCell,
+      invoiceCell,
+      invoiceCell,
+      invoiceCell,
+      invoiceCell,
+      invoiceCell,
+    ];
+    final invoicesView = buildPaddedList(context, children: invoicesCells);
 
-    final messagesView = Container(
-      padding: EdgeInsets.only(
-        left: distance.b,
-        right: distance.b,
-      ),
-      color: theme.color.background.generalSecondary,
-      child: ListView(
-        padding: EdgeInsets.only(bottom: distance.c),
-        children: [
-          messageCell,
-          messageCell,
-          messageCell,
-          messageCell,
-          messageCell,
-          messageCell,
-          LoadMoreCell()
-        ],
-      ),
-    );
+    final List<Widget> messagesCells = [
+      messageCell,
+      messageCell,
+      messageCell,
+      messageCell,
+      messageCell,
+      messageCell,
+      LoadMoreCell()
+    ];
+    final messagesView = buildPaddedList(context, children: messagesCells);
 
-    final maintenanceView = Container(
-      padding: EdgeInsets.only(
-        left: distance.b,
-        right: distance.b,
-      ),
-      color: theme.color.background.generalSecondary,
-      child: ListView(
-        padding: EdgeInsets.only(bottom: distance.c),
-        children: [
-          maintenanceRequestCell,
-          maintenanceRequestCell,
-          maintenanceRequestCell,
-          maintenanceRequestCell,
-          maintenanceRequestCell,
-          maintenanceRequestCell,
-        ],
-      ),
-    );
+    final List<Widget> maintenanceCells = [
+      maintenanceRequestCell,
+      maintenanceRequestCell,
+      maintenanceRequestCell,
+      maintenanceRequestCell,
+      maintenanceRequestCell,
+      maintenanceRequestCell,
+    ];
+    final maintenanceView =
+        buildPaddedList(context, children: maintenanceCells);
 
-    final leasesView = Container(
-      padding: EdgeInsets.only(
-        left: distance.b,
-        right: distance.b,
-      ),
-      color: theme.color.background.generalSecondary,
-      child: ListView(
-        padding: EdgeInsets.only(bottom: distance.c),
-        children: [
-          leaseCell,
-          leaseCell,
-          leaseCell,
-          leaseCell,
-          leaseCell,
-          leaseCell,
-          leaseCell,
-        ],
-      ),
-    );
+    final List<Widget> leasesCells = [
+      leaseCell,
+      leaseCell,
+      leaseCell,
+      leaseCell,
+      leaseCell,
+      leaseCell,
+      leaseCell,
+    ];
+    final leasesView = buildPaddedList(context, children: leasesCells);
 
-    final tenantsView = Container(
-      padding: EdgeInsets.only(
-        left: distance.b,
-        right: distance.b,
-      ),
-      color: theme.color.background.generalSecondary,
-      child: ListView(
-        padding: EdgeInsets.only(bottom: distance.c),
-        children: [
-          tenantCell1,
-          tenantCell2,
-          tenantCell1,
-          tenantCell2,
-          tenantCell1,
-          tenantCell2,
-          tenantCell1,
-          tenantCell2,
-        ],
-      ),
-    );
+    final List<Widget> tenantsCells = [
+      tenantCell1,
+      tenantCell2,
+      tenantCell1,
+      tenantCell2,
+      tenantCell1,
+      tenantCell2,
+      tenantCell1,
+      tenantCell2,
+    ];
+    final tenantsView = buildPaddedList(context, children: tenantsCells);
 
     return [
       RoofTab(title: "Messages", view: messagesView),

@@ -27,6 +27,8 @@ dependencies:
     path: ../../builders/table
   tabbed_container_builder:
     path: ../../builders/tabbed_container
+  padded_list_builder:
+    path: ../../builders/padded_list
 
 dev_dependencies:
   flutter_test:
