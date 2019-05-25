@@ -1,0 +1,34 @@
+name: invoice_full_screen_artboard_template
+description: A navigable object frame with a titled nav bar, a breadcrumb stack, an info row table, and a tabbed container.
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  artboard:
+    path: ../../../lib/artboard
+  vertical_full_screen_artboard_scaffold:
+    path: ../../../artboard_scaffolds/vertical_full_screen
+  navigable_object_table_artboard_template:
+    path: ../../../artboard_templates//vertical_full_screen/navigable_object_table
+  nav_bar_builder:
+    path: ../../../builders/nav_bar
+  input_dock_builder:
+    path: ../../../builders/input_dock
+  table_builder:
+    path: ../../../builders/table
+  breadcrumb_stack_builder:
+    path: ../../../builders/breadcrumb_stack
+  tabbed_container_builder:
+    path: ../../../builders/tabbed_container
+  padded_list_builder:
+    path: ../../../builders/padded_list
+  key_value_row_builder:
+    path: ../../../builders/key_value_row
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:theme/index.dart';
+import 'package:mask/index.dart';
 import 'package:date/index.dart';
 import 'package:haptics/index.dart';
 import 'package:typography/index.dart' as typography;
@@ -9,18 +10,20 @@ import 'package:key_value_row_builder/index.dart';
 
 import '../tag.dart';
 
-class MaintenaceRequestCell extends StatelessWidget with KeyValueRowBuilder {
-  final String name;
+class PaymentCell extends StatelessWidget with KeyValueRowBuilder {
+  final String tenant;
+  final int amount;
+  final int timestamp;
   final String note;
-  final int receivedTimestamp;
-  final MaintenanceRequestStatus status;
+  final PaymentStatus paymentStatus;
   final VoidCallback onTap;
 
-  MaintenaceRequestCell({
-    @required this.name,
+  PaymentCell({
+    this.tenant,
+    this.amount,
+    this.timestamp,
     this.note,
-    @required this.receivedTimestamp,
-    @required this.status,
+    this.paymentStatus,
     this.onTap,
   });
 
@@ -38,16 +41,16 @@ class MaintenaceRequestCell extends StatelessWidget with KeyValueRowBuilder {
   Widget build(BuildContext context) {
     final theme = RoofTheme.of(context);
 
-    final titleWidget = Text(
-      name,
+    final tenantNameWidget = Text(
+      tenant,
       style: typography.bodyPrimaryThick.textStyleWithColor(
         theme.color.text.secondaryAction,
       ),
     );
 
-    final statusWidget = Container(
+    final statusTag = Container(
       margin: EdgeInsets.only(left: _spacing),
-      child: _StatusTag(status),
+      child: _StatusTag(paymentStatus),
     );
 
     final titleRow = Row(
@@ -55,22 +58,39 @@ class MaintenaceRequestCell extends StatelessWidget with KeyValueRowBuilder {
       crossAxisAlignment: CrossAxisAlignment.baseline,
       textBaseline: TextBaseline.alphabetic,
       children: <Widget>[
-        titleWidget,
-        statusWidget,
+        tenantNameWidget,
+        statusTag,
       ],
     );
     List<Widget> columnChildren = [titleRow];
 
-    final receivedText =
-        Date.fromSecondsSinceEpoch(receivedTimestamp).toAdaptiveString;
+    final dueText =
+        Date.fromSecondsSinceEpoch(timestamp).toLongMonthAbbreviatedString;
 
-    final receivedRow = buildKeyValueRow(
+    final dateRow = buildKeyValueRow(
       context,
-      title: "Received",
-      value: receivedText,
+      title: "Due",
+      value: dueText,
+      valueStyle: typography.bodyPrimaryThick.textStyleWithColor(
+        theme.color.text.primary,
+      ),
       hasBorder: false,
     );
-    columnChildren.add(receivedRow);
+    columnChildren.add(dateRow);
+
+    final formattedTotal = applyMask(
+      MaskOption.money,
+      text: amount.toString(),
+      context: context,
+    );
+
+    final amountRow = buildKeyValueRow(
+      context,
+      title: "Total amount",
+      value: formattedTotal,
+      hasBorder: false,
+    );
+    columnChildren.add(amountRow);
 
     if (note != null && note.isNotEmpty) {
       final messageRow = Container(
@@ -109,29 +129,25 @@ class MaintenaceRequestCell extends StatelessWidget with KeyValueRowBuilder {
 }
 
 class _StatusTag extends StatelessWidget {
-  final MaintenanceRequestStatus status;
+  final PaymentStatus status;
 
   _StatusTag(this.status);
 
-  _getStatusColor(MaintenanceRequestStatus status, RoofInheritedTheme theme) {
+  _getStatusColor(PaymentStatus status, RoofInheritedTheme theme) {
     switch (status) {
-      case MaintenanceRequestStatus.closed:
-        return theme.color.background.markerGreen;
-        break;
-      case MaintenanceRequestStatus.open:
-      default:
+      case PaymentStatus.manual:
         return theme.color.background.markerGray;
+      case PaymentStatus.cancelled:
+        return theme.color.background.markerGreen;
     }
   }
 
-  _getStatusText(MaintenanceRequestStatus status) {
+  _getStatusText(PaymentStatus status) {
     switch (status) {
-      case MaintenanceRequestStatus.open:
-        return "OPEN";
-      case MaintenanceRequestStatus.closed:
-        return "CLOSED";
-      case MaintenanceRequestStatus.emergency:
-        return "EMERGENCY";
+      case PaymentStatus.manual:
+        return "MANUAL";
+      case PaymentStatus.cancelled:
+        return "CANCELLED";
     }
   }
 
@@ -139,8 +155,8 @@ class _StatusTag extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = RoofTheme.of(context);
 
-    final color = _getStatusColor(status, theme);
     final text = _getStatusText(status);
+    final color = _getStatusColor(status, theme);
 
     return Tag(
       text: text,
@@ -149,8 +165,7 @@ class _StatusTag extends StatelessWidget {
   }
 }
 
-enum MaintenanceRequestStatus {
-  open,
-  closed,
-  emergency,
+enum PaymentStatus {
+  manual,
+  cancelled,
 }

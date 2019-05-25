@@ -9,7 +9,7 @@ import 'package:theme/index.dart';
 import 'package:table_builder/index.dart';
 import 'package:padded_list_builder/index.dart';
 
-class InvoiceVerticalFullScreenArtboard
+class SandboxVerticalFullScreenArtboard
     extends NavigableObjectFullScreenArtboard with PaddedListBuilder {
   final String title = "Invoice due soon yaa";
 
@@ -27,25 +27,31 @@ class InvoiceVerticalFullScreenArtboard
     return IconReference.backArrowNav.buildSvg(color: theme.color.icon.nav);
   }
 
-  final List<RoofBreadcrumb> breadcrumbs = [
-    RoofBreadcrumb(
-      title: "2720 W Lamar Road",
-      iconReference: IconReference.houseXSmall,
-    ),
-    RoofBreadcrumb(
-      title: "House Manager Lease (2019-2020)",
-      iconReference: IconReference.leaseXSmall,
-    )
-  ];
+  @override
+  List<RoofBreadcrumb> buildBreadcrumbs(BuildContext context) {
+    return [
+      RoofBreadcrumb(
+        title: "2720 W Lamar Road",
+        iconReference: IconReference.houseXSmall,
+      ),
+      RoofBreadcrumb(
+        title: "House Manager Lease (2019-2020)",
+        iconReference: IconReference.leaseXSmall,
+      )
+    ];
+  }
 
-  final List<KeyValueRow> infoRows = [
-    KeyValueRow(title: "Total", value: "\$1,400.00"),
-    KeyValueRow(title: "Paid", value: "\$800.00"),
-    KeyValueRow(title: "Still owed", value: "\$600.00"),
-    KeyValueRow(title: "Payable", value: "Payable now"),
-    KeyValueRow(title: "Due", value: "June 1, 2019"),
-    KeyValueRow(title: "Payment profile", value: "Lamar Checking Account")
-  ];
+  @override
+  List<KeyValueRow> buildInfoRows(BuildContext context) {
+    return [
+      KeyValueRow(title: "Total", value: "\$1,400.00"),
+      KeyValueRow(title: "Paid", value: "\$800.00"),
+      KeyValueRow(title: "Still owed", value: "\$600.00"),
+      KeyValueRow(title: "Payable", value: "Payable now"),
+      KeyValueRow(title: "Due", value: "June 1, 2019"),
+      KeyValueRow(title: "Payment profile", value: "Lamar Checking Account")
+    ];
+  }
 
   @override
   List<RoofTab> buildTabs(BuildContext context) {

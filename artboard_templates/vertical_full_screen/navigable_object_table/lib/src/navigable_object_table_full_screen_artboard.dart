@@ -22,8 +22,8 @@ abstract class NavigableObjectFullScreenArtboard extends StatefulWidget
   @override
   Widget buildNavBar(BuildContext context) => buildTitledNavBar(context);
 
-  List<RoofBreadcrumb> get breadcrumbs;
-  List<KeyValueRow> get infoRows;
+  List<RoofBreadcrumb> buildBreadcrumbs(BuildContext context);
+  List<KeyValueRow> buildInfoRows(BuildContext context);
   List<RoofTab> buildTabs(BuildContext context);
 
   @override
@@ -32,7 +32,7 @@ abstract class NavigableObjectFullScreenArtboard extends StatefulWidget
       margin: EdgeInsets.only(bottom: distance.c),
       child: buildBreadcrumbStack(
         context,
-        breadcrumbs: breadcrumbs,
+        breadcrumbs: buildBreadcrumbs(context),
       ),
     );
 
@@ -40,7 +40,7 @@ abstract class NavigableObjectFullScreenArtboard extends StatefulWidget
       padding: EdgeInsets.symmetric(horizontal: distance.b),
       margin: EdgeInsets.only(bottom: distance.d),
       child: Column(
-        children: infoRows,
+        children: buildInfoRows(context),
       ),
     );
 
