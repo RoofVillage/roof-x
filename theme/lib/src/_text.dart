@@ -21,7 +21,7 @@ class RoofTextColor {
       case RoofThemeOption.light:
         return color.black2;
       case RoofThemeOption.dark:
-        return color.white2;
+        return color.gray1;
     }
     return null;
   }
@@ -31,7 +31,7 @@ class RoofTextColor {
       case RoofThemeOption.light:
         return color.gray4;
       case RoofThemeOption.dark:
-        return color.gray2;
+        return color.gray3;
     }
     return null;
   }
@@ -41,7 +41,7 @@ class RoofTextColor {
       case RoofThemeOption.light:
         return color.gray3;
       case RoofThemeOption.dark:
-        return color.gray3;
+        return color.gray4;
     }
     return null;
   }

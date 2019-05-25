@@ -11,8 +11,9 @@ mixin TitledNavBarBuilder {
 
   RoofNavBar buildTitledNavBar(BuildContext context) {
     return RoofTitleNavBar(
-        actionButtons: buildActionButtons(context),
-        title: title,
-        navButton: buildNavButton(context));
+      actionButtons: buildActionButtons(context),
+      title: title,
+      navButton: buildNavButton(context),
+    );
   }
 }

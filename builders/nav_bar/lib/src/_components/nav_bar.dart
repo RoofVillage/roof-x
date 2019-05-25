@@ -7,7 +7,7 @@ mixin RoofNavBar implements StatelessWidget {
   List<Widget> get actionButtons;
   List<Widget> buildNavigationWidgets(BuildContext context);
 
-  final _padding = EdgeInsets.fromLTRB(distance.a, 0, distance.a, 0);
+  final _padding = EdgeInsets.fromLTRB(distance.a, distance.c, distance.a, distance.a);
 
   Widget build(BuildContext context) {
     final theme = RoofTheme.of(context);
@@ -45,7 +45,7 @@ mixin RoofNavBar implements StatelessWidget {
 
     return Container(
       padding: padding,
-      decoration: BoxDecoration(color: theme.color.background.brand),
+      decoration: BoxDecoration(color: theme.color.background.generalPrimary),
       child: itemRow,
     );
   }

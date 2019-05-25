@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RoofTheme(
-      RoofThemeOption.dark,
+      RoofThemeOption.light,
       child: MaterialApp(
         title: 'Invoice sandbox',
         theme: ThemeData(

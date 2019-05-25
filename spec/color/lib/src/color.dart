@@ -4,15 +4,16 @@ const red = Color.fromRGBO(255, 90, 100, 1);
 const blue = Color.fromRGBO(0, 187, 184, 1);
 
 const alert = Color.fromRGBO(249, 210, 69, 1);
-const good = Color.fromRGBO(110, 145, 52, 1);
+const lightGreen = Color.fromRGBO(141, 179, 80, 1);
+const darkGreen = Color.fromRGBO(110, 145, 52, 1);
 const emergency = Color.fromRGBO(255, 90, 100, 1);
 
 const white1 = Color.fromRGBO(255, 255, 255, 1);
-const white2 = Color.fromRGBO(247, 247, 247, 1);
+const white2 = Color.fromRGBO(246, 246, 246, 1);
 
 const black3 = Color.fromRGBO(60, 60, 60, 1);
-const black2 = Color.fromRGBO(34, 34, 34, 1);
-const black1 = Color.fromRGBO(30, 30, 30, 1);
+const black2 = Color.fromRGBO(30, 30, 30, 1);
+const black1 = Color.fromRGBO(24, 24, 24, 1);
 
 const gray1 = Color.fromRGBO(221, 221, 221, 1);
 const gray2 = Color.fromRGBO(189, 189, 189, 1);

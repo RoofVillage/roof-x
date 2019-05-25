@@ -74,7 +74,7 @@ class MessageCell extends StatelessWidget with KeyValueRowBuilder {
         child: Text(
           message,
           style: typography.bodySecondary.textStyleWithColor(
-            theme.color.text.primary,
+            theme.color.text.secondary,
           ),
           maxLines: 2,
           overflow: TextOverflow.ellipsis,
