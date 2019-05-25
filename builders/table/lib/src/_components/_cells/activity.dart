@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:decorated_text/index.dart';
 import 'package:icon_library/index.dart';
-
+import 'package:date/index.dart';
 import 'package:distance/index.dart' as distance;
 import 'package:theme/index.dart';
 import 'package:typography/index.dart' as typography;
 
 class RoofActivityCell extends StatelessWidget {
   final WeightDecoratedText title;
-  final String note;
+  final int timestamp;
   final StandardIconReference iconReference;
+  final String note;
   final VoidCallback onTap;
 
   final double _horizontalPadding = distance.b;
@@ -17,22 +18,19 @@ class RoofActivityCell extends StatelessWidget {
 
   RoofActivityCell({
     @required this.title,
-    @required this.note,
+    @required this.timestamp,
     @required this.iconReference,
+    this.note,
     this.onTap,
     Key key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
     return Container(
       child: GestureDetector(
         onTap: this.onTap,
         child: Container(
-          decoration: BoxDecoration(
-            color: theme.color.background.generalSecondary,
-          ),
           // Everything in the cell is relative to the horizontal padding.
           child: Padding(
             padding: EdgeInsets.symmetric(
@@ -50,6 +48,7 @@ class RoofActivityCell extends StatelessWidget {
                   title: title,
                   note: note,
                 ),
+                _TimeLabel(timestamp),
                 _CellDivider()
               ],
             ),
@@ -62,8 +61,8 @@ class RoofActivityCell extends StatelessWidget {
 
 class _Body extends StatelessWidget {
   final WeightDecoratedText title;
-  final String note;
   final StandardIconReference iconReference;
+  final String note;
 
   final _verticalPadding = distance.b;
   final _imagePaddingRight = distance.b;
@@ -71,8 +70,8 @@ class _Body extends StatelessWidget {
 
   _Body({
     @required this.title,
-    @required this.note,
     @required this.iconReference,
+    this.note,
     Key key,
   }) : super(key: key);
 
@@ -98,7 +97,7 @@ class _Body extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: _relevantLabels(),
             ),
-          )
+          ),
         ],
       ),
     );
@@ -121,7 +120,7 @@ class _Body extends StatelessWidget {
 class _DetailLabel extends StatelessWidget {
   final String text;
 
-  final _typographyStyle = typography.bodyPrimary;
+  final _typographyStyle = typography.bodySecondary;
 
   _DetailLabel({Key key, @required this.text}) : super(key: key);
   @override
@@ -136,12 +135,16 @@ class _DetailLabel extends StatelessWidget {
 }
 
 class _CellDivider extends StatelessWidget {
+
+  final _topMargin = distance.b;
+
   @override
   Widget build(BuildContext context) {
     final theme = RoofTheme.of(context);
     final dividerColor = theme.color.stroke.light;
 
     return Container(
+      margin: EdgeInsets.only(top: _topMargin),
       height: 1,
       decoration: BoxDecoration(color: dividerColor),
     );
@@ -151,8 +154,8 @@ class _CellDivider extends StatelessWidget {
 class _TitleLabel extends StatelessWidget {
   final WeightDecoratedText decoratedText;
 
-  final _defaultTypographyStyle = typography.title;
-  final _thinTypographyStyle = typography.bodySecondary;
+  final _defaultTypographyStyle = typography.bodyPrimaryThick;
+  final _thinTypographyStyle = typography.bodyPrimary;
 
   _TitleLabel({Key key, @required this.decoratedText}) : super(key: key);
 
@@ -165,5 +168,33 @@ class _TitleLabel extends StatelessWidget {
             _defaultTypographyStyle.textStyleWithColor(primaryTextColor),
         thinStyle: _thinTypographyStyle.textStyleWithColor(primaryTextColor),
         textScaleFactor: MediaQuery.of(context).textScaleFactor);
+  }
+}
+
+class _TimeLabel extends StatelessWidget {
+  final int timestamp;
+
+  _TimeLabel(this.timestamp);
+
+  final _typographyStyle = typography.detailSecondary;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = RoofTheme.of(context);
+
+    final formattedTimestamp =
+        Date.fromSecondsSinceEpoch(timestamp).toAdaptiveString;
+
+    final textWidget = Text(
+      formattedTimestamp,
+      style: _typographyStyle.textStyleWithColor(
+        theme.color.text.secondary,
+      ),
+    );
+
+    return Container(
+      alignment: Alignment(1, 0),
+      child: textWidget,
+    );
   }
 }

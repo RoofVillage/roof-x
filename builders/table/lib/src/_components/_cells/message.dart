@@ -31,7 +31,7 @@ class MessageCell extends StatelessWidget with KeyValueRowBuilder {
       child: Text(
         subject,
         style: typography.bodyPrimaryThick.textStyleWithColor(
-          theme.color.text.secondaryAction,
+          theme.color.text.secondaryAction
         ),
         overflow: TextOverflow.ellipsis,
       ),
@@ -43,7 +43,7 @@ class MessageCell extends StatelessWidget with KeyValueRowBuilder {
       margin: EdgeInsets.only(left: _spacing),
       child: Text(
         formattedDateText,
-        style: typography.detailPrimary.textStyleWithColor(
+        style: typography.detailSecondary.textStyleWithColor(
           theme.color.text.secondary,
         ),
       ),
@@ -81,7 +81,7 @@ class MessageCell extends StatelessWidget with KeyValueRowBuilder {
 
     return Container(
       padding: EdgeInsets.all(_cellPadding),
-      margin: EdgeInsets.only(bottom: _bottomMargin),
+      margin: EdgeInsets.only(top: _bottomMargin),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(_radius),
         border: Border.all(color: theme.color.stroke.light),

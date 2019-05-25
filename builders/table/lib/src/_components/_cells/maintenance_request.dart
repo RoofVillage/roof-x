@@ -10,11 +10,13 @@ import '../tag.dart';
 
 class MaintenaceRequestCell extends StatelessWidget with KeyValueRowBuilder {
   final String name;
+  final String note;
   final int receivedTimestamp;
   final MaintenanceRequestStatus status;
 
   MaintenaceRequestCell({
     @required this.name,
+    this.note,
     @required this.receivedTimestamp,
     @required this.status,
   });
@@ -67,7 +69,7 @@ class MaintenaceRequestCell extends StatelessWidget with KeyValueRowBuilder {
 
     return Container(
       padding: EdgeInsets.all(_cellPadding),
-      margin: EdgeInsets.only(bottom: _bottomMargin),
+      margin: EdgeInsets.only(top: _bottomMargin),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(_radius),
         border: Border.all(color: theme.color.stroke.light),

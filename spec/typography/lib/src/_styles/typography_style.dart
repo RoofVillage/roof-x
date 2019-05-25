@@ -5,7 +5,14 @@ mixin TypographyStyle {
   FontWeight get fontWeight;
   double get leading;
   double get tracking;
-  String get fontFamily => "Azo";
+  // String get fontFamily => "Azo";
+  String get fontFamily => "Circular";
+  // String get fontFamily => "Open";
+  // String get fontFamily => "Titillium";
+  // String get fontFamily => "Nunito";
+  // String get fontFamily => "Nunito-Sans";
+  // String get fontFamily => "Muli";
+  // String get fontFamily => "Gotham";
 
   TextStyle textStyleWithColor(Color color) {
     final height = (leading ?? fontSize) / fontSize;

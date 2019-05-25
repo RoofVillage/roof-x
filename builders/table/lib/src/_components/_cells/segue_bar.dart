@@ -84,7 +84,7 @@ class _AuxiliaryTextWidget extends StatelessWidget {
     @required this.leftMargin,
   });
 
-  final _typographyStyle = typography.detailPrimary;
+  final _typographyStyle = typography.bodyPrimaryThick;
 
   final _padding = distance.b;
 

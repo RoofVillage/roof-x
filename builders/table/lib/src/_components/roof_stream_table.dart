@@ -16,6 +16,7 @@ class RoofStreamTable extends StreamTable<StreamableTableRowData,
       title: rowData.title,
       note: "" + (rowData.description ?? ""),
       iconReference: rowData.iconReference,
+      timestamp: rowData.timestamp,
     );
   }
 

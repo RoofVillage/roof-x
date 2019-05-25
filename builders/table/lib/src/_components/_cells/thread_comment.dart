@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:distance/index.dart' as distance;
 import 'package:theme/index.dart';
 import 'package:typography/index.dart' as typography;
+import 'package:date/index.dart';
 
 class RoofThreadCommentCell extends StatelessWidget {
   final String creator;
@@ -63,10 +64,12 @@ class _Body extends StatelessWidget {
       ),
     );
 
+    final formattedTimestamp = Date.fromSecondsSinceEpoch(timestamp).toAdaptiveString;
+
     final timestampWidget = Padding(
       padding: EdgeInsets.only(left: _horizontalSpacing),
       child: Text(
-        timestamp.toString(),
+        formattedTimestamp,
         style: _timestampTypographyStyle.textStyleWithColor(
           theme.color.text.secondary,
         ),
@@ -74,7 +77,8 @@ class _Body extends StatelessWidget {
     );
 
     final headerRow = Row(
-      crossAxisAlignment: CrossAxisAlignment.end,
+      crossAxisAlignment: CrossAxisAlignment.baseline,
+      textBaseline: TextBaseline.alphabetic,
       children: <Widget>[
         creatorWidget,
         timestampWidget,

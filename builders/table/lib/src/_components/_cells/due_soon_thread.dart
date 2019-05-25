@@ -33,7 +33,7 @@ class RoofDueSoonThreadCell extends StatelessWidget {
     );
 
     final timestampTextStyle = _timestampTypographyStyle.textStyleWithColor(
-      theme.color.text.primary,
+      theme.color.text.secondary,
     );
 
     return RoofThreadCell(

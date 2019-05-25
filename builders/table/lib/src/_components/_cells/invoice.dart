@@ -114,7 +114,7 @@ class InvoiceCell extends StatelessWidget with KeyValueRowBuilder {
 
     return Container(
       padding: EdgeInsets.all(_cellPadding),
-      margin: EdgeInsets.only(bottom: _bottomMargin),
+      margin: EdgeInsets.only(top: _bottomMargin),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(_radius),
         border: Border.all(color: theme.color.stroke.light),

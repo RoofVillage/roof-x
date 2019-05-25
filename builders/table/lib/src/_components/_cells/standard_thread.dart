@@ -22,7 +22,7 @@ class RoofStandardThreadCell extends StatelessWidget {
   });
 
   final _titleTypographyStyle = typography.bodyPrimary;
-  final _timestampTypographyStyle = typography.detailSecondary;
+  final _timestampTypographyStyle = typography.bodyPrimary;
 
   @override
   Widget build(BuildContext context) {

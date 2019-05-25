@@ -19,10 +19,10 @@ class KeyValueRow extends StatelessWidget {
   }) : this.hasBorder = hasBorder ?? true;
 
   final _titleTypographyStyle = typography.detailSecondary;
-  final _valueTypographyStyle = typography.detailPrimary;
+  final _valueTypographyStyle = typography.bodyPrimary;
 
   final _horizontalSpacing = distance.c;
-  final _verticalSpacing = distance.b;
+  final _verticalSpacing = distance.a;
   final double _minTitleWidth = 110;
 
   @override
@@ -40,7 +40,7 @@ class KeyValueRow extends StatelessWidget {
         title,
         style: titleStyle ??
             _titleTypographyStyle.textStyleWithColor(
-              theme.color.text.placeholder,
+              theme.color.text.secondary,
             ),
         overflow: TextOverflow.ellipsis,
       ),
@@ -65,9 +65,9 @@ class KeyValueRow extends StatelessWidget {
       padding: hasBorder
           ? EdgeInsets.symmetric(vertical: _verticalSpacing)
           : EdgeInsets.only(top: _verticalSpacing),
-      decoration: BoxDecoration(
-        border: border,
-      ),
+      // decoration: BoxDecoration(
+      //   border: border,
+      // ),
       child: Row(
         textBaseline: TextBaseline.alphabetic,
         crossAxisAlignment: CrossAxisAlignment.baseline,

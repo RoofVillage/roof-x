@@ -22,13 +22,15 @@ class RoofBreadcrumbStack extends StatelessWidget {
     final theme = RoofTheme.of(context);
 
     final arrowWidget = IconReference.rightArrowXSmall.buildSvg(
-      color: theme.color.icon.general,
+      color: theme.color.icon.secondary,
     );
 
     List<Widget> wrapChildren = [];
 
     for (int i = 0; i < breadcrumbs.length; i++) {
-      List<Widget> breadcrumbRowChildren = [breadcrumbs[i]];
+      List<Widget> breadcrumbRowChildren = [];
+
+      breadcrumbRowChildren.add(breadcrumbs[i]);
 
       if (i < breadcrumbs.length - 1) {
         breadcrumbRowChildren.add(arrowWidget);
@@ -43,7 +45,8 @@ class RoofBreadcrumbStack extends StatelessWidget {
     }
 
     return Container(
-      margin: EdgeInsets.symmetric(vertical: _verticalMargin),
+      color: theme.color.background.generalPrimary,
+      padding: EdgeInsets.symmetric(vertical: _verticalMargin),
       child: Wrap(
         runSpacing: _verticalSpacing,
         children: wrapChildren,

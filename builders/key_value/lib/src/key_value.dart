@@ -12,7 +12,7 @@ class KeyValue extends StatelessWidget {
     @required this.value,
   });
 
-  final _titleTypographyStyle = typography.detailPrimary;
+  final _titleTypographyStyle = typography.detailSecondary;
   final _valueTypographyStyle = typography.bodyPrimary;
   final _verticalSpacing = distance.a;
   final _verticalMargin = distance.d;

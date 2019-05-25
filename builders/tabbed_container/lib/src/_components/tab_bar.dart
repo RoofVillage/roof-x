@@ -13,7 +13,7 @@ class RoofTabBar extends StatelessWidget {
     Key key,
   }) : super(key: key);
 
-  final _labelTypography = typography.bodyPrimaryThick;
+  final _labelTypography = typography.detailPrimary;
 
   @override
   Widget build(BuildContext context) {
@@ -22,12 +22,12 @@ class RoofTabBar extends StatelessWidget {
     final List<Widget> tabWidgets = [];
 
     for (var tab in tabs) {
-      final Widget tabWidget = Text(tab);
+      final Widget tabWidget = Text(tab.toUpperCase());
 
       tabWidgets.add(tabWidget);
     }
 
-    final labelColor = theme.color.text.primary;
+    final labelColor = theme.color.text.secondary;
     final activeLabelColor = theme.color.text.brand;
     final unselectedLabelStyle =
         _labelTypography.textStyleWithColor(labelColor);

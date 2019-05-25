@@ -99,9 +99,9 @@ class RoofBackgroundColor {
   Color get markerGreen {
     switch (_current) {
       case RoofThemeOption.light:
-        return Colors.green;
+        return color.good;
       case RoofThemeOption.dark:
-        return Colors.green;
+        return color.good;
     }
     return null;
   }

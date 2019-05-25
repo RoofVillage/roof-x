@@ -6,6 +6,7 @@ import 'package:corner_radius/index.dart' as radius;
 import 'package:icon_library/index.dart';
 import 'package:key_value_builder/index.dart';
 import 'package:spaced_grid_builder/index.dart';
+import 'package:date/index.dart';
 
 class RoofThreadEventCell extends StatelessWidget {
   final String title;
@@ -120,7 +121,7 @@ class _Content extends StatelessWidget with KeyValueBuilder, SpacedGridBuilder {
   });
 
   final _titleTypographyStyle = typography.bodyPrimary;
-  final _timestampTypographyStyle = typography.detailPrimary;
+  final _timestampTypographyStyle = typography.detailSecondary;
   final _noteTypographyStyle = typography.bodyPrimary;
 
   final _outerPadding = distance.c;
@@ -132,7 +133,7 @@ class _Content extends StatelessWidget with KeyValueBuilder, SpacedGridBuilder {
   Widget build(BuildContext context) {
     final theme = RoofTheme.of(context);
 
-    final backgroundColor = theme.color.background.generalPrimary;
+    final backgroundColor = theme.color.background.generalSecondary;
 
     final borderRadius = radius.large;
 
@@ -143,10 +144,12 @@ class _Content extends StatelessWidget with KeyValueBuilder, SpacedGridBuilder {
       ),
     );
 
+    final formattedTimestamp = Date.fromSecondsSinceEpoch(timestamp).toAdaptiveString;
+
     final timestampWidget = Padding(
       padding: EdgeInsets.only(left: _horizontalSpacing),
       child: Text(
-        timestamp.toString(),
+        formattedTimestamp,
         style: _timestampTypographyStyle.textStyleWithColor(
           theme.color.text.secondary,
         ),
@@ -155,7 +158,8 @@ class _Content extends StatelessWidget with KeyValueBuilder, SpacedGridBuilder {
 
     final titleRow = Row(
       mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.end,
+      crossAxisAlignment: CrossAxisAlignment.baseline,
+      textBaseline: TextBaseline.alphabetic,
       children: <Widget>[titleWidget, timestampWidget],
     );
 
@@ -189,7 +193,7 @@ class _Content extends StatelessWidget with KeyValueBuilder, SpacedGridBuilder {
       verticalChildren.add(detailsContainer);
     }
 
-    return Flexible(
+    return Flexible( 
       child: Container(
         padding: EdgeInsets.all(_outerPadding),
         decoration: BoxDecoration(

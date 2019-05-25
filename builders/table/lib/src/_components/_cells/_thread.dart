@@ -5,6 +5,7 @@ import 'package:typography/index.dart' as typography;
 import 'package:distance/index.dart' as distance;
 import 'package:theme/index.dart';
 import 'package:haptics/index.dart';
+import 'package:date/index.dart';
 
 class RoofThreadCell extends StatelessWidget {
   final StandardIconReference iconReference;
@@ -160,7 +161,7 @@ class _Timestamp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String formattedTimestamp = timestamp.toString();
+    final String formattedTimestamp = Date.fromSecondsSinceEpoch(timestamp).toAdaptiveString;
 
     final timestampWidget = Text(
       formattedTimestamp,

@@ -38,3 +38,15 @@ flutter:
           weight: 400
         - asset: packages/typography/fonts/azo/AzoSans-Bold.otf
           weight: 500
+    - family: circular
+      fonts:
+        - asset: packages/typography/fonts/circular/CircularStd-Book.otf
+          weight: 100
+        - asset: packages/typography/fonts/circular/CircularStd-Book.otf
+          weight: 200
+        - asset: packages/typography/fonts/circular/CircularStd-Medium.otf
+          weight: 300
+        - asset: packages/typography/fonts/circular/CircularStd-Bold.otf
+          weight: 400
+        - asset: packages/typography/fonts/circular/CircularStd-Black.otf
+          weight: 500

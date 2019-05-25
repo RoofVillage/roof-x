@@ -19,7 +19,7 @@ class RoofTextColor {
   Color get primary {
     switch (_current) {
       case RoofThemeOption.light:
-        return color.black3;
+        return color.black2;
       case RoofThemeOption.dark:
         return color.white1;
     }

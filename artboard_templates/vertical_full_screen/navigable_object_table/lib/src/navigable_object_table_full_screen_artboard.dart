@@ -28,14 +28,17 @@ abstract class NavigableObjectFullScreenArtboard extends StatefulWidget
 
   @override
   Widget buildBody(BuildContext context) {
-    final breadcrumbStack = buildBreadcrumbStack(
-      context,
-      breadcrumbs: breadcrumbs,
+    final breadcrumbStack = Container(
+      margin: EdgeInsets.only(bottom: distance.c),
+      child: buildBreadcrumbStack(
+        context,
+        breadcrumbs: breadcrumbs,
+      ),
     );
 
     final infoSection = Container(
       padding: EdgeInsets.symmetric(horizontal: distance.b),
-      margin: EdgeInsets.only(bottom: distance.c),
+      margin: EdgeInsets.only(bottom: distance.d),
       child: Column(
         children: infoRows,
       ),

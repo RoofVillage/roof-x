@@ -85,10 +85,10 @@ class InvoiceVerticalFullScreenArtboard
     );
 
     final messageCell = MessageCell(
-      subject: "New yard flamingo looks great long long",
+      subject: "New yard flamingo looks gud",
       latestActivityTimestamp: 1557978442,
       message:
-          "Just wanted to say y'all it really looks fire af, yard is the best on the block, get more plastic birds plz luv u",
+          "Just wanted to say y'all it really looks fire af, yard is the best on the block, get more plastic birds plz luv u lots homiez",
     );
 
     final maintenanceRequestCell = MaintenaceRequestCell(
@@ -135,7 +135,7 @@ class InvoiceVerticalFullScreenArtboard
       padding: EdgeInsets.only(
         left: distance.b,
         right: distance.b,
-        top: distance.b,
+        bottom: distance.b,
       ),
       color: theme.color.background.generalSecondary,
       child: ListView(
@@ -155,7 +155,7 @@ class InvoiceVerticalFullScreenArtboard
       padding: EdgeInsets.only(
         left: distance.b,
         right: distance.b,
-        top: distance.b,
+        bottom: distance.b,
       ),
       color: theme.color.background.generalSecondary,
       child: ListView(
@@ -175,7 +175,7 @@ class InvoiceVerticalFullScreenArtboard
       padding: EdgeInsets.only(
         left: distance.b,
         right: distance.b,
-        top: distance.b,
+        bottom: distance.b,
       ),
       color: theme.color.background.generalSecondary,
       child: ListView(
@@ -194,7 +194,7 @@ class InvoiceVerticalFullScreenArtboard
       padding: EdgeInsets.only(
         left: distance.b,
         right: distance.b,
-        top: distance.b,
+        bottom: distance.b,
       ),
       color: theme.color.background.generalSecondary,
       child: ListView(
@@ -213,7 +213,7 @@ class InvoiceVerticalFullScreenArtboard
       padding: EdgeInsets.only(
         left: distance.b,
         right: distance.b,
-        top: distance.b,
+        bottom: distance.b,
       ),
       color: theme.color.background.generalSecondary,
       child: ListView(
@@ -233,7 +233,7 @@ class InvoiceVerticalFullScreenArtboard
       padding: EdgeInsets.only(
         left: distance.b,
         right: distance.b,
-        top: distance.b,
+        bottom: distance.b,
       ),
       color: theme.color.background.generalSecondary,
       child: ListView(

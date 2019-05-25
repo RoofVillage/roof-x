@@ -26,6 +26,16 @@ class RoofIconColor {
     return null;
   }
 
+    Color get secondary {
+    switch (_current) {
+      case RoofThemeOption.light:
+        return color.gray4;
+      case RoofThemeOption.dark:
+        return color.gray3;
+    }
+    return null;
+  }
+
   Color get logo {
     switch (_current) {
       case RoofThemeOption.light:

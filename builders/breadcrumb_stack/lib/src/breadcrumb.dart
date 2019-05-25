@@ -30,10 +30,10 @@ class RoofBreadcrumb extends StatelessWidget {
     final theme = RoofTheme.of(context);
 
     final textStyle = _typographyStyle.textStyleWithColor(
-      theme.color.text.primary,
+      theme.color.text.secondary,
     );
 
-    final iconColor = theme.color.icon.general;
+    final iconColor = theme.color.icon.secondary;
 
     List<Widget> rowChildren = [];
 
@@ -55,7 +55,7 @@ class RoofBreadcrumb extends StatelessWidget {
     return GestureDetector(
       onTap: _onTap,
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: _horizontalMargin),
+        padding: EdgeInsets.only(left: _horizontalMargin),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: rowChildren,
