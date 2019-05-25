@@ -39,6 +39,17 @@ class InvoiceCell extends StatelessWidget with KeyValueRowBuilder {
     if (onTap != null) triggerHapticWith(_tapHapticOption);
   }
 
+  String _evalInvoiceType(InvoiceType type) {
+    switch (type) {
+      case InvoiceType.rent:
+        return "Rent";
+      case InvoiceType.lateFee:
+        return "Late fee";
+      case InvoiceType.other:
+        return "Other";
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = RoofTheme.of(context);
@@ -111,8 +122,7 @@ class InvoiceCell extends StatelessWidget with KeyValueRowBuilder {
     final typeRow = buildKeyValueRow(
       context,
       title: "Invoice type",
-      // TODO type masking
-      value: invoiceType.toString(),
+      value: _evalInvoiceType(invoiceType),
       hasBorder: false,
     );
     columnChildren.add(typeRow);
