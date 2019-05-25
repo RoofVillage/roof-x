@@ -64,33 +64,8 @@ class PaymentCell extends StatelessWidget with KeyValueRowBuilder {
     );
     List<Widget> columnChildren = [titleRow];
 
-    final dueText =
+    final dateText =
         Date.fromSecondsSinceEpoch(timestamp).toLongMonthAbbreviatedString;
-
-    final dateRow = buildKeyValueRow(
-      context,
-      title: "Due",
-      value: dueText,
-      valueStyle: typography.bodyPrimaryThick.textStyleWithColor(
-        theme.color.text.primary,
-      ),
-      hasBorder: false,
-    );
-    columnChildren.add(dateRow);
-
-    final formattedTotal = applyMask(
-      MaskOption.money,
-      text: amount.toString(),
-      context: context,
-    );
-
-    final amountRow = buildKeyValueRow(
-      context,
-      title: "Total amount",
-      value: formattedTotal,
-      hasBorder: false,
-    );
-    columnChildren.add(amountRow);
 
     if (note != null && note.isNotEmpty) {
       final messageRow = Container(
@@ -107,7 +82,33 @@ class PaymentCell extends StatelessWidget with KeyValueRowBuilder {
       columnChildren.add(messageRow);
     }
 
+    final dateRow = buildKeyValueRow(
+      context,
+      title: "Date",
+      value: dateText,
+      valueStyle: typography.bodyPrimaryThick.textStyleWithColor(
+        theme.color.text.primary,
+      ),
+      hasBorder: false,
+    );
+    columnChildren.add(dateRow);
+
+    final formattedTotal = applyMask(
+      MaskOption.money,
+      text: amount.toString(),
+      context: context,
+    );
+
+    final amountRow = buildKeyValueRow(
+      context,
+      title: "Amount",
+      value: formattedTotal,
+      hasBorder: false,
+    );
+    columnChildren.add(amountRow);
+
     final bodyColumn = Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: columnChildren,
     );
 
@@ -138,6 +139,8 @@ class _StatusTag extends StatelessWidget {
       case PaymentStatus.manual:
         return theme.color.background.markerGray;
       case PaymentStatus.cancelled:
+        return theme.color.background.markerAlert;
+      case PaymentStatus.processed:
         return theme.color.background.markerGreen;
     }
   }
@@ -148,6 +151,8 @@ class _StatusTag extends StatelessWidget {
         return "MANUAL";
       case PaymentStatus.cancelled:
         return "CANCELLED";
+      case PaymentStatus.processed:
+        return "PROCESSED";
     }
   }
 
@@ -168,4 +173,5 @@ class _StatusTag extends StatelessWidget {
 enum PaymentStatus {
   manual,
   cancelled,
+  processed,
 }

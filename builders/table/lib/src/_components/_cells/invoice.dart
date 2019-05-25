@@ -129,6 +129,7 @@ class InvoiceCell extends StatelessWidget with KeyValueRowBuilder {
     columnChildren.add(typeRow);
 
     final bodyColumn = Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: columnChildren,
     );
 

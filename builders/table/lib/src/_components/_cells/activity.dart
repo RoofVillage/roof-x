@@ -49,6 +49,7 @@ class RoofActivityCell extends StatelessWidget {
             ///This column contains the body of the cell, and the divider;
             child: Column(
               ///Maximizes space between body and divider
+              crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 _Body(

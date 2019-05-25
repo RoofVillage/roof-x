@@ -88,6 +88,14 @@ class SandboxVerticalFullScreenArtboard
       invoiceType: InvoiceType.rent,
     );
 
+    final paymentCell = PaymentCell(
+      tenant: "Jo bobo",
+      amount: 1320,
+      timestamp: 1557999442,
+      note: "Just some money for u",
+      paymentStatus: PaymentStatus.processed,
+    );
+
     final messageCell = MessageCell(
       subject: "New yard flamingo looks gud",
       latestActivityTimestamp: 1557978442,
@@ -146,6 +154,17 @@ class SandboxVerticalFullScreenArtboard
     ];
     final homesView = buildPaddedList(context, children: homesCells);
 
+    final List<Widget> paymentsCells = [
+      paymentCell,
+      paymentCell,
+      paymentCell,
+      paymentCell,
+      paymentCell,
+      paymentCell,
+      paymentCell,
+    ];
+    final paymentsView = buildPaddedList(context, children: paymentsCells);
+
     final List<Widget> invoicesCells = [
       invoiceCell,
       invoiceCell,
@@ -190,6 +209,10 @@ class SandboxVerticalFullScreenArtboard
     ];
     final leasesView = buildPaddedList(context, children: leasesCells);
 
+    final emptyView = buildPaddedList(context, children: [
+      EmptyMessageCell(text: "Nothing to see",)
+    ]);
+
     final List<Widget> tenantsCells = [
       tenantCell1,
       tenantCell2,
@@ -204,10 +227,12 @@ class SandboxVerticalFullScreenArtboard
 
     return [
       RoofTab(title: "Messages", view: messagesView),
+      RoofTab(title: "Payments", view: paymentsView),
       RoofTab(title: "Tenants", view: tenantsView),
       RoofTab(title: "Invoices", view: invoicesView),
       RoofTab(title: "Maintenance", view: maintenanceView),
       RoofTab(title: "Properties", view: homesView),
+      RoofTab(title: "Empty", view: emptyView),
       RoofTab(title: "Leases", view: leasesView),
     ];
   }

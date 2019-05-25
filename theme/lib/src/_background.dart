@@ -106,5 +106,15 @@ class RoofBackgroundColor {
     return null;
   }
 
+  Color get markerAlert {
+    switch (_current) {
+      case RoofThemeOption.light:
+        return color.alert;
+      case RoofThemeOption.dark:
+        return color.alert;
+    }
+    return null;
+  }
+
   RoofBackgroundColor(this._current);
 }

@@ -88,6 +88,7 @@ class MaintenaceRequestCell extends StatelessWidget with KeyValueRowBuilder {
     }
 
     final bodyColumn = Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: columnChildren,
     );
 
