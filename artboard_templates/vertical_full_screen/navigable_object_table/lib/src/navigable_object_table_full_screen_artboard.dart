@@ -23,7 +23,7 @@ abstract class NavigableObjectFullScreenArtboard extends StatefulWidget
   Widget buildNavBar(BuildContext context) => buildTitledNavBar(context);
 
   List<RoofBreadcrumb> buildBreadcrumbs(BuildContext context);
-  List<KeyValueRow> buildInfoRows(BuildContext context);
+  List<Widget> buildInfoRows(BuildContext context);
   List<RoofTab> buildTabs(BuildContext context);
 
   @override

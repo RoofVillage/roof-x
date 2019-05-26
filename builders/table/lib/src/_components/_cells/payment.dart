@@ -19,11 +19,11 @@ class PaymentCell extends StatelessWidget with KeyValueRowBuilder {
   final VoidCallback onTap;
 
   PaymentCell({
-    this.tenant,
-    this.amount,
-    this.timestamp,
+    @required this.tenant,
+    @required this.amount,
+    @required this.timestamp,
     this.note,
-    this.paymentStatus,
+    @required this.paymentStatus,
     this.onTap,
   });
 
@@ -95,7 +95,7 @@ class PaymentCell extends StatelessWidget with KeyValueRowBuilder {
 
     final formattedTotal = applyMask(
       MaskOption.money,
-      text: amount.toString(),
+      text: (amount / 100).toString(),
       context: context,
     );
 

@@ -27,8 +27,11 @@ class RoofBreadcrumbStack extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = RoofTheme.of(context);
 
-    final arrowWidget = IconReference.rightArrowXSmall.buildSvg(
-      color: theme.color.icon.secondary,
+    final paddedArrowWidget = Container(
+      margin: EdgeInsets.only(left: distance.a),
+      child: IconReference.rightArrowXSmall.buildSvg(
+        color: theme.color.icon.secondary,
+      ),
     );
 
     List<Widget> wrapChildren = [];
@@ -39,13 +42,14 @@ class RoofBreadcrumbStack extends StatelessWidget {
       breadcrumbRowChildren.add(breadcrumbs[i]);
 
       if (i < breadcrumbs.length - 1) {
-        breadcrumbRowChildren.add(arrowWidget);
+        breadcrumbRowChildren.add(paddedArrowWidget);
       }
 
       wrapChildren.add(
         Row(
           children: breadcrumbRowChildren,
           crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
         ),
       );
     }

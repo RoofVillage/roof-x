@@ -14,7 +14,9 @@ dependencies:
   vertical_full_screen_artboard_scaffold:
     path: ../../artboard_scaffolds/vertical_full_screen
   navigable_object_table_artboard_template:
-    path: ../../artboard_templates//vertical_full_screen/navigable_object_table
+    path: ../../artboard_templates/vertical_full_screen/navigable_object_table
+  invoice_full_screen_artboard_template:
+    path: ../../artboard_templates/vertical_full_screen/invoice
   artboard:
     path: ../../lib/artboard
   device_screen:

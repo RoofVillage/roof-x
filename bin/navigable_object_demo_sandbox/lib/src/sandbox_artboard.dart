@@ -3,7 +3,6 @@ import 'package:navigator/index.dart';
 import 'package:navigable_object_table_artboard_template/index.dart';
 import 'package:icon_library/index.dart';
 import 'package:breadcrumb_stack_builder/index.dart';
-import 'package:key_value_row_builder/index.dart';
 import 'package:tabbed_container_builder/index.dart';
 import 'package:theme/index.dart';
 import 'package:table_builder/index.dart';
@@ -42,14 +41,15 @@ class SandboxVerticalFullScreenArtboard
   }
 
   @override
-  List<KeyValueRow> buildInfoRows(BuildContext context) {
+  List<Widget> buildInfoRows(BuildContext context) {
     return [
-      KeyValueRow(title: "Total", value: "\$1,400.00"),
-      KeyValueRow(title: "Paid", value: "\$800.00"),
-      KeyValueRow(title: "Still owed", value: "\$600.00"),
-      KeyValueRow(title: "Payable", value: "Payable now"),
-      KeyValueRow(title: "Due", value: "June 1, 2019"),
-      KeyValueRow(title: "Payment profile", value: "Lamar Checking Account")
+      buildKeyValueRow(context, title: "Total", value: "\$1,400.00"),
+      buildKeyValueRow(context, title: "Paid", value: "\$800.00"),
+      buildKeyValueRow(context, title: "Still owed", value: "\$600.00"),
+      buildKeyValueRow(context, title: "Payable", value: "Payable now"),
+      buildKeyValueRow(context, title: "Due", value: "June 1, 2019"),
+      buildKeyValueRow(context,
+          title: "Payment profile", value: "Lamar Checking Account"),
     ];
   }
 
@@ -210,7 +210,9 @@ class SandboxVerticalFullScreenArtboard
     final leasesView = buildPaddedList(context, children: leasesCells);
 
     final emptyView = buildPaddedList(context, children: [
-      EmptyMessageCell(text: "Nothing to see",)
+      EmptyMessageCell(
+        text: "Nothing to see",
+      )
     ]);
 
     final List<Widget> tenantsCells = [
