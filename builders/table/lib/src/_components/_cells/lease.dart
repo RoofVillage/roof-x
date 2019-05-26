@@ -67,7 +67,7 @@ class LeaseCell extends StatelessWidget {
 
     final formattedAmount = applyMask(
       MaskOption.money,
-      text: rentAmount.toString(),
+      text: (rentAmount / 100).toString(),
       context: context,
     );
 
