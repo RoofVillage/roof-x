@@ -16,8 +16,9 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Invoice sandbox',
         theme: ThemeData(
-          // splashColor: Colors.transparent,
-          // highlightColor: Colors.transparent
+          // TODO new method of overwriting splash/highlight color, necessary for removing inkwell animation on tab bars
+          splashColor: Colors.transparent,
+          highlightColor: Colors.transparent
         ),
         debugShowCheckedModeBanner: false,
         home: Scaffold(

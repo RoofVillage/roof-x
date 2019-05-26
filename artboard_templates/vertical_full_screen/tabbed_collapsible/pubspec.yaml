@@ -1,4 +1,4 @@
-name: navigable_object_table_artboard_template
+name: tabbed_collapsible_fullscreen_artboard_template
 description: A frame with a titled nav bar, a breadcrumb builder, an info row builder, and a tabbed container view.
 version: 1.0.0+1
 

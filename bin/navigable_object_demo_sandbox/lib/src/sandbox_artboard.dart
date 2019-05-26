@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:navigator/index.dart';
-import 'package:navigable_object_table_artboard_template/index.dart';
 import 'package:icon_library/index.dart';
 import 'package:breadcrumb_stack_builder/index.dart';
 import 'package:tabbed_container_builder/index.dart';
 import 'package:theme/index.dart';
 import 'package:table_builder/index.dart';
 import 'package:cells_list_view_builder/index.dart';
-
-
+import 'package:tabbed_collapsible_fullscreen_artboard_template/index.dart';
 
 class SandboxVerticalFullScreenArtboard
-    extends NavigableObjectFullScreenArtboard with RoofCellsListViewBuilder {
+    extends TabbedCollapsibleFullScreenArtboard with RoofCellsListViewBuilder {
   final String title = "Invoice due soon yaa";
 
   @override

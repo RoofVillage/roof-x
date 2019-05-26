@@ -8,8 +8,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  navigable_object_table_artboard_template:
-    path: ../../../artboard_templates//vertical_full_screen/navigable_object_table
+  tabbed_collapsible_fullscreen_artboard_template:
+    path: ../tabbed_collapsible
   breadcrumb_stack_builder:
     path: ../../../builders/breadcrumb_stack
   tabbed_container_builder:

@@ -9,7 +9,7 @@ import 'package:tabbed_container_builder/index.dart';
 import 'package:breadcrumb_stack_builder/index.dart';
 import 'package:distance/index.dart' as distance;
 
-abstract class NavigableObjectFullScreenArtboard extends StatefulWidget
+abstract class TabbedCollapsibleFullScreenArtboard extends StatefulWidget
     with
         VerticalFullScreenArtboard,
         Artboard,
