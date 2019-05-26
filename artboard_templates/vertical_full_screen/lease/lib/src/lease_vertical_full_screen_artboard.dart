@@ -7,12 +7,17 @@ import 'package:date/index.dart';
 import 'package:navigable_object_table_artboard_template/index.dart';
 import 'package:breadcrumb_stack_builder/index.dart';
 import 'package:tabbed_container_builder/index.dart';
-// import 'package:key_value_row_builder/index.dart';
-import 'package:padded_list_builder/index.dart';
+import 'package:button_builder/index.dart';
+import 'package:button_status_option/index.dart';
+import 'package:cells_list_view_builder/index.dart';
 
 abstract class LeaseVerticalFullScreenArtboard
     extends NavigableObjectFullScreenArtboard
-    with RoofTabbedContainerBuilder, PaddedListBuilder, KeyValueRowBuilder {
+    with
+        RoofTabbedContainerBuilder,
+        RoofCellsListViewBuilder,
+        KeyValueRowBuilder,
+        SecondaryCenterButtonBuilder {
   String get leaseTitle;
   String get homeTitle;
   int get totalAmount;
@@ -145,21 +150,48 @@ abstract class LeaseVerticalFullScreenArtboard
 
   @override
   List<RoofTab> buildTabs(BuildContext context) {
-    final tenantsList = buildPaddedList(
+    // TODO implement onTap passing to action buttons
+
+    final tenantsActionButton = buildSecondaryCenterButton(
+      context,
+      text: "Add tenant",
+      onTap: (context) => print("add tenant tapped"),
+      status: ButtonStatusOption.ready,
+    );
+
+    final tenantsList = buildCellsList(
       context,
       children: buildTenantsCells(context),
+      button: tenantsActionButton,
     );
 
-    final invoicesList = buildPaddedList(
+    final invoicesActionButton = buildSecondaryCenterButton(
+      context,
+      text: "Add invoice",
+      onTap: (context) => print("add invoice tapped"),
+      status: ButtonStatusOption.ready,
+    );
+
+    final invoicesList = buildCellsList(
       context,
       children: buildInvoicesCells(context),
+      button: invoicesActionButton,
     );
 
-    final messagesList = buildPaddedList(
+    final messagesActionButton = buildSecondaryCenterButton(
+      context,
+      text: "New message",
+      onTap: (context) => print("new message tapped"),
+      status: ButtonStatusOption.ready,
+    );
+
+    final messagesList = buildCellsList(
       context,
       children: buildMessagesCells(context),
+      button: messagesActionButton,
     );
-    final maintenanceList = buildPaddedList(
+
+    final maintenanceList = buildCellsList(
       context,
       children: buildMaintenanceCells(context),
     );

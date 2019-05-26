@@ -6,10 +6,12 @@ import 'package:breadcrumb_stack_builder/index.dart';
 import 'package:tabbed_container_builder/index.dart';
 import 'package:theme/index.dart';
 import 'package:table_builder/index.dart';
-import 'package:padded_list_builder/index.dart';
+import 'package:cells_list_view_builder/index.dart';
+
+
 
 class SandboxVerticalFullScreenArtboard
-    extends NavigableObjectFullScreenArtboard with PaddedListBuilder {
+    extends NavigableObjectFullScreenArtboard with RoofCellsListViewBuilder {
   final String title = "Invoice due soon yaa";
 
   @override
@@ -152,7 +154,7 @@ class SandboxVerticalFullScreenArtboard
       homeCell,
       homeCell,
     ];
-    final homesView = buildPaddedList(context, children: homesCells);
+    final homesView = buildCellsList(context, children: homesCells);
 
     final List<Widget> paymentsCells = [
       paymentCell,
@@ -163,7 +165,7 @@ class SandboxVerticalFullScreenArtboard
       paymentCell,
       paymentCell,
     ];
-    final paymentsView = buildPaddedList(context, children: paymentsCells);
+    final paymentsView = buildCellsList(context, children: paymentsCells);
 
     final List<Widget> invoicesCells = [
       invoiceCell,
@@ -174,7 +176,7 @@ class SandboxVerticalFullScreenArtboard
       invoiceCell,
       invoiceCell,
     ];
-    final invoicesView = buildPaddedList(context, children: invoicesCells);
+    final invoicesView = buildCellsList(context, children: invoicesCells);
 
     final List<Widget> messagesCells = [
       messageCell,
@@ -185,7 +187,7 @@ class SandboxVerticalFullScreenArtboard
       messageCell,
       LoadMoreCell()
     ];
-    final messagesView = buildPaddedList(context, children: messagesCells);
+    final messagesView = buildCellsList(context, children: messagesCells);
 
     final List<Widget> maintenanceCells = [
       maintenanceRequestCell,
@@ -196,7 +198,7 @@ class SandboxVerticalFullScreenArtboard
       maintenanceRequestCell,
     ];
     final maintenanceView =
-        buildPaddedList(context, children: maintenanceCells);
+        buildCellsList(context, children: maintenanceCells);
 
     final List<Widget> leasesCells = [
       leaseCell,
@@ -207,9 +209,9 @@ class SandboxVerticalFullScreenArtboard
       leaseCell,
       leaseCell,
     ];
-    final leasesView = buildPaddedList(context, children: leasesCells);
+    final leasesView = buildCellsList(context, children: leasesCells);
 
-    final emptyView = buildPaddedList(context, children: [
+    final emptyView = buildCellsList(context, children: [
       EmptyMessageCell(
         text: "Nothing to see",
       )
@@ -225,7 +227,7 @@ class SandboxVerticalFullScreenArtboard
       tenantCell1,
       tenantCell2,
     ];
-    final tenantsView = buildPaddedList(context, children: tenantsCells);
+    final tenantsView = buildCellsList(context, children: tenantsCells);
 
     return [
       RoofTab(title: "Messages", view: messagesView),

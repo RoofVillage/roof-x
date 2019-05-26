@@ -6,18 +6,21 @@ import 'package:icon_library/index.dart';
 import 'package:tag_builder/index.dart';
 import 'package:navigable_object_table_artboard_template/index.dart';
 import 'package:tabbed_container_builder/index.dart';
-import 'package:padded_list_builder/index.dart';
+import 'package:cells_list_view_builder/index.dart';
+import 'package:button_builder/index.dart';
+import 'package:button_status_option/index.dart';
 import 'package:distance/index.dart' as distance;
 
 abstract class PropertyVerticalFullScreenArtboard
     extends NavigableObjectFullScreenArtboard
     with
         RoofTabbedContainerBuilder,
-        PaddedListBuilder,
+        RoofCellsListViewBuilder,
         KeyValueRowBuilder,
-        RoofTagBuilder {
+        RoofTagBuilder,
+        SecondaryCenterButtonBuilder {
   String get propertyTitle;
-  NavigationIconReference get homeIcon;
+  StandardIconReference get homeIcon;
   List<String> get tags;
   String get paymentProfile;
 
@@ -25,6 +28,9 @@ abstract class PropertyVerticalFullScreenArtboard
 
   @override
   String get title => propertyTitle;
+
+  @override
+  StandardIconReference get titleIcon => homeIcon;
 
   @override
   List<RoofBreadcrumb> buildBreadcrumbs(BuildContext context) {
@@ -75,9 +81,18 @@ abstract class PropertyVerticalFullScreenArtboard
 
   @override
   List<RoofTab> buildTabs(BuildContext context) {
-    final leasesList = buildPaddedList(
+    // TODO implement onTap passing to action button
+    final leasesActionButton = buildSecondaryCenterButton(
+      context,
+      text: "Create lease",
+      onTap: (context) => print("create lease tapped"),
+      status: ButtonStatusOption.ready,
+    );
+
+    final leasesList = buildCellsList(
       context,
       children: buildLeasesCells(context),
+      button: leasesActionButton,
     );
 
     final leasesTab = RoofTab(title: "Leases", view: leasesList);

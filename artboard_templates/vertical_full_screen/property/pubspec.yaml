@@ -24,8 +24,8 @@ dependencies:
     path: ../../../builders/breadcrumb_stack
   tabbed_container_builder:
     path: ../../../builders/tabbed_container
-  padded_list_builder:
-    path: ../../../builders/padded_list
+  cells_list_view_builder:
+    path: ../../../builders/cells_list_view
   tag_builder:
     path: ../../../builders/tag
   key_value_row_builder:

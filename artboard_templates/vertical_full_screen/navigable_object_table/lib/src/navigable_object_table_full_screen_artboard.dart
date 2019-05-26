@@ -15,12 +15,12 @@ abstract class NavigableObjectFullScreenArtboard extends StatefulWidget
         Artboard,
         TableBuilder,
         InputDockBuilder,
-        TitledNavBarBuilder,
+        TitledIconNavBarBuilder,
         RoofBreadcrumbBuilder,
         KeyValueRowBuilder,
         RoofTabbedContainerBuilder {
   @override
-  Widget buildNavBar(BuildContext context) => buildTitledNavBar(context);
+  Widget buildNavBar(BuildContext context) => buildTitledIconNavBar(context);
 
   List<RoofBreadcrumb> buildBreadcrumbs(BuildContext context);
   List<Widget> buildInfoRows(BuildContext context);

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:icon_library/src/references.dart';
 import 'package:navigator/index.dart';
 import 'package:table_builder/index.dart';
+import 'package:icon_library/index.dart';
 import 'package:property_full_screen_artboard_template/index.dart';
 
 class PropertyArtboard extends PropertyVerticalFullScreenArtboard {
@@ -24,7 +24,7 @@ class PropertyArtboard extends PropertyVerticalFullScreenArtboard {
   }
 
   @override
-  NavigationIconReference get homeIcon => null;
+  StandardIconReference get homeIcon => IconReference.piggyBank;
 
   @override
   String get paymentProfile => "Denny's big bank";

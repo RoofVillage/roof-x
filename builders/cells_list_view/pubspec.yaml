@@ -1,5 +1,5 @@
-name: padded_list_builder
-description: Listview with horizontal and bottom padding.
+name: cells_list_view_builder
+description: Listview with horizontal and bottom padding and an action button.
 
 version: 1.0.0+1
 

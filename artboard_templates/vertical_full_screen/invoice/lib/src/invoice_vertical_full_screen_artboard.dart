@@ -7,11 +7,17 @@ import 'package:date/index.dart';
 import 'package:navigable_object_table_artboard_template/index.dart';
 import 'package:breadcrumb_stack_builder/index.dart';
 import 'package:tabbed_container_builder/index.dart';
-import 'package:padded_list_builder/index.dart';
+import 'package:button_builder/index.dart';
+import 'package:button_status_option/index.dart';
+import 'package:cells_list_view_builder/index.dart';
 
 abstract class InvoiceVerticalFullScreenArtboard
     extends NavigableObjectFullScreenArtboard
-    with RoofTabbedContainerBuilder, PaddedListBuilder, KeyValueRowBuilder {
+    with
+        RoofTabbedContainerBuilder,
+        RoofCellsListViewBuilder,
+        KeyValueRowBuilder,
+        SecondaryCenterButtonBuilder {
   String get invoiceTitle;
   String get leaseTitle;
   String get homeTitle;
@@ -128,9 +134,19 @@ abstract class InvoiceVerticalFullScreenArtboard
 
   @override
   List<RoofTab> buildTabs(BuildContext context) {
-    final paymentsList = buildPaddedList(
+    // TODO implement onTap passing to action buttons
+
+    final paymentsActionButton = buildSecondaryCenterButton(
+      context,
+      text: "Manually log a payment",
+      onTap: (context) => print("log payment tapped"),
+      status: ButtonStatusOption.ready,
+    );
+
+    final paymentsList = buildCellsList(
       context,
       children: buildPaymentsCells(context),
+      button: paymentsActionButton
     );
 
     return [
