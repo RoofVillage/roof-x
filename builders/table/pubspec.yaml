@@ -37,6 +37,8 @@ dependencies:
     path: ../../lib/haptics
   date:
     path: ../../lib/date
+  tag_builder:
+    path: ../tag
 
 dev_dependencies:
   flutter_test:

@@ -4,11 +4,11 @@ import 'package:corner_radius/index.dart' as radius;
 import 'package:distance/index.dart' as distance;
 import 'package:typography/index.dart' as typography;
 
-class Tag extends StatelessWidget {
+class RoofTag extends StatelessWidget {
   final String text;
   final Color color;
 
-  Tag({
+  RoofTag({
     this.text,
     this.color,
   });

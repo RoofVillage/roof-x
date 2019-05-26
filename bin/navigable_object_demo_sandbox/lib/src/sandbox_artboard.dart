@@ -56,7 +56,7 @@ class SandboxVerticalFullScreenArtboard
   @override
   List<RoofTab> buildTabs(BuildContext context) {
     final leaseCell = LeaseCell(
-      name: "2019-2020 Lease",
+      title: "2019-2020 Lease",
       tenants: [
         "Lisa Balzac",
         "Dina Jojojo",

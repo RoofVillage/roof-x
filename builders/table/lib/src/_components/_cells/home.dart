@@ -4,11 +4,10 @@ import 'package:theme/index.dart';
 import 'package:mask/index.dart';
 import 'package:date/index.dart';
 import 'package:haptics/index.dart';
+import 'package:tag_builder/index.dart';
 import 'package:corner_radius/index.dart' as radius;
 import 'package:distance/index.dart' as distance;
 import 'package:typography/index.dart' as typography;
-
-import '../tag.dart';
 
 class HomeCell extends StatelessWidget {
   final String address;
@@ -247,7 +246,7 @@ class _LeasePreviewsColumn extends StatelessWidget {
   }
 }
 
-class _TagsSection extends StatelessWidget {
+class _TagsSection extends StatelessWidget with RoofTagBuilder {
   final List<String> tags;
 
   _TagsSection({@required this.tags});
@@ -263,7 +262,8 @@ class _TagsSection extends StatelessWidget {
     for (String tag in tags) {
       final tagColor = theme.color.background.markerGray;
 
-      final tagWidget = Tag(
+      final tagWidget = buildTag(
+        context,
         text: tag.toUpperCase(),
         color: tagColor,
       );

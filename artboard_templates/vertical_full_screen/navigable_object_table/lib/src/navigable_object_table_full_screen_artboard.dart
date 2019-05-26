@@ -28,21 +28,36 @@ abstract class NavigableObjectFullScreenArtboard extends StatefulWidget
 
   @override
   Widget buildBody(BuildContext context) {
-    final breadcrumbStack = Container(
-      margin: EdgeInsets.only(bottom: distance.c),
-      child: buildBreadcrumbStack(
-        context,
-        breadcrumbs: buildBreadcrumbs(context),
-      ),
-    );
+    List<Widget> sliverChildren = [];
 
-    final infoSection = Container(
-      padding: EdgeInsets.symmetric(horizontal: distance.b),
-      margin: EdgeInsets.only(bottom: distance.d),
-      child: Column(
-        children: buildInfoRows(context),
-      ),
-    );
+    final breadcrumbs = buildBreadcrumbs(context);
+    if (breadcrumbs != null && breadcrumbs.isNotEmpty) {
+      final breadcrumbStack = Container(
+        margin: EdgeInsets.only(bottom: distance.b),
+        child: buildBreadcrumbStack(
+          context,
+          breadcrumbs: buildBreadcrumbs(context),
+        ),
+      );
+
+      sliverChildren.add(breadcrumbStack);
+    }
+
+    final infoRows = buildInfoRows(context);
+    if (infoRows != null && infoRows.isNotEmpty) {
+      final infoSection = Container(
+        padding: EdgeInsets.symmetric(horizontal: distance.b),
+        margin: EdgeInsets.only(
+          top: distance.b,
+          bottom: distance.d,
+        ),
+        child: Column(
+          children: buildInfoRows(context),
+        ),
+      );
+
+      sliverChildren.add(infoSection);
+    }
 
     final tabbedContainer = buildTabbedContainer(
       context,
@@ -54,7 +69,7 @@ abstract class NavigableObjectFullScreenArtboard extends StatefulWidget
       headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
         return [
           SliverList(
-            delegate: SliverChildListDelegate([breadcrumbStack, infoSection]),
+            delegate: SliverChildListDelegate(sliverChildren),
           ),
         ];
       },

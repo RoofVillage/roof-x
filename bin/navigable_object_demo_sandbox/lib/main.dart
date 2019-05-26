@@ -4,6 +4,7 @@ import 'package:theme/index.dart';
 import 'src/sandbox_artboard.dart';
 import 'src/invoice_artboard.dart';
 import 'src/lease_artboard.dart';
+import 'src/property_artboard.dart';
 
 void main() => runApp(MyApp());
 
@@ -22,7 +23,8 @@ class MyApp extends StatelessWidget {
         home: Scaffold(
           // body: SandboxVerticalFullScreenArtboard(),
           // body: InvoiceArtboard(),
-          body: LeaseArtboard(),
+          // body: LeaseArtboard(),
+          body: PropertyArtboard(),
         ),
       ),
     );

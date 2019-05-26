@@ -3,15 +3,14 @@ import 'package:theme/index.dart';
 import 'package:mask/index.dart';
 import 'package:date/index.dart';
 import 'package:haptics/index.dart';
+import 'package:tag_builder/index.dart';
 import 'package:typography/index.dart' as typography;
 import 'package:distance/index.dart' as distance;
 import 'package:corner_radius/index.dart' as radius;
 
-import '../tag.dart';
-
 class LeaseCell extends StatelessWidget {
   final List<String> tenants;
-  final String name;
+  final String title;
   final int rentAmount;
   final int startTimestamp;
   final int endTimestamp;
@@ -20,7 +19,7 @@ class LeaseCell extends StatelessWidget {
 
   LeaseCell({
     this.tenants,
-    @required this.name,
+    @required this.title,
     @required this.rentAmount,
     @required this.startTimestamp,
     this.endTimestamp,
@@ -44,7 +43,7 @@ class LeaseCell extends StatelessWidget {
     final theme = RoofTheme.of(context);
 
     final titleWidget = Text(
-      name,
+      title,
       style: typography.bodyPrimaryThick.textStyleWithColor(
         theme.color.text.secondaryAction,
       ),
@@ -187,7 +186,7 @@ class _DateRange extends StatelessWidget {
   }
 }
 
-class _StatusTag extends StatelessWidget {
+class _StatusTag extends StatelessWidget with RoofTagBuilder {
   final LeaseStatus status;
 
   _StatusTag(this.status);
@@ -223,7 +222,8 @@ class _StatusTag extends StatelessWidget {
     final text = _getStatusText(status);
     final color = _getStatusColor(status, theme);
 
-    return Tag(
+    return buildTag(
+      context,
       text: text,
       color: color,
     );

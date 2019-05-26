@@ -19,6 +19,8 @@ dependencies:
     path: ../../artboard_templates/vertical_full_screen/invoice
   lease_full_screen_artboard_template:
     path: ../../artboard_templates/vertical_full_screen/lease
+  property_full_screen_artboard_template:
+    path: ../../artboard_templates/vertical_full_screen/property
   artboard:
     path: ../../lib/artboard
   device_screen:

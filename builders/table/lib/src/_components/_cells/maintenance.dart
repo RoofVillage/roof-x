@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:theme/index.dart';
 import 'package:date/index.dart';
 import 'package:haptics/index.dart';
+import 'package:tag_builder/index.dart';
 import 'package:typography/index.dart' as typography;
 import 'package:distance/index.dart' as distance;
 import 'package:corner_radius/index.dart' as radius;
 import 'package:key_value_row_builder/index.dart';
-
-import '../tag.dart';
 
 class MaintenanceCell extends StatelessWidget with KeyValueRowBuilder {
   final String name;
@@ -109,7 +108,7 @@ class MaintenanceCell extends StatelessWidget with KeyValueRowBuilder {
   }
 }
 
-class _StatusTag extends StatelessWidget {
+class _StatusTag extends StatelessWidget with RoofTagBuilder {
   final MaintenanceRequestStatus status;
 
   _StatusTag(this.status);
@@ -144,7 +143,8 @@ class _StatusTag extends StatelessWidget {
     final color = _getStatusColor(status, theme);
     final text = _getStatusText(status);
 
-    return Tag(
+    return buildTag(
+      context,
       text: text,
       color: color,
     );

@@ -13,7 +13,7 @@ export 'src/_components/_cells/segue_bar.dart';
 export 'src/_components/_cells/home.dart';
 export 'src/_components/_cells/lease.dart';
 export 'src/_components/_cells/invoice.dart';
-export 'src/_components/_cells/maintenance_request.dart';
+export 'src/_components/_cells/maintenance.dart';
 export 'src/_components/_cells/tenant.dart';
 export 'src/_components/_cells/message.dart';
 export 'src/_components/_cells/load_more.dart';
