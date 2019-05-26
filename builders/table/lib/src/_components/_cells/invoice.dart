@@ -94,7 +94,7 @@ class InvoiceCell extends StatelessWidget with KeyValueRowBuilder {
 
     final formattedTotal = applyMask(
       MaskOption.money,
-      text: totalAmount.toString(),
+      text: (totalAmount / 100).toString(),
       context: context,
     );
 
@@ -108,7 +108,7 @@ class InvoiceCell extends StatelessWidget with KeyValueRowBuilder {
 
     final formattedUnpaid = applyMask(
       MaskOption.money,
-      text: unpaidAmount.toString(),
+      text: (unpaidAmount / 100).toString(),
       context: context,
     );
 

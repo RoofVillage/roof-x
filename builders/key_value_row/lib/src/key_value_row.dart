@@ -53,6 +53,7 @@ class KeyValueRow extends StatelessWidget {
             _valueTypographyStyle.textStyleWithColor(
               theme.color.text.primary,
             ),
+        maxLines: 2,
         overflow: TextOverflow.ellipsis,
       ),
     );

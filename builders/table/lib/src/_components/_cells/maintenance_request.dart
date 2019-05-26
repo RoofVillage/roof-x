@@ -9,14 +9,14 @@ import 'package:key_value_row_builder/index.dart';
 
 import '../tag.dart';
 
-class MaintenaceRequestCell extends StatelessWidget with KeyValueRowBuilder {
+class MaintenanceCell extends StatelessWidget with KeyValueRowBuilder {
   final String name;
   final String note;
   final int receivedTimestamp;
   final MaintenanceRequestStatus status;
   final VoidCallback onTap;
 
-  MaintenaceRequestCell({
+  MaintenanceCell({
     @required this.name,
     this.note,
     @required this.receivedTimestamp,
@@ -118,7 +118,8 @@ class _StatusTag extends StatelessWidget {
     switch (status) {
       case MaintenanceRequestStatus.closed:
         return theme.color.background.markerGreen;
-        break;
+      case MaintenanceRequestStatus.emergency:
+        return theme.color.background.emergency;
       case MaintenanceRequestStatus.open:
       default:
         return theme.color.background.markerGray;

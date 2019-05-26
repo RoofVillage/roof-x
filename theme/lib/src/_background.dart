@@ -116,5 +116,15 @@ class RoofBackgroundColor {
     return null;
   }
 
+  Color get emergency {
+    switch (_current) {
+      case RoofThemeOption.light:
+        return color.emergency;
+      case RoofThemeOption.dark:
+        return color.emergency;
+    }
+    return null;
+  }
+
   RoofBackgroundColor(this._current);
 }

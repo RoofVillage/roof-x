@@ -17,6 +17,9 @@ class InvoiceArtboard extends InvoiceVerticalFullScreenArtboard {
   int get daysPayableIn => 12;
 
   @override
+  int get dueTimestamp => 1554708014;
+
+  @override
   int get totalAmount => 120000;
 
   @override

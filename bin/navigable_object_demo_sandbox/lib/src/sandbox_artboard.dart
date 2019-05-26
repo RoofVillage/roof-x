@@ -103,7 +103,7 @@ class SandboxVerticalFullScreenArtboard
           "Just wanted to say y'all it really looks fire af, yard is the best on the block, get more plastic birds plz luv u lots homiez",
     );
 
-    final maintenanceRequestCell = MaintenaceRequestCell(
+    final maintenanceRequestCell = MaintenanceCell(
       name: "Racoons up in this bitch",
       receivedTimestamp: 1557978442,
       status: MaintenanceRequestStatus.open,
