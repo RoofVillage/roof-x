@@ -4,6 +4,7 @@ import 'package:theme/index.dart';
 import 'package:icon_library/index.dart';
 import 'package:mask/index.dart';
 import 'package:date/index.dart';
+import 'package:icon_library/index.dart';
 import 'package:tabbed_collapsible_fullscreen_artboard_template/index.dart';
 import 'package:breadcrumb_stack_builder/index.dart';
 import 'package:tabbed_container_builder/index.dart';
@@ -139,6 +140,7 @@ abstract class InvoiceVerticalFullScreenArtboard
     final paymentsActionButton = buildSecondaryCenterButton(
       context,
       text: "Manually log a payment",
+      icon: IconReference.cashSackXSmall,
       onTap: (context) => print("log payment tapped"),
       status: ButtonStatusOption.ready,
     );

@@ -4,6 +4,11 @@ class IconReference {
   static final houseXSmall = XSmallIconReference(path: 'house.svg');
   static final rightArrowXSmall = XSmallIconReference(path: 'right_arrow.svg');
   static final leaseXSmall = XSmallIconReference(path: 'lease.svg');
+  static final addXSmall = XSmallIconReference(path: 'add.svg');
+  static final cashSackXSmall = XSmallIconReference(path: 'cash_sack.svg');
+  static final inviteXSmall = XSmallIconReference(path: 'invite.svg');
+  static final invoiceXSmall = XSmallIconReference(path: 'invoice.svg');
+  static final threadXSmall = XSmallIconReference(path: 'thread.svg');
   
   static final boxChecked = SmallIconReference(path: 'box_checked.svg');
   static final boxUnchecked = SmallIconReference(path: 'box_unchecked.svg');

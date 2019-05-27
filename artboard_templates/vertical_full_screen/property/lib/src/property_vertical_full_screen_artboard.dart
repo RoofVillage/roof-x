@@ -85,6 +85,7 @@ abstract class PropertyVerticalFullScreenArtboard
     final leasesActionButton = buildSecondaryCenterButton(
       context,
       text: "Create lease",
+      icon: IconReference.leaseXSmall,
       onTap: (context) => print("create lease tapped"),
       status: ButtonStatusOption.ready,
     );

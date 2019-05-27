@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:typography/index.dart' as typography;
 import 'package:corner_radius/index.dart' as corner_radius;
+import 'package:distance/index.dart' as distance;
+import 'package:icon_library/index.dart';
 import 'package:haptics/index.dart';
 
 typedef ColorGetter = Color Function(BuildContext context);
@@ -11,6 +13,7 @@ mixin RoofCenteredButton {
   String get text => null;
   ColorGetter get backgroundColor;
   ColorGetter get textColor;
+  XSmallIconReference get icon;
 }
 
 mixin RoofCenteredButtonState {
@@ -22,13 +25,22 @@ mixin RoofCenteredButtonState {
   final _textStyle = typography.button;
   final double _height = 50;
   final _tapHapticOption = HapticOption.light;
+  final _spacing = distance.b;
 
   void setState(dynamic());
 
   Widget buildButton(BuildContext context) {
+    final color = button.textColor(context);
+
     List<Widget> buttonChildren = [];
 
-    final color = button.textColor(context);
+    if (button.icon != null) {
+      final paddedIconWidget = Container(
+        margin: EdgeInsets.only(right: _spacing),
+        child: button.icon.buildSvg(color: color),
+      );
+      buttonChildren.add(paddedIconWidget);
+    }
 
     final textDecoration = _textStyle.textStyleWithColor(color);
 
