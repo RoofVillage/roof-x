@@ -12,6 +12,7 @@ mixin RoofCenteredButton {
   OnTap get onTap;
   String get text => null;
   ColorGetter get backgroundColor;
+  ColorGetter get strokeColor => (BuildContext context) => Colors.transparent;
   ColorGetter get textColor;
   XSmallIconReference get icon;
 }
@@ -30,19 +31,19 @@ mixin RoofCenteredButtonState {
   void setState(dynamic());
 
   Widget buildButton(BuildContext context) {
-    final color = button.textColor(context);
+    final textColor = button.textColor(context);
 
     List<Widget> buttonChildren = [];
 
     if (button.icon != null) {
       final paddedIconWidget = Container(
         margin: EdgeInsets.only(right: _spacing),
-        child: button.icon.buildSvg(color: color),
+        child: button.icon.buildSvg(color: textColor),
       );
       buttonChildren.add(paddedIconWidget);
     }
 
-    final textDecoration = _textStyle.textStyleWithColor(color);
+    final textDecoration = _textStyle.textStyleWithColor(textColor);
 
     final styledButtonText = Text(
       button.text,
@@ -55,6 +56,7 @@ mixin RoofCenteredButtonState {
     double opacity = _tapped ? _tappedOpacity : 1;
 
     final decoration = BoxDecoration(
+      border: Border.all(color: button.strokeColor(context)),
       color: button.backgroundColor(context).withOpacity(opacity),
       borderRadius: BorderRadius.all(corner_radius.regular),
     );

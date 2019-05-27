@@ -26,6 +26,11 @@ class RoofSecondaryCenterButton extends StatefulWidget with RoofCenteredButton {
             return theme.color.text.secondaryAction;
         }
       };
+  
+  get strokeColor => (context) {
+    final theme = RoofTheme.of(context);
+    return theme.color.stroke.secondaryAction;
+  };
 
   RoofSecondaryCenterButton({
     @required this.onTap,

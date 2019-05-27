@@ -7,7 +7,7 @@ class RoofStrokeColor {
   RoofThemeOption _current;
 
   Color get light {
-    final opacity1 = 0.07;
+    final opacity1 = 0.08;
     final opacity2 = 0.04;
     switch (_current) {
       case RoofThemeOption.light:
@@ -32,9 +32,9 @@ class RoofStrokeColor {
   Color get secondaryAction {
     switch (_current) {
       case RoofThemeOption.light:
-        return color.blue;
+        return color.white1;
       case RoofThemeOption.dark:
-        return color.blue;
+        return color.blue.withOpacity(0.1);
     }
     return null;
   }
