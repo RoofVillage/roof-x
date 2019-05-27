@@ -24,8 +24,8 @@ class MyApp extends StatelessWidget {
         home: Scaffold(
           // body: SandboxVerticalFullScreenArtboard(),
           // body: InvoiceArtboard(),
-          body: LeaseArtboard(),
-          // body: PropertyArtboard(),
+          // body: LeaseArtboard(),
+          body: PropertyArtboard(),
         ),
       ),
     );

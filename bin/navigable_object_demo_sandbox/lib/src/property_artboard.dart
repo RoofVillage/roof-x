@@ -24,7 +24,7 @@ class PropertyArtboard extends PropertyVerticalFullScreenArtboard {
   }
 
   @override
-  StandardIconReference get homeIcon => IconReference.piggyBank;
+  StandardIconReference get homeIcon => IconReference.treehouse;
 
   @override
   String get paymentProfile => "Denny's big bank";

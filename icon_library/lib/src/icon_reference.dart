@@ -82,6 +82,26 @@ class IconReference {
   static final toolbox = StandardIconReference(path: 'toolbox.svg');
   static final upArrow = StandardIconReference(path: 'up_arrow.svg');
 
+  // Homes icons
+  static final house1 = StandardIconReference(path: 'house1.svg');
+  static final house2 = StandardIconReference(path: 'house2.svg');
+  static final house3 = StandardIconReference(path: 'house3.svg');
+  static final house4 = StandardIconReference(path: 'house4.svg');
+  static final house5 = StandardIconReference(path: 'house5.svg');
+  static final house6 = StandardIconReference(path: 'house6.svg');
+  static final house7 = StandardIconReference(path: 'house7.svg');
+  static final house8 = StandardIconReference(path: 'house8.svg');
+  static final house9 = StandardIconReference(path: 'house9.svg');
+  static final apartment1 = StandardIconReference(path: 'apartment1.svg');
+  static final apartment2 = StandardIconReference(path: 'apartment2.svg');
+  static final apartment3 = StandardIconReference(path: 'apartment3.svg');
+  static final apartment4 = StandardIconReference(path: 'apartment4.svg');
+  static final apartment5 = StandardIconReference(path: 'apartment5.svg');
+  static final tent = StandardIconReference(path: 'tent.svg');
+  static final igloo = StandardIconReference(path: 'igloo.svg');
+  static final camper = StandardIconReference(path: 'camper.svg');
+  static final treehouse = StandardIconReference(path: 'treehouse.svg');
+
   static final addNav = NavigationIconReference(path: 'add.svg');
   static final backArrowNav = NavigationIconReference(path: 'back_arrow.svg');
   static final downArrowNav = NavigationIconReference(path: 'down_arrow.svg');
