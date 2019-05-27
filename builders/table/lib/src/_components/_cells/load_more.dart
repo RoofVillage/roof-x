@@ -48,9 +48,7 @@ class _LoadMoreCellState extends State<LoadMoreCell> {
       color: theme.color.icon.general,
     );
 
-    final loadingIcon = IconReference.loadMore.buildSvg(
-      color: theme.color.icon.secondary,
-    );
+    final loadingIcon = CircularProgressIndicator();
 
     return GestureDetector(
       onTapDown: (details) => _fireHaptic(),

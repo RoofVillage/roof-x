@@ -14,13 +14,17 @@ class RoofCellsListView extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = RoofTheme.of(context);
 
+    List<Widget> listChildren = [];
+
     if (button != null) {
       final paddedButton = Container(
         margin: EdgeInsets.only(top: _spacing),
         child: button,
       );
-      children.insert(0, paddedButton);
+      listChildren.add(paddedButton);
     }
+
+    listChildren.addAll(children);
 
     return Container(
       padding: EdgeInsets.only(
@@ -30,7 +34,7 @@ class RoofCellsListView extends StatelessWidget {
       color: theme.color.background.generalSecondary,
       child: ListView(
         padding: EdgeInsets.only(bottom: distance.c),
-        children: children,
+        children: listChildren,
       ),
     );
   }
