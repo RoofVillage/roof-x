@@ -144,7 +144,7 @@ class _Content extends StatelessWidget with KeyValueBuilder, SpacedGridBuilder {
   Widget build(BuildContext context) {
     final theme = RoofTheme.of(context);
 
-    final backgroundColor = theme.color.background.generalSecondary;
+    final backgroundColor = theme.color.background.generalPrimary;
 
     final borderRadius = radius.large;
 

@@ -53,7 +53,7 @@ class _RoofCellsListViewState extends State<RoofCellsListView> {
 
     listChildren.addAll(widget.children);
 
-    if (_reversed) listChildren = listChildren.reversed.toList();
+    // if (_reversed) listChildren = listChildren.reversed.toList();
 
     return Container(
       alignment: _reversed? Alignment(0, 1) : null,
@@ -63,8 +63,7 @@ class _RoofCellsListViewState extends State<RoofCellsListView> {
       ),
       color: theme.color.background.generalSecondary,
       child: ListView(
-        // reverse: _reversed,
-        shrinkWrap: _reversed? true : false,
+        reverse: _reversed? true : false,
         controller: _reversed? _controller : null,
         padding: EdgeInsets.only(bottom: distance.c),
         children: listChildren,
