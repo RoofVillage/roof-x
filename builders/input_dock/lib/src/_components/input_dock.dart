@@ -115,10 +115,15 @@ class InheritedInputDock extends State<RoofInputDock> {
 
     final safeArea = MediaQuery.of(context).padding.bottom;
     final bottomPadding = EdgeInsets.only(bottom: safeArea);
+    final backgroundColor = theme.color.background.generalPrimary;
+    final topBorderColor = theme.color.stroke.light;
 
     final Widget dock = Container(
       padding: bottomPadding,
-      color: theme.color.background.generalSecondary,
+      decoration: BoxDecoration(
+        color: backgroundColor,
+        border: Border(top: BorderSide(color: topBorderColor)),
+      ),
       child: Column(
         children: columnChildren,
       ),

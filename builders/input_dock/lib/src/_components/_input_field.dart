@@ -38,14 +38,20 @@ class _DockInputFieldState extends State<DockInputField> {
 
   @override
   void dispose() {
-    _textController.dispose();
     super.dispose();
+    _textController.dispose();
   }
 
   @override
   void initState() {
-    _textController.addListener(_textChanged);
     super.initState();
+    _textController.addListener(_textChanged);
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _dock = RoofInputDock.of(context);
   }
 
   @override

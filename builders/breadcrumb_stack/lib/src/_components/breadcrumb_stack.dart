@@ -58,7 +58,6 @@ class RoofBreadcrumbStack extends StatelessWidget {
       onTapDown: (details) => _fireHaptic(),
       onTap: onTap,
       child: Container(
-        color: theme.color.background.generalPrimary,
         padding: EdgeInsets.symmetric(vertical: _verticalMargin),
         child: Wrap(
           runSpacing: _verticalSpacing,

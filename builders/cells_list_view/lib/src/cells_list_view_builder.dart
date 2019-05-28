@@ -7,7 +7,8 @@ mixin RoofCellsListViewBuilder {
     BuildContext context, {
     List<Widget> children,
     Widget button,
+    bool reversed,
   }) {
-    return RoofCellsListView(children: children, button: button);
+    return RoofCellsListView(children: children, button: button, reversed: reversed);
   }
 }

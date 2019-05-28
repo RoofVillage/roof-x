@@ -41,6 +41,12 @@ abstract class LeaseVerticalFullScreenArtboard
   String get title => leaseTitle;
 
   @override
+  bool get hideHeaderInitially => true;
+
+  @override
+  Widget buildTabCollapsibleDock(BuildContext context) => buildInputDock(context);
+
+  @override
   Widget buildNavButton(BuildContext context) {
     final theme = RoofTheme.of(context);
     return IconReference.backArrowNav.buildSvg(color: theme.color.icon.nav);
@@ -165,6 +171,7 @@ abstract class LeaseVerticalFullScreenArtboard
       context,
       children: buildTenantsCells(context),
       button: tenantsActionButton,
+      reversed: true,
     );
 
     final invoicesActionButton = buildSecondaryCenterButton(
@@ -204,6 +211,7 @@ abstract class LeaseVerticalFullScreenArtboard
       RoofTab(
         title: "Tenants",
         view: tenantsList,
+        hasDock: true,
       ),
       RoofTab(
         title: "Invoices",
