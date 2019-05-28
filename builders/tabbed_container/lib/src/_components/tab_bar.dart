@@ -49,7 +49,7 @@ class RoofTabBar extends StatelessWidget {
         indicatorColor: activeLabelColor,
         labelPadding: EdgeInsets.symmetric(
           vertical: distance.a,
-          horizontal: distance.d,
+          horizontal: distance.c,
         ),
       ),
     );
