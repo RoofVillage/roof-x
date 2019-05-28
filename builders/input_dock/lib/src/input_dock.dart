@@ -3,8 +3,8 @@ import 'package:multi_image_picker/asset.dart';
 import 'package:padding/index.dart' as padding;
 import 'package:theme/index.dart';
 
-import '_file_preview.dart';
-import '_input_field.dart';
+import '_components/_file_preview.dart';
+import '_components/_input_field.dart';
 
 class DockSubmitData {
   String text;

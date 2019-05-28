@@ -8,7 +8,7 @@ import 'package:distance/index.dart' as distance;
 import 'package:corner_radius/index.dart' as corner_radius;
 import 'package:typography/index.dart' as typography;
 
-import 'input_dock.dart';
+import '../input_dock.dart';
 
 class DockActionButton extends StatefulWidget {
   final Function action;

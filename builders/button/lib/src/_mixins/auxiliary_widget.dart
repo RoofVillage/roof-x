@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:input_dock_builder/index.dart';
 import 'package:distance/index.dart' as distance;
-
-import '../input_dock.dart';
 
 mixin AuxiliaryWidget implements StatelessWidget {
   Widget buildAuxiliaryWidget(
