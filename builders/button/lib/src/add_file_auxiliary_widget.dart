@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:icon_library/index.dart';
 import 'package:image_picker_builder/index.dart';
 import 'package:button_builder/index.dart';
+import 'package:input_dock_builder/index.dart';
 
 import '_mixins/auxiliary_widget.dart';
-import 'input_dock.dart';
 
 class AddFileAuxiliaryWidget extends StatelessWidget
     with AuxiliaryWidget, ImagePickerBuilder, PrimaryIconButtonBuilder {

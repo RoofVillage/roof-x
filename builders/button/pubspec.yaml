@@ -25,6 +25,10 @@ dependencies:
     path: ../../lib/typedefs
   button_status_option:
     path: ../../options/button_status
+  image_picker_builder:
+    path: ../image_picker
+  input_dock_builder:
+    path: ../input_dock
 
 dev_dependencies:
   flutter_test:

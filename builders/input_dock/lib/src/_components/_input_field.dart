@@ -7,7 +7,7 @@ import 'package:theme/index.dart';
 import 'package:typography/index.dart' as typography;
 import 'package:haptics/index.dart';
 
-import 'input_dock.dart';
+import '../input_dock.dart';
 
 class DockInputField extends StatefulWidget {
   final Function onSubmit;

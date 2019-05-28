@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '_components/input_dock.dart';
+import 'input_dock.dart';
 
 mixin InputDockBuilder {
   Widget get actionButton => null;
