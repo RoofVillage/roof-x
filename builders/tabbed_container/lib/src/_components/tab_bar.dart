@@ -29,8 +29,8 @@ class RoofTabBar extends StatelessWidget {
 
     final labelColor = theme.color.text.secondary;
     final activeLabelColor = theme.color.text.brand;
-    final unselectedLabelStyle =
-        _labelTypography.textStyleWithColor(labelColor);
+
+    // Labelstyle color is ignored by TabBar widget
     final labelStyle = _labelTypography.textStyleWithColor(activeLabelColor);
 
     return Container(
@@ -42,9 +42,9 @@ class RoofTabBar extends StatelessWidget {
         tabs: tabWidgets,
         controller: tabController,
         isScrollable: true,
-        unselectedLabelStyle: unselectedLabelStyle,
         labelStyle: labelStyle,
-        unselectedLabelColor: labelColor,
+        // Fix for bug where TabBar with only one tab is styled as inactive
+        unselectedLabelColor: tabs.length > 1 ? labelColor : null,
         labelColor: activeLabelColor,
         indicatorColor: activeLabelColor,
         labelPadding: EdgeInsets.symmetric(
