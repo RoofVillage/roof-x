@@ -42,8 +42,11 @@ abstract class LeaseVerticalFullScreenArtboard
   @override
   String get title => leaseTitle;
 
+  // @override
+  // bool get hideHeaderInitially => true;
+
   @override
-  bool get hideHeaderInitially => true;
+  List<Widget> get auxiliaryWidgets => [AddFileAuxiliaryWidget()];
 
   @override
   Widget buildTabCollapsibleDock(BuildContext context) =>
@@ -252,12 +255,12 @@ abstract class LeaseVerticalFullScreenArtboard
         hasDock: true,
       ),
       RoofTab(
-        title: "Tenants",
-        view: tenantsList,
-      ),
-      RoofTab(
         title: "Invoices",
         view: invoicesList,
+      ),
+      RoofTab(
+        title: "Tenants",
+        view: tenantsList,
       ),
       RoofTab(
         title: "Messages",

@@ -8,11 +8,11 @@ import '_components/tab_view.dart';
 
 class RoofTabbedContainer extends StatefulWidget {
   final List<RoofTab> tabs;
-  final Function(bool) tabListener;
+  final Function(bool) dockVisibilityListener;
 
   RoofTabbedContainer({
     @required this.tabs,
-    this.tabListener,
+    this.dockVisibilityListener,
     Key key,
   }) : super(key: key);
 
@@ -33,11 +33,11 @@ class _RoofTabbedContainerState extends State<RoofTabbedContainer>
       vsync: this,
     );
 
-    if (widget.tabListener != null) {
-      _tabController.addListener(_tabHasDock);
+    if (widget.dockVisibilityListener != null) {
+      _tabController.addListener(_dockVisibleForTab);
 
       WidgetsBinding.instance.addPostFrameCallback(
-        (Duration d) => _tabHasDock(),
+        (Duration d) => _dockVisibleForTab(),
       );
     }
   }
@@ -48,14 +48,27 @@ class _RoofTabbedContainerState extends State<RoofTabbedContainer>
     super.dispose();
   }
 
-  void _tabHasDock() {
-    bool hasDock = false;
+  void _dockVisibleForTab() {
+    print("offset ${_tabController.offset}");
 
-    final index = _tabController.index;
+    final offset = _tabController.offset;
+    final bool dragging = offset != 0;
+
+    int index = _tabController.index;
+
+    // Get tab that is being dragged to
+    if (dragging && offset.abs() > .5) {
+      if (offset > 0) {
+        index += 1;
+      } else if (offset < 0) {
+        index -= 1;
+      }
+    }
+
     final tab = widget.tabs[index];
-    if (tab.hasDock != null) hasDock = tab.hasDock;
+    final visible = tab.hasDock ?? false;
 
-    widget.tabListener(hasDock);
+    widget.dockVisibilityListener(visible);
   }
 
   final _verticalMargin = distance.c;
@@ -77,6 +90,7 @@ class _RoofTabbedContainerState extends State<RoofTabbedContainer>
       child: RoofTabView(
         views: tabViews,
         tabController: _tabController,
+        onDragCallback: _dockVisibleForTab,
       ),
     );
 

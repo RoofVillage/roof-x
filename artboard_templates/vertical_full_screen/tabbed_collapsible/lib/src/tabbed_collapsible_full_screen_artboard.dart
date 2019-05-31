@@ -77,15 +77,22 @@ abstract class TabbedCollapsibleFullScreenArtboard extends StatefulWidget
       headerChildren.add(infoSection);
     }
 
-    void updateDockVisibility(BuildContext context, bool visible) {
-      if (visible == null) return;
-      dockKey.currentState?.setVisibility(visible);
+    void updateDockVisibility(
+      BuildContext context, {
+      @required bool visible,
+    }) {
+      final collapsibleDockContainer = dockKey.currentState;
+      collapsibleDockContainer?.setVisibility(visible);
     }
 
     final tabbedContainer = buildTabbedContainer(
       context,
       buildTabs(context),
-      tabListener: (hasDock) => updateDockVisibility(context, hasDock),
+      dockVisibilityListener: (bool visible) =>
+          updateDockVisibility(
+            context,
+            visible: visible,
+          ),
     );
 
     final previewRow = Container(
@@ -98,9 +105,11 @@ abstract class TabbedCollapsibleFullScreenArtboard extends StatefulWidget
       ),
     );
 
+    return tabbedContainer;
+
     return _ScrollView(
-      headerChildren: headerChildren,
-      previewRow: previewRow,
+      headerChildren: [previewRow],
+      // previewRow: previewRow,
       tabbedContainer: tabbedContainer,
       initiallyCollapsed: hideHeaderInitially,
     );
@@ -167,8 +176,18 @@ class _ScrollViewState extends State<_ScrollView> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = RoofTheme.of(context);
+
     final headerOpacityContainer = Opacity(
       opacity: _headerOpacity,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: widget.headerChildren,
+      ),
+    );
+
+    final headerContainer = Container(
+      color: theme.color.background.generalPrimary,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: widget.headerChildren,
@@ -182,7 +201,7 @@ class _ScrollViewState extends State<_ScrollView> {
         return [
           SliverList(
             delegate: SliverChildListDelegate(
-              [headerOpacityContainer],
+              [headerContainer],
             ),
           ),
         ];
@@ -209,6 +228,8 @@ class _CollapsibleContainerState extends State<_CollapsibleContainer>
   final _curve = curve.quick;
 
   void setVisibility(bool visible) {
+    print("setVisibility $visible");
+
     setState(() {
       _visible = visible;
     });

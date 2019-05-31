@@ -7,11 +7,11 @@ mixin RoofTabbedContainerBuilder {
   RoofTabbedContainer buildTabbedContainer(
     BuildContext context,
     List<RoofTab> tabs, {
-    Function(bool) tabListener,
+    Function(bool) dockVisibilityListener,
   }) {
     return RoofTabbedContainer(
       tabs: tabs,
-      tabListener: tabListener,
+      dockVisibilityListener: dockVisibilityListener,
     );
   }
 }

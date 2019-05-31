@@ -42,7 +42,7 @@ mixin VerticalFullScreenArtboardState<T extends VerticalFullScreenArtboard>
     );
 
     final scaffold = Scaffold(
-      backgroundColor: theme.color.background.generalPrimary,
+      backgroundColor: theme.color.background.generalSecondary,
       body: column,
     );
 
