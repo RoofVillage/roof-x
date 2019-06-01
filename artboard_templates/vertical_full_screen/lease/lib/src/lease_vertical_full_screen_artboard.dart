@@ -1,25 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:input_dock_builder/index.dart';
-import 'package:key_value_row_builder/index.dart';
-import 'package:table_builder/index.dart';
 import 'package:theme/index.dart';
 import 'package:icon_library/index.dart';
-import 'package:key_value_builder/index.dart';
 import 'package:tabbed_fullscreen_artboard_template/index.dart';
-import 'package:tabbed_container_builder/index.dart';
 import 'package:button_builder/index.dart';
 import 'package:button_status_option/index.dart';
 import 'package:cells_list_view_builder/index.dart';
+import 'package:tab/index.dart';
 
-abstract class LeaseVerticalFullScreenArtboard
-    extends TabbedFullScreenArtboard
-    with
-        RoofTabbedContainerBuilder,
-        RoofCellsListViewBuilder,
-        KeyValueRowBuilder,
-        InputDockBuilder,
-        SecondaryCenterButtonBuilder,
-        KeyValueBuilder {
+abstract class LeaseVerticalFullScreenArtboard extends TabbedFullScreenArtboard
+    with RoofCellsListViewBuilder, SecondaryCenterButtonBuilder {
   String get leaseTitle;
   String get homeTitle;
   int get totalAmount;
@@ -33,6 +22,7 @@ abstract class LeaseVerticalFullScreenArtboard
   int get daysUntilLateFee;
   String get transactionFee;
 
+  List<Widget> buildThreadCells(BuildContext context);
   List<Widget> buildTenantsCells(BuildContext context);
   List<Widget> buildInvoicesCells(BuildContext context);
   List<Widget> buildMaintenanceCells(BuildContext context);
@@ -74,39 +64,9 @@ abstract class LeaseVerticalFullScreenArtboard
       button: tenantsActionButton,
     );
 
-    final eventCell = RoofThreadEventCell(
-      timestamp: 1558229172,
-      title: "Event title",
-      note: "Did an event here's a note bishhh",
-      iconReference: IconReference.livingRoom,
-      details: [
-        buildKeyValue(
-          context,
-          title: "Permission to enter",
-          value: "Fuck yea",
-        ),
-        buildKeyValue(
-          context,
-          title: "Another detail",
-          value: "Detail value",
-        ),
-        buildKeyValue(
-          context,
-          title: "Another detail 222",
-          value: "Detail value 222",
-        ),
-        buildKeyValue(
-          context,
-          title: "more shit",
-          value:
-              "Detail value 222 asdf asdf asdfasdf alkjlkj asdfasdf alkjlkj asdfasdf alkjlkj",
-        )
-      ],
-    );
-
     final threadList = buildCellsList(
       context,
-      children: [eventCell, eventCell],
+      children: buildThreadCells(context),
       reversed: true,
     );
 

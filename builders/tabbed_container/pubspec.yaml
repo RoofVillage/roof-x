@@ -25,6 +25,8 @@ dependencies:
     path: ../collapsible_container
   input_dock_builder:
     path: ../input_dock
+  tab:
+    path: ../../tab
 
 dev_dependencies:
   flutter_test:

@@ -10,26 +10,20 @@ dependencies:
     sdk: flutter
   artboard:
     path: ../../../lib/artboard
-  vertical_full_screen_artboard_scaffold:
-    path: ../../../artboard_scaffolds/vertical_full_screen
-  tabbed_collapsible_fullscreen_artboard_template:
-    path: ../tabbed_collapsible
+  tabbed_fullscreen_artboard_template:
+    path: ../tabbed
   nav_bar_builder:
     path: ../../../builders/nav_bar
-  input_dock_builder:
-    path: ../../../builders/input_dock
-  table_builder:
-    path: ../../../builders/table
   breadcrumb_stack_builder:
     path: ../../../builders/breadcrumb_stack
-  tabbed_container_builder:
-    path: ../../../builders/tabbed_container
   cells_list_view_builder:
     path: ../../../builders/cells_list_view
   tag_builder:
     path: ../../../builders/tag
   key_value_row_builder:
     path: ../../../builders/key_value_row
+  tab:
+    path: ../../../tab
 
 dev_dependencies:
   flutter_test:

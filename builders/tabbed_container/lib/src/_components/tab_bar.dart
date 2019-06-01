@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:theme/index.dart';
+import 'package:tab/index.dart';
 import 'package:typography/index.dart' as typography;
 import 'package:distance/index.dart' as distance;
-
-import '../tab.dart';
 
 class RoofTabBar extends StatelessWidget {
   final List<RoofTab> tabs;

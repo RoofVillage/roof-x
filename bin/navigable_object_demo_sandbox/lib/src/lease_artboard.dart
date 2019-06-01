@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:navigator/index.dart';
+import 'package:icon_library/index.dart';
 import 'package:lease_full_screen_artboard_template/index.dart';
 import 'package:table_builder/index.dart';
+import 'package:key_value_builder/index.dart';
 
-class LeaseArtboard extends LeaseVerticalFullScreenArtboard {
+class LeaseArtboard extends LeaseVerticalFullScreenArtboard with KeyValueBuilder {
   @override
   String get homeTitle => "200 S Dawson St. Apt. B";
 
@@ -111,5 +113,39 @@ class LeaseArtboard extends LeaseVerticalFullScreenArtboard {
       tenantCell,
       tenantCell,
     ];
+  }
+
+  @override
+  List<Widget> buildThreadCells(BuildContext context) {
+    final eventCell = RoofThreadEventCell(
+      timestamp: 1558229172,
+      title: "Event title",
+      note: "Did an event here's a note bishhh",
+      iconReference: IconReference.livingRoom,
+      details: [
+        buildKeyValue(
+          context,
+          title: "Permission to enter",
+          value: "Fuck yea",
+        ),
+        buildKeyValue(
+          context,
+          title: "Another detail",
+          value: "Detail value",
+        ),
+        buildKeyValue(
+          context,
+          title: "Another detail 222",
+          value: "Detail value 222",
+        ),
+        buildKeyValue(
+          context,
+          title: "more shit",
+          value:
+              "Detail value 222 asdf asdf asdfasdf alkjlkj asdfasdf alkjlkj asdfasdf alkjlkj",
+        )
+      ],
+    );
+    return [eventCell, eventCell];
   }
 }

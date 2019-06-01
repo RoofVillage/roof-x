@@ -28,6 +28,8 @@ dependencies:
     path: ../../../builders/cells_list_view
   key_value_row_builder:
     path: ../../../builders/key_value_row
+  tab:
+    path: ../../../tab
 
 dev_dependencies:
   flutter_test:

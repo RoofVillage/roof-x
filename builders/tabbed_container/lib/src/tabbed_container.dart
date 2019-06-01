@@ -4,9 +4,9 @@ import 'package:visibility_manager_builder/index.dart';
 import 'package:collapsible_container_builder/index.dart';
 import 'package:input_dock_builder/index.dart';
 import 'package:button_builder/index.dart';
+import 'package:tab/index.dart';
 import 'package:distance/index.dart' as distance;
 
-import 'tab.dart';
 import '_components/tab_bar.dart';
 import '_components/tab_view.dart';
 

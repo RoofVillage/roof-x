@@ -1,8 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:visibility_manager_builder/index.dart';
-
-import '../tab.dart';
+import 'package:tab/index.dart';
 
 class RoofTabView extends StatefulWidget {
   const RoofTabView({

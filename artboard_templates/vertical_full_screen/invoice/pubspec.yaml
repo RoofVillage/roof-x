@@ -8,8 +8,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  tabbed_collapsible_fullscreen_artboard_template:
-    path: ../tabbed_collapsible
+  tabbed_fullscreen_artboard_template:
+    path: ../tabbed
   breadcrumb_stack_builder:
     path: ../../../builders/breadcrumb_stack
   tabbed_container_builder:
@@ -18,6 +18,8 @@ dependencies:
     path: ../../../builders/cells_list_view
   key_value_row_builder:
     path: ../../../builders/key_value_row
+  tab:
+    path: ../../../tab
 
 dev_dependencies:
   flutter_test:

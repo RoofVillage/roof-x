@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:theme/index.dart';
 import 'dart:ui';
 
-import 'src/sandbox_artboard.dart';
 import 'src/invoice_artboard.dart';
 import 'src/lease_artboard.dart';
 import 'src/property_artboard.dart';
@@ -23,7 +22,6 @@ class MyApp extends StatelessWidget {
         ),
         debugShowCheckedModeBanner: false,
         home: Scaffold(
-          // body: SandboxVerticalFullScreenArtboard(),
           // body: InvoiceArtboard(),
           body: LeaseArtboard(),
           // body: PropertyArtboard(),

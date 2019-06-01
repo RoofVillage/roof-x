@@ -28,6 +28,8 @@ dependencies:
     path: ../../../builders/collapsible_container
   visibility_manager_builder:
     path: ../../../builders/visibility_manager
+  tab:
+    path: ../../../tab
 
 dev_dependencies:
   flutter_test:

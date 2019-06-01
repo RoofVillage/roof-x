@@ -3,6 +3,7 @@ import 'package:nav_bar_builder/index.dart';
 import 'package:artboard/index.dart';
 import 'package:vertical_full_screen_artboard_scaffold/index.dart';
 import 'package:tabbed_container_builder/index.dart';
+import 'package:tab/index.dart';
 
 abstract class TabbedFullScreenArtboard extends StatefulWidget
     with
