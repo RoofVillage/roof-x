@@ -10,6 +10,7 @@ import 'package:breadcrumb_stack_builder/index.dart';
 import 'package:theme/index.dart';
 import 'package:duration/index.dart' as duration;
 import 'package:curve/index.dart' as curve;
+import 'package:collapsible_container_builder/index.dart';
 import 'package:typography/index.dart' as typography;
 import 'package:distance/index.dart' as distance;
 
@@ -23,16 +24,17 @@ abstract class TabbedCollapsibleFullScreenArtboard extends StatefulWidget
         RoofBreadcrumbBuilder,
         KeyValueRowBuilder,
         InputDockBuilder,
-        RoofTabbedContainerBuilder {
+        RoofTabbedContainerBuilder,
+        CollapsibleContainerBuilder {
   @override
   Widget buildNavBar(BuildContext context) => buildTitledIconNavBar(context);
 
   Widget buildTabCollapsibleDock(BuildContext context) => null;
 
-  final GlobalKey<_CollapsibleContainerState> dockKey = GlobalKey();
+  final GlobalKey<State> dockKey = GlobalKey();
 
-  _CollapsibleContainer collapsibleDock(BuildContext context) =>
-      _CollapsibleContainer(
+  Widget collapsibleDock(BuildContext context) => buildCollapsibleContainer(
+        context,
         child: buildTabCollapsibleDock(context),
         key: dockKey,
       );
@@ -81,18 +83,13 @@ abstract class TabbedCollapsibleFullScreenArtboard extends StatefulWidget
       BuildContext context, {
       @required bool visible,
     }) {
-      final collapsibleDockContainer = dockKey.currentState;
-      collapsibleDockContainer?.setVisibility(visible);
+      final State collapsibleDockContainer = dockKey.currentState;
+      // collapsibleDockContainer?.setVisibility(visible);
     }
 
     final tabbedContainer = buildTabbedContainer(
       context,
       buildTabs(context),
-      dockVisibilityListener: (bool visible) =>
-          updateDockVisibility(
-            context,
-            visible: visible,
-          ),
     );
 
     final previewRow = Container(
@@ -207,44 +204,6 @@ class _ScrollViewState extends State<_ScrollView> {
         ];
       },
       body: widget.tabbedContainer,
-    );
-  }
-}
-
-class _CollapsibleContainer extends StatefulWidget {
-  final Widget child;
-
-  _CollapsibleContainer({this.child, Key key}) : super(key: key);
-
-  @override
-  State<StatefulWidget> createState() => _CollapsibleContainerState();
-}
-
-class _CollapsibleContainerState extends State<_CollapsibleContainer>
-    with SingleTickerProviderStateMixin {
-  bool _visible = false;
-
-  final _duration = duration.short;
-  final _curve = curve.quick;
-
-  void setVisibility(bool visible) {
-    print("setVisibility $visible");
-
-    setState(() {
-      _visible = visible;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return AnimatedSize(
-      duration: _duration,
-      curve: _curve,
-      vsync: this,
-      child: Container(
-        height: _visible ? null : 0,
-        child: widget.child,
-      ),
     );
   }
 }

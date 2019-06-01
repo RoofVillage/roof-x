@@ -19,6 +19,8 @@ dependencies:
     path: ../../lib/haptics
   distance:
     path: ../../spec/distance
+  visibility_manager_builder:
+    path: ../visibility_manager
 
 dev_dependencies:
   flutter_test:

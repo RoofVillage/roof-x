@@ -24,6 +24,8 @@ dependencies:
     path: ../../../builders/breadcrumb_stack
   tabbed_container_builder:
     path: ../../../builders/tabbed_container
+  collapsible_container_builder:
+    path: ../../../builders/collapsible_container
 
 dev_dependencies:
   flutter_test:

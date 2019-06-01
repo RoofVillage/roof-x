@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:theme/index.dart';
+import 'package:visibility_manager_builder/index.dart';
 import 'package:distance/index.dart' as distance;
 
 import 'tab.dart';
@@ -8,11 +9,9 @@ import '_components/tab_view.dart';
 
 class RoofTabbedContainer extends StatefulWidget {
   final List<RoofTab> tabs;
-  final Function(bool) dockVisibilityListener;
 
   RoofTabbedContainer({
     @required this.tabs,
-    this.dockVisibilityListener,
     Key key,
   }) : super(key: key);
 
@@ -23,6 +22,7 @@ class _RoofTabbedContainerState extends State<RoofTabbedContainer>
     with SingleTickerProviderStateMixin {
   final GlobalKey _tabContainerKey = GlobalKey();
   TabController _tabController;
+  VisibilityManager _dockVisibilityManager;
 
   @override
   void initState() {
@@ -33,13 +33,18 @@ class _RoofTabbedContainerState extends State<RoofTabbedContainer>
       vsync: this,
     );
 
-    if (widget.dockVisibilityListener != null) {
-      _tabController.addListener(_dockVisibleForTab);
+    _tabController.addListener(_dockVisibleForTab);
 
-      WidgetsBinding.instance.addPostFrameCallback(
-        (Duration d) => _dockVisibleForTab(),
-      );
-    }
+    WidgetsBinding.instance.addPostFrameCallback(
+      (Duration d) => _dockVisibleForTab(),
+    );
+  }
+
+  @override
+  void didChangeDependencies() {
+    _dockVisibilityManager = InheritedVisibilityManager.of(context);
+
+    super.didChangeDependencies();
   }
 
   @override
@@ -49,14 +54,13 @@ class _RoofTabbedContainerState extends State<RoofTabbedContainer>
   }
 
   void _dockVisibleForTab() {
-    print("offset ${_tabController.offset}");
+    if (_dockVisibilityManager == null) return;
 
     final offset = _tabController.offset;
     final bool dragging = offset != 0;
 
     int index = _tabController.index;
 
-    // Get tab that is being dragged to
     if (dragging && offset.abs() > .5) {
       if (offset > 0) {
         index += 1;
@@ -68,7 +72,7 @@ class _RoofTabbedContainerState extends State<RoofTabbedContainer>
     final tab = widget.tabs[index];
     final visible = tab.hasDock ?? false;
 
-    widget.dockVisibilityListener(visible);
+    _dockVisibilityManager?.setVisibility(visible);
   }
 
   final _verticalMargin = distance.c;

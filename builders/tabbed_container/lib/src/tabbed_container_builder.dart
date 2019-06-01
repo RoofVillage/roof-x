@@ -6,12 +6,8 @@ import 'tab.dart';
 mixin RoofTabbedContainerBuilder {
   RoofTabbedContainer buildTabbedContainer(
     BuildContext context,
-    List<RoofTab> tabs, {
-    Function(bool) dockVisibilityListener,
-  }) {
-    return RoofTabbedContainer(
-      tabs: tabs,
-      dockVisibilityListener: dockVisibilityListener,
-    );
+    List<RoofTab> tabs,
+  ) {
+    return RoofTabbedContainer(tabs: tabs);
   }
 }

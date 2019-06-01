@@ -7,9 +7,11 @@ import 'package:theme/index.dart';
 import 'package:table_builder/index.dart';
 import 'package:cells_list_view_builder/index.dart';
 import 'package:tabbed_collapsible_fullscreen_artboard_template/index.dart';
+import 'package:tabbed_fullscreen_artboard_template/index.dart';
+import 'package:input_dock_builder/index.dart';
 
 class SandboxVerticalFullScreenArtboard
-    extends TabbedCollapsibleFullScreenArtboard with RoofCellsListViewBuilder {
+    extends TabbedFullScreenArtboard with RoofCellsListViewBuilder {
   final String title = "Invoice due soon yaa";
 
   @override
@@ -24,33 +26,6 @@ class SandboxVerticalFullScreenArtboard
   Widget buildNavButton(BuildContext context) {
     final theme = RoofTheme.of(context);
     return IconReference.backArrowNav.buildSvg(color: theme.color.icon.nav);
-  }
-
-  @override
-  List<RoofBreadcrumb> buildBreadcrumbs(BuildContext context) {
-    return [
-      RoofBreadcrumb(
-        title: "2720 W Lamar Road",
-        iconReference: IconReference.houseXSmall,
-      ),
-      RoofBreadcrumb(
-        title: "House Manager Lease (2019-2020)",
-        iconReference: IconReference.leaseXSmall,
-      )
-    ];
-  }
-
-  @override
-  List<Widget> buildInfoRows(BuildContext context) {
-    return [
-      buildKeyValueRow(context, title: "Total", value: "\$1,400.00"),
-      buildKeyValueRow(context, title: "Paid", value: "\$800.00"),
-      buildKeyValueRow(context, title: "Still owed", value: "\$600.00"),
-      buildKeyValueRow(context, title: "Payable", value: "Payable now"),
-      buildKeyValueRow(context, title: "Due", value: "June 1, 2019"),
-      buildKeyValueRow(context,
-          title: "Payment profile", value: "Lamar Checking Account"),
-    ];
   }
 
   @override

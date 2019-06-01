@@ -15,6 +15,8 @@ dependencies:
     path: ../../artboard_scaffolds/vertical_full_screen
   tabbed_collapsible_fullscreen_artboard_template:
     path: ../../artboard_templates/vertical_full_screen/tabbed_collapsible
+  tabbed_fullscreen_artboard_template:
+    path: ../../artboard_templates/vertical_full_screen/tabbed
   invoice_full_screen_artboard_template:
     path: ../../artboard_templates/vertical_full_screen/invoice
   lease_full_screen_artboard_template:
