@@ -63,9 +63,20 @@ class _RoofTabViewState extends State<RoofTabView> {
 
   @override
   void dispose() {
-    if (_controller != null)
+    if (_controller != null) {
       _controller.animation.removeListener(_handleTabControllerAnimationTick);
+      _controller.animation.removeListener(_dockVisibleForTab);
+    }
     super.dispose();
+  }
+
+  void _handleTabControllerAnimationTick() {
+    if (_warpUnderwayCount > 0 || !_controller.indexIsChanging) return;
+
+    if (_controller.index != _currentIndex) {
+      _currentIndex = _controller.index;
+      _warpToCurrentIndex();
+    }
   }
 
   void _dockVisibleForTab() {
@@ -88,18 +99,6 @@ class _RoofTabViewState extends State<RoofTabView> {
     final visible = newTab.hasDock ?? false;
 
     _dockVisibilityManager.setVisibility(visible);
-  }
-
-  void _handleTabControllerAnimationTick() {
-    // widget.onDragCallback();
-    _dockVisibleForTab();
-
-    if (_warpUnderwayCount > 0 || !_controller.indexIsChanging) return;
-
-    if (_controller.index != _currentIndex) {
-      _currentIndex = _controller.index;
-      _warpToCurrentIndex();
-    }
   }
 
   Future<void> _warpToCurrentIndex() async {
