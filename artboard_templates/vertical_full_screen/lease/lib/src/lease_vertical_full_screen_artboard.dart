@@ -4,11 +4,8 @@ import 'package:key_value_row_builder/index.dart';
 import 'package:table_builder/index.dart';
 import 'package:theme/index.dart';
 import 'package:icon_library/index.dart';
-import 'package:mask/index.dart';
-import 'package:date/index.dart';
 import 'package:key_value_builder/index.dart';
 import 'package:tabbed_fullscreen_artboard_template/index.dart';
-import 'package:breadcrumb_stack_builder/index.dart';
 import 'package:tabbed_container_builder/index.dart';
 import 'package:button_builder/index.dart';
 import 'package:button_status_option/index.dart';
@@ -43,13 +40,6 @@ abstract class LeaseVerticalFullScreenArtboard
 
   @override
   String get title => leaseTitle;
-
-  @override
-  List<Widget> get auxiliaryWidgets => [AddFileAuxiliaryWidget()];
-
-  @override
-  Widget buildCollapsibleTabDock(BuildContext context) =>
-      buildInputDock(context);
 
   @override
   Widget buildNavButton(BuildContext context) {
@@ -166,10 +156,12 @@ abstract class LeaseVerticalFullScreenArtboard
       RoofTab(
         title: "Tenants",
         view: tenantsList,
+        hasDock: true,
       ),
       RoofTab(
         title: "Messages",
         view: messagesList,
+        hasDock: true,
       ),
       RoofTab(
         title: "Maintenance",

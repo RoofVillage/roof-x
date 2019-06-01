@@ -1,59 +1,49 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:visibility_manager_builder/index.dart';
 
-class RoofTabView extends StatelessWidget {
-  final List<Widget> views;
-  final TabController tabController;
-  final VoidCallback onDragCallback;
+import '../tab.dart';
 
+class RoofTabView extends StatefulWidget {
   const RoofTabView({
-    @required this.views,
-    @required this.tabController,
-    this.onDragCallback,
-    Key key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return RoofTabBarView(
-      children: views,
-      controller: tabController,
-      onDragCallback: onDragCallback,
-    );
-  }
-}
-
-class RoofTabBarView extends StatefulWidget {
-  const RoofTabBarView({
-    @required this.children,
+    @required this.tabs,
     @required this.controller,
-    this.onDragCallback
   });
 
   final TabController controller;
-  final List<Widget> children;
-  final VoidCallback onDragCallback;
+  final List<RoofTab> tabs;
 
   @override
-  _RoofTabBarViewState createState() => _RoofTabBarViewState();
+  _RoofTabViewState createState() => _RoofTabViewState();
 }
 
-class _RoofTabBarViewState extends State<RoofTabBarView> {
+class _RoofTabViewState extends State<RoofTabView> {
   TabController _controller;
   PageController _pageController;
+  VisibilityManager _dockVisibilityManager;
   List<Widget> _children;
   int _currentIndex;
   int _warpUnderwayCount = 0;
 
+  List<Widget> _buildTabViews() {
+    return widget.tabs.map((tab) => tab.view).toList();
+  }
+
   void _updateTabController() {
     _controller.animation.addListener(_handleTabControllerAnimationTick);
+    _controller.animation.addListener(_dockVisibleForTab);
   }
 
   @override
   void initState() {
     super.initState();
-    _children = widget.children;
+
+    _children = _buildTabViews();
     _controller = widget.controller;
+
+    WidgetsBinding.instance.addPostFrameCallback(
+      (Duration d) => _dockVisibleForTab(),
+    );
   }
 
   @override
@@ -62,13 +52,14 @@ class _RoofTabBarViewState extends State<RoofTabBarView> {
     _updateTabController();
     _currentIndex = _controller?.index;
     _pageController = PageController(initialPage: _currentIndex ?? 0);
+    _dockVisibilityManager = InheritedVisibilityManager.of(context);
   }
 
   @override
-  void didUpdateWidget(RoofTabBarView oldWidget) {
+  void didUpdateWidget(RoofTabView oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (widget.children != oldWidget.children && _warpUnderwayCount == 0)
-      _children = widget.children;
+    if (widget.tabs != oldWidget.tabs && _warpUnderwayCount == 0)
+      _children = _buildTabViews();
   }
 
   @override
@@ -78,11 +69,33 @@ class _RoofTabBarViewState extends State<RoofTabBarView> {
     super.dispose();
   }
 
-  void _handleTabControllerAnimationTick() {
-    widget.onDragCallback();
+  void _dockVisibleForTab() {
+    if (_dockVisibilityManager == null) return;
 
-    if (_warpUnderwayCount > 0 || !_controller.indexIsChanging)
-      return;
+    final offset = _controller.offset;
+    final bool dragging = offset != 0;
+
+    int index = _controller.index;
+
+    if (dragging && offset.abs() > .5) {
+      if (offset > 0) {
+        index += 1;
+      } else if (offset < 0) {
+        index -= 1;
+      }
+    }
+
+    final newTab = widget.tabs[index];
+    final visible = newTab.hasDock ?? false;
+
+    _dockVisibilityManager.setVisibility(visible);
+  }
+
+  void _handleTabControllerAnimationTick() {
+    // widget.onDragCallback();
+    _dockVisibleForTab();
+
+    if (_warpUnderwayCount > 0 || !_controller.indexIsChanging) return;
 
     if (_controller.index != _currentIndex) {
       _currentIndex = _controller.index;
@@ -105,7 +118,7 @@ class _RoofTabBarViewState extends State<RoofTabBarView> {
     int initialPage;
     setState(() {
       _warpUnderwayCount += 1;
-      _children = List<Widget>.from(widget.children, growable: false);
+      _children = List<Widget>.from(_buildTabViews(), growable: false);
       if (_currentIndex > previousIndex) {
         _children[_currentIndex - 1] = _children[previousIndex];
         initialPage = _currentIndex - 1;
@@ -123,7 +136,7 @@ class _RoofTabBarViewState extends State<RoofTabBarView> {
 
     setState(() {
       _warpUnderwayCount -= 1;
-      _children = widget.children;
+      _children = _buildTabViews();
     });
   }
 

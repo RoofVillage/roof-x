@@ -21,6 +21,10 @@ dependencies:
     path: ../../spec/distance
   visibility_manager_builder:
     path: ../visibility_manager
+  collapsible_container_builder:
+    path: ../collapsible_container
+  input_dock_builder:
+    path: ../input_dock
 
 dev_dependencies:
   flutter_test:

@@ -3,8 +3,10 @@ import 'package:theme/index.dart';
 import 'package:typography/index.dart' as typography;
 import 'package:distance/index.dart' as distance;
 
+import '../tab.dart';
+
 class RoofTabBar extends StatelessWidget {
-  final List<String> tabs;
+  final List<RoofTab> tabs;
   final TabController tabController;
 
   RoofTabBar({
@@ -19,9 +21,11 @@ class RoofTabBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = RoofTheme.of(context);
 
+    final List<String> tabTitles = tabs.map((tab) => tab.title).toList();
+
     final List<Widget> tabWidgets = [];
 
-    for (var tab in tabs) {
+    for (var tab in tabTitles) {
       final Widget tabWidget = Text(tab.toUpperCase());
 
       tabWidgets.add(tabWidget);

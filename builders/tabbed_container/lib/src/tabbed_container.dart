@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:theme/index.dart';
 import 'package:visibility_manager_builder/index.dart';
+import 'package:collapsible_container_builder/index.dart';
+import 'package:input_dock_builder/index.dart';
+import 'package:button_builder/index.dart';
 import 'package:distance/index.dart' as distance;
 
 import 'tab.dart';
@@ -19,10 +22,11 @@ class RoofTabbedContainer extends StatefulWidget {
 }
 
 class _RoofTabbedContainerState extends State<RoofTabbedContainer>
-    with SingleTickerProviderStateMixin {
-  final GlobalKey _tabContainerKey = GlobalKey();
+    with
+        SingleTickerProviderStateMixin,
+        InputDockBuilder,
+        CollapsibleContainerBuilder {
   TabController _tabController;
-  VisibilityManager _dockVisibilityManager;
 
   @override
   void initState() {
@@ -32,19 +36,6 @@ class _RoofTabbedContainerState extends State<RoofTabbedContainer>
       length: widget.tabs.length,
       vsync: this,
     );
-
-    _tabController.addListener(_dockVisibleForTab);
-
-    WidgetsBinding.instance.addPostFrameCallback(
-      (Duration d) => _dockVisibleForTab(),
-    );
-  }
-
-  @override
-  void didChangeDependencies() {
-    _dockVisibilityManager = InheritedVisibilityManager.of(context);
-
-    super.didChangeDependencies();
   }
 
   @override
@@ -53,61 +44,52 @@ class _RoofTabbedContainerState extends State<RoofTabbedContainer>
     super.dispose();
   }
 
-  void _dockVisibleForTab() {
-    if (_dockVisibilityManager == null) return;
-
-    final offset = _tabController.offset;
-    final bool dragging = offset != 0;
-
-    int index = _tabController.index;
-
-    if (dragging && offset.abs() > .5) {
-      if (offset > 0) {
-        index += 1;
-      } else if (offset < 0) {
-        index -= 1;
-      }
-    }
-
-    final tab = widget.tabs[index];
-    final visible = tab.hasDock ?? false;
-
-    _dockVisibilityManager?.setVisibility(visible);
-  }
-
   final _verticalMargin = distance.c;
+
+  @override
+  List<Widget> get auxiliaryWidgets => [AddFileAuxiliaryWidget()];
 
   @override
   Widget build(BuildContext context) {
     final theme = RoofTheme.of(context);
 
-    final List<String> tabTitles = widget.tabs.map((tab) => tab.title).toList();
     final tabBar = Container(
       child: RoofTabBar(
-        tabs: tabTitles,
+        tabs: widget.tabs,
         tabController: _tabController,
       ),
     );
-
-    final List<Widget> tabViews = widget.tabs.map((tab) => tab.view).toList();
-    final tabView = Flexible(
+    final tabView = Expanded(
       child: RoofTabView(
-        views: tabViews,
-        tabController: _tabController,
-        onDragCallback: _dockVisibleForTab,
+        tabs: widget.tabs,
+        controller: _tabController,
       ),
     );
+    List<Widget> columnChildren = [tabBar, tabView];
+
+    Widget bodyColumn = Column(children: columnChildren);
+
+    final bool bodyHasDock = widget.tabs.where((tab) => tab.hasDock).isNotEmpty;
+
+    if (bodyHasDock) {
+      final inputDock = buildInputDock(context);
+
+      final collapsibleDock = buildCollapsibleContainer(
+        context,
+        child: inputDock,
+      );
+
+      columnChildren.add(collapsibleDock);
+
+      bodyColumn = InheritedVisibilityManager(
+        child: Column(children: columnChildren),
+      );
+    }
 
     return Container(
       color: theme.color.background.generalPrimary,
-      key: _tabContainerKey,
       padding: EdgeInsets.only(top: _verticalMargin),
-      child: Column(
-        children: [
-          tabBar,
-          tabView,
-        ],
-      ),
+      child: bodyColumn,
     );
   }
 }
