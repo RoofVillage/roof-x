@@ -25,7 +25,8 @@ class _RoofTabbedContainerState extends State<RoofTabbedContainer>
     with
         SingleTickerProviderStateMixin,
         InputDockBuilder,
-        CollapsibleContainerBuilder {
+        CollapsibleContainerBuilder,
+        VisibilityManagerBuilder {
   TabController _tabController;
 
   @override
@@ -81,7 +82,7 @@ class _RoofTabbedContainerState extends State<RoofTabbedContainer>
 
       columnChildren.add(collapsibleDock);
 
-      bodyColumn = InheritedVisibilityManager(
+      bodyColumn = buildVisibilityManager(
         child: Column(children: columnChildren),
       );
     }

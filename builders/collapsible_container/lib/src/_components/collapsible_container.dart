@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:visibility_manager_builder/index.dart';
+import 'package:visibility_manager/index.dart';
 import 'package:duration/index.dart' as duration;
 import 'package:curve/index.dart' as curve;
 
