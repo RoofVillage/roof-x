@@ -1,5 +1,5 @@
-name: breadcrumb_stack_builder
-description: Vertical stack of multiple breadcrumb navigators.
+name: breadcrumb_builder
+description: Row with title and optional icon.
 
 version: 1.0.0+1
 

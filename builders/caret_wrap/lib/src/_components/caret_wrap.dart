@@ -4,14 +4,12 @@ import 'package:icon_library/index.dart';
 import 'package:haptics/index.dart';
 import 'package:distance/index.dart' as distance;
 
-import '../breadcrumb.dart';
-
-class RoofBreadcrumbStack extends StatelessWidget {
-  final List<RoofBreadcrumb> breadcrumbs;
+class CaretWrap extends StatelessWidget {
+  final List<Widget> children;
   final VoidCallback onTap;
 
-  RoofBreadcrumbStack({
-    this.breadcrumbs,
+  CaretWrap({
+    this.children,
     this.onTap,
   });
 
@@ -36,18 +34,18 @@ class RoofBreadcrumbStack extends StatelessWidget {
 
     List<Widget> wrapChildren = [];
 
-    for (int i = 0; i < breadcrumbs.length; i++) {
-      List<Widget> breadcrumbRowChildren = [];
+    for (int i = 0; i < children.length; i++) {
+      List<Widget> rowChildren = [];
 
-      breadcrumbRowChildren.add(breadcrumbs[i]);
+      rowChildren.add(children[i]);
 
-      if (i < breadcrumbs.length - 1) {
-        breadcrumbRowChildren.add(paddedArrowWidget);
+      if (i < children.length - 1) {
+        rowChildren.add(paddedArrowWidget);
       }
 
       wrapChildren.add(
         Row(
-          children: breadcrumbRowChildren,
+          children: rowChildren,
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
         ),

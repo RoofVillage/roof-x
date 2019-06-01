@@ -20,8 +20,8 @@ dependencies:
     path: ../../../builders/input_dock
   table_builder:
     path: ../../../builders/table
-  breadcrumb_stack_builder:
-    path: ../../../builders/breadcrumb_stack
+  caret_wrap_builder:
+    path: ../../../builders/caret_wrap
   tabbed_container_builder:
     path: ../../../builders/tabbed_container
   cells_list_view_builder:

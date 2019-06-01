@@ -27,8 +27,8 @@ dependencies:
     path: ../../lib/device_screen
   nav_bar_builder:
     path: ../../builders/nav_bar
-  breadcrumb_stack_builder:
-    path: ../../builders/breadcrumb_stack
+  caret_wrap_builder:
+    path: ../../builders/caret_wrap
   table_builder:
     path: ../../builders/table
   tabbed_container_builder:

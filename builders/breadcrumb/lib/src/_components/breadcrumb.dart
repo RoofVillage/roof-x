@@ -4,11 +4,11 @@ import 'package:theme/index.dart';
 import 'package:typography/index.dart' as typography;
 import 'package:distance/index.dart' as distance;
 
-class RoofBreadcrumb extends StatelessWidget {
+class Breadcrumb extends StatelessWidget {
   final String title;
   final XSmallIconReference iconReference;
 
-  RoofBreadcrumb({
+  Breadcrumb({
     this.title,
     this.iconReference,
   });

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:breadcrumb_stack_builder/index.dart';
+import 'package:caret_wrap_builder/index.dart';
 import 'package:key_value_row_builder/index.dart';
 import 'package:theme/index.dart';
 import 'package:icon_library/index.dart';
@@ -18,7 +18,7 @@ abstract class PropertyVerticalFullScreenArtboard
         KeyValueRowBuilder,
         RoofTagBuilder,
         SecondaryCenterButtonBuilder,
-        RoofBreadcrumbBuilder {
+        CaretWrapBuilder {
   String get propertyTitle;
   StandardIconReference get homeIcon;
   List<String> get tags;

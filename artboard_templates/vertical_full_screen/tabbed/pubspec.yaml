@@ -20,8 +20,8 @@ dependencies:
     path: ../../../builders/table
   key_value_row_builder:
     path: ../../../builders/key_value_row
-  breadcrumb_stack_builder:
-    path: ../../../builders/breadcrumb_stack
+  caret_wrap_builder:
+    path: ../../../builders/caret_wrap
   tabbed_container_builder:
     path: ../../../builders/tabbed_container
   collapsible_container_builder:
