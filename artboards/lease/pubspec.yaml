@@ -9,27 +9,27 @@ dependencies:
   flutter:
     sdk: flutter
   artboard:
-    path: ../../../lib/artboard
+    path: ../../lib/artboard
   vertical_full_screen_artboard_scaffold:
-    path: ../../../artboard_scaffolds/vertical_full_screen
+    path: ../../artboard_scaffolds/vertical_full_screen
   tabbed_fullscreen_artboard_template:
-    path: ../tabbed
+    path: ../../artboard_templates/vertical_full_screen/tabbed
   nav_bar_builder:
-    path: ../../../builders/nav_bar
+    path: ../../builders/nav_bar
   input_dock_builder:
-    path: ../../../builders/input_dock
+    path: ../../builders/input_dock
   table_builder:
-    path: ../../../builders/table
+    path: ../../builders/table
   caret_wrap_builder:
-    path: ../../../builders/caret_wrap
+    path: ../../builders/caret_wrap
   tabbed_container_builder:
-    path: ../../../builders/tabbed_container
+    path: ../../builders/tabbed_container
   cells_list_view_builder:
-    path: ../../../builders/cells_list_view
+    path: ../../builders/cells_list_view
   key_value_row_builder:
-    path: ../../../builders/key_value_row
+    path: ../../builders/key_value_row
   tab:
-    path: ../../../tab
+    path: ../../tab
 
 dev_dependencies:
   flutter_test:

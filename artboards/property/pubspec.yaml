@@ -9,21 +9,21 @@ dependencies:
   flutter:
     sdk: flutter
   artboard:
-    path: ../../../lib/artboard
+    path: ../../lib/artboard
   tabbed_fullscreen_artboard_template:
-    path: ../tabbed
+    path: ../../artboard_templates/vertical_full_screen/tabbed
   nav_bar_builder:
-    path: ../../../builders/nav_bar
+    path: ../../builders/nav_bar
   caret_wrap_builder:
-    path: ../../../builders/caret_wrap
+    path: ../../builders/caret_wrap
   cells_list_view_builder:
-    path: ../../../builders/cells_list_view
+    path: ../../builders/cells_list_view
   tag_builder:
-    path: ../../../builders/tag
+    path: ../../builders/tag
   key_value_row_builder:
-    path: ../../../builders/key_value_row
+    path: ../../builders/key_value_row
   tab:
-    path: ../../../tab
+    path: ../../tab
 
 dev_dependencies:
   flutter_test:
