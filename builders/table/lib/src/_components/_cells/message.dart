@@ -7,6 +7,9 @@ import 'package:typography/index.dart' as typography;
 import 'package:distance/index.dart' as distance;
 import 'package:corner_radius/index.dart' as radius;
 
+import '../_widgets/cell_primary_title.dart';
+import '../_widgets/cell_body_text_preview.dart';
+
 class MessageCell extends StatelessWidget with KeyValueRowBuilder {
   final String subject;
   final String message;
@@ -35,14 +38,7 @@ class MessageCell extends StatelessWidget with KeyValueRowBuilder {
   Widget build(BuildContext context) {
     final theme = RoofTheme.of(context);
 
-    final titleWidget = Expanded(
-      child: Text(
-        subject,
-        style: typography.bodyPrimaryThick
-            .textStyleWithColor(theme.color.text.secondaryAction),
-        overflow: TextOverflow.ellipsis,
-      ),
-    );
+    final titleWidget = CellPrimaryTitle(subject);
 
     final formattedDateText =
         Date.fromSecondsSinceEpoch(latestActivityTimestamp).toAdaptiveString;
@@ -71,14 +67,7 @@ class MessageCell extends StatelessWidget with KeyValueRowBuilder {
     if (message != null && message.isNotEmpty) {
       final messageRow = Container(
         margin: EdgeInsets.only(top: _sectionSpacing),
-        child: Text(
-          message,
-          style: typography.bodySecondary.textStyleWithColor(
-            theme.color.text.secondary,
-          ),
-          maxLines: 2,
-          overflow: TextOverflow.ellipsis,
-        ),
+        child: CellBodyTextPreview(message),
       );
       columnChildren.add(messageRow);
     }

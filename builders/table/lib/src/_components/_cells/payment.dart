@@ -4,10 +4,12 @@ import 'package:mask/index.dart';
 import 'package:date/index.dart';
 import 'package:haptics/index.dart';
 import 'package:tag_builder/index.dart';
+import 'package:key_value_row_builder/index.dart';
 import 'package:typography/index.dart' as typography;
 import 'package:distance/index.dart' as distance;
 import 'package:corner_radius/index.dart' as radius;
-import 'package:key_value_row_builder/index.dart';
+
+import '../_widgets/cell_primary_title.dart';
 
 class PaymentCell extends StatelessWidget with KeyValueRowBuilder {
   final String tenant;
@@ -40,12 +42,7 @@ class PaymentCell extends StatelessWidget with KeyValueRowBuilder {
   Widget build(BuildContext context) {
     final theme = RoofTheme.of(context);
 
-    final tenantNameWidget = Text(
-      tenant,
-      style: typography.bodyPrimaryThick.textStyleWithColor(
-        theme.color.text.secondaryAction,
-      ),
-    );
+    final tenantNameWidget = CellPrimaryTitle(tenant);
 
     final statusTag = Container(
       margin: EdgeInsets.only(left: _spacing),

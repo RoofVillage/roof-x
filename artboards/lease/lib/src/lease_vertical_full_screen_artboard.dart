@@ -116,12 +116,10 @@ abstract class LeaseVerticalFullScreenArtboard extends TabbedFullScreenArtboard
       RoofTab(
         title: "Tenants",
         view: tenantsList,
-        hasDock: true,
       ),
       RoofTab(
         title: "Messages",
         view: messagesList,
-        hasDock: true,
       ),
       RoofTab(
         title: "Maintenance",

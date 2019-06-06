@@ -8,6 +8,8 @@ import 'package:typography/index.dart' as typography;
 import 'package:distance/index.dart' as distance;
 import 'package:corner_radius/index.dart' as radius;
 
+import '../_widgets/cell_primary_title.dart';
+
 class LeaseCell extends StatelessWidget {
   final List<String> tenants;
   final String title;
@@ -42,12 +44,7 @@ class LeaseCell extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = RoofTheme.of(context);
 
-    final titleWidget = Text(
-      title,
-      style: typography.bodyPrimaryThick.textStyleWithColor(
-        theme.color.text.secondaryAction,
-      ),
-    );
+    final titleWidget = CellPrimaryTitle(title);
 
     final statusWidget = Container(
       margin: EdgeInsets.only(left: _spacing),

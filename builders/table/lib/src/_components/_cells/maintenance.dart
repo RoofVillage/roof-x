@@ -8,6 +8,9 @@ import 'package:distance/index.dart' as distance;
 import 'package:corner_radius/index.dart' as radius;
 import 'package:key_value_row_builder/index.dart';
 
+import '../_widgets/cell_primary_title.dart';
+import '../_widgets/cell_body_text_preview.dart';
+
 class MaintenanceCell extends StatelessWidget with KeyValueRowBuilder {
   final String name;
   final String note;
@@ -37,12 +40,7 @@ class MaintenanceCell extends StatelessWidget with KeyValueRowBuilder {
   Widget build(BuildContext context) {
     final theme = RoofTheme.of(context);
 
-    final titleWidget = Text(
-      name,
-      style: typography.bodyPrimaryThick.textStyleWithColor(
-        theme.color.text.secondaryAction,
-      ),
-    );
+    final titleWidget = CellPrimaryTitle(name);
 
     final statusWidget = Container(
       margin: EdgeInsets.only(left: _spacing),
@@ -74,14 +72,7 @@ class MaintenanceCell extends StatelessWidget with KeyValueRowBuilder {
     if (note != null && note.isNotEmpty) {
       final messageRow = Container(
         margin: EdgeInsets.only(top: _spacing),
-        child: Text(
-          note,
-          style: typography.bodySecondary.textStyleWithColor(
-            theme.color.text.secondary,
-          ),
-          maxLines: 2,
-          overflow: TextOverflow.ellipsis,
-        ),
+        child: CellBodyTextPreview(note),
       );
       columnChildren.add(messageRow);
     }

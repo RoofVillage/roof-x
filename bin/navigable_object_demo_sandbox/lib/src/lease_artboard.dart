@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:navigator/index.dart';
 import 'package:icon_library/index.dart';
-import 'package:lease_full_screen_artboard_template/index.dart';
+import 'package:lease_full_screen_artboard_template/index.dart'; 
 import 'package:table_builder/index.dart';
 import 'package:key_value_builder/index.dart';
 
-class LeaseArtboard extends LeaseVerticalFullScreenArtboard with KeyValueBuilder {
+class LeaseArtboard extends LeaseVerticalFullScreenArtboard
+    with KeyValueBuilder {
   @override
   String get homeTitle => "200 S Dawson St. Apt. B";
 
@@ -42,7 +43,7 @@ class LeaseArtboard extends LeaseVerticalFullScreenArtboard with KeyValueBuilder
   @override
   List<Widget> buildInvoicesCells(BuildContext context) {
     final invoiceCell = InvoiceCell(
-      name: "Rent due June 1",
+      name: "Rent due June 1 long long long asdf asdf asdf",
       totalAmount: 120000,
       unpaidAmount: 120000,
       dueTimestamp: 1552728014,
@@ -63,89 +64,119 @@ class LeaseArtboard extends LeaseVerticalFullScreenArtboard with KeyValueBuilder
 
   @override
   List<Widget> buildMaintenanceCells(BuildContext context) {
-    final maintenanceCell = MaintenanceCell(
-      name: "Raccoons gettin it in the attic",
-      note: "Need these scritchy scratchy boiz GONE PLz",
-      receivedTimestamp: 1552721280,
+    final maintenanceCellEmergency = MaintenanceCell(
+      name: "Hot water heater is leaking!",
+      note:
+          "I walked into the garage this morning and noticed a huge puddle of water around the heater, it seems to be still leaking and not sure what to do!",
+      receivedTimestamp: 1552821280,
       status: MaintenanceRequestStatus.emergency,
+    );
+    final maintenanceCellOpen = MaintenanceCell(
+      name: "Door lock is sticking",
+      note:
+          "The lock on the back door seems to be messed up, both of our keys stick in it and it's really hard to turn, I'm worried about breaking the key! We've been using the front door for the time being but please see if you could get it changed soon.",
+      receivedTimestamp: 1552721280,
+      status: MaintenanceRequestStatus.open,
+    );
+    final maintenanceCellResolved = MaintenanceCell(
+      name: "Microwave stopped working",
+      receivedTimestamp: 1552221280,
+      status: MaintenanceRequestStatus.closed,
     );
 
     return [
-      maintenanceCell,
-      maintenanceCell,
-      maintenanceCell,
-      maintenanceCell,
-      maintenanceCell,
-      maintenanceCell,
-      maintenanceCell,
+      maintenanceCellEmergency,
+      maintenanceCellOpen,
+      maintenanceCellResolved,
     ];
   }
 
   @override
   List<Widget> buildMessagesCells(BuildContext context) {
     final messageCell = MessageCell(
-      subject: "Thinkin about growing pot",
-      message: "Is this illegal? Downt o profit share ya dig",
+      subject: "Thinkin about starting a garden",
+      message:
+          "We'd really love to till a little 10x10 section in the backyard to grow some vegetables, would that be okay?",
       latestActivityTimestamp: 1552728280,
     );
 
     return [
-      messageCell,
-      messageCell,
-      messageCell,
-      messageCell,
-      messageCell,
-      messageCell,
       messageCell,
     ];
   }
 
   @override
   List<Widget> buildTenantsCells(BuildContext context) {
-    final tenantCell = TenantCell(
-      name: "Big shawn",
-      inviteKey: "swag9000",
+    final tenantCell1 = TenantCell(
+      name: "Kelsey Lu",
+      inviteKey: "bird9301",
       joinTimestamp: 1542728917,
-      inviteSentTo: "shawnz@mail.com",
+      inviteSentTo: "klu@mail.com",
+    );
+
+    final tenantCell2 = TenantCell(
+      name: "Lisa Hannigan",
+      inviteKey: "mountain0818",
+      joinTimestamp: 1542728917,
+      inviteSentTo: "lamhann@mail.com",
     );
 
     return [
-      tenantCell,
-      tenantCell,
+      tenantCell1,
+      tenantCell2,
     ];
   }
 
   @override
   List<Widget> buildThreadCells(BuildContext context) {
-    final eventCell = RoofThreadEventCell(
+    // final eventCell = RoofThreadEventCell(
+    //   timestamp: 1558229172,
+    //   title: "Kelsey Lu paid \$980 for June rent",
+    //   iconReference: IconReference.cashSack,
+    //   details: [
+    //     buildKeyValue(
+    //       context,
+    //       title: "Permission to enter",
+    //       value: "Fuck yea",
+    //     ),
+    //     buildKeyValue(
+    //       context,
+    //       title: "Another detail",
+    //       value: "Detail value",
+    //     ),
+    //     buildKeyValue(
+    //       context,
+    //       title: "Another detail 222",
+    //       value: "Detail value 222",
+    //     ),
+    //     buildKeyValue(
+    //       context,
+    //       title: "more shit",
+    //       value:
+    //           "Detail value 222 asdf asdf asdfasdf alkjlkj asdfasdf alkjlkj asdfasdf alkjlkj",
+    //     )
+    //   ],
+    // );
+    final eventCell1 = RoofThreadEventCell(
       timestamp: 1558229172,
-      title: "Event title",
-      note: "Did an event here's a note bishhh",
-      iconReference: IconReference.livingRoom,
-      details: [
-        buildKeyValue(
-          context,
-          title: "Permission to enter",
-          value: "Fuck yea",
-        ),
-        buildKeyValue(
-          context,
-          title: "Another detail",
-          value: "Detail value",
-        ),
-        buildKeyValue(
-          context,
-          title: "Another detail 222",
-          value: "Detail value 222",
-        ),
-        buildKeyValue(
-          context,
-          title: "more shit",
-          value:
-              "Detail value 222 asdf asdf asdfasdf alkjlkj asdfasdf alkjlkj asdfasdf alkjlkj",
-        )
-      ],
+      title: "Kelsey Lu paid \$980 for June rent",
+      iconReference: IconReference.cashSack,
     );
-    return [eventCell, eventCell];
+    final eventCell2 = RoofThreadEventCell(
+      timestamp: 1558229172,
+      title: "Lisa Hanniga paid \$910 for June rent",
+      iconReference: IconReference.cashSack,
+    );
+    final eventCell3 = RoofThreadEventCell(
+      timestamp: 1558229172,
+      title: "Lisa Hannigan created a new message thread",
+      note: "Thinking about starting a garden",
+      iconReference: IconReference.cashSack,
+    );
+    return [
+      eventCell3,
+      eventCell2,
+      eventCell1,
+    ];
   }
 }

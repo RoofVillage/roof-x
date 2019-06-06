@@ -148,10 +148,14 @@ class _Content extends StatelessWidget with KeyValueBuilder, SpacedGridBuilder {
 
     final borderRadius = radius.large;
 
-    final titleWidget = Text(
-      title,
-      style: _titleTypographyStyle.textStyleWithColor(
-        theme.color.text.secondary,
+    final titleWidget = Flexible(
+      child: Text(
+        title,
+        style: _titleTypographyStyle.textStyleWithColor(
+          theme.color.text.secondary,
+        ),
+        maxLines: 2,
+        overflow: TextOverflow.ellipsis,
       ),
     );
 

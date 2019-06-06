@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:icon_library/index.dart';
+import 'package:table_builder/src/_components/_widgets/cell_primary_title.dart';
 import 'package:theme/index.dart';
 import 'package:mask/index.dart';
 import 'package:date/index.dart';
@@ -138,13 +139,7 @@ class _TitleRow extends StatelessWidget {
 
     final formattedTitleString = "$address - $unit";
 
-    final homeTitle = Text(
-      formattedTitleString,
-      style: typography.bodyPrimaryThick.textStyleWithColor(
-        theme.color.text.secondaryAction,
-      ),
-      overflow: TextOverflow.ellipsis,
-    );
+    final homeTitle = CellPrimaryTitle(formattedTitleString);
 
     return Row(
       children: <Widget>[

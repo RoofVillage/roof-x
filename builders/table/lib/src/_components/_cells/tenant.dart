@@ -5,7 +5,8 @@ import 'package:date/index.dart';
 import 'package:haptics/index.dart';
 import 'package:corner_radius/index.dart' as radius;
 import 'package:distance/index.dart' as distance;
-import 'package:typography/index.dart' as typography;
+
+import '../_widgets/cell_primary_title.dart';
 
 class TenantCell extends StatelessWidget with KeyValueRowBuilder {
   final String name;
@@ -37,11 +38,8 @@ class TenantCell extends StatelessWidget with KeyValueRowBuilder {
 
     final bool isJoined = joinTimestamp != null;
 
-    final titleWidget = Text(
-      name,
-      style: typography.bodyPrimaryThick.textStyleWithColor(
-        theme.color.text.secondaryAction,
-      ),
+    final titleWidget = Row(
+      children: [CellPrimaryTitle(name)],
     );
 
     List<Widget> columnChildren = [titleWidget];

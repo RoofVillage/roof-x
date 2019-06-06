@@ -15,8 +15,7 @@ class RoofTabbedContainer extends StatefulWidget {
 
   RoofTabbedContainer({
     @required this.tabs,
-    Key key,
-  }) : super(key: key);
+  });
 
   _RoofTabbedContainerState createState() => _RoofTabbedContainerState();
 }
