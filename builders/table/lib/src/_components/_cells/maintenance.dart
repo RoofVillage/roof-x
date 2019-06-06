@@ -3,13 +3,13 @@ import 'package:theme/index.dart';
 import 'package:date/index.dart';
 import 'package:haptics/index.dart';
 import 'package:tag_builder/index.dart';
-import 'package:typography/index.dart' as typography;
 import 'package:distance/index.dart' as distance;
 import 'package:corner_radius/index.dart' as radius;
 import 'package:key_value_row_builder/index.dart';
 
 import '../_widgets/cell_primary_title.dart';
 import '../_widgets/cell_body_text_preview.dart';
+import '../_widgets/cell_spaced_row.dart';
 
 class MaintenanceCell extends StatelessWidget with KeyValueRowBuilder {
   final String name;
@@ -47,10 +47,7 @@ class MaintenanceCell extends StatelessWidget with KeyValueRowBuilder {
       child: _StatusTag(status),
     );
 
-    final titleRow = Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.baseline,
-      textBaseline: TextBaseline.alphabetic,
+    final titleRow = CellSpacedRow(
       children: <Widget>[
         titleWidget,
         statusWidget,
@@ -65,7 +62,6 @@ class MaintenanceCell extends StatelessWidget with KeyValueRowBuilder {
       context,
       title: "Received",
       value: receivedText,
-      hasBorder: false,
     );
     columnChildren.add(receivedRow);
 

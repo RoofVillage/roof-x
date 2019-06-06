@@ -10,6 +10,7 @@ import 'package:distance/index.dart' as distance;
 import 'package:corner_radius/index.dart' as radius;
 
 import '../_widgets/cell_primary_title.dart';
+import '../_widgets/cell_spaced_row.dart';
 
 class PaymentCell extends StatelessWidget with KeyValueRowBuilder {
   final String tenant;
@@ -49,10 +50,7 @@ class PaymentCell extends StatelessWidget with KeyValueRowBuilder {
       child: _StatusTag(paymentStatus),
     );
 
-    final titleRow = Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.baseline,
-      textBaseline: TextBaseline.alphabetic,
+    final titleRow = CellSpacedRow(
       children: <Widget>[
         tenantNameWidget,
         statusTag,
@@ -85,7 +83,6 @@ class PaymentCell extends StatelessWidget with KeyValueRowBuilder {
       valueStyle: typography.bodyPrimaryThick.textStyleWithColor(
         theme.color.text.primary,
       ),
-      hasBorder: false,
     );
     columnChildren.add(dateRow);
 
@@ -99,7 +96,6 @@ class PaymentCell extends StatelessWidget with KeyValueRowBuilder {
       context,
       title: "Amount",
       value: formattedTotal,
-      hasBorder: false,
     );
     columnChildren.add(amountRow);
 

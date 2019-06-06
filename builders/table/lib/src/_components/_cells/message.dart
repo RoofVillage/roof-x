@@ -9,6 +9,7 @@ import 'package:corner_radius/index.dart' as radius;
 
 import '../_widgets/cell_primary_title.dart';
 import '../_widgets/cell_body_text_preview.dart';
+import '../_widgets/cell_spaced_row.dart';
 
 class MessageCell extends StatelessWidget with KeyValueRowBuilder {
   final String subject;
@@ -53,10 +54,7 @@ class MessageCell extends StatelessWidget with KeyValueRowBuilder {
       ),
     );
 
-    final titleRow = Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.baseline,
-      textBaseline: TextBaseline.alphabetic,
+    final titleRow = CellSpacedRow(
       children: <Widget>[
         titleWidget,
         dateWidget,

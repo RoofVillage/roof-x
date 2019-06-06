@@ -52,7 +52,6 @@ class TenantCell extends StatelessWidget with KeyValueRowBuilder {
         context,
         title: "Joined on",
         value: joinedTimestampText,
-        hasBorder: false,
       );
       columnChildren.add(joinedWidget);
     } else {
@@ -60,7 +59,6 @@ class TenantCell extends StatelessWidget with KeyValueRowBuilder {
         context,
         title: "Invite key",
         value: inviteKey,
-        hasBorder: false,
       );
       columnChildren.add(inviteKeyWidget);
 
@@ -69,7 +67,6 @@ class TenantCell extends StatelessWidget with KeyValueRowBuilder {
           context,
           title: "Invite sent to",
           value: inviteSentTo,
-          hasBorder: false,
         );
         columnChildren.add(inviteSentWidget);
       }

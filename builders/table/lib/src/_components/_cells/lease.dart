@@ -9,6 +9,7 @@ import 'package:distance/index.dart' as distance;
 import 'package:corner_radius/index.dart' as radius;
 
 import '../_widgets/cell_primary_title.dart';
+import '../_widgets/cell_spaced_row.dart';
 
 class LeaseCell extends StatelessWidget {
   final List<String> tenants;
@@ -51,10 +52,7 @@ class LeaseCell extends StatelessWidget {
       child: _StatusTag(status),
     );
 
-    final titleRow = Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.baseline,
-      textBaseline: TextBaseline.alphabetic,
+    final titleRow = CellSpacedRow(
       children: <Widget>[
         titleWidget,
         statusWidget,

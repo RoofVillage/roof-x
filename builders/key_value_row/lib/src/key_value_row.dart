@@ -8,15 +8,13 @@ class KeyValueRow extends StatelessWidget {
   final String value;
   final TextStyle titleStyle;
   final TextStyle valueStyle;
-  final bool hasBorder;
 
   KeyValueRow({
     this.title,
     this.value,
     this.titleStyle,
     this.valueStyle,
-    hasBorder,
-  }) : this.hasBorder = hasBorder ?? true;
+  });
 
   final _titleTypographyStyle = typography.detailSecondary;
   final _valueTypographyStyle = typography.bodyPrimary;
@@ -58,17 +56,8 @@ class KeyValueRow extends StatelessWidget {
       ),
     );
 
-    final border = hasBorder
-        ? Border(bottom: BorderSide(color: theme.color.stroke.light))
-        : Border(bottom: BorderSide(color: Colors.transparent));
-
     return Container(
-      padding: hasBorder
-          ? EdgeInsets.symmetric(vertical: _verticalSpacing)
-          : EdgeInsets.only(top: _verticalSpacing),
-      // decoration: BoxDecoration(
-      //   border: border,
-      // ),
+      padding: EdgeInsets.only(top: _verticalSpacing),
       child: Row(
         textBaseline: TextBaseline.alphabetic,
         crossAxisAlignment: CrossAxisAlignment.baseline,

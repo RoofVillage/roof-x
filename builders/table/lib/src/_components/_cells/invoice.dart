@@ -5,11 +5,10 @@ import 'package:date/index.dart';
 import 'package:haptics/index.dart';
 import 'package:tag_builder/index.dart';
 import 'package:key_value_row_builder/index.dart';
-import 'package:typography/index.dart' as typography;
 import 'package:distance/index.dart' as distance;
 import 'package:corner_radius/index.dart' as radius;
 
-
+import '../_widgets/cell_spaced_row.dart';
 import '../_widgets/cell_primary_title.dart';
 
 class InvoiceCell extends StatelessWidget with KeyValueRowBuilder {
@@ -64,10 +63,7 @@ class InvoiceCell extends StatelessWidget with KeyValueRowBuilder {
       child: _StatusTag(invoiceStatus),
     );
 
-    final titleRow = Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.baseline,
-      textBaseline: TextBaseline.alphabetic,
+    final titleRow = CellSpacedRow(
       children: <Widget>[
         titleWidget,
         statusTag,
@@ -82,10 +78,6 @@ class InvoiceCell extends StatelessWidget with KeyValueRowBuilder {
       context,
       title: "Due",
       value: dueText,
-      valueStyle: typography.bodyPrimaryThick.textStyleWithColor(
-        theme.color.text.primary,
-      ),
-      hasBorder: false,
     );
     columnChildren.add(dueRow);
 
@@ -99,7 +91,6 @@ class InvoiceCell extends StatelessWidget with KeyValueRowBuilder {
       context,
       title: "Total amount",
       value: formattedTotal,
-      hasBorder: false,
     );
     columnChildren.add(amountRow);
 
@@ -113,7 +104,6 @@ class InvoiceCell extends StatelessWidget with KeyValueRowBuilder {
       context,
       title: "Unpaid",
       value: formattedUnpaid,
-      hasBorder: false,
     );
     columnChildren.add(unpaidRow);
 
@@ -121,7 +111,6 @@ class InvoiceCell extends StatelessWidget with KeyValueRowBuilder {
       context,
       title: "Invoice type",
       value: _evalInvoiceType(invoiceType),
-      hasBorder: false,
     );
     columnChildren.add(typeRow);
 
