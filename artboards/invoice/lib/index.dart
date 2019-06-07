@@ -1,1 +1,1 @@
-export 'src/invoice_vertical_full_screen_artboard.dart';
+export 'src/full_screen.dart';

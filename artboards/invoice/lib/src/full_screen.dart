@@ -7,21 +7,14 @@ import 'package:button_builder/index.dart';
 import 'package:button_status_option/index.dart';
 import 'package:cells_list_view_builder/index.dart';
 
+import '_builder.dart';
+
 abstract class InvoiceVerticalFullScreenArtboard
     extends TabbedFullScreenArtboard
-    with RoofCellsListViewBuilder, SecondaryCenterButtonBuilder {
-  String get invoiceTitle;
-  String get leaseTitle;
-  String get homeTitle;
-  int get totalAmount;
-  int get paidAmount;
-  int get unpaidAmount;
-  int get dueTimestamp;
-  int get daysPayableIn;
-  String get paymentProfile;
-
-  List<Widget> buildPaymentsCells(BuildContext context);
-
+    with
+        RoofCellsListViewBuilder,
+        SecondaryCenterButtonBuilder,
+        InvoiceArtboardBuilder {
   @override
   String get title => invoiceTitle;
 
@@ -39,6 +32,9 @@ abstract class InvoiceVerticalFullScreenArtboard
 
     return [moreButton];
   }
+
+  // TODO convert this to accept data objects instead of widgets, build cells here
+  List<Widget> buildPaymentsCells(BuildContext context);
 
   @override
   List<RoofTab> buildTabs(BuildContext context) {

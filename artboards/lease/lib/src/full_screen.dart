@@ -7,21 +7,14 @@ import 'package:button_status_option/index.dart';
 import 'package:cells_list_view_builder/index.dart';
 import 'package:tab/index.dart';
 
-abstract class LeaseVerticalFullScreenArtboard extends TabbedFullScreenArtboard
-    with RoofCellsListViewBuilder, SecondaryCenterButtonBuilder {
-  String get leaseTitle;
-  String get homeTitle;
-  int get totalAmount;
-  // TODO implement due schedule data model (every, every other, week, month, etc)
-  String get dueSchedule;
-  int get startTimestamp;
-  int get endTimestamp;
-  bool get continueInvoices;
-  String get paymentProfile;
-  int get lateFeeAmount;
-  int get daysUntilLateFee;
-  String get transactionFee;
+import '_builder.dart';
 
+abstract class LeaseVerticalFullScreenArtboard extends TabbedFullScreenArtboard
+    with
+        RoofCellsListViewBuilder,
+        SecondaryCenterButtonBuilder,
+        LeaseArtboardBuilder {
+  // TODO convert this to accept data objects instead of widgets, build cells here
   List<Widget> buildThreadCells(BuildContext context);
   List<Widget> buildTenantsCells(BuildContext context);
   List<Widget> buildInvoicesCells(BuildContext context);

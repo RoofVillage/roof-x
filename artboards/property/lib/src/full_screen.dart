@@ -1,35 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:caret_wrap_builder/index.dart';
-import 'package:key_value_row_builder/index.dart';
 import 'package:theme/index.dart';
 import 'package:icon_library/index.dart';
-import 'package:tag_builder/index.dart';
 import 'package:tabbed_fullscreen_artboard_template/index.dart';
 import 'package:cells_list_view_builder/index.dart';
 import 'package:button_builder/index.dart';
 import 'package:button_status_option/index.dart';
 import 'package:tab/index.dart';
-import 'package:distance/index.dart' as distance;
+
+import '_builder.dart';
 
 abstract class PropertyVerticalFullScreenArtboard
     extends TabbedFullScreenArtboard
     with
         RoofCellsListViewBuilder,
-        KeyValueRowBuilder,
-        RoofTagBuilder,
         SecondaryCenterButtonBuilder,
-        CaretWrapBuilder {
-  String get propertyTitle;
-  StandardIconReference get homeIcon;
-  List<String> get tags;
-  String get paymentProfile;
-
-  List<Widget> buildLeasesCells(BuildContext context);
-
-  @override
+        PropertyArtboardBuilder {
   String get title => propertyTitle;
 
-  @override
   StandardIconReference get titleIcon => homeIcon;
 
   @override
@@ -46,6 +33,9 @@ abstract class PropertyVerticalFullScreenArtboard
 
     return [moreButton];
   }
+
+  // TODO convert this to accept data objects instead of widgets, build cells here
+  List<Widget> buildLeasesCells(BuildContext context);
 
   @override
   List<RoofTab> buildTabs(BuildContext context) {
@@ -96,12 +86,10 @@ abstract class PropertyVerticalFullScreenArtboard
 //   }
 // }
 
-
 // @override
 // List<RoofBreadcrumb> buildBreadcrumbs(BuildContext context) {
 //   return null;
 // }
-
 
 // @override
 // buildInfoRows(BuildContext context) {
