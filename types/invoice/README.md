@@ -1,4 +1,4 @@
-# invoice_type
+# invoice_options
 
 A new Flutter project.
 

@@ -39,6 +39,8 @@ dependencies:
     path: ../../lib/date
   tag_builder:
     path: ../tag
+  invoice_options:
+    path: ../../types/invoice
 
 dev_dependencies:
   flutter_test:

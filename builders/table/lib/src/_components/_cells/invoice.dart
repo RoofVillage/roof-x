@@ -5,6 +5,7 @@ import 'package:date/index.dart';
 import 'package:haptics/index.dart';
 import 'package:tag_builder/index.dart';
 import 'package:key_value_row_builder/index.dart';
+import 'package:invoice_options/index.dart';
 import 'package:distance/index.dart' as distance;
 import 'package:corner_radius/index.dart' as radius;
 
@@ -17,7 +18,6 @@ class InvoiceCell extends StatelessWidget with KeyValueRowBuilder {
   final int unpaidAmount;
   final int dueTimestamp;
   final InvoiceType invoiceType;
-  final InvoiceStatus invoiceStatus;
   final VoidCallback onTap;
 
   InvoiceCell({
@@ -26,7 +26,6 @@ class InvoiceCell extends StatelessWidget with KeyValueRowBuilder {
     @required this.unpaidAmount,
     @required this.dueTimestamp,
     @required this.invoiceType,
-    @required this.invoiceStatus,
     this.onTap,
   });
 
@@ -40,23 +39,16 @@ class InvoiceCell extends StatelessWidget with KeyValueRowBuilder {
     if (onTap != null) triggerHapticWith(_tapHapticOption);
   }
 
-  String _evalInvoiceType(InvoiceType type) {
-    switch (type) {
-      case InvoiceType.rent:
-        return "Rent";
-      case InvoiceType.lateFee:
-        return "Late fee";
-      case InvoiceType.other:
-        return "Other";
-    }
-    return "";
-  }
-
   @override
   Widget build(BuildContext context) {
     final theme = RoofTheme.of(context);
 
     final titleWidget = CellPrimaryTitle(name);
+
+    final InvoiceStatusOption invoiceStatus = InvoiceStatus.fromInvoice(
+      unpaidAmount,
+      dueTimestamp,
+    );
 
     final statusTag = Container(
       margin: EdgeInsets.only(left: _spacing),
@@ -110,7 +102,7 @@ class InvoiceCell extends StatelessWidget with KeyValueRowBuilder {
     final typeRow = buildKeyValueRow(
       context,
       title: "Invoice type",
-      value: _evalInvoiceType(invoiceType),
+      value: invoiceType.toString(),
     );
     columnChildren.add(typeRow);
 
@@ -137,33 +129,33 @@ class InvoiceCell extends StatelessWidget with KeyValueRowBuilder {
 }
 
 class _StatusTag extends StatelessWidget with RoofTagBuilder {
-  final InvoiceStatus status;
+  final InvoiceStatusOption status;
 
   _StatusTag(this.status);
 
-  _getStatusColor(InvoiceStatus status, RoofInheritedTheme theme) {
+  _getStatusColor(InvoiceStatusOption status, RoofInheritedTheme theme) {
     switch (status) {
-      case InvoiceStatus.paid:
+      case InvoiceStatusOption.paid:
         return theme.color.background.markerGreen;
         break;
-      case InvoiceStatus.overdue:
+      case InvoiceStatusOption.overdue:
         return theme.color.background.errorAction;
         break;
-      case InvoiceStatus.unpaid:
+      case InvoiceStatusOption.unpaid:
       default:
         return theme.color.background.markerGray;
     }
   }
 
-  _getStatusText(InvoiceStatus status) {
+  _getStatusText(InvoiceStatusOption status) {
     switch (status) {
-      case InvoiceStatus.paid:
+      case InvoiceStatusOption.paid:
         return "PAID";
         break;
-      case InvoiceStatus.overdue:
+      case InvoiceStatusOption.overdue:
         return "OVERDUE";
         break;
-      case InvoiceStatus.unpaid:
+      case InvoiceStatusOption.unpaid:
       default:
         return "UNPAID";
     }
@@ -182,16 +174,4 @@ class _StatusTag extends StatelessWidget with RoofTagBuilder {
       color: color,
     );
   }
-}
-
-enum InvoiceType {
-  rent,
-  lateFee,
-  other,
-}
-
-enum InvoiceStatus {
-  paid,
-  unpaid,
-  overdue,
 }

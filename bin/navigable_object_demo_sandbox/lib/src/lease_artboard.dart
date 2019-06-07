@@ -3,6 +3,7 @@ import 'package:navigator/index.dart';
 import 'package:icon_library/index.dart';
 import 'package:lease_full_screen_artboard_template/index.dart'; 
 import 'package:table_builder/index.dart';
+import 'package:invoice_options/index.dart';
 import 'package:key_value_builder/index.dart';
 
 class LeaseArtboard extends LeaseVerticalFullScreenArtboard
@@ -47,8 +48,7 @@ class LeaseArtboard extends LeaseVerticalFullScreenArtboard
       totalAmount: 120000,
       unpaidAmount: 120000,
       dueTimestamp: 1552728014,
-      invoiceType: InvoiceType.rent,
-      invoiceStatus: InvoiceStatus.unpaid,
+      invoiceType: InvoiceType.fromString("rent"),
     );
 
     return [

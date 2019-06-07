@@ -16,7 +16,7 @@ dependencies:
     path: ../../../types/fee_payer
   assignment_type:
     path: ../../../types/assignment
-  invoice_type:
+  invoice_options:
     path: ../../../types/invoice
   user_reference:
     path: ../../properties/user_reference

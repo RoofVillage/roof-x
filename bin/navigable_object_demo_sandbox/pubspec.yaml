@@ -37,6 +37,8 @@ dependencies:
     path: ../../builders/cells_list_view
   button_builder:
     path: ../../builders/button
+  invoice_options:
+    path: ../../types/invoice
 
 dev_dependencies:
   flutter_test:
