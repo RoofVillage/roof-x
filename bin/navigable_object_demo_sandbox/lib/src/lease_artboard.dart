@@ -69,19 +69,19 @@ class LeaseArtboard extends LeaseVerticalFullScreenArtboard
       note:
           "I walked into the garage this morning and noticed a huge puddle of water around the heater, it seems to be still leaking and not sure what to do!",
       receivedTimestamp: 1552821280,
-      status: MaintenanceRequestStatus.emergency,
+      status: "emergency",
     );
     final maintenanceCellOpen = MaintenanceCell(
       name: "Door lock is sticking",
       note:
           "The lock on the back door seems to be messed up, both of our keys stick in it and it's really hard to turn, I'm worried about breaking the key! We've been using the front door for the time being but please see if you could get it changed soon.",
       receivedTimestamp: 1552721280,
-      status: MaintenanceRequestStatus.open,
+      status: "open",
     );
     final maintenanceCellResolved = MaintenanceCell(
       name: "Microwave stopped working",
       receivedTimestamp: 1552221280,
-      status: MaintenanceRequestStatus.closed,
+      status: "closed",
     );
 
     return [

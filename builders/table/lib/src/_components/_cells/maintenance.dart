@@ -3,6 +3,7 @@ import 'package:theme/index.dart';
 import 'package:date/index.dart';
 import 'package:tag_builder/index.dart';
 import 'package:key_value_row_builder/index.dart';
+import 'package:request_status/index.dart';
 
 import '_a.dart';
 
@@ -10,7 +11,7 @@ class MaintenanceCell extends StatelessWidget with KeyValueRowBuilder {
   final String name;
   final String note;
   final int receivedTimestamp;
-  final MaintenanceRequestStatus status;
+  final String status;
   final VoidCallback onTap;
 
   MaintenanceCell({
@@ -23,7 +24,9 @@ class MaintenanceCell extends StatelessWidget with KeyValueRowBuilder {
 
   @override
   Widget build(BuildContext context) {
-    final statusTag = _StatusTag(status);
+    final requestStatusOption = RequestStatus.fromRequest(status);
+
+    final statusTag = _StatusTag(requestStatusOption);
 
     final receivedText =
         Date.fromSecondsSinceEpoch(receivedTimestamp).toAdaptiveString;
@@ -37,38 +40,34 @@ class MaintenanceCell extends StatelessWidget with KeyValueRowBuilder {
     return CellA(
       title: name,
       titleAccessory: statusTag,
-      rows: <Widget>[
-        receivedRow
-      ],
+      rows: <Widget>[receivedRow],
       note: note,
     );
   }
 }
 
 class _StatusTag extends StatelessWidget with RoofTagBuilder {
-  final MaintenanceRequestStatus status;
+  final RequestStatusOption status;
 
   _StatusTag(this.status);
 
-  _getStatusColor(MaintenanceRequestStatus status, RoofInheritedTheme theme) {
+  _getStatusColor(RequestStatusOption status, RoofInheritedTheme theme) {
     switch (status) {
-      case MaintenanceRequestStatus.closed:
+      case RequestStatusOption.closed:
         return theme.color.background.markerGreen;
-      case MaintenanceRequestStatus.emergency:
+      case RequestStatusOption.emergency:
         return theme.color.background.emergency;
-      case MaintenanceRequestStatus.open:
-      default:
-        return theme.color.background.markerGray;
+      case RequestStatusOption.open:
     }
   }
 
-  _getStatusText(MaintenanceRequestStatus status) {
+  _getStatusText(RequestStatusOption status) {
     switch (status) {
-      case MaintenanceRequestStatus.open:
+      case RequestStatusOption.open:
         return "OPEN";
-      case MaintenanceRequestStatus.closed:
+      case RequestStatusOption.closed:
         return "CLOSED";
-      case MaintenanceRequestStatus.emergency:
+      case RequestStatusOption.emergency:
         return "EMERGENCY";
     }
   }
@@ -86,10 +85,4 @@ class _StatusTag extends StatelessWidget with RoofTagBuilder {
       color: color,
     );
   }
-}
-
-enum MaintenanceRequestStatus {
-  open,
-  closed,
-  emergency,
 }

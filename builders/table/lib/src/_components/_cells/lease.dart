@@ -4,6 +4,7 @@ import 'package:mask/index.dart';
 import 'package:date/index.dart';
 import 'package:haptics/index.dart';
 import 'package:tag_builder/index.dart';
+import 'package:lease_status/index.dart';
 import 'package:typography/index.dart' as typography;
 import 'package:distance/index.dart' as distance;
 import 'package:corner_radius/index.dart' as radius;
@@ -17,7 +18,6 @@ class LeaseCell extends StatelessWidget {
   final int rentAmount;
   final int startTimestamp;
   final int endTimestamp;
-  final LeaseStatus status;
   final VoidCallback onTap;
 
   LeaseCell({
@@ -26,7 +26,6 @@ class LeaseCell extends StatelessWidget {
     @required this.rentAmount,
     @required this.startTimestamp,
     this.endTimestamp,
-    @required this.status,
     this.onTap,
   });
 
@@ -47,9 +46,11 @@ class LeaseCell extends StatelessWidget {
 
     final titleWidget = CellPrimaryTitle(title);
 
+    final leaseStatus = LeaseStatus.fromLease(startTimestamp, endTimestamp);
+
     final statusWidget = Container(
       margin: EdgeInsets.only(left: _spacing),
-      child: _StatusTag(status),
+      child: _StatusTag(leaseStatus),
     );
 
     final titleRow = CellSpacedRow(
@@ -182,30 +183,29 @@ class _DateRange extends StatelessWidget {
 }
 
 class _StatusTag extends StatelessWidget with RoofTagBuilder {
-  final LeaseStatus status;
+  final LeaseStatusOption status;
 
   _StatusTag(this.status);
 
-  _getStatusColor(LeaseStatus status, RoofInheritedTheme theme) {
+  _getStatusColor(LeaseStatusOption status, RoofInheritedTheme theme) {
     switch (status) {
-      case LeaseStatus.active:
+      case LeaseStatusOption.active:
         return theme.color.background.markerGreen;
         break;
-      case LeaseStatus.ended:
-      case LeaseStatus.upcoming:
-      default:
+      case LeaseStatusOption.ended:
+      case LeaseStatusOption.upcoming:
         return theme.color.background.markerGray;
     }
   }
 
-  _getStatusText(LeaseStatus status) {
+  _getStatusText(LeaseStatusOption status) {
     switch (status) {
-      case LeaseStatus.active:
+      case LeaseStatusOption.active:
         return "ACTIVE";
         break;
-      case LeaseStatus.ended:
+      case LeaseStatusOption.ended:
         return "ENDED";
-      case LeaseStatus.upcoming:
+      case LeaseStatusOption.upcoming:
         return "UPCOMING";
     }
   }
@@ -223,10 +223,4 @@ class _StatusTag extends StatelessWidget with RoofTagBuilder {
       color: color,
     );
   }
-}
-
-enum LeaseStatus {
-  active,
-  upcoming,
-  ended,
 }

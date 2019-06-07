@@ -99,8 +99,6 @@ class _StatusTag extends StatelessWidget with RoofTagBuilder {
         return theme.color.background.errorAction;
         break;
       case InvoiceStatusOption.unpaid:
-      default:
-        return theme.color.background.markerGray;
     }
   }
 

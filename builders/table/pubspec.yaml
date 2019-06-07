@@ -41,6 +41,10 @@ dependencies:
     path: ../tag
   invoice_options:
     path: ../../types/invoice
+  request_status:
+    path: ../../types/request
+  lease_status:
+    path: ../../types/lease
 
 dev_dependencies:
   flutter_test:

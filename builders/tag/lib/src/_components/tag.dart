@@ -32,7 +32,7 @@ class RoofTag extends StatelessWidget {
       padding: EdgeInsets.all(_padding),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(radius.small),
-        color: color,
+        color: color ?? theme.color.background.markerGray,
       ),
       child: textWidget,
     );
