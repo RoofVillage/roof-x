@@ -48,7 +48,7 @@ class LeaseArtboard extends LeaseVerticalFullScreenArtboard
       totalAmount: 120000,
       unpaidAmount: 120000,
       dueTimestamp: 1552728014,
-      invoiceType: InvoiceType.fromString("rent"),
+      invoiceType: InvoiceType.fromString("contractual"),
     );
 
     return [

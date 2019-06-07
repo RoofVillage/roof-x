@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:theme/index.dart';
 import 'package:date/index.dart';
-import 'package:haptics/index.dart';
 import 'package:tag_builder/index.dart';
-import 'package:distance/index.dart' as distance;
-import 'package:corner_radius/index.dart' as radius;
 import 'package:key_value_row_builder/index.dart';
 
-import '../_widgets/cell_primary_title.dart';
-import '../_widgets/cell_body_text_preview.dart';
-import '../_widgets/cell_spaced_row.dart';
+import '_a.dart';
 
 class MaintenanceCell extends StatelessWidget with KeyValueRowBuilder {
   final String name;
@@ -26,34 +21,9 @@ class MaintenanceCell extends StatelessWidget with KeyValueRowBuilder {
     this.onTap,
   });
 
-  final _radius = radius.regular;
-  final _cellPadding = distance.c;
-  final _spacing = distance.b;
-  final _topMargin = distance.b;
-  final _tapHapticOption = HapticOption.light;
-
-  void _fireHaptic() {
-    if (onTap != null) triggerHapticWith(_tapHapticOption);
-  }
-
   @override
   Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
-
-    final titleWidget = CellPrimaryTitle(name);
-
-    final statusWidget = Container(
-      margin: EdgeInsets.only(left: _spacing),
-      child: _StatusTag(status),
-    );
-
-    final titleRow = CellSpacedRow(
-      children: <Widget>[
-        titleWidget,
-        statusWidget,
-      ],
-    );
-    List<Widget> columnChildren = [titleRow];
+    final statusTag = _StatusTag(status);
 
     final receivedText =
         Date.fromSecondsSinceEpoch(receivedTimestamp).toAdaptiveString;
@@ -63,34 +33,14 @@ class MaintenanceCell extends StatelessWidget with KeyValueRowBuilder {
       title: "Received",
       value: receivedText,
     );
-    columnChildren.add(receivedRow);
 
-    if (note != null && note.isNotEmpty) {
-      final messageRow = Container(
-        margin: EdgeInsets.only(top: _spacing),
-        child: CellBodyTextPreview(note),
-      );
-      columnChildren.add(messageRow);
-    }
-
-    final bodyColumn = Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: columnChildren,
-    );
-
-    return GestureDetector(
-      onTapDown: (details) => _fireHaptic(),
-      onTap: onTap,
-      child: Container(
-        padding: EdgeInsets.all(_cellPadding),
-        margin: EdgeInsets.only(top: _topMargin),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(_radius),
-          border: Border.all(color: theme.color.stroke.light),
-          color: theme.color.background.generalPrimary,
-        ),
-        child: bodyColumn,
-      ),
+    return CellA(
+      title: name,
+      titleAccessory: statusTag,
+      rows: <Widget>[
+        receivedRow
+      ],
+      note: note,
     );
   }
 }

@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:theme/index.dart';
 import 'package:key_value_row_builder/index.dart';
 import 'package:date/index.dart';
-import 'package:haptics/index.dart';
-import 'package:corner_radius/index.dart' as radius;
-import 'package:distance/index.dart' as distance;
 
-import '../_widgets/cell_primary_title.dart';
+import '_a.dart';
 
 class TenantCell extends StatelessWidget with KeyValueRowBuilder {
   final String name;
@@ -23,73 +19,42 @@ class TenantCell extends StatelessWidget with KeyValueRowBuilder {
     this.onTap,
   });
 
-  final _radius = radius.regular;
-  final _cellPadding = distance.c;
-  final _topMargin = distance.b;
-  final _tapHapticOption = HapticOption.light;
-
-  void _fireHaptic() {
-    if (onTap != null) triggerHapticWith(_tapHapticOption);
-  }
-
   @override
   Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
-
     final bool isJoined = joinTimestamp != null;
 
-    final titleWidget = Row(
-      children: [CellPrimaryTitle(name)],
-    );
-
-    List<Widget> columnChildren = [titleWidget];
-
+    final List<Widget> rows = [];
     if (isJoined) {
       final joinedTimestampText =
           Date.fromSecondsSinceEpoch(joinTimestamp).toLongString;
 
-      final joinedWidget = buildKeyValueRow(
+      final joinedRow = buildKeyValueRow(
         context,
         title: "Joined on",
         value: joinedTimestampText,
       );
-      columnChildren.add(joinedWidget);
+      rows.add(joinedRow);
     } else {
-      final inviteKeyWidget = buildKeyValueRow(
+      final inviteKeyRow = buildKeyValueRow(
         context,
         title: "Invite key",
         value: inviteKey,
       );
-      columnChildren.add(inviteKeyWidget);
+      rows.add(inviteKeyRow);
 
       if (inviteSentTo != null) {
-        final inviteSentWidget = buildKeyValueRow(
+        final inviteSentRow = buildKeyValueRow(
           context,
           title: "Invite sent to",
           value: inviteSentTo,
         );
-        columnChildren.add(inviteSentWidget);
+        rows.add(inviteSentRow);
       }
     }
 
-    final bodyColumn = Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: columnChildren,
-    );
-
-    return GestureDetector(
-      onTapDown: (details) => _fireHaptic(),
-      onTap: onTap,
-      child: Container(
-        padding: EdgeInsets.all(_cellPadding),
-        margin: EdgeInsets.only(top: _topMargin),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(_radius),
-          border: Border.all(color: theme.color.stroke.light),
-          color: theme.color.background.generalPrimary,
-        ),
-        child: bodyColumn,
-      ),
+    return CellA(
+      title: name,
+      rows: rows,
     );
   }
 }

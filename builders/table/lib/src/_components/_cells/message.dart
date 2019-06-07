@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:theme/index.dart';
-import 'package:haptics/index.dart';
 import 'package:key_value_row_builder/index.dart';
 import 'package:date/index.dart';
 import 'package:typography/index.dart' as typography;
-import 'package:distance/index.dart' as distance;
-import 'package:corner_radius/index.dart' as radius;
 
-import '../_widgets/cell_primary_title.dart';
-import '../_widgets/cell_body_text_preview.dart';
-import '../_widgets/cell_spaced_row.dart';
+import '_a.dart';
 
 class MessageCell extends StatelessWidget with KeyValueRowBuilder {
   final String subject;
@@ -24,70 +19,24 @@ class MessageCell extends StatelessWidget with KeyValueRowBuilder {
     this.onTap,
   });
 
-  final _radius = radius.regular;
-  final _cellPadding = distance.c;
-  final _spacing = distance.c;
-  final _sectionSpacing = distance.b;
-  final _topMargin = distance.b;
-  final _tapHapticOption = HapticOption.light;
-
-  void _fireHaptic() {
-    if (onTap != null) triggerHapticWith(_tapHapticOption);
-  }
-
   @override
   Widget build(BuildContext context) {
     final theme = RoofTheme.of(context);
 
-    final titleWidget = CellPrimaryTitle(subject);
-
     final formattedDateText =
         Date.fromSecondsSinceEpoch(latestActivityTimestamp).toAdaptiveString;
 
-    final dateWidget = Container(
-      margin: EdgeInsets.only(left: _spacing),
-      child: Text(
-        formattedDateText,
-        style: typography.detailSecondary.textStyleWithColor(
-          theme.color.text.secondary,
-        ),
+    final dateWidget = Text(
+      formattedDateText,
+      style: typography.detailSecondary.textStyleWithColor(
+        theme.color.text.secondary,
       ),
     );
 
-    final titleRow = CellSpacedRow(
-      children: <Widget>[
-        titleWidget,
-        dateWidget,
-      ],
-    );
-    List<Widget> columnChildren = [titleRow];
-
-    if (message != null && message.isNotEmpty) {
-      final messageRow = Container(
-        margin: EdgeInsets.only(top: _sectionSpacing),
-        child: CellBodyTextPreview(message),
-      );
-      columnChildren.add(messageRow);
-    }
-
-    final bodyColumn = Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: columnChildren,
-    );
-
-    return GestureDetector(
-      onTapDown: (details) => _fireHaptic(),
-      onTap: onTap,
-      child: Container(
-        padding: EdgeInsets.all(_cellPadding),
-        margin: EdgeInsets.only(top: _topMargin),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(_radius),
-          border: Border.all(color: theme.color.stroke.light),
-          color: theme.color.background.generalPrimary,
-        ),
-        child: bodyColumn,
-      ),
+    return CellA(
+      title: subject,
+      titleAccessory: dateWidget,
+      note: message,
     );
   }
 }
