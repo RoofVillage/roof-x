@@ -1,7 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:visibility_manager/index.dart';
 import 'package:tab/index.dart';
+import 'package:input_dock_builder/index.dart';
 
 class RoofTabView extends StatefulWidget {
   const RoofTabView({
@@ -16,21 +16,40 @@ class RoofTabView extends StatefulWidget {
   _RoofTabViewState createState() => _RoofTabViewState();
 }
 
-class _RoofTabViewState extends State<RoofTabView> {
+class _RoofTabViewState extends State<RoofTabView> with InputDockBuilder {
   TabController _controller;
   PageController _pageController;
-  VisibilityManager _dockVisibilityManager;
   List<Widget> _children;
   int _currentIndex;
   int _warpUnderwayCount = 0;
 
   List<Widget> _buildTabViews() {
-    return widget.tabs.map((tab) => tab.view).toList();
+    final List<Widget> views = [];
+
+    for (final RoofTab tab in widget.tabs) {
+      if (tab.hasDock == true) {
+        final tabView = Expanded(
+          child: tab.view,
+        );
+
+        final inputDock = buildInputDock(context);
+
+        final view = Column(
+          children: <Widget>[
+            tabView,
+            inputDock,
+          ],
+        );
+        views.add(view);
+      } else {
+        views.add(tab.view);
+      }
+    }
+    return views;
   }
 
   void _updateTabController() {
     _controller.animation.addListener(_handleTabControllerAnimationTick);
-    _controller.animation.addListener(_dockVisibleForTab);
   }
 
   @override
@@ -39,10 +58,6 @@ class _RoofTabViewState extends State<RoofTabView> {
 
     _children = _buildTabViews();
     _controller = widget.controller;
-
-    WidgetsBinding.instance.addPostFrameCallback(
-      (Duration d) => _dockVisibleForTab(),
-    );
   }
 
   @override
@@ -51,7 +66,6 @@ class _RoofTabViewState extends State<RoofTabView> {
     _updateTabController();
     _currentIndex = _controller?.index;
     _pageController = PageController(initialPage: _currentIndex ?? 0);
-    _dockVisibilityManager = InheritedVisibilityManager.of(context);
   }
 
   @override
@@ -65,7 +79,6 @@ class _RoofTabViewState extends State<RoofTabView> {
   void dispose() {
     if (_controller != null) {
       _controller.animation.removeListener(_handleTabControllerAnimationTick);
-      _controller.animation.removeListener(_dockVisibleForTab);
     }
     super.dispose();
   }
@@ -77,28 +90,6 @@ class _RoofTabViewState extends State<RoofTabView> {
       _currentIndex = _controller.index;
       _warpToCurrentIndex();
     }
-  }
-
-  void _dockVisibleForTab() {
-    if (_dockVisibilityManager == null) return;
-
-    final offset = _controller.offset;
-    final bool dragging = offset != 0;
-
-    int index = _controller.index;
-
-    if (dragging && offset.abs() > .5) {
-      if (offset > 0) {
-        index += 1;
-      } else if (offset < 0) {
-        index -= 1;
-      }
-    }
-
-    final newTab = widget.tabs[index];
-    final visible = newTab.hasDock ?? false;
-
-    _dockVisibilityManager.setVisibility(visible);
   }
 
   Future<void> _warpToCurrentIndex() async {

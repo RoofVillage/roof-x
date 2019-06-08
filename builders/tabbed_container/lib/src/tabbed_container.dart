@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:theme/index.dart';
-import 'package:visibility_manager_builder/index.dart';
-import 'package:collapsible_container_builder/index.dart';
-import 'package:input_dock_builder/index.dart';
 import 'package:button_builder/index.dart';
 import 'package:tab/index.dart';
 import 'package:distance/index.dart' as distance;
@@ -21,11 +18,7 @@ class RoofTabbedContainer extends StatefulWidget {
 }
 
 class _RoofTabbedContainerState extends State<RoofTabbedContainer>
-    with
-        SingleTickerProviderStateMixin,
-        InputDockBuilder,
-        CollapsibleContainerBuilder,
-        VisibilityManagerBuilder {
+    with SingleTickerProviderStateMixin {
   TabController _tabController;
 
   @override
@@ -68,23 +61,6 @@ class _RoofTabbedContainerState extends State<RoofTabbedContainer>
     List<Widget> columnChildren = [tabBar, tabView];
 
     Widget bodyColumn = Column(children: columnChildren);
-
-    final bool bodyHasDock = widget.tabs.where((tab) => tab.hasDock).isNotEmpty;
-
-    if (bodyHasDock) {
-      final inputDock = buildInputDock(context);
-
-      final collapsibleDock = buildCollapsibleContainer(
-        context,
-        child: inputDock,
-      );
-
-      columnChildren.add(collapsibleDock);
-
-      bodyColumn = buildVisibilityManager(
-        child: Column(children: columnChildren),
-      );
-    }
 
     return Container(
       color: theme.color.background.generalPrimary,

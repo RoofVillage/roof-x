@@ -13,7 +13,6 @@ class PropertyArtboard extends PropertyVerticalFullScreenArtboard {
       rentAmount: 320000,
       startTimestamp: 1512728014,
       endTimestamp: 1552728014,
-      status: LeaseStatus.active,
     );
 
     return [

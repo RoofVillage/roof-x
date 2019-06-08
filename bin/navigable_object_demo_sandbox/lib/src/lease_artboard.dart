@@ -129,34 +129,6 @@ class LeaseArtboard extends LeaseVerticalFullScreenArtboard
 
   @override
   List<Widget> buildThreadCells(BuildContext context) {
-    // final eventCell = RoofThreadEventCell(
-    //   timestamp: 1558229172,
-    //   title: "Kelsey Lu paid \$980 for June rent",
-    //   iconReference: IconReference.cashSack,
-    //   details: [
-    //     buildKeyValue(
-    //       context,
-    //       title: "Permission to enter",
-    //       value: "Fuck yea",
-    //     ),
-    //     buildKeyValue(
-    //       context,
-    //       title: "Another detail",
-    //       value: "Detail value",
-    //     ),
-    //     buildKeyValue(
-    //       context,
-    //       title: "Another detail 222",
-    //       value: "Detail value 222",
-    //     ),
-    //     buildKeyValue(
-    //       context,
-    //       title: "more shit",
-    //       value:
-    //           "Detail value 222 asdf asdf asdfasdf alkjlkj asdfasdf alkjlkj asdfasdf alkjlkj",
-    //     )
-    //   ],
-    // );
     final eventCell1 = RoofThreadEventCell(
       timestamp: 1558229172,
       title: "Kelsey Lu paid \$980 for June rent",
@@ -174,6 +146,12 @@ class LeaseArtboard extends LeaseVerticalFullScreenArtboard
       iconReference: IconReference.cashSack,
     );
     return [
+      eventCell3,
+      eventCell2,
+      eventCell1,
+      eventCell3,
+      eventCell2,
+      eventCell1,
       eventCell3,
       eventCell2,
       eventCell1,

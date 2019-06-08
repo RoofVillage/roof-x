@@ -24,10 +24,6 @@ dependencies:
     path: ../../../builders/caret_wrap
   tabbed_container_builder:
     path: ../../../builders/tabbed_container
-  collapsible_container_builder:
-    path: ../../../builders/collapsible_container
-  visibility_manager_builder:
-    path: ../../../builders/visibility_manager
   tab:
     path: ../../../tab
 
