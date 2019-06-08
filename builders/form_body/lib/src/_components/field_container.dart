@@ -23,7 +23,7 @@ class RoofFieldContainer extends StatelessWidget {
       horizontal: distance.c,
     );
 
-    final backgroundColor = theme.color.background.generalPrimary;
+    final backgroundColor = theme.color.background.inputForeground;
 
     return Container(
       margin: margin,

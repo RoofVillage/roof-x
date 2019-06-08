@@ -9,10 +9,10 @@ const darkGreen = Color.fromRGBO(110, 145, 52, 1);
 const emergency = Color.fromRGBO(221, 72, 36, 1);
 
 const white1 = Color.fromRGBO(255, 255, 255, 1);
-const white2 = Color.fromRGBO(246, 246, 246, 1);
+const white2 = Color.fromRGBO(243, 243, 243, 1);
 
 const black3 = Color.fromRGBO(60, 60, 60, 1);
-const black2 = Color.fromRGBO(30, 30, 30, 1);
+const black2 = Color.fromRGBO(32, 32, 32, 1);
 const black1 = Color.fromRGBO(24, 24, 24, 1);
 
 const gray1 = Color.fromRGBO(221, 221, 221, 1);

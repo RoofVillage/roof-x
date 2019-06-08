@@ -16,7 +16,7 @@ class RoofBackgroundColor {
     return null;
   }
 
-  Color get generalPrimary {
+  Color get inputForeground {
     switch (_current) {
       case RoofThemeOption.light:
         return color.white1;
@@ -26,10 +26,30 @@ class RoofBackgroundColor {
     return null;
   }
 
-  Color get generalSecondary {
+  Color get inputBackground {
     switch (_current) {
       case RoofThemeOption.light:
         return color.white2;
+      case RoofThemeOption.dark:
+        return color.black1;
+    }
+    return null;
+  }
+
+  Color get generalPrimary {
+    switch (_current) {
+      case RoofThemeOption.light:
+        return color.white2;
+      case RoofThemeOption.dark:
+        return color.black2;
+    }
+    return null;
+  }
+
+  Color get generalSecondary {
+    switch (_current) {
+      case RoofThemeOption.light:
+        return color.white1;
       case RoofThemeOption.dark:
         return color.black1;
     }

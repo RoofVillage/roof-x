@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RoofTheme(
-      RoofThemeOption.light,
+      RoofThemeOption.dark,
       child: MaterialApp(
         title: 'Cells sandbox',
         debugShowCheckedModeBanner: false,
@@ -128,7 +128,7 @@ class CellsSandbox extends StatelessWidget with KeyValueBuilder {
     );
 
     return Scaffold(
-      backgroundColor: theme.color.background.brand,
+      backgroundColor: theme.color.background.generalSecondary,
       body: ListView(
         children: [
           standardThreadCell,

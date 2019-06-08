@@ -27,7 +27,7 @@ class RoofThreadEventCell extends StatelessWidget {
   });
 
   final double _horizontalPadding = distance.b;
-  final double _verticalMargin = distance.c;
+  final double _verticalMargin = distance.b;
   final double _horizontalSpacing = distance.b;
   final _tapHapticOption = HapticOption.light;
 
