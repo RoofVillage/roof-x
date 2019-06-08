@@ -49,15 +49,14 @@ class _RoofTabViewState extends State<RoofTabView> with InputDockBuilder {
   }
 
   void _updateTabController() {
+    _controller = widget.controller;
     _controller.animation.addListener(_handleTabControllerAnimationTick);
   }
 
   @override
   void initState() {
     super.initState();
-
     _children = _buildTabViews();
-    _controller = widget.controller;
   }
 
   @override
@@ -66,13 +65,6 @@ class _RoofTabViewState extends State<RoofTabView> with InputDockBuilder {
     _updateTabController();
     _currentIndex = _controller?.index;
     _pageController = PageController(initialPage: _currentIndex ?? 0);
-  }
-
-  @override
-  void didUpdateWidget(RoofTabView oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    if (widget.tabs != oldWidget.tabs && _warpUnderwayCount == 0)
-      _children = _buildTabViews();
   }
 
   @override
