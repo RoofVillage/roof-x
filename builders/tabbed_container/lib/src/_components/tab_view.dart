@@ -27,12 +27,16 @@ class _RoofTabViewState extends State<RoofTabView> with InputDockBuilder {
     final List<Widget> views = [];
 
     for (final RoofTab tab in widget.tabs) {
-      if (tab.hasDock == true) {
+      if (tab.dockData != null) {
         final tabView = Expanded(
           child: tab.view,
         );
 
-        final inputDock = buildInputDock(context);
+        final inputDock = buildInputDock(
+          context,
+          auxiliaryWidgets: tab.dockData.auxiliaryWidgets,
+          actionButton: tab.dockData.actionButton,
+        );
 
         final view = Column(
           children: <Widget>[

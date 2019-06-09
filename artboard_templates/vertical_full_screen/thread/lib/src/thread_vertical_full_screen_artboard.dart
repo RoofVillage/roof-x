@@ -18,6 +18,14 @@ abstract class ThreadVerticalFullScreenArtboard extends StatefulWidget
   @override
   Widget buildNavBar(BuildContext context) => buildTitledNavBar(context);
 
+  List<Widget> get auxiliaryWidgets => null;
+
+  Widget get actionButton => null;
+
   @override
-  Widget buildDock(BuildContext context) => buildInputDock(context);
+  Widget buildDock(BuildContext context) => buildInputDock(
+        context,
+        auxiliaryWidgets: auxiliaryWidgets,
+        actionButton: actionButton,
+      );
 }

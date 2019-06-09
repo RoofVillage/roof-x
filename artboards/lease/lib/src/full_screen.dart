@@ -6,6 +6,7 @@ import 'package:button_builder/index.dart';
 import 'package:button_status_option/index.dart';
 import 'package:cells_list_view_builder/index.dart';
 import 'package:thread_list_view_builder/index.dart';
+import 'package:auxiliary_widget_builder/index.dart';
 import 'package:tab/index.dart';
 
 import '_builder.dart';
@@ -15,7 +16,8 @@ abstract class LeaseVerticalFullScreenArtboard extends TabbedFullScreenArtboard
         RoofCellsListViewBuilder,
         RoofThreadListViewBuilder,
         SecondaryCenterButtonBuilder,
-        LeaseArtboardBuilder {
+        LeaseArtboardBuilder,
+        AddFileAuxiliaryWidgetBuilder {
   // TODO convert this to accept data objects instead of widgets, build cells here
   List<Widget> buildThreadCells(BuildContext context);
   List<Widget> buildTenantsCells(BuildContext context);
@@ -97,11 +99,15 @@ abstract class LeaseVerticalFullScreenArtboard extends TabbedFullScreenArtboard
       children: buildMaintenanceCells(context),
     );
 
+    final addFileAuxiliaryWidget = buildAddFileAuxiliaryWidget(context);
+
     return [
       RoofTab(
         title: "Thread",
         view: threadList,
-        hasDock: true,
+        dockData: TabDockData(
+          auxiliaryWidgets: [addFileAuxiliaryWidget],
+        ),
       ),
       RoofTab(
         title: "Invoices",

@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'input_dock.dart';
 
 mixin InputDockBuilder {
-  Widget get actionButton => null;
-  List<Widget> get auxiliaryWidgets => null;
-
-  RoofInputDock buildInputDock(BuildContext context) {
+  RoofInputDock buildInputDock(
+    BuildContext context, {
+    Widget actionButton,
+    List<Widget> auxiliaryWidgets,
+  }) {
     return RoofInputDock(
       actionButton: actionButton,
       auxiliaryWidgets: auxiliaryWidgets,

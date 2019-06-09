@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
+import 'tab_dock_data.dart';
+
 class RoofTab {
   final String title;
   final Widget view;
-  final bool hasDock;
+  final TabDockData dockData;
 
-  RoofTab({this.title, this.view, this.hasDock});
+  RoofTab({this.title, this.view, this.dockData});
 }

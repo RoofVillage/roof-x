@@ -30,6 +30,8 @@ dependencies:
     path: ../../builders/thread_list_view
   key_value_row_builder:
     path: ../../builders/key_value_row
+  auxiliary_widget_builder:
+    path: ../../builders/auxiliary_widget
   tab:
     path: ../../tab
 
