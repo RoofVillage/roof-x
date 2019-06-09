@@ -122,7 +122,7 @@ class InheritedInputDock extends State<RoofInputDock> {
       padding: bottomPadding,
       decoration: BoxDecoration(
         color: backgroundColor,
-        // border: Border(top: BorderSide(color: topBorderColor)),
+        border: Border(top: BorderSide(color: topBorderColor)),
       ),
       child: Column(
         children: columnChildren,

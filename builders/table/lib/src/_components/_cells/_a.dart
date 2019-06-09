@@ -88,7 +88,7 @@ class CellA extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(_cornerRadius),
           border: Border.all(color: theme.color.stroke.light),
-          color: theme.color.background.generalPrimary,
+          color: theme.color.background.inputForeground,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

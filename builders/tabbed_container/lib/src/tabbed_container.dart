@@ -40,9 +40,6 @@ class _RoofTabbedContainerState extends State<RoofTabbedContainer>
   final _verticalMargin = distance.c;
 
   @override
-  List<Widget> get auxiliaryWidgets => [AddFileAuxiliaryWidget()];
-
-  @override
   Widget build(BuildContext context) {
     final theme = RoofTheme.of(context);
 
@@ -63,7 +60,7 @@ class _RoofTabbedContainerState extends State<RoofTabbedContainer>
     Widget bodyColumn = Column(children: columnChildren);
 
     return Container(
-      color: theme.color.background.generalPrimary,
+      color: theme.color.background.inputForeground,
       padding: EdgeInsets.only(top: _verticalMargin),
       child: bodyColumn,
     );

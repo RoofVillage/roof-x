@@ -9,6 +9,9 @@ mixin RoofCellsListViewBuilder {
     Widget button,
     bool reversed,
   }) {
-    return RoofCellsListView(children: children, button: button, reversed: reversed);
+    return RoofCellsListView(
+      children: children,
+      button: button,
+    );
   }
 }

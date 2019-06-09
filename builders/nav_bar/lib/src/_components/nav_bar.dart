@@ -45,7 +45,7 @@ mixin RoofNavBar implements StatelessWidget {
 
     return Container(
       padding: padding,
-      decoration: BoxDecoration(color: theme.color.background.generalPrimary),
+      decoration: BoxDecoration(color: theme.color.background.inputForeground),
       child: itemRow,
     );
   }

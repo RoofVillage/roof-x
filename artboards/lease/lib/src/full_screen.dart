@@ -5,6 +5,7 @@ import 'package:tabbed_fullscreen_artboard_template/index.dart';
 import 'package:button_builder/index.dart';
 import 'package:button_status_option/index.dart';
 import 'package:cells_list_view_builder/index.dart';
+import 'package:thread_list_view_builder/index.dart';
 import 'package:tab/index.dart';
 
 import '_builder.dart';
@@ -12,6 +13,7 @@ import '_builder.dart';
 abstract class LeaseVerticalFullScreenArtboard extends TabbedFullScreenArtboard
     with
         RoofCellsListViewBuilder,
+        RoofThreadListViewBuilder,
         SecondaryCenterButtonBuilder,
         LeaseArtboardBuilder {
   // TODO convert this to accept data objects instead of widgets, build cells here
@@ -57,10 +59,9 @@ abstract class LeaseVerticalFullScreenArtboard extends TabbedFullScreenArtboard
       button: tenantsActionButton,
     );
 
-    final threadList = buildCellsList(
+    final threadList = buildThreadList(
       context,
       children: buildThreadCells(context),
-      reversed: true,
     );
 
     final invoicesActionButton = buildSecondaryCenterButton(
