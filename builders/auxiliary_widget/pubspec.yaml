@@ -1,0 +1,35 @@
+name: auxiliary_widget_builder
+description: Icon button with specific icon and onTap function.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  icon_library:
+    path: ../../icon_library
+  typography:
+    path: ../../spec/typography
+  theme:
+    path: ../../theme
+  haptics:
+    path: ../../lib/haptics
+  distance:
+    path: ../../spec/distance
+  corner_radius:
+    path: ../../spec/corner_radius
+  typedefs:
+    path: ../../lib/typedefs
+  button_status_option:
+    path: ../../options/button_status
+  image_picker_builder:
+    path: ../image_picker
+  input_dock_builder:
+    path: ../input_dock
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

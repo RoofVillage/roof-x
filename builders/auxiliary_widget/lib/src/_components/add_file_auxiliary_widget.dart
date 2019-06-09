@@ -4,10 +4,10 @@ import 'package:image_picker_builder/index.dart';
 import 'package:button_builder/index.dart';
 import 'package:input_dock_builder/index.dart';
 
-import '_mixins/auxiliary_widget.dart';
+import '_auxiliary_widget.dart';
 
 class AddFileAuxiliaryWidget extends StatelessWidget
-    with AuxiliaryWidget, ImagePickerBuilder, PrimaryIconButtonBuilder {
+    with ImagePickerBuilder, PrimaryIconButtonBuilder {
   void action(BuildContext context) async {
     final dock = RoofInputDock.of(context);
 
@@ -32,8 +32,7 @@ class AddFileAuxiliaryWidget extends StatelessWidget
       iconReference: iconReference,
     );
 
-    return buildAuxiliaryWidget(
-      context,
+    return AuxiliaryWidget(
       child: iconButton,
     );
   }
