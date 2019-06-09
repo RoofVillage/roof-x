@@ -7,12 +7,13 @@ class RoofStrokeColor {
   RoofThemeOption _current;
 
   Color get light {
-    final opacity = 0.1;
+    final opacity1 = 0.08;
+    final opacity2 = 0.04;
     switch (_current) {
       case RoofThemeOption.light:
-        return color.black1.withOpacity(opacity);
+        return color.black1.withOpacity(opacity1);
       case RoofThemeOption.dark:
-        return color.white1.withOpacity(opacity);
+        return color.white1.withOpacity(opacity2);
     }
     return null;
   }
@@ -31,9 +32,9 @@ class RoofStrokeColor {
   Color get secondaryAction {
     switch (_current) {
       case RoofThemeOption.light:
-        return color.blue;
+        return color.white1;
       case RoofThemeOption.dark:
-        return color.blue;
+        return color.blue.withOpacity(0.1);
     }
     return null;
   }

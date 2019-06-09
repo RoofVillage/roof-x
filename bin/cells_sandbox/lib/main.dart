@@ -1,9 +1,9 @@
+
 import 'package:flutter/material.dart';
 import 'package:theme/index.dart';
 import 'package:table_builder/index.dart';
 import 'package:icon_library/index.dart';
 import 'package:decorated_text/index.dart';
-import 'package:typography/index.dart' as typography;
 import 'package:key_value_builder/index.dart';
 
 void main() => runApp(MyApp());
@@ -30,25 +30,28 @@ class CellsSandbox extends StatelessWidget with KeyValueBuilder {
     final theme = RoofTheme.of(context);
 
     final cellATitle = WeightDecoratedText();
-    cellATitle.addSection(text: "Here's a");
-    cellATitle.addSection(text: "thin part", thin: true);
-    cellATitle.addSection(text: "title");
+    cellATitle.addSection(text: "Evan");
+    cellATitle.addSection(text: "bought you", thin: true);
+    cellATitle.addSection(text: "Tide Pods");
+    cellATitle.addSection(text: "for", thin: true);
+    cellATitle.addSection(text: "\$17.50");
 
     final activityCell = RoofActivityCell(
       title: cellATitle,
-      note: "Note note  note not enot enote note neontoe tnon entoent",
+      note: "Young and McIntosh have even been known to get off stage and join the crowd to mosh, while the music keeps playing",
       iconReference: IconReference.cashSack,
+      timestamp: 1558229172,
     );
 
     final commentCell = RoofThreadCommentCell(
       creator: "Yung jo",
-      timestamp: 42069,
+      timestamp: 1558229172,
       note:
-          "Blaze it bitches Blaze it bitches Blaze it bitches Blaze it bitches Blaze it bitches Blaze it bitches Blaze it bitches Blaze it bitches",
+          "The duo came second in a college band competition, strangely listed under 'acoustic rock', but still managed to make an impact which scored them a couple of local shows in late 2005. From there Cal and Simon wrote a handful of songs in the space of two weeks and released a home brew EP, which gained them a special mention on Triple J and secured TSOMM a place on various radio stations around Australia.",
     );
 
     final eventCell = RoofThreadEventCell(
-      timestamp: 696969420,
+      timestamp: 1558229172,
       title: "Event title",
       note: "Did an event here's a note bishhh",
       iconReference: IconReference.livingRoom,
@@ -79,19 +82,18 @@ class CellsSandbox extends StatelessWidget with KeyValueBuilder {
 
     final emptyEventCell = RoofThreadEventCell(
       title: "Jo did a chore",
-      timestamp: 121212,
+      timestamp: 1558229172,
     );
 
     final standardThreadCellSecondaryText = WeightDecoratedText()
-      ..addSection(text: "Here's a")
-      ..addSection(text: "thin part", thin: true)
-      ..addSection(text: "title");
+      ..addSection(text: "Assigned to", thin: true)
+      ..addSection(text: "Evan");
 
     final standardThreadCell = RoofStandardThreadCell(
       title: "Feed baby shark",
       secondaryText: standardThreadCellSecondaryText,
       iconReference: IconReference.thread,
-      timestamp: 7843879,
+      timestamp: 1558229172,
       onTap: () => print("tap"),
     );
 
@@ -99,7 +101,7 @@ class CellsSandbox extends StatelessWidget with KeyValueBuilder {
       title: "Feed baby shark overdue",
       secondaryText: standardThreadCellSecondaryText,
       iconReference: IconReference.thread,
-      timestamp: 7843879,
+      timestamp: 1558229172,
       onTap: () => print("tap"),
     );
 
@@ -107,14 +109,14 @@ class CellsSandbox extends StatelessWidget with KeyValueBuilder {
       title: "Feed baby shark due soon",
       secondaryText: standardThreadCellSecondaryText,
       iconReference: IconReference.thread,
-      timestamp: 7843879,
+      timestamp: 1558229172,
       onTap: () => print("tap"),
     );
 
     final noSecondaryThreadCell = RoofStandardThreadCell(
       title: "Feed baby shark is alone and real real long long long",
       iconReference: IconReference.thread,
-      timestamp: 7843879,
+      timestamp: 1558229172,
       onTap: () => print("tap"),
     );
 
@@ -126,7 +128,7 @@ class CellsSandbox extends StatelessWidget with KeyValueBuilder {
     );
 
     return Scaffold(
-      backgroundColor: theme.color.background.brand,
+      backgroundColor: theme.color.background.generalSecondary,
       body: ListView(
         children: [
           standardThreadCell,

@@ -19,8 +19,8 @@ class SpacedGrid extends StatelessWidget {
       paddedObjects.add(
         Padding(
           padding: EdgeInsets.only(
-            top: verticalSpacing,
-            right: horizontalSpacing,
+            top: verticalSpacing?? 0,
+            right: horizontalSpacing?? 0,
           ),
           child: child,
         ),

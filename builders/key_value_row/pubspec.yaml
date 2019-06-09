@@ -1,0 +1,21 @@
+name: key_value_row_builder
+description: Horizontally oriented key-value text pair.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  typography:
+    path: ../../spec/typography
+  distance:
+    path: ../../spec/distance
+  theme:
+    path: ../../theme

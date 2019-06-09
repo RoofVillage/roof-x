@@ -10,21 +10,33 @@ class PublicActivityVerticalFullScreenArtboard
     extends FullLogoTableVerticalFullScreenArtboard
     with PublicActivityArtboardBuilder {
   List<Widget> buildActionButtons(BuildContext context) {
-    final button1 = buildIconNavButton(context,
-        iconReference: IconReference.addNav, onTap: (context) {
-      ArtboardNavigator.of(context).goTo(SignUpVerticalFloatingArtboard());
-    });
+    final button1 = buildIconNavButton(
+      context,
+      iconReference: IconReference.addNav,
+      onTap: (context) {
+        ArtboardNavigator.of(context).goTo(
+          SignUpVerticalFloatingArtboard(),
+        );
+      },
+    );
 
-    final button2 = buildIconNavButton(context,
-        iconReference: IconReference.settingsNav, onTap: (context) {
-      ArtboardNavigator.of(context)
-          .goTo(PublicActivityVerticalFullScreenArtboard());
-    });
+    final button2 = buildIconNavButton(
+      context,
+      iconReference: IconReference.settingsNav,
+      onTap: (context) {
+        ArtboardNavigator.of(context).goTo(
+          PublicActivityVerticalFullScreenArtboard(),
+        );
+      },
+    );
 
-    final popButton = buildIconNavButton(context,
-        iconReference: IconReference.backArrowNav, onTap: (context) {
-      ArtboardNavigator.of(context).pop(context);
-    });
+    final popButton = buildIconNavButton(
+      context,
+      iconReference: IconReference.backArrowNav,
+      onTap: (context) {
+        ArtboardNavigator.of(context).pop(context);
+      },
+    );
 
     return [button1, button2, popButton];
   }

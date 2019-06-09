@@ -86,7 +86,7 @@ class Date extends DateTime {
     return "just now";
   }
 
-  String get toStaggaredString {
+  String get toAdaptiveString {
     final difference = DateTime.now().difference(this);
     if (difference.inDays > 365) {
       return toLongString;
@@ -142,7 +142,7 @@ class Date extends DateTime {
   }
 
   Date.fromSecondsSinceEpoch(int seconds)
-      : super.fromMillisecondsSinceEpoch(seconds * 100);
+      : super.fromMillisecondsSinceEpoch(seconds * 1000);
 
   Date.fromDateTime(DateTime dateTime)
       : super.fromMillisecondsSinceEpoch(dateTime.millisecondsSinceEpoch);

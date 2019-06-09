@@ -24,9 +24,10 @@ class RoofSegueBar extends StatelessWidget {
 
   final _titleTypographyStyle = typography.bodyPrimaryThick;
 
-  _onTap() {
-    triggerHapticWith(HapticOption.light);
-    onTap();
+  final _tapHapticOption = HapticOption.light;
+
+  void _fireHaptic() {
+    if (onTap != null) triggerHapticWith(_tapHapticOption);
   }
 
   @override
@@ -63,7 +64,8 @@ class RoofSegueBar extends StatelessWidget {
     }
 
     return GestureDetector(
-      onTap: _onTap,
+      onTapDown: (details) => _fireHaptic(),
+      onTap: onTap,
       child: Container(
         padding: EdgeInsets.symmetric(
             horizontal: _horizontalPadding, vertical: _verticalPadding),
@@ -84,7 +86,7 @@ class _AuxiliaryTextWidget extends StatelessWidget {
     @required this.leftMargin,
   });
 
-  final _typographyStyle = typography.detailPrimary;
+  final _typographyStyle = typography.bodyPrimaryThick;
 
   final _padding = distance.b;
 

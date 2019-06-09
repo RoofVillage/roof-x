@@ -7,7 +7,7 @@ import 'package:theme/index.dart';
 import 'package:typography/index.dart' as typography;
 import 'package:haptics/index.dart';
 
-import 'input_dock.dart';
+import '../input_dock.dart';
 
 class DockInputField extends StatefulWidget {
   final Function onSubmit;
@@ -38,14 +38,20 @@ class _DockInputFieldState extends State<DockInputField> {
 
   @override
   void dispose() {
-    _textController.dispose();
     super.dispose();
+    _textController.dispose();
   }
 
   @override
   void initState() {
-    _textController.addListener(_textChanged);
     super.initState();
+    _textController.addListener(_textChanged);
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _dock = RoofInputDock.of(context);
   }
 
   @override

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:icon_library/index.dart';
+import 'package:theme/index.dart';
+import 'package:haptics/index.dart';
 import 'package:padding/index.dart' as padding;
 import 'package:distance/index.dart' as distance;
 import 'package:duration/index.dart' as duration;
 import 'package:curve/index.dart' as curve;
 import 'package:corner_radius/index.dart' as corner_radius;
-import 'package:theme/index.dart';
 import 'package:typography/index.dart' as typography;
-import 'package:haptics/index.dart';
 
 import '_widgets/index.dart';
 
@@ -93,7 +93,6 @@ class _RoofSelectFieldState extends State<RoofSelectField>
   void _onTap(RoofSelectFieldOptionData option) {
     widget.onChanged(selectedOptions);
     _updateSelectedOptions(option);
-    triggerHapticWith(_hapticOption);
   }
 
   HapticOption get _hapticOption {

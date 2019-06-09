@@ -1,7 +1,7 @@
 import 'package:meta/meta.dart';
 import 'package:contract/index.dart';
 import 'package:fee_payer_type/index.dart';
-import 'package:invoice_type/index.dart';
+import 'package:invoice_options/index.dart';
 import 'package:contract_user/index.dart';
 import 'package:name_contract_domain/index.dart';
 import 'package:date/index.dart';

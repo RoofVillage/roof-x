@@ -16,4 +16,5 @@ flutter:
     - lib/src/navigation/
     - lib/src/standard/
     - lib/src/small/
+    - lib/src/xSmall/
     - lib/src/custom/

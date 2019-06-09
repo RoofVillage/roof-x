@@ -1,35 +1,48 @@
 import 'package:flutter/material.dart';
-import 'package:distance/index.dart' as distance;
 import 'package:theme/index.dart';
+import 'package:date/index.dart';
+import 'package:haptics/index.dart';
+import 'package:distance/index.dart' as distance;
 import 'package:typography/index.dart' as typography;
 
 class RoofThreadCommentCell extends StatelessWidget {
   final String creator;
   final int timestamp;
   final String note;
+  final VoidCallback onTap;
 
   RoofThreadCommentCell({
     @required this.creator,
     @required this.timestamp,
     @required this.note,
+    this.onTap,
   });
 
   final double _horizontalPadding = distance.b;
   final double _verticalPadding = distance.b;
   final double _verticalMargin = distance.b;
+  final _tapHapticOption = HapticOption.light;
+
+  void _fireHaptic() {
+    if (onTap != null) triggerHapticWith(_tapHapticOption);
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: _verticalMargin),
-      padding: EdgeInsets.symmetric(
-        horizontal: _horizontalPadding,
-        vertical: _verticalPadding,
-      ),
-      child: _Body(
-        creator: creator,
-        timestamp: timestamp,
-        note: note,
+    return GestureDetector(
+      onTapDown: (details) => _fireHaptic(),
+      onTap: onTap,
+      child: Container(
+        margin: EdgeInsets.symmetric(vertical: _verticalMargin),
+        padding: EdgeInsets.symmetric(
+          horizontal: _horizontalPadding,
+          vertical: _verticalPadding,
+        ),
+        child: _Body(
+          creator: creator,
+          timestamp: timestamp,
+          note: note,
+        ),
       ),
     );
   }
@@ -63,10 +76,13 @@ class _Body extends StatelessWidget {
       ),
     );
 
+    final formattedTimestamp =
+        Date.fromSecondsSinceEpoch(timestamp).toAdaptiveString;
+
     final timestampWidget = Padding(
       padding: EdgeInsets.only(left: _horizontalSpacing),
       child: Text(
-        timestamp.toString(),
+        formattedTimestamp,
         style: _timestampTypographyStyle.textStyleWithColor(
           theme.color.text.secondary,
         ),
@@ -74,7 +90,8 @@ class _Body extends StatelessWidget {
     );
 
     final headerRow = Row(
-      crossAxisAlignment: CrossAxisAlignment.end,
+      crossAxisAlignment: CrossAxisAlignment.baseline,
+      textBaseline: TextBaseline.alphabetic,
       children: <Widget>[
         creatorWidget,
         timestampWidget,

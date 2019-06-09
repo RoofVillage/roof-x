@@ -1,0 +1,29 @@
+name: tabbed_container_builder
+description: Container with tab bar and tab views.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  icon_library:
+    path: ../../icon_library
+  typography:
+    path: ../../spec/typography
+  theme:
+    path: ../../theme
+  haptics:
+    path: ../../lib/haptics
+  distance:
+    path: ../../spec/distance
+  input_dock_builder:
+    path: ../input_dock
+  tab:
+    path: ../../tab
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

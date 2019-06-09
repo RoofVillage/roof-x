@@ -22,8 +22,6 @@ dependencies:
     path: ../../spec/typography
   artboard:
     path: ../../lib/artboard
-  icon_library:
-    path: ../../icon_library
 
 dev_dependencies:
   flutter_test:

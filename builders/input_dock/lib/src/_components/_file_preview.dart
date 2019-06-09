@@ -9,7 +9,7 @@ import 'package:corner_radius/index.dart' as corner_radius;
 import 'package:icon_library/index.dart';
 import 'package:haptics/index.dart';
 
-import 'input_dock.dart';
+import '../input_dock.dart';
 
 class DockFilePreview extends StatefulWidget {
   DockFilePreviewState createState() => DockFilePreviewState();

@@ -17,7 +17,9 @@ class InvoiceType {
   const InvoiceType._internal(this._value);
   factory InvoiceType.fromString(String string) {
     final option = _InvoiceTypeOption.values.firstWhere(
-        (value) => stringFromEnumString(value.toString()) == string);
+      (value) => stringFromEnumString(value.toString()) == string,
+      orElse: () => throw ("Error evaluating InvoiceType: $string"),
+    );
 
     return InvoiceType._internal(option);
   }

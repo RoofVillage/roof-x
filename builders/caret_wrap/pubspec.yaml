@@ -1,0 +1,25 @@
+name: caret_wrap_builder
+description: Wrap that inserts right-facing carets between children.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  icon_library:
+    path: ../../icon_library
+  typography:
+    path: ../../spec/typography
+  theme:
+    path: ../../theme
+  haptics:
+    path: ../../lib/haptics
+  distance:
+    path: ../../spec/distance
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

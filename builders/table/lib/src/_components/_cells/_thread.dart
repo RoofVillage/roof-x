@@ -5,6 +5,7 @@ import 'package:typography/index.dart' as typography;
 import 'package:distance/index.dart' as distance;
 import 'package:theme/index.dart';
 import 'package:haptics/index.dart';
+import 'package:date/index.dart';
 
 class RoofThreadCell extends StatelessWidget {
   final StandardIconReference iconReference;
@@ -27,10 +28,10 @@ class RoofThreadCell extends StatelessWidget {
 
   final _horizontalPadding = distance.b;
   final _verticalPadding = distance.c;
+  final _tapHapticOption = HapticOption.light;
 
-  _onTap() {
-    triggerHapticWith(HapticOption.light);
-    onTap();
+  void _fireHaptic() {
+    if (onTap != null) triggerHapticWith(_tapHapticOption);
   }
 
   @override
@@ -51,7 +52,8 @@ class RoofThreadCell extends StatelessWidget {
     );
 
     return GestureDetector(
-      onTap: _onTap,
+      onTapDown: (details) => _fireHaptic(),
+      onTap: onTap,
       child: Container(
         padding: EdgeInsets.symmetric(
           horizontal: _horizontalPadding,
@@ -160,7 +162,8 @@ class _Timestamp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String formattedTimestamp = timestamp.toString();
+    final String formattedTimestamp =
+        Date.fromSecondsSinceEpoch(timestamp).toAdaptiveString;
 
     final timestampWidget = Text(
       formattedTimestamp,

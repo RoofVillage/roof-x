@@ -1,0 +1,23 @@
+name: tag_builder
+description: Tag widget builder.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  distance:
+    path: ../../spec/distance
+  corner_radius:
+    path: ../../spec/corner_radius
+  theme:
+    path: ../../theme
+  typography:
+    path: ../../spec/typography
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

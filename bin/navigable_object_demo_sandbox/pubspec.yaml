@@ -1,0 +1,152 @@
+name: navigable_object_demo_sandbox
+description: 
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  theme:
+    path: ../../theme
+  vertical_full_screen_artboard_scaffold:
+    path: ../../artboard_scaffolds/vertical_full_screen
+  tabbed_fullscreen_artboard_template:
+    path: ../../artboard_templates/vertical_full_screen/tabbed
+  invoice_full_screen_artboard_template:
+    path: ../../artboards/invoice
+  lease_full_screen_artboard_template:
+    path: ../../artboards/lease
+  property_full_screen_artboard_template:
+    path: ../../artboards/property
+  artboard:
+    path: ../../lib/artboard
+  device_screen:
+    path: ../../lib/device_screen
+  nav_bar_builder:
+    path: ../../builders/nav_bar
+  caret_wrap_builder:
+    path: ../../builders/caret_wrap
+  table_builder:
+    path: ../../builders/table
+  tabbed_container_builder:
+    path: ../../builders/tabbed_container
+  cells_list_view_builder:
+    path: ../../builders/cells_list_view
+  button_builder:
+    path: ../../builders/button
+  invoice_options:
+    path: ../../types/invoice
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  fonts:
+    - family: azo
+      fonts:
+        - asset: packages/typography/fonts/azo/AzoSans-Thin.otf
+          weight: 100
+        - asset: packages/typography/fonts/azo/AzoSans-Light.otf
+          weight: 200
+        - asset: packages/typography/fonts/azo/AzoSans-Regular.otf
+          weight: 300
+        - asset: packages/typography/fonts/azo/AzoSans-Medium.otf
+          weight: 400
+        - asset: packages/typography/fonts/azo/AzoSans-Bold.otf
+          weight: 500
+    - family: circular
+      fonts:
+        - asset: packages/typography/fonts/circular/CircularStd-Book.otf
+          weight: 100
+        - asset: packages/typography/fonts/circular/CircularStd-Book.otf
+          weight: 200
+        - asset: packages/typography/fonts/circular/CircularStd-Medium.otf
+          weight: 300
+        - asset: packages/typography/fonts/circular/CircularStd-Bold.otf
+          weight: 400
+        - asset: packages/typography/fonts/circular/CircularStd-Black.otf
+          weight: 500
+    - family: open
+      fonts:
+        - asset: packages/typography/fonts/open/OpenSans-Regular.ttf
+          weight: 100
+        - asset: packages/typography/fonts/open/OpenSans-SemiBold.ttf
+          weight: 200
+        - asset: packages/typography/fonts/open/OpenSans-Bold.ttf
+          weight: 300
+        - asset: packages/typography/fonts/open/OpenSans-ExtraBold.ttf
+          weight: 400
+        - asset: packages/typography/fonts/open/OpenSans-ExtraBold.ttf
+          weight: 500
+    - family: titillium
+      fonts:
+        - asset: packages/typography/fonts/titillium/Titillium-Thin.otf
+          weight: 100
+        - asset: packages/typography/fonts/titillium/Titillium-Light.otf
+          weight: 200
+        - asset: packages/typography/fonts/titillium/Titillium-Regular.otf
+          weight: 300
+        - asset: packages/typography/fonts/titillium/Titillium-SemiBold.otf
+          weight: 400
+        - asset: packages/typography/fonts/titillium/Titillium-Bold.otf
+          weight: 500
+    - family: nunito
+      fonts:
+        - asset: packages/typography/fonts/nunito/Nunito-ExtraLight.ttf
+          weight: 100
+        - asset: packages/typography/fonts/nunito/Nunito-Light.ttf
+          weight: 200
+        - asset: packages/typography/fonts/nunito/Nunito-Regular.ttf
+          weight: 300
+        - asset: packages/typography/fonts/nunito/Nunito-Medium.ttf
+          weight: 400
+        - asset: packages/typography/fonts/nunito/Nunito-SemiBold.ttf
+          weight: 500
+        - asset: packages/typography/fonts/nunito/Nunito-Bold.ttf
+          weight: 600
+    - family: nunito-sans
+      fonts:
+        - asset: packages/typography/fonts/nunito-sans/NunitoSans-ExtraLight.ttf
+          weight: 100
+        - asset: packages/typography/fonts/nunito-sans/NunitoSans-Light.ttf
+          weight: 200
+        - asset: packages/typography/fonts/nunito-sans/NunitoSans-Regular.ttf
+          weight: 300
+        - asset: packages/typography/fonts/nunito-sans/NunitoSans-SemiBold.ttf
+          weight: 400
+        - asset: packages/typography/fonts/nunito-sans/NunitoSans-Bold.ttf
+          weight: 500
+        - asset: packages/typography/fonts/nunito-sans/NunitoSans-Black.ttf
+          weight: 600
+    - family: gotham
+      fonts:
+        - asset: packages/typography/fonts/gotham/Gotham-Light.otf
+          weight: 100
+        - asset: packages/typography/fonts/gotham/Gotham-Light.otf
+          weight: 200
+        - asset: packages/typography/fonts/gotham/GothamMedium.ttf
+          weight: 300
+        - asset: packages/typography/fonts/gotham/GothamMedium.ttf
+          weight: 400
+        - asset: packages/typography/fonts/gotham/GothamBold.ttf
+          weight: 500
+        - asset: packages/typography/fonts/gotham/Gotham-Black.otf
+          weight: 600
+    - family: muli
+      fonts:
+        - asset: packages/typography/fonts/muli/Muli-ExtraLight.ttf
+          weight: 100
+        - asset: packages/typography/fonts/muli/Muli-Light.ttf
+          weight: 200
+        - asset: packages/typography/fonts/muli/Muli.ttf
+          weight: 300
+        - asset: packages/typography/fonts/muli/Muli-SemiBold.ttf
+          weight: 400
+        - asset: packages/typography/fonts/muli/Muli-Bold.ttf
+          weight: 500
+        - asset: packages/typography/fonts/muli/Muli-Bold.ttf
+          weight: 600

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+  <g fill="none" fill-rule="evenodd" stroke="#0E0E0E" stroke-linecap="round" stroke-linejoin="round" transform="translate(1 1)">
+    <rect width="16.5" height="26"/>
+    <polygon points="16.5 8 26 8 26 26 16.5 26"/>
+    <g transform="translate(.773 2.955)">
+      <g transform="translate(.59 8.455)">
+        <polygon points="8.136 .591 13.136 .591 13.136 3.091 8.136 3.091"/>
+        <rect width="5" height="2.5" x=".636" y=".591"/>
+      </g>
+      <g transform="translate(.59 3.727)">
+        <polygon points="8.136 .818 13.136 .818 13.136 3.318 8.136 3.318"/>
+        <rect width="5" height="2.5" x=".636" y=".818"/>
+      </g>
+      <g transform="translate(.59)">
+        <polygon points="8.136 .045 13.136 .045 13.136 2.545 8.136 2.545"/>
+        <path d="M20,2 L20,2 C21.1045695,2 22,2.8954305 22,4 L22,5 L18,5 L18,4 C18,2.8954305 18.8954305,2 20,2 Z"/>
+        <rect width="5" height="2.5" x=".636" y=".045"/>
+      </g>
+    </g>
+    <path d="M8.25 17.5L8.25 17.5C9.76878306 17.5 11 18.7312169 11 20.25L11 26 5.5 26 5.5 20.25C5.5 18.7312169 6.73121694 17.5 8.25 17.5zM17 21L23.5 21M17 24L26 24M17 18L23.5 18M17 15L23.5 15M17 12L23.5 12"/>
+  </g>
+</svg>

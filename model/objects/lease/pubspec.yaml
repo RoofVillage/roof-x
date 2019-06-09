@@ -12,7 +12,7 @@ dependencies:
     path: ../../abstract/contract
   fee_payer_type:
     path: ../../../types/fee_payer
-  invoice_type:
+  invoice_options:
     path: ../../../types/invoice
   contract_user:
     path: ../../properties/contract_user

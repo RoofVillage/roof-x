@@ -11,7 +11,7 @@ mixin _DetailSecondary implements TypographyStyle {
   @override
   final fontSize = font_size.extraSmall;
   @override
-  final fontWeight = font_weight.medium;
+  final fontWeight = font_weight.thin;
   @override
   final leading = font_size.extraSmall;
   @override

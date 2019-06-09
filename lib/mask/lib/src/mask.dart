@@ -6,10 +6,12 @@ import '_string_mask.dart';
 import '_money_string_mask.dart';
 import '_phone_number_string_mask.dart';
 
-String applyMask(MaskOption option,
-    {@required String text,
-    bool isEditing = false,
-    @required BuildContext context}) {
+String applyMask(
+  MaskOption option, {
+  @required String text,
+  bool isEditing = false,
+  @required BuildContext context,
+}) {
   StringMask mask;
 
   switch (option) {
@@ -32,8 +34,9 @@ MoneyStringMask _makeMoneyStringMask(BuildContext context, bool isEditing) {
   final decimalSeperator = format.symbols.DECIMAL_SEP;
   final thousandsSeperator = format.symbols.GROUP_SEP;
   return MoneyStringMask(
-      isEditing: isEditing,
-      leftSymbol: symbol,
-      decimalSeparator: decimalSeperator,
-      groupSeparator: thousandsSeperator);
+    isEditing: isEditing,
+    leftSymbol: symbol,
+    decimalSeparator: decimalSeperator,
+    groupSeparator: thousandsSeperator,
+  );
 }

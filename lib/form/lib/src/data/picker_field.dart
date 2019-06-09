@@ -17,15 +17,15 @@ abstract class PickerFieldData<T> extends StreamableFormFieldData<T> {
     _onTapListeners.add(fn);
   }
 
-  PickerFieldData(
-      {@required String title,
-      T initialValue,
-      T startBound,
-      T endBound,
-      double size,
-      bool isVisible,
-      Function onTap})
-      : super(
+  PickerFieldData({
+    @required String title,
+    T initialValue,
+    T startBound,
+    T endBound,
+    double size,
+    bool isVisible,
+    Function onTap,
+  }) : super(
           title: title,
           initialValue: initialValue,
           size: size,

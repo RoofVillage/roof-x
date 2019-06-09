@@ -16,7 +16,7 @@ class RoofBackgroundColor {
     return null;
   }
 
-  Color get generalPrimary {
+  Color get inputForeground {
     switch (_current) {
       case RoofThemeOption.light:
         return color.white1;
@@ -26,10 +26,30 @@ class RoofBackgroundColor {
     return null;
   }
 
-  Color get generalSecondary {
+  Color get inputBackground {
     switch (_current) {
       case RoofThemeOption.light:
         return color.white2;
+      case RoofThemeOption.dark:
+        return color.black1;
+    }
+    return null;
+  }
+
+  Color get generalPrimary {
+    switch (_current) {
+      case RoofThemeOption.light:
+        return color.white2;
+      case RoofThemeOption.dark:
+        return color.black2;
+    }
+    return null;
+  }
+
+  Color get generalSecondary {
+    switch (_current) {
+      case RoofThemeOption.light:
+        return color.white1;
       case RoofThemeOption.dark:
         return color.black1;
     }
@@ -61,7 +81,7 @@ class RoofBackgroundColor {
       case RoofThemeOption.light:
         return color.white1;
       case RoofThemeOption.dark:
-        return color.black2;
+        return color.black1;
     }
     return null;
   }
@@ -82,6 +102,46 @@ class RoofBackgroundColor {
         return color.gray4;
       case RoofThemeOption.dark:
         return color.blue.withAlpha(100);
+    }
+    return null;
+  }
+
+  Color get markerGray {
+    switch (_current) {
+      case RoofThemeOption.light:
+        return color.gray3;
+      case RoofThemeOption.dark:
+        return color.black3;
+    }
+    return null;
+  }
+
+  Color get markerGreen {
+    switch (_current) {
+      case RoofThemeOption.light:
+        return color.lightGreen;
+      case RoofThemeOption.dark:
+        return color.darkGreen;
+    }
+    return null;
+  }
+
+  Color get markerAlert {
+    switch (_current) {
+      case RoofThemeOption.light:
+        return color.alert;
+      case RoofThemeOption.dark:
+        return color.alert;
+    }
+    return null;
+  }
+
+  Color get emergency {
+    switch (_current) {
+      case RoofThemeOption.light:
+        return color.emergency;
+      case RoofThemeOption.dark:
+        return color.emergency;
     }
     return null;
   }

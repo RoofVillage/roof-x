@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 
-const thin = FontWeight.w300;
-const medium = FontWeight.w400;
+// Open
+// const thin = FontWeight.w400;
+// const medium = FontWeight.w500;
+// const thick = FontWeight.w600;
+
+// Circular
+const thin = FontWeight.w200;
+const medium = FontWeight.w300;
 const thick = FontWeight.w500;

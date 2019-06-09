@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:typography/index.dart' as typography;
 import 'package:corner_radius/index.dart' as corner_radius;
+import 'package:distance/index.dart' as distance;
+import 'package:icon_library/index.dart';
 import 'package:haptics/index.dart';
 
 typedef ColorGetter = Color Function(BuildContext context);
@@ -10,7 +12,9 @@ mixin RoofCenteredButton {
   OnTap get onTap;
   String get text => null;
   ColorGetter get backgroundColor;
+  ColorGetter get strokeColor => (BuildContext context) => Colors.transparent;
   ColorGetter get textColor;
+  XSmallIconReference get icon;
 }
 
 mixin RoofCenteredButtonState {
@@ -21,15 +25,25 @@ mixin RoofCenteredButtonState {
   final double _tappedOpacity = 0.75;
   final _textStyle = typography.button;
   final double _height = 50;
+  final _tapHapticOption = HapticOption.light;
+  final _spacing = distance.b;
 
   void setState(dynamic());
 
   Widget buildButton(BuildContext context) {
+    final textColor = button.textColor(context);
+
     List<Widget> buttonChildren = [];
 
-    final color = button.textColor(context);
+    if (button.icon != null) {
+      final paddedIconWidget = Container(
+        margin: EdgeInsets.only(right: _spacing),
+        child: button.icon.buildSvg(color: textColor),
+      );
+      buttonChildren.add(paddedIconWidget);
+    }
 
-    final textDecoration = _textStyle.textStyleWithColor(color);
+    final textDecoration = _textStyle.textStyleWithColor(textColor);
 
     final styledButtonText = Text(
       button.text,
@@ -42,6 +56,7 @@ mixin RoofCenteredButtonState {
     double opacity = _tapped ? _tappedOpacity : 1;
 
     final decoration = BoxDecoration(
+      border: Border.all(color: button.strokeColor(context)),
       color: button.backgroundColor(context).withOpacity(opacity),
       borderRadius: BorderRadius.all(corner_radius.regular),
     );
@@ -63,11 +78,11 @@ mixin RoofCenteredButtonState {
   }
 
   void _onTap() {
-    triggerHapticWith(HapticOption.light);
     if (button.onTap != null) button.onTap(context);
   }
 
   void _onTapDown(TapDownDetails details) {
+    triggerHapticWith(_tapHapticOption);
     setState(() => _tapped = true);
   }
 
