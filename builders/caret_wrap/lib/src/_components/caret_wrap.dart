@@ -27,7 +27,7 @@ class CaretWrap extends StatelessWidget {
 
     final paddedArrowWidget = Container(
       margin: EdgeInsets.only(left: distance.a),
-      child: IconReference.rightArrowXSmall.buildSvg(
+      child: XSmallIcon.rightArrow.buildWidget(
         color: theme.color.icon.secondary,
       ),
     );

@@ -82,7 +82,7 @@ class _IconWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = RoofTheme.of(context);
 
-    return iconReference.buildSvg(color: theme.color.icon.general);
+    return iconReference.buildWidget(color: theme.color.icon.general);
   }
 }
 

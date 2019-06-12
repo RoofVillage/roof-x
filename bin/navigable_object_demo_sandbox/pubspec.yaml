@@ -39,13 +39,28 @@ dependencies:
     path: ../../builders/button
   invoice_options:
     path: ../../types/invoice
+  icon_library:
+    path: ../../icon_library
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
 flutter:
+  uses-material-design: true
   fonts:
+    - family: RoofXSmallIcons
+      fonts:
+      - asset: packages/icon_library/ttf/RoofXSmallIcons.ttf
+    - family: RoofSmallIcons
+      fonts:
+      - asset: packages/icon_library/ttf/RoofSmallIcons.ttf
+    - family: RoofStandardIcons
+      fonts:
+      - asset: packages/icon_library/ttf/RoofStandardIcons.ttf
+    - family: RoofNavigationIcons
+      fonts:
+      - asset: packages/icon_library/ttf/RoofNavigationIcons.ttf
     - family: azo
       fonts:
         - asset: packages/typography/fonts/azo/AzoSans-Thin.otf

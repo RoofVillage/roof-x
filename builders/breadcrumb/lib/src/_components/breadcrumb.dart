@@ -32,7 +32,7 @@ class Breadcrumb extends StatelessWidget {
     if (iconReference != null) {
       final iconWidget = Padding(
         padding: EdgeInsets.only(right: _horizontalSpacing),
-        child: iconReference.buildSvg(color: iconColor),
+        child: iconReference.buildWidget(color: iconColor),
       );
 
       rowChildren.add(iconWidget);

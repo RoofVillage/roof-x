@@ -34,7 +34,7 @@ class RoofSegueBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = RoofTheme.of(context);
 
-    final iconWidget = iconReference.buildSvg(
+    final iconWidget = iconReference.buildWidget(
       color: theme.color.icon.nav,
     );
 

@@ -38,7 +38,7 @@ mixin RoofCenteredButtonState {
     if (button.icon != null) {
       final paddedIconWidget = Container(
         margin: EdgeInsets.only(right: _spacing),
-        child: button.icon.buildSvg(color: textColor),
+        child: button.icon.buildWidget(color: textColor),
       );
       buttonChildren.add(paddedIconWidget);
     }

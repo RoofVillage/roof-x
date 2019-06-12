@@ -12,8 +12,8 @@ class RoofIconNavButton extends StatelessWidget with RoofNavButton {
 
   @override
   Widget iconForTheme(RoofInheritedTheme theme) {
-    final _blank = NavigationIconReference();
-    return (iconReference ?? _blank).buildSvg(color: theme.color.icon.nav);
+    final _blank = NavigationIconReference(null);
+    return (iconReference ?? _blank).buildWidget(color: theme.color.icon.nav);
   }
 
   RoofIconNavButton({@required this.iconReference, @required this.onTap});

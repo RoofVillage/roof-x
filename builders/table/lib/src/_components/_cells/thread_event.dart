@@ -37,7 +37,7 @@ class RoofThreadEventCell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _iconReference = iconReference ?? IconReference.event;
+    final _iconReference = iconReference ?? StandardIcon.event;
 
     return GestureDetector(
       onTapDown: (details) => _fireHaptic(),
@@ -106,7 +106,7 @@ class _Icon extends StatelessWidget {
 
     final iconColor = theme.color.icon.general;
 
-    final iconWidget = iconReference.buildSvg(color: iconColor);
+    final iconWidget = iconReference.buildWidget(color: iconColor);
 
     return Padding(
       padding: EdgeInsets.only(

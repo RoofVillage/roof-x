@@ -75,7 +75,7 @@ class _DockActionButtonState extends State<DockActionButton>
     final buttonIcon = Container(
       key: _buttonIconKey,
       child:
-          widget.actionIconReference.buildSvg(color: theme.color.icon.action),
+          widget.actionIconReference.buildWidget(color: theme.color.icon.action),
     );
 
     final buttonText = _ButtonText(

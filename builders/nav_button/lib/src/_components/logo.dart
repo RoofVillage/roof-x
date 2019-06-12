@@ -10,7 +10,7 @@ class RoofLogoNavButton extends StatelessWidget with RoofNavButton {
 
   @override
   Widget iconForTheme(RoofInheritedTheme theme) {
-    return IconReference.logoHouse.buildSvg(color: theme.color.icon.logo);
+    return NavigationIcon.logoHouse.buildWidget(color: theme.color.icon.logo);
   }
 
   RoofLogoNavButton({@required this.onTap});

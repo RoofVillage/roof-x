@@ -31,14 +31,18 @@ abstract class LeaseVerticalFullScreenArtboard extends TabbedFullScreenArtboard
   @override
   Widget buildNavButton(BuildContext context) {
     final theme = RoofTheme.of(context);
-    return IconReference.backArrowNav.buildSvg(color: theme.color.icon.nav);
+    return NavigationIcon.backArrow.buildWidget(
+      color: theme.color.icon.nav,
+    );
   }
 
   @override
   List<Widget> buildActionButtons(BuildContext context) {
     final theme = RoofTheme.of(context);
 
-    final moreButton = IconReference.more.buildSvg(color: theme.color.icon.nav);
+    final moreButton = NavigationIcon.more.buildWidget(
+      color: theme.color.icon.nav,
+    );
 
     return [moreButton];
   }
@@ -50,7 +54,7 @@ abstract class LeaseVerticalFullScreenArtboard extends TabbedFullScreenArtboard
     final tenantsActionButton = buildSecondaryCenterButton(
       context,
       text: "Add tenant",
-      icon: IconReference.inviteXSmall,
+      icon: XSmallIcon.invite,
       onTap: (context) => print("add tenant tapped"),
       status: ButtonStatusOption.ready,
     );
@@ -69,7 +73,7 @@ abstract class LeaseVerticalFullScreenArtboard extends TabbedFullScreenArtboard
     final invoicesActionButton = buildSecondaryCenterButton(
       context,
       text: "Create invoice",
-      icon: IconReference.invoiceXSmall,
+      icon: XSmallIcon.invoice,
       onTap: (context) => print("add invoice tapped"),
       status: ButtonStatusOption.ready,
     );
@@ -83,7 +87,7 @@ abstract class LeaseVerticalFullScreenArtboard extends TabbedFullScreenArtboard
     final messagesActionButton = buildSecondaryCenterButton(
       context,
       text: "New message",
-      icon: IconReference.threadXSmall,
+      icon: XSmallIcon.thread,
       onTap: (context) => print("new message tapped"),
       status: ButtonStatusOption.ready,
     );

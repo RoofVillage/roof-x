@@ -24,7 +24,7 @@ class AddFileAuxiliaryWidget extends StatelessWidget
 
   @override
   Widget build(BuildContext context) {
-    final iconReference = IconReference.addImage;
+    final iconReference = StandardIcon.addImage;
 
     final iconButton = buildPrimaryIconButton(
       context,

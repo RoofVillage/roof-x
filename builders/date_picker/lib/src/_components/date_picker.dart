@@ -48,8 +48,8 @@ class RoofCalendarDatePicker extends StatelessWidget {
 
     final arrowIconColor = theme.color.text.brand;
 
-    final leftIcon = IconReference.leftArrow.buildSvg(color: arrowIconColor);
-    final rightIcon = IconReference.rightArrow.buildSvg(color: arrowIconColor);
+    final leftIcon = StandardIcon.leftArrow.buildWidget(color: arrowIconColor);
+    final rightIcon = StandardIcon.rightArrow.buildWidget(color: arrowIconColor);
 
     return Container(
       child: CalendarCarousel(

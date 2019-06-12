@@ -39,7 +39,7 @@ class CellsSandbox extends StatelessWidget with KeyValueBuilder {
     final activityCell = RoofActivityCell(
       title: cellATitle,
       note: "Young and McIntosh have even been known to get off stage and join the crowd to mosh, while the music keeps playing",
-      iconReference: IconReference.cashSack,
+      iconReference: StandardIcon.cashSack,
       timestamp: 1558229172,
     );
 
@@ -54,7 +54,7 @@ class CellsSandbox extends StatelessWidget with KeyValueBuilder {
       timestamp: 1558229172,
       title: "Event title",
       note: "Did an event here's a note bishhh",
-      iconReference: IconReference.livingRoom,
+      iconReference: StandardIcon.livingRoom,
       details: [
         buildKeyValue(
           context,
@@ -92,7 +92,7 @@ class CellsSandbox extends StatelessWidget with KeyValueBuilder {
     final standardThreadCell = RoofStandardThreadCell(
       title: "Feed baby shark",
       secondaryText: standardThreadCellSecondaryText,
-      iconReference: IconReference.thread,
+      iconReference: StandardIcon.thread,
       timestamp: 1558229172,
       onTap: () => print("tap"),
     );
@@ -100,7 +100,7 @@ class CellsSandbox extends StatelessWidget with KeyValueBuilder {
     final overdueThreadCell = RoofOverdueThreadCell(
       title: "Feed baby shark overdue",
       secondaryText: standardThreadCellSecondaryText,
-      iconReference: IconReference.thread,
+      iconReference: StandardIcon.thread,
       timestamp: 1558229172,
       onTap: () => print("tap"),
     );
@@ -108,21 +108,21 @@ class CellsSandbox extends StatelessWidget with KeyValueBuilder {
     final dueSoonThreadCell = RoofDueSoonThreadCell(
       title: "Feed baby shark due soon",
       secondaryText: standardThreadCellSecondaryText,
-      iconReference: IconReference.thread,
+      iconReference: StandardIcon.thread,
       timestamp: 1558229172,
       onTap: () => print("tap"),
     );
 
     final noSecondaryThreadCell = RoofStandardThreadCell(
       title: "Feed baby shark is alone and real real long long long",
-      iconReference: IconReference.thread,
+      iconReference: StandardIcon.thread,
       timestamp: 1558229172,
       onTap: () => print("tap"),
     );
 
     final segueBar = RoofSegueBar(
       title: "Balances",
-      iconReference: IconReference.piggyBank,
+      iconReference: StandardIcon.piggyBank,
       auxiliaryText: "-\$14.50",
       onTap: () => print("tap"),
     );

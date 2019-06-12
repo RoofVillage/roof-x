@@ -208,9 +208,9 @@ class _SubmitButton extends StatelessWidget {
 
     final activeIconColor = theme.color.background.primaryAction;
     final inactiveIconColor = theme.color.background.inactiveAction;
-    final sendIcon = IconReference.sendFilled;
-    final activeSendIcon = sendIcon.buildSvg(color: activeIconColor);
-    final inactiveSendIcon = sendIcon.buildSvg(color: inactiveIconColor);
+    final sendIcon = StandardIcon.send;
+    final activeSendIcon = sendIcon.buildWidget(color: activeIconColor);
+    final inactiveSendIcon = sendIcon.buildWidget(color: inactiveIconColor);
 
     final animatedSubmitButton = AnimatedCrossFade(
       duration: duration.short,

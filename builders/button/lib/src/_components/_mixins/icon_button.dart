@@ -13,7 +13,7 @@ mixin RoofIconButton {
   final _tapHapticOption = HapticOption.light;
 
   Widget buildButton(BuildContext context) {
-    final iconWidget = iconReference.buildSvg(
+    final iconWidget = iconReference.buildWidget(
       color: iconColor(context),
     );
 

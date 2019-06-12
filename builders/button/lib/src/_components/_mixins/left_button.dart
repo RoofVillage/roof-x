@@ -40,7 +40,7 @@ mixin RoofLeftButtonState {
 
       final buttonIcon = Container(
           padding: iconPadding,
-          child: button.iconReference.buildSvg(color: textColor));
+          child: button.iconReference.buildWidget(color: textColor));
 
       buttonChildren.add(buttonIcon);
     }
@@ -54,8 +54,9 @@ mixin RoofLeftButtonState {
 
     buttonChildren.add(textContainer);
 
-    final rightArrowIcon =
-        IconReference.upArrow.buildSvg(color: button.arrowColor(context));
+    final rightArrowIcon = StandardIcon.upArrow.buildWidget(
+      color: button.arrowColor(context),
+    );
 
     buttonChildren.add(rightArrowIcon);
 

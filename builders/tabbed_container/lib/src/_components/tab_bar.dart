@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:icon_library/index.dart';
 import 'package:theme/index.dart';
 import 'package:tab/index.dart';
 import 'package:typography/index.dart' as typography;
@@ -25,9 +26,20 @@ class RoofTabBar extends StatelessWidget {
     final List<Widget> tabWidgets = [];
 
     for (var tab in tabTitles) {
-      final Widget tabWidget = Text(tab.toUpperCase());
+      final Widget title = Padding(
+        padding: EdgeInsets.symmetric(vertical: distance.a),
+        child: Text(tab),
+      );
+      final StandardIconReference icon = StandardIcon.alarmClock;
+      final Icon iconWidget = icon.buildWidget();
 
-      tabWidgets.add(tabWidget);
+      final Widget tabWidget2 = Container(
+        child: Column(
+          children: <Widget>[iconWidget, title],
+        ),
+      );
+
+      tabWidgets.add(tabWidget2);
     }
 
     final labelColor = theme.color.text.secondary;

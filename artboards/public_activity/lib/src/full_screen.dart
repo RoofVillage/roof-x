@@ -12,7 +12,7 @@ class PublicActivityVerticalFullScreenArtboard
   List<Widget> buildActionButtons(BuildContext context) {
     final button1 = buildIconNavButton(
       context,
-      iconReference: IconReference.addNav,
+      iconReference: NavigationIcon.add,
       onTap: (context) {
         ArtboardNavigator.of(context).goTo(
           SignUpVerticalFloatingArtboard(),
@@ -22,7 +22,7 @@ class PublicActivityVerticalFullScreenArtboard
 
     final button2 = buildIconNavButton(
       context,
-      iconReference: IconReference.settingsNav,
+      iconReference: NavigationIcon.settings,
       onTap: (context) {
         ArtboardNavigator.of(context).goTo(
           PublicActivityVerticalFullScreenArtboard(),
@@ -32,7 +32,7 @@ class PublicActivityVerticalFullScreenArtboard
 
     final popButton = buildIconNavButton(
       context,
-      iconReference: IconReference.backArrowNav,
+      iconReference: NavigationIcon.backArrow,
       onTap: (context) {
         ArtboardNavigator.of(context).pop(context);
       },

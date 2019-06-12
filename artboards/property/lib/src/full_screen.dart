@@ -22,14 +22,14 @@ abstract class PropertyVerticalFullScreenArtboard
   @override
   Widget buildNavButton(BuildContext context) {
     final theme = RoofTheme.of(context);
-    return IconReference.backArrowNav.buildSvg(color: theme.color.icon.nav);
+    return NavigationIcon.backArrow.buildWidget(color: theme.color.icon.nav);
   }
 
   @override
   List<Widget> buildActionButtons(BuildContext context) {
     final theme = RoofTheme.of(context);
 
-    final moreButton = IconReference.more.buildSvg(color: theme.color.icon.nav);
+    final moreButton = NavigationIcon.more.buildWidget(color: theme.color.icon.nav);
 
     return [moreButton];
   }
@@ -43,7 +43,7 @@ abstract class PropertyVerticalFullScreenArtboard
     final leasesActionButton = buildSecondaryCenterButton(
       context,
       text: "Create lease",
-      icon: IconReference.leaseXSmall,
+      icon: XSmallIcon.lease,
       onTap: (context) => print("create lease tapped"),
       status: ButtonStatusOption.ready,
     );

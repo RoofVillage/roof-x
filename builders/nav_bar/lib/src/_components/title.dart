@@ -37,7 +37,7 @@ class RoofTitleNavBar extends StatelessWidget with RoofNavBar {
     if (icon != null) {
       final paddedIconWidget = Container(
         margin: EdgeInsets.only(right: distance.b),
-        child: icon.buildSvg(color: theme.color.icon.logo),
+        child: icon.buildWidget(color: theme.color.icon.logo),
       );
       navigationWidgets.add(paddedIconWidget);
     }

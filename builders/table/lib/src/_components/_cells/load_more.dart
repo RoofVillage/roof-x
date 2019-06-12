@@ -44,7 +44,7 @@ class _LoadMoreCellState extends State<LoadMoreCell> {
   Widget build(BuildContext context) {
     final theme = RoofTheme.of(context);
 
-    final loadMoreIcon = IconReference.loadMore.buildSvg(
+    final loadMoreIcon = StandardIcon.loadMore.buildWidget(
       color: theme.color.icon.general,
     );
 

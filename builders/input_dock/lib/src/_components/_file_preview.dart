@@ -109,7 +109,7 @@ class _FilePreviewState extends State<_FilePreview>
 
   @override
   Widget build(BuildContext context) {
-    final removeIcon = IconReference.closeFilled.buildSvg(
+    final removeIcon = StandardIcon.close.buildWidget(
       color: Colors.black.withAlpha(180),
     );
 

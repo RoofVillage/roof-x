@@ -127,14 +127,14 @@ class _TitleRow extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = RoofTheme.of(context);
 
-    final defaultIconReference = IconReference.house;
+    final defaultIconReference = StandardIcon.house;
 
     final StandardIconReference homeIcon =
         iconReference ?? defaultIconReference;
 
     final homeIconWidget = Padding(
       padding: EdgeInsets.only(right: spacing),
-      child: homeIcon.buildSvg(color: theme.color.icon.general),
+      child: homeIcon.buildWidget(color: theme.color.icon.general),
     );
 
     final formattedTitleString = "$address - $unit";

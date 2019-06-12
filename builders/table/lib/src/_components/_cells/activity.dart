@@ -96,7 +96,7 @@ class _Body extends StatelessWidget {
         children: <Widget>[
           Container(
             padding: EdgeInsets.only(right: _imagePaddingRight),
-            child: iconReference.buildSvg(color: theme.color.icon.general),
+            child: iconReference.buildWidget(color: theme.color.icon.general),
           ),
 
           ///This child should expand to occupy remaining space.
