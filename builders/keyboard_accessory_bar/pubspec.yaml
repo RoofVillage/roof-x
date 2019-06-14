@@ -18,8 +18,6 @@ dependencies:
     path: ../../spec/typography
   haptics:
     path: ../../lib/haptics
-  icon_library:
-    path: ../../icon_library
 
 dev_dependencies:
   flutter_test:

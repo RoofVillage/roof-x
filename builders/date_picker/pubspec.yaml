@@ -16,8 +16,8 @@ dependencies:
     path: ../../lib/date
   theme:
     path: ../../theme
-  icon_library:
-    path: ../../icon_library
+  standard_icon_library:
+    path: ../../icons/standard
   typography:
     path: ../../spec/typography
   artboard:

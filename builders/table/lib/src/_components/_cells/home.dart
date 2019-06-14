@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:icon_library/index.dart';
+import 'package:standard_icon_library/index.dart';
 import 'package:table_builder/src/_components/_widgets/cell_primary_title.dart';
 import 'package:theme/index.dart';
 import 'package:mask/index.dart';
@@ -13,7 +13,7 @@ import 'package:typography/index.dart' as typography;
 class HomeCell extends StatelessWidget {
   final String address;
   final String unit;
-  final StandardIconReference iconReference;
+  final StandardIcon iconReference;
   final List<RoofLeasePreview> activeLeases;
   final List<RoofLeasePreview> inactiveLeases;
   final List<String> tags;
@@ -113,7 +113,7 @@ class HomeCell extends StatelessWidget {
 class _TitleRow extends StatelessWidget {
   final String address;
   final String unit;
-  final StandardIconReference iconReference;
+  final StandardIcon iconReference;
   final double spacing;
 
   _TitleRow({
@@ -129,7 +129,7 @@ class _TitleRow extends StatelessWidget {
 
     final defaultIconReference = StandardIcon.house;
 
-    final StandardIconReference homeIcon =
+    final StandardIcon homeIcon =
         iconReference ?? defaultIconReference;
 
     final homeIconWidget = Padding(

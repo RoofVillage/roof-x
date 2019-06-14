@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:theme/index.dart';
-import 'package:icon_library/index.dart';
+import 'package:standard_icon_library/index.dart';
 import 'package:typedefs/index.dart';
 
 import '_mixins/left_button.dart';
@@ -9,7 +9,7 @@ export '_mixins/left_button.dart';
 class RoofPrimaryLeftButton extends StatefulWidget with RoofLeftButton {
   final ContextPasser onTap;
   final String text;
-  final StandardIconReference iconReference;
+  final StandardIcon iconReference;
   final bool hasArrow;
 
   get backgroundColor => (context) {

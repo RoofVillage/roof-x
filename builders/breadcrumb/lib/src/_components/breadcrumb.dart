@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:icon_library/index.dart';
+import 'package:x_small_icon_library/index.dart';
 import 'package:theme/index.dart';
 import 'package:typography/index.dart' as typography;
 import 'package:distance/index.dart' as distance;
 
 class Breadcrumb extends StatelessWidget {
   final String title;
-  final XSmallIconReference iconReference;
+  final XSmallIcon iconReference;
 
   Breadcrumb({
     this.title,

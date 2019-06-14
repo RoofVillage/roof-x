@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:theme/index.dart';
-import 'package:icon_library/index.dart';
+import 'package:standard_icon_library/index.dart';
 import 'package:distance/index.dart' as distance;
 import 'package:typography/index.dart' as typography;
 
@@ -12,7 +12,7 @@ class RoofTitleNavBar extends StatelessWidget with RoofNavBar {
   final List<Widget> actionButtons;
   final Widget navButton;
   final String title;
-  final StandardIconReference icon;
+  final StandardIcon icon;
 
   RoofTitleNavBar({
     Key key,

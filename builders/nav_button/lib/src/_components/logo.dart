@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:icon_library/index.dart';
+import 'package:navigation_icon_library/index.dart';
 import 'package:theme/index.dart';
 import 'package:typedefs/index.dart';
 

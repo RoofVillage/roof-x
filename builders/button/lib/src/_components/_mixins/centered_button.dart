@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:typography/index.dart' as typography;
 import 'package:corner_radius/index.dart' as corner_radius;
 import 'package:distance/index.dart' as distance;
-import 'package:icon_library/index.dart';
+import 'package:x_small_icon_library/index.dart';
 import 'package:haptics/index.dart';
 
 typedef ColorGetter = Color Function(BuildContext context);
@@ -14,7 +14,7 @@ mixin RoofCenteredButton {
   ColorGetter get backgroundColor;
   ColorGetter get strokeColor => (BuildContext context) => Colors.transparent;
   ColorGetter get textColor;
-  XSmallIconReference get icon;
+  XSmallIcon get icon;
 }
 
 mixin RoofCenteredButtonState {

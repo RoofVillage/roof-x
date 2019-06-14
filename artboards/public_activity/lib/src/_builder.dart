@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:table_builder/index.dart';
-import 'package:icon_library/index.dart';
+import 'package:standard_icon_library/index.dart';
 import 'package:decorated_text/index.dart';
 import 'package:app_data/index.dart';
 import 'package:sorting/index.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:distance/index.dart' as distance;
-import 'package:icon_library/index.dart';
+import 'package:navigation_icon_library/index.dart';
 import 'package:nav_button_builder/index.dart';
 import 'package:navigator/index.dart';
 import 'package:vertical_floating_artboard_button_option/index.dart';

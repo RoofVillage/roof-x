@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:decorated_text/index.dart';
-import 'package:icon_library/index.dart';
+import 'package:standard_icon_library/index.dart';
 import 'package:date/index.dart';
 import 'package:haptics/index.dart';
 import 'package:distance/index.dart' as distance;
@@ -10,7 +10,7 @@ import 'package:typography/index.dart' as typography;
 class RoofActivityCell extends StatelessWidget {
   final WeightDecoratedText title;
   final int timestamp;
-  final StandardIconReference iconReference;
+  final StandardIcon iconReference;
   final String note;
   final VoidCallback onTap;
 
@@ -70,7 +70,7 @@ class RoofActivityCell extends StatelessWidget {
 
 class _Body extends StatelessWidget {
   final WeightDecoratedText title;
-  final StandardIconReference iconReference;
+  final StandardIcon iconReference;
   final String note;
 
   final _verticalPadding = distance.b;

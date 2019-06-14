@@ -1,9 +1,9 @@
-import 'package:icon_library/index.dart';
+import 'package:standard_icon_library/index.dart';
 
 mixin PropertyArtboardBuilder {
   String get propertyTitle;
 
-  StandardIconReference get homeIcon;
+  StandardIcon get homeIcon;
 
   List<String> get tags;
 

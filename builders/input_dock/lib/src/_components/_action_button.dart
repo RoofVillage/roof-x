@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:icon_library/index.dart';
+import 'package:standard_icon_library/index.dart';
 import 'package:theme/index.dart';
 import 'package:haptics/index.dart';
 import 'package:curve/index.dart' as curve;
@@ -13,7 +13,7 @@ import '../input_dock.dart';
 class DockActionButton extends StatefulWidget {
   final Function action;
   final String actionTitle;
-  final StandardIconReference actionIconReference;
+  final StandardIcon actionIconReference;
 
   DockActionButton({
     @required this.action,

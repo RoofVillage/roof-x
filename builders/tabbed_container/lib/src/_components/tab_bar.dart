@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:icon_library/index.dart';
+import 'package:standard_icon_library/index.dart';
 import 'package:theme/index.dart';
 import 'package:tab/index.dart';
 import 'package:typography/index.dart' as typography;
@@ -30,7 +30,7 @@ class RoofTabBar extends StatelessWidget {
         padding: EdgeInsets.symmetric(vertical: distance.a),
         child: Text(tab),
       );
-      final StandardIconReference icon = StandardIcon.alarmClock;
+      final StandardIcon icon = StandardIcon.alarmClock;
       final Icon iconWidget = icon.buildWidget();
 
       final Widget tabWidget2 = Container(

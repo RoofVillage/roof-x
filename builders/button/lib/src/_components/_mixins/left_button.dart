@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:icon_library/index.dart';
+import 'package:standard_icon_library/index.dart';
 import 'package:haptics/index.dart';
 import 'package:typedefs/index.dart';
 import 'package:distance/index.dart' as distance;
@@ -9,7 +9,7 @@ import 'package:typography/index.dart' as typography;
 mixin RoofLeftButton {
   ContextPasser get onTap;
   String get text;
-  StandardIconReference get iconReference => null;
+  StandardIcon get iconReference => null;
   bool get hasArrow => true;
   ColorGetter get arrowColor;
   ColorGetter get backgroundColor;

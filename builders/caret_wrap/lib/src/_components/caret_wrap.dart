@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:theme/index.dart';
-import 'package:icon_library/index.dart';
+import 'package:x_small_icon_library/index.dart';
 import 'package:haptics/index.dart';
 import 'package:distance/index.dart' as distance;
 

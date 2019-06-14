@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:theme/index.dart';
-import 'package:icon_library/index.dart';
+import 'package:standard_icon_library/index.dart';
 
 import '_mixins/icon_button.dart';
 export '_mixins/icon_button.dart';
 
 class RoofPrimaryIconButton extends StatelessWidget with RoofIconButton {
   final OnTap onTap;
-  final StandardIconReference iconReference;
+  final StandardIcon iconReference;
 
   get context => (context);
   get iconColor => (context) {

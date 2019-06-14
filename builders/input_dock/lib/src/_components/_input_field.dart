@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:duration/index.dart' as duration;
 import 'package:curve/index.dart' as curve;
 import 'package:distance/index.dart' as distance;
-import 'package:icon_library/index.dart';
+import 'package:standard_icon_library/index.dart';
 import 'package:theme/index.dart';
 import 'package:typography/index.dart' as typography;
 import 'package:haptics/index.dart';

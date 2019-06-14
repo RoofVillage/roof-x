@@ -17,8 +17,8 @@ dependencies:
     path: ../../theme
   typography:
     path: ../../spec/typography
-  icon_library:
-    path: ../../icon_library
+  navigation_icon_library:
+    path: ../../icons/navigation
   typedefs:
     path: ../../lib/typedefs
 

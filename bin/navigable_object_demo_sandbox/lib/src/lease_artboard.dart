@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:navigator/index.dart';
-import 'package:icon_library/index.dart';
+import 'package:standard_icon_library/index.dart';
 import 'package:lease_full_screen_artboard_template/index.dart'; 
 import 'package:table_builder/index.dart';
 import 'package:invoice_options/index.dart';

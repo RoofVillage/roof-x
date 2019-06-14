@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:theme/index.dart';
-import 'package:icon_library/index.dart';
+import 'package:navigation_icon_library/index.dart';
+import 'package:x_small_icon_library/index.dart';
 import 'package:tabbed_fullscreen_artboard_template/index.dart';
 import 'package:button_builder/index.dart';
 import 'package:button_status_option/index.dart';

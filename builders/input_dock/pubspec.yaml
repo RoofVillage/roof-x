@@ -13,8 +13,8 @@ dependencies:
     path: ../../lib/decorated_text
   haptics:
     path: ../../lib/haptics
-  icon_library:
-    path: ../../icon_library
+  standard_icon_library:
+    path: ../../icons/standard
   image_picker_builder:
     path: ../image_picker
   padding:

@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:theme/index.dart';
 import 'package:table_builder/index.dart';
-import 'package:icon_library/index.dart';
+import 'package:standard_icon_library/index.dart';
 import 'package:decorated_text/index.dart';
 import 'package:key_value_builder/index.dart';
 

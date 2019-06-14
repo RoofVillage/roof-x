@@ -16,8 +16,10 @@ dependencies:
     path: ../../app_data
   nav_button_builder:
     path: ../../builders/nav_button
-  icon_library:
-    path: ../../icon_library
+  navigation_icon_library:
+    path: ../../icons/navigation
+  standard_icon_library:
+    path: ../../icons/standard
   public:
     path: ../../model/objects/public
   navigator:
