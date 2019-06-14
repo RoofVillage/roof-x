@@ -19,6 +19,8 @@ dependencies:
     path: ../../spec/typography
   navigation_icon_library:
     path: ../../icons/navigation
+  svg_library:
+    path: ../../svg
   typedefs:
     path: ../../lib/typedefs
 
