@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:theme/index.dart';
-import 'package:icon_library/index.dart';
+import 'package:standard_icon_library/index.dart';
 import 'package:key_value_builder/index.dart';
 import 'package:spaced_grid_builder/index.dart';
 import 'package:date/index.dart';
@@ -12,7 +12,7 @@ import 'package:corner_radius/index.dart' as radius;
 class RoofThreadEventCell extends StatelessWidget {
   final String title;
   final int timestamp;
-  final StandardIconReference iconReference;
+  final StandardIcon iconReference;
   final String note;
   final List<KeyValue> details;
   final VoidCallback onTap;
@@ -37,7 +37,7 @@ class RoofThreadEventCell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _iconReference = iconReference ?? IconReference.event;
+    final _iconReference = iconReference ?? StandardIcon.event;
 
     return GestureDetector(
       onTapDown: (details) => _fireHaptic(),
@@ -57,7 +57,7 @@ class RoofThreadEventCell extends StatelessWidget {
 }
 
 class _Body extends StatelessWidget {
-  final StandardIconReference iconReference;
+  final StandardIcon iconReference;
   final String title;
   final int timestamp;
   final String note;
@@ -92,7 +92,7 @@ class _Body extends StatelessWidget {
 }
 
 class _Icon extends StatelessWidget {
-  final StandardIconReference iconReference;
+  final StandardIcon iconReference;
 
   _Icon({
     this.iconReference,
@@ -106,7 +106,7 @@ class _Icon extends StatelessWidget {
 
     final iconColor = theme.color.icon.general;
 
-    final iconWidget = iconReference.buildSvg(color: iconColor);
+    final iconWidget = iconReference.buildWidget(color: iconColor);
 
     return Padding(
       padding: EdgeInsets.only(

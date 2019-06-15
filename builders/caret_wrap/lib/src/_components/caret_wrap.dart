@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:theme/index.dart';
-import 'package:icon_library/index.dart';
+import 'package:x_small_icon_library/index.dart';
 import 'package:haptics/index.dart';
 import 'package:distance/index.dart' as distance;
 
@@ -27,7 +27,7 @@ class CaretWrap extends StatelessWidget {
 
     final paddedArrowWidget = Container(
       margin: EdgeInsets.only(left: distance.a),
-      child: IconReference.rightArrowXSmall.buildSvg(
+      child: XSmallIcon.rightArrow.buildWidget(
         color: theme.color.icon.secondary,
       ),
     );

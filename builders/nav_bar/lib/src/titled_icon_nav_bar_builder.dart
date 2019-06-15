@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:icon_library/index.dart';
+import 'package:standard_icon_library/index.dart';
 
 import '_components/title.dart';
 import '_components/nav_bar.dart';
 
 mixin TitledIconNavBarBuilder {
   String get title => null;
-  StandardIconReference get titleIcon => null;
+  StandardIcon get titleIcon => null;
 
   List<Widget> buildActionButtons(BuildContext context);
   Widget buildNavButton(BuildContext context);

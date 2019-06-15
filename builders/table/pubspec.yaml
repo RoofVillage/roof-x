@@ -17,8 +17,8 @@ dependencies:
     path: ../../lib/sorting
   mask:
     path: ../../lib/mask
-  icon_library:
-    path: ../../icon_library
+  standard_icon_library:
+    path: ../../icons/standard
   distance:
     path: ../../spec/distance
   corner_radius:

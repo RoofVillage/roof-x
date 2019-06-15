@@ -29,8 +29,8 @@ dependencies:
     path: ../../options/vertical_floating_artboard_button
   nav_button_builder:
     path: ../../builders/nav_button
-  icon_library:
-    path: ../../icon_library
+  navigation_icon_library:
+    path: ../../icons/navigation
 
 dev_dependencies:
   flutter_test:

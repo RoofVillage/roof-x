@@ -1,0 +1,12 @@
+name: svg_library
+description: Provides functionality for building Icon widgets
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_svg: ^0.12.4+2

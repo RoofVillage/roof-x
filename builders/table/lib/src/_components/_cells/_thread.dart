@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:icon_library/index.dart';
 import 'package:decorated_text/index.dart';
+import 'package:standard_icon_library/index.dart';
 import 'package:typography/index.dart' as typography;
 import 'package:distance/index.dart' as distance;
 import 'package:theme/index.dart';
@@ -8,7 +8,7 @@ import 'package:haptics/index.dart';
 import 'package:date/index.dart';
 
 class RoofThreadCell extends StatelessWidget {
-  final StandardIconReference iconReference;
+  final StandardIcon iconReference;
   final String title;
   final TextStyle titleTextStyle;
   final WeightDecoratedText secondaryText;
@@ -72,7 +72,7 @@ class RoofThreadCell extends StatelessWidget {
 }
 
 class _IconWidget extends StatelessWidget {
-  final StandardIconReference iconReference;
+  final StandardIcon iconReference;
 
   _IconWidget({
     this.iconReference,
@@ -82,7 +82,7 @@ class _IconWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = RoofTheme.of(context);
 
-    return iconReference.buildSvg(color: theme.color.icon.general);
+    return iconReference.buildWidget(color: theme.color.icon.general);
   }
 }
 

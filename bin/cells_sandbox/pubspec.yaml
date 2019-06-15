@@ -19,6 +19,8 @@ dependencies:
     path: ../../lib/device_screen
   table_builder:
     path: ../../builders/table
+  standard_icon_library:
+    path: ../../icons/standard
 
 dev_dependencies:
   flutter_test:

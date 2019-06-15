@@ -9,8 +9,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  icon_library:
-    path: ../../icon_library
+  standard_icon_library:
+    path: ../../icons/standard
+  x_small_icon_library:
+    path: ../../icons/x_small
   typography:
     path: ../../spec/typography
   theme:

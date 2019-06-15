@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:table_builder/index.dart';
-import 'package:icon_library/index.dart';
+import 'package:standard_icon_library/index.dart';
 import 'package:decorated_text/index.dart';
 import 'package:app_data/index.dart';
 import 'package:sorting/index.dart';
@@ -107,7 +107,7 @@ mixin PublicActivityArtboardBuilder implements TableBuilder {
     return CellAData(
       title: decoratedTitle,
       description: publicCompletion.note,
-      iconReference: IconReference.complete,
+      iconReference: StandardIcon.complete,
       section: Section.values.indexOf(Section.completions),
       timestamp: 12221,
     );
@@ -123,7 +123,7 @@ mixin PublicActivityArtboardBuilder implements TableBuilder {
     return CellAData(
       title: decoratedTitle,
       description: publicExpense.note,
-      iconReference: IconReference.piggyBank,
+      iconReference: StandardIcon.piggyBank,
       section: Section.values.indexOf(Section.expenses),
       timestamp: 9012,
     );
@@ -141,7 +141,7 @@ mixin PublicActivityArtboardBuilder implements TableBuilder {
     return CellAData(
       title: decoratedTitle,
       description: publicTransfer.note,
-      iconReference: IconReference.cashSack,
+      iconReference: StandardIcon.cashSack,
       section: Section.values.indexOf(Section.transfers),
       timestamp: 122,
     );
@@ -162,7 +162,7 @@ mixin PublicActivityArtboardBuilder implements TableBuilder {
     return CellAData(
       title: decoratedTitle,
       description: publicLandlordTransfer.note,
-      iconReference: IconReference.cashSack,
+      iconReference: StandardIcon.cashSack,
       section: Section.values.indexOf(Section.landlordTransfers),
       timestamp: 201,
     );
@@ -181,7 +181,7 @@ mixin PublicActivityArtboardBuilder implements TableBuilder {
     return CellAData(
       title: decoratedTitle,
       description: publicMaintenanceRequest.note,
-      iconReference: IconReference.toolbox,
+      iconReference: StandardIcon.toolbox,
       section: Section.values.indexOf(Section.maintenance),
       timestamp: 1901,
     );

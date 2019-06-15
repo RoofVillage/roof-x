@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:navigator/index.dart';
-import 'package:icon_library/index.dart';
+import 'package:standard_icon_library/index.dart';
 import 'package:lease_full_screen_artboard_template/index.dart'; 
 import 'package:table_builder/index.dart';
 import 'package:invoice_options/index.dart';
@@ -132,18 +132,18 @@ class LeaseArtboard extends LeaseVerticalFullScreenArtboard
     final eventCell1 = RoofThreadEventCell(
       timestamp: 1558229172,
       title: "Kelsey Lu paid \$980 for June rent",
-      iconReference: IconReference.cashSack,
+      iconReference: StandardIcon.cashSack,
     );
     final eventCell2 = RoofThreadEventCell(
       timestamp: 1558229172,
       title: "Lisa Hanniga paid \$910 for June rent",
-      iconReference: IconReference.cashSack,
+      iconReference: StandardIcon.cashSack,
     );
     final eventCell3 = RoofThreadEventCell(
       timestamp: 1558229172,
       title: "Lisa Hannigan created a new message thread",
       note: "Thinking about starting a garden",
-      iconReference: IconReference.cashSack,
+      iconReference: StandardIcon.cashSack,
     );
     return [
       eventCell3,

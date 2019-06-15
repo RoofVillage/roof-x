@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:distance/index.dart' as distance;
 import 'package:theme/index.dart';
 import 'package:typography/index.dart' as typography;
-import 'package:icon_library/index.dart';
+import 'package:standard_icon_library/index.dart';
 import 'package:haptics/index.dart';
 
 class RoofSegueBar extends StatelessWidget {
   final String title;
-  final StandardIconReference iconReference;
+  final StandardIcon iconReference;
   final String auxiliaryText;
   final VoidCallback onTap;
 
@@ -34,7 +34,7 @@ class RoofSegueBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = RoofTheme.of(context);
 
-    final iconWidget = iconReference.buildSvg(
+    final iconWidget = iconReference.buildWidget(
       color: theme.color.icon.nav,
     );
 

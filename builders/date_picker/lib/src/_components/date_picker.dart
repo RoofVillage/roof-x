@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:icon_library/index.dart';
 import 'package:theme/index.dart';
-import 'package:typography/index.dart' as typography;
+import 'package:standard_icon_library/index.dart';
 import 'package:date/index.dart';
 import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart';
+import 'package:typography/index.dart' as typography;
 
 typedef DateTimePasser = Function(Date);
 
@@ -48,8 +48,8 @@ class RoofCalendarDatePicker extends StatelessWidget {
 
     final arrowIconColor = theme.color.text.brand;
 
-    final leftIcon = IconReference.leftArrow.buildSvg(color: arrowIconColor);
-    final rightIcon = IconReference.rightArrow.buildSvg(color: arrowIconColor);
+    final leftIcon = StandardIcon.leftArrow.buildWidget(color: arrowIconColor);
+    final rightIcon = StandardIcon.rightArrow.buildWidget(color: arrowIconColor);
 
     return Container(
       child: CalendarCarousel(

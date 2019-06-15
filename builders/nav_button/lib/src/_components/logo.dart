@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:icon_library/index.dart';
+import 'package:navigation_icon_library/index.dart';
 import 'package:theme/index.dart';
 import 'package:typedefs/index.dart';
 
@@ -10,7 +10,7 @@ class RoofLogoNavButton extends StatelessWidget with RoofNavButton {
 
   @override
   Widget iconForTheme(RoofInheritedTheme theme) {
-    return IconReference.logoHouse.buildSvg(color: theme.color.icon.logo);
+    return NavigationIcon.logoHouse.buildWidget(color: theme.color.icon.logo);
   }
 
   RoofLogoNavButton({@required this.onTap});

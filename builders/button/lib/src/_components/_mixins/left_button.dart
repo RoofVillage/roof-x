@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:icon_library/index.dart';
+import 'package:standard_icon_library/index.dart';
 import 'package:haptics/index.dart';
 import 'package:typedefs/index.dart';
 import 'package:distance/index.dart' as distance;
@@ -9,7 +9,7 @@ import 'package:typography/index.dart' as typography;
 mixin RoofLeftButton {
   ContextPasser get onTap;
   String get text;
-  StandardIconReference get iconReference => null;
+  StandardIcon get iconReference => null;
   bool get hasArrow => true;
   ColorGetter get arrowColor;
   ColorGetter get backgroundColor;
@@ -40,7 +40,7 @@ mixin RoofLeftButtonState {
 
       final buttonIcon = Container(
           padding: iconPadding,
-          child: button.iconReference.buildSvg(color: textColor));
+          child: button.iconReference.buildWidget(color: textColor));
 
       buttonChildren.add(buttonIcon);
     }
@@ -54,8 +54,9 @@ mixin RoofLeftButtonState {
 
     buttonChildren.add(textContainer);
 
-    final rightArrowIcon =
-        IconReference.upArrow.buildSvg(color: button.arrowColor(context));
+    final rightArrowIcon = StandardIcon.upArrow.buildWidget(
+      color: button.arrowColor(context),
+    );
 
     buttonChildren.add(rightArrowIcon);
 

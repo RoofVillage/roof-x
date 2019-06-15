@@ -6,7 +6,7 @@ import 'package:duration/index.dart' as duration;
 import 'package:curve/index.dart' as curve;
 import 'package:distance/index.dart' as distance;
 import 'package:corner_radius/index.dart' as corner_radius;
-import 'package:icon_library/index.dart';
+import 'package:standard_icon_library/index.dart';
 import 'package:haptics/index.dart';
 
 import '../input_dock.dart';
@@ -109,7 +109,7 @@ class _FilePreviewState extends State<_FilePreview>
 
   @override
   Widget build(BuildContext context) {
-    final removeIcon = IconReference.closeFilled.buildSvg(
+    final removeIcon = StandardIcon.close.buildWidget(
       color: Colors.black.withAlpha(180),
     );
 

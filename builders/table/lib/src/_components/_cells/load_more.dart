@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:icon_library/index.dart';
+import 'package:standard_icon_library/index.dart';
 import 'package:theme/index.dart';
 import 'package:haptics/index.dart';
 import 'package:corner_radius/index.dart' as radius;
@@ -44,7 +44,7 @@ class _LoadMoreCellState extends State<LoadMoreCell> {
   Widget build(BuildContext context) {
     final theme = RoofTheme.of(context);
 
-    final loadMoreIcon = IconReference.loadMore.buildSvg(
+    final loadMoreIcon = StandardIcon.loadMore.buildWidget(
       color: theme.color.icon.general,
     );
 

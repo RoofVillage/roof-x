@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:theme/index.dart';
-import 'package:icon_library/index.dart';
+import 'package:standard_icon_library/index.dart';
+import 'package:navigation_icon_library/index.dart';
+import 'package:x_small_icon_library/index.dart';
 import 'package:tabbed_fullscreen_artboard_template/index.dart';
 import 'package:cells_list_view_builder/index.dart';
 import 'package:button_builder/index.dart';
@@ -17,19 +19,19 @@ abstract class PropertyVerticalFullScreenArtboard
         PropertyArtboardBuilder {
   String get title => propertyTitle;
 
-  StandardIconReference get titleIcon => homeIcon;
+  StandardIcon get titleIcon => homeIcon;
 
   @override
   Widget buildNavButton(BuildContext context) {
     final theme = RoofTheme.of(context);
-    return IconReference.backArrowNav.buildSvg(color: theme.color.icon.nav);
+    return NavigationIcon.backArrow.buildWidget(color: theme.color.icon.nav);
   }
 
   @override
   List<Widget> buildActionButtons(BuildContext context) {
     final theme = RoofTheme.of(context);
 
-    final moreButton = IconReference.more.buildSvg(color: theme.color.icon.nav);
+    final moreButton = NavigationIcon.more.buildWidget(color: theme.color.icon.nav);
 
     return [moreButton];
   }
@@ -43,7 +45,7 @@ abstract class PropertyVerticalFullScreenArtboard
     final leasesActionButton = buildSecondaryCenterButton(
       context,
       text: "Create lease",
-      icon: IconReference.leaseXSmall,
+      icon: XSmallIcon.lease,
       onTap: (context) => print("create lease tapped"),
       status: ButtonStatusOption.ready,
     );

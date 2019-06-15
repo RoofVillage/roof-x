@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:icon_library/index.dart';
+import 'package:standard_icon_library/index.dart';
 import 'package:typedefs/index.dart';
 
 import '_components/left_primary.dart';
@@ -9,7 +9,7 @@ mixin PrimaryLeftButtonBuilder {
     BuildContext context, {
     @required ContextPasser onTap,
     @required String text,
-    StandardIconReference iconReference,
+    StandardIcon iconReference,
     bool hasArrow,
   }) {
     return RoofPrimaryLeftButton(

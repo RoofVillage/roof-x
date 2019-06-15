@@ -17,8 +17,10 @@ dependencies:
     path: ../../theme
   typography:
     path: ../../spec/typography
-  icon_library:
-    path: ../../icon_library
+  navigation_icon_library:
+    path: ../../icons/navigation
+  svg_library:
+    path: ../../svg
   typedefs:
     path: ../../lib/typedefs
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:icon_library/index.dart';
+import 'package:standard_icon_library/index.dart';
+import 'package:small_icon_library/index.dart';
 import 'package:theme/index.dart';
 import 'package:haptics/index.dart';
 import 'package:padding/index.dart' as padding;
@@ -134,8 +135,8 @@ class _SelectedOptionsContainer extends StatelessWidget {
   final _typographyStyle = typography.bodyPrimary;
   final _maxLines = 10;
 
-  final _upArrowIconReferece = IconReference.upArrow;
-  final _downArrowIconReferece = IconReference.downArrow;
+  final _upArrowIconReferece = StandardIcon.upArrow;
+  final _downArrowIconReferece = StandardIcon.downArrow;
 
   _SelectedOptionsContainer(
       {this.selectedOptionsText, this.emptyText, this.onTap, this.isExpanded});
@@ -160,8 +161,8 @@ class _SelectedOptionsContainer extends StatelessWidget {
     }
 
     final generalIconColor = theme.color.icon.general;
-    final upArrow = _upArrowIconReferece.buildSvg(color: generalIconColor);
-    final downArrow = _downArrowIconReferece.buildSvg(color: generalIconColor);
+    final upArrow = _upArrowIconReferece.buildWidget(color: generalIconColor);
+    final downArrow = _downArrowIconReferece.buildWidget(color: generalIconColor);
 
     final animatedArrow = Expanded(
       flex: 0,
@@ -300,8 +301,8 @@ class _DropdownOption extends StatelessWidget {
   final bool selected;
 
   final _typographyStyle = typography.bodySecondary;
-  final _checkIcon = IconReference.boxChecked;
-  final _uncheckedIcon = IconReference.boxUnchecked;
+  final _checkIcon = SmallIcon.boxChecked;
+  final _uncheckedIcon = SmallIcon.boxUnchecked;
 
   _DropdownOption(
       {this.name,
@@ -320,10 +321,10 @@ class _DropdownOption extends StatelessWidget {
       final generalIconColor = theme.color.icon.general;
       Widget checkedIcon = Padding(
           padding: EdgeInsets.fromLTRB(0, 0, distance.b, 0),
-          child: _checkIcon.buildSvg(color: generalIconColor));
+          child: _checkIcon.buildWidget(color: generalIconColor));
       Widget uncheckedIcon = Padding(
           padding: EdgeInsets.fromLTRB(0, 0, distance.b, 0),
-          child: _uncheckedIcon.buildSvg(color: generalIconColor));
+          child: _uncheckedIcon.buildWidget(color: generalIconColor));
 
       selected ? rowChildren.add(checkedIcon) : rowChildren.add(uncheckedIcon);
     }

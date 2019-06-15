@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:icon_library/index.dart';
+import 'package:standard_icon_library/index.dart';
 import 'package:image_picker_builder/index.dart';
 import 'package:button_builder/index.dart';
 import 'package:input_dock_builder/index.dart';
@@ -24,7 +24,7 @@ class AddFileAuxiliaryWidget extends StatelessWidget
 
   @override
   Widget build(BuildContext context) {
-    final iconReference = IconReference.addImage;
+    final iconReference = StandardIcon.addImage;
 
     final iconButton = buildPrimaryIconButton(
       context,

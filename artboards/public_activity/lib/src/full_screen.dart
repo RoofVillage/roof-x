@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:navigator/index.dart';
 import 'package:full_logo_table_vertical_full_screen_artboard_template/index.dart';
 import 'package:sign_up_artboard/index.dart';
-import 'package:icon_library/index.dart';
+import 'package:navigation_icon_library/index.dart';
 
 import '_builder.dart';
 
@@ -12,7 +12,7 @@ class PublicActivityVerticalFullScreenArtboard
   List<Widget> buildActionButtons(BuildContext context) {
     final button1 = buildIconNavButton(
       context,
-      iconReference: IconReference.addNav,
+      iconReference: NavigationIcon.add,
       onTap: (context) {
         ArtboardNavigator.of(context).goTo(
           SignUpVerticalFloatingArtboard(),
@@ -22,7 +22,7 @@ class PublicActivityVerticalFullScreenArtboard
 
     final button2 = buildIconNavButton(
       context,
-      iconReference: IconReference.settingsNav,
+      iconReference: NavigationIcon.settings,
       onTap: (context) {
         ArtboardNavigator.of(context).goTo(
           PublicActivityVerticalFullScreenArtboard(),
@@ -32,7 +32,7 @@ class PublicActivityVerticalFullScreenArtboard
 
     final popButton = buildIconNavButton(
       context,
-      iconReference: IconReference.backArrowNav,
+      iconReference: NavigationIcon.backArrow,
       onTap: (context) {
         ArtboardNavigator.of(context).pop(context);
       },

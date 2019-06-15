@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:theme/index.dart';
-import 'package:icon_library/index.dart';
+import 'package:navigation_icon_library/index.dart';
+import 'package:x_small_icon_library/index.dart';
 import 'package:tabbed_fullscreen_artboard_template/index.dart';
 import 'package:tab/index.dart';
 import 'package:button_builder/index.dart';
@@ -21,14 +22,18 @@ abstract class InvoiceVerticalFullScreenArtboard
   @override
   Widget buildNavButton(BuildContext context) {
     final theme = RoofTheme.of(context);
-    return IconReference.backArrowNav.buildSvg(color: theme.color.icon.nav);
+    return NavigationIcon.backArrow.buildWidget(
+      color: theme.color.icon.nav,
+    );
   }
 
   @override
   List<Widget> buildActionButtons(BuildContext context) {
     final theme = RoofTheme.of(context);
 
-    final moreButton = IconReference.more.buildSvg(color: theme.color.icon.nav);
+    final moreButton = NavigationIcon.more.buildWidget(
+      color: theme.color.icon.nav,
+    );
 
     return [moreButton];
   }
@@ -43,7 +48,7 @@ abstract class InvoiceVerticalFullScreenArtboard
     final paymentsActionButton = buildSecondaryCenterButton(
       context,
       text: "Manually log a payment",
-      icon: IconReference.cashSackXSmall,
+      icon: XSmallIcon.cashSack,
       onTap: (context) => print("log payment tapped"),
       status: ButtonStatusOption.ready,
     );

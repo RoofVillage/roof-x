@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:icon_library/index.dart';
+import 'package:standard_icon_library/index.dart';
 import 'package:decorated_text/index.dart';
 import 'package:typography/index.dart' as typography;
 import 'package:theme/index.dart';
@@ -9,7 +9,7 @@ import '_thread.dart';
 class RoofStandardThreadCell extends StatelessWidget {
   final String title;
   final WeightDecoratedText secondaryText;
-  final StandardIconReference iconReference;
+  final StandardIcon iconReference;
   final int timestamp;
   final VoidCallback onTap;
 

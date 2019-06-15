@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:duration/index.dart' as duration;
 import 'package:curve/index.dart' as curve;
 import 'package:distance/index.dart' as distance;
-import 'package:icon_library/index.dart';
+import 'package:standard_icon_library/index.dart';
 import 'package:theme/index.dart';
 import 'package:typography/index.dart' as typography;
 import 'package:haptics/index.dart';
@@ -208,9 +208,9 @@ class _SubmitButton extends StatelessWidget {
 
     final activeIconColor = theme.color.background.primaryAction;
     final inactiveIconColor = theme.color.background.inactiveAction;
-    final sendIcon = IconReference.sendFilled;
-    final activeSendIcon = sendIcon.buildSvg(color: activeIconColor);
-    final inactiveSendIcon = sendIcon.buildSvg(color: inactiveIconColor);
+    final sendIcon = StandardIcon.send;
+    final activeSendIcon = sendIcon.buildWidget(color: activeIconColor);
+    final inactiveSendIcon = sendIcon.buildWidget(color: inactiveIconColor);
 
     final animatedSubmitButton = AnimatedCrossFade(
       duration: duration.short,

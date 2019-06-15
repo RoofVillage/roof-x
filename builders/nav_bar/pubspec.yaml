@@ -17,8 +17,8 @@ dependencies:
     path: ../../theme
   typography:
     path: ../../spec/typography
-  icon_library:
-    path: ../../icon_library
+  standard_icon_library:
+    path: ../../icons/standard
   nav_button_builder:
     path: ../nav_button
 

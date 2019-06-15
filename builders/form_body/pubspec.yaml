@@ -25,8 +25,10 @@ dependencies:
     path: ../../spec/curve
   typography:
     path: ../../spec/typography
-  icon_library:
-    path: ../../icon_library
+  standard_icon_library:
+    path: ../../icons/standard
+  small_icon_library:
+    path: ../../icons/small
   theme:
     path: ../../theme
   mask:
