@@ -9,7 +9,7 @@ import 'package:button_builder/index.dart';
 import 'package:button_status_option/index.dart';
 import 'package:tab/index.dart';
 
-import '_builder.dart';
+import '_data.dart';
 
 abstract class PropertyVerticalFullScreenArtboard
     extends TabbedFullScreenArtboard

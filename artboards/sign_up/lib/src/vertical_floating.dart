@@ -6,7 +6,7 @@ import 'package:challenge_artboard/index.dart';
 import 'package:phone_number_sign_up_artboard/index.dart';
 import 'package:navigator/index.dart';
 
-import '_builder.dart';
+import '_data.dart';
 
 class SignUpVerticalFloatingArtboard extends FormVerticalFloatingArtboard
     with SignUpArtboardBuilder {

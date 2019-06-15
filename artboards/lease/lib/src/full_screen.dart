@@ -10,7 +10,7 @@ import 'package:thread_list_view_builder/index.dart';
 import 'package:auxiliary_widget_builder/index.dart';
 import 'package:tab/index.dart';
 
-import '_builder.dart';
+import '_data.dart';
 
 abstract class LeaseVerticalFullScreenArtboard extends TabbedFullScreenArtboard
     with

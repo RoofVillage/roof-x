@@ -5,7 +5,7 @@ import 'package:form_vertical_floating_artboard_template/index.dart';
 import 'package:navigator/index.dart';
 import 'package:reset_password_artboard/index.dart';
 
-import '_builder.dart';
+import '_data.dart';
 
 class LogInVerticalFloatingArtboard extends FormVerticalFloatingArtboard
     with LogInArtboardBuilder {
