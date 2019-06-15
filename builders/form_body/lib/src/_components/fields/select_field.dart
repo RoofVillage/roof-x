@@ -27,13 +27,14 @@ class RoofSelectField extends StatefulWidget {
   final bool isMultiSelect;
   final Function(List<RoofSelectFieldOptionData>) onChanged;
 
-  const RoofSelectField(
-      {this.title,
-      this.emptyText,
-      this.selectedOptions,
-      this.options,
-      this.isMultiSelect,
-      this.onChanged});
+  const RoofSelectField({
+    this.title,
+    this.emptyText,
+    this.selectedOptions,
+    this.options,
+    this.isMultiSelect,
+    this.onChanged,
+  });
 
   @override
   _RoofSelectFieldState createState() => _RoofSelectFieldState();
@@ -60,10 +61,11 @@ class _RoofSelectFieldState extends State<RoofSelectField>
     Widget label = RoofFieldLabel(labelText: widget.title);
 
     final selectedOptionsContainer = _SelectedOptionsContainer(
-        selectedOptionsText: _textForSelectedOptions(),
-        emptyText: widget.emptyText,
-        onTap: _expandDropdown,
-        isExpanded: isExpanded);
+      selectedOptions: selectedOptions,
+      emptyText: widget.emptyText,
+      onTap: _expandDropdown,
+      isExpanded: isExpanded,
+    );
 
     final dropdownContainer = _DropdownContainer(
       options: options,
@@ -76,19 +78,10 @@ class _RoofSelectFieldState extends State<RoofSelectField>
     return Container(
       margin: padding.field1,
       child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [label, selectedOptionsContainer, dropdownContainer]),
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [label, selectedOptionsContainer, dropdownContainer],
+      ),
     );
-  }
-
-  String _textForSelectedOptions() {
-    var text = "";
-    for (var i = 0; i < selectedOptions.length; i++) {
-      bool isLast = i == selectedOptions.length - 1;
-      text += selectedOptions[i].title;
-      if (!isLast) text += ", ";
-    }
-    return text;
   }
 
   void _onTap(RoofSelectFieldOptionData option) {
@@ -118,8 +111,7 @@ class _RoofSelectFieldState extends State<RoofSelectField>
   }
 
   void _expandDropdown() {
-    final hapticOption = isExpanded ? HapticOption.medium : HapticOption.light;
-    triggerHapticWith(hapticOption);
+    triggerHapticWith(_hapticOption);
     setState(() {
       isExpanded = !isExpanded;
     });
@@ -127,7 +119,7 @@ class _RoofSelectFieldState extends State<RoofSelectField>
 }
 
 class _SelectedOptionsContainer extends StatelessWidget {
-  final String selectedOptionsText;
+  final List<RoofSelectFieldOptionData> selectedOptions;
   final String emptyText;
   final Function onTap;
   final bool isExpanded;
@@ -138,55 +130,82 @@ class _SelectedOptionsContainer extends StatelessWidget {
   final _upArrowIconReferece = StandardIcon.upArrow;
   final _downArrowIconReferece = StandardIcon.downArrow;
 
-  _SelectedOptionsContainer(
-      {this.selectedOptionsText, this.emptyText, this.onTap, this.isExpanded});
+  _SelectedOptionsContainer({
+    this.selectedOptions,
+    this.emptyText,
+    this.onTap,
+    this.isExpanded,
+  });
+
+  String _textForSelectedOptions() {
+    var text = "";
+    for (var i = 0; i < selectedOptions.length; i++) {
+      bool isLast = i == selectedOptions.length - 1;
+      text += selectedOptions[i].title;
+      if (!isLast) text += ", ";
+    }
+    return text;
+  }
 
   Widget build(BuildContext context) {
     final theme = RoofTheme.of(context);
 
     Widget selectedOptionsChild;
-    if (selectedOptionsText.isEmpty) {
-      selectedOptionsChild = Text(emptyText,
-          style: _typographyStyle
-              .textStyleWithColor(theme.color.text.placeholder));
+    if (selectedOptions.isEmpty) {
+      selectedOptionsChild = Text(
+        emptyText,
+        style:
+            _typographyStyle.textStyleWithColor(theme.color.text.placeholder),
+      );
     } else {
       selectedOptionsChild = Expanded(
-          child: Text(
-        selectedOptionsText,
-        style: _typographyStyle.textStyleWithColor(theme.color.text.primary),
-        softWrap: true,
-        maxLines: _maxLines,
-        overflow: TextOverflow.ellipsis,
-      ));
+        child: Text(
+          _textForSelectedOptions(),
+          style: _typographyStyle.textStyleWithColor(theme.color.text.primary),
+          softWrap: true,
+          maxLines: _maxLines,
+          overflow: TextOverflow.ellipsis,
+        ),
+      );
     }
 
     final generalIconColor = theme.color.icon.general;
     final upArrow = _upArrowIconReferece.buildWidget(color: generalIconColor);
-    final downArrow = _downArrowIconReferece.buildWidget(color: generalIconColor);
+    final downArrow =
+        _downArrowIconReferece.buildWidget(color: generalIconColor);
 
     final animatedArrow = Expanded(
       flex: 0,
       child: Padding(
         padding: EdgeInsets.fromLTRB(distance.d, 0, 0, 0),
         child: _AnimatedIconReference(
-            icon1: upArrow, icon2: downArrow, showIcon1: isExpanded),
+          icon1: upArrow,
+          icon2: downArrow,
+          showIcon1: isExpanded,
+        ),
       ),
     );
 
     final verticalPadding = EdgeInsets.symmetric(vertical: distance.b);
 
     return Container(
-        decoration: BoxDecoration(
-            border:
-                Border(bottom: BorderSide(color: theme.color.stroke.light))),
-        child: GestureDetector(
-            onTap: onTap,
-            behavior: HitTestBehavior.opaque,
-            child: Padding(
-                padding: verticalPadding,
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [selectedOptionsChild, animatedArrow]))));
+      decoration: BoxDecoration(
+        border: Border(
+          bottom: BorderSide(color: theme.color.stroke.light),
+        ),
+      ),
+      child: GestureDetector(
+        onTap: onTap,
+        behavior: HitTestBehavior.opaque,
+        child: Padding(
+          padding: verticalPadding,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [selectedOptionsChild, animatedArrow],
+          ),
+        ),
+      ),
+    );
   }
 }
 
@@ -195,16 +214,21 @@ class _AnimatedIconReference extends StatelessWidget {
   final Widget icon2;
   final bool showIcon1;
 
-  _AnimatedIconReference({this.icon1, this.icon2, this.showIcon1});
+  _AnimatedIconReference({
+    this.icon1,
+    this.icon2,
+    this.showIcon1,
+  });
 
   @override
   Widget build(BuildContext context) {
     return AnimatedCrossFade(
-        firstChild: icon1,
-        secondChild: icon2,
-        duration: duration.short,
-        crossFadeState:
-            showIcon1 ? CrossFadeState.showFirst : CrossFadeState.showSecond);
+      firstChild: icon1,
+      secondChild: icon2,
+      duration: duration.short,
+      crossFadeState:
+          showIcon1 ? CrossFadeState.showFirst : CrossFadeState.showSecond,
+    );
   }
 }
 
@@ -218,66 +242,79 @@ class _DropdownContainer extends StatelessWidget {
   final _closeDuration = duration.short;
   final _showDuration = duration.short;
 
-  _DropdownContainer(
-      {this.options,
-      this.selectedOptions,
-      this.isMultiSelect,
-      this.isExpanded,
-      this.onTap});
+  _DropdownContainer({
+    this.options,
+    this.selectedOptions,
+    this.isMultiSelect,
+    this.isExpanded,
+    this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
     final theme = RoofTheme.of(context);
     final decoration = BoxDecoration(
-        borderRadius: BorderRadius.only(
-            bottomLeft: corner_radius.small, bottomRight: corner_radius.small),
-        color: theme.color.background.generalSecondary,
-        boxShadow: [theme.shadow]);
+      borderRadius: BorderRadius.only(
+        bottomLeft: corner_radius.small,
+        bottomRight: corner_radius.small,
+      ),
+      color: theme.color.background.generalSecondary,
+      boxShadow: [theme.shadow],
+    );
 
     final Widget expandedChild = _DropdownContents(
-        options: options,
-        selectedOptions: selectedOptions,
-        isMultiSelect: isMultiSelect,
-        onTap: onTap);
+      options: options,
+      selectedOptions: selectedOptions,
+      isMultiSelect: isMultiSelect,
+      onTap: onTap,
+    );
 
     return Container(
-        decoration: decoration,
-        child: AnimatedCrossFade(
-            firstChild: expandedChild,
-            secondChild: Container(),
-            firstCurve: Curves.easeIn,
-            secondCurve: Curves.easeIn,
-            sizeCurve: curve.easy,
-            crossFadeState: isExpanded
-                ? CrossFadeState.showFirst
-                : CrossFadeState.showSecond,
-            duration: isExpanded ? _closeDuration : _showDuration));
+      decoration: decoration,
+      child: AnimatedCrossFade(
+        firstChild: expandedChild,
+        secondChild: Container(),
+        firstCurve: Curves.easeIn,
+        secondCurve: Curves.easeIn,
+        sizeCurve: curve.easy,
+        crossFadeState:
+            isExpanded ? CrossFadeState.showFirst : CrossFadeState.showSecond,
+        duration: isExpanded ? _closeDuration : _showDuration,
+      ),
+    );
   }
 }
 
 class _DropdownContents extends StatelessWidget {
-  final List options;
-  final List selectedOptions;
+  final List<RoofSelectFieldOptionData> options;
+  final List<RoofSelectFieldOptionData> selectedOptions;
   final bool isMultiSelect;
   final Function onTap;
 
   final double _optionHeight = 60;
   final double _optionsVisible = 4.5;
 
-  _DropdownContents(
-      {this.options, this.selectedOptions, this.isMultiSelect, this.onTap});
+  _DropdownContents({
+    this.options,
+    this.selectedOptions,
+    this.isMultiSelect,
+    this.onTap,
+  });
 
   Widget build(BuildContext context) {
     List<Widget> optionsList = [];
     for (var option in options) {
       final dropdownOption = _DropdownOption(
-          name: option.title,
-          data: option.data,
-          selected: selectedOptions.contains(option),
-          isMultiSelect: isMultiSelect,
-          optionHeight: _optionHeight,
-          onTap: () => onTap(option));
-      optionsList.add(dropdownOption);
+        name: option.title,
+        data: option.data,
+        selected: selectedOptions.contains(option),
+        isMultiSelect: isMultiSelect,
+        optionHeight: _optionHeight,
+        onTap: () => onTap(option),
+      );
+      optionsList.add(
+        dropdownOption,
+      );
     }
 
     double totalDropdownHeight;
@@ -287,8 +324,12 @@ class _DropdownContents extends StatelessWidget {
       totalDropdownHeight = _optionHeight * _optionsVisible;
 
     return Container(
-        height: totalDropdownHeight,
-        child: ListView(children: optionsList, padding: EdgeInsets.all(0)));
+      height: totalDropdownHeight,
+      child: ListView(
+        children: optionsList,
+        padding: EdgeInsets.all(0),
+      ),
+    );
   }
 }
 
@@ -304,13 +345,14 @@ class _DropdownOption extends StatelessWidget {
   final _checkIcon = SmallIcon.boxChecked;
   final _uncheckedIcon = SmallIcon.boxUnchecked;
 
-  _DropdownOption(
-      {this.name,
-      this.data,
-      this.optionHeight,
-      this.onTap,
-      this.isMultiSelect,
-      this.selected});
+  _DropdownOption({
+    this.name,
+    this.data,
+    this.optionHeight,
+    this.onTap,
+    this.isMultiSelect,
+    this.selected,
+  });
 
   Widget build(BuildContext context) {
     final theme = RoofTheme.of(context);
@@ -320,40 +362,50 @@ class _DropdownOption extends StatelessWidget {
     if (isMultiSelect) {
       final generalIconColor = theme.color.icon.general;
       Widget checkedIcon = Padding(
-          padding: EdgeInsets.fromLTRB(0, 0, distance.b, 0),
-          child: _checkIcon.buildWidget(color: generalIconColor));
+        padding: EdgeInsets.fromLTRB(0, 0, distance.b, 0),
+        child: _checkIcon.buildWidget(color: generalIconColor),
+      );
       Widget uncheckedIcon = Padding(
-          padding: EdgeInsets.fromLTRB(0, 0, distance.b, 0),
-          child: _uncheckedIcon.buildWidget(color: generalIconColor));
+        padding: EdgeInsets.fromLTRB(0, 0, distance.b, 0),
+        child: _uncheckedIcon.buildWidget(color: generalIconColor),
+      );
 
       selected ? rowChildren.add(checkedIcon) : rowChildren.add(uncheckedIcon);
     }
 
-    final optionTitle = Text(name,
-        style: _typographyStyle.textStyleWithColor(theme.color.text.primary));
+    final optionTitle = Text(
+      name,
+      style: _typographyStyle.textStyleWithColor(theme.color.text.primary),
+    );
 
     final optionBackgroundColor = (selected && !isMultiSelect)
         ? theme.color.background.generalPrimary
         : Colors.transparent;
 
-    final optionPadding =
-        EdgeInsets.fromLTRB(distance.b, distance.c, distance.b, distance.c);
+    final optionPadding = EdgeInsets.symmetric(
+      horizontal: distance.b,
+      vertical: distance.c,
+    );
 
     rowChildren.add(optionTitle);
 
     return Container(
-        decoration: BoxDecoration(
-          color: optionBackgroundColor,
+      decoration: BoxDecoration(
+        color: optionBackgroundColor,
+      ),
+      height: optionHeight,
+      child: GestureDetector(
+        onTap: onTap,
+        behavior: HitTestBehavior.opaque,
+        child: Padding(
+          padding: optionPadding,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: rowChildren,
+          ),
         ),
-        height: optionHeight,
-        child: GestureDetector(
-            onTap: onTap,
-            behavior: HitTestBehavior.opaque,
-            child: Padding(
-                padding: optionPadding,
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: rowChildren))));
+      ),
+    );
   }
 }
