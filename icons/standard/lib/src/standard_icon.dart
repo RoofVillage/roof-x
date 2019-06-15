@@ -22,12 +22,15 @@ class StandardIcon extends IconReference {
   static final apartment5 = StandardIcon(
     RoofStandardIconData.apartment5,
   );
+  static final apartment6 = StandardIcon(RoofStandardIconData.apartment6);
   static final atSign = StandardIcon(RoofStandardIconData.at_sign);
   static final backArrow = StandardIcon(RoofStandardIconData.back_arrow);
   static final bank = StandardIcon(RoofStandardIconData.bank);
   static final bellAlert = StandardIcon(RoofStandardIconData.bell_alert);
-  static final bellSubscribe = StandardIcon(RoofStandardIconData.bell_subscribe);
-  static final bellUnsubscribe = StandardIcon(RoofStandardIconData.bell_unsubscribe);
+  static final bellSubscribe =
+      StandardIcon(RoofStandardIconData.bell_subscribe);
+  static final bellUnsubscribe =
+      StandardIcon(RoofStandardIconData.bell_unsubscribe);
   static final camera = StandardIcon(RoofStandardIconData.camera);
   static final camper = StandardIcon(RoofStandardIconData.camper);
   static final cashSack = StandardIcon(RoofStandardIconData.cash_sack);
@@ -79,7 +82,8 @@ class StandardIcon extends IconReference {
   static final nametag = StandardIcon(RoofStandardIconData.nametag);
   static final numberSign = StandardIcon(RoofStandardIconData.number_sign);
   static final outOfStock = StandardIcon(RoofStandardIconData.out_of_stock);
-  static final paymentHistory = StandardIcon(RoofStandardIconData.payment_history);
+  static final paymentHistory =
+      StandardIcon(RoofStandardIconData.payment_history);
   static final paymentInfo = StandardIcon(RoofStandardIconData.payment_info);
   static final phone = StandardIcon(RoofStandardIconData.phone);
   static final piggyBank = StandardIcon(RoofStandardIconData.piggy_bank);
