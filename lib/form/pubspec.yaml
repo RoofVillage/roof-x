@@ -19,6 +19,8 @@ dependencies:
     path: ../form_validation_exception
   typedefs:
     path: ../typedefs
+  standard_icon_library:
+    path: ../../icons/standard
 
 dev_dependencies:
   flutter_test:

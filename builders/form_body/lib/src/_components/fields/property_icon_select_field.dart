@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:standard_icon_library/index.dart';
 
 import 'icon_select_field.dart';
+import '_data/icon_select_field_option_data.dart';
 
 class PropertyIconSelectField extends StatelessWidget {
   final String title;
@@ -37,8 +38,10 @@ class PropertyIconSelectField extends StatelessWidget {
 
   List<IconSelectFieldOptionData> _buildOptions() {
     return _propertyIconOptions.map(
-      (propertyIcon) => IconSelectFieldOptionData(icon: propertyIcon),
-    );
+      (propertyIcon) {
+        return IconSelectFieldOptionData(icon: propertyIcon);
+      },
+    ).toList();
   }
 
   @override

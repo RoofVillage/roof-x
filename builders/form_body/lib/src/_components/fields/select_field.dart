@@ -11,21 +11,15 @@ import 'package:corner_radius/index.dart' as corner_radius;
 import 'package:typography/index.dart' as typography;
 
 import '_widgets/index.dart';
-
-class RoofSelectFieldOptionData {
-  String title;
-  String data;
-
-  RoofSelectFieldOptionData({this.title, this.data});
-}
+import '_data/select_field_option_data.dart';
 
 class RoofSelectField extends StatefulWidget {
   final String title;
   final String emptyText;
-  final List<RoofSelectFieldOptionData> selectedOptions;
-  final List<RoofSelectFieldOptionData> options;
+  final List<SelectFieldOptionData> selectedOptions;
+  final List<SelectFieldOptionData> options;
   final bool isMultiSelect;
-  final Function(List<RoofSelectFieldOptionData>) onChanged;
+  final Function(List<SelectFieldOptionData>) onChanged;
 
   const RoofSelectField({
     this.title,
@@ -42,8 +36,8 @@ class RoofSelectField extends StatefulWidget {
 
 class _RoofSelectFieldState extends State<RoofSelectField>
     with SingleTickerProviderStateMixin {
-  List<RoofSelectFieldOptionData> selectedOptions;
-  List<RoofSelectFieldOptionData> options;
+  List<SelectFieldOptionData> selectedOptions;
+  List<SelectFieldOptionData> options;
   bool isExpanded = false;
 
   @override
@@ -84,7 +78,7 @@ class _RoofSelectFieldState extends State<RoofSelectField>
     );
   }
 
-  void _onTap(RoofSelectFieldOptionData option) {
+  void _onTap(SelectFieldOptionData option) {
     widget.onChanged(selectedOptions);
     _updateSelectedOptions(option);
   }
@@ -94,7 +88,7 @@ class _RoofSelectFieldState extends State<RoofSelectField>
     return (isExpanded) ? HapticOption.medium : HapticOption.light;
   }
 
-  void _updateSelectedOptions(RoofSelectFieldOptionData option) {
+  void _updateSelectedOptions(SelectFieldOptionData option) {
     if (widget.isMultiSelect) {
       final optionIsSelected = selectedOptions.contains(option);
       setState(() {
@@ -119,7 +113,7 @@ class _RoofSelectFieldState extends State<RoofSelectField>
 }
 
 class _SelectedOptionsContainer extends StatelessWidget {
-  final List<RoofSelectFieldOptionData> selectedOptions;
+  final List<SelectFieldOptionData> selectedOptions;
   final String emptyText;
   final Function onTap;
   final bool isExpanded;
@@ -233,8 +227,8 @@ class _AnimatedIconReference extends StatelessWidget {
 }
 
 class _DropdownContainer extends StatelessWidget {
-  final List<RoofSelectFieldOptionData> options;
-  final List<RoofSelectFieldOptionData> selectedOptions;
+  final List<SelectFieldOptionData> options;
+  final List<SelectFieldOptionData> selectedOptions;
   final bool isMultiSelect;
   final bool isExpanded;
   final Function onTap;
@@ -286,8 +280,8 @@ class _DropdownContainer extends StatelessWidget {
 }
 
 class _DropdownContents extends StatelessWidget {
-  final List<RoofSelectFieldOptionData> options;
-  final List<RoofSelectFieldOptionData> selectedOptions;
+  final List<SelectFieldOptionData> options;
+  final List<SelectFieldOptionData> selectedOptions;
   final bool isMultiSelect;
   final Function onTap;
 

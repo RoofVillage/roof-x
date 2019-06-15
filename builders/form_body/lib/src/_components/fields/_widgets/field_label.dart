@@ -18,10 +18,12 @@ class RoofFieldLabel extends StatelessWidget {
     final textColor = RoofTheme.of(context).color.text.secondary;
     final labelStyle = _labelStyle.textStyleWithColor(textColor);
 
-    return Text(labelText,
-        softWrap: true,
-        maxLines: maxLines,
-        overflow: TextOverflow.ellipsis,
-        style: labelStyle);
+    return Text(
+      labelText,
+      softWrap: true,
+      maxLines: maxLines,
+      overflow: TextOverflow.ellipsis,
+      style: labelStyle,
+    );
   }
 }

@@ -9,12 +9,7 @@ import 'package:curve/index.dart' as curve;
 import 'package:corner_radius/index.dart' as corner_radius;
 
 import '_widgets/index.dart';
-
-class IconSelectFieldOptionData {
-  StandardIcon icon;
-
-  IconSelectFieldOptionData({this.icon});
-}
+import '_data/icon_select_field_option_data.dart';
 
 class IconSelectField extends StatefulWidget {
   final String title;
@@ -244,13 +239,15 @@ class _DropdownContents extends StatelessWidget {
   });
 
   Widget build(BuildContext context) {
-    List<_DropdownOption> optionsList = options.map((option) {
-      return _DropdownOption(
-        icon: option.icon,
-        selected: selectedOption == option,
-        onTap: () => onTap(option),
-      );
-    }).toList();
+    List<_DropdownOption> optionsList = options.map(
+      (option) {
+        return _DropdownOption(
+          icon: option.icon,
+          selected: selectedOption == option,
+          onTap: () => onTap(option),
+        );
+      },
+    ).toList();
 
     return Container(
       constraints: BoxConstraints(maxHeight: _maxVisibleHeight),

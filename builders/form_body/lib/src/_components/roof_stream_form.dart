@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:form/index.dart';
+import 'package:form_body_builder/src/_components/fields/_data/icon_select_field_option_data.dart';
 import 'package:keyboard_accessory/index.dart';
 import 'package:keyboard_accessory_bar_builder/index.dart';
 
@@ -10,6 +11,8 @@ import 'fields/text_field.dart';
 import 'fields/switch_field.dart';
 import 'fields/date_picker_field.dart';
 import 'fields/select_field.dart';
+import 'fields/icon_select_field.dart';
+import 'fields/_data/select_field_option_data.dart';
 
 enum KeyboardAccessoryState { hideKeyboard, submit }
 
@@ -98,97 +101,143 @@ class RoofStreamForm
     );
   }
 
-  Widget buildSwitch(
-      {FormSwitchData fieldData,
-      int fieldIndex,
-      int sectionIndex,
-      BuildContext context}) {
+  Widget buildSwitch({
+    FormSwitchData fieldData,
+    int fieldIndex,
+    int sectionIndex,
+    BuildContext context,
+  }) {
     return RoofSwitchField(
-        title: fieldData.title,
-        initialValue: fieldData.value,
-        onChanged: (value) {
-          resignFocus(context);
-          fieldData.onChanged(value);
-        });
+      title: fieldData.title,
+      initialValue: fieldData.value,
+      onChanged: (value) {
+        resignFocus(context);
+        fieldData.onChanged(value);
+      },
+    );
   }
 
-  Widget buildDateField(
-      {FormDateFieldData fieldData,
-      StreamableFormData formData,
-      int fieldIndex,
-      int sectionIndex,
-      BuildContext context}) {
+  Widget buildDateField({
+    FormDateFieldData fieldData,
+    StreamableFormData formData,
+    int fieldIndex,
+    int sectionIndex,
+    BuildContext context,
+  }) {
     return RoofDatePickerField(
-        title: fieldData.title,
-        initialValue: fieldData.value,
-        startBound: fieldData.startBound,
-        endBound: fieldData.endBound,
-        onTap: fieldData.onTap,
-        onChanged: (value) {
-          fieldData.onChanged(value);
-        });
+      title: fieldData.title,
+      initialValue: fieldData.value,
+      startBound: fieldData.startBound,
+      endBound: fieldData.endBound,
+      onTap: fieldData.onTap,
+      onChanged: (value) {
+        fieldData.onChanged(value);
+      },
+    );
   }
 
   Widget buildOptionSelect(
       {FormOptionSelectData fieldData, int fieldIndex, int sectionIndex}) {
-    List<RoofSelectFieldOptionData> options = fieldData.options.map((option) {
-      return RoofSelectFieldOptionData(title: option.title, data: option.data);
-    }).toList();
+    List<SelectFieldOptionData> options = fieldData.options.map(
+      (option) {
+        return SelectFieldOptionData(
+          title: option.title,
+          data: option.data,
+        );
+      },
+    ).toList();
 
     return RoofSelectField(
-        title: fieldData.title,
-        emptyText: fieldData.emptyText,
-        isMultiSelect: fieldData.isMultiSelect,
-        options: options,
-        onChanged: (selectedOptions) {
-          List<FormOptionSelectValueData> convertedOptions =
-              selectedOptions.map((option) {
+      title: fieldData.title,
+      emptyText: fieldData.emptyText,
+      isMultiSelect: fieldData.isMultiSelect,
+      options: options,
+      onChanged: (selectedOptions) {
+        List<FormOptionSelectValueData> convertedOptions = selectedOptions.map(
+          (option) {
             return FormOptionSelectValueData(
-                title: option.title, data: option.data);
-          }).toList();
-          fieldData.onChanged(convertedOptions);
-        });
+              title: option.title,
+              data: option.data,
+            );
+          },
+        ).toList();
+        fieldData.onChanged(convertedOptions);
+      },
+    );
+  }
+
+  Widget buildIconOptionSelect(
+      {FormIconOptionSelectData fieldData, int fieldIndex, int sectionIndex}) {
+    List<IconSelectFieldOptionData> options = fieldData.options.map(
+      (option) {
+        return IconSelectFieldOptionData(
+          icon: option.icon,
+        );
+      },
+    ).toList();
+
+    return IconSelectField(
+      title: fieldData.title,
+      options: options,
+      onChanged: (selectedOption) {
+        FormIconOptionSelectValueData convertedOption =
+            FormIconOptionSelectValueData(icon: selectedOption.icon);
+        fieldData.onChanged(convertedOption);
+      },
+    );
   }
 
   @override
-  Widget buildField(
-      {BuildContext context,
-      StreamableFormFieldData fieldData,
-      StreamableFormData formData,
-      int fieldIndex,
-      int sectionIndex}) {
+  Widget buildField({
+    BuildContext context,
+    StreamableFormFieldData fieldData,
+    StreamableFormData formData,
+    int fieldIndex,
+    int sectionIndex,
+  }) {
     Widget fieldBody;
 
     if (fieldData is FormTextFieldData) {
       fieldBody = buildTextField(
-          fieldData: fieldData,
-          formData: formData,
-          fieldIndex: fieldIndex,
-          sectionIndex: sectionIndex,
-          context: context);
+        fieldData: fieldData,
+        formData: formData,
+        fieldIndex: fieldIndex,
+        sectionIndex: sectionIndex,
+        context: context,
+      );
     } else if (fieldData is FormTextAreaData) {
       fieldBody = buildTextArea(
-          fieldData: fieldData,
-          formData: formData,
-          fieldIndex: fieldIndex,
-          sectionIndex: sectionIndex,
-          context: context);
+        fieldData: fieldData,
+        formData: formData,
+        fieldIndex: fieldIndex,
+        sectionIndex: sectionIndex,
+        context: context,
+      );
     } else if (fieldData is FormSwitchData) {
       fieldBody = buildSwitch(
-          fieldData: fieldData,
-          fieldIndex: fieldIndex,
-          sectionIndex: sectionIndex,
-          context: context);
+        fieldData: fieldData,
+        fieldIndex: fieldIndex,
+        sectionIndex: sectionIndex,
+        context: context,
+      );
     } else if (fieldData is FormOptionSelectData) {
       fieldBody = buildOptionSelect(
-          fieldData: fieldData,
-          fieldIndex: fieldIndex,
-          sectionIndex: sectionIndex);
+        fieldData: fieldData,
+        fieldIndex: fieldIndex,
+        sectionIndex: sectionIndex,
+      );
+    } else if (fieldData is FormIconOptionSelectData) {
+      fieldBody = buildIconOptionSelect(
+        fieldData: fieldData,
+        fieldIndex: fieldIndex,
+        sectionIndex: sectionIndex,
+      );
     } else if (fieldData is FormDateFieldData) {
       fieldBody = buildDateField(
-          fieldData: fieldData,
-          fieldIndex: fieldIndex,
-          sectionIndex: sectionIndex);
+        fieldData: fieldData,
+        fieldIndex: fieldIndex,
+        sectionIndex: sectionIndex,
+      );
     }
 
     return RoofFieldContainer(
