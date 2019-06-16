@@ -15,6 +15,7 @@ mixin PropertyCreateArtboardBuilder implements FormBuilder {
         _address,
         _unit,
         _zip,
+        _rentDestination,
       ];
 
   final _iconFieldData = FormPropertyIconOptionSelectData(
@@ -36,16 +37,17 @@ mixin PropertyCreateArtboardBuilder implements FormBuilder {
     placeholder: "27510",
   );
 
-  // TODO: make tags field
+  // TODO!!!: make tags field
+  // "mask" text field content by spaces/commas into little pill widgets?
   // final _tags =
+
+  static List<FormOptionSelectValueData> _getPaymentProfiles() {
+    // TODO
+  }
 
   final _rentDestination = FormOptionSelectData(
     title: "Default rent destination",
     emptyText: "No payment profiles available",
     options: _getPaymentProfiles(),
   );
-
-  static List<FormOptionSelectValueData> _getPaymentProfiles() {
-    // TODO
-  }
 }

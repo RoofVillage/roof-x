@@ -13,13 +13,13 @@ import 'package:typography/index.dart' as typography;
 import '_widgets/index.dart';
 import '_data/select_field_option_data.dart';
 
-class RoofSelectField extends StatefulWidget {
+class RoofSelectField<T> extends StatefulWidget {
   final String title;
   final String emptyText;
-  final List<SelectFieldOptionData> selectedOptions;
-  final List<SelectFieldOptionData> options;
+  final List<SelectFieldOptionData<T>> selectedOptions;
+  final List<SelectFieldOptionData<T>> options;
   final bool isMultiSelect;
-  final Function(List<SelectFieldOptionData>) onChanged;
+  final Function(List<SelectFieldOptionData<T>>) onChanged;
 
   const RoofSelectField({
     this.title,
@@ -31,13 +31,13 @@ class RoofSelectField extends StatefulWidget {
   });
 
   @override
-  _RoofSelectFieldState createState() => _RoofSelectFieldState();
+  _RoofSelectFieldState<T> createState() => _RoofSelectFieldState<T>();
 }
 
-class _RoofSelectFieldState extends State<RoofSelectField>
+class _RoofSelectFieldState<T> extends State<RoofSelectField>
     with SingleTickerProviderStateMixin {
-  List<SelectFieldOptionData> selectedOptions;
-  List<SelectFieldOptionData> options;
+  List<SelectFieldOptionData<T>> selectedOptions;
+  List<SelectFieldOptionData<T>> options;
   bool isExpanded = false;
 
   @override
@@ -59,7 +59,7 @@ class _RoofSelectFieldState extends State<RoofSelectField>
       columnChildren.add(label);
     }
 
-    final selectedOptionsContainer = _SelectedOptionsContainer(
+    final selectedOptionsContainer = _SelectedOptionsContainer<T>(
       selectedOptions: selectedOptions,
       emptyText: widget.emptyText,
       onTap: _expandDropdown,
@@ -67,7 +67,7 @@ class _RoofSelectFieldState extends State<RoofSelectField>
     );
     columnChildren.add(selectedOptionsContainer);
 
-    final dropdownContainer = _DropdownContainer(
+    final dropdownContainer = _DropdownContainer<T>(
       options: options,
       selectedOptions: selectedOptions,
       isMultiSelect: widget.isMultiSelect,
@@ -85,7 +85,7 @@ class _RoofSelectFieldState extends State<RoofSelectField>
     );
   }
 
-  void _onTap(SelectFieldOptionData option) {
+  void _onTap(SelectFieldOptionData<T> option) {
     widget.onChanged(selectedOptions);
     _updateSelectedOptions(option);
   }
@@ -95,7 +95,7 @@ class _RoofSelectFieldState extends State<RoofSelectField>
     return (isExpanded) ? HapticOption.medium : HapticOption.light;
   }
 
-  void _updateSelectedOptions(SelectFieldOptionData option) {
+  void _updateSelectedOptions(SelectFieldOptionData<T> option) {
     if (widget.isMultiSelect) {
       final optionIsSelected = selectedOptions.contains(option);
       setState(() {
@@ -119,8 +119,8 @@ class _RoofSelectFieldState extends State<RoofSelectField>
   }
 }
 
-class _SelectedOptionsContainer extends StatelessWidget {
-  final List<SelectFieldOptionData> selectedOptions;
+class _SelectedOptionsContainer<T> extends StatelessWidget {
+  final List<SelectFieldOptionData<T>> selectedOptions;
   final String emptyText;
   final Function onTap;
   final bool isExpanded;
@@ -233,9 +233,9 @@ class _AnimatedIconReference extends StatelessWidget {
   }
 }
 
-class _DropdownContainer extends StatelessWidget {
-  final List<SelectFieldOptionData> options;
-  final List<SelectFieldOptionData> selectedOptions;
+class _DropdownContainer<T> extends StatelessWidget {
+  final List<SelectFieldOptionData<T>> options;
+  final List<SelectFieldOptionData<T>> selectedOptions;
   final bool isMultiSelect;
   final bool isExpanded;
   final Function onTap;
@@ -263,7 +263,7 @@ class _DropdownContainer extends StatelessWidget {
       boxShadow: [theme.shadow],
     );
 
-    final Widget expandedChild = _DropdownContents(
+    final Widget expandedChild = _DropdownContents<T>(
       options: options,
       selectedOptions: selectedOptions,
       isMultiSelect: isMultiSelect,
@@ -286,9 +286,9 @@ class _DropdownContainer extends StatelessWidget {
   }
 }
 
-class _DropdownContents extends StatelessWidget {
-  final List<SelectFieldOptionData> options;
-  final List<SelectFieldOptionData> selectedOptions;
+class _DropdownContents<T> extends StatelessWidget {
+  final List<SelectFieldOptionData<T>> options;
+  final List<SelectFieldOptionData<T>> selectedOptions;
   final bool isMultiSelect;
   final Function onTap;
 
@@ -305,7 +305,7 @@ class _DropdownContents extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Widget> optionsList = [];
     for (var option in options) {
-      final dropdownOption = _DropdownOption(
+      final dropdownOption = _DropdownOption<T>(
         name: option.title,
         data: option.data,
         selected: selectedOptions.contains(option),
@@ -334,9 +334,9 @@ class _DropdownContents extends StatelessWidget {
   }
 }
 
-class _DropdownOption extends StatelessWidget {
+class _DropdownOption<T> extends StatelessWidget {
   final String name;
-  final String data;
+  final T data;
   final double optionHeight;
   final Function onTap;
   final bool isMultiSelect;

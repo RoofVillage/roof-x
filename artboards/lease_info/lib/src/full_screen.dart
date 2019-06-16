@@ -5,7 +5,6 @@ import 'package:button_builder/index.dart';
 import 'package:date/index.dart';
 import 'package:mask/index.dart';
 import 'package:ordinal_suffix_string_from_int/index.dart';
-import 'package:frequency_type/index.dart';
 import 'package:fee_payer_type/index.dart';
 import 'package:interval/index.dart';
 

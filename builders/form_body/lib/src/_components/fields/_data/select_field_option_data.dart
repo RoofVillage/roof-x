@@ -1,6 +1,6 @@
-class SelectFieldOptionData {
+class SelectFieldOptionData<T> {
   String title;
-  String data;
+  T data;
 
   SelectFieldOptionData({this.title, this.data});
 }

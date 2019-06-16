@@ -1,10 +1,10 @@
 import 'field.dart';
 import 'option_select_value.dart';
 
-class FormOptionSelectData
-    extends StreamableFormFieldData<List<FormOptionSelectValueData>> {
+class FormOptionSelectData<T>
+    extends StreamableFormFieldData<List<FormOptionSelectValueData<T>>> {
   String emptyText;
-  List<FormOptionSelectValueData> options;
+  List<FormOptionSelectValueData<T>> options;
   bool isMultiSelect;
 
   FormOptionSelectData({
@@ -12,7 +12,7 @@ class FormOptionSelectData
     this.options,
     this.isMultiSelect = false,
     String title,
-    List<FormOptionSelectValueData> initialValue,
+    List<FormOptionSelectValueData<T>> initialValue,
     double size,
     bool isVisible,
   }) : super(
