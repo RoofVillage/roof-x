@@ -44,13 +44,19 @@ class _IconSelectFieldState extends State<IconSelectField>
 
   @override
   Widget build(BuildContext context) {
-    Widget label = RoofFieldLabel(labelText: widget.title);
+    final List<Widget> columnChildren = [];
+
+    if (widget.title != null && widget.title.isNotEmpty) {
+      final label = RoofFieldLabel(labelText: widget.title);
+      columnChildren.add(label);
+    }
 
     final collapsedViewContainer = _CollapsedViewContainer(
       selectedOption: selectedOption,
       onTap: _expandDropdown,
       isExpanded: isExpanded,
     );
+    columnChildren.add(collapsedViewContainer);
 
     final dropdownContainer = _DropdownContainer(
       options: options,
@@ -58,12 +64,13 @@ class _IconSelectFieldState extends State<IconSelectField>
       isExpanded: isExpanded,
       onTap: _onTap,
     );
+    columnChildren.add(dropdownContainer);
 
     return Container(
       margin: padding.field1,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [label, collapsedViewContainer, dropdownContainer],
+        children: columnChildren,
       ),
     );
   }

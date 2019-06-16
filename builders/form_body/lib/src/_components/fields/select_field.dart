@@ -52,7 +52,12 @@ class _RoofSelectFieldState extends State<RoofSelectField>
 
   @override
   Widget build(BuildContext context) {
-    Widget label = RoofFieldLabel(labelText: widget.title);
+    final List<Widget> columnChildren = [];
+
+    if (widget.title != null && widget.title.isNotEmpty) {
+      final label = RoofFieldLabel(labelText: widget.title);
+      columnChildren.add(label);
+    }
 
     final selectedOptionsContainer = _SelectedOptionsContainer(
       selectedOptions: selectedOptions,
@@ -60,6 +65,7 @@ class _RoofSelectFieldState extends State<RoofSelectField>
       onTap: _expandDropdown,
       isExpanded: isExpanded,
     );
+    columnChildren.add(selectedOptionsContainer);
 
     final dropdownContainer = _DropdownContainer(
       options: options,
@@ -68,12 +74,13 @@ class _RoofSelectFieldState extends State<RoofSelectField>
       isExpanded: isExpanded,
       onTap: _onTap,
     );
+    columnChildren.add(dropdownContainer);
 
     return Container(
       margin: padding.field1,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [label, selectedOptionsContainer, dropdownContainer],
+        children: columnChildren,
       ),
     );
   }

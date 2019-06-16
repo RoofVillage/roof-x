@@ -1,0 +1,51 @@
+import 'dart:async';
+
+import 'package:form_builder/index.dart';
+
+mixin PropertyCreateArtboardBuilder implements FormBuilder {
+  @override
+  String get title => "Add a home";
+
+  @override
+  String get submitButtonText => "Create home";
+
+  @override
+  Future<List<StreamableFormFieldData>> get initialFieldData async => [
+        _iconFieldData,
+        _address,
+        _unit,
+        _zip,
+      ];
+
+  final _iconFieldData = FormPropertyIconOptionSelectData(
+    title: "Property icon",
+  );
+
+  final _address = ShortFormTextFieldData(
+    title: "Property address",
+    placeholder: "123 Veranda St.",
+  );
+
+  final _unit = ShortFormTextFieldData(
+    title: "Unit (optional)",
+    placeholder: "A",
+  );
+
+  final _zip = ShortFormTextFieldData(
+    title: "ZIP code",
+    placeholder: "27510",
+  );
+
+  // TODO: make tags field
+  // final _tags =
+
+  final _rentDestination = FormOptionSelectData(
+    title: "Default rent destination",
+    emptyText: "No payment profiles available",
+    options: _getPaymentProfiles(),
+  );
+
+  static List<FormOptionSelectValueData> _getPaymentProfiles() {
+    // TODO
+  }
+}

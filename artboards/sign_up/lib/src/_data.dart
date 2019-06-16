@@ -28,7 +28,7 @@ mixin SignUpArtboardBuilder implements FormBuilder {
   );
   final _passwordFieldData = PasswordFormTextFieldData();
   final _temp = CurrencyFormTextFieldData();
-  final _temp2 = FormSwitchData(title: "Toggle field");
+  final _temp2 = FormSwitchFieldData(title: "Toggle field");
   final _temp3 = FormDateFieldData(title: "Sup");
 
   @override

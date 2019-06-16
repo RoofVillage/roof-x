@@ -102,7 +102,7 @@ class RoofStreamForm
   }
 
   Widget buildSwitch({
-    FormSwitchData fieldData,
+    FormSwitchFieldData fieldData,
     int fieldIndex,
     int sectionIndex,
     BuildContext context,
@@ -213,7 +213,7 @@ class RoofStreamForm
         sectionIndex: sectionIndex,
         context: context,
       );
-    } else if (fieldData is FormSwitchData) {
+    } else if (fieldData is FormSwitchFieldData) {
       fieldBody = buildSwitch(
         fieldData: fieldData,
         fieldIndex: fieldIndex,

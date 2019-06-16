@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 import 'field.dart';
 import 'option_select_value.dart';
 
@@ -13,7 +11,7 @@ class FormOptionSelectData
     this.emptyText = "Nothing selected",
     this.options,
     this.isMultiSelect = false,
-    @required String title,
+    String title,
     List<FormOptionSelectValueData> initialValue,
     double size,
     bool isVisible,
