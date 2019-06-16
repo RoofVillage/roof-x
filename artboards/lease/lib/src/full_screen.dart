@@ -17,7 +17,7 @@ abstract class LeaseVerticalFullScreenArtboard extends TabbedFullScreenArtboard
         RoofCellsListViewBuilder,
         RoofThreadListViewBuilder,
         SecondaryCenterButtonBuilder,
-        LeaseArtboardBuilder,
+        LeaseArtboardData,
         AddFileAuxiliaryWidgetBuilder {
   // TODO convert this to accept data objects instead of widgets, build cells here
   List<Widget> buildThreadCells(BuildContext context);

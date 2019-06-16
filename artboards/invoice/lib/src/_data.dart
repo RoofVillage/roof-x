@@ -1,4 +1,4 @@
-mixin InvoiceArtboardBuilder {
+mixin InvoiceArtboardData {
   String get invoiceTitle;
   String get leaseTitle;
   String get homeTitle;

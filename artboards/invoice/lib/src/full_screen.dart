@@ -15,7 +15,7 @@ abstract class InvoiceVerticalFullScreenArtboard
     with
         RoofCellsListViewBuilder,
         SecondaryCenterButtonBuilder,
-        InvoiceArtboardBuilder {
+        InvoiceArtboardData {
   @override
   String get title => invoiceTitle;
 

@@ -16,7 +16,7 @@ abstract class PropertyVerticalFullScreenArtboard
     with
         RoofCellsListViewBuilder,
         SecondaryCenterButtonBuilder,
-        PropertyArtboardBuilder {
+        PropertyArtboardData {
   String get title => propertyTitle;
 
   StandardIcon get titleIcon => homeIcon;
@@ -31,7 +31,8 @@ abstract class PropertyVerticalFullScreenArtboard
   List<Widget> buildActionButtons(BuildContext context) {
     final theme = RoofTheme.of(context);
 
-    final moreButton = NavigationIcon.more.buildWidget(color: theme.color.icon.nav);
+    final moreButton =
+        NavigationIcon.more.buildWidget(color: theme.color.icon.nav);
 
     return [moreButton];
   }
@@ -61,61 +62,3 @@ abstract class PropertyVerticalFullScreenArtboard
     return [leasesTab];
   }
 }
-
-// class TagsWrap extends StatelessWidget {
-//   final List<Widget> tags;
-
-//   TagsWrap(this.tags);
-
-//   final _spacing = distance.b;
-//   final _verticalMargin = distance.b;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       margin: EdgeInsets.symmetric(vertical: _verticalMargin),
-//       child: Row(
-//         mainAxisAlignment: MainAxisAlignment.start,
-//         children: [
-//           Wrap(
-//             children: tags,
-//             runSpacing: _spacing,
-//             spacing: _spacing,
-//           )
-//         ],
-//       ),
-//     );
-//   }
-// }
-
-// @override
-// List<RoofBreadcrumb> buildBreadcrumbs(BuildContext context) {
-//   return null;
-// }
-
-// @override
-// buildInfoRows(BuildContext context) {
-//   final theme = RoofTheme.of(context);
-
-//   final List<Widget> tagWidgets = [];
-
-//   for (String tag in tags) {
-//     final tagWidget = buildTag(
-//       context,
-//       text: tag,
-//       color: theme.color.background.markerGray,
-//     );
-
-//     tagWidgets.add(tagWidget);
-//   }
-
-//   final tagsWrap = TagsWrap(tagWidgets);
-
-//   final paymentProfileInfoRow = buildKeyValueRow(
-//     context,
-//     title: "Payment profile",
-//     value: paymentProfile,
-//   );
-
-//   return [tagsWrap, paymentProfileInfoRow];
-// }

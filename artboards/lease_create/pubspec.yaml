@@ -17,6 +17,12 @@ dependencies:
     path: ../../lib/navigator
   reset_password_artboard:
     path: ../reset_password
+  schedule:
+    path: ../../model/properties/schedule
+  ordinal_suffix_string_from_int:
+    path: ../../lib/ordinal_suffix_string_from_int
+  interval:
+    path: ../../lib/interval
 
 dev_dependencies:
   flutter_test:

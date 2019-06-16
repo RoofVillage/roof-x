@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:form_builder/index.dart';
+import 'package:ordinal_suffix_string_from_int/index.dart';
+import 'package:interval/index.dart';
 
 mixin PropertyCreateArtboardBuilder implements FormBuilder {
   @override
@@ -31,6 +33,7 @@ mixin PropertyCreateArtboardBuilder implements FormBuilder {
         _daysUntilLateFee,
       ];
 
+  // TODO: field conditional visibility
   final _scheduleFrequency = FrequencyFormSelectFieldData(title: "Rent due");
   final _intervalFrequency = IntervalFormSelectFieldData();
   final _dueOn = FormOptionSelectData(options: _buildDueOnOptions());
@@ -55,28 +58,18 @@ mixin PropertyCreateArtboardBuilder implements FormBuilder {
       title: "Days before late fee charged", maxValue: 31);
 
   static List<FormOptionSelectValueData<int>> _buildDueOnOptions() {
-    _getDayStringSuffix(int day) {
-      if (day.toString().endsWith("1"))
-        return "st";
-      else if (day.toString().endsWith("2"))
-        return "nd";
-      else if (day.toString().endsWith("3"))
-        return "rd";
-      else
-        return "th";
-    }
-
+    
     final List<FormOptionSelectValueData<int>> options = [];
 
     for (int i = 0; i < 30; i++) {
-      final string = "on the $i " + _getDayStringSuffix(i);
+      final string = "on the ${ordinalSuffixString(i)}";
       final option = FormOptionSelectValueData<int>(title: string, data: i);
       options.add(option);
     }
 
     final lastOption = FormOptionSelectValueData<int>(
       title: "on the last day",
-      data: 31,
+      data: 30,
     );
     options.add(lastOption);
 
@@ -84,12 +77,14 @@ mixin PropertyCreateArtboardBuilder implements FormBuilder {
   }
 
   static List<FormOptionSelectValueData> _getPaymentProfiles() {
-    // TODO
+    // TODO get payment profiles
   }
 
-  // TODO: field conditional visibility
-
   static String _getContinueString() {
-    // TODO Return string (month-to-month, etc.) based on _scheduleFrequency and _intervalFrequency values
+    // TODO get values from fields dynamically
+    final int interval = 0; // Populate from form field
+    final String frequency = "monthly"; // Populate from form field
+    final string = toIntervalFrequencyString(interval, frequency);
+    return "Continues $string";
   }
 }

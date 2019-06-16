@@ -17,11 +17,12 @@ class Schedule with Mappable {
     if (map == null) return null;
 
     return Schedule(
-        frequencyType: FrequencyType.fromString(map[_key.frequencyKind]),
-        interval: map[_key.interval],
-        time: map[_key.time],
-        days: map[_key.days],
-        dates: map[_key.dates]);
+      frequencyType: FrequencyType.fromString(map[_key.frequencyKind]),
+      interval: map[_key.interval],
+      time: map[_key.time],
+      days: map[_key.days],
+      dates: map[_key.dates],
+    );
   }
 
   @override

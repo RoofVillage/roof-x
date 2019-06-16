@@ -22,7 +22,7 @@ dependencies:
   standard_icon_library:
     path: ../../icons/standard
   interval:
-    path: ../../types/interval
+    path: ../../lib/interval
   frequency_type:
     path: ../../types/frequency
   fee_payer_type:

@@ -8,7 +8,7 @@ class IntervalFormSelectFieldData extends FormOptionSelectData {
     final List<FormOptionSelectValueData> options = [];
 
     for (int i = 0; i < count; i++) {
-      final optionTitle = IntervalString.fromInt(i);
+      final optionTitle = toIntervalString(i);
       options.add(
         FormOptionSelectValueData(title: optionTitle, data: i),
       );
