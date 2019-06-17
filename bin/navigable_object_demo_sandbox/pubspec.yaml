@@ -16,11 +16,11 @@ dependencies:
   tabbed_fullscreen_artboard_template:
     path: ../../artboard_templates/vertical_full_screen/tabbed
   invoice_full_screen_artboard_template:
-    path: ../../artboards/invoice
+    path: ../../artboards/organization/invoice
   lease_full_screen_artboard_template:
-    path: ../../artboards/lease
+    path: ../../artboards/organization/lease
   property_full_screen_artboard_template:
-    path: ../../artboards/property
+    path: ../../artboards/organization/property
   artboard:
     path: ../../lib/artboard
   device_screen:

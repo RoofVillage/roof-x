@@ -12,7 +12,7 @@ dependencies:
   theme:
     path: ../../theme
   public_activity_artboard:
-    path: ../../artboards/public_activity
+    path: ../../artboards/shared/public_activity
   vertical_full_screen_artboard_scaffold:
     path: ../../artboard_scaffolds/vertical_full_screen
   artboard:

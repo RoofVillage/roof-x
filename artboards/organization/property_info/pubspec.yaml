@@ -1,0 +1,38 @@
+name: property_info_floating_artboard_template
+description: A navigable object frame for displaying property info and an edit button.
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  artboard:
+    path: ../../../lib/artboard
+  stack_vertical_floating_artboard_template:
+    path: ../../../artboard_templates/vertical_floating/stack
+  nav_bar_builder:
+    path: ../../../builders/nav_bar
+  button_builder:
+    path: ../../../builders/button
+  caret_wrap_builder:
+    path: ../../../builders/caret_wrap
+  cells_list_view_builder:
+    path: ../../../builders/cells_list_view
+  tag_builder:
+    path: ../../../builders/tag
+  key_value_row_builder:
+    path: ../../../builders/key_value_row
+  tab:
+    path: ../../../tab
+  navigation_icon_library:
+    path: ../../../icons/navigation
+  x_small_icon_library:
+    path: ../../../icons/x_small
+  standard_icon_library:
+    path: ../../../icons/standard
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
