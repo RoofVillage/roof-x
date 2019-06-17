@@ -15,7 +15,7 @@ enum Section {
   maintenance
 }
 
-mixin PublicActivityArtboardBuilder implements TableBuilder {
+mixin PublicActivityArtboardData implements TableBuilder {
   Future<List<StreamableTableSectionData>> get sectionData async => [
         _completionsSectionData,
         _expenseSectionData,

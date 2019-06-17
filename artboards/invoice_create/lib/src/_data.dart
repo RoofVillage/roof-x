@@ -5,7 +5,7 @@ import 'package:ordinal_suffix_string_from_int/index.dart';
 import 'package:interval/index.dart';
 import 'package:invoice_options/index.dart';
 
-mixin InvoiceCreateArtboardBuilder implements FormBuilder {
+mixin InvoiceCreateArtboardData implements FormBuilder {
   @override
   String get title => "Add an invoice";
 

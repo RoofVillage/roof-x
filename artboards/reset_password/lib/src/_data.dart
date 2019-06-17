@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:form_builder/index.dart';
 
-mixin ResetPasswordArtboardBuilder implements FormBuilder {
+mixin ResetPasswordArtboardData implements FormBuilder {
   @override
   String get title => "Reset password";
 

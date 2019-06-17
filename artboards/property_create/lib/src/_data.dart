@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:form_builder/index.dart';
 
-mixin PropertyCreateArtboardBuilder implements FormBuilder {
+mixin PropertyCreateArtboardData implements FormBuilder {
   @override
   String get title => "Add a home";
 

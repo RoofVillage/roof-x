@@ -7,7 +7,7 @@ import 'package:navigator/index.dart';
 import '_data.dart';
 
 class InvoiceCreateVerticalFloatingArtboard
-    extends FormVerticalFloatingArtboard with InvoiceCreateArtboardBuilder {
+    extends FormVerticalFloatingArtboard with InvoiceCreateArtboardData {
   @override
   Future<void> submit(BuildContext context) async {
     // TODO

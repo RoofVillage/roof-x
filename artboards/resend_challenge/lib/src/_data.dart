@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:form_builder/index.dart';
 
-mixin ResentChallengeArtboardBuilder implements FormBuilder {
+mixin ResentChallengeArtboardData implements FormBuilder {
   @override
   String get title => "Resend verification text message";
 

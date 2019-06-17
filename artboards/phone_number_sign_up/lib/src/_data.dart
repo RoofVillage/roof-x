@@ -5,7 +5,7 @@ import 'package:form_builder/index.dart';
 
 typedef Future<void> PhoneNumberDependentSubmit(
     {@required String phoneNumber, @required BuildContext context});
-mixin PhoneNumberSignUpArtboardBuilder implements FormBuilder {
+mixin PhoneNumberSignUpArtboardData implements FormBuilder {
   PhoneNumberDependentSubmit get onSubmit;
 
   @override

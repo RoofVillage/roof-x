@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:form_builder/index.dart';
 
-mixin LogInArtboardBuilder implements FormBuilder {
+mixin LogInArtboardData implements FormBuilder {
   @override
   String get title => "Log in";
 

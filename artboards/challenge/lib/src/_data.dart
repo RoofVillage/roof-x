@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:form_builder/index.dart';
 
-mixin ChallengeArtboardBuilder implements FormBuilder {
+mixin ChallengeArtboardData implements FormBuilder {
   String get phoneNumber;
 
   @override

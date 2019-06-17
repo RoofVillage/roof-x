@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:form_builder/index.dart';
 
-mixin SignUpArtboardBuilder implements FormBuilder {
+mixin SignUpArtboardData implements FormBuilder {
   @override
   String get title => "Create an account";
 
