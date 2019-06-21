@@ -42,10 +42,15 @@ class _RoofSelectFieldState<T> extends State<RoofSelectField>
 
   @override
   void initState() {
-    selectedOptions = widget.selectedOptions;
-    options = widget.options;
+    if (widget.options != null && widget.options.isNotEmpty) {
+      options = widget.options;
+    } else {
+      options = [SelectFieldOptionData(title: widget.emptyText)];
+    }
+
     if (selectedOptions == null && !widget.isMultiSelect)
       selectedOptions = [options[0]];
+
     isExpanded = false;
     super.initState();
   }
@@ -155,14 +160,17 @@ class _SelectedOptionsContainer<T> extends StatelessWidget {
     if (selectedOptions.isEmpty) {
       selectedOptionsChild = Text(
         emptyText,
-        style:
-            _typographyStyle.textStyleWithColor(theme.color.text.placeholder),
+        style: _typographyStyle.textStyleWithColor(
+          theme.color.text.placeholder,
+        ),
       );
     } else {
       selectedOptionsChild = Expanded(
         child: Text(
           _textForSelectedOptions(),
-          style: _typographyStyle.textStyleWithColor(theme.color.text.primary),
+          style: _typographyStyle.textStyleWithColor(
+            theme.color.text.primary,
+          ),
           softWrap: true,
           maxLines: _maxLines,
           overflow: TextOverflow.ellipsis,
@@ -342,7 +350,8 @@ class _DropdownOption<T> extends StatelessWidget {
   final bool isMultiSelect;
   final bool selected;
 
-  final _typographyStyle = typography.bodySecondary;
+  final _unselectedTypographyStyle = typography.bodyPrimary;
+  final _selectedTypographyStyle = typography.bodyPrimaryThick;
   final _checkIcon = SmallIcon.boxChecked;
   final _uncheckedIcon = SmallIcon.boxUnchecked;
 
@@ -376,12 +385,8 @@ class _DropdownOption<T> extends StatelessWidget {
 
     final optionTitle = Text(
       name,
-      style: _typographyStyle.textStyleWithColor(theme.color.text.primary),
+      style: (selected && !isMultiSelect)? _selectedTypographyStyle.textStyleWithColor(theme.color.text.primary) : _unselectedTypographyStyle.textStyleWithColor(theme.color.text.primary),
     );
-
-    final optionBackgroundColor = (selected && !isMultiSelect)
-        ? theme.color.background.generalPrimary
-        : Colors.transparent;
 
     final optionPadding = EdgeInsets.symmetric(
       horizontal: distance.b,
@@ -391,9 +396,6 @@ class _DropdownOption<T> extends StatelessWidget {
     rowChildren.add(optionTitle);
 
     return Container(
-      decoration: BoxDecoration(
-        color: optionBackgroundColor,
-      ),
       height: optionHeight,
       child: GestureDetector(
         onTap: onTap,

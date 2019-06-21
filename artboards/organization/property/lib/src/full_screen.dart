@@ -7,7 +7,10 @@ import 'package:tabbed_fullscreen_artboard_template/index.dart';
 import 'package:cells_list_view_builder/index.dart';
 import 'package:button_builder/index.dart';
 import 'package:button_status_option/index.dart';
+import 'package:nav_button_builder/index.dart';
 import 'package:tab/index.dart';
+import 'package:navigator/index.dart';
+import 'package:property_create_artboard/index.dart';
 
 import '_data.dart';
 
@@ -16,6 +19,7 @@ abstract class PropertyVerticalFullScreenArtboard
     with
         RoofCellsListViewBuilder,
         SecondaryCenterButtonBuilder,
+        IconNavButtonBuilder,
         PropertyArtboardData {
   String get title => propertyTitle;
 
@@ -27,12 +31,26 @@ abstract class PropertyVerticalFullScreenArtboard
     return NavigationIcon.backArrow.buildWidget(color: theme.color.icon.nav);
   }
 
+  Future<void> edit(BuildContext context) async {
+    print("yo");
+    ArtboardNavigator.of(context).goTo(
+      PropertyCreateVerticalFloatingArtboard(),
+    );
+  }
+
   @override
   List<Widget> buildActionButtons(BuildContext context) {
-    final theme = RoofTheme.of(context);
+    // final theme = RoofTheme.of(context);
 
-    final moreButton =
-        NavigationIcon.more.buildWidget(color: theme.color.icon.nav);
+    final moreButton = buildIconNavButton(
+      context,
+      iconReference: NavigationIcon.settings,
+      onTap: edit,
+    );
+
+    // final moreButton = NavigationIcon.more.buildWidget(
+    //   color: theme.color.icon.nav,
+    // );
 
     return [moreButton];
   }

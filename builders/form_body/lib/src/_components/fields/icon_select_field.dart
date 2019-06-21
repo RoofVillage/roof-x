@@ -87,8 +87,14 @@ class _IconSelectFieldState extends State<IconSelectField>
   void _updateSelectedOptions(IconSelectFieldOptionData option) {
     setState(() {
       selectedOption = option;
-      isExpanded = !isExpanded;
     });
+
+    Future.delayed(
+      Duration(milliseconds: 100),
+      () => setState(() {
+            isExpanded = !isExpanded;
+          }),
+    );
   }
 
   void _expandDropdown() {
@@ -141,8 +147,6 @@ class _CollapsedViewContainer extends StatelessWidget {
     final verticalPadding = EdgeInsets.symmetric(vertical: distance.b);
 
     return Container(
-      decoration: BoxDecoration(
-          border: Border(bottom: BorderSide(color: theme.color.stroke.light))),
       child: GestureDetector(
         onTap: onTap,
         behavior: HitTestBehavior.opaque,
@@ -236,7 +240,9 @@ class _DropdownContents extends StatelessWidget {
   final bool isMultiSelect;
   final Function onTap;
 
-  final double _maxVisibleHeight = 126; // standardIcon height * 4.5
+  static final _padding = distance.c;
+  final double _maxVisibleHeight =
+      126 + distance.c * 2; // standardIcon height * 4.5
 
   _DropdownContents({
     this.options,
@@ -257,9 +263,13 @@ class _DropdownContents extends StatelessWidget {
     ).toList();
 
     return Container(
+      padding: EdgeInsets.all(_padding),
       constraints: BoxConstraints(maxHeight: _maxVisibleHeight),
-      child: Wrap(
-        children: optionsList,
+      child: ListView(
+        padding: EdgeInsets.all(0),
+        children: [
+          Wrap(children: optionsList),
+        ],
       ),
     );
   }
@@ -270,7 +280,7 @@ class _DropdownOption extends StatelessWidget {
   final Function onTap;
   final bool selected;
 
-  final _padding = distance.b;
+  final _padding = distance.c;
 
   _DropdownOption({
     this.icon,

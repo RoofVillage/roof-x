@@ -138,14 +138,14 @@ class RoofStreamForm
 
   Widget buildOptionSelect(
       {FormOptionSelectData fieldData, int fieldIndex, int sectionIndex}) {
-    List<SelectFieldOptionData> options = fieldData.options.map(
+    List<SelectFieldOptionData> options = fieldData.options?.map(
       (option) {
         return SelectFieldOptionData(
           title: option.title,
           data: option.data,
         );
       },
-    ).toList();
+    )?.toList();
 
     return RoofSelectField(
       title: fieldData.title,
@@ -153,14 +153,14 @@ class RoofStreamForm
       isMultiSelect: fieldData.isMultiSelect,
       options: options,
       onChanged: (selectedOptions) {
-        List<FormOptionSelectValueData> convertedOptions = selectedOptions.map(
+        List<FormOptionSelectValueData> convertedOptions = selectedOptions?.map(
           (option) {
             return FormOptionSelectValueData(
               title: option.title,
               data: option.data,
             );
           },
-        ).toList();
+        )?.toList();
         fieldData.onChanged(convertedOptions);
       },
     );
@@ -168,13 +168,13 @@ class RoofStreamForm
 
   Widget buildIconOptionSelect(
       {FormIconOptionSelectData fieldData, int fieldIndex, int sectionIndex}) {
-    List<IconSelectFieldOptionData> options = fieldData.options.map(
+    List<IconSelectFieldOptionData> options = fieldData.options?.map(
       (option) {
         return IconSelectFieldOptionData(
           icon: option.icon,
         );
       },
-    ).toList();
+    )?.toList();
 
     return IconSelectField(
       title: fieldData.title,

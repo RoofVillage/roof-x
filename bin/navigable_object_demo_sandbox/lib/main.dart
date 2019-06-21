@@ -23,8 +23,8 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         home: Scaffold(
           // body: InvoiceArtboard(),
-          body: LeaseArtboard(),
-          // body: PropertyArtboard(),
+          // body: LeaseArtboard(),
+          body: PropertyArtboard(),
         ),
       ),
     );

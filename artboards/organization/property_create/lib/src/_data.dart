@@ -43,6 +43,7 @@ mixin PropertyCreateArtboardData implements FormBuilder {
 
   static List<FormOptionSelectValueData> _getPaymentProfiles() {
     // TODO
+    return [];
   }
 
   final _rentDestination = FormOptionSelectData(

@@ -21,6 +21,8 @@ dependencies:
     path: ../../artboards/organization/lease
   property_full_screen_artboard_template:
     path: ../../artboards/organization/property
+  property_create_artboard:
+    path: ../../artboards/organization/property_create
   artboard:
     path: ../../lib/artboard
   device_screen:
@@ -51,7 +53,6 @@ dev_dependencies:
     sdk: flutter
 
 flutter:
-  uses-material-design: true
   fonts:
     - family: RoofXSmallIcons
       fonts:
