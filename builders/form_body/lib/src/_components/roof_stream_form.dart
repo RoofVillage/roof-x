@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:form/index.dart';
-import 'package:form_body_builder/src/_components/fields/_data/icon_select_field_option_data.dart';
+import 'package:icon_picker_data/index.dart';
 import 'package:keyboard_accessory/index.dart';
 import 'package:keyboard_accessory_bar_builder/index.dart';
+import 'package:option_picker_data/index.dart';
 
 import 'keyboard_accessory_buttons/index.dart';
 import 'field_container.dart';
@@ -12,7 +13,6 @@ import 'fields/switch_field.dart';
 import 'fields/date_picker_field.dart';
 import 'fields/select_field.dart';
 import 'fields/icon_select_field.dart';
-import 'fields/_data/select_field_option_data.dart';
 
 enum KeyboardAccessoryState { hideKeyboard, submit }
 
@@ -136,22 +136,23 @@ class RoofStreamForm
     );
   }
 
-  Widget buildOptionSelect(
-      {FormOptionSelectData fieldData, int fieldIndex, int sectionIndex}) {
-    List<SelectFieldOptionData> options = fieldData.options?.map(
-      (option) {
-        return SelectFieldOptionData(
-          title: option.title,
-          data: option.data,
-        );
-      },
-    )?.toList();
-
+  Widget buildOptionSelect({
+    FormOptionSelectData fieldData,
+    int fieldIndex,
+    int sectionIndex,
+  }) {
     return RoofSelectField(
       title: fieldData.title,
       emptyText: fieldData.emptyText,
       isMultiSelect: fieldData.isMultiSelect,
-      options: options,
+      options: fieldData.options?.map(
+        (option) {
+          return OptionPickerData(
+            title: option.title,
+            data: option.data,
+          );
+        },
+      )?.toList(),
       onChanged: (selectedOptions) {
         List<FormOptionSelectValueData> convertedOptions = selectedOptions?.map(
           (option) {
@@ -168,9 +169,9 @@ class RoofStreamForm
 
   Widget buildIconOptionSelect(
       {FormIconOptionSelectData fieldData, int fieldIndex, int sectionIndex}) {
-    List<IconSelectFieldOptionData> options = fieldData.options?.map(
+    List<IconPickerData> options = fieldData.options?.map(
       (option) {
-        return IconSelectFieldOptionData(
+        return IconPickerData(
           icon: option.icon,
         );
       },

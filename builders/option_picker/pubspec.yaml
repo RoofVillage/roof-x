@@ -1,0 +1,31 @@
+name: option_picker_builder
+description: Option selector functionality for artboards.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  haptics:
+    path: ../../lib/haptics
+  theme:
+    path: ../../theme
+  small_icon_library:
+    path: ../../icons/small
+  typography:
+    path: ../../spec/typography
+  artboard:
+    path: ../../lib/artboard
+  navigator:
+    path: ../../lib/navigator
+  distance:
+    path: ../../spec/distance
+  option_picker_data:
+    path: ../../option_picker_data
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

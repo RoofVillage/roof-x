@@ -7,6 +7,8 @@ import 'package:form_validation_exception/index.dart';
 import 'package:haptics/index.dart';
 import 'package:date/index.dart';
 import 'package:date_picker_builder/index.dart';
+import 'package:option_picker_builder/index.dart';
+import 'package:option_picker_data/index.dart';
 import 'package:artboard/index.dart';
 
 import '_components/keyboard_accessory_buttons/index.dart';
@@ -41,6 +43,15 @@ mixin FormBodyBuilder implements StatefulWidget {
 
   DatePickerBuilder buildDatePicker(BuildContext context,
       {@required Date selectedDate});
+
+  OptionPickerBuilder buildOptionPicker(
+    BuildContext context, {
+    String title,
+    String emptyText,
+    List<OptionPickerData> selectedOptions,
+    @required List<OptionPickerData> options,
+    bool isMultiSelect,
+  });
 
   Future<T> goTo<T>(
       {@required BuildContext context, @required Artboard<T> artboard});

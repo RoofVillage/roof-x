@@ -8,8 +8,11 @@ import 'package:artboard/index.dart';
 import 'package:date/index.dart';
 import 'package:date_picker_builder/index.dart';
 import 'package:date_picker_artboard/index.dart';
+import 'package:option_picker_builder/index.dart';
+import 'package:option_picker_artboard/index.dart';
 import 'package:button_builder/index.dart';
 import 'package:vertical_floating_artboard_scaffold/index.dart';
+import 'package:option_picker_data/index.dart';
 
 abstract class FormVerticalFloatingArtboard<T> extends StatefulWidget
     with
@@ -22,9 +25,35 @@ abstract class FormVerticalFloatingArtboard<T> extends StatefulWidget
   State<StatefulWidget> createState() => _FormVerticalFloatingArtboardState();
 
   @override
-  DatePickerBuilder buildDatePicker(BuildContext context,
-      {@required Date selectedDate}) {
-    return DatePickerVerticalFloatingArtboard(selectedDate: selectedDate);
+  DatePickerBuilder buildDatePicker(
+    BuildContext context, {
+    @required Date selectedDate,
+    Date startBound,
+    Date endBound,
+  }) {
+    return DatePickerVerticalFloatingArtboard(
+      selectedDate: selectedDate,
+      startBound: startBound,
+      endBound: endBound,
+    );
+  }
+
+  @override
+  OptionPickerBuilder buildOptionPicker(
+    BuildContext context, {
+    String title,
+    String emptyText,
+    List<OptionPickerData> selectedOptions,
+    @required List<OptionPickerData> options,
+    bool isMultiSelect,
+  }) {
+    return OptionPickerVerticalFloatingArtboard(
+      title: title,
+      emptyText: emptyText,
+      selectedOptions: selectedOptions,
+      options: options,
+      isMultiSelect: isMultiSelect,
+    );
   }
 
   @override

@@ -47,6 +47,16 @@ dependencies:
     path: ../../lib/typedefs
   artboard:
     path: ../../lib/artboard
+  navigator:
+    path: ../../lib/navigator
+  option_picker_artboard:
+    path: ../../artboards/shared/option_picker
+  icon_picker_artboard:
+    path: ../../artboards/shared/icon_picker
+  option_picker_data:
+    path: ../../option_picker_data
+  icon_picker_data:
+    path: ../../icon_picker_data
 
 dev_dependencies:
   flutter_test:

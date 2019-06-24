@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:theme/index.dart';
-import 'package:haptics/index.dart';
 import 'package:typography/index.dart' as typography;
 import 'package:distance/index.dart' as distance;
 
@@ -38,11 +37,6 @@ class RoofDatePickerField extends StatefulWidget {
 
 class _RoofDatePickerFieldState extends State<RoofDatePickerField> {
   final _typographyStyle = typography.bodyPrimary;
-  final _tapHapticOption = HapticOption.light;
-
-  void _fireHaptic() {
-    if (widget.onTap != null) triggerHapticWith(_tapHapticOption);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,22 +47,17 @@ class _RoofDatePickerFieldState extends State<RoofDatePickerField> {
     );
     final verticalPadding = EdgeInsets.symmetric(vertical: distance.b);
 
-    final fieldBody = Expanded(
-      child: GestureDetector(
-        onTapDown: (details) => _fireHaptic(),
-        onTap: widget.onTap,
-        child: Container(
-          padding: verticalPadding,
-          child: Text(
-            formattedValue,
-            style: textStyle,
-            textAlign: TextAlign.right,
-          ),
-        ),
+    final fieldBody = Container(
+      padding: verticalPadding,
+      child: Text(
+        formattedValue,
+        style: textStyle,
+        textAlign: TextAlign.right,
       ),
     );
 
     return RoofPickerField(
+      onTap: widget.onTap,
       name: widget.title,
       fieldBody: fieldBody,
     );

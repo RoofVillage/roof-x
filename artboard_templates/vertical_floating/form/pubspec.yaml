@@ -22,10 +22,14 @@ dependencies:
     path: ../../../lib/date
   date_picker_builder:
     path: ../../../builders/date_picker
+  option_picker_builder:
+    path: ../../../builders/option_picker
   button_builder:
     path: ../../../builders/button
   date_picker_artboard:
     path: ../../../artboards/shared/date_picker
+  option_picker_artboard:
+    path: ../../../artboards/shared/option_picker
 
 dev_dependencies:
   flutter_test:

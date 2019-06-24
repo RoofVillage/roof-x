@@ -15,11 +15,12 @@ class ArtboardNavigator extends StatefulWidget {
   final PopTo pop;
   final FlagListener onNavButtonVisibilityChange;
 
-  ArtboardNavigator(
-      {@required this.child,
-      @required this.goTo,
-      @required this.pop,
-      this.onNavButtonVisibilityChange});
+  ArtboardNavigator({
+    @required this.child,
+    @required this.goTo,
+    @required this.pop,
+    this.onNavButtonVisibilityChange,
+  });
 
   @override
   State<StatefulWidget> createState() => InheritedArtboardNavigator();

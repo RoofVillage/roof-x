@@ -1,34 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:standard_icon_library/index.dart';
-import 'package:small_icon_library/index.dart';
 import 'package:theme/index.dart';
 import 'package:haptics/index.dart';
-import 'package:padding/index.dart' as padding;
-import 'package:distance/index.dart' as distance;
-import 'package:duration/index.dart' as duration;
-import 'package:curve/index.dart' as curve;
-import 'package:corner_radius/index.dart' as corner_radius;
 import 'package:typography/index.dart' as typography;
+import 'package:navigator/index.dart';
+import 'package:option_picker_artboard/index.dart';
+import 'package:option_picker_data/index.dart';
 
 import '_widgets/index.dart';
-import '_data/select_field_option_data.dart';
+import '_picker_field.dart';
 
 class RoofSelectField<T> extends StatefulWidget {
   final String title;
   final String emptyText;
-  final List<SelectFieldOptionData<T>> selectedOptions;
-  final List<SelectFieldOptionData<T>> options;
+  final List<OptionPickerData<T>> selectedOptions;
+  final List<OptionPickerData<T>> options;
   final bool isMultiSelect;
-  final Function(List<SelectFieldOptionData<T>>) onChanged;
+  final Function(List<OptionPickerData<T>>) onChanged;
 
   const RoofSelectField({
     this.title,
     this.emptyText,
     this.selectedOptions,
     this.options,
-    this.isMultiSelect,
+    bool isMultiSelect,
     this.onChanged,
-  });
+  }) : isMultiSelect = isMultiSelect ?? false;
 
   @override
   _RoofSelectFieldState<T> createState() => _RoofSelectFieldState<T>();
@@ -36,27 +32,27 @@ class RoofSelectField<T> extends StatefulWidget {
 
 class _RoofSelectFieldState<T> extends State<RoofSelectField>
     with SingleTickerProviderStateMixin {
-  List<SelectFieldOptionData<T>> selectedOptions;
-  List<SelectFieldOptionData<T>> options;
-  bool isExpanded = false;
+  List<OptionPickerData<T>> selectedOptions;
+  List<OptionPickerData<T>> options;
 
   @override
   void initState() {
     if (widget.options != null && widget.options.isNotEmpty) {
       options = widget.options;
     } else {
-      options = [SelectFieldOptionData(title: widget.emptyText)];
+      options = [OptionPickerData(title: widget.emptyText)];
     }
 
     if (selectedOptions == null && !widget.isMultiSelect)
       selectedOptions = [options[0]];
 
-    isExpanded = false;
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    print("ismulti ${widget.isMultiSelect}");
+    
     final List<Widget> columnChildren = [];
 
     if (widget.title != null && widget.title.isNotEmpty) {
@@ -67,348 +63,80 @@ class _RoofSelectFieldState<T> extends State<RoofSelectField>
     final selectedOptionsContainer = _SelectedOptionsContainer<T>(
       selectedOptions: selectedOptions,
       emptyText: widget.emptyText,
-      onTap: _expandDropdown,
-      isExpanded: isExpanded,
     );
     columnChildren.add(selectedOptionsContainer);
 
-    final dropdownContainer = _DropdownContainer<T>(
-      options: options,
-      selectedOptions: selectedOptions,
-      isMultiSelect: widget.isMultiSelect,
-      isExpanded: isExpanded,
+    return RoofPickerField(
+      name: widget.title,
       onTap: _onTap,
-    );
-    columnChildren.add(dropdownContainer);
-
-    return Container(
-      margin: padding.field1,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: columnChildren,
-      ),
+      fieldBody: selectedOptionsContainer,
     );
   }
 
-  void _onTap(SelectFieldOptionData<T> option) {
-    widget.onChanged(selectedOptions);
-    _updateSelectedOptions(option);
-  }
+  void _onTap() {
+    triggerHapticWith(HapticOption.light);
 
-  HapticOption get _hapticOption {
-    if (widget.isMultiSelect) return HapticOption.light;
-    return (isExpanded) ? HapticOption.medium : HapticOption.light;
-  }
+    final artboard = OptionPickerVerticalFloatingArtboard<T>(
+      title: widget.title,
+      selectedOptions: widget.selectedOptions,
+      options: widget.options,
+      emptyText: widget.emptyText,
+      isMultiSelect: widget.isMultiSelect,
+    );
 
-  void _updateSelectedOptions(SelectFieldOptionData<T> option) {
-    if (widget.isMultiSelect) {
-      final optionIsSelected = selectedOptions.contains(option);
-      setState(() {
-        optionIsSelected
-            ? selectedOptions.remove(option)
-            : selectedOptions.add(option);
-      });
-    } else {
-      setState(() {
-        selectedOptions.first = option;
-        isExpanded = !isExpanded;
-      });
-    }
-  }
+    ArtboardNavigator.of(context).goTo(artboard);
 
-  void _expandDropdown() {
-    triggerHapticWith(_hapticOption);
+    final newOptions = artboard.selectedOptions;
+    print("newOptions $newOptions");
+
     setState(() {
-      isExpanded = !isExpanded;
+      selectedOptions = newOptions;
     });
+
+    widget.onChanged(selectedOptions);
   }
 }
 
 class _SelectedOptionsContainer<T> extends StatelessWidget {
-  final List<SelectFieldOptionData<T>> selectedOptions;
+  final List<OptionPickerData<T>> selectedOptions;
   final String emptyText;
-  final Function onTap;
-  final bool isExpanded;
 
   final _typographyStyle = typography.bodyPrimary;
   final _maxLines = 10;
 
-  final _upArrowIconReferece = StandardIcon.upArrow;
-  final _downArrowIconReferece = StandardIcon.downArrow;
-
   _SelectedOptionsContainer({
     this.selectedOptions,
     this.emptyText,
-    this.onTap,
-    this.isExpanded,
   });
 
   String _textForSelectedOptions() {
-    var text = "";
-    for (var i = 0; i < selectedOptions.length; i++) {
-      bool isLast = i == selectedOptions.length - 1;
-      text += selectedOptions[i].title;
-      if (!isLast) text += ", ";
-    }
-    return text;
-  }
+    if (selectedOptions?.isNotEmpty ?? false) {
+      String text = "";
 
-  Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
-
-    Widget selectedOptionsChild;
-    if (selectedOptions.isEmpty) {
-      selectedOptionsChild = Text(
-        emptyText,
-        style: _typographyStyle.textStyleWithColor(
-          theme.color.text.placeholder,
-        ),
-      );
+      for (var i = 0; i < selectedOptions.length; i++) {
+        bool isLast = i == selectedOptions.length - 1;
+        text += selectedOptions[i].title;
+        if (!isLast) text += ", ";
+      }
+      return text;
     } else {
-      selectedOptionsChild = Expanded(
-        child: Text(
-          _textForSelectedOptions(),
-          style: _typographyStyle.textStyleWithColor(
-            theme.color.text.primary,
-          ),
-          softWrap: true,
-          maxLines: _maxLines,
-          overflow: TextOverflow.ellipsis,
-        ),
-      );
+      return emptyText;
     }
-
-    final generalIconColor = theme.color.icon.general;
-    final upArrow = _upArrowIconReferece.buildWidget(color: generalIconColor);
-    final downArrow =
-        _downArrowIconReferece.buildWidget(color: generalIconColor);
-
-    final animatedArrow = Expanded(
-      flex: 0,
-      child: Padding(
-        padding: EdgeInsets.fromLTRB(distance.d, 0, 0, 0),
-        child: _AnimatedIconReference(
-          icon1: upArrow,
-          icon2: downArrow,
-          showIcon1: isExpanded,
-        ),
-      ),
-    );
-
-    final verticalPadding = EdgeInsets.symmetric(vertical: distance.b);
-
-    return Container(
-      decoration: BoxDecoration(
-        border: Border(
-          bottom: BorderSide(color: theme.color.stroke.light),
-        ),
-      ),
-      child: GestureDetector(
-        onTap: onTap,
-        behavior: HitTestBehavior.opaque,
-        child: Padding(
-          padding: verticalPadding,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [selectedOptionsChild, animatedArrow],
-          ),
-        ),
-      ),
-    );
   }
-}
-
-class _AnimatedIconReference extends StatelessWidget {
-  final Widget icon1;
-  final Widget icon2;
-  final bool showIcon1;
-
-  _AnimatedIconReference({
-    this.icon1,
-    this.icon2,
-    this.showIcon1,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return AnimatedCrossFade(
-      firstChild: icon1,
-      secondChild: icon2,
-      duration: duration.short,
-      crossFadeState:
-          showIcon1 ? CrossFadeState.showFirst : CrossFadeState.showSecond,
-    );
-  }
-}
-
-class _DropdownContainer<T> extends StatelessWidget {
-  final List<SelectFieldOptionData<T>> options;
-  final List<SelectFieldOptionData<T>> selectedOptions;
-  final bool isMultiSelect;
-  final bool isExpanded;
-  final Function onTap;
-
-  final _closeDuration = duration.short;
-  final _showDuration = duration.short;
-
-  _DropdownContainer({
-    this.options,
-    this.selectedOptions,
-    this.isMultiSelect,
-    this.isExpanded,
-    this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
-    final decoration = BoxDecoration(
-      borderRadius: BorderRadius.only(
-        bottomLeft: corner_radius.small,
-        bottomRight: corner_radius.small,
-      ),
-      color: theme.color.background.generalSecondary,
-      boxShadow: [theme.shadow],
-    );
-
-    final Widget expandedChild = _DropdownContents<T>(
-      options: options,
-      selectedOptions: selectedOptions,
-      isMultiSelect: isMultiSelect,
-      onTap: onTap,
-    );
-
-    return Container(
-      decoration: decoration,
-      child: AnimatedCrossFade(
-        firstChild: expandedChild,
-        secondChild: Container(),
-        firstCurve: Curves.easeIn,
-        secondCurve: Curves.easeIn,
-        sizeCurve: curve.easy,
-        crossFadeState:
-            isExpanded ? CrossFadeState.showFirst : CrossFadeState.showSecond,
-        duration: isExpanded ? _closeDuration : _showDuration,
-      ),
-    );
-  }
-}
-
-class _DropdownContents<T> extends StatelessWidget {
-  final List<SelectFieldOptionData<T>> options;
-  final List<SelectFieldOptionData<T>> selectedOptions;
-  final bool isMultiSelect;
-  final Function onTap;
-
-  final double _optionHeight = 60;
-  final double _optionsVisible = 4.5;
-
-  _DropdownContents({
-    this.options,
-    this.selectedOptions,
-    this.isMultiSelect,
-    this.onTap,
-  });
 
   Widget build(BuildContext context) {
-    List<Widget> optionsList = [];
-    for (var option in options) {
-      final dropdownOption = _DropdownOption<T>(
-        name: option.title,
-        data: option.data,
-        selected: selectedOptions.contains(option),
-        isMultiSelect: isMultiSelect,
-        optionHeight: _optionHeight,
-        onTap: () => onTap(option),
-      );
-      optionsList.add(
-        dropdownOption,
-      );
-    }
-
-    double totalDropdownHeight;
-    if (optionsList.length.toDouble() <= _optionsVisible) {
-      totalDropdownHeight = _optionHeight * optionsList.length.toDouble();
-    } else
-      totalDropdownHeight = _optionHeight * _optionsVisible;
-
-    return Container(
-      height: totalDropdownHeight,
-      child: ListView(
-        children: optionsList,
-        padding: EdgeInsets.all(0),
-      ),
-    );
-  }
-}
-
-class _DropdownOption<T> extends StatelessWidget {
-  final String name;
-  final T data;
-  final double optionHeight;
-  final Function onTap;
-  final bool isMultiSelect;
-  final bool selected;
-
-  final _unselectedTypographyStyle = typography.bodyPrimary;
-  final _selectedTypographyStyle = typography.bodyPrimaryThick;
-  final _checkIcon = SmallIcon.boxChecked;
-  final _uncheckedIcon = SmallIcon.boxUnchecked;
-
-  _DropdownOption({
-    this.name,
-    this.data,
-    this.optionHeight,
-    this.onTap,
-    this.isMultiSelect,
-    this.selected,
-  });
-
-  Widget build(BuildContext context) {
+    print("build new select field $selectedOptions");
     final theme = RoofTheme.of(context);
 
-    List<Widget> rowChildren = [];
-
-    if (isMultiSelect) {
-      final generalIconColor = theme.color.icon.general;
-      Widget checkedIcon = Padding(
-        padding: EdgeInsets.fromLTRB(0, 0, distance.b, 0),
-        child: _checkIcon.buildWidget(color: generalIconColor),
-      );
-      Widget uncheckedIcon = Padding(
-        padding: EdgeInsets.fromLTRB(0, 0, distance.b, 0),
-        child: _uncheckedIcon.buildWidget(color: generalIconColor),
-      );
-
-      selected ? rowChildren.add(checkedIcon) : rowChildren.add(uncheckedIcon);
-    }
-
-    final optionTitle = Text(
-      name,
-      style: (selected && !isMultiSelect)? _selectedTypographyStyle.textStyleWithColor(theme.color.text.primary) : _unselectedTypographyStyle.textStyleWithColor(theme.color.text.primary),
-    );
-
-    final optionPadding = EdgeInsets.symmetric(
-      horizontal: distance.b,
-      vertical: distance.c,
-    );
-
-    rowChildren.add(optionTitle);
-
-    return Container(
-      height: optionHeight,
-      child: GestureDetector(
-        onTap: onTap,
-        behavior: HitTestBehavior.opaque,
-        child: Padding(
-          padding: optionPadding,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: rowChildren,
-          ),
-        ),
+    return Text(
+      _textForSelectedOptions(),
+      style: _typographyStyle.textStyleWithColor(
+        theme.color.text.primary,
       ),
+      softWrap: true,
+      maxLines: _maxLines,
+      textAlign: TextAlign.end,
+      overflow: TextOverflow.ellipsis,
     );
   }
 }

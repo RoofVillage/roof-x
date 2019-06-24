@@ -10,7 +10,7 @@ class FormOptionSelectData<T>
   FormOptionSelectData({
     this.emptyText = "Nothing selected",
     this.options,
-    this.isMultiSelect = false,
+    this.isMultiSelect,
     String title,
     List<FormOptionSelectValueData<T>> initialValue,
     double size,

@@ -91,10 +91,11 @@ class VerticalFloatingInheritedArtboardNavigator
     );
 
     final navigator = ArtboardNavigator(
-        child: swippablePage,
-        goTo: _goTo,
-        pop: _pop,
-        onNavButtonVisibilityChange: toggleNavButtonsHidden);
+      child: swippablePage,
+      goTo: _goTo,
+      pop: _pop,
+      onNavButtonVisibilityChange: toggleNavButtonsHidden,
+    );
 
     final scaffold = Scaffold(
       body: KeyboardAccessory(child: navigator),
@@ -131,6 +132,7 @@ class VerticalFloatingInheritedArtboardNavigator
   }
 
   bool _pop<T>([T result]) {
+    print("_pop");
     widget.artboard.didComplete();
     return Navigator.pop(context, result);
   }

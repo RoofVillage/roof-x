@@ -65,7 +65,9 @@ abstract class PropertyVerticalFullScreenArtboard
       context,
       text: "Create lease",
       icon: XSmallIcon.lease,
-      onTap: (context) => print("create lease tapped"),
+      onTap: (context) => ArtboardNavigator.of(context).goTo(
+            PropertyCreateVerticalFloatingArtboard(),
+          ),
       status: ButtonStatusOption.ready,
     );
 

@@ -43,12 +43,15 @@ mixin PropertyCreateArtboardData implements FormBuilder {
 
   static List<FormOptionSelectValueData> _getPaymentProfiles() {
     // TODO
-    return [];
+    return [
+      FormOptionSelectValueData(title: "Payment profile 1", data: "asdf"),
+      FormOptionSelectValueData(title: "Payment profile 2", data: "pyio"),
+    ];
   }
 
   final _rentDestination = FormOptionSelectData(
     title: "Default rent destination",
-    emptyText: "No payment profiles available",
+    emptyText: "No payment profiles",
     options: _getPaymentProfiles(),
   );
 }
