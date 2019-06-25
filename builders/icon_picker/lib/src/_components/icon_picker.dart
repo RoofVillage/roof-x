@@ -59,12 +59,12 @@ class _IconPicker extends State<IconPicker> {
       columnChildren.add(titleWidget);
     }
 
-    final optionsColumn = _IconsGrid(
+    final iconsGrid = _IconsGrid(
       options: widget.options,
       selectedOption: selectedOption,
       onTap: _onOptionTap,
     );
-    columnChildren.add(optionsColumn);
+    columnChildren.add(iconsGrid);
 
     return Container(
       child: Column(
@@ -89,7 +89,7 @@ class _IconsGrid extends StatelessWidget {
   });
 
   Widget build(BuildContext context) {
-    final _selectedOption = selectedOption ?? options[0];
+    final _selectedOption = selectedOption ?? options.first;
 
     List<_IconOption> optionsList = options.map(
       (option) {

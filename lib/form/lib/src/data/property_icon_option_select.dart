@@ -4,7 +4,7 @@ import 'package:standard_icon_library/index.dart';
 
 import 'icon_option_select_value.dart';
 
-class FormPropertyIconOptionSelectData extends FormIconOptionSelectData {
+class FormPropertyIconOptionSelectData extends FormIconSelectFieldData {
   static final List<StandardIcon> _propertyIconOptions = [
     StandardIcon.house1,
     StandardIcon.house2,
@@ -35,13 +35,13 @@ class FormPropertyIconOptionSelectData extends FormIconOptionSelectData {
 
   FormPropertyIconOptionSelectData({
     @required String title,
-    FormIconOptionSelectValueData initialValue,
+    FormIconOptionSelectValueData selectedOption,
     double size,
     bool isVisible,
   }) : super(
           title: title,
           options: _createFormIconOptionSelectValueData(),
-          initialValue: initialValue,
+          selectedOption: selectedOption,
           size: size,
           isVisible: isVisible,
         );

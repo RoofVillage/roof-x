@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:theme/index.dart';
-import 'package:haptics/index.dart';
-import 'package:padding/index.dart' as padding;
-import 'package:icon_picker_artboard/index.dart';
 import 'package:icon_picker_data/index.dart';
-import 'package:navigator/index.dart';
 
 import '_widgets/index.dart';
 import '_picker_field.dart';
@@ -13,12 +9,14 @@ class IconSelectField extends StatefulWidget {
   final String title;
   final IconPickerData selectedOption;
   final List<IconPickerData> options;
+  final Function onTap;
   final Function(IconPickerData) onChanged;
 
   const IconSelectField({
     this.title,
     this.selectedOption,
     this.options,
+    this.onTap,
     this.onChanged,
   });
 
@@ -57,21 +55,7 @@ class _IconSelectFieldState extends State<IconSelectField>
     return RoofPickerField(
       name: widget.title,
       fieldBody: selectedIconWidget,
-      onTap: _onTap,
+      onTap: widget.onTap,
     );
-  }
-
-  void _onTap() async {
-    final artboard = IconPickerVerticalFloatingArtboard(
-      title: widget.title,
-      selectedOption: selectedOption,
-      options: widget.options,
-    );
-
-    // ArtboardNavigator.of(context).goTo(artboard);
-
-    final newSelectedOption = await ArtboardNavigator.of(context).goTo(artboard);
-
-    widget.onChanged(newSelectedOption);
   }
 }

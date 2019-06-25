@@ -4,7 +4,7 @@ import 'package:form/src/data/option_select_value.dart';
 
 import 'option_select.dart';
 
-class FeePayerFormSelectFieldData extends FormOptionSelectData {
+class FeePayerFormSelectFieldData extends FormOptionSelectFieldData {
   FeePayerFormSelectFieldData({
     String title,
     List<FormOptionSelectValueData<FeePayerType>> initialValue,

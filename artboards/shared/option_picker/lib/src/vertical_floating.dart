@@ -5,7 +5,7 @@ import 'package:option_picker_builder/index.dart';
 import 'package:option_picker_data/index.dart';
 
 class OptionPickerVerticalFloatingArtboard<T>
-    extends EmptyVerticalFloatingArtboard<OptionPickerData>
+    extends EmptyVerticalFloatingArtboard<List<OptionPickerData>>
     with OptionPickerBuilder<T> {
   final String title;
   final String emptyText;

@@ -17,7 +17,7 @@ mixin SettlementCreateArtboardData implements FormBuilder {
         _note,
       ];
 
-  final _tenant = FormOptionSelectData<String>(
+  final _tenant = FormOptionSelectFieldData<String>(
     title: "Tenant",
     options: _getTenants(),
   );

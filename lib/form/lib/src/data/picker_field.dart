@@ -3,9 +3,6 @@ import 'package:flutter/material.dart';
 import 'field.dart';
 
 abstract class PickerFieldData<T> extends StreamableFormFieldData<T> {
-  T startBound;
-  T endBound;
-
   Function get onTap => () {
         for (final listener in _onTapListeners) listener();
       };
@@ -20,8 +17,6 @@ abstract class PickerFieldData<T> extends StreamableFormFieldData<T> {
   PickerFieldData({
     @required String title,
     T initialValue,
-    T startBound,
-    T endBound,
     double size,
     bool isVisible,
     Function onTap,

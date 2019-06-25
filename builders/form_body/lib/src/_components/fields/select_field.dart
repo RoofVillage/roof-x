@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:theme/index.dart';
-import 'package:haptics/index.dart';
 import 'package:typography/index.dart' as typography;
-import 'package:navigator/index.dart';
-import 'package:option_picker_artboard/index.dart';
 import 'package:option_picker_data/index.dart';
 
 import '_widgets/index.dart';
@@ -15,6 +12,7 @@ class RoofSelectField<T> extends StatefulWidget {
   final List<OptionPickerData<T>> selectedOptions;
   final List<OptionPickerData<T>> options;
   final bool isMultiSelect;
+  final Function onTap;
   final Function(List<OptionPickerData<T>>) onChanged;
 
   const RoofSelectField({
@@ -23,6 +21,7 @@ class RoofSelectField<T> extends StatefulWidget {
     this.selectedOptions,
     this.options,
     bool isMultiSelect,
+    this.onTap,
     this.onChanged,
   }) : isMultiSelect = isMultiSelect ?? false;
 
@@ -51,8 +50,6 @@ class _RoofSelectFieldState<T> extends State<RoofSelectField>
 
   @override
   Widget build(BuildContext context) {
-    print("ismulti ${widget.isMultiSelect}");
-    
     final List<Widget> columnChildren = [];
 
     if (widget.title != null && widget.title.isNotEmpty) {
@@ -68,32 +65,9 @@ class _RoofSelectFieldState<T> extends State<RoofSelectField>
 
     return RoofPickerField(
       name: widget.title,
-      onTap: _onTap,
+      onTap: widget.onTap,
       fieldBody: selectedOptionsContainer,
     );
-  }
-
-  void _onTap() {
-    triggerHapticWith(HapticOption.light);
-
-    final artboard = OptionPickerVerticalFloatingArtboard<T>(
-      title: widget.title,
-      selectedOptions: widget.selectedOptions,
-      options: widget.options,
-      emptyText: widget.emptyText,
-      isMultiSelect: widget.isMultiSelect,
-    );
-
-    ArtboardNavigator.of(context).goTo(artboard);
-
-    final newOptions = artboard.selectedOptions;
-    print("newOptions $newOptions");
-
-    setState(() {
-      selectedOptions = newOptions;
-    });
-
-    widget.onChanged(selectedOptions);
   }
 }
 
@@ -125,7 +99,6 @@ class _SelectedOptionsContainer<T> extends StatelessWidget {
   }
 
   Widget build(BuildContext context) {
-    print("build new select field $selectedOptions");
     final theme = RoofTheme.of(context);
 
     return Text(

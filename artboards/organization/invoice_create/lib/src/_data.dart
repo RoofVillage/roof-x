@@ -26,11 +26,11 @@ mixin InvoiceCreateArtboardData implements FormBuilder {
   final _note = FormTextAreaData(title: "Note (optional)");
   final _amount = CurrencyFormTextFieldData(title: "Amount");
   final _dueDate = FormDateFieldData(title: "Due date");
-  final _destination = FormOptionSelectData<String>(
+  final _destination = FormOptionSelectFieldData<String>(
     title: "Destination",
     options: _getPaymentProfiles(),
   );
-  final _invoiceType = FormOptionSelectData<InvoiceType>(
+  final _invoiceType = FormOptionSelectFieldData<InvoiceType>(
     title: "Invoice type",
     options: [
       FormOptionSelectValueData(

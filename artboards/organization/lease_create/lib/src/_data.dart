@@ -36,7 +36,7 @@ mixin PropertyCreateArtboardData implements FormBuilder {
   // TODO: field conditional visibility
   final _scheduleFrequency = FrequencyFormSelectFieldData(title: "Rent due");
   final _intervalFrequency = IntervalFormSelectFieldData();
-  final _dueOn = FormOptionSelectData(options: _buildDueOnOptions());
+  final _dueOn = FormOptionSelectFieldData(options: _buildDueOnOptions());
   final _amount = CurrencyFormTextFieldData(title: "Rent amount");
   final _startDate = FormDateFieldData(title: "Lease begins");
   final _endDate = FormDateFieldData(title: "Lease ends (optional)");
@@ -45,7 +45,7 @@ mixin PropertyCreateArtboardData implements FormBuilder {
           "Your start date is in the past. Create invoices due earlier than today?");
   final _continue = FormSwitchFieldData(title: _getContinueString());
   final _name = ShortFormTextFieldData(title: "Lease name (optional)");
-  final _rentDestination = FormOptionSelectData(
+  final _rentDestination = FormOptionSelectFieldData(
     title: "Default rent destination",
     emptyText: "No payment profiles available",
     options: _getPaymentProfiles(),

@@ -3,7 +3,7 @@ import 'package:interval/index.dart';
 
 import 'option_select.dart';
 
-class IntervalFormSelectFieldData extends FormOptionSelectData {
+class IntervalFormSelectFieldData extends FormOptionSelectFieldData {
   static List<FormOptionSelectValueData<int>> _buildOptions(int count) {
     final List<FormOptionSelectValueData> options = [];
 

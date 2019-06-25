@@ -39,8 +39,6 @@ class _OptionPicker<T> extends State<OptionPicker<T>> {
   }
 
   _onOptionTap(OptionPickerData<T> option) {
-    print("ontap");
-
     if (widget.isMultiSelect) {
       setState(() {
         selectedOptions.contains(option)

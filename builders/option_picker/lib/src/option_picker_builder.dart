@@ -6,7 +6,7 @@ import 'package:option_picker_data/index.dart';
 import '_components/option_picker.dart';
 
 //Date pickers must be an artboard
-mixin OptionPickerBuilder<T> implements Artboard<OptionPickerData> {
+mixin OptionPickerBuilder<T> implements Artboard<List<OptionPickerData>> {
   String get title;
   String get emptyText;
   List<OptionPickerData<T>> get initialSelected => [];

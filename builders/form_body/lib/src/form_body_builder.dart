@@ -9,6 +9,8 @@ import 'package:date/index.dart';
 import 'package:date_picker_builder/index.dart';
 import 'package:option_picker_builder/index.dart';
 import 'package:option_picker_data/index.dart';
+import 'package:icon_picker_data/index.dart';
+import 'package:icon_picker_builder/index.dart';
 import 'package:artboard/index.dart';
 
 import '_components/keyboard_accessory_buttons/index.dart';
@@ -53,6 +55,13 @@ mixin FormBodyBuilder implements StatefulWidget {
     bool isMultiSelect,
   });
 
+  IconPickerBuilder buildIconPicker(
+    BuildContext context, {
+    String title,
+    IconPickerData selectedOption,
+    List<IconPickerData> options,
+  });
+
   Future<T> goTo<T>(
       {@required BuildContext context, @required Artboard<T> artboard});
   void onFocusChanged(
@@ -62,6 +71,10 @@ mixin FormBodyBuilder implements StatefulWidget {
       {@required List<StreamableFormFieldData> fieldData}) async {
     for (final data in fieldData) {
       if (data is FormDateFieldData) _setupDateFieldData(context, data: data);
+      if (data is FormOptionSelectFieldData)
+        _setupOptionSelectFieldData(context, data: data);
+      if (data is FormIconSelectFieldData)
+        _setupIconSelectFieldData(context, data: data);
     }
     setupFields(context, fieldData: fieldData);
   }
@@ -89,6 +102,67 @@ mixin FormBodyBuilder implements StatefulWidget {
       final time = await goTo<Date>(context: context, artboard: artboard);
       if (time == null) return;
       data.value = time;
+      form.updateFieldData(data);
+    });
+  }
+
+  void _setupIconSelectFieldData(BuildContext context,
+      {@required FormIconSelectFieldData data}) {
+    data.addOnTapListener(() async {
+      final artboard = buildIconPicker(
+        context,
+        title: data.title,
+        options: data.options
+            .map(
+              (option) => IconPickerData(icon: option.icon),
+            )
+            .toList(),
+        selectedOption: data.selectedOption != null
+            ? IconPickerData(icon: data.selectedOption.icon)
+            : null,
+      );
+      final newSelectedOption = await goTo<IconPickerData>(
+        context: context,
+        artboard: artboard,
+      );
+      if (newSelectedOption == null) return;
+      data.selectedOption =
+          FormIconOptionSelectValueData(icon: newSelectedOption.icon);
+      form.updateFieldData(data);
+    });
+  }
+
+  void _setupOptionSelectFieldData(BuildContext context,
+      {@required FormOptionSelectFieldData data}) {
+    data.addOnTapListener(() async {
+      final convertedOptions = data.options
+          .map(
+            (option) => OptionPickerData(
+                  title: option.title,
+                  data: option.data,
+                ),
+          )
+          .toList();
+      final convertedSelectedOptions = data.selectedOptions
+          ?.map(
+            (option) => OptionPickerData(
+                  title: option.title,
+                  data: option.data,
+                ),
+          )
+          ?.toList();
+      final artboard = buildOptionPicker(
+        context,
+        title: data.title,
+        selectedOptions: convertedSelectedOptions,
+        options: convertedOptions,
+      );
+      final newSelectedOptions = await goTo<List<OptionPickerData>>(
+          context: context, artboard: artboard);
+      if (newSelectedOptions == null) return;
+      data.selectedOptions = newSelectedOptions
+          .map((option) => FormOptionSelectValueData(title: option.title))
+          .toList();
       form.updateFieldData(data);
     });
   }

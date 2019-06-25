@@ -37,12 +37,13 @@ class RoofStreamForm
     return allCompositionFieldData;
   }
 
-  Widget buildTextField(
-      {FormTextFieldData fieldData,
-      StreamableFormData formData,
-      int fieldIndex,
-      int sectionIndex,
-      BuildContext context}) {
+  Widget buildTextField({
+    FormTextFieldData fieldData,
+    StreamableFormData formData,
+    int fieldIndex,
+    int sectionIndex,
+    BuildContext context,
+  }) {
     final inputAction = _getInputActionForCompositionFieldData(fieldData);
     final focusNode = _focusNodeManager.nodeFor(fieldData, context);
 
@@ -137,7 +138,7 @@ class RoofStreamForm
   }
 
   Widget buildOptionSelect({
-    FormOptionSelectData fieldData,
+    FormOptionSelectFieldData fieldData,
     int fieldIndex,
     int sectionIndex,
   }) {
@@ -153,6 +154,7 @@ class RoofStreamForm
           );
         },
       )?.toList(),
+      onTap: fieldData.onTap,
       onChanged: (selectedOptions) {
         List<FormOptionSelectValueData> convertedOptions = selectedOptions?.map(
           (option) {
@@ -168,7 +170,7 @@ class RoofStreamForm
   }
 
   Widget buildIconOptionSelect(
-      {FormIconOptionSelectData fieldData, int fieldIndex, int sectionIndex}) {
+      {FormIconSelectFieldData fieldData, int fieldIndex, int sectionIndex}) {
     List<IconPickerData> options = fieldData.options?.map(
       (option) {
         return IconPickerData(
@@ -180,6 +182,7 @@ class RoofStreamForm
     return IconSelectField(
       title: fieldData.title,
       options: options,
+      onTap: fieldData.onTap,
       onChanged: (selectedOption) {
         FormIconOptionSelectValueData convertedOption =
             FormIconOptionSelectValueData(icon: selectedOption.icon);
@@ -221,13 +224,13 @@ class RoofStreamForm
         sectionIndex: sectionIndex,
         context: context,
       );
-    } else if (fieldData is FormOptionSelectData) {
+    } else if (fieldData is FormOptionSelectFieldData) {
       fieldBody = buildOptionSelect(
         fieldData: fieldData,
         fieldIndex: fieldIndex,
         sectionIndex: sectionIndex,
       );
-    } else if (fieldData is FormIconOptionSelectData) {
+    } else if (fieldData is FormIconSelectFieldData) {
       fieldBody = buildIconOptionSelect(
         fieldData: fieldData,
         fieldIndex: fieldIndex,

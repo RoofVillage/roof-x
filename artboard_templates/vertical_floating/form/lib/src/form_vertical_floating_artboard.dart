@@ -11,6 +11,9 @@ import 'package:date_picker_artboard/index.dart';
 import 'package:option_picker_builder/index.dart';
 import 'package:option_picker_artboard/index.dart';
 import 'package:button_builder/index.dart';
+import 'package:icon_picker_builder/index.dart';
+import 'package:icon_picker_artboard/index.dart';
+import 'package:icon_picker_data/index.dart';
 import 'package:vertical_floating_artboard_scaffold/index.dart';
 import 'package:option_picker_data/index.dart';
 
@@ -53,6 +56,20 @@ abstract class FormVerticalFloatingArtboard<T> extends StatefulWidget
       selectedOptions: selectedOptions,
       options: options,
       isMultiSelect: isMultiSelect,
+    );
+  }
+
+  @override
+  IconPickerBuilder buildIconPicker(
+    BuildContext context, {
+    String title,
+    IconPickerData selectedOption,
+    @required List<IconPickerData> options,
+  }) {
+    return IconPickerVerticalFloatingArtboard(
+      title: title,
+      selectedOption: selectedOption,
+      options: options,
     );
   }
 

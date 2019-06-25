@@ -49,7 +49,7 @@ mixin PropertyCreateArtboardData implements FormBuilder {
     ];
   }
 
-  final _rentDestination = FormOptionSelectData(
+  final _rentDestination = FormOptionSelectFieldData(
     title: "Default rent destination",
     emptyText: "No payment profiles",
     options: _getPaymentProfiles(),

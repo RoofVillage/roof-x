@@ -3,7 +3,7 @@ import 'package:frequency_type/index.dart';
 
 import 'option_select.dart';
 
-class FrequencyFormSelectFieldData extends FormOptionSelectData {
+class FrequencyFormSelectFieldData extends FormOptionSelectFieldData {
   static List<FormOptionSelectValueData<FrequencyType>> _buildOptions() {
     final daily = FrequencyType.fromString("daily");
     final weekly = FrequencyType.fromString("weekly");

@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:form/index.dart';
 
-import 'field.dart';
+import 'picker_field.dart';
 import 'icon_option_select_value.dart';
 
-class FormIconOptionSelectData
-    extends StreamableFormFieldData<FormIconOptionSelectValueData> {
+class FormIconSelectFieldData
+    extends PickerFieldData<FormIconOptionSelectValueData> {
   List<FormIconOptionSelectValueData> options;
+  FormIconOptionSelectValueData selectedOption;
 
-  FormIconOptionSelectData({
+  FormIconSelectFieldData({
+    this.selectedOption,
     this.options,
     @required String title,
-    FormIconOptionSelectValueData initialValue,
     double size,
     bool isVisible,
   }) : super(
           title: title,
-          initialValue: initialValue,
+          initialValue: selectedOption,
           size: size,
           isVisible: isVisible,
         );

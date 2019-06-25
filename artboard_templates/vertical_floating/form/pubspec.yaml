@@ -24,6 +24,8 @@ dependencies:
     path: ../../../builders/date_picker
   option_picker_builder:
     path: ../../../builders/option_picker
+  icon_picker_builder:
+    path: ../../../builders/icon_picker
   button_builder:
     path: ../../../builders/button
   date_picker_artboard:
