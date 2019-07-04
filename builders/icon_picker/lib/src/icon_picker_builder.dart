@@ -24,13 +24,13 @@ mixin IconPickerBuilderState<U extends IconPickerBuilder>
     return IconPicker(
       title: widget.title,
       options: widget.options,
-      selectedOption: _selectedOption,
+      selectedOption: selectedOption ?? widget.selectedOption,
       onChanged: _onOptionTap,
     );
   }
 
-  void _onOptionTap(IconPickerData option) {
+  void _onOptionTap(IconPickerData newOption) {
     triggerHapticWith(HapticOption.click);
-    _selectedOption = option;
+    selectedOption = newOption;
   }
 }

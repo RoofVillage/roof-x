@@ -6,8 +6,8 @@ import 'package:navigator/index.dart';
 
 import '_data.dart';
 
-class PropertyCreateVerticalFloatingArtboard
-    extends FormVerticalFloatingArtboard with PropertyCreateArtboardData {
+class LeaseCreateVerticalFloatingArtboard
+    extends FormVerticalFloatingArtboard with LeaseCreateArtboardData {
   @override
   Future<void> submit(BuildContext context) async {
     // TODO

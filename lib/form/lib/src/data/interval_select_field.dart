@@ -5,7 +5,7 @@ import 'option_select.dart';
 
 class IntervalFormSelectFieldData extends FormOptionSelectFieldData {
   static List<FormOptionSelectValueData<int>> _buildOptions(int count) {
-    final List<FormOptionSelectValueData> options = [];
+    final List<FormOptionSelectValueData<int>> options = [];
 
     for (int i = 0; i < count; i++) {
       final optionTitle = toIntervalString(i);

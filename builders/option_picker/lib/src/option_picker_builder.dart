@@ -9,7 +9,7 @@ import '_components/option_picker.dart';
 mixin OptionPickerBuilder<T> implements Artboard<List<OptionPickerData>> {
   String get title;
   String get emptyText;
-  List<OptionPickerData<T>> get initialSelected => [];
+  List<OptionPickerData<T>> get selectedOptions => [];
   List<OptionPickerData<T>> get options => [];
   bool get isMultiSelect => false;
 }
@@ -26,15 +26,15 @@ mixin OptionPickerBuilderState<T, U extends OptionPickerBuilder>
     return OptionPicker<T>(
       title: widget.title,
       emptyText: widget.emptyText,
-      initialSelected: widget.initialSelected,
+      initialSelected: selectedOptions ?? widget.selectedOptions,
       options: widget.options,
       isMultiSelect: widget.isMultiSelect,
       onChanged: _onChanged,
     );
   }
 
-  void _onChanged(List<OptionPickerData<T>> selectedOptions) {
+  void _onChanged(List<OptionPickerData<T>> newSelectedOptions) {
     triggerHapticWith(HapticOption.click);
-    selectedOptions = selectedOptions;
+    selectedOptions = newSelectedOptions;
   }
 }

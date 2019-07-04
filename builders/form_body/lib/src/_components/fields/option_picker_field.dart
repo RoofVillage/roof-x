@@ -6,7 +6,7 @@ import 'package:option_picker_data/index.dart';
 import '_widgets/index.dart';
 import '_picker_field.dart';
 
-class RoofSelectField<T> extends StatefulWidget {
+class OptionPickerField<T> extends StatelessWidget {
   final String title;
   final String emptyText;
   final List<OptionPickerData<T>> selectedOptions;
@@ -15,7 +15,7 @@ class RoofSelectField<T> extends StatefulWidget {
   final Function onTap;
   final Function(List<OptionPickerData<T>>) onChanged;
 
-  const RoofSelectField({
+  OptionPickerField({
     this.title,
     this.emptyText,
     this.selectedOptions,
@@ -26,46 +26,40 @@ class RoofSelectField<T> extends StatefulWidget {
   }) : isMultiSelect = isMultiSelect ?? false;
 
   @override
-  _RoofSelectFieldState<T> createState() => _RoofSelectFieldState<T>();
-}
+  Widget build(BuildContext context) {
+    List<OptionPickerData<T>> _selectedOptions;
+    List<OptionPickerData<T>> _options;
 
-class _RoofSelectFieldState<T> extends State<RoofSelectField>
-    with SingleTickerProviderStateMixin {
-  List<OptionPickerData<T>> selectedOptions;
-  List<OptionPickerData<T>> options;
-
-  @override
-  void initState() {
-    if (widget.options != null && widget.options.isNotEmpty) {
-      options = widget.options;
+    if (options != null && options.isNotEmpty) {
+      _options = options;
     } else {
-      options = [OptionPickerData(title: widget.emptyText)];
+      _options = [
+        OptionPickerData(title: emptyText),
+      ];
     }
 
-    if (selectedOptions == null && !widget.isMultiSelect)
-      selectedOptions = [options[0]];
+    if (selectedOptions == null && !isMultiSelect) {
+      _selectedOptions = [_options[0]];
+    } else {
+      _selectedOptions = selectedOptions;
+    }
 
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
     final List<Widget> columnChildren = [];
 
-    if (widget.title != null && widget.title.isNotEmpty) {
-      final label = RoofFieldLabel(labelText: widget.title);
+    if (title != null && title.isNotEmpty) {
+      final label = RoofFieldLabel(labelText: title);
       columnChildren.add(label);
     }
 
     final selectedOptionsContainer = _SelectedOptionsContainer<T>(
-      selectedOptions: selectedOptions,
-      emptyText: widget.emptyText,
+      selectedOptions: _selectedOptions,
+      emptyText: emptyText,
     );
     columnChildren.add(selectedOptionsContainer);
 
     return RoofPickerField(
-      name: widget.title,
-      onTap: widget.onTap,
+      name: title,
+      onTap: onTap,
       fieldBody: selectedOptionsContainer,
     );
   }

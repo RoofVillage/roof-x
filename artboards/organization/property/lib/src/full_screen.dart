@@ -10,7 +10,7 @@ import 'package:button_status_option/index.dart';
 import 'package:nav_button_builder/index.dart';
 import 'package:tab/index.dart';
 import 'package:navigator/index.dart';
-import 'package:property_create_artboard/index.dart';
+import 'package:lease_create_artboard/index.dart';
 
 import '_data.dart';
 
@@ -34,7 +34,7 @@ abstract class PropertyVerticalFullScreenArtboard
   Future<void> edit(BuildContext context) async {
     print("yo");
     ArtboardNavigator.of(context).goTo(
-      PropertyCreateVerticalFloatingArtboard(),
+      LeaseCreateVerticalFloatingArtboard(),
     );
   }
 
@@ -47,10 +47,6 @@ abstract class PropertyVerticalFullScreenArtboard
       iconReference: NavigationIcon.settings,
       onTap: edit,
     );
-
-    // final moreButton = NavigationIcon.more.buildWidget(
-    //   color: theme.color.icon.nav,
-    // );
 
     return [moreButton];
   }
@@ -66,7 +62,7 @@ abstract class PropertyVerticalFullScreenArtboard
       text: "Create lease",
       icon: XSmallIcon.lease,
       onTap: (context) => ArtboardNavigator.of(context).goTo(
-            PropertyCreateVerticalFloatingArtboard(),
+            LeaseCreateVerticalFloatingArtboard(),
           ),
       status: ButtonStatusOption.ready,
     );

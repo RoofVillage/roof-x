@@ -3,12 +3,11 @@ import 'package:theme/index.dart';
 import 'package:small_icon_library/index.dart';
 import 'package:distance/index.dart' as distance;
 import 'package:typography/index.dart' as typography;
-import 'package:navigator/index.dart';
 import 'package:option_picker_data/index.dart';
 
 typedef SelectedOptionsPasser<T> = Function(List<OptionPickerData<T>>);
 
-class OptionPicker<T> extends StatefulWidget {
+class OptionPicker<T> extends StatelessWidget {
   final String title;
   final String emptyText;
   final List<OptionPickerData<T>> initialSelected;
@@ -26,54 +25,25 @@ class OptionPicker<T> extends StatefulWidget {
   }) : isMultiSelect = isMultiSelect ?? false;
 
   @override
-  _OptionPicker<T> createState() => _OptionPicker<T>();
-}
-
-class _OptionPicker<T> extends State<OptionPicker<T>> {
-  List<OptionPickerData<T>> selectedOptions;
-
-  @override
-  void initState() {
-    selectedOptions = widget.initialSelected;
-    super.initState();
-  }
-
-  _onOptionTap(OptionPickerData<T> option) {
-    if (widget.isMultiSelect) {
-      setState(() {
-        selectedOptions.contains(option)
-            ? selectedOptions.remove(option)
-            : selectedOptions.add(option);
-      });
-    } else {
-      setState(() {
-        selectedOptions = [option];
-      });
-      ArtboardNavigator.of(context).pop(selectedOptions);
-    }
-    widget.onChanged(selectedOptions);
-  }
-
-  @override
   Widget build(BuildContext context) {
     final theme = RoofTheme.of(context);
 
     final List<Widget> columnChildren = [];
 
-    if (widget.title != null && widget.title.isNotEmpty) {
+    if (title != null && title.isNotEmpty) {
       final titleWidget = Text(
-        widget.title,
+        title,
         style: typography.heading2.textStyleWithColor(theme.color.text.brand),
       );
       columnChildren.add(titleWidget);
     }
 
     final optionsColumn = _OptionsColumn(
-      options: widget.options,
-      selectedOptions: selectedOptions,
-      isMultiSelect: widget.isMultiSelect,
+      options: options,
+      selectedOptions: initialSelected,
+      isMultiSelect: isMultiSelect,
       onOptionTap: _onOptionTap,
-      emptyText: widget.emptyText,
+      emptyText: emptyText,
     );
     columnChildren.add(optionsColumn);
 
@@ -82,6 +52,20 @@ class _OptionPicker<T> extends State<OptionPicker<T>> {
         children: columnChildren,
       ),
     );
+  }
+
+  _onOptionTap(OptionPickerData<T> option) {
+    List<OptionPickerData<T>> selectedOptions;
+
+    if (isMultiSelect) {
+      selectedOptions.contains(option)
+          ? selectedOptions.remove(option)
+          : selectedOptions.add(option);
+    } else {
+      selectedOptions = [option];
+    }
+
+    onChanged(selectedOptions);
   }
 }
 
@@ -115,7 +99,9 @@ class _OptionsColumn<T> extends StatelessWidget {
         final dropdownOption = _Option<T>(
           name: option.title,
           data: option.data,
-          selected: _selectedOptions.contains(option),
+          selected: _selectedOptions
+              .map((option) => option.title)
+              .contains(option.title),
           canToggle: isMultiSelect,
           onTap: () => onOptionTap(option),
         );
@@ -183,10 +169,8 @@ class _Option<T> extends StatelessWidget {
     final optionTitle = Text(
       name,
       style: (selected || canToggle)
-          ? _typographyStyle
-              .textStyleWithColor(theme.color.text.primary)
-          : _typographyStyle
-              .textStyleWithColor(theme.color.text.secondary),
+          ? _typographyStyle.textStyleWithColor(theme.color.text.primary)
+          : _typographyStyle.textStyleWithColor(theme.color.text.secondary),
     );
 
     final optionPadding = EdgeInsets.symmetric(

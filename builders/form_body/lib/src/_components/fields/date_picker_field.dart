@@ -5,7 +5,7 @@ import 'package:distance/index.dart' as distance;
 
 import '_picker_field.dart';
 
-class RoofDatePickerField extends StatefulWidget {
+class RoofDatePickerField extends StatelessWidget {
   final String title;
   final DateTime initialValue;
   final DateTime startBound;
@@ -32,16 +32,11 @@ class RoofDatePickerField extends StatefulWidget {
     this.focusNode,
   });
 
-  _RoofDatePickerFieldState createState() => _RoofDatePickerFieldState();
-}
-
-class _RoofDatePickerFieldState extends State<RoofDatePickerField> {
   final _typographyStyle = typography.bodyPrimary;
 
   @override
   Widget build(BuildContext context) {
-    final String formattedValue =
-        widget.initialValue.toLocal().toIso8601String();
+    final String formattedValue = initialValue.toLocal().toIso8601String();
     final TextStyle textStyle = _typographyStyle.textStyleWithColor(
       RoofTheme.of(context).color.text.primary,
     );
@@ -57,8 +52,8 @@ class _RoofDatePickerFieldState extends State<RoofDatePickerField> {
     );
 
     return RoofPickerField(
-      onTap: widget.onTap,
-      name: widget.title,
+      onTap: onTap,
+      name: title,
       fieldBody: fieldBody,
     );
   }

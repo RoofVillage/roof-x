@@ -4,7 +4,7 @@ import 'package:form_builder/index.dart';
 import 'package:ordinal_suffix_string_from_int/index.dart';
 import 'package:interval/index.dart';
 
-mixin PropertyCreateArtboardData implements FormBuilder {
+mixin LeaseCreateArtboardData implements FormBuilder {
   @override
   String get title => "Add a lease";
 

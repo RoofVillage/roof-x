@@ -19,7 +19,7 @@ String toIntervalString(int interval, {bool capitalize}) {
       break;
   }
 
-  if (capitalize)
+  if (capitalize ?? false)
     return string[0].toUpperCase() + string.substring(1);
   else
     return string;

@@ -16,7 +16,7 @@ dependencies:
   navigator:
     path: ../../../lib/navigator
   reset_password_artboard:
-    path: ../../reset_password
+    path: ../../shared/reset_password
   schedule:
     path: ../../../model/properties/schedule
   ordinal_suffix_string_from_int:

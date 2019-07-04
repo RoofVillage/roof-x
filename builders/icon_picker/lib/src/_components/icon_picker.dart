@@ -3,12 +3,11 @@ import 'package:theme/index.dart';
 import 'package:standard_icon_library/index.dart';
 import 'package:distance/index.dart' as distance;
 import 'package:typography/index.dart' as typography;
-import 'package:navigator/index.dart';
 import 'package:icon_picker_data/index.dart';
 
 typedef SelectedIconPasser = Function(IconPickerData);
 
-class IconPicker extends StatefulWidget {
+class IconPicker extends StatelessWidget {
   final String title;
   final IconPickerData selectedOption;
   final List<IconPickerData> options;
@@ -22,47 +21,23 @@ class IconPicker extends StatefulWidget {
   });
 
   @override
-  _IconPicker createState() => _IconPicker();
-}
-
-class _IconPicker extends State<IconPicker> {
-  IconPickerData selectedOption;
-
-  @override
-  void initState() {
-    selectedOption = widget.selectedOption;
-    super.initState();
-  }
-
-  _onOptionTap(IconPickerData option) {
-    setState(() {
-      selectedOption = option;
-    });
-
-    Future.delayed(
-      Duration(milliseconds: 100),
-      () => ArtboardNavigator.of(context).pop(option),
-    );
-  }
-
-  @override
   Widget build(BuildContext context) {
     final theme = RoofTheme.of(context);
 
     final List<Widget> columnChildren = [];
 
-    if (widget.title != null && widget.title.isNotEmpty) {
+    if (title != null && title.isNotEmpty) {
       final titleWidget = Text(
-        widget.title,
+        title,
         style: typography.heading2.textStyleWithColor(theme.color.text.brand),
       );
       columnChildren.add(titleWidget);
     }
 
     final iconsGrid = _IconsGrid(
-      options: widget.options,
+      options: options,
       selectedOption: selectedOption,
-      onTap: _onOptionTap,
+      onTap: onChanged,
     );
     columnChildren.add(iconsGrid);
 

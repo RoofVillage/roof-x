@@ -37,7 +37,6 @@ class _OptionPickerVerticalFloatingArtboardState<T>
 
   @override
   set selectedOptions(List<OptionPickerData<T>> newSelectedOptions) {
-    print("set new selectedOptions $newSelectedOptions");
     VerticalFloatingArtboardNavigatorPanel.of(context).result =
         newSelectedOptions;
   }

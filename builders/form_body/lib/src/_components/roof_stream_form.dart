@@ -11,8 +11,8 @@ import 'fields/text_area.dart';
 import 'fields/text_field.dart';
 import 'fields/switch_field.dart';
 import 'fields/date_picker_field.dart';
-import 'fields/select_field.dart';
-import 'fields/icon_select_field.dart';
+import 'fields/option_picker_field.dart';
+import 'fields/icon_picker_field.dart';
 
 enum KeyboardAccessoryState { hideKeyboard, submit }
 
@@ -131,9 +131,6 @@ class RoofStreamForm
       startBound: fieldData.startBound,
       endBound: fieldData.endBound,
       onTap: fieldData.onTap,
-      onChanged: (value) {
-        fieldData.onChanged(value);
-      },
     );
   }
 
@@ -142,10 +139,16 @@ class RoofStreamForm
     int fieldIndex,
     int sectionIndex,
   }) {
-    return RoofSelectField(
+    return OptionPickerField(
       title: fieldData.title,
       emptyText: fieldData.emptyText,
       isMultiSelect: fieldData.isMultiSelect,
+      selectedOptions: fieldData.selectedOptions?.map((option) {
+        return OptionPickerData(
+          title: option.title,
+          data: option.data,
+        );
+      })?.toList(),
       options: fieldData.options?.map(
         (option) {
           return OptionPickerData(
@@ -155,39 +158,24 @@ class RoofStreamForm
         },
       )?.toList(),
       onTap: fieldData.onTap,
-      onChanged: (selectedOptions) {
-        List<FormOptionSelectValueData> convertedOptions = selectedOptions?.map(
-          (option) {
-            return FormOptionSelectValueData(
-              title: option.title,
-              data: option.data,
-            );
-          },
-        )?.toList();
-        fieldData.onChanged(convertedOptions);
-      },
     );
   }
 
   Widget buildIconOptionSelect(
       {FormIconSelectFieldData fieldData, int fieldIndex, int sectionIndex}) {
-    List<IconPickerData> options = fieldData.options?.map(
-      (option) {
-        return IconPickerData(
-          icon: option.icon,
-        );
-      },
-    )?.toList();
-
-    return IconSelectField(
+    return IconPickerField(
       title: fieldData.title,
-      options: options,
+      selectedOption: fieldData.selectedOption != null
+          ? IconPickerData(icon: fieldData.selectedOption.icon)
+          : null,
+      options: fieldData.options?.map(
+        (option) {
+          return IconPickerData(
+            icon: option.icon,
+          );
+        },
+      )?.toList(),
       onTap: fieldData.onTap,
-      onChanged: (selectedOption) {
-        FormIconOptionSelectValueData convertedOption =
-            FormIconOptionSelectValueData(icon: selectedOption.icon);
-        fieldData.onChanged(convertedOption);
-      },
     );
   }
 

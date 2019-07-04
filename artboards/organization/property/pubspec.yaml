@@ -12,8 +12,8 @@ dependencies:
     path: ../../../lib/artboard
   tabbed_fullscreen_artboard_template:
     path: ../../../artboard_templates/vertical_full_screen/tabbed
-  property_create_artboard:
-    path: ../../../artboards/organization/property_create
+  lease_create_artboard:
+    path: ../../../artboards/organization/lease_create
   nav_bar_builder:
     path: ../../../builders/nav_bar
   nav_button_builder:
