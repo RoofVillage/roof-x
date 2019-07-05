@@ -1,8 +1,6 @@
 import 'dart:async';
 
 import 'package:form_builder/index.dart';
-import 'package:ordinal_suffix_string_from_int/index.dart';
-import 'package:interval/index.dart';
 import 'package:invoice_options/index.dart';
 
 mixin InvoiceCreateArtboardData implements FormBuilder {
@@ -26,33 +24,33 @@ mixin InvoiceCreateArtboardData implements FormBuilder {
   final _note = FormTextAreaData(title: "Note (optional)");
   final _amount = CurrencyFormTextFieldData(title: "Amount");
   final _dueDate = FormDateFieldData(title: "Due date");
-  final _destination = FormOptionSelectFieldData<String>(
+  final _destination = FormOptionSelectFieldData(
     title: "Destination",
     options: _getPaymentProfiles(),
   );
-  final _invoiceType = FormOptionSelectFieldData<InvoiceType>(
+  final _invoiceType = FormOptionSelectFieldData(
     title: "Invoice type",
     options: [
-      FormOptionSelectValueData<InvoiceType>(
+      FormOptionSelectValueData(
         title: "Rent",
         data: InvoiceType.fromString("contractual"),
       ),
-      FormOptionSelectValueData<InvoiceType>(
+      FormOptionSelectValueData(
         title: "Late fee",
         data: InvoiceType.fromString("lateFee"),
       ),
-      FormOptionSelectValueData<InvoiceType>(
+      FormOptionSelectValueData(
         title: "Security deposit",
         data: InvoiceType.fromString("securityDeposit"),
       ),
-      FormOptionSelectValueData<InvoiceType>(
+      FormOptionSelectValueData(
         title: "Other",
         data: InvoiceType.fromString("other"),
       ),
     ],
   );
 
-  static List<FormOptionSelectValueData<String>> _getPaymentProfiles() {
+  static List<FormOptionSelectValueData> _getPaymentProfiles() {
     // TODO get payment profiels
     return [];
   }

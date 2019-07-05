@@ -132,7 +132,7 @@ mixin FormBodyBuilder implements StatefulWidget {
     });
   }
 
-  void _setupOptionSelectFieldData(BuildContext context,
+  void _setupOptionSelectFieldData<T>(BuildContext context,
       {@required FormOptionSelectFieldData data}) {
     data.addOnTapListener(() async {
       final convertedOptions = data.options

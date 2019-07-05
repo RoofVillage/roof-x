@@ -36,39 +36,52 @@ mixin LeaseCreateArtboardData implements FormBuilder {
   // TODO: field conditional visibility
   final _intervalFrequency =
       IntervalFormSelectFieldData(title: "Rent due", size: 1 / 2);
+
   final _scheduleFrequency = FrequencyFormSelectFieldData(size: 1 / 2);
+
   final _dueOn =
-      FormOptionSelectFieldData<int>(options: _buildDueOnOptions());
+      FormOptionSelectFieldData(options: _buildDueOnOptions());
+
   final _amount = CurrencyFormTextFieldData(title: "Rent amount");
+
   final _startDate = FormDateFieldData(title: "Lease begins");
+
   final _endDate = FormDateFieldData(title: "Lease ends (optional)");
+
   final _pastInvoices = FormSwitchFieldData(
       title:
           "Your start date is in the past. Create invoices due earlier than today?");
+
   final _continue = FormSwitchFieldData(title: _getContinueString());
+
   final _name = ShortFormTextFieldData(title: "Lease name (optional)");
+
   final _rentDestination = FormOptionSelectFieldData(
     title: "Default rent destination",
     emptyText: "No payment profiles available",
     options: _getPaymentProfiles(),
   );
+
   final _feePayer =
       FeePayerFormSelectFieldData(title: "\$2 payment charge is covered by...");
+
   final _lateFee = FormSwitchFieldData(title: "Charge a late fee?");
+
   final _lateFeeAmount = CurrencyFormTextFieldData(title: "Late fee amount");
+  
   final _daysUntilLateFee = IntegerFormTextFieldData(
       title: "Days before late fee charged", maxValue: 31);
 
-  static List<FormOptionSelectValueData<int>> _buildDueOnOptions() {
-    final List<FormOptionSelectValueData<int>> options = [];
+  static List<FormOptionSelectValueData> _buildDueOnOptions() {
+    final List<FormOptionSelectValueData> options = [];
 
     for (int i = 1; i < 30; i++) {
       final string = "on the ${ordinalSuffixString(i)}";
-      final option = FormOptionSelectValueData<int>(title: string, data: i);
+      final option = FormOptionSelectValueData(title: string, data: i);
       options.add(option);
     }
 
-    final lastOption = FormOptionSelectValueData<int>(
+    final lastOption = FormOptionSelectValueData(
       title: "on the last day",
       data: 30,
     );
