@@ -17,8 +17,8 @@ mixin LeaseCreateArtboardData implements FormBuilder {
 
   @override
   Future<List<StreamableFormFieldData>> get initialFieldData async => [
-        _scheduleFrequency,
         _intervalFrequency,
+        _scheduleFrequency,
         _dueOn,
         _amount,
         _startDate,
@@ -34,9 +34,11 @@ mixin LeaseCreateArtboardData implements FormBuilder {
       ];
 
   // TODO: field conditional visibility
-  final _scheduleFrequency = FrequencyFormSelectFieldData(title: "Rent due");
-  final _intervalFrequency = IntervalFormSelectFieldData();
-  final _dueOn = FormOptionSelectFieldData(options: _buildDueOnOptions());
+  final _intervalFrequency =
+      IntervalFormSelectFieldData(title: "Rent due", size: 1 / 2);
+  final _scheduleFrequency = FrequencyFormSelectFieldData(size: 1 / 2);
+  final _dueOn =
+      FormOptionSelectFieldData<int>(options: _buildDueOnOptions());
   final _amount = CurrencyFormTextFieldData(title: "Rent amount");
   final _startDate = FormDateFieldData(title: "Lease begins");
   final _endDate = FormDateFieldData(title: "Lease ends (optional)");
@@ -58,10 +60,9 @@ mixin LeaseCreateArtboardData implements FormBuilder {
       title: "Days before late fee charged", maxValue: 31);
 
   static List<FormOptionSelectValueData<int>> _buildDueOnOptions() {
-    
     final List<FormOptionSelectValueData<int>> options = [];
 
-    for (int i = 0; i < 30; i++) {
+    for (int i = 1; i < 30; i++) {
       final string = "on the ${ordinalSuffixString(i)}";
       final option = FormOptionSelectValueData<int>(title: string, data: i);
       options.add(option);

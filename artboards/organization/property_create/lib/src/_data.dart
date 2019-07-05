@@ -41,11 +41,13 @@ mixin PropertyCreateArtboardData implements FormBuilder {
   // "mask" text field content by spaces/commas into little pill widgets?
   // final _tags =
 
-  static List<FormOptionSelectValueData> _getPaymentProfiles() {
+  static List<FormOptionSelectValueData<String>> _getPaymentProfiles() {
     // TODO
     return [
-      FormOptionSelectValueData(title: "Payment profile 1", data: "asdf"),
-      FormOptionSelectValueData(title: "Payment profile 2", data: "pyio"),
+      FormOptionSelectValueData<String>(
+          title: "Payment profile 1", data: "asdf"),
+      FormOptionSelectValueData<String>(
+          title: "Payment profile 2", data: "pyio"),
     ];
   }
 

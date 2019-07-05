@@ -10,7 +10,7 @@ class IntervalFormSelectFieldData extends FormOptionSelectFieldData {
     for (int i = 0; i < count; i++) {
       final optionTitle = toIntervalString(i);
       options.add(
-        FormOptionSelectValueData(title: optionTitle, data: i),
+        FormOptionSelectValueData<int>(title: optionTitle, data: i),
       );
     }
 

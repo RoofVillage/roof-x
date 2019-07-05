@@ -29,7 +29,7 @@ mixin FormBodyBuilder implements StatefulWidget {
   String get submitButtonText;
   bool get canSubmitWithKeyboardRaised => true;
 
-  double get fieldHorizontalSpacing => distance.c;
+  double get fieldHorizontalSpacing => 1.0;
 
   StreamFormBloc get form => _form.bloc;
 

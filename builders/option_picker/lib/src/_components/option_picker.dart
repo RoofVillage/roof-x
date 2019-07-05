@@ -99,9 +99,7 @@ class _OptionsColumn<T> extends StatelessWidget {
         final dropdownOption = _Option<T>(
           name: option.title,
           data: option.data,
-          selected: _selectedOptions
-              .map((option) => option.title)
-              .contains(option.title),
+          selected: _selectedOptions.contains(option),
           canToggle: isMultiSelect,
           onTap: () => onOptionTap(option),
         );

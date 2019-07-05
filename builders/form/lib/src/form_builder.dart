@@ -49,7 +49,7 @@ mixin FormBuilderState<T extends FormBuilder>
   }
 
   final _headerStyle = typography.heading1;
-  final _subtitleStyle = typography.bodyPrimary;
+  final _subtitleStyle = typography.bodySecondary;
 
   final _bodyVerticalPadding = EdgeInsets.only(top: distance.d);
   final _buttonPadding = EdgeInsets.only(
@@ -79,10 +79,14 @@ mixin FormBuilderState<T extends FormBuilder>
     }
 
     if (widget.subtitle != null) {
+      final subtitleTextWidget = Text(
+        widget.subtitle,
+        style: subtitleStyle,
+      );
       widgets.add(
-        Text(
-          widget.subtitle,
-          style: subtitleStyle,
+        Padding(
+          padding: EdgeInsets.all(distance.b),
+          child: subtitleTextWidget,
         ),
       );
     }

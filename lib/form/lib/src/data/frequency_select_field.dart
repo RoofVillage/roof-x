@@ -10,16 +10,16 @@ class FrequencyFormSelectFieldData extends FormOptionSelectFieldData {
     final monthly = FrequencyType.fromString("monthly");
 
     return [
-      FormOptionSelectValueData(
-        title: daily.toString(),
+      FormOptionSelectValueData<FrequencyType>(
+        title: daily.inlineString,
         data: daily,
       ),
-      FormOptionSelectValueData(
-        title: weekly.toString(),
+      FormOptionSelectValueData<FrequencyType>(
+        title: weekly.inlineString,
         data: weekly,
       ),
-      FormOptionSelectValueData(
-        title: monthly.toString(),
+      FormOptionSelectValueData<FrequencyType>(
+        title: monthly.inlineString,
         data: monthly,
       ),
     ];

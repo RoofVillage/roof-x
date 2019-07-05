@@ -33,19 +33,19 @@ mixin InvoiceCreateArtboardData implements FormBuilder {
   final _invoiceType = FormOptionSelectFieldData<InvoiceType>(
     title: "Invoice type",
     options: [
-      FormOptionSelectValueData(
+      FormOptionSelectValueData<InvoiceType>(
         title: "Rent",
         data: InvoiceType.fromString("contractual"),
       ),
-      FormOptionSelectValueData(
+      FormOptionSelectValueData<InvoiceType>(
         title: "Late fee",
         data: InvoiceType.fromString("lateFee"),
       ),
-      FormOptionSelectValueData(
+      FormOptionSelectValueData<InvoiceType>(
         title: "Security deposit",
         data: InvoiceType.fromString("securityDeposit"),
       ),
-      FormOptionSelectValueData(
+      FormOptionSelectValueData<InvoiceType>(
         title: "Other",
         data: InvoiceType.fromString("other"),
       ),
