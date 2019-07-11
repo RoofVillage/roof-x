@@ -11,6 +11,7 @@ import 'fields/text_area.dart';
 import 'fields/text_field.dart';
 import 'fields/switch_field.dart';
 import 'fields/date_picker_field.dart';
+import 'fields/time_picker_field.dart';
 import 'fields/option_picker_field.dart';
 import 'fields/icon_picker_field.dart';
 
@@ -161,8 +162,23 @@ class RoofStreamForm
     );
   }
 
-  Widget buildIconOptionSelect(
-      {FormIconSelectFieldData fieldData, int fieldIndex, int sectionIndex}) {
+  Widget buildTimeSelect({
+    FormTimePickerFieldData fieldData,
+    int fieldIndex,
+    int sectionIndex,
+  }) {
+    return TimePickerField(
+      title: fieldData.title,
+      initialValue: fieldData.value,
+      onTap: fieldData.onTap,
+    );
+  }
+
+  Widget buildIconOptionSelect({
+    FormIconSelectFieldData fieldData,
+    int fieldIndex,
+    int sectionIndex,
+  }) {
     return IconPickerField(
       title: fieldData.title,
       selectedOption: fieldData.selectedOption != null
@@ -214,6 +230,12 @@ class RoofStreamForm
       );
     } else if (fieldData is FormOptionSelectFieldData) {
       fieldBody = buildOptionSelect(
+        fieldData: fieldData,
+        fieldIndex: fieldIndex,
+        sectionIndex: sectionIndex,
+      );
+    } else if (fieldData is FormTimePickerFieldData) {
+      fieldBody = buildTimeSelect(
         fieldData: fieldData,
         fieldIndex: fieldIndex,
         sectionIndex: sectionIndex,

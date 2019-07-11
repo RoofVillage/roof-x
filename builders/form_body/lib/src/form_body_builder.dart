@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:distance/index.dart' as distance;
 import 'package:form/index.dart';
 import 'package:form_validation_exception/index.dart';
 import 'package:haptics/index.dart';
@@ -9,8 +8,10 @@ import 'package:date/index.dart';
 import 'package:date_picker_builder/index.dart';
 import 'package:option_picker_builder/index.dart';
 import 'package:option_picker_data/index.dart';
-import 'package:icon_picker_data/index.dart';
 import 'package:icon_picker_builder/index.dart';
+import 'package:icon_picker_data/index.dart';
+import 'package:time_picker_builder/index.dart';
+
 import 'package:artboard/index.dart';
 
 import '_components/keyboard_accessory_buttons/index.dart';
@@ -62,6 +63,11 @@ mixin FormBodyBuilder implements StatefulWidget {
     List<IconPickerData> options,
   });
 
+  TimePickerBuilder buildTimePicker(
+    BuildContext context, {
+    TimeOfDay selectedTime,
+  });
+
   Future<T> goTo<T>(
       {@required BuildContext context, @required Artboard<T> artboard});
   void onFocusChanged(
@@ -75,6 +81,8 @@ mixin FormBodyBuilder implements StatefulWidget {
         _setupOptionSelectFieldData(context, data: data);
       if (data is FormIconSelectFieldData)
         _setupIconSelectFieldData(context, data: data);
+      if (data is FormTimePickerFieldData)
+        _setupTimePickerFieldData(context, data: data);
     }
     setupFields(context, fieldData: fieldData);
   }
@@ -163,6 +171,18 @@ mixin FormBodyBuilder implements StatefulWidget {
       data.selectedOptions = newSelectedOptions
           .map((option) => FormOptionSelectValueData(title: option.title))
           .toList();
+      form.updateFieldData(data);
+    });
+  }
+
+  void _setupTimePickerFieldData(BuildContext context,
+      {@required FormTimePickerFieldData data}) {
+    data.addOnTapListener(() async {
+      final artboard = buildTimePicker(context, selectedTime: data.value);
+      final newSelectedTime =
+          await goTo<TimeOfDay>(context: context, artboard: artboard);
+      if (newSelectedTime == null) return;
+      data.value = newSelectedTime;
       form.updateFieldData(data);
     });
   }

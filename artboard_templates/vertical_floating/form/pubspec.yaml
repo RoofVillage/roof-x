@@ -24,6 +24,8 @@ dependencies:
     path: ../../../builders/date_picker
   option_picker_builder:
     path: ../../../builders/option_picker
+  time_picker_builder:
+    path: ../../../builders/time_picker
   icon_picker_builder:
     path: ../../../builders/icon_picker
   button_builder:
@@ -32,6 +34,8 @@ dependencies:
     path: ../../../artboards/shared/date_picker
   option_picker_artboard:
     path: ../../../artboards/shared/option_picker
+  time_picker_artboard:
+    path: ../../../artboards/shared/time_picker
 
 dev_dependencies:
   flutter_test:

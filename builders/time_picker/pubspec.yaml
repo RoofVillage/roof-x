@@ -9,6 +9,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  artboard:
+    path: ../../lib/artboard
   theme:
     path: ../../theme
   duration:
@@ -17,6 +19,10 @@ dependencies:
     path: ../../spec/curve
   haptics:
     path: ../../lib/haptics
+  roller_column_data:
+    path: ../../roller_column_data
+  roller_column_picker_builder:
+    path: ../roller_column_picker
   typography:
     path: ../../spec/typography
 

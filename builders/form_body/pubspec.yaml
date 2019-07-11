@@ -57,6 +57,8 @@ dependencies:
     path: ../../option_picker_data
   icon_picker_data:
     path: ../../icon_picker_data
+  time_picker_builder:
+    path: ../../builders/time_picker
 
 dev_dependencies:
   flutter_test:

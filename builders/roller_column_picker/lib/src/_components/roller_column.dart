@@ -1,0 +1,58 @@
+import 'package:flutter/material.dart';
+import 'package:theme/index.dart';
+import 'package:roller_column_data/index.dart';
+import 'package:typography/index.dart' as typography;
+
+class RollerColumn<T> extends StatelessWidget {
+  /// Builds a column of widgets from a [list] of int values repeated three times to allow simulated infinite scrolling, with the [selectedValue] highlighted.
+
+  final RollerColumnData<T> selectedValue;
+  final List<RollerColumnData<T>> list;
+  final bool canRollover;
+
+  RollerColumn({
+    @required this.selectedValue,
+    @required this.list,
+    canRollover,
+  }) : this.canRollover = canRollover ?? false;
+
+  final _inactiveTypography = typography.bodyPrimary;
+  final _activeTypography = typography.bodyPrimaryThick;
+  final double _stepHeight = 40;
+
+  @override
+  Widget build(BuildContext context) {
+    final activeTextColor = RoofTheme.of(context).color.text.primary;
+    final inactiveTextColor = RoofTheme.of(context).color.text.secondary;
+    final activeStyle = _activeTypography.textStyleWithColor(activeTextColor);
+    final inactiveStyle =
+        _inactiveTypography.textStyleWithColor(inactiveTextColor);
+
+    final widgetsLength = list.length * (canRollover ? 3 : 1);
+
+    List<Widget> widgets = [];
+
+    for (var i = 0; i < widgetsLength; i++) {
+      final j = i % list.length;
+
+      final style = (list[j] == selectedValue) ? activeStyle : inactiveStyle;
+
+      widgets.add(
+        Container(
+          height: _stepHeight,
+          child: Center(
+            child: Text(
+              list[j].title,
+              style: style,
+            ),
+          ),
+        ),
+      );
+    }
+
+    return Container(
+      height: widgets.length * _stepHeight,
+      child: Column(children: widgets),
+    );
+  }
+}

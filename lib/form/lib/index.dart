@@ -26,3 +26,4 @@ export 'src/data/composition_field.dart';
 export 'src/data/currency_text_field.dart';
 export 'src/data/date_field.dart';
 export 'src/data/picker_field.dart';
+export 'src/data/time_select.dart';

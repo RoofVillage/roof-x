@@ -9,4 +9,4 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_svg: ^0.12.4+2
+  flutter_svg: ^0.13.0

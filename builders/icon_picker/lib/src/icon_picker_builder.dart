@@ -6,7 +6,7 @@ import 'package:icon_picker_builder/src/_components/icon_picker.dart';
 
 import '_components/icon_picker.dart';
 
-//Date pickers must be an artboard
+//Icon picker must be an artboard
 mixin IconPickerBuilder implements Artboard<IconPickerData> {
   String get title;
   IconPickerData get selectedOption;

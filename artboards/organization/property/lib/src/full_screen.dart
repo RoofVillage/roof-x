@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:theme/index.dart';
 import 'package:standard_icon_library/index.dart';
@@ -32,7 +34,6 @@ abstract class PropertyVerticalFullScreenArtboard
   }
 
   Future<void> edit(BuildContext context) async {
-    print("yo");
     ArtboardNavigator.of(context).goTo(
       LeaseCreateVerticalFloatingArtboard(),
     );

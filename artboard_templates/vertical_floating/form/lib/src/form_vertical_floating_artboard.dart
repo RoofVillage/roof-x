@@ -16,6 +16,8 @@ import 'package:icon_picker_artboard/index.dart';
 import 'package:icon_picker_data/index.dart';
 import 'package:vertical_floating_artboard_scaffold/index.dart';
 import 'package:option_picker_data/index.dart';
+import 'package:time_picker_builder/index.dart';
+import 'package:time_picker_artboard/index.dart';
 
 abstract class FormVerticalFloatingArtboard<T> extends StatefulWidget
     with
@@ -70,6 +72,14 @@ abstract class FormVerticalFloatingArtboard<T> extends StatefulWidget
       title: title,
       selectedOption: selectedOption,
       options: options,
+    );
+  }
+
+  @override
+  TimePickerBuilder buildTimePicker(BuildContext context,
+      {TimeOfDay selectedTime}) {
+    return TimePickerVerticalFloatingArtboard(
+      initialValue: selectedTime,
     );
   }
 

@@ -1,0 +1,29 @@
+name: roller_column_picker_builder
+description: Picker with vertical endless scrolling list view.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  roller_column_data:
+    path: ../../roller_column_data
+  theme:
+    path: ../../theme
+  curve:
+    path: ../../spec/curve
+  duration:
+    path: ../../spec/duration
+  distance:
+    path: ../../spec/distance
+  haptics:
+    path: ../../lib/haptics
+  typography:
+    path: ../../spec/typography
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
