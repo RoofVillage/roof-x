@@ -12,12 +12,14 @@ class RollerColumnPicker<T> extends StatefulWidget {
   final List<RollerColumnData<T>> list;
   final Function onChange;
   final bool canRollover;
+  final int optionsVisible;
 
   RollerColumnPicker({
     this.selectedValue,
     this.list,
     this.onChange,
     this.canRollover,
+    this.optionsVisible,
   });
 
   @override
@@ -26,15 +28,18 @@ class RollerColumnPicker<T> extends StatefulWidget {
 
 class _RollerColumnPickerState<T> extends State<RollerColumnPicker> {
   final double _stepHeight = 40;
-  static final int _stepsVisible = 5;
-  final _boundaryStepCount = (_stepsVisible - 1) ~/ 2;
 
+  int _stepsVisible;
+  double _boundaryOffset;
   ScrollController _scrollController;
   bool _canRollover;
   RollerColumnData _selectedValue;
 
   @override
   void initState() {
+    _stepsVisible = widget.optionsVisible ?? 5;
+    _boundaryOffset = _stepHeight * (_stepsVisible - 1) / 2;
+
     _selectedValue = widget.selectedValue;
 
     if (widget.list.length < _stepsVisible) {
@@ -46,7 +51,7 @@ class _RollerColumnPickerState<T> extends State<RollerColumnPicker> {
     double initialOffset = _stepHeight * widget.list.indexOf(_selectedValue);
 
     if (_canRollover) {
-      initialOffset += _stepHeight * (widget.list.length - _boundaryStepCount);
+      initialOffset += _stepHeight * widget.list.length - _boundaryOffset;
     }
 
     _scrollController = ScrollController(initialScrollOffset: initialOffset);
@@ -79,7 +84,7 @@ class _RollerColumnPickerState<T> extends State<RollerColumnPicker> {
     for (int i = 0; i < widget.list.length * (_canRollover ? 3 : 1); i++) {
       double stepCenter = _stepHeight * (i - .5);
 
-      if (_canRollover) stepCenter -= _boundaryStepCount * _stepHeight;
+      if (_canRollover) stepCenter -= _boundaryOffset;
 
       final offsetFromStepCenter =
           (stepCenter - _scrollController.offset).abs();
@@ -95,8 +100,9 @@ class _RollerColumnPickerState<T> extends State<RollerColumnPicker> {
     final delayBeforeSnap = Duration(milliseconds: 50);
 
     Future.delayed(delayBeforeSnap, () {
-      final double targetOffset =
-          (_getNearestStepIndex() - _boundaryStepCount) * _stepHeight;
+      double targetOffset = _getNearestStepIndex() * _stepHeight;
+
+      if (_canRollover) targetOffset -= _boundaryOffset;
 
       _scrollController.animateTo(
         targetOffset,
@@ -125,7 +131,7 @@ class _RollerColumnPickerState<T> extends State<RollerColumnPicker> {
   Widget build(BuildContext context) {
     double verticalPadding = 0;
     if (!_canRollover) {
-      verticalPadding = _boundaryStepCount * _stepHeight;
+      verticalPadding = _boundaryOffset;
     }
 
     return Container(

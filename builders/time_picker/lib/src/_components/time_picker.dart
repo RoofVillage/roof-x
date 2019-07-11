@@ -18,7 +18,9 @@ class TimePicker extends StatefulWidget {
 }
 
 class TimePickerState extends State<TimePicker> with RollerColumnPickerBuilder {
-  final _minutesSpacing = 5;
+  final int _minutesSpacing = 5;
+  final double _columnWidth = distance.f;
+  final double _verticalPadding = distance.c;
 
   final List<RollerColumnData<int>> _minutesList = [];
   final List<RollerColumnData<int>> _hoursList = [];
@@ -33,7 +35,7 @@ class TimePickerState extends State<TimePicker> with RollerColumnPickerBuilder {
 
   @override
   void initState() {
-    _selectedTime = widget.initialValue ?? TimeOfDay(hour: 1, minute: 0);
+    _selectedTime = widget.initialValue ?? TimeOfDay(hour: 12, minute: 0);
 
     _clockType = _clockTypeFromHour(_selectedTime.hour);
 
@@ -80,27 +82,38 @@ class TimePickerState extends State<TimePicker> with RollerColumnPickerBuilder {
     final selectedHour = _rollerColumnDataFromHour(_selectedTime.hour);
 
     final Widget hoursColumn = Flexible(
-      child: buildRollerColumnPicker(
-        context,
-        list: _hoursList,
-        selectedValue: selectedHour,
-        onChange: _onHoursChange,
+      child: Container(
+        width: _columnWidth,
+        child: buildRollerColumnPicker(
+          context,
+          list: _hoursList,
+          selectedValue: selectedHour,
+          onChange: _onHoursChange,
+        ),
       ),
     );
 
     final timeDividerTextStyle = typography.bodyPrimary.textStyleWithColor(
       RoofTheme.of(context).color.text.secondary,
     );
-    final Widget timeDivider = Padding(
-        padding: EdgeInsets.symmetric(horizontal: distance.c),
-        child: Text(":", style: timeDividerTextStyle));
+    final Widget timeDivider = Flexible(
+      child: Container(
+        width: _columnWidth / 2,
+        child: Center(
+          child: Text(":", style: timeDividerTextStyle),
+        ),
+      ),
+    );
 
     final Widget minutesColumn = Flexible(
-      child: buildRollerColumnPicker(
-        context,
-        list: _minutesList,
-        selectedValue: _rollerColumnDataFromMinute(_selectedTime.minute),
-        onChange: _onMinutesChange,
+      child: Container(
+        width: _columnWidth,
+        child: buildRollerColumnPicker(
+          context,
+          list: _minutesList,
+          selectedValue: _rollerColumnDataFromMinute(_selectedTime.minute),
+          onChange: _onMinutesChange,
+        ),
       ),
     );
 
@@ -114,17 +127,21 @@ class TimePickerState extends State<TimePicker> with RollerColumnPickerBuilder {
       final ClockType clockType = _clockTypeFromHour(_selectedTime.hour);
 
       final Widget clockTypeColumn = Flexible(
-        child: buildRollerColumnPicker(
-          context,
-          list: _clockTypeList,
-          selectedValue: _rollerColumnDataFromClockType(clockType),
-          onChange: _onClockTypeChange,
+        child: Container(
+          width: _columnWidth,
+          child: buildRollerColumnPicker(
+            context,
+            list: _clockTypeList,
+            selectedValue: _rollerColumnDataFromClockType(clockType),
+            onChange: _onClockTypeChange,
+          ),
         ),
       );
       columns.add(clockTypeColumn);
     }
 
     return Container(
+      padding: EdgeInsets.symmetric(vertical: _verticalPadding),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
