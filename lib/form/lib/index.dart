@@ -27,3 +27,5 @@ export 'src/data/currency_text_field.dart';
 export 'src/data/date_field.dart';
 export 'src/data/picker_field.dart';
 export 'src/data/time_select.dart';
+export 'src/data/interval_frequency_select.dart';
+export 'src/data/interval_frequency_select_value.dart';

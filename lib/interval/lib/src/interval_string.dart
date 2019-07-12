@@ -1,20 +1,21 @@
-import 'package:frequency_type/index.dart';
+import 'package:ordinal_suffix_string_from_int/index.dart';
 
-String toIntervalFrequencyString(int interval, String frequency,
-    {bool capitalize}) {
-  final String frequencyString =
-      FrequencyType.fromString(frequency).inlineString;
+String toIntervalString(int interval, {bool capitalize}) {
+  final String ordinalSuffix = ordinalSuffixString(interval);
 
   String string;
   switch (interval) {
     case 0:
-      string = "$frequencyString-to-$frequencyString";
+      string = "every";
       break;
     case 1:
-      string = "bi-$frequency";
+      string = "every other";
+      break;
+    case 2:
+      string = "every third";
       break;
     default:
-      string = "every $interval ${frequency}s";
+      string = "every $interval$ordinalSuffix";
       break;
   }
 

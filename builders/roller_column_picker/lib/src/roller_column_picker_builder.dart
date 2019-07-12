@@ -9,13 +9,15 @@ mixin RollerColumnPickerBuilder {
     @required List<RollerColumnData<T>> list,
     RollerColumnData<T> selectedValue,
     bool canRollover,
+    CrossAxisAlignment crossAxisAlignment,
     Function onChange,
   }) {
     return RollerColumnPicker<T>(
       list: list,
       selectedValue: selectedValue,
-      onChange: onChange,
       canRollover: canRollover,
+      crossAxisAlignment: crossAxisAlignment,
+      onChange: onChange,
     );
   }
 }

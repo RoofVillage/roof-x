@@ -9,10 +9,12 @@ class RollerColumn<T> extends StatelessWidget {
   final RollerColumnData<T> selectedValue;
   final List<RollerColumnData<T>> list;
   final bool canRollover;
+  final CrossAxisAlignment crossAxisAlignment;
 
   RollerColumn({
     @required this.selectedValue,
     @required this.list,
+    this.crossAxisAlignment,
     canRollover,
   }) : this.canRollover = canRollover ?? false;
 
@@ -40,11 +42,10 @@ class RollerColumn<T> extends StatelessWidget {
       widgets.add(
         Container(
           height: _stepHeight,
-          child: Center(
-            child: Text(
-              list[j].title,
-              style: style,
-            ),
+          child: Text(
+            list[j].title,
+            textAlign: TextAlign.end,
+            style: style,
           ),
         ),
       );
@@ -52,7 +53,10 @@ class RollerColumn<T> extends StatelessWidget {
 
     return Container(
       height: widgets.length * _stepHeight,
-      child: Column(children: widgets),
+      child: Column(
+        children: widgets,
+        crossAxisAlignment: crossAxisAlignment ?? CrossAxisAlignment.center,
+      ),
     );
   }
 }

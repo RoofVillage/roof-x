@@ -1,0 +1,37 @@
+name: interval_frequency_picker_builder
+description: Component for selecting a schedule interval and frequency
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  artboard:
+    path: ../../lib/artboard
+  theme:
+    path: ../../theme
+  duration:
+    path: ../../spec/duration
+  curve:
+    path: ../../spec/curve
+  frequency_type:
+    path: ../../types/frequency
+  haptics:
+    path: ../../lib/haptics
+  interval:
+    path: ../../lib/interval
+  interval_frequency_picker_data:
+    path: ../../interval_frequency_picker_data
+  roller_column_data:
+    path: ../../roller_column_data
+  roller_column_picker_builder:
+    path: ../roller_column_picker
+  typography:
+    path: ../../spec/typography
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

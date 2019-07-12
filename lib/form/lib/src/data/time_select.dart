@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'picker_field.dart';
 
-class FormTimePickerFieldData<T> extends PickerFieldData<TimeOfDay> {
+class FormTimePickerFieldData extends PickerFieldData<TimeOfDay> {
   FormTimePickerFieldData({
     String title,
     TimeOfDay selectedTime,

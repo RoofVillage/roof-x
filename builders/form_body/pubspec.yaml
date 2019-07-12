@@ -53,12 +53,18 @@ dependencies:
     path: ../../artboards/shared/option_picker
   icon_picker_artboard:
     path: ../../artboards/shared/icon_picker
+  interval_frequency_picker_artboard:
+    path: ../../artboards/shared/interval_frequency_picker
   option_picker_data:
     path: ../../option_picker_data
   icon_picker_data:
     path: ../../icon_picker_data
+  interval_frequency_picker_data:
+    path: ../../interval_frequency_picker_data
   time_picker_builder:
     path: ../../builders/time_picker
+  interval_frequency_picker_builder:
+    path: ../../builders/interval_frequency_picker
 
 dev_dependencies:
   flutter_test:

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:form/index.dart';
+import 'package:form_body_builder/src/_components/fields/interval_frequency_picker_field.dart';
 import 'package:icon_picker_data/index.dart';
+import 'package:interval_frequency_picker_data/index.dart';
 import 'package:keyboard_accessory/index.dart';
 import 'package:keyboard_accessory_bar_builder/index.dart';
 import 'package:option_picker_data/index.dart';
@@ -174,6 +176,20 @@ class RoofStreamForm
     );
   }
 
+  Widget buildIntervalFrequencySelect({
+    FormIntervalFrequencyPickerFieldData fieldData,
+    int fieldIndex,
+    int sectionIndex,
+  }) {
+    return IntervalFrequencyPickerField(
+      title: fieldData.title,
+      initialValue: IntervalFrequencyPickerData(
+          interval: fieldData.value?.interval,
+          frequency: fieldData.value?.frequency),
+      onTap: fieldData.onTap,
+    );
+  }
+
   Widget buildIconOptionSelect({
     FormIconSelectFieldData fieldData,
     int fieldIndex,
@@ -248,6 +264,12 @@ class RoofStreamForm
       );
     } else if (fieldData is FormDateFieldData) {
       fieldBody = buildDateField(
+        fieldData: fieldData,
+        fieldIndex: fieldIndex,
+        sectionIndex: sectionIndex,
+      );
+    } else if (fieldData is FormIntervalFrequencyPickerFieldData) {
+      fieldBody = buildIntervalFrequencySelect(
         fieldData: fieldData,
         fieldIndex: fieldIndex,
         sectionIndex: sectionIndex,

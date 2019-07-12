@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:roller_column_data/index.dart';
 import 'package:haptics/index.dart';
 import 'package:curve/index.dart' as curve;
-import 'package:distance/index.dart' as distance;
 import 'package:duration/index.dart' as duration;
 
 import '_components/roller_column.dart';
@@ -13,6 +12,7 @@ class RollerColumnPicker<T> extends StatefulWidget {
   final Function onChange;
   final bool canRollover;
   final int optionsVisible;
+  final CrossAxisAlignment crossAxisAlignment;
 
   RollerColumnPicker({
     this.selectedValue,
@@ -20,6 +20,7 @@ class RollerColumnPicker<T> extends StatefulWidget {
     this.onChange,
     this.canRollover,
     this.optionsVisible,
+    this.crossAxisAlignment,
   });
 
   @override
@@ -53,6 +54,8 @@ class _RollerColumnPickerState<T> extends State<RollerColumnPicker> {
     if (_canRollover) {
       initialOffset += _stepHeight * widget.list.length - _boundaryOffset;
     }
+
+    print("initialOffset $initialOffset");
 
     _scrollController = ScrollController(initialScrollOffset: initialOffset);
 
@@ -148,13 +151,13 @@ class _RollerColumnPickerState<T> extends State<RollerColumnPicker> {
           controller: _scrollController,
           padding: EdgeInsets.symmetric(
             vertical: verticalPadding,
-            horizontal: distance.c,
           ),
           children: [
             RollerColumn(
               selectedValue: _selectedValue,
               list: widget.list,
               canRollover: _canRollover,
+              crossAxisAlignment: widget.crossAxisAlignment,
             )
           ],
         ),
