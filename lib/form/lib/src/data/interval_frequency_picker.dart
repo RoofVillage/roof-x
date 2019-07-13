@@ -1,11 +1,11 @@
-import 'package:form/src/data/interval_frequency_select_value.dart';
+import 'package:form/src/data/interval_frequency_picker_data.dart';
 
 import 'picker_field.dart';
 
-class FormIntervalFrequencyPickerFieldData extends PickerFieldData<FormIntervalFrequencySelectValueData> {
+class FormIntervalFrequencyPickerFieldData extends PickerFieldData<FormIntervalFrequencyOptionData> {
   FormIntervalFrequencyPickerFieldData({
     String title,
-    FormIntervalFrequencySelectValueData selectedSchedule,
+    FormIntervalFrequencyOptionData selectedSchedule,
     double size,
     bool isVisible,
   }) : super(

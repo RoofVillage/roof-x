@@ -24,33 +24,33 @@ mixin InvoiceCreateArtboardData implements FormBuilder {
   final _note = FormTextAreaData(title: "Note (optional)");
   final _amount = CurrencyFormTextFieldData(title: "Amount");
   final _dueDate = FormDateFieldData(title: "Due date");
-  final _destination = FormOptionSelectFieldData(
+  final _destination = FormOptionPickerFieldData(
     title: "Destination",
     options: _getPaymentProfiles(),
   );
-  final _invoiceType = FormOptionSelectFieldData(
+  final _invoiceType = FormOptionPickerFieldData(
     title: "Invoice type",
     options: [
-      FormOptionSelectValueData(
+      FormOptionPickerData(
         title: "Rent",
         data: InvoiceType.fromString("contractual"),
       ),
-      FormOptionSelectValueData(
+      FormOptionPickerData(
         title: "Late fee",
         data: InvoiceType.fromString("lateFee"),
       ),
-      FormOptionSelectValueData(
+      FormOptionPickerData(
         title: "Security deposit",
         data: InvoiceType.fromString("securityDeposit"),
       ),
-      FormOptionSelectValueData(
+      FormOptionPickerData(
         title: "Other",
         data: InvoiceType.fromString("other"),
       ),
     ],
   );
 
-  static List<FormOptionSelectValueData> _getPaymentProfiles() {
+  static List<FormOptionPickerData> _getPaymentProfiles() {
     // TODO get payment profiels
     return [];
   }

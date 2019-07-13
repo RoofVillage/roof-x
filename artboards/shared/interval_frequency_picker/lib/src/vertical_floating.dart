@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:empty_vertical_floating_artboard_template/index.dart';
 import 'package:vertical_floating_artboard_scaffold/index.dart';
 import 'package:interval_frequency_picker_builder/index.dart';
-import 'package:interval_frequency_picker_data/index.dart';
+import 'package:interval_frequency_option_data/index.dart';
 
 class IntervalFrequencyPickerVerticalFloatingArtboard
-    extends EmptyVerticalFloatingArtboard<IntervalFrequencyPickerData>
+    extends EmptyVerticalFloatingArtboard<IntervalFrequencyOptionData>
     with IntervalFrequencyPickerBuilder {
-  final IntervalFrequencyPickerData initialValue;
+  final IntervalFrequencyOptionData initialValue;
 
   IntervalFrequencyPickerVerticalFloatingArtboard({this.initialValue});
 
@@ -23,12 +23,12 @@ class _IntervalFrequencyPickerVerticalFloatingArtboardState
         IntervalFrequencyPickerBuilderState<
             IntervalFrequencyPickerVerticalFloatingArtboard> {
   @override
-  IntervalFrequencyPickerData get selectedSchedule =>
+  IntervalFrequencyOptionData get selectedSchedule =>
       VerticalFloatingArtboardNavigatorPanel.of(context, shouldRebuild: false)
           .result;
 
   @override
-  set selectedSchedule(IntervalFrequencyPickerData newSelectedTime) {
+  set selectedSchedule(IntervalFrequencyOptionData newSelectedTime) {
     VerticalFloatingArtboardNavigatorPanel.of(context).result = newSelectedTime;
   }
 

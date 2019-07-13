@@ -16,8 +16,8 @@ dependencies:
     path: ../../../builders/form
   interval_frequency_picker_builder:
     path: ../../../builders/interval_frequency_picker
-  interval_frequency_picker_data:
-    path: ../../../interval_frequency_picker_data
+  interval_frequency_option_data:
+    path: ../../../interval_frequency_option_data
   interval:
     path: ../../../lib/interval
 

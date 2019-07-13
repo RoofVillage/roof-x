@@ -12,7 +12,7 @@ import 'package:icon_picker_builder/index.dart';
 import 'package:icon_picker_data/index.dart';
 import 'package:time_picker_builder/index.dart';
 import 'package:interval_frequency_picker_builder/index.dart';
-import 'package:interval_frequency_picker_data/index.dart';
+import 'package:interval_frequency_option_data/index.dart';
 
 import 'package:artboard/index.dart';
 
@@ -72,7 +72,7 @@ mixin FormBodyBuilder implements StatefulWidget {
 
   IntervalFrequencyPickerBuilder buildIntervalFrequencyPicker(
     BuildContext context, {
-    IntervalFrequencyPickerData selectedSchedule,
+    IntervalFrequencyOptionData selectedSchedule,
   });
 
   Future<T> goTo<T>(
@@ -84,10 +84,10 @@ mixin FormBodyBuilder implements StatefulWidget {
       {@required List<StreamableFormFieldData> fieldData}) async {
     for (final data in fieldData) {
       if (data is FormDateFieldData) _setupDateFieldData(context, data: data);
-      if (data is FormOptionSelectFieldData)
-        _setupOptionSelectFieldData(context, data: data);
-      if (data is FormIconSelectFieldData)
-        _setupIconSelectFieldData(context, data: data);
+      if (data is FormOptionPickerFieldData)
+        _setupOptionPickerFieldData(context, data: data);
+      if (data is FormIconPickerFieldData)
+        _setupIconPickerFieldData(context, data: data);
       if (data is FormTimePickerFieldData)
         _setupTimePickerFieldData(context, data: data);
       if (data is FormIntervalFrequencyPickerFieldData)
@@ -123,8 +123,8 @@ mixin FormBodyBuilder implements StatefulWidget {
     });
   }
 
-  void _setupIconSelectFieldData(BuildContext context,
-      {@required FormIconSelectFieldData data}) {
+  void _setupIconPickerFieldData(BuildContext context,
+      {@required FormIconPickerFieldData data}) {
     data.addOnTapListener(() async {
       final artboard = buildIconPicker(
         context,
@@ -144,13 +144,13 @@ mixin FormBodyBuilder implements StatefulWidget {
       );
       if (newSelectedOption == null) return;
       data.selectedOption =
-          FormIconOptionSelectValueData(icon: newSelectedOption.icon);
+          FormIconPickerData(icon: newSelectedOption.icon);
       form.updateFieldData(data);
     });
   }
 
-  void _setupOptionSelectFieldData<T>(BuildContext context,
-      {@required FormOptionSelectFieldData data}) {
+  void _setupOptionPickerFieldData<T>(BuildContext context,
+      {@required FormOptionPickerFieldData data}) {
     data.addOnTapListener(() async {
       final convertedOptions = data.options
           ?.map((option) => OptionPickerData(
@@ -174,7 +174,7 @@ mixin FormBodyBuilder implements StatefulWidget {
           context: context, artboard: artboard);
       if (newSelectedOptions == null) return;
       data.selectedOptions = newSelectedOptions
-          .map((option) => FormOptionSelectValueData(title: option.title))
+          .map((option) => FormOptionPickerData(title: option.title))
           .toList();
       form.updateFieldData(data);
     });
@@ -197,15 +197,15 @@ mixin FormBodyBuilder implements StatefulWidget {
     data.addOnTapListener(() async {
       final artboard = buildIntervalFrequencyPicker(
         context,
-        selectedSchedule: IntervalFrequencyPickerData(
+        selectedSchedule: IntervalFrequencyOptionData(
           interval: data.value?.interval,
           frequency: data.value?.frequency,
         ),
       );
-      final newSelectedSchedule = await goTo<IntervalFrequencyPickerData>(
+      final newSelectedSchedule = await goTo<IntervalFrequencyOptionData>(
           context: context, artboard: artboard);
       if (newSelectedSchedule == null) return;
-      data.value = FormIntervalFrequencySelectValueData(
+      data.value = FormIntervalFrequencyOptionData(
         frequency: newSelectedSchedule.frequency,
         interval: newSelectedSchedule.interval,
       );

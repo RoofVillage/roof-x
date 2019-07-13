@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:stream/index.dart';
 import 'package:standard_icon_library/index.dart';
 
-class FormIconOptionSelectValueData extends StreamableData {
+class FormIconPickerData extends StreamableData {
   StandardIcon icon;
 
-  FormIconOptionSelectValueData({@required this.icon}) : super();
+  FormIconPickerData({@required this.icon}) : super();
 }

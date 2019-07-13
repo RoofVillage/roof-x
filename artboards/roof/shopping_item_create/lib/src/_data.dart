@@ -19,13 +19,13 @@ mixin ShoppingItemCreateArtboardData implements FormBuilder {
 
   final _name = CurrencyFormTextFieldData(title: "Name");
   final _description = FormTextAreaData(title: "Description (optional)");
-  final _sharedBy = FormOptionSelectFieldData<String>(
+  final _sharedBy = FormOptionPickerFieldData<String>(
     title: "Shared by",
     options: _getRoommates(),
   );
   final _outOfStock = FormSwitchFieldData(title: "Currently out of stock");
 
-  static List<FormOptionSelectValueData<String>> _getRoommates() {
+  static List<FormOptionPickerData<String>> _getRoommates() {
     return [];
   }
 }

@@ -30,19 +30,19 @@ mixin ExpenseEditArtboardData implements FormBuilder {
     title: "Note (optional)",
     initialValue: note,
   );
-  final _paidBy = FormOptionSelectFieldData<String>(
+  final _paidBy = FormOptionPickerFieldData<String>(
     title: "Paid by",
     options: _getRoommates(),
     selectedOptions: _getRoommates(guids: [paidByGuid]),
   );
-  final _for = FormOptionSelectFieldData<String>(
+  final _for = FormOptionPickerFieldData<String>(
     title: "For",
     options: _getRoommates(),
     selectedOptions: _getRoommates(guids: paidForGuids),
     isMultiSelect: true,
   );
 
-  static List<FormOptionSelectValueData<String>> _getRoommates(
+  static List<FormOptionPickerData<String>> _getRoommates(
       {List<String> guids}) {
     return [];
   }

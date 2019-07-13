@@ -19,17 +19,17 @@ mixin ExpenseCreateArtboardData implements FormBuilder {
 
   final _amount = CurrencyFormTextFieldData(title: "Amount");
   final _note = ShortFormTextFieldData(title: "Note (optional)");
-  final _paidBy = FormOptionSelectFieldData<String>(
+  final _paidBy = FormOptionPickerFieldData<String>(
     title: "Paid by",
     options: _getRoommates(),
   );
-  final _for = FormOptionSelectFieldData<String>(
+  final _for = FormOptionPickerFieldData<String>(
     title: "For",
     options: _getRoommates(),
     isMultiSelect: true,
   );
 
-  static List<FormOptionSelectValueData<String>> _getRoommates() {
+  static List<FormOptionPickerData<String>> _getRoommates() {
     return [];
   }
 }

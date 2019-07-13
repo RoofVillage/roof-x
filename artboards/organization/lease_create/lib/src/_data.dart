@@ -17,7 +17,6 @@ mixin LeaseCreateArtboardData implements FormBuilder {
 
   @override
   Future<List<StreamableFormFieldData>> get initialFieldData async => [
-        _timeField,
         _intervalFrequencyField,
         _dueOn,
         _amount,
@@ -34,18 +33,11 @@ mixin LeaseCreateArtboardData implements FormBuilder {
       ];
 
   // TODO: field conditional visibility
-  final _timeField = FormTimePickerFieldData(title: "Pick a time");
-
   final _intervalFrequencyField =
       FormIntervalFrequencyPickerFieldData(title: "Rent due", size: 2 / 3);
 
-  final _intervalFrequency =
-      IntervalFormSelectFieldData(title: "Rent due", size: 1 / 2);
-
-  final _scheduleFrequency = FrequencyFormSelectFieldData(size: 1 / 2);
-
   final _dueOn =
-      FormOptionSelectFieldData(options: _buildDueOnOptions(), size: 1 / 3);
+      FormOptionPickerFieldData(options: _buildDueOnOptions(), size: 1 / 3);
 
   final _amount = CurrencyFormTextFieldData(title: "Rent amount");
 
@@ -61,7 +53,7 @@ mixin LeaseCreateArtboardData implements FormBuilder {
 
   final _name = ShortFormTextFieldData(title: "Lease name (optional)");
 
-  final _rentDestination = FormOptionSelectFieldData(
+  final _rentDestination = FormOptionPickerFieldData(
     title: "Default rent destination",
     emptyText: "No payment profiles available",
     options: _getPaymentProfiles(),
@@ -77,16 +69,16 @@ mixin LeaseCreateArtboardData implements FormBuilder {
   final _daysUntilLateFee = IntegerFormTextFieldData(
       title: "Days before late fee charged", maxValue: 31);
 
-  static List<FormOptionSelectValueData> _buildDueOnOptions() {
-    final List<FormOptionSelectValueData> options = [];
+  static List<FormOptionPickerData> _buildDueOnOptions() {
+    final List<FormOptionPickerData> options = [];
 
     for (int i = 1; i < 30; i++) {
       final string = "on the ${ordinalSuffixString(i)}";
-      final option = FormOptionSelectValueData(title: string, data: i);
+      final option = FormOptionPickerData(title: string, data: i);
       options.add(option);
     }
 
-    final lastOption = FormOptionSelectValueData(
+    final lastOption = FormOptionPickerData(
       title: "on the last day",
       data: 30,
     );
@@ -95,7 +87,7 @@ mixin LeaseCreateArtboardData implements FormBuilder {
     return options;
   }
 
-  static List<FormOptionSelectValueData> _getPaymentProfiles() {
+  static List<FormOptionPickerData> _getPaymentProfiles() {
     // TODO get payment profiles
   }
 

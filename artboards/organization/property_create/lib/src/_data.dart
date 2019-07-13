@@ -18,7 +18,7 @@ mixin PropertyCreateArtboardData implements FormBuilder {
         _rentDestination,
       ];
 
-  final _iconFieldData = FormPropertyIconOptionSelectData(
+  final _iconFieldData = FormPropertyIconOptionPickerFieldData(
     title: "Property icon",
   );
 
@@ -41,17 +41,17 @@ mixin PropertyCreateArtboardData implements FormBuilder {
   // "mask" text field content by spaces/commas into little pill widgets?
   // final _tags =
 
-  static List<FormOptionSelectValueData<String>> _getPaymentProfiles() {
+  static List<FormOptionPickerData<String>> _getPaymentProfiles() {
     // TODO
     return [
-      FormOptionSelectValueData<String>(
+      FormOptionPickerData<String>(
           title: "Payment profile 1", data: "asdf"),
-      FormOptionSelectValueData<String>(
+      FormOptionPickerData<String>(
           title: "Payment profile 2", data: "pyio"),
     ];
   }
 
-  final _rentDestination = FormOptionSelectFieldData(
+  final _rentDestination = FormOptionPickerFieldData(
     title: "Default rent destination",
     emptyText: "No payment profiles",
     options: _getPaymentProfiles(),

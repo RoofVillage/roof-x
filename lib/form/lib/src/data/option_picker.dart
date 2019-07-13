@@ -1,19 +1,19 @@
-import 'option_select_value.dart';
+import 'option_picker_data.dart';
 import 'picker_field.dart';
 
-class FormOptionSelectFieldData<T>
-    extends PickerFieldData<List<FormOptionSelectValueData<T>>> {
+class FormOptionPickerFieldData<T>
+    extends PickerFieldData<List<FormOptionPickerData<T>>> {
   String emptyText;
-  List<FormOptionSelectValueData<T>> selectedOptions;
-  List<FormOptionSelectValueData<T>> options;
+  List<FormOptionPickerData<T>> selectedOptions;
+  List<FormOptionPickerData<T>> options;
   bool isMultiSelect;
 
-  FormOptionSelectFieldData({
+  FormOptionPickerFieldData({
     this.emptyText = "Nothing selected",
     this.options,
     this.isMultiSelect,
     String title,
-    List<FormOptionSelectValueData<T>> selectedOptions,
+    List<FormOptionPickerData<T>> selectedOptions,
     double size,
     bool isVisible,
   }) : super(

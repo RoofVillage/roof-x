@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:theme/index.dart';
-import 'package:interval_frequency_picker_data/index.dart';
+import 'package:interval_frequency_option_data/index.dart';
 import 'package:interval/index.dart';
 import 'package:frequency_type/index.dart';
 import 'package:typography/index.dart' as typography;
@@ -10,8 +10,8 @@ import '_picker_field.dart';
 
 class IntervalFrequencyPickerField extends StatelessWidget {
   final String title;
-  final IntervalFrequencyPickerData initialValue;
-  final Function(IntervalFrequencyPickerData) onChanged;
+  final IntervalFrequencyOptionData initialValue;
+  final Function(IntervalFrequencyOptionData) onChanged;
   final Function onTap;
 
   IntervalFrequencyPickerField({

@@ -5,11 +5,11 @@ import 'package:distance/index.dart' as distance;
 import 'package:roller_column_data/index.dart';
 import 'package:roller_column_picker_builder/index.dart';
 import 'package:interval/index.dart';
-import 'package:interval_frequency_picker_data/index.dart';
+import 'package:interval_frequency_option_data/index.dart';
 
 class IntervalFrequencyPicker extends StatefulWidget {
-  final IntervalFrequencyPickerData initialValue;
-  final Function(IntervalFrequencyPickerData) onChanged;
+  final IntervalFrequencyOptionData initialValue;
+  final Function(IntervalFrequencyOptionData) onChanged;
 
   IntervalFrequencyPicker({this.initialValue, this.onChanged});
 
@@ -42,12 +42,12 @@ class IntervalFrequencyPickerState extends State<IntervalFrequencyPicker>
     )
   ];
 
-  IntervalFrequencyPickerData _selectedSchedule;
+  IntervalFrequencyOptionData _selectedSchedule;
 
   @override
   void initState() {
     _selectedSchedule = widget.initialValue ??
-        IntervalFrequencyPickerData(
+        IntervalFrequencyOptionData(
           interval: widget.initialValue.interval,
           frequency: widget.initialValue.frequency,
         );
@@ -114,14 +114,13 @@ class IntervalFrequencyPickerState extends State<IntervalFrequencyPicker>
     for (RollerColumnData<FrequencyType> data in _frequencyList) {
       if (data.data.toString() == val?.toString()) return data;
     }
-    print("not returning");
     return null;
   }
 
   void _onIntervalChange(int newVal) {
     if (_selectedSchedule.interval != newVal) {
       setState(() {
-        _selectedSchedule = IntervalFrequencyPickerData(
+        _selectedSchedule = IntervalFrequencyOptionData(
           interval: newVal,
           frequency: _selectedSchedule.frequency,
         );
@@ -133,7 +132,7 @@ class IntervalFrequencyPickerState extends State<IntervalFrequencyPicker>
   void _onFrequencyChange(FrequencyType newVal) {
     if (_selectedSchedule.frequency != newVal) {
       setState(() {
-        _selectedSchedule = IntervalFrequencyPickerData(
+        _selectedSchedule = IntervalFrequencyOptionData(
           interval: _selectedSchedule.interval,
           frequency: newVal,
         );

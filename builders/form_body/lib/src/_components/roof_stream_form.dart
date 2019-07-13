@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:form/index.dart';
 import 'package:form_body_builder/src/_components/fields/interval_frequency_picker_field.dart';
 import 'package:icon_picker_data/index.dart';
-import 'package:interval_frequency_picker_data/index.dart';
+import 'package:interval_frequency_option_data/index.dart';
 import 'package:keyboard_accessory/index.dart';
 import 'package:keyboard_accessory_bar_builder/index.dart';
 import 'package:option_picker_data/index.dart';
@@ -105,7 +105,7 @@ class RoofStreamForm
     );
   }
 
-  Widget buildSwitch({
+  Widget buildSwitchField({
     FormSwitchFieldData fieldData,
     int fieldIndex,
     int sectionIndex,
@@ -137,8 +137,8 @@ class RoofStreamForm
     );
   }
 
-  Widget buildOptionSelect({
-    FormOptionSelectFieldData fieldData,
+  Widget buildOptionPickerField({
+    FormOptionPickerFieldData fieldData,
     int fieldIndex,
     int sectionIndex,
   }) {
@@ -183,15 +183,15 @@ class RoofStreamForm
   }) {
     return IntervalFrequencyPickerField(
       title: fieldData.title,
-      initialValue: IntervalFrequencyPickerData(
+      initialValue: IntervalFrequencyOptionData(
           interval: fieldData.value?.interval,
           frequency: fieldData.value?.frequency),
       onTap: fieldData.onTap,
     );
   }
 
-  Widget buildIconOptionSelect({
-    FormIconSelectFieldData fieldData,
+  Widget buildIconOptionPickerField({
+    FormIconPickerFieldData fieldData,
     int fieldIndex,
     int sectionIndex,
   }) {
@@ -238,14 +238,14 @@ class RoofStreamForm
         context: context,
       );
     } else if (fieldData is FormSwitchFieldData) {
-      fieldBody = buildSwitch(
+      fieldBody = buildSwitchField(
         fieldData: fieldData,
         fieldIndex: fieldIndex,
         sectionIndex: sectionIndex,
         context: context,
       );
-    } else if (fieldData is FormOptionSelectFieldData) {
-      fieldBody = buildOptionSelect(
+    } else if (fieldData is FormOptionPickerFieldData) {
+      fieldBody = buildOptionPickerField(
         fieldData: fieldData,
         fieldIndex: fieldIndex,
         sectionIndex: sectionIndex,
@@ -256,8 +256,8 @@ class RoofStreamForm
         fieldIndex: fieldIndex,
         sectionIndex: sectionIndex,
       );
-    } else if (fieldData is FormIconSelectFieldData) {
-      fieldBody = buildIconOptionSelect(
+    } else if (fieldData is FormIconPickerFieldData) {
+      fieldBody = buildIconOptionPickerField(
         fieldData: fieldData,
         fieldIndex: fieldIndex,
         sectionIndex: sectionIndex,

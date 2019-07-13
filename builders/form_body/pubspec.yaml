@@ -59,8 +59,8 @@ dependencies:
     path: ../../option_picker_data
   icon_picker_data:
     path: ../../icon_picker_data
-  interval_frequency_picker_data:
-    path: ../../interval_frequency_picker_data
+  interval_frequency_option_data:
+    path: ../../interval_frequency_option_data
   time_picker_builder:
     path: ../../builders/time_picker
   interval_frequency_picker_builder:

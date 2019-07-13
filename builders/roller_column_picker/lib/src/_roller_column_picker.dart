@@ -55,8 +55,6 @@ class _RollerColumnPickerState<T> extends State<RollerColumnPicker> {
       initialOffset += _stepHeight * widget.list.length - _boundaryOffset;
     }
 
-    print("initialOffset $initialOffset");
-
     _scrollController = ScrollController(initialScrollOffset: initialOffset);
 
     super.initState();

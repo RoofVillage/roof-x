@@ -32,8 +32,8 @@ dependencies:
     path: ../../../icon_picker_data
   option_picker_data:
     path: ../../../option_picker_data
-  interval_frequency_picker_data:
-    path: ../../../interval_frequency_picker_data    
+  interval_frequency_option_data:
+    path: ../../../interval_frequency_option_data    
   interval_frequency_picker_builder:
     path: ../../../builders/interval_frequency_picker
   button_builder:

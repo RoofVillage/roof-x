@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:artboard/index.dart';
 import 'package:haptics/index.dart';
-import 'package:interval_frequency_picker_data/index.dart';
+import 'package:interval_frequency_option_data/index.dart';
 
 import '_components/interval_frequency_picker.dart';
 
-mixin IntervalFrequencyPickerBuilder implements Artboard<IntervalFrequencyPickerData> {
-  IntervalFrequencyPickerData get initialValue;
+mixin IntervalFrequencyPickerBuilder implements Artboard<IntervalFrequencyOptionData> {
+  IntervalFrequencyOptionData get initialValue;
 }
 
 mixin IntervalFrequencyPickerBuilderState<T extends IntervalFrequencyPickerBuilder>
     implements ArtboardState<T> {
-  IntervalFrequencyPickerData _selectedSchedule;
+  IntervalFrequencyOptionData _selectedSchedule;
 
-  IntervalFrequencyPickerData get selectedSchedule => _selectedSchedule;
-  set selectedSchedule(IntervalFrequencyPickerData newSchedule) => _selectedSchedule = newSchedule;
+  IntervalFrequencyOptionData get selectedSchedule => _selectedSchedule;
+  set selectedSchedule(IntervalFrequencyOptionData newSchedule) => _selectedSchedule = newSchedule;
 
   Widget buildIntervalFrequencyPicker(BuildContext context) {
     return IntervalFrequencyPicker(
@@ -23,7 +23,7 @@ mixin IntervalFrequencyPickerBuilderState<T extends IntervalFrequencyPickerBuild
     );
   }
 
-  void _onChanged(IntervalFrequencyPickerData newSchedule) {
+  void _onChanged(IntervalFrequencyOptionData newSchedule) {
     triggerHapticWith(HapticOption.click);
     selectedSchedule = newSchedule;
   }

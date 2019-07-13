@@ -3,10 +3,10 @@ import 'package:frequency_type/index.dart';
 
 import 'picker_field.dart';
 
-class FormIntervalFrequencySelectValueData extends PickerFieldData<TimeOfDay> {
+class FormIntervalFrequencyOptionData extends PickerFieldData<TimeOfDay> {
   int interval;
   FrequencyType frequency;
 
-  FormIntervalFrequencySelectValueData(
+  FormIntervalFrequencyOptionData(
       {@required this.interval, @required this.frequency});
 }

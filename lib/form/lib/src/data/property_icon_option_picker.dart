@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:form/index.dart';
 import 'package:standard_icon_library/index.dart';
 
-import 'icon_option_select_value.dart';
+import 'icon_option_picker_data.dart';
 
-class FormPropertyIconOptionSelectData extends FormIconSelectFieldData {
+class FormPropertyIconOptionPickerFieldData extends FormIconPickerFieldData {
   static final List<StandardIcon> _propertyIconOptions = [
     StandardIcon.house1,
     StandardIcon.house2,
@@ -26,21 +26,21 @@ class FormPropertyIconOptionSelectData extends FormIconSelectFieldData {
     StandardIcon.treehouse,
   ];
 
-  static List<FormIconOptionSelectValueData>
-      _createFormIconOptionSelectValueData() {
+  static List<FormIconPickerData>
+      _createFormIconPickerData() {
     return _propertyIconOptions.map(
-      (icon) => FormIconOptionSelectValueData(icon: icon),
+      (icon) => FormIconPickerData(icon: icon),
     ).toList();
   }
 
-  FormPropertyIconOptionSelectData({
+  FormPropertyIconOptionPickerFieldData({
     @required String title,
-    FormIconOptionSelectValueData selectedOption,
+    FormIconPickerData selectedOption,
     double size,
     bool isVisible,
   }) : super(
           title: title,
-          options: _createFormIconOptionSelectValueData(),
+          options: _createFormIconPickerData(),
           selectedOption: selectedOption,
           size: size,
           isVisible: isVisible,
