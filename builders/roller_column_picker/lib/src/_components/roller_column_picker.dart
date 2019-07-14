@@ -43,7 +43,7 @@ class RollerColumnPickerState<T> extends State<RollerColumnPicker<T>>
   }
 
   void _onChange(OptionPickerData<T> newVal) {
-    if (_selectedValue.data != newVal.data) {
+    if (_selectedValue != newVal) {
       setState(() {
         _selectedValue = newVal;
       });

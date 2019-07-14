@@ -72,17 +72,15 @@ class IntervalFrequencyPickerState extends State<IntervalFrequencyPicker>
       ),
     );
 
-    List<Widget> columns = [
-      intervalColumn,
-      frequencyColumn,
-    ];
-
     return Container(
       padding: EdgeInsets.symmetric(vertical: _verticalPadding),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
-        children: columns,
+        children: [
+          intervalColumn,
+          frequencyColumn,
+        ],
       ),
     );
   }
@@ -105,10 +103,7 @@ class IntervalFrequencyPickerState extends State<IntervalFrequencyPicker>
   void _onIntervalChange(OptionPickerData<int> newVal) {
     if (_selectedSchedule.interval != newVal.data) {
       setState(() {
-        _selectedSchedule = IntervalFrequencyScheduleData(
-          interval: newVal.data,
-          frequency: _selectedSchedule.frequency,
-        );
+        _selectedSchedule.interval = newVal.data;
       });
       widget.onChanged(_selectedSchedule);
     }
@@ -117,10 +112,7 @@ class IntervalFrequencyPickerState extends State<IntervalFrequencyPicker>
   void _onFrequencyChange(OptionPickerData<FrequencyType> newVal) {
     if (_selectedSchedule.frequency != newVal.data) {
       setState(() {
-        _selectedSchedule = IntervalFrequencyScheduleData(
-          interval: _selectedSchedule.interval,
-          frequency: newVal.data,
-        );
+        _selectedSchedule.frequency = newVal.data;
       });
       widget.onChanged(_selectedSchedule);
     }

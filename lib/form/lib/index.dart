@@ -28,4 +28,5 @@ export 'src/data/time_picker.dart';
 export 'src/data/interval_frequency_picker.dart';
 export 'src/data/interval_frequency_picker_data.dart';
 export 'src/data/day_of_month_picker.dart';
+export 'src/data/day_of_week_picker.dart';
 export 'src/data/roller_column_picker.dart';
