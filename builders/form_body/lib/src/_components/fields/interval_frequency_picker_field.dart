@@ -21,7 +21,7 @@ class IntervalFrequencyPickerField extends StatelessWidget {
     this.onTap,
   });
 
-  final _typographyStyle = typography.bodyPrimary;
+  final _typographyStyle = typography.body;
 
   @override
   Widget build(BuildContext context) {

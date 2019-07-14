@@ -9,6 +9,8 @@ import 'package:cells_list_view_builder/index.dart';
 import 'package:thread_list_view_builder/index.dart';
 import 'package:auxiliary_widget_builder/index.dart';
 import 'package:tab/index.dart';
+import 'package:standard_icon_library/index.dart';
+import 'package:mask/index.dart';
 
 import '_data.dart';
 
@@ -28,6 +30,16 @@ abstract class LeaseVerticalFullScreenArtboard extends TabbedFullScreenArtboard
 
   @override
   String get title => leaseTitle;
+
+  @override
+  String buildSubtitle(BuildContext context) {
+    final amountString = applyMask(
+      MaskOption.money,
+      text: (totalAmount).toString(),
+      context: context,
+    );
+    return amountString + " due every month on the 1st";
+  }
 
   @override
   Widget buildNavButton(BuildContext context) {
@@ -110,25 +122,30 @@ abstract class LeaseVerticalFullScreenArtboard extends TabbedFullScreenArtboard
       RoofTab(
         title: "Thread",
         view: threadList,
+        icon: StandardIcon.thread,
         dockData: TabDockData(
           auxiliaryWidgets: [addFileAuxiliaryWidget],
         ),
       ),
       RoofTab(
         title: "Invoices",
+        icon: StandardIcon.cashSack,
         view: invoicesList,
       ),
       RoofTab(
-        title: "Tenants",
-        view: tenantsList,
+        title: "Maintenance",
+        icon: StandardIcon.toolbox,
+        view: maintenanceList,
       ),
       RoofTab(
         title: "Messages",
+        icon: StandardIcon.comment,
         view: messagesList,
       ),
       RoofTab(
-        title: "Maintenance",
-        view: maintenanceList,
+        title: "Tenants",
+        icon: StandardIcon.tenant,
+        view: tenantsList,
       ),
     ];
   }

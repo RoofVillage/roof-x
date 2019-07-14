@@ -19,7 +19,7 @@ class RollerColumnPickerField extends StatelessWidget {
     this.onTap,
   });
 
-  final _typographyStyle = typography.bodyPrimary;
+  final _typographyStyle = typography.body;
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +35,7 @@ class RollerColumnPickerField extends StatelessWidget {
         selectedValue.title,
         style: textStyle,
         textAlign: TextAlign.right,
+        overflow: TextOverflow.ellipsis,
       ),
     );
 

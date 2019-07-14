@@ -30,19 +30,19 @@ class RoofCalendarDatePicker extends StatelessWidget {
       theme.color.text.brand,
     );
 
-    final daysPrimaryStyle = typography.bodyPrimaryThick.textStyleWithColor(
+    final daysPrimaryStyle = typography.bodyThick.textStyleWithColor(
       theme.color.text.primary,
     );
 
-    final inactiveTextStyle = typography.bodyPrimary.textStyleWithColor(
+    final inactiveTextStyle = typography.body.textStyleWithColor(
       theme.color.text.secondary,
     );
 
-    final smallTextStyle = typography.bodySecondary.textStyleWithColor(
+    final smallTextStyle = typography.body.textStyleWithColor(
       theme.color.text.brand,
     );
 
-    final todayTextStyle = typography.bodyPrimaryThick.textStyleWithColor(
+    final todayTextStyle = typography.bodyThick.textStyleWithColor(
       theme.color.text.secondaryAction,
     );
 

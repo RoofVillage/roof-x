@@ -12,17 +12,20 @@ class RoofTitleNavBar extends StatelessWidget with RoofNavBar {
   final List<Widget> actionButtons;
   final Widget navButton;
   final String title;
+  final String subtitle;
   final StandardIcon icon;
 
   RoofTitleNavBar({
     Key key,
     this.navButton,
     this.title,
+    this.subtitle,
     this.actionButtons,
     this.icon,
   });
 
-  final _typographyStyle = typography.heading1;
+  final _titleTypographyStyle = typography.heading1;
+  final _subtitleTypographyStyle = typography.detailSecondary;
 
   @override
   List<Widget> buildNavigationWidgets(BuildContext context) {
@@ -34,6 +37,10 @@ class RoofTitleNavBar extends StatelessWidget with RoofNavBar {
       navigationWidgets.add(navButton);
     }
 
+    if (_buildTitleColumn(theme) != null) {
+      navigationWidgets.add(_buildTitleColumn(theme));
+    }
+
     if (icon != null) {
       final paddedIconWidget = Container(
         margin: EdgeInsets.only(right: distance.b),
@@ -42,15 +49,36 @@ class RoofTitleNavBar extends StatelessWidget with RoofNavBar {
       navigationWidgets.add(paddedIconWidget);
     }
 
+    return navigationWidgets;
+  }
+
+  Widget _buildTitleColumn(RoofInheritedTheme theme) {
+    if (title == null && subtitle == null) return null;
+
+    final List<Widget> titleColumnChildren = [];
+
     if (title != null) {
-      final text = Text(
+      final titleWidget = Text(
         title,
-        style: _typographyStyle.textStyleWithColor(theme.color.text.brand),
+        style: _titleTypographyStyle.textStyleWithColor(theme.color.text.brand),
         overflow: TextOverflow.ellipsis,
       );
-      navigationWidgets.add(NavTitleBaseline(text: text));
+      titleColumnChildren.add(NavTitleBaseline(text: titleWidget));
     }
 
-    return navigationWidgets;
+    if (subtitle != null) {
+      final subtitleWidget = Text(
+        subtitle,
+        style: _subtitleTypographyStyle
+            .textStyleWithColor(theme.color.text.secondary),
+        overflow: TextOverflow.ellipsis,
+      );
+      titleColumnChildren.add(subtitleWidget);
+    }
+
+    return Column(
+      children: titleColumnChildren,
+      crossAxisAlignment: CrossAxisAlignment.start,
+    );
   }
 }

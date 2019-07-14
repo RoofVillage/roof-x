@@ -18,8 +18,8 @@ class RollerColumnBody<T> extends StatelessWidget {
     canRollover,
   }) : this.canRollover = canRollover ?? false;
 
-  final _inactiveTypography = typography.bodyPrimary;
-  final _activeTypography = typography.bodyPrimaryThick;
+  final _inactiveTypography = typography.body;
+  final _activeTypography = typography.bodyThick;
   final double _stepHeight = 40;
 
   @override

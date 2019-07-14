@@ -21,15 +21,12 @@ abstract class PropertyInfoVerticalFloatingArtboard
 
   @override
   List<Widget> buildBody(BuildContext context) {
-    final theme = RoofTheme.of(context);
-
     final List<Widget> tagWidgets = [];
 
     for (String tag in tags) {
       final tagWidget = buildTag(
         context,
         text: tag,
-        color: theme.color.background.markerGray,
       );
 
       tagWidgets.add(tagWidget);

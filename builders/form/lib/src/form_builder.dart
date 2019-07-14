@@ -49,7 +49,7 @@ mixin FormBuilderState<T extends FormBuilder>
   }
 
   final _headerStyle = typography.heading1;
-  final _subtitleStyle = typography.bodySecondary;
+  final _subtitleStyle = typography.body;
 
   final _bodyVerticalPadding = EdgeInsets.only(top: distance.d);
   final _buttonPadding = EdgeInsets.only(

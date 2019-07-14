@@ -18,7 +18,7 @@ mixin LeaseCreateArtboardData implements FormBuilder {
   @override
   Future<List<StreamableFormFieldData>> get initialFieldData async => [
         _intervalFrequencyField,
-        _dayOfWeek,
+        _dayOfMonth,
         _amount,
         _startDate,
         _endDate,
@@ -52,7 +52,8 @@ mixin LeaseCreateArtboardData implements FormBuilder {
 
   final _continue = FormSwitchFieldData(title: _getContinueString());
 
-  final _name = ShortFormTextFieldData(title: "Lease name (optional)");
+  final _name = ShortFormTextFieldData(
+      title: "Lease name (optional)", placeholder: "Upstairs 2019-2020");
 
   final _rentDestination = FormOptionPickerFieldData(
     title: "Default rent destination",
@@ -68,7 +69,11 @@ mixin LeaseCreateArtboardData implements FormBuilder {
   final _lateFeeAmount = CurrencyFormTextFieldData(title: "Late fee amount");
 
   final _daysUntilLateFee = IntegerFormTextFieldData(
-      title: "Days before late fee charged", maxValue: 31);
+    title: "Days before late fee charged",
+    maxValue: 31,
+    initialValue: "5",
+    placeholder: "5",
+  );
 
   static List<FormOptionPickerData> _buildDueOnOptions() {
     final List<FormOptionPickerData> options = [];

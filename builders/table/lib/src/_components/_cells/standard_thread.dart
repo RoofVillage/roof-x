@@ -21,8 +21,8 @@ class RoofStandardThreadCell extends StatelessWidget {
     @required this.onTap,
   });
 
-  final _titleTypographyStyle = typography.bodyPrimary;
-  final _timestampTypographyStyle = typography.bodyPrimary;
+  final _titleTypographyStyle = typography.body;
+  final _timestampTypographyStyle = typography.body;
 
   @override
   Widget build(BuildContext context) {

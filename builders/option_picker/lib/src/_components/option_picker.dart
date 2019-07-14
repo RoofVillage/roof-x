@@ -132,7 +132,7 @@ class _Option<T> extends StatelessWidget {
   final bool canToggle;
   final bool selected;
 
-  final _typographyStyle = typography.bodyPrimary;
+  final _typographyStyle = typography.body;
   final _checkIcon = SmallIcon.boxChecked;
   final _uncheckedIcon = SmallIcon.boxUnchecked;
   final _iconPadding = distance.c;

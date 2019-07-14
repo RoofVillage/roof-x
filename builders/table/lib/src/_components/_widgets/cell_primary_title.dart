@@ -9,7 +9,7 @@ class CellPrimaryTitle extends StatelessWidget {
 
   CellPrimaryTitle(this.text);
 
-  final _typography = typography.bodyPrimaryThick;
+  final _typography = typography.bodyThick;
 
   @override
   Widget build(BuildContext context) {

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:standard_icon_library/index.dart';
 import 'package:theme/index.dart';
 import 'package:tab/index.dart';
 import 'package:typography/index.dart' as typography;
@@ -21,25 +20,10 @@ class RoofTabBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = RoofTheme.of(context);
 
-    final List<String> tabTitles = tabs.map((tab) => tab.title).toList();
-
     final List<Widget> tabWidgets = [];
 
-    for (var tab in tabTitles) {
-      final Widget title = Padding(
-        padding: EdgeInsets.symmetric(vertical: distance.a),
-        child: Text(tab),
-      );
-      final StandardIcon icon = StandardIcon.alarmClock;
-      final Icon iconWidget = icon.buildWidget();
-
-      final Widget tabWidget2 = Container(
-        child: Column(
-          children: <Widget>[iconWidget, title],
-        ),
-      );
-
-      tabWidgets.add(tabWidget2);
+    for (RoofTab tab in tabs) {
+      tabWidgets.add(_buildTabWidget(tab));
     }
 
     final labelColor = theme.color.text.secondary;
@@ -66,6 +50,29 @@ class RoofTabBar extends StatelessWidget {
           vertical: distance.a,
           horizontal: distance.c,
         ),
+      ),
+    );
+  }
+
+  Widget _buildTabWidget(RoofTab tab) {
+    final List<Widget> children = [];
+
+    if (tab.icon != null) {
+      final Icon iconWidget = tab.icon.buildWidget();
+      children.add(iconWidget);
+    }
+
+    if (tab.title != null) {
+      final Widget titleWidget = Padding(
+        padding: EdgeInsets.symmetric(vertical: distance.a),
+        child: Text(tab.title),
+      );
+      children.add(titleWidget);
+    }
+
+    return Container(
+      child: Column(
+        children: children,
       ),
     );
   }

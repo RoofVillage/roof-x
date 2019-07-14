@@ -49,7 +49,7 @@ class _RoofSwitchFieldState extends State<RoofSwitchField>
     final theme = RoofTheme.of(context);
 
     isOnColor = theme.color.background.primaryAction;
-    isOffColor = theme.color.background.inactiveAction;
+    isOffColor = theme.color.background.disabled;
 
     animation = ColorTween(
       begin: isOffColor,
@@ -108,14 +108,14 @@ class _RoofAnimatedSwitch extends StatelessWidget {
   final bool isOn;
   final Color color;
 
-  final double _width = 52;
-  final double _height = 34;
+  final double _width = 50;
+  final double _height = 28;
   final double _innerSpacing = 4.0;
-  final double _animatedContainerWidth = 24;
   final _duration = duration.short;
 
   double get _leftMargin => distance.d;
   double get _radius => _height * 0.5;
+  double get _animatedContainerWidth => _height - _innerSpacing * 2 - 2; // subtract 2 for border width * 2
   double get _aimatedContainerRadius => _animatedContainerWidth * 0.5;
 
   _RoofAnimatedSwitch({this.isOn, this.color});

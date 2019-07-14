@@ -22,7 +22,7 @@ class RoofSegueBar extends StatelessWidget {
   final _verticalPadding = distance.c;
   final _horizontalSpacing = distance.b;
 
-  final _titleTypographyStyle = typography.bodyPrimaryThick;
+  final _titleTypographyStyle = typography.bodyThick;
 
   final _tapHapticOption = HapticOption.light;
 
@@ -86,7 +86,7 @@ class _AuxiliaryTextWidget extends StatelessWidget {
     @required this.leftMargin,
   });
 
-  final _typographyStyle = typography.bodyPrimaryThick;
+  final _typographyStyle = typography.bodyThick;
 
   final _padding = distance.b;
 

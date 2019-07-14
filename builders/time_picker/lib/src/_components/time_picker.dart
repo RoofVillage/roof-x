@@ -93,7 +93,7 @@ class TimePickerState extends State<TimePicker> with RollerColumnBuilder {
       ),
     );
 
-    final timeDividerTextStyle = typography.bodyPrimary.textStyleWithColor(
+    final timeDividerTextStyle = typography.body.textStyleWithColor(
       RoofTheme.of(context).color.text.secondary,
     );
     final Widget timeDivider = Flexible(

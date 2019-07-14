@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:theme/index.dart';
+import 'package:date/index.dart';
 import 'package:typography/index.dart' as typography;
 import 'package:distance/index.dart' as distance;
 
@@ -32,11 +33,11 @@ class RoofDatePickerField extends StatelessWidget {
     this.focusNode,
   });
 
-  final _typographyStyle = typography.bodyPrimary;
+  final _typographyStyle = typography.body;
 
   @override
   Widget build(BuildContext context) {
-    final String formattedValue = initialValue.toLocal().toIso8601String();
+    final String formattedValue = Date.fromDateTime(initialValue).toLongString;
     final TextStyle textStyle = _typographyStyle.textStyleWithColor(
       RoofTheme.of(context).color.text.primary,
     );

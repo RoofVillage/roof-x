@@ -5,6 +5,7 @@ import 'package:date/index.dart';
 import 'package:haptics/index.dart';
 import 'package:tag_builder/index.dart';
 import 'package:lease_status/index.dart';
+import 'package:tag_kind_option/index.dart';
 import 'package:typography/index.dart' as typography;
 import 'package:distance/index.dart' as distance;
 import 'package:corner_radius/index.dart' as radius;
@@ -71,7 +72,7 @@ class LeaseCell extends StatelessWidget {
       margin: EdgeInsets.only(right: _spacing),
       child: Text(
         formattedAmount,
-        style: typography.bodyPrimaryThick.textStyleWithColor(
+        style: typography.bodyThick.textStyleWithColor(
           theme.color.text.primary,
         ),
       ),
@@ -147,7 +148,7 @@ class _Tenants extends StatelessWidget {
 
     return Text(
       tenantString,
-      style: typography.bodySecondary.textStyleWithColor(
+      style: typography.body.textStyleWithColor(
         theme.color.text.primary,
       ),
     );
@@ -187,14 +188,15 @@ class _StatusTag extends StatelessWidget with RoofTagBuilder {
 
   _StatusTag(this.status);
 
-  _getStatusColor(LeaseStatusOption status, RoofInheritedTheme theme) {
+  TagKindOption _getTagKind(LeaseStatusOption status) {
     switch (status) {
       case LeaseStatusOption.active:
-        return theme.color.background.markerGreen;
+        return TagKindOption.good;
         break;
       case LeaseStatusOption.ended:
       case LeaseStatusOption.upcoming:
-        return theme.color.background.markerGray;
+      default:
+        return TagKindOption.normal;
     }
   }
 
@@ -212,15 +214,10 @@ class _StatusTag extends StatelessWidget with RoofTagBuilder {
 
   @override
   Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
-
-    final text = _getStatusText(status);
-    final color = _getStatusColor(status, theme);
-
     return buildTag(
       context,
-      text: text,
-      color: color,
+      text: _getStatusText(status),
+      kind: _getTagKind(status)
     );
   }
 }

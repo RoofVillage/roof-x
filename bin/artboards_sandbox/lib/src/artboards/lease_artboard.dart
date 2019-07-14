@@ -15,7 +15,7 @@ class LeaseArtboard extends LeaseVerticalFullScreenArtboard
   String get leaseTitle => "2018-19 Lease";
 
   @override
-  int get totalAmount => 1200000;
+  int get totalAmount => 1200;
 
   @override
   bool get continueInvoices => true;

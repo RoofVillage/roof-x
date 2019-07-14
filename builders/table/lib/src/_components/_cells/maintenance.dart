@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tag_kind_option/index.dart';
 import 'package:theme/index.dart';
 import 'package:date/index.dart';
 import 'package:tag_builder/index.dart';
@@ -51,13 +52,15 @@ class _StatusTag extends StatelessWidget with RoofTagBuilder {
 
   _StatusTag(this.status);
 
-  _getStatusColor(RequestStatusOption status, RoofInheritedTheme theme) {
+  TagKindOption _getTagKind(RequestStatusOption status) {
     switch (status) {
       case RequestStatusOption.closed:
-        return theme.color.background.markerGreen;
+        return TagKindOption.good;
       case RequestStatusOption.emergency:
-        return theme.color.background.emergency;
+        return TagKindOption.emergency;
       case RequestStatusOption.open:
+      default:
+        return TagKindOption.normal;
     }
   }
 
@@ -74,15 +77,10 @@ class _StatusTag extends StatelessWidget with RoofTagBuilder {
 
   @override
   Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
-
-    final color = _getStatusColor(status, theme);
-    final text = _getStatusText(status);
-
     return buildTag(
       context,
-      text: text,
-      color: color,
+      text: _getStatusText(status),
+      kind: _getTagKind(status)
     );
   }
 }

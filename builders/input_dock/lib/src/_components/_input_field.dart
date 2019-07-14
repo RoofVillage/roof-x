@@ -107,7 +107,7 @@ class _TextFieldComponent extends StatelessWidget {
 
   static const String _hintText = "Add comment";
 
-  final _commentTextStyle = typography.bodyPrimary;
+  final _commentTextStyle = typography.body;
 
   final _enabledBorder =
       OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent));

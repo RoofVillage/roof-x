@@ -69,7 +69,7 @@ class _SelectedOptionsContainer<T> extends StatelessWidget {
   final List<OptionPickerData<T>> selectedOptions;
   final String emptyText;
 
-  final _typographyStyle = typography.bodyPrimary;
+  final _typographyStyle = typography.body;
   final _maxLines = 10;
 
   _SelectedOptionsContainer({

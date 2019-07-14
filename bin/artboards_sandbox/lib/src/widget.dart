@@ -1,3 +1,4 @@
+import 'package:artboards_sandbox/src/artboards/lease_artboard.dart';
 import 'package:flutter/material.dart';
 import 'package:stream/index.dart';
 import 'package:artboard/index.dart';
@@ -20,9 +21,9 @@ class RootWidget extends StatelessWidget {
 
         Artboard startingArtboard;
         if (appState.isInSession) {
-          startingArtboard = PropertyArtboard();
+          startingArtboard = LeaseArtboard();
         } else {
-          startingArtboard = PropertyArtboard();
+          startingArtboard = LeaseArtboard();
           // ThreadArtboard();
           //PublicActivityArtboard();
         }

@@ -59,8 +59,8 @@ class _Body extends StatelessWidget {
     @required this.note,
   });
 
-  final _noteTypographyStyle = typography.bodyPrimary;
-  final _creatorTypographyStyle = typography.bodyPrimaryThick;
+  final _noteTypographyStyle = typography.body;
+  final _creatorTypographyStyle = typography.bodyThick;
   final _timestampTypographyStyle = typography.detailSecondary;
   final _horizontalSpacing = distance.b;
   final _verticalSpacing = distance.a;

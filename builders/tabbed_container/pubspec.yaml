@@ -9,8 +9,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  standard_icon_library:
-    path: ../../icons/standard
   typography:
     path: ../../spec/typography
   theme:

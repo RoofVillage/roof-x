@@ -17,7 +17,7 @@ class KeyValueRow extends StatelessWidget {
   });
 
   final _titleTypographyStyle = typography.detailSecondary;
-  final _valueTypographyStyle = typography.bodyPrimary;
+  final _valueTypographyStyle = typography.body;
 
   final _horizontalSpacing = distance.c;
   final _verticalSpacing = distance.a;

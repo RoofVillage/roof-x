@@ -13,7 +13,7 @@ class Breadcrumb extends StatelessWidget {
     this.iconReference,
   });
 
-  final _typographyStyle = typography.bodySecondary;
+  final _typographyStyle = typography.body;
   final _horizontalSpacing = distance.b;
   final _horizontalMargin = distance.b;
 

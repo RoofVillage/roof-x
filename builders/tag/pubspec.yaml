@@ -17,6 +17,8 @@ dependencies:
     path: ../../theme
   typography:
     path: ../../spec/typography
+  tag_kind_option:
+    path: ../../options/tag_kind
 
 dev_dependencies:
   flutter_test:

@@ -1,4 +1,4 @@
-const extraSmall = 12.0;
+const extraSmall = 12.5;
 const small = 14.0;
 const medium = 16.0;
 const large = 19.0;
