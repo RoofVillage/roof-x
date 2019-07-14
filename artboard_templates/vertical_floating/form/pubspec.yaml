@@ -32,10 +32,14 @@ dependencies:
     path: ../../../icon_picker_data
   option_picker_data:
     path: ../../../option_picker_data
-  interval_frequency_option_data:
-    path: ../../../interval_frequency_option_data    
+  interval_frequency_schedule_data:
+    path: ../../../interval_frequency_schedule_data    
   interval_frequency_picker_builder:
     path: ../../../builders/interval_frequency_picker
+  roller_column_picker_builder:
+    path: ../../../builders/roller_column_picker
+  roller_column_picker_artboard:
+    path: ../../../artboards/shared/roller_column_picker
   button_builder:
     path: ../../../builders/button
   date_picker_artboard:

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:theme/index.dart';
-import 'package:interval_frequency_option_data/index.dart';
+import 'package:interval_frequency_schedule_data/index.dart';
 import 'package:interval/index.dart';
 import 'package:frequency_type/index.dart';
 import 'package:typography/index.dart' as typography;
@@ -10,13 +10,13 @@ import '_picker_field.dart';
 
 class IntervalFrequencyPickerField extends StatelessWidget {
   final String title;
-  final IntervalFrequencyOptionData initialValue;
-  final Function(IntervalFrequencyOptionData) onChanged;
+  final IntervalFrequencyScheduleData selectedValue;
+  final Function(IntervalFrequencyScheduleData) onChanged;
   final Function onTap;
 
   IntervalFrequencyPickerField({
     this.title,
-    this.initialValue,
+    this.selectedValue,
     this.onChanged,
     this.onTap,
   });
@@ -25,13 +25,14 @@ class IntervalFrequencyPickerField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final int initialInterval = initialValue?.interval != null ? initialValue.interval : 0;
-    final FrequencyType initialFrequency = initialValue?.frequency != null
-        ? initialValue.frequency
+    final int interval =
+        selectedValue?.interval != null ? selectedValue.interval : 0;
+    final FrequencyType frequency = selectedValue?.frequency != null
+        ? selectedValue.frequency
         : FrequencyType.fromString("daily");
 
     String formattedValue =
-        "${toIntervalString(initialInterval)} ${initialFrequency.inlineString}";
+        "${toIntervalString(interval)} ${frequency.inlineString}";
 
     final TextStyle textStyle = _typographyStyle.textStyleWithColor(
       RoofTheme.of(context).color.text.primary,

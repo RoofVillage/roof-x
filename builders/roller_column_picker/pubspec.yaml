@@ -1,5 +1,5 @@
 name: roller_column_picker_builder
-description: Picker with vertical endless scrolling list view.
+description: Component for selecting a value from a single roller column
 
 version: 1.0.0+1
 
@@ -9,18 +9,16 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  roller_column_data:
-    path: ../../roller_column_data
+  artboard:
+    path: ../../lib/artboard
   theme:
     path: ../../theme
-  curve:
-    path: ../../spec/curve
-  duration:
-    path: ../../spec/duration
-  distance:
-    path: ../../spec/distance
   haptics:
     path: ../../lib/haptics
+  option_picker_data:
+    path: ../../option_picker_data
+  roller_column_builder:
+    path: ../roller_column
   typography:
     path: ../../spec/typography
 

@@ -18,7 +18,7 @@ mixin LeaseCreateArtboardData implements FormBuilder {
   @override
   Future<List<StreamableFormFieldData>> get initialFieldData async => [
         _intervalFrequencyField,
-        _dueOn,
+        _dueOn2,
         _amount,
         _startDate,
         _endDate,
@@ -35,6 +35,8 @@ mixin LeaseCreateArtboardData implements FormBuilder {
   // TODO: field conditional visibility
   final _intervalFrequencyField =
       FormIntervalFrequencyPickerFieldData(title: "Rent due", size: 2 / 3);
+
+  final _dueOn2 = FormDayOfMonthPickerFieldData(size: 1 / 3);
 
   final _dueOn =
       FormOptionPickerFieldData(options: _buildDueOnOptions(), size: 1 / 3);

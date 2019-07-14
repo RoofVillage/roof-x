@@ -6,7 +6,7 @@ import 'package:option_picker_data/index.dart';
 
 class OptionPickerVerticalFloatingArtboard<T>
     extends EmptyVerticalFloatingArtboard<List<OptionPickerData>>
-    with OptionPickerBuilder<T> {
+    with OptionPickerArtboardBuilder<T> {
   final String title;
   final String emptyText;
   final List<OptionPickerData<T>> selectedOptions;
@@ -29,7 +29,7 @@ class _OptionPickerVerticalFloatingArtboardState<T>
     extends State<OptionPickerVerticalFloatingArtboard<T>>
     with
         VerticalFloatingArtboardState<OptionPickerVerticalFloatingArtboard<T>>,
-        OptionPickerBuilderState<T, OptionPickerVerticalFloatingArtboard<T>> {
+        OptionPickerArtboardBuilderState<T, OptionPickerVerticalFloatingArtboard<T>> {
   @override
   List<OptionPickerData<T>> get selectedOptions =>
       VerticalFloatingArtboardNavigatorPanel.of(context, shouldRebuild: false)

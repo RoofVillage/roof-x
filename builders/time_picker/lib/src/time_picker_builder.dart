@@ -4,11 +4,11 @@ import 'package:haptics/index.dart';
 
 import '_components/time_picker.dart';
 
-mixin TimePickerBuilder implements Artboard<TimeOfDay> {
+mixin TimePickerArtboardBuilder implements Artboard<TimeOfDay> {
   TimeOfDay get initialValue;
 }
 
-mixin TimePickerBuilderState<T extends TimePickerBuilder>
+mixin TimePickerArtboardBuilderState<T extends TimePickerArtboardBuilder>
     implements ArtboardState<T> {
   TimeOfDay _selectedTime;
 

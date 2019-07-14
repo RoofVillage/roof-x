@@ -23,12 +23,12 @@ dependencies:
     path: ../../lib/haptics
   interval:
     path: ../../lib/interval
-  interval_frequency_option_data:
-    path: ../../interval_frequency_option_data
-  roller_column_data:
-    path: ../../roller_column_data
-  roller_column_picker_builder:
-    path: ../roller_column_picker
+  interval_frequency_schedule_data:
+    path: ../../interval_frequency_schedule_data
+  option_picker_data:
+    path: ../../option_picker_data
+  roller_column_builder:
+    path: ../roller_column
   typography:
     path: ../../spec/typography
 

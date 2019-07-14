@@ -7,13 +7,13 @@ import 'package:icon_picker_builder/src/_components/icon_picker.dart';
 import '_components/icon_picker.dart';
 
 //Icon picker must be an artboard
-mixin IconPickerBuilder implements Artboard<IconPickerData> {
+mixin IconPickerArtboardBuilder implements Artboard<IconPickerData> {
   String get title;
   IconPickerData get selectedOption;
   List<IconPickerData> get options;
 }
 
-mixin IconPickerBuilderState<U extends IconPickerBuilder>
+mixin IconPickerBuilderArtboardState<U extends IconPickerArtboardBuilder>
     implements ArtboardState<U> {
   IconPickerData _selectedOption;
 

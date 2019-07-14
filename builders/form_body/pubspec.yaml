@@ -41,6 +41,8 @@ dependencies:
     path: ../../lib/date
   haptics:
     path: ../../lib/haptics
+  ordinal_suffix_string_from_int:
+    path: ../../lib/ordinal_suffix_string_from_int
   form_validation_exception:
     path: ../../lib/form_validation_exception
   typedefs:
@@ -59,12 +61,14 @@ dependencies:
     path: ../../option_picker_data
   icon_picker_data:
     path: ../../icon_picker_data
-  interval_frequency_option_data:
-    path: ../../interval_frequency_option_data
+  interval_frequency_schedule_data:
+    path: ../../interval_frequency_schedule_data
   time_picker_builder:
     path: ../../builders/time_picker
   interval_frequency_picker_builder:
     path: ../../builders/interval_frequency_picker
+  roller_column_picker_builder:
+    path: ../../builders/roller_column_picker
 
 dev_dependencies:
   flutter_test:

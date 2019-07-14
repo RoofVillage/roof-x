@@ -16,11 +16,14 @@ import 'package:icon_picker_artboard/index.dart';
 import 'package:icon_picker_data/index.dart';
 import 'package:vertical_floating_artboard_scaffold/index.dart';
 import 'package:option_picker_data/index.dart';
-import 'package:interval_frequency_option_data/index.dart';
+import 'package:interval_frequency_schedule_data/index.dart';
 import 'package:time_picker_builder/index.dart';
 import 'package:time_picker_artboard/index.dart';
 import 'package:interval_frequency_picker_artboard/index.dart';
 import 'package:interval_frequency_picker_builder/index.dart';
+import 'package:roller_column_picker_builder/index.dart';
+import 'package:roller_column_picker_artboard/index.dart';
+import 'package:frequency_type/index.dart';
 
 abstract class FormVerticalFloatingArtboard<T> extends StatefulWidget
     with
@@ -47,7 +50,7 @@ abstract class FormVerticalFloatingArtboard<T> extends StatefulWidget
   }
 
   @override
-  OptionPickerBuilder buildOptionPicker(
+  OptionPickerArtboardBuilder buildOptionPicker(
     BuildContext context, {
     String title,
     String emptyText,
@@ -65,7 +68,7 @@ abstract class FormVerticalFloatingArtboard<T> extends StatefulWidget
   }
 
   @override
-  IconPickerBuilder buildIconPicker(
+  IconPickerArtboardBuilder buildIconPicker(
     BuildContext context, {
     String title,
     IconPickerData selectedOption,
@@ -79,31 +82,54 @@ abstract class FormVerticalFloatingArtboard<T> extends StatefulWidget
   }
 
   @override
-  TimePickerBuilder buildTimePicker(BuildContext context,
-      {TimeOfDay selectedTime}) {
+  TimePickerArtboardBuilder buildTimePicker(
+    BuildContext context, {
+    TimeOfDay selectedTime,
+  }) {
     return TimePickerVerticalFloatingArtboard(
       initialValue: selectedTime,
     );
   }
 
   @override
-  IntervalFrequencyPickerBuilder buildIntervalFrequencyPicker(
-      BuildContext context,
-      {IntervalFrequencyOptionData selectedSchedule}) {
+  IntervalFrequencyPickerArtboardBuilder buildIntervalFrequencyPicker(
+    BuildContext context, {
+    IntervalFrequencyScheduleData selectedSchedule,
+    List<OptionPickerData<int>> intervalList,
+    List<OptionPickerData<FrequencyType>> frequencyList,
+  }) {
     return IntervalFrequencyPickerVerticalFloatingArtboard(
-      initialValue: selectedSchedule,
+      selectedValue: selectedSchedule,
+      intervalList: intervalList,
+      frequencyList: frequencyList,
     );
   }
 
   @override
-  Future<T> goTo<T>(
-      {@required BuildContext context, @required Artboard<T> artboard}) async {
+  RollerColumnPickerArtboardBuilder<T> buildRollerColumnPicker<T>(
+    BuildContext context, {
+    OptionPickerData<T> selectedValue,
+    List<OptionPickerData<T>> options,
+  }) {
+    return RollerColumnPickerVerticalFloatingArtboard(
+      selectedValue: selectedValue,
+      options: options,
+    );
+  }
+
+  @override
+  Future<T> goTo<T>({
+    @required BuildContext context,
+    @required Artboard<T> artboard,
+  }) async {
     return await ArtboardNavigator.of(context).goTo<T>(artboard);
   }
 
   @override
-  void onFocusChanged(
-      {@required BuildContext context, @required bool isInFocus}) {
+  void onFocusChanged({
+    @required BuildContext context,
+    @required bool isInFocus,
+  }) {
     ArtboardNavigator.of(context).toggleNavButtonsHidden(isInFocus);
   }
 }

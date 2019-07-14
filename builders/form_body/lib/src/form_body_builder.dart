@@ -12,9 +12,10 @@ import 'package:icon_picker_builder/index.dart';
 import 'package:icon_picker_data/index.dart';
 import 'package:time_picker_builder/index.dart';
 import 'package:interval_frequency_picker_builder/index.dart';
-import 'package:interval_frequency_option_data/index.dart';
-
+import 'package:interval_frequency_schedule_data/index.dart';
+import 'package:roller_column_picker_builder/index.dart';
 import 'package:artboard/index.dart';
+import 'package:frequency_type/index.dart';
 
 import '_components/keyboard_accessory_buttons/index.dart';
 import '_components/roof_stream_form.dart';
@@ -49,7 +50,7 @@ mixin FormBodyBuilder implements StatefulWidget {
   DatePickerBuilder buildDatePicker(BuildContext context,
       {@required Date selectedDate});
 
-  OptionPickerBuilder buildOptionPicker(
+  OptionPickerArtboardBuilder buildOptionPicker(
     BuildContext context, {
     String title,
     String emptyText,
@@ -58,21 +59,29 @@ mixin FormBodyBuilder implements StatefulWidget {
     bool isMultiSelect,
   });
 
-  IconPickerBuilder buildIconPicker(
+  IconPickerArtboardBuilder buildIconPicker(
     BuildContext context, {
     String title,
     IconPickerData selectedOption,
     List<IconPickerData> options,
   });
 
-  TimePickerBuilder buildTimePicker(
+  TimePickerArtboardBuilder buildTimePicker(
     BuildContext context, {
     TimeOfDay selectedTime,
   });
 
-  IntervalFrequencyPickerBuilder buildIntervalFrequencyPicker(
+  IntervalFrequencyPickerArtboardBuilder buildIntervalFrequencyPicker(
     BuildContext context, {
-    IntervalFrequencyOptionData selectedSchedule,
+    IntervalFrequencyScheduleData selectedSchedule,
+    List<OptionPickerData<int>> intervalList,
+    List<OptionPickerData<FrequencyType>> frequencyList,
+  });
+
+  RollerColumnPickerArtboardBuilder buildRollerColumnPicker<T>(
+    BuildContext context, {
+    OptionPickerData<T> selectedValue,
+    List<OptionPickerData<T>> options,
   });
 
   Future<T> goTo<T>(
@@ -92,6 +101,8 @@ mixin FormBodyBuilder implements StatefulWidget {
         _setupTimePickerFieldData(context, data: data);
       if (data is FormIntervalFrequencyPickerFieldData)
         _setupIntervalFrequencyPickerFieldData(context, data: data);
+      if (data is FormRollerColumnPickerFieldData)
+        _setupRollerColumnPickerFieldData(context, data: data);
     }
     setupFields(context, fieldData: fieldData);
   }
@@ -143,8 +154,7 @@ mixin FormBodyBuilder implements StatefulWidget {
         artboard: artboard,
       );
       if (newSelectedOption == null) return;
-      data.selectedOption =
-          FormIconPickerData(icon: newSelectedOption.icon);
+      data.selectedOption = FormIconPickerData(icon: newSelectedOption.icon);
       form.updateFieldData(data);
     });
   }
@@ -197,18 +207,38 @@ mixin FormBodyBuilder implements StatefulWidget {
     data.addOnTapListener(() async {
       final artboard = buildIntervalFrequencyPicker(
         context,
-        selectedSchedule: IntervalFrequencyOptionData(
+        selectedSchedule: IntervalFrequencyScheduleData(
           interval: data.value?.interval,
           frequency: data.value?.frequency,
         ),
+        frequencyList: data.frequencyList,
+        intervalList: data.intervalList,
       );
-      final newSelectedSchedule = await goTo<IntervalFrequencyOptionData>(
+      final newSelectedSchedule = await goTo<IntervalFrequencyScheduleData>(
           context: context, artboard: artboard);
       if (newSelectedSchedule == null) return;
       data.value = FormIntervalFrequencyOptionData(
         frequency: newSelectedSchedule.frequency,
         interval: newSelectedSchedule.interval,
       );
+      form.updateFieldData(data);
+    });
+  }
+
+  void _setupRollerColumnPickerFieldData(BuildContext context,
+      {@required FormRollerColumnPickerFieldData data}) {
+    data.addOnTapListener(() async {
+      final artboard = buildRollerColumnPicker(
+        context,
+        selectedValue: data.value,
+        options: data.buildOptions(),
+      );
+      final newSelectedValue = await goTo(
+        context: context,
+        artboard: artboard,
+      );
+      if (newSelectedValue == null) return;
+      data.value = newSelectedValue;
       form.updateFieldData(data);
     });
   }

@@ -6,7 +6,7 @@ import 'package:icon_picker_builder/index.dart';
 
 class IconPickerVerticalFloatingArtboard
     extends EmptyVerticalFloatingArtboard<IconPickerData>
-    with IconPickerBuilder {
+    with IconPickerArtboardBuilder {
   final String title;
   final IconPickerData selectedOption;
   final List<IconPickerData> options;
@@ -25,7 +25,7 @@ class _IconPickerVerticalFloatingArtboardState
     extends State<IconPickerVerticalFloatingArtboard>
     with
         VerticalFloatingArtboardState<IconPickerVerticalFloatingArtboard>,
-        IconPickerBuilderState<IconPickerVerticalFloatingArtboard> {
+        IconPickerBuilderArtboardState<IconPickerVerticalFloatingArtboard> {
   @override
   IconPickerData get selectedOption =>
       VerticalFloatingArtboardNavigatorPanel.of(context, shouldRebuild: false)

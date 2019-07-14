@@ -6,7 +6,7 @@ import 'package:option_picker_data/index.dart';
 import '_components/option_picker.dart';
 
 // Option pickers must be an artboard
-mixin OptionPickerBuilder<T> implements Artboard<List<OptionPickerData>> {
+mixin OptionPickerArtboardBuilder<T> implements Artboard<List<OptionPickerData>> {
   String get title;
   String get emptyText;
   List<OptionPickerData<T>> get selectedOptions => [];
@@ -14,7 +14,7 @@ mixin OptionPickerBuilder<T> implements Artboard<List<OptionPickerData>> {
   bool get isMultiSelect => false;
 }
 
-mixin OptionPickerBuilderState<T, U extends OptionPickerBuilder>
+mixin OptionPickerArtboardBuilderState<T, U extends OptionPickerArtboardBuilder>
     implements ArtboardState<U> {
   List<OptionPickerData<T>> _selectedOptions;
 

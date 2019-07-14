@@ -2,14 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:empty_vertical_floating_artboard_template/index.dart';
 import 'package:vertical_floating_artboard_scaffold/index.dart';
 import 'package:interval_frequency_picker_builder/index.dart';
-import 'package:interval_frequency_option_data/index.dart';
+import 'package:interval_frequency_schedule_data/index.dart';
+import 'package:option_picker_data/index.dart';
+import 'package:frequency_type/index.dart';
 
 class IntervalFrequencyPickerVerticalFloatingArtboard
-    extends EmptyVerticalFloatingArtboard<IntervalFrequencyOptionData>
-    with IntervalFrequencyPickerBuilder {
-  final IntervalFrequencyOptionData initialValue;
+    extends EmptyVerticalFloatingArtboard<IntervalFrequencyScheduleData>
+    with IntervalFrequencyPickerArtboardBuilder {
+  final IntervalFrequencyScheduleData selectedValue;
+  final List<OptionPickerData<int>> intervalList;
+  final List<OptionPickerData<FrequencyType>> frequencyList;
 
-  IntervalFrequencyPickerVerticalFloatingArtboard({this.initialValue});
+  IntervalFrequencyPickerVerticalFloatingArtboard(
+      {this.selectedValue, this.intervalList, this.frequencyList});
 
   _IntervalFrequencyPickerVerticalFloatingArtboardState createState() =>
       _IntervalFrequencyPickerVerticalFloatingArtboardState();
@@ -20,16 +25,16 @@ class _IntervalFrequencyPickerVerticalFloatingArtboardState
     with
         VerticalFloatingArtboardState<
             IntervalFrequencyPickerVerticalFloatingArtboard>,
-        IntervalFrequencyPickerBuilderState<
+        IntervalFrequencyPickerArtboardBuilderState<
             IntervalFrequencyPickerVerticalFloatingArtboard> {
   @override
-  IntervalFrequencyOptionData get selectedSchedule =>
+  IntervalFrequencyScheduleData get selectedSchedule =>
       VerticalFloatingArtboardNavigatorPanel.of(context, shouldRebuild: false)
           .result;
 
   @override
-  set selectedSchedule(IntervalFrequencyOptionData newSelectedTime) {
-    VerticalFloatingArtboardNavigatorPanel.of(context).result = newSelectedTime;
+  set selectedSchedule(IntervalFrequencyScheduleData newValue) {
+    VerticalFloatingArtboardNavigatorPanel.of(context).result = newValue;
   }
 
   @override

@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:form/index.dart';
 import 'package:form_body_builder/src/_components/fields/interval_frequency_picker_field.dart';
 import 'package:icon_picker_data/index.dart';
-import 'package:interval_frequency_option_data/index.dart';
+import 'package:interval_frequency_schedule_data/index.dart';
 import 'package:keyboard_accessory/index.dart';
 import 'package:keyboard_accessory_bar_builder/index.dart';
 import 'package:option_picker_data/index.dart';
-
 import 'keyboard_accessory_buttons/index.dart';
 import 'field_container.dart';
 import 'fields/text_area.dart';
@@ -16,6 +15,7 @@ import 'fields/date_picker_field.dart';
 import 'fields/time_picker_field.dart';
 import 'fields/option_picker_field.dart';
 import 'fields/icon_picker_field.dart';
+import 'fields/roller_column_picker_field.dart';
 
 enum KeyboardAccessoryState { hideKeyboard, submit }
 
@@ -176,6 +176,18 @@ class RoofStreamForm
     );
   }
 
+  Widget buildRollerColumnPicker({
+    FormRollerColumnPickerFieldData fieldData,
+    int fieldIndex,
+    int sectionIndex,
+  }) {
+    return RollerColumnPickerField(
+      title: fieldData.title,
+      selectedValue: fieldData.value,
+      onTap: fieldData.onTap,
+    );
+  }
+
   Widget buildIntervalFrequencySelect({
     FormIntervalFrequencyPickerFieldData fieldData,
     int fieldIndex,
@@ -183,9 +195,10 @@ class RoofStreamForm
   }) {
     return IntervalFrequencyPickerField(
       title: fieldData.title,
-      initialValue: IntervalFrequencyOptionData(
-          interval: fieldData.value?.interval,
-          frequency: fieldData.value?.frequency),
+      selectedValue: IntervalFrequencyScheduleData(
+        interval: fieldData.value?.interval,
+        frequency: fieldData.value?.frequency,
+      ),
       onTap: fieldData.onTap,
     );
   }
@@ -270,6 +283,12 @@ class RoofStreamForm
       );
     } else if (fieldData is FormIntervalFrequencyPickerFieldData) {
       fieldBody = buildIntervalFrequencySelect(
+        fieldData: fieldData,
+        fieldIndex: fieldIndex,
+        sectionIndex: sectionIndex,
+      );
+    } else if (fieldData is FormRollerColumnPickerFieldData) {
+      fieldBody = buildRollerColumnPicker(
         fieldData: fieldData,
         fieldIndex: fieldIndex,
         sectionIndex: sectionIndex,

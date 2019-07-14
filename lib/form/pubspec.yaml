@@ -19,6 +19,8 @@ dependencies:
     path: ../form_validation_exception
   typedefs:
     path: ../typedefs
+  ordinal_suffix_string_from_int:
+    path: ../ordinal_suffix_string_from_int
   standard_icon_library:
     path: ../../icons/standard
   interval:
@@ -27,6 +29,8 @@ dependencies:
     path: ../../types/frequency
   fee_payer_type:
     path: ../../types/fee_payer
+  option_picker_data:
+    path: ../../option_picker_data
 
 dev_dependencies:
   flutter_test:

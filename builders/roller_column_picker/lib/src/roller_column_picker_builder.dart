@@ -1,23 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:roller_column_data/index.dart';
+import 'package:artboard/index.dart';
+import 'package:haptics/index.dart';
+import 'package:option_picker_data/index.dart';
 
-import '_roller_column_picker.dart';
+import '_components/roller_column_picker.dart';
 
-mixin RollerColumnPickerBuilder {
-  Widget buildRollerColumnPicker<T>(
-    BuildContext context, {
-    @required List<RollerColumnData<T>> list,
-    RollerColumnData<T> selectedValue,
-    bool canRollover,
-    CrossAxisAlignment crossAxisAlignment,
-    Function onChange,
-  }) {
+mixin RollerColumnPickerArtboardBuilder<T> implements Artboard<OptionPickerData<T>> {
+  OptionPickerData<T> get selectedValue;
+  List<OptionPickerData<T>> get options => [];
+}
+
+mixin RollerColumnPickerArtboardBuilderState<T, U extends RollerColumnPickerArtboardBuilder>
+    implements ArtboardState<U> {
+  OptionPickerData<T> _selectedValue;
+
+  OptionPickerData<T> get selectedValue => _selectedValue;
+  set selectedValue(OptionPickerData<T> newValue) => _selectedValue = newValue;
+
+  Widget buildRollerColumnPicker(BuildContext context) {
     return RollerColumnPicker<T>(
-      list: list,
-      selectedValue: selectedValue,
-      canRollover: canRollover,
-      crossAxisAlignment: crossAxisAlignment,
-      onChange: onChange,
+      selectedValue: widget.selectedValue,
+      options: widget.options,
+      onChanged: _onChanged,
     );
+  }
+
+  void _onChanged(OptionPickerData<T> newValue) {
+    triggerHapticWith(HapticOption.click);
+    selectedValue = newValue;
   }
 }

@@ -1,0 +1,18 @@
+name: interval_frequency_schedule_data
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  frequency_type:
+    path: ../types/frequency
+  option_picker_data:
+    path: ../option_picker_data
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
