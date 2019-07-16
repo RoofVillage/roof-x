@@ -25,8 +25,8 @@ dependencies:
     path: ../../lib/interval
   interval_frequency_schedule_data:
     path: ../../interval_frequency_schedule_data
-  option_picker_data:
-    path: ../../option_picker_data
+  titled_option_data:
+    path: ../../titled_option_data
   roller_column_builder:
     path: ../roller_column
   typography:

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:theme/index.dart';
 import 'package:typography/index.dart' as typography;
-import 'package:option_picker_data/index.dart';
+import 'package:titled_option_data/index.dart';
 
 import '_widgets/index.dart';
 import '_picker_field.dart';
@@ -9,11 +9,11 @@ import '_picker_field.dart';
 class OptionPickerField<T> extends StatelessWidget {
   final String title;
   final String emptyText;
-  final List<OptionPickerData<T>> selectedOptions;
-  final List<OptionPickerData<T>> options;
+  final List<TitledOptionData<T>> selectedOptions;
+  final List<TitledOptionData<T>> options;
   final bool isMultiSelect;
   final Function onTap;
-  final Function(List<OptionPickerData<T>>) onChanged;
+  final Function(List<TitledOptionData<T>>) onChanged;
 
   OptionPickerField({
     this.title,
@@ -27,14 +27,14 @@ class OptionPickerField<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<OptionPickerData<T>> _selectedOptions;
-    List<OptionPickerData<T>> _options;
+    List<TitledOptionData<T>> _selectedOptions;
+    List<TitledOptionData<T>> _options;
 
     if (options != null && options.isNotEmpty) {
       _options = options;
     } else {
       _options = [
-        OptionPickerData(title: emptyText),
+        TitledOptionData(title: emptyText),
       ];
     }
 
@@ -66,7 +66,7 @@ class OptionPickerField<T> extends StatelessWidget {
 }
 
 class _SelectedOptionsContainer<T> extends StatelessWidget {
-  final List<OptionPickerData<T>> selectedOptions;
+  final List<TitledOptionData<T>> selectedOptions;
   final String emptyText;
 
   final _typographyStyle = typography.body;

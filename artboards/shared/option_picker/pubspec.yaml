@@ -16,8 +16,8 @@ dependencies:
     path: ../../../builders/form
   option_picker_builder:
     path: ../../../builders/option_picker
-  option_picker_data:
-    path: ../../../option_picker_data
+  titled_option_data:
+    path: ../../../titled_option_data
 
 dev_dependencies:
   flutter_test:

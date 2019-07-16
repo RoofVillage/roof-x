@@ -23,8 +23,8 @@ dependencies:
     path: ../../lib/navigator
   distance:
     path: ../../spec/distance
-  icon_picker_data:
-    path: ../../icon_picker_data
+  icon_option_data:
+    path: ../../icon_option_data
 
 dev_dependencies:
   flutter_test:

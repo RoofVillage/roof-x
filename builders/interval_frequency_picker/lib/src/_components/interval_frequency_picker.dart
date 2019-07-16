@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:frequency_type/index.dart';
 import 'package:distance/index.dart' as distance;
-import 'package:option_picker_data/index.dart';
+import 'package:titled_option_data/index.dart';
 import 'package:roller_column_builder/index.dart';
 import 'package:interval_frequency_schedule_data/index.dart';
 
 class IntervalFrequencyPicker extends StatefulWidget {
   final IntervalFrequencyScheduleData selectedValue;
-  final List<OptionPickerData<int>> intervalList;
-  final List<OptionPickerData<FrequencyType>> frequencyList;
+  final List<TitledOptionData<int>> intervalList;
+  final List<TitledOptionData<FrequencyType>> frequencyList;
   final Function(IntervalFrequencyScheduleData) onChanged;
 
   IntervalFrequencyPicker({
@@ -85,22 +85,22 @@ class IntervalFrequencyPickerState extends State<IntervalFrequencyPicker>
     );
   }
 
-  OptionPickerData<int> _rollerColumnDataFromInterval(int val) {
-    for (OptionPickerData<int> data in widget.intervalList) {
+  TitledOptionData<int> _rollerColumnDataFromInterval(int val) {
+    for (TitledOptionData<int> data in widget.intervalList) {
       if (data.data == val) return data;
     }
     return null;
   }
 
-  OptionPickerData<FrequencyType> _rollerColumnDataFromFrequency(
+  TitledOptionData<FrequencyType> _rollerColumnDataFromFrequency(
       FrequencyType val) {
-    for (OptionPickerData<FrequencyType> data in widget.frequencyList) {
+    for (TitledOptionData<FrequencyType> data in widget.frequencyList) {
       if (data.data.toString() == val?.toString()) return data;
     }
     return null;
   }
 
-  void _onIntervalChange(OptionPickerData<int> newVal) {
+  void _onIntervalChange(TitledOptionData<int> newVal) {
     if (_selectedSchedule.interval != newVal.data) {
       setState(() {
         _selectedSchedule.interval = newVal.data;
@@ -109,7 +109,7 @@ class IntervalFrequencyPickerState extends State<IntervalFrequencyPicker>
     }
   }
 
-  void _onFrequencyChange(OptionPickerData<FrequencyType> newVal) {
+  void _onFrequencyChange(TitledOptionData<FrequencyType> newVal) {
     if (_selectedSchedule.frequency != newVal.data) {
       setState(() {
         _selectedSchedule.frequency = newVal.data;

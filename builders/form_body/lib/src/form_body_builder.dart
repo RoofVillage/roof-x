@@ -7,9 +7,9 @@ import 'package:haptics/index.dart';
 import 'package:date/index.dart';
 import 'package:date_picker_builder/index.dart';
 import 'package:option_picker_builder/index.dart';
-import 'package:option_picker_data/index.dart';
+import 'package:titled_option_data/index.dart';
 import 'package:icon_picker_builder/index.dart';
-import 'package:icon_picker_data/index.dart';
+import 'package:icon_option_data/index.dart';
 import 'package:time_picker_builder/index.dart';
 import 'package:interval_frequency_picker_builder/index.dart';
 import 'package:interval_frequency_schedule_data/index.dart';
@@ -47,23 +47,25 @@ mixin FormBodyBuilder implements StatefulWidget {
   void setupFields(BuildContext context,
       {@required List<StreamableFormFieldData> fieldData}) {}
 
-  DatePickerBuilder buildDatePicker(BuildContext context,
-      {@required Date selectedDate});
+  DatePickerBuilder buildDatePicker(
+    BuildContext context, {
+    @required Date selectedDate,
+  });
 
   OptionPickerArtboardBuilder buildOptionPicker(
     BuildContext context, {
     String title,
     String emptyText,
-    List<OptionPickerData> selectedOptions,
-    @required List<OptionPickerData> options,
+    List<TitledOptionData> selectedOptions,
+    @required List<TitledOptionData> options,
     bool isMultiSelect,
   });
 
   IconPickerArtboardBuilder buildIconPicker(
     BuildContext context, {
     String title,
-    IconPickerData selectedOption,
-    List<IconPickerData> options,
+    IconOptionData selectedOption,
+    List<IconOptionData> options,
   });
 
   TimePickerArtboardBuilder buildTimePicker(
@@ -74,14 +76,14 @@ mixin FormBodyBuilder implements StatefulWidget {
   IntervalFrequencyPickerArtboardBuilder buildIntervalFrequencyPicker(
     BuildContext context, {
     IntervalFrequencyScheduleData selectedSchedule,
-    List<OptionPickerData<int>> intervalList,
-    List<OptionPickerData<FrequencyType>> frequencyList,
+    List<TitledOptionData<int>> intervalList,
+    List<TitledOptionData<FrequencyType>> frequencyList,
   });
 
   RollerColumnPickerArtboardBuilder buildRollerColumnPicker<T>(
     BuildContext context, {
-    OptionPickerData<T> selectedValue,
-    List<OptionPickerData<T>> options,
+    TitledOptionData<T> selectedValue,
+    List<TitledOptionData<T>> options,
   });
 
   Future<T> goTo<T>(
@@ -142,19 +144,19 @@ mixin FormBodyBuilder implements StatefulWidget {
         title: data.title,
         options: data.options
             .map(
-              (option) => IconPickerData(icon: option.icon),
+              (option) => IconOptionData(icon: option.icon),
             )
             .toList(),
         selectedOption: data.selectedOption != null
-            ? IconPickerData(icon: data.selectedOption.icon)
+            ? IconOptionData(icon: data.selectedOption.icon)
             : null,
       );
-      final newSelectedOption = await goTo<IconPickerData>(
+      final newSelectedOption = await goTo<IconOptionData>(
         context: context,
         artboard: artboard,
       );
       if (newSelectedOption == null) return;
-      data.selectedOption = FormIconPickerData(icon: newSelectedOption.icon);
+      data.selectedOption = FormIconOptionData(icon: newSelectedOption.icon);
       form.updateFieldData(data);
     });
   }
@@ -163,13 +165,13 @@ mixin FormBodyBuilder implements StatefulWidget {
       {@required FormOptionPickerFieldData data}) {
     data.addOnTapListener(() async {
       final convertedOptions = data.options
-          ?.map((option) => OptionPickerData(
+          ?.map((option) => TitledOptionData(
                 title: option.title,
                 data: option.data,
               ))
           ?.toList();
       final convertedSelectedOptions = data.selectedOptions
-          ?.map((option) => OptionPickerData(
+          ?.map((option) => TitledOptionData(
                 title: option.title,
                 data: option.data,
               ))
@@ -180,11 +182,11 @@ mixin FormBodyBuilder implements StatefulWidget {
         selectedOptions: convertedSelectedOptions,
         options: convertedOptions,
       );
-      final newSelectedOptions = await goTo<List<OptionPickerData>>(
+      final newSelectedOptions = await goTo<List<TitledOptionData>>(
           context: context, artboard: artboard);
       if (newSelectedOptions == null) return;
       data.selectedOptions = newSelectedOptions
-          .map((option) => FormOptionPickerData(title: option.title))
+          .map((option) => FormTitledOptionData(title: option.title))
           .toList();
       form.updateFieldData(data);
     });

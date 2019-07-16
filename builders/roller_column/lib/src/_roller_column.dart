@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:option_picker_data/index.dart';
+import 'package:titled_option_data/index.dart';
 import 'package:haptics/index.dart';
 import 'package:curve/index.dart' as curve;
 import 'package:duration/index.dart' as duration;
@@ -7,9 +7,9 @@ import 'package:duration/index.dart' as duration;
 import '_components/roller_column_body.dart';
 
 class RollerColumn<T> extends StatefulWidget {
-  final OptionPickerData<T> selectedValue;
-  final List<OptionPickerData<T>> list;
-  final void Function(OptionPickerData<T>) onChange;
+  final TitledOptionData<T> selectedValue;
+  final List<TitledOptionData<T>> list;
+  final void Function(TitledOptionData<T>) onChange;
   final bool canRollover;
   final int optionsVisible;
   final CrossAxisAlignment crossAxisAlignment;
@@ -34,7 +34,7 @@ class _RollerColumnState<T> extends State<RollerColumn<T>> {
   double _boundaryOffset;
   ScrollController _scrollController;
   bool _canRollover;
-  OptionPickerData<T> _selectedValue;
+  TitledOptionData<T> _selectedValue;
 
   @override
   void initState() {
@@ -118,7 +118,7 @@ class _RollerColumnState<T> extends State<RollerColumn<T>> {
   }
 
   void _onScroll() {
-    OptionPickerData<T> newValue =
+    TitledOptionData<T> newValue =
         widget.list[_getNearestStepIndex() % widget.list.length];
 
     if (newValue != _selectedValue) {

@@ -13,9 +13,9 @@ import 'package:option_picker_artboard/index.dart';
 import 'package:button_builder/index.dart';
 import 'package:icon_picker_builder/index.dart';
 import 'package:icon_picker_artboard/index.dart';
-import 'package:icon_picker_data/index.dart';
+import 'package:icon_option_data/index.dart';
 import 'package:vertical_floating_artboard_scaffold/index.dart';
-import 'package:option_picker_data/index.dart';
+import 'package:titled_option_data/index.dart';
 import 'package:interval_frequency_schedule_data/index.dart';
 import 'package:time_picker_builder/index.dart';
 import 'package:time_picker_artboard/index.dart';
@@ -54,8 +54,8 @@ abstract class FormVerticalFloatingArtboard<T> extends StatefulWidget
     BuildContext context, {
     String title,
     String emptyText,
-    List<OptionPickerData> selectedOptions,
-    @required List<OptionPickerData> options,
+    List<TitledOptionData> selectedOptions,
+    @required List<TitledOptionData> options,
     bool isMultiSelect,
   }) {
     return OptionPickerVerticalFloatingArtboard(
@@ -71,8 +71,8 @@ abstract class FormVerticalFloatingArtboard<T> extends StatefulWidget
   IconPickerArtboardBuilder buildIconPicker(
     BuildContext context, {
     String title,
-    IconPickerData selectedOption,
-    @required List<IconPickerData> options,
+    IconOptionData selectedOption,
+    @required List<IconOptionData> options,
   }) {
     return IconPickerVerticalFloatingArtboard(
       title: title,
@@ -95,8 +95,8 @@ abstract class FormVerticalFloatingArtboard<T> extends StatefulWidget
   IntervalFrequencyPickerArtboardBuilder buildIntervalFrequencyPicker(
     BuildContext context, {
     IntervalFrequencyScheduleData selectedSchedule,
-    List<OptionPickerData<int>> intervalList,
-    List<OptionPickerData<FrequencyType>> frequencyList,
+    List<TitledOptionData<int>> intervalList,
+    List<TitledOptionData<FrequencyType>> frequencyList,
   }) {
     return IntervalFrequencyPickerVerticalFloatingArtboard(
       selectedValue: selectedSchedule,
@@ -108,8 +108,8 @@ abstract class FormVerticalFloatingArtboard<T> extends StatefulWidget
   @override
   RollerColumnPickerArtboardBuilder<T> buildRollerColumnPicker<T>(
     BuildContext context, {
-    OptionPickerData<T> selectedValue,
-    List<OptionPickerData<T>> options,
+    TitledOptionData<T> selectedValue,
+    List<TitledOptionData<T>> options,
   }) {
     return RollerColumnPickerVerticalFloatingArtboard(
       selectedValue: selectedValue,

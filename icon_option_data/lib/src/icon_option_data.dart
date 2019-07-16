@@ -1,7 +1,7 @@
 import 'package:standard_icon_library/index.dart';
 
-class IconPickerData<T> {
+class IconOptionData<T> {
   StandardIcon icon;
 
-  IconPickerData({this.icon});
+  IconOptionData({this.icon});
 }

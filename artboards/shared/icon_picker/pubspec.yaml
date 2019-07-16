@@ -16,8 +16,8 @@ dependencies:
     path: ../../../builders/form
   icon_picker_builder:
     path: ../../../builders/icon_picker
-  icon_picker_data:
-    path: ../../../icon_picker_data
+  icon_option_data:
+    path: ../../../icon_option_data
 
 dev_dependencies:
   flutter_test:

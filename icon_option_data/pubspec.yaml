@@ -1,4 +1,4 @@
-name: option_picker_data
+name: icon_option_data
 
 version: 1.0.0+1
 
@@ -8,6 +8,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  standard_icon_library:
+    path: ../icons/standard
 
 dev_dependencies:
   flutter_test:

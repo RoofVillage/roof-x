@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:haptics/index.dart';
 import 'package:artboard/index.dart';
-import 'package:icon_picker_data/index.dart';
+import 'package:icon_option_data/index.dart';
 import 'package:icon_picker_builder/src/_components/icon_picker.dart';
 
 import '_components/icon_picker.dart';
 
 //Icon picker must be an artboard
-mixin IconPickerArtboardBuilder implements Artboard<IconPickerData> {
+mixin IconPickerArtboardBuilder implements Artboard<IconOptionData> {
   String get title;
-  IconPickerData get selectedOption;
-  List<IconPickerData> get options;
+  IconOptionData get selectedOption;
+  List<IconOptionData> get options;
 }
 
 mixin IconPickerBuilderArtboardState<U extends IconPickerArtboardBuilder>
     implements ArtboardState<U> {
-  IconPickerData _selectedOption;
+  IconOptionData _selectedOption;
 
-  IconPickerData get selectedOption => _selectedOption;
-  set selectedOption(IconPickerData newOption) => _selectedOption = newOption;
+  IconOptionData get selectedOption => _selectedOption;
+  set selectedOption(IconOptionData newOption) => _selectedOption = newOption;
 
   Widget buildIconPicker(BuildContext context) {
     return IconPicker(
@@ -29,7 +29,7 @@ mixin IconPickerBuilderArtboardState<U extends IconPickerArtboardBuilder>
     );
   }
 
-  void _onOptionTap(IconPickerData newOption) {
+  void _onOptionTap(IconOptionData newOption) {
     triggerHapticWith(HapticOption.click);
     selectedOption = newOption;
   }

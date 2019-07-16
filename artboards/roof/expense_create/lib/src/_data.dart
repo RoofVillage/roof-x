@@ -29,7 +29,7 @@ mixin ExpenseCreateArtboardData implements FormBuilder {
     isMultiSelect: true,
   );
 
-  static List<FormOptionPickerData<String>> _getRoommates() {
+  static List<FormTitledOptionData<String>> _getRoommates() {
     return [];
   }
 }

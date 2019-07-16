@@ -3,14 +3,14 @@ import 'package:theme/index.dart';
 import 'package:standard_icon_library/index.dart';
 import 'package:distance/index.dart' as distance;
 import 'package:typography/index.dart' as typography;
-import 'package:icon_picker_data/index.dart';
+import 'package:icon_option_data/index.dart';
 
-typedef SelectedIconPasser = Function(IconPickerData);
+typedef SelectedIconPasser = Function(IconOptionData);
 
 class IconPicker extends StatelessWidget {
   final String title;
-  final IconPickerData selectedOption;
-  final List<IconPickerData> options;
+  final IconOptionData selectedOption;
+  final List<IconOptionData> options;
   final SelectedIconPasser onChanged;
 
   IconPicker({
@@ -50,8 +50,8 @@ class IconPicker extends StatelessWidget {
 }
 
 class _IconsGrid extends StatelessWidget {
-  final List<IconPickerData> options;
-  final IconPickerData selectedOption;
+  final List<IconOptionData> options;
+  final IconOptionData selectedOption;
   final Function onTap;
 
   final _verticalPadding = distance.c;

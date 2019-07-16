@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:form/index.dart';
 import 'package:form_body_builder/src/_components/fields/interval_frequency_picker_field.dart';
-import 'package:icon_picker_data/index.dart';
+import 'package:icon_option_data/index.dart';
 import 'package:interval_frequency_schedule_data/index.dart';
 import 'package:keyboard_accessory/index.dart';
 import 'package:keyboard_accessory_bar_builder/index.dart';
-import 'package:option_picker_data/index.dart';
+import 'package:titled_option_data/index.dart';
 import 'keyboard_accessory_buttons/index.dart';
 import 'field_container.dart';
 import 'fields/text_area.dart';
@@ -147,14 +147,14 @@ class RoofStreamForm
       emptyText: fieldData.emptyText,
       isMultiSelect: fieldData.isMultiSelect,
       selectedOptions: fieldData.selectedOptions?.map((option) {
-        return OptionPickerData(
+        return TitledOptionData(
           title: option.title,
           data: option.data,
         );
       })?.toList(),
       options: fieldData.options?.map(
         (option) {
-          return OptionPickerData(
+          return TitledOptionData(
             title: option.title,
             data: option.data,
           );
@@ -211,11 +211,11 @@ class RoofStreamForm
     return IconPickerField(
       title: fieldData.title,
       selectedOption: fieldData.selectedOption != null
-          ? IconPickerData(icon: fieldData.selectedOption.icon)
+          ? IconOptionData(icon: fieldData.selectedOption.icon)
           : null,
       options: fieldData.options?.map(
         (option) {
-          return IconPickerData(
+          return IconOptionData(
             icon: option.icon,
           );
         },

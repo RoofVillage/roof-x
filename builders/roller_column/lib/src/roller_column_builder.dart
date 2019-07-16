@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:option_picker_data/index.dart';
+import 'package:titled_option_data/index.dart';
 
 import '_roller_column.dart';
 
 mixin RollerColumnBuilder {
   Widget buildRollerColumn<T>(
     BuildContext context, {
-    @required List<OptionPickerData<T>> list,
-    OptionPickerData<T> selectedValue,
+    @required List<TitledOptionData<T>> list,
+    TitledOptionData<T> selectedValue,
     bool canRollover,
     CrossAxisAlignment crossAxisAlignment,
-    void Function(OptionPickerData<T>) onChange,
+    void Function(TitledOptionData<T>) onChange,
   }) {
     return RollerColumn<T>(
       list: list,

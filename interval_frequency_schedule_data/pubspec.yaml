@@ -10,8 +10,8 @@ dependencies:
     sdk: flutter
   frequency_type:
     path: ../types/frequency
-  option_picker_data:
-    path: ../option_picker_data
+  titled_option_data:
+    path: ../titled_option_data
 
 dev_dependencies:
   flutter_test:

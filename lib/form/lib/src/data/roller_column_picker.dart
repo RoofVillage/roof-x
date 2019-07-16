@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:option_picker_data/index.dart';
+import 'package:titled_option_data/index.dart';
 import 'picker_field.dart';
 
-class FormRollerColumnPickerFieldData<T> extends PickerFieldData<OptionPickerData<T>> {
-  List<OptionPickerData<T>> buildOptions() => null;
+class FormRollerColumnPickerFieldData<T> extends PickerFieldData<TitledOptionData<T>> {
+  List<TitledOptionData<T>> buildOptions() => null;
 
   FormRollerColumnPickerFieldData({
     String title,
-    @required OptionPickerData<T> selectedValue,
+    @required TitledOptionData<T> selectedValue,
     double size,
     bool isVisible,
   }) : super(

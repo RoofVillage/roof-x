@@ -29,8 +29,8 @@ dependencies:
     path: ../../types/frequency
   fee_payer_type:
     path: ../../types/fee_payer
-  option_picker_data:
-    path: ../../option_picker_data
+  titled_option_data:
+    path: ../../titled_option_data
 
 dev_dependencies:
   flutter_test:
