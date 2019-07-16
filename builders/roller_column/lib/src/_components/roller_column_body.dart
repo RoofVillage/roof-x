@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:titled_option_data/index.dart';
+import 'package:titled_value/index.dart';
 import 'package:theme/index.dart';
 import 'package:typography/index.dart' as typography;
 
 class RollerColumnBody<T> extends StatelessWidget {
   /// Builds a column of widgets from a [list] of int values repeated three times to allow simulated infinite scrolling, with the [selectedValue] highlighted.
 
-  final TitledOptionData<T> selectedValue;
-  final List<TitledOptionData<T>> list;
+  final TitledValue<T> selectedValue;
+  final List<TitledValue<T>> list;
   final bool canRollover;
   final CrossAxisAlignment crossAxisAlignment;
 
@@ -37,7 +37,7 @@ class RollerColumnBody<T> extends StatelessWidget {
     for (var i = 0; i < widgetsLength; i++) {
       final j = i % list.length;
 
-      final style = (list[j].data == selectedValue.data) ? activeStyle : inactiveStyle;
+      final style = (list[j].value == selectedValue.value) ? activeStyle : inactiveStyle;
 
       widgets.add(
         Container(

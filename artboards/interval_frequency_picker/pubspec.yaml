@@ -1,0 +1,26 @@
+name: interval_frequency_picker_artboard
+description: Allows the user to choose a schedule interval and frequency.
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  empty_vertical_floating_artboard_template:
+    path: ../../artboard_templates/vertical_floating/empty
+  vertical_floating_artboard_scaffold:
+    path: ../../artboard_scaffolds/vertical_floating
+  form_builder:
+    path: ../../builders/form
+  interval_frequency_picker_builder:
+    path: ../../builders/interval_frequency_picker
+  frequency:
+    path: ../../frequency
+  interval:
+    path: ../../lib/interval
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

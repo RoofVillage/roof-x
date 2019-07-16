@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:titled_option_data/index.dart';
+import 'package:titled_value/index.dart';
 import 'package:haptics/index.dart';
 import 'package:curve/index.dart' as curve;
 import 'package:duration/index.dart' as duration;
@@ -7,9 +7,9 @@ import 'package:duration/index.dart' as duration;
 import '_components/roller_column_body.dart';
 
 class RollerColumn<T> extends StatefulWidget {
-  final TitledOptionData<T> selectedValue;
-  final List<TitledOptionData<T>> list;
-  final void Function(TitledOptionData<T>) onChange;
+  final TitledValue<T> selectedValue;
+  final List<TitledValue<T>> list;
+  final void Function(TitledValue<T>) onChange;
   final bool canRollover;
   final int optionsVisible;
   final CrossAxisAlignment crossAxisAlignment;
@@ -34,7 +34,7 @@ class _RollerColumnState<T> extends State<RollerColumn<T>> {
   double _boundaryOffset;
   ScrollController _scrollController;
   bool _canRollover;
-  TitledOptionData<T> _selectedValue;
+  TitledValue<T> _selectedValue;
 
   @override
   void initState() {
@@ -51,9 +51,9 @@ class _RollerColumnState<T> extends State<RollerColumn<T>> {
 
     double initialOffset = _stepHeight *
         widget.list
-            .map((option) => option.data)
+            .map((option) => option.value)
             .toList()
-            .indexOf(_selectedValue.data);
+            .indexOf(_selectedValue.value);
 
     if (_canRollover) {
       initialOffset += _stepHeight * widget.list.length - _boundaryOffset;
@@ -118,7 +118,7 @@ class _RollerColumnState<T> extends State<RollerColumn<T>> {
   }
 
   void _onScroll() {
-    TitledOptionData<T> newValue =
+    TitledValue<T> newValue =
         widget.list[_getNearestStepIndex() % widget.list.length];
 
     if (newValue != _selectedValue) {

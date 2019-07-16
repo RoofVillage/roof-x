@@ -1,11 +1,11 @@
-import '../options/titled_option_data.dart';
+import '../options/titled_value.dart';
 import 'picker_field.dart';
 
 class FormOptionPickerFieldData<T>
-    extends FormPickerFieldData<List<FormTitledOptionData<T>>> {
+    extends FormPickerFieldData<List<FormTitledValue<T>>> {
   String emptyText;
-  List<FormTitledOptionData<T>> selectedOptions;
-  List<FormTitledOptionData<T>> options;
+  List<FormTitledValue<T>> selectedOptions;
+  List<FormTitledValue<T>> options;
   bool isMultiSelect;
 
   FormOptionPickerFieldData({
@@ -13,7 +13,7 @@ class FormOptionPickerFieldData<T>
     this.options,
     this.isMultiSelect,
     String title,
-    List<FormTitledOptionData<T>> selectedOptions,
+    List<FormTitledValue<T>> selectedOptions,
     double size,
     bool isVisible,
   }) : super(

@@ -9,8 +9,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  titled_option_data:
-    path: ../../titled_option_data
+  titled_value:
+    path: ../../titled_value
   theme:
     path: ../../theme
   curve:

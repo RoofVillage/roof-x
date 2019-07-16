@@ -23,8 +23,8 @@ dependencies:
     path: ../../lib/navigator
   distance:
     path: ../../spec/distance
-  titled_option_data:
-    path: ../../titled_option_data
+  titled_value:
+    path: ../../titled_value
 
 dev_dependencies:
   flutter_test:

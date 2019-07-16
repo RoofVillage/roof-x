@@ -3,15 +3,15 @@ import 'package:theme/index.dart';
 import 'package:small_icon_library/index.dart';
 import 'package:distance/index.dart' as distance;
 import 'package:typography/index.dart' as typography;
-import 'package:titled_option_data/index.dart';
+import 'package:titled_value/index.dart';
 
-typedef SelectedOptionsPasser<T> = Function(List<TitledOptionData<T>>);
+typedef SelectedOptionsPasser<T> = Function(List<TitledValue<T>>);
 
 class OptionPicker<T> extends StatelessWidget {
   final String title;
   final String emptyText;
-  final List<TitledOptionData<T>> initialSelected;
-  final List<TitledOptionData<T>> options;
+  final List<TitledValue<T>> initialSelected;
+  final List<TitledValue<T>> options;
   final bool isMultiSelect;
   final SelectedOptionsPasser<T> onChanged;
 
@@ -54,8 +54,8 @@ class OptionPicker<T> extends StatelessWidget {
     );
   }
 
-  _onOptionTap(TitledOptionData<T> option) {
-    List<TitledOptionData<T>> selectedOptions;
+  _onOptionTap(TitledValue<T> option) {
+    List<TitledValue<T>> selectedOptions;
 
     if (isMultiSelect) {
       selectedOptions.contains(option)
@@ -70,8 +70,8 @@ class OptionPicker<T> extends StatelessWidget {
 }
 
 class _OptionsColumn<T> extends StatelessWidget {
-  final List<TitledOptionData<T>> options;
-  final List<TitledOptionData<T>> selectedOptions;
+  final List<TitledValue<T>> options;
+  final List<TitledValue<T>> selectedOptions;
   final bool isMultiSelect;
   final Function onOptionTap;
   final String emptyText;
@@ -87,7 +87,7 @@ class _OptionsColumn<T> extends StatelessWidget {
   final _verticalSpacing = distance.c;
 
   Widget build(BuildContext context) {
-    List<TitledOptionData<T>> _selectedOptions = selectedOptions ?? [];
+    List<TitledValue<T>> _selectedOptions = selectedOptions ?? [];
     List<Widget> optionsList = [];
 
     if (options != null && options.isNotEmpty) {
@@ -95,10 +95,10 @@ class _OptionsColumn<T> extends StatelessWidget {
         _selectedOptions.add(options[0]);
       }
 
-      for (TitledOptionData<T> option in options) {
+      for (TitledValue<T> option in options) {
         final dropdownOption = _Option<T>(
           name: option.title,
-          data: option.data,
+          value: option.value,
           selected: _selectedOptions.contains(option),
           canToggle: isMultiSelect,
           onTap: () => onOptionTap(option),
@@ -127,7 +127,7 @@ class _OptionsColumn<T> extends StatelessWidget {
 
 class _Option<T> extends StatelessWidget {
   final String name;
-  final T data;
+  final T value;
   final Function onTap;
   final bool canToggle;
   final bool selected;
@@ -139,7 +139,7 @@ class _Option<T> extends StatelessWidget {
 
   _Option({
     this.name,
-    this.data,
+    this.value,
     this.onTap,
     bool canToggle,
     this.selected,

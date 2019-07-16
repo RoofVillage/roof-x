@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:theme/index.dart';
-import 'package:interval_frequency_schedule_data/index.dart';
+import 'package:frequency/index.dart';
 import 'package:interval/index.dart';
-import 'package:frequency_type/index.dart';
+import 'package:period_type/index.dart';
 import 'package:typography/index.dart' as typography;
 import 'package:distance/index.dart' as distance;
 
@@ -10,8 +10,8 @@ import '_picker_field.dart';
 
 class IntervalFrequencyPickerField extends StatelessWidget {
   final String title;
-  final IntervalFrequencyScheduleData selectedValue;
-  final Function(IntervalFrequencyScheduleData) onChanged;
+  final Frequency selectedValue;
+  final Function(Frequency) onChanged;
   final Function onTap;
 
   IntervalFrequencyPickerField({
@@ -27,9 +27,9 @@ class IntervalFrequencyPickerField extends StatelessWidget {
   Widget build(BuildContext context) {
     final int interval =
         selectedValue?.interval != null ? selectedValue.interval : 0;
-    final FrequencyType frequency = selectedValue?.frequency != null
+    final PeriodType frequency = selectedValue?.frequency != null
         ? selectedValue.frequency
-        : FrequencyType.fromString("daily");
+        : PeriodType.fromString("daily");
 
     String formattedValue =
         "${toIntervalString(interval)} ${frequency.inlineString}";

@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:theme/index.dart';
-import 'package:icon_option_data/index.dart';
+import 'package:titled_icon/index.dart';
 
 import '_widgets/index.dart';
 import '_picker_field.dart';
 
 class IconPickerField extends StatelessWidget {
   final String title;
-  final IconOptionData selectedOption;
-  final List<IconOptionData> options;
+  final TitledIcon selectedOption;
+  final List<TitledIcon> options;
   final Function onTap;
-  final Function(IconOptionData) onChanged;
+  final Function(TitledIcon) onChanged;
 
   IconPickerField({
     this.title,
@@ -22,7 +22,7 @@ class IconPickerField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    IconOptionData _selectedOption = selectedOption ?? options[0];
+    TitledIcon _selectedOption = selectedOption ?? options[0];
 
     final theme = RoofTheme.of(context);
 

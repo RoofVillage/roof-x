@@ -1,25 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:haptics/index.dart';
 import 'package:artboard/index.dart';
-import 'package:titled_option_data/index.dart';
+import 'package:titled_value/index.dart';
 
 import '_components/option_picker.dart';
 
 // Option pickers must be an artboard
-mixin OptionPickerArtboardBuilder<T> implements Artboard<List<TitledOptionData>> {
+mixin OptionPickerArtboardBuilder<T> implements Artboard<List<TitledValue>> {
   String get title;
   String get emptyText;
-  List<TitledOptionData<T>> get selectedOptions => [];
-  List<TitledOptionData<T>> get options => [];
+  List<TitledValue<T>> get selectedOptions => [];
+  List<TitledValue<T>> get options => [];
   bool get isMultiSelect => false;
 }
 
 mixin OptionPickerArtboardBuilderState<T, U extends OptionPickerArtboardBuilder>
     implements ArtboardState<U> {
-  List<TitledOptionData<T>> _selectedOptions;
+  List<TitledValue<T>> _selectedOptions;
 
-  List<TitledOptionData<T>> get selectedOptions => _selectedOptions;
-  set selectedOptions(List<TitledOptionData<T>> newOptions) =>
+  List<TitledValue<T>> get selectedOptions => _selectedOptions;
+  set selectedOptions(List<TitledValue<T>> newOptions) =>
       _selectedOptions = newOptions;
 
   Widget buildOptionPicker(BuildContext context) {
@@ -33,7 +33,7 @@ mixin OptionPickerArtboardBuilderState<T, U extends OptionPickerArtboardBuilder>
     );
   }
 
-  void _onChanged(List<TitledOptionData<T>> newSelectedOptions) {
+  void _onChanged(List<TitledValue<T>> newSelectedOptions) {
     triggerHapticWith(HapticOption.click);
     selectedOptions = newSelectedOptions;
   }

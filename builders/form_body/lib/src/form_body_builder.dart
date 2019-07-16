@@ -7,15 +7,15 @@ import 'package:haptics/index.dart';
 import 'package:date/index.dart';
 import 'package:date_picker_builder/index.dart';
 import 'package:option_picker_builder/index.dart';
-import 'package:titled_option_data/index.dart';
+import 'package:titled_value/index.dart';
 import 'package:icon_picker_builder/index.dart';
-import 'package:icon_option_data/index.dart';
+import 'package:titled_icon/index.dart';
 import 'package:time_picker_builder/index.dart';
 import 'package:interval_frequency_picker_builder/index.dart';
-import 'package:interval_frequency_schedule_data/index.dart';
+import 'package:frequency/index.dart';
 import 'package:roller_column_picker_builder/index.dart';
 import 'package:artboard/index.dart';
-import 'package:frequency_type/index.dart';
+import 'package:period_type/index.dart';
 
 import '_components/keyboard_accessory_buttons/index.dart';
 import '_components/roof_stream_form.dart';
@@ -56,16 +56,16 @@ mixin FormBodyBuilder implements StatefulWidget {
     BuildContext context, {
     String title,
     String emptyText,
-    List<TitledOptionData> selectedOptions,
-    @required List<TitledOptionData> options,
+    List<TitledValue> selectedOptions,
+    @required List<TitledValue> options,
     bool isMultiSelect,
   });
 
   IconPickerArtboardBuilder buildIconPicker(
     BuildContext context, {
     String title,
-    IconOptionData selectedOption,
-    List<IconOptionData> options,
+    TitledIcon selectedOption,
+    List<TitledIcon> options,
   });
 
   TimePickerArtboardBuilder buildTimePicker(
@@ -75,15 +75,15 @@ mixin FormBodyBuilder implements StatefulWidget {
 
   IntervalFrequencyPickerArtboardBuilder buildIntervalFrequencyPicker(
     BuildContext context, {
-    IntervalFrequencyScheduleData selectedSchedule,
-    List<TitledOptionData<int>> intervalList,
-    List<TitledOptionData<FrequencyType>> frequencyList,
+    Frequency selectedSchedule,
+    List<TitledValue<int>> intervalList,
+    List<TitledValue<PeriodType>> periodList,
   });
 
   RollerColumnPickerArtboardBuilder buildRollerColumnPicker<T>(
     BuildContext context, {
-    TitledOptionData<T> selectedValue,
-    List<TitledOptionData<T>> options,
+    TitledValue<T> selectedValue,
+    List<TitledValue<T>> options,
   });
 
   Future<T> goTo<T>(
@@ -94,7 +94,8 @@ mixin FormBodyBuilder implements StatefulWidget {
   void _setup(BuildContext context,
       {@required List<StreamableFormFieldData> fieldData}) async {
     for (final data in fieldData) {
-      if (data is FormDatePickerFieldData) _setupDateFieldData(context, data: data);
+      if (data is FormDatePickerFieldData)
+        _setupDateFieldData(context, data: data);
       if (data is FormOptionPickerFieldData)
         _setupOptionPickerFieldData(context, data: data);
       if (data is FormIconPickerFieldData)
@@ -144,19 +145,19 @@ mixin FormBodyBuilder implements StatefulWidget {
         title: data.title,
         options: data.options
             .map(
-              (option) => IconOptionData(icon: option.icon),
+              (option) => TitledIcon(icon: option.icon),
             )
             .toList(),
         selectedOption: data.selectedOption != null
-            ? IconOptionData(icon: data.selectedOption.icon)
+            ? TitledIcon(icon: data.selectedOption.icon)
             : null,
       );
-      final newSelectedOption = await goTo<IconOptionData>(
+      final newSelectedOption = await goTo<TitledIcon>(
         context: context,
         artboard: artboard,
       );
       if (newSelectedOption == null) return;
-      data.selectedOption = FormIconOptionData(icon: newSelectedOption.icon);
+      data.selectedOption = FormTitledIcon(icon: newSelectedOption.icon);
       form.updateFieldData(data);
     });
   }
@@ -165,15 +166,15 @@ mixin FormBodyBuilder implements StatefulWidget {
       {@required FormOptionPickerFieldData data}) {
     data.addOnTapListener(() async {
       final convertedOptions = data.options
-          ?.map((option) => TitledOptionData(
+          ?.map((option) => TitledValue(
                 title: option.title,
-                data: option.data,
+                value: option.value,
               ))
           ?.toList();
       final convertedSelectedOptions = data.selectedOptions
-          ?.map((option) => TitledOptionData(
+          ?.map((option) => TitledValue(
                 title: option.title,
-                data: option.data,
+                value: option.value,
               ))
           ?.toList();
       final artboard = buildOptionPicker(
@@ -182,11 +183,14 @@ mixin FormBodyBuilder implements StatefulWidget {
         selectedOptions: convertedSelectedOptions,
         options: convertedOptions,
       );
-      final newSelectedOptions = await goTo<List<TitledOptionData>>(
-          context: context, artboard: artboard);
+      final newSelectedOptions =
+          await goTo<List<TitledValue>>(context: context, artboard: artboard);
       if (newSelectedOptions == null) return;
       data.selectedOptions = newSelectedOptions
-          .map((option) => FormTitledOptionData(title: option.title))
+          .map((option) => FormTitledValue(
+                title: option.title,
+                value: option.value,
+              ))
           .toList();
       form.updateFieldData(data);
     });
@@ -209,15 +213,15 @@ mixin FormBodyBuilder implements StatefulWidget {
     data.addOnTapListener(() async {
       final artboard = buildIntervalFrequencyPicker(
         context,
-        selectedSchedule: IntervalFrequencyScheduleData(
+        selectedSchedule: Frequency(
           interval: data.value?.interval,
           frequency: data.value?.frequency,
         ),
-        frequencyList: data.frequencyList,
+        periodList: data.periodList,
         intervalList: data.intervalList,
       );
-      final newSelectedSchedule = await goTo<IntervalFrequencyScheduleData>(
-          context: context, artboard: artboard);
+      final newSelectedSchedule =
+          await goTo<Frequency>(context: context, artboard: artboard);
       if (newSelectedSchedule == null) return;
       data.value = FormIntervalFrequencyOptionData(
         frequency: newSelectedSchedule.frequency,

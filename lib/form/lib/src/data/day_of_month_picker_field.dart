@@ -1,23 +1,23 @@
 import 'package:ordinal_suffix_string_from_int/index.dart';
-import 'package:titled_option_data/index.dart';
+import 'package:titled_value/index.dart';
 
 import 'roller_column_picker_field.dart';
 
 class FormDayOfMonthPickerFieldData
     extends FormRollerColumnPickerFieldData<int> {
   @override
-  List<TitledOptionData<int>> buildOptions() {
-    final List<TitledOptionData<int>> _daysList = [];
+  List<TitledValue<int>> buildOptions() {
+    final List<TitledValue<int>> _daysList = [];
 
     for (int i = 0; i < 30; i++) {
-      final data = TitledOptionData(
+      final data = TitledValue(
         title: "on the " + ordinalSuffixString(i + 1),
-        data: i,
+        value: i,
       );
       _daysList.add(data);
     }
     _daysList.add(
-      TitledOptionData(title: "on the last day", data: 30),
+      TitledValue(title: "on the last day", value: 30),
     );
 
     return _daysList;
@@ -25,15 +25,15 @@ class FormDayOfMonthPickerFieldData
 
   FormDayOfMonthPickerFieldData({
     String title,
-    TitledOptionData<int> selectedDay,
+    TitledValue<int> selectedDay,
     double size,
     bool isVisible,
   }) : super(
           title: title,
           selectedValue: selectedDay ??
-              TitledOptionData(
+              TitledValue(
                 title: "on the " + ordinalSuffixString(1),
-                data: 0,
+                value: 0,
               ),
           size: size,
           isVisible: isVisible,

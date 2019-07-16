@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:form/index.dart';
 import 'package:form_body_builder/src/_components/fields/interval_frequency_picker_field.dart';
-import 'package:icon_option_data/index.dart';
-import 'package:interval_frequency_schedule_data/index.dart';
+import 'package:titled_icon/index.dart';
+import 'package:frequency/index.dart';
 import 'package:keyboard_accessory/index.dart';
 import 'package:keyboard_accessory_bar_builder/index.dart';
-import 'package:titled_option_data/index.dart';
+import 'package:titled_value/index.dart';
 import 'keyboard_accessory_buttons/index.dart';
 import 'field_container.dart';
 import 'fields/text_area.dart';
@@ -147,16 +147,16 @@ class RoofStreamForm
       emptyText: fieldData.emptyText,
       isMultiSelect: fieldData.isMultiSelect,
       selectedOptions: fieldData.selectedOptions?.map((option) {
-        return TitledOptionData(
+        return TitledValue(
           title: option.title,
-          data: option.data,
+          value: option.value,
         );
       })?.toList(),
       options: fieldData.options?.map(
         (option) {
-          return TitledOptionData(
+          return TitledValue(
             title: option.title,
-            data: option.data,
+            value: option.value,
           );
         },
       )?.toList(),
@@ -195,7 +195,7 @@ class RoofStreamForm
   }) {
     return IntervalFrequencyPickerField(
       title: fieldData.title,
-      selectedValue: IntervalFrequencyScheduleData(
+      selectedValue: Frequency(
         interval: fieldData.value?.interval,
         frequency: fieldData.value?.frequency,
       ),
@@ -211,11 +211,11 @@ class RoofStreamForm
     return IconPickerField(
       title: fieldData.title,
       selectedOption: fieldData.selectedOption != null
-          ? IconOptionData(icon: fieldData.selectedOption.icon)
+          ? TitledIcon(icon: fieldData.selectedOption.icon)
           : null,
       options: fieldData.options?.map(
         (option) {
-          return IconOptionData(
+          return TitledIcon(
             icon: option.icon,
           );
         },

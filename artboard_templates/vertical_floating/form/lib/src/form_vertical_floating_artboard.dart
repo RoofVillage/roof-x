@@ -13,17 +13,17 @@ import 'package:option_picker_artboard/index.dart';
 import 'package:button_builder/index.dart';
 import 'package:icon_picker_builder/index.dart';
 import 'package:icon_picker_artboard/index.dart';
-import 'package:icon_option_data/index.dart';
+import 'package:titled_icon/index.dart';
 import 'package:vertical_floating_artboard_scaffold/index.dart';
-import 'package:titled_option_data/index.dart';
-import 'package:interval_frequency_schedule_data/index.dart';
+import 'package:titled_value/index.dart';
+import 'package:frequency/index.dart';
 import 'package:time_picker_builder/index.dart';
 import 'package:time_picker_artboard/index.dart';
 import 'package:interval_frequency_picker_artboard/index.dart';
 import 'package:interval_frequency_picker_builder/index.dart';
 import 'package:roller_column_picker_builder/index.dart';
 import 'package:roller_column_picker_artboard/index.dart';
-import 'package:frequency_type/index.dart';
+import 'package:period_type/index.dart';
 
 abstract class FormVerticalFloatingArtboard<T> extends StatefulWidget
     with
@@ -54,8 +54,8 @@ abstract class FormVerticalFloatingArtboard<T> extends StatefulWidget
     BuildContext context, {
     String title,
     String emptyText,
-    List<TitledOptionData> selectedOptions,
-    @required List<TitledOptionData> options,
+    List<TitledValue> selectedOptions,
+    @required List<TitledValue> options,
     bool isMultiSelect,
   }) {
     return OptionPickerVerticalFloatingArtboard(
@@ -71,8 +71,8 @@ abstract class FormVerticalFloatingArtboard<T> extends StatefulWidget
   IconPickerArtboardBuilder buildIconPicker(
     BuildContext context, {
     String title,
-    IconOptionData selectedOption,
-    @required List<IconOptionData> options,
+    TitledIcon selectedOption,
+    @required List<TitledIcon> options,
   }) {
     return IconPickerVerticalFloatingArtboard(
       title: title,
@@ -94,22 +94,22 @@ abstract class FormVerticalFloatingArtboard<T> extends StatefulWidget
   @override
   IntervalFrequencyPickerArtboardBuilder buildIntervalFrequencyPicker(
     BuildContext context, {
-    IntervalFrequencyScheduleData selectedSchedule,
-    List<TitledOptionData<int>> intervalList,
-    List<TitledOptionData<FrequencyType>> frequencyList,
+    Frequency selectedSchedule,
+    List<TitledValue<int>> intervalList,
+    List<TitledValue<PeriodType>> periodList,
   }) {
     return IntervalFrequencyPickerVerticalFloatingArtboard(
       selectedValue: selectedSchedule,
       intervalList: intervalList,
-      frequencyList: frequencyList,
+      periodList: periodList,
     );
   }
 
   @override
   RollerColumnPickerArtboardBuilder<T> buildRollerColumnPicker<T>(
     BuildContext context, {
-    TitledOptionData<T> selectedValue,
-    List<TitledOptionData<T>> options,
+    TitledValue<T> selectedValue,
+    List<TitledValue<T>> options,
   }) {
     return RollerColumnPickerVerticalFloatingArtboard(
       selectedValue: selectedValue,

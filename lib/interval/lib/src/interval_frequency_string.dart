@@ -1,9 +1,9 @@
-import 'package:frequency_type/index.dart';
+import 'package:period_type/index.dart';
 
 String toIntervalFrequencyString(int interval, String frequency,
     {bool capitalize}) {
   final String frequencyString =
-      FrequencyType.fromString(frequency).inlineString;
+      PeriodType.fromString(frequency).inlineString;
 
   String string;
   switch (interval) {

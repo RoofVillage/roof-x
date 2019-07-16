@@ -52,17 +52,17 @@ dependencies:
   navigator:
     path: ../../lib/navigator
   option_picker_artboard:
-    path: ../../artboards/shared/option_picker
+    path: ../../artboards/option_picker
   icon_picker_artboard:
-    path: ../../artboards/shared/icon_picker
+    path: ../../artboards/icon_picker
   interval_frequency_picker_artboard:
-    path: ../../artboards/shared/interval_frequency_picker
-  titled_option_data:
-    path: ../../titled_option_data
-  icon_option_data:
-    path: ../../icon_option_data
-  interval_frequency_schedule_data:
-    path: ../../interval_frequency_schedule_data
+    path: ../../artboards/interval_frequency_picker
+  titled_value:
+    path: ../../titled_value
+  titled_icon:
+    path: ../../titled_icon
+  frequency:
+    path: ../../frequency
   time_picker_builder:
     path: ../../builders/time_picker
   interval_frequency_picker_builder:

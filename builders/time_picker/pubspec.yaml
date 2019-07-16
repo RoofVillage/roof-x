@@ -19,8 +19,8 @@ dependencies:
     path: ../../spec/curve
   haptics:
     path: ../../lib/haptics
-  titled_option_data:
-    path: ../../titled_option_data
+  titled_value:
+    path: ../../titled_value
   roller_column_picker_builder:
     path: ../roller_column_picker
   typography:

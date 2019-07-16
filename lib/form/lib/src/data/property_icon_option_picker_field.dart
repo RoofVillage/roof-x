@@ -3,7 +3,7 @@ import 'package:form/index.dart';
 import 'package:standard_icon_library/index.dart';
 
 import 'icon_option_picker_field.dart';
-import '../options/icon_option_data.dart';
+import '../options/titled_icon.dart';
 
 class FormPropertyIconOptionPickerFieldData extends FormIconPickerFieldData {
   static final List<StandardIcon> _propertyIconOptions = [
@@ -27,21 +27,21 @@ class FormPropertyIconOptionPickerFieldData extends FormIconPickerFieldData {
     StandardIcon.treehouse,
   ];
 
-  static List<FormIconOptionData>
-      _createFormIconOptionData() {
+  static List<FormTitledIcon>
+      _createFormTitledIcon() {
     return _propertyIconOptions.map(
-      (icon) => FormIconOptionData(icon: icon),
+      (icon) => FormTitledIcon(icon: icon),
     ).toList();
   }
 
   FormPropertyIconOptionPickerFieldData({
     @required String title,
-    FormIconOptionData selectedOption,
+    FormTitledIcon selectedOption,
     double size,
     bool isVisible,
   }) : super(
           title: title,
-          options: _createFormIconOptionData(),
+          options: _createFormTitledIcon(),
           selectedOption: selectedOption,
           size: size,
           isVisible: isVisible,

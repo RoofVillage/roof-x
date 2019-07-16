@@ -12,7 +12,7 @@ dependencies:
   theme:
     path: ../../theme
   public_activity_artboard:
-    path: ../../artboards/shared/public_activity
+    path: ../../artboards/public_activity
   vertical_full_screen_artboard_scaffold:
     path: ../../artboard_scaffolds/vertical_full_screen
   artboard:
@@ -20,13 +20,13 @@ dependencies:
   device_screen:
     path: ../../lib/device_screen
   invoice_full_screen_artboard_template:
-    path: ../../artboards/organization/invoice
+    path: ../../artboards/invoice
   lease_full_screen_artboard_template:
-    path: ../../artboards/organization/lease
+    path: ../../artboards/lease
   property_full_screen_artboard_template:
-    path: ../../artboards/organization/property
+    path: ../../artboards/property
   property_create_artboard:
-    path: ../../artboards/organization/property_create
+    path: ../../artboards/property_create
 
 dev_dependencies:
   flutter_test:

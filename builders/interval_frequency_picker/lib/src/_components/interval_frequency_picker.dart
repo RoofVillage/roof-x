@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:frequency_type/index.dart';
+import 'package:period_type/index.dart';
 import 'package:distance/index.dart' as distance;
-import 'package:titled_option_data/index.dart';
+import 'package:titled_value/index.dart';
 import 'package:roller_column_builder/index.dart';
-import 'package:interval_frequency_schedule_data/index.dart';
+import 'package:frequency/index.dart';
 
 class IntervalFrequencyPicker extends StatefulWidget {
-  final IntervalFrequencyScheduleData selectedValue;
-  final List<TitledOptionData<int>> intervalList;
-  final List<TitledOptionData<FrequencyType>> frequencyList;
-  final Function(IntervalFrequencyScheduleData) onChanged;
+  final Frequency selectedValue;
+  final List<TitledValue<int>> intervalList;
+  final List<TitledValue<PeriodType>> periodList;
+  final Function(Frequency) onChanged;
 
   IntervalFrequencyPicker({
     this.selectedValue,
     this.intervalList,
-    this.frequencyList,
+    this.periodList,
     this.onChanged,
   });
 
@@ -27,14 +27,14 @@ class IntervalFrequencyPickerState extends State<IntervalFrequencyPicker>
   final double _verticalPadding = distance.c;
   final double _columnSpacing = distance.e;
 
-  IntervalFrequencyScheduleData _selectedSchedule;
+  Frequency _selectedSchedule;
 
   @override
   void initState() {
     _selectedSchedule = widget.selectedValue ??
-        IntervalFrequencyScheduleData(
-          interval: widget.intervalList.first.data,
-          frequency: widget.frequencyList.first.data,
+        Frequency(
+          interval: widget.intervalList.first.value,
+          frequency: widget.periodList.first.value,
         );
 
     super.initState();
@@ -60,9 +60,9 @@ class IntervalFrequencyPickerState extends State<IntervalFrequencyPicker>
     final Widget frequencyColumn = Flexible(
       child: Container(
         padding: EdgeInsets.only(left: _columnSpacing / 2),
-        child: buildRollerColumn<FrequencyType>(
+        child: buildRollerColumn<PeriodType>(
           context,
-          list: widget.frequencyList,
+          list: widget.periodList,
           selectedValue: _rollerColumnDataFromFrequency(
             _selectedSchedule.frequency,
           ),
@@ -85,34 +85,34 @@ class IntervalFrequencyPickerState extends State<IntervalFrequencyPicker>
     );
   }
 
-  TitledOptionData<int> _rollerColumnDataFromInterval(int val) {
-    for (TitledOptionData<int> data in widget.intervalList) {
-      if (data.data == val) return data;
+  TitledValue<int> _rollerColumnDataFromInterval(int val) {
+    for (TitledValue<int> data in widget.intervalList) {
+      if (data.value == val) return data;
     }
     return null;
   }
 
-  TitledOptionData<FrequencyType> _rollerColumnDataFromFrequency(
-      FrequencyType val) {
-    for (TitledOptionData<FrequencyType> data in widget.frequencyList) {
-      if (data.data.toString() == val?.toString()) return data;
+  TitledValue<PeriodType> _rollerColumnDataFromFrequency(
+      PeriodType val) {
+    for (TitledValue<PeriodType> data in widget.periodList) {
+      if (data.value.toString() == val?.toString()) return data;
     }
     return null;
   }
 
-  void _onIntervalChange(TitledOptionData<int> newVal) {
-    if (_selectedSchedule.interval != newVal.data) {
+  void _onIntervalChange(TitledValue<int> newVal) {
+    if (_selectedSchedule.interval != newVal.value) {
       setState(() {
-        _selectedSchedule.interval = newVal.data;
+        _selectedSchedule.interval = newVal.value;
       });
       widget.onChanged(_selectedSchedule);
     }
   }
 
-  void _onFrequencyChange(TitledOptionData<FrequencyType> newVal) {
-    if (_selectedSchedule.frequency != newVal.data) {
+  void _onFrequencyChange(TitledValue<PeriodType> newVal) {
+    if (_selectedSchedule.frequency != newVal.value) {
       setState(() {
-        _selectedSchedule.frequency = newVal.data;
+        _selectedSchedule.frequency = newVal.value;
       });
       widget.onChanged(_selectedSchedule);
     }

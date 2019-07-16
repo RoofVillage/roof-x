@@ -9,8 +9,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  frequency_type:
-    path: ../../types/frequency
+  period_type:
+    path: ../../types/period
   ordinal_suffix_string_from_int:
     path: ../ordinal_suffix_string_from_int
   

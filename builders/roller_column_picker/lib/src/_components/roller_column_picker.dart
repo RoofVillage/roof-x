@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:distance/index.dart' as distance;
-import 'package:titled_option_data/index.dart';
+import 'package:titled_value/index.dart';
 import 'package:roller_column_builder/index.dart';
 
 class RollerColumnPicker<T> extends StatefulWidget {
-  final TitledOptionData<T> selectedValue;
-  final List<TitledOptionData<T>> options;
-  final Function(TitledOptionData<T>) onChanged;
+  final TitledValue<T> selectedValue;
+  final List<TitledValue<T>> options;
+  final Function(TitledValue<T>) onChanged;
   final bool canRollover;
 
   RollerColumnPicker({
@@ -24,7 +24,7 @@ class RollerColumnPickerState<T> extends State<RollerColumnPicker<T>>
     with RollerColumnBuilder {
   final double _verticalPadding = distance.c;
 
-  TitledOptionData<T> _selectedValue;
+  TitledValue<T> _selectedValue;
 
   @override
   void initState() {
@@ -48,7 +48,7 @@ class RollerColumnPickerState<T> extends State<RollerColumnPicker<T>>
     );
   }
 
-  void _onChange(TitledOptionData<T> newVal) {
+  void _onChange(TitledValue<T> newVal) {
     if (_selectedValue != newVal) {
       setState(() {
         _selectedValue = newVal;

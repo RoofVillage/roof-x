@@ -1,13 +1,13 @@
 import 'package:form/index.dart';
 import 'package:fee_payer_type/index.dart';
-import '../options/titled_option_data.dart';
+import '../options/titled_value.dart';
 
 import 'option_picker_field.dart';
 
 class FormFeePayerPickerFieldData extends FormOptionPickerFieldData {
   FormFeePayerPickerFieldData({
     String title,
-    List<FormTitledOptionData<FeePayerType>> initialValue,
+    List<FormTitledValue<FeePayerType>> initialValue,
     double size,
     bool isVisible,
   }) : super(
@@ -15,13 +15,13 @@ class FormFeePayerPickerFieldData extends FormOptionPickerFieldData {
           size: size,
           isVisible: isVisible,
           options: [
-            FormTitledOptionData<FeePayerType>(
+            FormTitledValue<FeePayerType>(
               title: "You",
-              data: FeePayerType.fromString("receiver"),
+              value: FeePayerType.fromString("receiver"),
             ),
-            FormTitledOptionData<FeePayerType>(
+            FormTitledValue<FeePayerType>(
               title: "Your tenants",
-              data: FeePayerType.fromString("payer"),
+              value: FeePayerType.fromString("payer"),
             ),
           ],
         );

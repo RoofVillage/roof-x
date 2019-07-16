@@ -28,28 +28,28 @@ dependencies:
     path: ../../../builders/time_picker
   icon_picker_builder:
     path: ../../../builders/icon_picker
-  icon_option_data:
-    path: ../../../icon_option_data
-  titled_option_data:
-    path: ../../../titled_option_data
-  interval_frequency_schedule_data:
-    path: ../../../interval_frequency_schedule_data    
+  titled_icon:
+    path: ../../../titled_icon
+  titled_value:
+    path: ../../../titled_value
+  frequency:
+    path: ../../../frequency    
   interval_frequency_picker_builder:
     path: ../../../builders/interval_frequency_picker
   roller_column_picker_builder:
     path: ../../../builders/roller_column_picker
   roller_column_picker_artboard:
-    path: ../../../artboards/shared/roller_column_picker
+    path: ../../../artboards/roller_column_picker
   button_builder:
     path: ../../../builders/button
   date_picker_artboard:
-    path: ../../../artboards/shared/date_picker
+    path: ../../../artboards/date_picker
   option_picker_artboard:
-    path: ../../../artboards/shared/option_picker
+    path: ../../../artboards/option_picker
   time_picker_artboard:
-    path: ../../../artboards/shared/time_picker
+    path: ../../../artboards/time_picker
   interval_frequency_picker_artboard:
-    path: ../../../artboards/shared/interval_frequency_picker
+    path: ../../../artboards/interval_frequency_picker
 
 dev_dependencies:
   flutter_test:

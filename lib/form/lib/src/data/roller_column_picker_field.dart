@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:titled_option_data/index.dart';
+import 'package:titled_value/index.dart';
 
 import 'picker_field.dart';
 
-class FormRollerColumnPickerFieldData<T> extends FormPickerFieldData<TitledOptionData<T>> {
-  List<TitledOptionData<T>> buildOptions() => null;
+class FormRollerColumnPickerFieldData<T> extends FormPickerFieldData<TitledValue<T>> {
+  List<TitledValue<T>> buildOptions() => null;
   bool canRollover = false;
 
   FormRollerColumnPickerFieldData({
     String title,
-    @required TitledOptionData<T> selectedValue,
+    @required TitledValue<T> selectedValue,
     double size,
     bool isVisible,
   }) : super(

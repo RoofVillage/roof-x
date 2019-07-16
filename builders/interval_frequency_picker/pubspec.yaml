@@ -17,16 +17,16 @@ dependencies:
     path: ../../spec/duration
   curve:
     path: ../../spec/curve
-  frequency_type:
-    path: ../../types/frequency
+  period_type:
+    path: ../../types/period
   haptics:
     path: ../../lib/haptics
   interval:
     path: ../../lib/interval
-  interval_frequency_schedule_data:
-    path: ../../interval_frequency_schedule_data
-  titled_option_data:
-    path: ../../titled_option_data
+  frequency:
+    path: ../../frequency
+  titled_value:
+    path: ../../titled_value
   roller_column_builder:
     path: ../roller_column
   typography:
