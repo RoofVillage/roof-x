@@ -8,7 +8,7 @@ import 'package:reset_password_artboard/index.dart';
 import '_data.dart';
 
 class LogInVerticalFloatingArtboard extends FormVerticalFloatingArtboard
-    with LogInArtboardBuilder {
+    with LogInArtboardData {
   @override
   Future<void> submit(BuildContext context) async {
     ArtboardNavigator.of(context).goTo(ResetPasswordVerticalFloatingArtboard());

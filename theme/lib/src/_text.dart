@@ -41,7 +41,7 @@ class RoofTextColor {
       case RoofThemeOption.light:
         return color.gray3;
       case RoofThemeOption.dark:
-        return color.gray4;
+        return color.black3;
     }
     return null;
   }
@@ -92,6 +92,36 @@ class RoofTextColor {
         return color.alert;
       case RoofThemeOption.dark:
         return color.alert;
+    }
+    return null;
+  }
+
+  Color get tagAlert {
+    switch (_current) {
+      case RoofThemeOption.light:
+        return color.white1;
+      case RoofThemeOption.dark:
+        return color.alert;
+    }
+    return null;
+  }
+
+  Color get tagGood {
+    switch (_current) {
+      case RoofThemeOption.light:
+        return color.white1;
+      case RoofThemeOption.dark:
+        return color.lightGreen;
+    }
+    return null;
+  }
+
+  Color get tagDefault {
+    switch (_current) {
+      case RoofThemeOption.light:
+        return color.white1;
+      case RoofThemeOption.dark:
+        return color.white1;
     }
     return null;
   }

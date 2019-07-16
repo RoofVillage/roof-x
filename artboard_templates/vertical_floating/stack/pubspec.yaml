@@ -1,5 +1,5 @@
 name: stack_vertical_floating_artboard_template
-description: An vertical floating frame with a button stack for building a widget hierarchy in.
+description: An vertical floating frame with body and a button stack for building a widget hierarchy in.
 version: 1.0.0+1
 
 environment:

@@ -8,7 +8,7 @@ import '_data.dart';
 
 class PublicActivityVerticalFullScreenArtboard
     extends FullLogoTableVerticalFullScreenArtboard
-    with PublicActivityArtboardBuilder {
+    with PublicActivityArtboardData {
   List<Widget> buildActionButtons(BuildContext context) {
     final button1 = buildIconNavButton(
       context,

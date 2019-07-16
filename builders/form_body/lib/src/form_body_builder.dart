@@ -1,13 +1,21 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:distance/index.dart' as distance;
 import 'package:form/index.dart';
 import 'package:form_validation_exception/index.dart';
 import 'package:haptics/index.dart';
 import 'package:date/index.dart';
 import 'package:date_picker_builder/index.dart';
+import 'package:option_picker_builder/index.dart';
+import 'package:titled_value/index.dart';
+import 'package:icon_picker_builder/index.dart';
+import 'package:titled_icon/index.dart';
+import 'package:time_picker_builder/index.dart';
+import 'package:interval_frequency_picker_builder/index.dart';
+import 'package:frequency/index.dart';
+import 'package:roller_column_picker_builder/index.dart';
 import 'package:artboard/index.dart';
+import 'package:period_type/index.dart';
 
 import '_components/keyboard_accessory_buttons/index.dart';
 import '_components/roof_stream_form.dart';
@@ -25,7 +33,7 @@ mixin FormBodyBuilder implements StatefulWidget {
   String get submitButtonText;
   bool get canSubmitWithKeyboardRaised => true;
 
-  double get fieldHorizontalSpacing => distance.c;
+  double get fieldHorizontalSpacing => 1.0;
 
   StreamFormBloc get form => _form.bloc;
 
@@ -39,8 +47,44 @@ mixin FormBodyBuilder implements StatefulWidget {
   void setupFields(BuildContext context,
       {@required List<StreamableFormFieldData> fieldData}) {}
 
-  DatePickerBuilder buildDatePicker(BuildContext context,
-      {@required Date selectedDate});
+  DatePickerBuilder buildDatePicker(
+    BuildContext context, {
+    @required Date selectedDate,
+  });
+
+  OptionPickerArtboardBuilder buildOptionPicker(
+    BuildContext context, {
+    String title,
+    String emptyText,
+    List<TitledValue> selectedOptions,
+    @required List<TitledValue> options,
+    bool isMultiSelect,
+  });
+
+  IconPickerArtboardBuilder buildIconPicker(
+    BuildContext context, {
+    String title,
+    TitledIcon selectedOption,
+    List<TitledIcon> options,
+  });
+
+  TimePickerArtboardBuilder buildTimePicker(
+    BuildContext context, {
+    TimeOfDay selectedTime,
+  });
+
+  IntervalFrequencyPickerArtboardBuilder buildIntervalFrequencyPicker(
+    BuildContext context, {
+    Frequency selectedSchedule,
+    List<TitledValue<int>> intervalList,
+    List<TitledValue<PeriodType>> periodList,
+  });
+
+  RollerColumnPickerArtboardBuilder buildRollerColumnPicker<T>(
+    BuildContext context, {
+    TitledValue<T> selectedValue,
+    List<TitledValue<T>> options,
+  });
 
   Future<T> goTo<T>(
       {@required BuildContext context, @required Artboard<T> artboard});
@@ -50,7 +94,18 @@ mixin FormBodyBuilder implements StatefulWidget {
   void _setup(BuildContext context,
       {@required List<StreamableFormFieldData> fieldData}) async {
     for (final data in fieldData) {
-      if (data is FormDateFieldData) _setupDateFieldData(context, data: data);
+      if (data is FormDatePickerFieldData)
+        _setupDateFieldData(context, data: data);
+      if (data is FormOptionPickerFieldData)
+        _setupOptionPickerFieldData(context, data: data);
+      if (data is FormIconPickerFieldData)
+        _setupIconPickerFieldData(context, data: data);
+      if (data is FormTimePickerFieldData)
+        _setupTimePickerFieldData(context, data: data);
+      if (data is FormIntervalFrequencyPickerFieldData)
+        _setupIntervalFrequencyPickerFieldData(context, data: data);
+      if (data is FormRollerColumnPickerFieldData)
+        _setupRollerColumnPickerFieldData(context, data: data);
     }
     setupFields(context, fieldData: fieldData);
   }
@@ -72,12 +127,124 @@ mixin FormBodyBuilder implements StatefulWidget {
   }
 
   void _setupDateFieldData(BuildContext context,
-      {@required FormDateFieldData data}) {
+      {@required FormDatePickerFieldData data}) {
     data.addOnTapListener(() async {
       final artboard = buildDatePicker(context, selectedDate: data.value);
       final time = await goTo<Date>(context: context, artboard: artboard);
       if (time == null) return;
       data.value = time;
+      form.updateFieldData(data);
+    });
+  }
+
+  void _setupIconPickerFieldData(BuildContext context,
+      {@required FormIconPickerFieldData data}) {
+    data.addOnTapListener(() async {
+      final artboard = buildIconPicker(
+        context,
+        title: data.title,
+        options: data.options
+            .map(
+              (option) => TitledIcon(icon: option.icon),
+            )
+            .toList(),
+        selectedOption: data.selectedOption != null
+            ? TitledIcon(icon: data.selectedOption.icon)
+            : null,
+      );
+      final newSelectedOption = await goTo<TitledIcon>(
+        context: context,
+        artboard: artboard,
+      );
+      if (newSelectedOption == null) return;
+      data.selectedOption = FormTitledIcon(icon: newSelectedOption.icon);
+      form.updateFieldData(data);
+    });
+  }
+
+  void _setupOptionPickerFieldData<T>(BuildContext context,
+      {@required FormOptionPickerFieldData data}) {
+    data.addOnTapListener(() async {
+      final convertedOptions = data.options
+          ?.map((option) => TitledValue(
+                title: option.title,
+                value: option.value,
+              ))
+          ?.toList();
+      final convertedSelectedOptions = data.selectedOptions
+          ?.map((option) => TitledValue(
+                title: option.title,
+                value: option.value,
+              ))
+          ?.toList();
+      final artboard = buildOptionPicker(
+        context,
+        title: data.title,
+        selectedOptions: convertedSelectedOptions,
+        options: convertedOptions,
+      );
+      final newSelectedOptions =
+          await goTo<List<TitledValue>>(context: context, artboard: artboard);
+      if (newSelectedOptions == null) return;
+      data.selectedOptions = newSelectedOptions
+          .map((option) => FormTitledValue(
+                title: option.title,
+                value: option.value,
+              ))
+          .toList();
+      form.updateFieldData(data);
+    });
+  }
+
+  void _setupTimePickerFieldData(BuildContext context,
+      {@required FormTimePickerFieldData data}) {
+    data.addOnTapListener(() async {
+      final artboard = buildTimePicker(context, selectedTime: data.value);
+      final newSelectedTime =
+          await goTo<TimeOfDay>(context: context, artboard: artboard);
+      if (newSelectedTime == null) return;
+      data.value = newSelectedTime;
+      form.updateFieldData(data);
+    });
+  }
+
+  void _setupIntervalFrequencyPickerFieldData(BuildContext context,
+      {@required FormIntervalFrequencyPickerFieldData data}) {
+    data.addOnTapListener(() async {
+      final artboard = buildIntervalFrequencyPicker(
+        context,
+        selectedSchedule: Frequency(
+          interval: data.value?.interval,
+          frequency: data.value?.frequency,
+        ),
+        periodList: data.periodList,
+        intervalList: data.intervalList,
+      );
+      final newSelectedSchedule =
+          await goTo<Frequency>(context: context, artboard: artboard);
+      if (newSelectedSchedule == null) return;
+      data.value = FormIntervalFrequencyOptionData(
+        frequency: newSelectedSchedule.frequency,
+        interval: newSelectedSchedule.interval,
+      );
+      form.updateFieldData(data);
+    });
+  }
+
+  void _setupRollerColumnPickerFieldData(BuildContext context,
+      {@required FormRollerColumnPickerFieldData data}) {
+    data.addOnTapListener(() async {
+      final artboard = buildRollerColumnPicker(
+        context,
+        selectedValue: data.value,
+        options: data.buildOptions(),
+      );
+      final newSelectedValue = await goTo(
+        context: context,
+        artboard: artboard,
+      );
+      if (newSelectedValue == null) return;
+      data.value = newSelectedValue;
       form.updateFieldData(data);
     });
   }

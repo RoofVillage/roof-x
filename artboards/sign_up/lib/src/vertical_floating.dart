@@ -9,7 +9,7 @@ import 'package:navigator/index.dart';
 import '_data.dart';
 
 class SignUpVerticalFloatingArtboard extends FormVerticalFloatingArtboard
-    with SignUpArtboardBuilder {
+    with SignUpArtboardData {
   @override
   Future<void> submit(BuildContext context) async {
     ArtboardNavigator.of(context).goTo(

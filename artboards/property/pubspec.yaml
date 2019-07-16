@@ -12,8 +12,12 @@ dependencies:
     path: ../../lib/artboard
   tabbed_fullscreen_artboard_template:
     path: ../../artboard_templates/vertical_full_screen/tabbed
+  lease_create_artboard:
+    path: ../../artboards/lease_create
   nav_bar_builder:
     path: ../../builders/nav_bar
+  nav_button_builder:
+    path: ../../builders/nav_button
   caret_wrap_builder:
     path: ../../builders/caret_wrap
   cells_list_view_builder:

@@ -7,7 +7,7 @@ class RoofFieldContainer extends StatelessWidget {
 
   RoofFieldContainer({this.child});
 
-  final double _minHeight = 50.0;
+  final double _minHeight = 55.0;
   final double _verticalSpacing = 1;
 
   @override

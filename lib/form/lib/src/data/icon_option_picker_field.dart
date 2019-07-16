@@ -1,0 +1,24 @@
+import 'package:flutter/material.dart';
+import 'package:form/index.dart';
+
+import 'picker_field.dart';
+import '../options/titled_icon.dart';
+
+class FormIconPickerFieldData
+    extends FormPickerFieldData<FormTitledIcon> {
+  List<FormTitledIcon> options;
+  FormTitledIcon selectedOption;
+
+  FormIconPickerFieldData({
+    this.selectedOption,
+    this.options,
+    @required String title,
+    double size,
+    bool isVisible,
+  }) : super(
+          title: title,
+          initialValue: selectedOption,
+          size: size,
+          isVisible: isVisible,
+        );
+}

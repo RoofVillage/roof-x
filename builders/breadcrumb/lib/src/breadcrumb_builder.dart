@@ -4,7 +4,7 @@ import 'package:x_small_icon_library/index.dart';
 import '_components/breadcrumb.dart';
 
 mixin BreadcrumbBuilder {
-  Breadcrumb buildBreadCrumb(
+  Breadcrumb buildBreadcrumb(
     BuildContext context, {
     @required String title,
     XSmallIcon iconReference,

@@ -1,7 +1,7 @@
 import 'text_field.dart';
 
-class ShortFormTextFieldData extends FormTextFieldData {
-  ShortFormTextFieldData({
+class FormShortTextFieldData extends FormTextFieldData {
+  FormShortTextFieldData({
     String title,
     String placeholder,
     String initialValue,
@@ -10,12 +10,13 @@ class ShortFormTextFieldData extends FormTextFieldData {
     bool autofocus,
     String exceptionTitle,
   }) : super(
-            title: title,
-            placeholder: placeholder,
-            initialValue: initialValue,
-            autofocus: autofocus,
-            size: size,
-            isVisible: isVisible,
-            max: 40,
-            exceptionTitle: exceptionTitle);
+          title: title,
+          placeholder: placeholder,
+          initialValue: initialValue,
+          autofocus: autofocus,
+          size: size,
+          isVisible: isVisible,
+          max: 40,
+          exceptionTitle: exceptionTitle,
+        );
 }

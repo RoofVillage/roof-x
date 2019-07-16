@@ -38,6 +38,8 @@ dependencies:
     path: ../../icons/navigation
   x_small_icon_library:
     path: ../../icons/x_small
+  schedule:
+    path: ../../model/properties/schedule
 
 dev_dependencies:
   flutter_test:

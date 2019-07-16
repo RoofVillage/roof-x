@@ -29,5 +29,10 @@ class FormValidationException implements Exception {
       FormValidationException(
           "$fieldTitle is too short. Try something with at least $min characters.");
 
+  factory FormValidationException.maxValue(
+          {@required String fieldTitle, @required double maxValue}) =>
+      FormValidationException(
+          "$fieldTitle must be less than $maxValue");
+
   FormValidationException(this.message);
 }

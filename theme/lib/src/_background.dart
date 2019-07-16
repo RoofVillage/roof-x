@@ -106,32 +106,42 @@ class RoofBackgroundColor {
     return null;
   }
 
-  Color get markerGray {
+  Color get disabled {
+    switch (_current) {
+      case RoofThemeOption.light:
+        return color.gray4;
+      case RoofThemeOption.dark:
+        return color.gray4;
+    }
+    return null;
+  }
+
+  Color get tagDefault {
     switch (_current) {
       case RoofThemeOption.light:
         return color.gray3;
       case RoofThemeOption.dark:
-        return color.black3;
+        return color.white1.withAlpha(20);
     }
     return null;
   }
 
-  Color get markerGreen {
+  Color get tagGood {
     switch (_current) {
       case RoofThemeOption.light:
         return color.lightGreen;
       case RoofThemeOption.dark:
-        return color.darkGreen;
+        return color.white1.withAlpha(20);
     }
     return null;
   }
 
-  Color get markerAlert {
+  Color get tagAlert {
     switch (_current) {
       case RoofThemeOption.light:
-        return color.alert;
+        return color.alert_dark;
       case RoofThemeOption.dark:
-        return color.alert;
+        return color.white1.withAlpha(20);
     }
     return null;
   }

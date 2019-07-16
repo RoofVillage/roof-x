@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tag_kind_option/index.dart';
 import 'package:theme/index.dart';
 import 'package:mask/index.dart';
 import 'package:date/index.dart';
@@ -66,7 +67,7 @@ class PaymentCell extends StatelessWidget with KeyValueRowBuilder {
         margin: EdgeInsets.only(top: _spacing),
         child: Text(
           note,
-          style: typography.bodySecondary.textStyleWithColor(
+          style: typography.body.textStyleWithColor(
             theme.color.text.secondary,
           ),
           maxLines: 2,
@@ -80,7 +81,7 @@ class PaymentCell extends StatelessWidget with KeyValueRowBuilder {
       context,
       title: "Date",
       value: dateText,
-      valueStyle: typography.bodyPrimaryThick.textStyleWithColor(
+      valueStyle: typography.bodyThick.textStyleWithColor(
         theme.color.text.primary,
       ),
     );
@@ -126,14 +127,15 @@ class _StatusTag extends StatelessWidget with RoofTagBuilder {
 
   _StatusTag(this.status);
 
-  _getStatusColor(PaymentStatus status, RoofInheritedTheme theme) {
+  TagKindOption _getTagKind(PaymentStatus status) {
     switch (status) {
-      case PaymentStatus.manual:
-        return theme.color.background.markerGray;
       case PaymentStatus.cancelled:
-        return theme.color.background.markerAlert;
+        return TagKindOption.error;
       case PaymentStatus.processed:
-        return theme.color.background.markerGreen;
+        return TagKindOption.good;
+      case PaymentStatus.manual:
+      default:
+        return TagKindOption.normal;
     }
   }
 
@@ -150,15 +152,10 @@ class _StatusTag extends StatelessWidget with RoofTagBuilder {
 
   @override
   Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
-
-    final text = _getStatusText(status);
-    final color = _getStatusColor(status, theme);
-
     return buildTag(
       context,
-      text: text,
-      color: color,
+      text: _getStatusText(status),
+      kind: _getTagKind(status),
     );
   }
 }

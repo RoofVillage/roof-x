@@ -100,6 +100,7 @@ class StandardIcon extends IconReference {
   static final shoppingList = StandardIcon(RoofStandardIconData.shopping_list);
   static final switchRoof = StandardIcon(RoofStandardIconData.switch_roof);
   static final snooze = StandardIcon(RoofStandardIconData.snooze);
+  static final tenant = StandardIcon(RoofStandardIconData.tenant);
   static final toolbox = StandardIcon(RoofStandardIconData.toolbox);
   static final treehouse = StandardIcon(RoofStandardIconData.treehouse);
   static final thread = StandardIcon(RoofStandardIconData.thread);

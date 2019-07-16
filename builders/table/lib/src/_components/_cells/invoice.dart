@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:theme/index.dart';
 import 'package:mask/index.dart';
 import 'package:date/index.dart';
 import 'package:tag_builder/index.dart';
 import 'package:key_value_row_builder/index.dart';
 import 'package:invoice_options/index.dart';
+import 'package:tag_kind_option/index.dart';
 
 import '_a.dart';
 
@@ -68,7 +68,7 @@ class InvoiceCell extends StatelessWidget with KeyValueRowBuilder {
     final typeRow = buildKeyValueRow(
       context,
       title: "Invoice type",
-      value: invoiceType.toString(),
+      value: invoiceType.displayString,
     );
 
     return CellA(
@@ -90,15 +90,15 @@ class _StatusTag extends StatelessWidget with RoofTagBuilder {
 
   _StatusTag(this.status);
 
-  _getStatusColor(InvoiceStatusOption status, RoofInheritedTheme theme) {
+  TagKindOption _getTagKind(InvoiceStatusOption status) {
     switch (status) {
       case InvoiceStatusOption.paid:
-        return theme.color.background.markerGreen;
-        break;
+        return TagKindOption.good;
       case InvoiceStatusOption.overdue:
-        return theme.color.background.errorAction;
-        break;
+        return TagKindOption.error;
       case InvoiceStatusOption.unpaid:
+      default:
+        return TagKindOption.normal;
     }
   }
 
@@ -118,15 +118,10 @@ class _StatusTag extends StatelessWidget with RoofTagBuilder {
 
   @override
   Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
-
-    final text = _getStatusText(status);
-    final color = _getStatusColor(status, theme);
-
     return buildTag(
       context,
-      text: text,
-      color: color,
+      text: _getStatusText(status),
+      kind: _getTagKind(status)
     );
   }
 }

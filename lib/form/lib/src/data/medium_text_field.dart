@@ -1,7 +1,7 @@
 import 'text_field.dart';
 
-class MediumFormTextFieldData extends FormTextFieldData {
-  MediumFormTextFieldData({
+class FormMediumTextFieldData extends FormTextFieldData {
+  FormMediumTextFieldData({
     String title,
     String placeholder,
     String initialValue,

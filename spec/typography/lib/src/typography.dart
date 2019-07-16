@@ -2,9 +2,8 @@ import 'dart:io' show Platform;
 
 import '_styles/detail_primary.dart';
 import '_styles/detail_secondary.dart';
-import '_styles/body_primary.dart';
-import '_styles/body_primary_thick.dart';
-import '_styles/body_secondary.dart';
+import '_styles/body.dart';
+import '_styles/body_thick.dart';
 import '_styles/button.dart';
 import '_styles/heading_1.dart';
 import '_styles/heading_2.dart';
@@ -35,27 +34,19 @@ TypographyStyle get title {
   }
 }
 
-TypographyStyle get bodySecondary {
+TypographyStyle get body {
   if (Platform.isIOS) {
-    return RoofBodySecondaryIos();
+    return RoofBodyIos();
   } else {
-    return RoofBodySecondaryAndroid();
+    return RoofBodyAndroid();
   }
 }
 
-TypographyStyle get bodyPrimary {
+TypographyStyle get bodyThick {
   if (Platform.isIOS) {
-    return RoofBodyPrimaryIos();
+    return RoofBodyThickIos();
   } else {
-    return RoofBodyPrimaryAndroid();
-  }
-}
-
-TypographyStyle get bodyPrimaryThick {
-  if (Platform.isIOS) {
-    return RoofBodyPrimaryThickIos();
-  } else {
-    return RoofBodyPrimaryThickAndroid();
+    return RoofBodyThickAndroid();
   }
 }
 

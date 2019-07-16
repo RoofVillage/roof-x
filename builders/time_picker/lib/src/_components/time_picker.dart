@@ -1,365 +1,224 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:duration/index.dart' as duration;
-import 'package:curve/index.dart' as curve;
-import 'package:haptics/index.dart';
 import 'package:typography/index.dart' as typography;
+import 'package:distance/index.dart' as distance;
 import 'package:theme/index.dart';
+import 'package:titled_value/index.dart';
+import 'package:roller_column_builder/index.dart';
 
-import '_overflow_roller_column.dart';
-import '_clock_type_roller_column.dart';
 import '_clock_type.dart';
 
-class RoofTimePicker extends StatefulWidget {
+class TimePicker extends StatefulWidget {
   final TimeOfDay initialValue;
+  final Function(TimeOfDay) onChanged;
 
-  RoofTimePicker({this.initialValue});
+  TimePicker({this.initialValue, this.onChanged});
 
-  RoofTimePickerState createState() => RoofTimePickerState();
+  TimePickerState createState() => TimePickerState();
 }
 
-class RoofTimePickerState extends State<RoofTimePicker> {
-  final List<int> _minutesList = [
-    00,
-    05,
-    10,
-    15,
-    20,
-    25,
-    30,
-    35,
-    40,
-    45,
-    50,
-    55
-  ];
-  final List<int> _hoursList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-  final List<ClockType> _clockTypeList = [ClockType.am, ClockType.pm];
-  final double _stepHeight = 40;
-  final int _boundaryStepCount = 1;
+class TimePickerState extends State<TimePicker> with RollerColumnBuilder {
+  final int _minutesSpacing = 5;
+  final double _columnWidth = distance.f;
+  final double _verticalPadding = distance.c;
 
-  TimeOfDay selectedTime;
-  ScrollController _hoursScrollController;
-  ScrollController _minutesScrollController;
-  ScrollController _clockTypeScrollController;
-  bool _shouldSnapHours = true;
-  bool _shouldSnapMinutes = true;
-  bool _shouldSnapClockType = true;
+  final List<TitledValue<int>> _minutesList = [];
+  final List<TitledValue<int>> _hoursList = [];
+  final List<TitledValue<ClockType>> _clockTypeList = [
+    TitledValue(
+      title: "am",
+      value: ClockType.am,
+    ),
+    TitledValue(
+      title: "pm",
+      value: ClockType.pm,
+    ),
+  ];
+
+  TimeOfDay _selectedTime;
   ClockType _clockType;
+  bool _use24HourFormat;
 
   @override
   void initState() {
+    _selectedTime = widget.initialValue ?? TimeOfDay(hour: 12, minute: 0);
+
+    _clockType = _clockTypeFromHour(_selectedTime.hour);
+
     super.initState();
-    selectedTime = widget.initialValue ?? TimeOfDay.now();
-
-    if (selectedTime.hour > 11)
-      _clockType = ClockType.pm;
-    else
-      _clockType = ClockType.am;
-
-    final int hoursInitialOffsetSteps = _hoursList.length -
-        _boundaryStepCount +
-        _hoursList.indexOf((selectedTime.hour) % 12);
-
-    _hoursScrollController = ScrollController(
-      initialScrollOffset: hoursInitialOffsetSteps * _stepHeight,
-    );
-
-    if (!_minutesList.contains(selectedTime.minute)) {
-      // Find minutes value nearest to current time
-      if (selectedTime.minute > 57 || selectedTime.minute < 3) {
-        selectedTime = TimeOfDay(
-          hour: selectedTime.hour,
-          minute: _minutesList[0],
-        );
-      } else {
-        for (var i = 0; i < _minutesList.length; i++) {
-          final minutesGap = _minutesList[1] - _minutesList[0];
-
-          if ((_minutesList[i] - selectedTime.minute).abs() < minutesGap / 2) {
-            selectedTime =
-                TimeOfDay(hour: selectedTime.hour, minute: _minutesList[i]);
-          }
-        }
-      }
-    }
-
-    final int minutesInitialOffset = _minutesList.length -
-        _boundaryStepCount +
-        _minutesList.indexOf(selectedTime.minute);
-
-    _minutesScrollController = ScrollController(
-      initialScrollOffset: minutesInitialOffset * _stepHeight,
-    );
-
-    _clockTypeScrollController = ScrollController(
-      initialScrollOffset: _clockTypeList.indexOf(_clockType) * _stepHeight,
-    );
   }
 
   @override
-  dispose() {
-    _hoursScrollController.dispose();
-    _minutesScrollController.dispose();
-    _clockTypeScrollController.dispose();
-    super.dispose();
-  }
+  void didChangeDependencies() {
+    _use24HourFormat = MediaQuery.of(context).alwaysUse24HourFormat;
 
-  void _handleRollover({controller, segmentLength}) {
-    final double segmentHeight = segmentLength * _stepHeight;
+    // Generate _minutesList
+    for (int i = 0; i <= 60 - _minutesSpacing; i += _minutesSpacing) {
+      final data = TitledValue<int>(
+        title: i.toString().padLeft(2, "0"),
+        value: i,
+      );
+      _minutesList.add(data);
+    }
 
-    /*
-    Rollers are divided into three repeated segments. 
-    To create perceived infinite scroll, adjust controller position to keep scroll window in the middle segment.
-    */
-    if (controller.offset > segmentHeight * 2)
-      controller.position.correctBy(-segmentHeight);
-    else if (controller.offset < segmentHeight)
-      controller.position.correctBy(segmentHeight);
-  }
+    // Generate _hoursList
+    int hoursLength = _use24HourFormat ? 24 : 12;
+    for (int i = 0; i < hoursLength; i++) {
+      String title;
 
-  void _snapScroll({ScrollController controller, int listLength}) {
-    Future.delayed(Duration(milliseconds: 50), () {
-      double targetOffset = 0;
-
-      if (controller.offset % _stepHeight == 0) return;
-
-      for (var i = 0; i < listLength; i++) {
-        final distanceFromMiddle =
-            ((_stepHeight * i + _stepHeight * .5) - controller.offset).abs();
-        if (distanceFromMiddle < _stepHeight) targetOffset = _stepHeight * i;
+      if (_use24HourFormat) {
+        title = i.toString();
+      } else {
+        title = i == 0 ? "12" : i.toString();
       }
-      if ((controller == _minutesScrollController && _shouldSnapMinutes) ||
-          (controller == _hoursScrollController && _shouldSnapHours) ||
-          (controller == _clockTypeScrollController && _shouldSnapClockType))
-        controller.animateTo(
-          targetOffset,
-          duration: duration.short,
-          curve: curve.quick,
-        );
-    });
-  }
 
-  _getSelectedValue({double scrollOffset, List list}) {
-    for (var i = 0; i < list.length * 3; i++) {
-      final double stepCenterOffset =
-          (i - _boundaryStepCount - .5) * _stepHeight;
-
-      if ((stepCenterOffset - scrollOffset).abs() < _stepHeight) {
-        return list[i % list.length];
-      }
-    }
-    return null;
-  }
-
-  void _onHoursScroll() {
-    int selectedHour = _getSelectedValue(
-      scrollOffset: _hoursScrollController.offset,
-      list: _hoursList,
-    );
-
-    if (_clockType == ClockType.pm) selectedHour += 12;
-
-    if (selectedHour != selectedTime.hour) {
-      triggerHapticWith(HapticOption.click);
-      setState(() {
-        selectedTime = TimeOfDay(
-          hour: selectedHour,
-          minute: selectedTime.minute,
-        );
-      });
+      _hoursList.add(
+        TitledValue<int>(
+          title: title,
+          value: i,
+        ),
+      );
     }
 
-    _handleRollover(
-      controller: _hoursScrollController,
-      segmentLength: _hoursList.length,
-    );
-  }
-
-  void _onMinutesScroll() {
-    int selectedMinute = _getSelectedValue(
-      scrollOffset: _minutesScrollController.offset,
-      list: _minutesList,
-    );
-
-    if (selectedMinute != selectedTime.minute) {
-      triggerHapticWith(HapticOption.click);
-      setState(() {
-        selectedTime = TimeOfDay(
-          hour: selectedTime.hour,
-          minute: selectedMinute,
-        );
-      });
-    }
-
-    _handleRollover(
-      controller: _minutesScrollController,
-      segmentLength: _minutesList.length,
-    );
-  }
-
-  _getClockTypeValue() {
-    if (_clockTypeScrollController.offset > _stepHeight / 2)
-      return ClockType.pm;
-    else
-      return ClockType.am;
-  }
-
-  void _onClockTypeScroll() {
-    _shouldSnapClockType = true;
-
-    ClockType selectedClockType = _getClockTypeValue();
-
-    if (selectedClockType != _clockType) {
-      triggerHapticWith(HapticOption.click);
-      int newHourVal = selectedClockType == ClockType.pm
-          ? selectedTime.hour + 12
-          : selectedTime.hour - 12;
-      setState(() {
-        _clockType = selectedClockType;
-        selectedTime = TimeOfDay(hour: newHourVal, minute: selectedTime.minute);
-      });
-    }
+    super.didChangeDependencies();
   }
 
   @override
   Widget build(BuildContext context) {
-    final double columnWidth = _stepHeight * 1.5;
+    final selectedHour = _rollerColumnDataFromHour(_selectedTime.hour);
 
-    hoursTextMask(list, i) {
-      return (list[i % list.length]).toString();
-    }
-
-    adjustHours(int hourVal) {
-      if (_clockType == ClockType.pm)
-        return hourVal - 12;
-      else
-        return hourVal;
-    }
-
-    final Widget hoursColumn = Container(
-      width: columnWidth,
-      child: NotificationListener<Notification>(
-        onNotification: (scrollNotification) {
-          if (scrollNotification is ScrollEndNotification) {
-            _shouldSnapHours = true;
-            _snapScroll(
-              controller: _hoursScrollController,
-              listLength: _hoursList.length * 3,
-            );
-          } else if (scrollNotification is ScrollUpdateNotification) {
-            _shouldSnapHours = false;
-            _onHoursScroll();
-          }
-        },
-        child: ListView(
-          controller: _hoursScrollController,
-          padding: EdgeInsets.all(0),
-          children: [
-            OverflowRollerColumn(
-              selectedValue: selectedTime.hour,
-              stepHeight: _stepHeight,
-              list: _hoursList,
-              textMask: hoursTextMask,
-              adjustValue: adjustHours,
-            )
-          ],
+    final Widget hoursColumn = Flexible(
+      child: Container(
+        width: _columnWidth,
+        child: buildRollerColumn(
+          context,
+          list: _hoursList,
+          selectedValue: selectedHour,
+          onChange: _onHoursChange,
         ),
       ),
     );
 
-    final timeDividerTextStyle = typography.bodyPrimary.textStyleWithColor(
+    final timeDividerTextStyle = typography.body.textStyleWithColor(
       RoofTheme.of(context).color.text.secondary,
     );
-    final Widget timeDivider = Container(
-      height: _stepHeight,
-      child: Center(
-        child: Text(
-          ":",
-          style: timeDividerTextStyle,
+    final Widget timeDivider = Flexible(
+      child: Container(
+        width: _columnWidth / 2,
+        child: Center(
+          child: Text(":", style: timeDividerTextStyle),
         ),
       ),
     );
 
-    minutesTextMask(List list, int i) {
-      return list[i].toString().padLeft(2, "0");
+    final Widget minutesColumn = Flexible(
+      child: Container(
+        width: _columnWidth,
+        child: buildRollerColumn(
+          context,
+          list: _minutesList,
+          selectedValue: _rollerColumnDataFromMinute(_selectedTime.minute),
+          onChange: _onMinutesChange,
+        ),
+      ),
+    );
+
+    List<Widget> columns = [
+      hoursColumn,
+      timeDivider,
+      minutesColumn,
+    ];
+
+    if (!_use24HourFormat) {
+      final ClockType clockType = _clockTypeFromHour(_selectedTime.hour);
+
+      final Widget clockTypeColumn = Flexible(
+        child: Container(
+          width: _columnWidth,
+          child: buildRollerColumn(
+            context,
+            list: _clockTypeList,
+            selectedValue: _rollerColumnDataFromClockType(clockType),
+            onChange: _onClockTypeChange,
+          ),
+        ),
+      );
+      columns.add(clockTypeColumn);
     }
 
-    final Widget minutesColumn = Container(
-      width: columnWidth,
-      child: NotificationListener<ScrollNotification>(
-        onNotification: (scrollNotification) {
-          if (scrollNotification is ScrollEndNotification) {
-            _shouldSnapMinutes = true;
-            _snapScroll(
-              controller: _minutesScrollController,
-              listLength: _minutesList.length * 3,
-            );
-          } else if (scrollNotification is ScrollUpdateNotification) {
-            _shouldSnapMinutes = false;
-            _onMinutesScroll();
-          }
-        },
-        child: ListView(
-          controller: _minutesScrollController,
-          padding: EdgeInsets.all(0),
-          children: [
-            OverflowRollerColumn(
-              selectedValue: selectedTime.minute,
-              stepHeight: _stepHeight,
-              list: _minutesList,
-              textMask: minutesTextMask,
-            ),
-          ],
-        ),
-      ),
-    );
-
-    final Widget clockTypeColumn = Container(
-      width: _stepHeight,
-      child: NotificationListener<ScrollNotification>(
-        onNotification: (scrollNotification) {
-          if (scrollNotification is ScrollEndNotification) {
-            _shouldSnapClockType = true;
-            _snapScroll(
-              controller: _clockTypeScrollController,
-              listLength: _clockTypeList.length,
-            );
-          } else if (scrollNotification is ScrollUpdateNotification) {
-            _shouldSnapClockType = false;
-            _onClockTypeScroll();
-          }
-        },
-        child: ListView(
-          controller: _clockTypeScrollController,
-          padding: EdgeInsets.symmetric(
-            vertical: _boundaryStepCount * _stepHeight,
-          ),
-          children: [
-            ClockTypeRollerColumn(
-              stepHeight: _stepHeight,
-              selectedClockType: _clockType,
-            )
-          ],
-        ),
-      ),
-    );
-
-    final int totalSteps = _boundaryStepCount * 2 + 1;
-
     return Container(
-      height: totalSteps * _stepHeight,
+      padding: EdgeInsets.symmetric(vertical: _verticalPadding),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          hoursColumn,
-          timeDivider,
-          minutesColumn,
-          clockTypeColumn,
-        ],
+        children: columns,
       ),
     );
+  }
+
+  ClockType _clockTypeFromHour(int hour) {
+    return hour < 11 ? ClockType.am : ClockType.pm;
+  }
+
+  TitledValue<int> _rollerColumnDataFromMinute(int val) {
+    for (TitledValue<int> data in _minutesList) {
+      if ((data.value - val).abs() < _minutesSpacing / 2) return data;
+    }
+    return null;
+  }
+
+  TitledValue<int> _rollerColumnDataFromHour(int val) {
+    int _val = _use24HourFormat ? val : val % 12;
+
+    for (TitledValue<int> data in _hoursList) {
+      if (_val == data.value) return data;
+    }
+    return null;
+  }
+
+  TitledValue<ClockType> _rollerColumnDataFromClockType(ClockType val) {
+    for (TitledValue<ClockType> data in _clockTypeList) {
+      if (val == data.value) return data;
+    }
+    return null;
+  }
+
+  void _onMinutesChange(TitledValue<int> newVal) {
+    if (_selectedTime.minute != newVal.value) {
+      setState(() {
+        _selectedTime = TimeOfDay(
+          hour: _selectedTime.hour,
+          minute: newVal.value,
+        );
+      });
+      widget.onChanged(_selectedTime);
+    }
+  }
+
+  _onHoursChange(TitledValue<int> newVal) {
+    if (_selectedTime.hour != newVal.value) {
+      int hour = _use24HourFormat
+          ? newVal.value
+          : newVal.value + (_clockType == ClockType.pm ? 12 : 0);
+
+      setState(() {
+        _selectedTime = TimeOfDay(hour: hour, minute: _selectedTime.minute);
+      });
+      widget.onChanged(_selectedTime);
+    }
+  }
+
+  _onClockTypeChange(TitledValue<ClockType> newVal) {
+    if (_clockType != newVal.value) {
+      final newSelectedTime = TimeOfDay(
+        hour: _selectedTime.hour + (newVal.value == ClockType.am ? -12 : 12),
+        minute: _selectedTime.minute,
+      );
+      setState(() {
+        _clockType = newVal.value;
+        _selectedTime = newSelectedTime;
+      });
+      widget.onChanged(_selectedTime);
+    }
   }
 }

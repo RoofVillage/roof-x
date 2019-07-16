@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:form/index.dart';
-import 'package:form_body_builder/src/_components/fields/_data/icon_select_field_option_data.dart';
+import 'package:form_body_builder/src/_components/fields/interval_frequency_picker_field.dart';
+import 'package:titled_icon/index.dart';
+import 'package:frequency/index.dart';
 import 'package:keyboard_accessory/index.dart';
 import 'package:keyboard_accessory_bar_builder/index.dart';
-
+import 'package:titled_value/index.dart';
 import 'keyboard_accessory_buttons/index.dart';
 import 'field_container.dart';
 import 'fields/text_area.dart';
 import 'fields/text_field.dart';
 import 'fields/switch_field.dart';
 import 'fields/date_picker_field.dart';
-import 'fields/select_field.dart';
-import 'fields/icon_select_field.dart';
-import 'fields/_data/select_field_option_data.dart';
+import 'fields/time_picker_field.dart';
+import 'fields/option_picker_field.dart';
+import 'fields/icon_picker_field.dart';
+import 'fields/roller_column_picker_field.dart';
 
 enum KeyboardAccessoryState { hideKeyboard, submit }
 
@@ -37,12 +40,13 @@ class RoofStreamForm
     return allCompositionFieldData;
   }
 
-  Widget buildTextField(
-      {FormTextFieldData fieldData,
-      StreamableFormData formData,
-      int fieldIndex,
-      int sectionIndex,
-      BuildContext context}) {
+  Widget buildTextField({
+    FormTextFieldData fieldData,
+    StreamableFormData formData,
+    int fieldIndex,
+    int sectionIndex,
+    BuildContext context,
+  }) {
     final inputAction = _getInputActionForCompositionFieldData(fieldData);
     final focusNode = _focusNodeManager.nodeFor(fieldData, context);
 
@@ -101,8 +105,8 @@ class RoofStreamForm
     );
   }
 
-  Widget buildSwitch({
-    FormSwitchData fieldData,
+  Widget buildSwitchField({
+    FormSwitchFieldData fieldData,
     int fieldIndex,
     int sectionIndex,
     BuildContext context,
@@ -118,7 +122,7 @@ class RoofStreamForm
   }
 
   Widget buildDateField({
-    FormDateFieldData fieldData,
+    FormDatePickerFieldData fieldData,
     StreamableFormData formData,
     int fieldIndex,
     int sectionIndex,
@@ -130,60 +134,93 @@ class RoofStreamForm
       startBound: fieldData.startBound,
       endBound: fieldData.endBound,
       onTap: fieldData.onTap,
-      onChanged: (value) {
-        fieldData.onChanged(value);
-      },
     );
   }
 
-  Widget buildOptionSelect(
-      {FormOptionSelectData fieldData, int fieldIndex, int sectionIndex}) {
-    List<SelectFieldOptionData> options = fieldData.options.map(
-      (option) {
-        return SelectFieldOptionData(
-          title: option.title,
-          data: option.data,
-        );
-      },
-    ).toList();
-
-    return RoofSelectField(
+  Widget buildOptionPickerField({
+    FormOptionPickerFieldData fieldData,
+    int fieldIndex,
+    int sectionIndex,
+  }) {
+    return OptionPickerField(
       title: fieldData.title,
       emptyText: fieldData.emptyText,
       isMultiSelect: fieldData.isMultiSelect,
-      options: options,
-      onChanged: (selectedOptions) {
-        List<FormOptionSelectValueData> convertedOptions = selectedOptions.map(
-          (option) {
-            return FormOptionSelectValueData(
-              title: option.title,
-              data: option.data,
-            );
-          },
-        ).toList();
-        fieldData.onChanged(convertedOptions);
-      },
+      selectedOptions: fieldData.selectedOptions?.map((option) {
+        return TitledValue(
+          title: option.title,
+          value: option.value,
+        );
+      })?.toList(),
+      options: fieldData.options?.map(
+        (option) {
+          return TitledValue(
+            title: option.title,
+            value: option.value,
+          );
+        },
+      )?.toList(),
+      onTap: fieldData.onTap,
     );
   }
 
-  Widget buildIconOptionSelect(
-      {FormIconOptionSelectData fieldData, int fieldIndex, int sectionIndex}) {
-    List<IconSelectFieldOptionData> options = fieldData.options.map(
-      (option) {
-        return IconSelectFieldOptionData(
-          icon: option.icon,
-        );
-      },
-    ).toList();
-
-    return IconSelectField(
+  Widget buildTimeSelect({
+    FormTimePickerFieldData fieldData,
+    int fieldIndex,
+    int sectionIndex,
+  }) {
+    return TimePickerField(
       title: fieldData.title,
-      options: options,
-      onChanged: (selectedOption) {
-        FormIconOptionSelectValueData convertedOption =
-            FormIconOptionSelectValueData(icon: selectedOption.icon);
-        fieldData.onChanged(convertedOption);
-      },
+      initialValue: fieldData.value,
+      onTap: fieldData.onTap,
+    );
+  }
+
+  Widget buildRollerColumnPicker({
+    FormRollerColumnPickerFieldData fieldData,
+    int fieldIndex,
+    int sectionIndex,
+  }) {
+    return RollerColumnPickerField(
+      title: fieldData.title,
+      selectedValue: fieldData.value,
+      onTap: fieldData.onTap,
+    );
+  }
+
+  Widget buildIntervalFrequencySelect({
+    FormIntervalFrequencyPickerFieldData fieldData,
+    int fieldIndex,
+    int sectionIndex,
+  }) {
+    return IntervalFrequencyPickerField(
+      title: fieldData.title,
+      selectedValue: Frequency(
+        interval: fieldData.value?.interval,
+        frequency: fieldData.value?.frequency,
+      ),
+      onTap: fieldData.onTap,
+    );
+  }
+
+  Widget buildIconOptionPickerField({
+    FormIconPickerFieldData fieldData,
+    int fieldIndex,
+    int sectionIndex,
+  }) {
+    return IconPickerField(
+      title: fieldData.title,
+      selectedOption: fieldData.selectedOption != null
+          ? TitledIcon(icon: fieldData.selectedOption.icon)
+          : null,
+      options: fieldData.options?.map(
+        (option) {
+          return TitledIcon(
+            icon: option.icon,
+          );
+        },
+      )?.toList(),
+      onTap: fieldData.onTap,
     );
   }
 
@@ -213,27 +250,45 @@ class RoofStreamForm
         sectionIndex: sectionIndex,
         context: context,
       );
-    } else if (fieldData is FormSwitchData) {
-      fieldBody = buildSwitch(
+    } else if (fieldData is FormSwitchFieldData) {
+      fieldBody = buildSwitchField(
         fieldData: fieldData,
         fieldIndex: fieldIndex,
         sectionIndex: sectionIndex,
         context: context,
       );
-    } else if (fieldData is FormOptionSelectData) {
-      fieldBody = buildOptionSelect(
+    } else if (fieldData is FormOptionPickerFieldData) {
+      fieldBody = buildOptionPickerField(
         fieldData: fieldData,
         fieldIndex: fieldIndex,
         sectionIndex: sectionIndex,
       );
-    } else if (fieldData is FormIconOptionSelectData) {
-      fieldBody = buildIconOptionSelect(
+    } else if (fieldData is FormTimePickerFieldData) {
+      fieldBody = buildTimeSelect(
         fieldData: fieldData,
         fieldIndex: fieldIndex,
         sectionIndex: sectionIndex,
       );
-    } else if (fieldData is FormDateFieldData) {
+    } else if (fieldData is FormIconPickerFieldData) {
+      fieldBody = buildIconOptionPickerField(
+        fieldData: fieldData,
+        fieldIndex: fieldIndex,
+        sectionIndex: sectionIndex,
+      );
+    } else if (fieldData is FormDatePickerFieldData) {
       fieldBody = buildDateField(
+        fieldData: fieldData,
+        fieldIndex: fieldIndex,
+        sectionIndex: sectionIndex,
+      );
+    } else if (fieldData is FormIntervalFrequencyPickerFieldData) {
+      fieldBody = buildIntervalFrequencySelect(
+        fieldData: fieldData,
+        fieldIndex: fieldIndex,
+        sectionIndex: sectionIndex,
+      );
+    } else if (fieldData is FormRollerColumnPickerFieldData) {
+      fieldBody = buildRollerColumnPicker(
         fieldData: fieldData,
         fieldIndex: fieldIndex,
         sectionIndex: sectionIndex,

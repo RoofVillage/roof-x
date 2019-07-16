@@ -131,9 +131,9 @@ class _Content extends StatelessWidget with KeyValueBuilder, SpacedGridBuilder {
     this.details,
   });
 
-  final _titleTypographyStyle = typography.bodyPrimary;
+  final _titleTypographyStyle = typography.body;
   final _timestampTypographyStyle = typography.detailSecondary;
-  final _noteTypographyStyle = typography.bodyPrimary;
+  final _noteTypographyStyle = typography.body;
 
   final _outerPadding = distance.c;
   final _horizontalSpacing = distance.b;

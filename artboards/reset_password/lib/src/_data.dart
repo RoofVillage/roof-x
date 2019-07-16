@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:form_builder/index.dart';
 
-mixin ResetPasswordArtboardBuilder implements FormBuilder {
+mixin ResetPasswordArtboardData implements FormBuilder {
   @override
   String get title => "Reset password";
 
@@ -16,5 +16,5 @@ mixin ResetPasswordArtboardBuilder implements FormBuilder {
   Future<List<StreamableFormFieldData>> get initialFieldData async =>
       [_emailFieldData];
 
-  final _emailFieldData = EmailFormTextFieldData();
+  final _emailFieldData = FormEmailTextFieldData();
 }

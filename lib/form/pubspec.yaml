@@ -19,8 +19,18 @@ dependencies:
     path: ../form_validation_exception
   typedefs:
     path: ../typedefs
+  ordinal_suffix_string_from_int:
+    path: ../ordinal_suffix_string_from_int
   standard_icon_library:
     path: ../../icons/standard
+  interval:
+    path: ../../lib/interval
+  period_type:
+    path: ../../types/period
+  fee_payer_type:
+    path: ../../types/fee_payer
+  titled_value:
+    path: ../../titled_value
 
 dev_dependencies:
   flutter_test:

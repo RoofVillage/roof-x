@@ -129,7 +129,7 @@ class _Body extends StatelessWidget {
 class _DetailLabel extends StatelessWidget {
   final String text;
 
-  final _typographyStyle = typography.bodySecondary;
+  final _typographyStyle = typography.body;
 
   _DetailLabel({Key key, @required this.text}) : super(key: key);
   @override
@@ -163,8 +163,8 @@ class _CellDivider extends StatelessWidget {
 class _TitleLabel extends StatelessWidget {
   final WeightDecoratedText decoratedText;
 
-  final _defaultTypographyStyle = typography.bodyPrimaryThick;
-  final _thinTypographyStyle = typography.bodyPrimary;
+  final _defaultTypographyStyle = typography.bodyThick;
+  final _thinTypographyStyle = typography.body;
 
   _TitleLabel({Key key, @required this.decoratedText}) : super(key: key);
 

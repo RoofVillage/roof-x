@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import '_data.dart';
 
 class ChallengeVerticalFloatingArtboard extends FormVerticalFloatingArtboard
-    with ChallengeArtboardBuilder {
+    with ChallengeArtboardData {
   final String phoneNumber;
   ChallengeVerticalFloatingArtboard({this.phoneNumber});
 

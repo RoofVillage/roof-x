@@ -91,7 +91,7 @@ class _FieldBody extends StatefulWidget {
 
 class _FieldBodyState extends State<_FieldBody> {
   final int _maxLines = 3;
-  final _typographyStyle = typography.bodyPrimary;
+  final _typographyStyle = typography.body;
   final _controller = TextEditingController();
 
   void _controllerUpdated() => widget.onChanged(_controller.text);

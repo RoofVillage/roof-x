@@ -6,6 +6,7 @@ import '_components/nav_bar.dart';
 
 mixin TitledIconNavBarBuilder {
   String get title => null;
+  String buildSubtitle(BuildContext context) => null;
   StandardIcon get titleIcon => null;
 
   List<Widget> buildActionButtons(BuildContext context);
@@ -15,6 +16,7 @@ mixin TitledIconNavBarBuilder {
     return RoofTitleNavBar(
       actionButtons: buildActionButtons(context),
       title: title,
+      subtitle: buildSubtitle(context),
       icon: titleIcon,
       navButton: buildNavButton(context),
     );

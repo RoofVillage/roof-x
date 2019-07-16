@@ -9,7 +9,7 @@ class EmptyMessageCell extends StatelessWidget {
   EmptyMessageCell({this.text});
 
   final _verticalMargin = distance.d;
-  final _typographyStyle = typography.bodySecondary;
+  final _typographyStyle = typography.body;
 
   @override
   Widget build(BuildContext context) {

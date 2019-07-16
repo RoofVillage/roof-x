@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:form_builder/index.dart';
 
-mixin LogInArtboardBuilder implements FormBuilder {
+mixin LogInArtboardData implements FormBuilder {
   @override
   String get title => "Log in";
 
@@ -19,6 +19,6 @@ mixin LogInArtboardBuilder implements FormBuilder {
   Future<List<StreamableFormFieldData>> get initialFieldData async =>
       [_usernameFieldData, _passwordFieldData];
 
-  final _usernameFieldData = EmailFormTextFieldData(title: "Email or phone");
-  final _passwordFieldData = PasswordFormTextFieldData();
+  final _usernameFieldData = FormEmailTextFieldData(title: "Email or phone");
+  final _passwordFieldData = FormPasswordTextFieldData();
 }

@@ -45,6 +45,8 @@ dependencies:
     path: ../../types/request
   lease_status:
     path: ../../types/lease
+  tag_kind_option:
+    path: ../../options/tag_kind
 
 dev_dependencies:
   flutter_test:

@@ -22,10 +22,34 @@ dependencies:
     path: ../../../lib/date
   date_picker_builder:
     path: ../../../builders/date_picker
+  option_picker_builder:
+    path: ../../../builders/option_picker
+  time_picker_builder:
+    path: ../../../builders/time_picker
+  icon_picker_builder:
+    path: ../../../builders/icon_picker
+  titled_icon:
+    path: ../../../titled_icon
+  titled_value:
+    path: ../../../titled_value
+  frequency:
+    path: ../../../frequency    
+  interval_frequency_picker_builder:
+    path: ../../../builders/interval_frequency_picker
+  roller_column_picker_builder:
+    path: ../../../builders/roller_column_picker
+  roller_column_picker_artboard:
+    path: ../../../artboards/roller_column_picker
   button_builder:
     path: ../../../builders/button
   date_picker_artboard:
     path: ../../../artboards/date_picker
+  option_picker_artboard:
+    path: ../../../artboards/option_picker
+  time_picker_artboard:
+    path: ../../../artboards/time_picker
+  interval_frequency_picker_artboard:
+    path: ../../../artboards/interval_frequency_picker
 
 dev_dependencies:
   flutter_test:

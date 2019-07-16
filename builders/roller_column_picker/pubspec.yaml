@@ -1,0 +1,27 @@
+name: roller_column_picker_builder
+description: Component for selecting a value from a single roller column
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  artboard:
+    path: ../../lib/artboard
+  theme:
+    path: ../../theme
+  haptics:
+    path: ../../lib/haptics
+  titled_value:
+    path: ../../titled_value
+  roller_column_builder:
+    path: ../roller_column
+  typography:
+    path: ../../spec/typography
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

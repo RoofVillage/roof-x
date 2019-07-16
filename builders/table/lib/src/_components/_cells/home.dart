@@ -197,7 +197,7 @@ class _LeasePreviewsColumn extends StatelessWidget {
         margin: EdgeInsets.only(right: _spacing),
         child: Text(
           formattedAmount,
-          style: typography.bodyPrimaryThick
+          style: typography.bodyThick
               .textStyleWithColor(theme.color.text.primary),
         ),
       );
@@ -250,17 +250,12 @@ class _TagsSection extends StatelessWidget with RoofTagBuilder {
 
   @override
   Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
-
     List<Widget> tagWidgets = [];
 
     for (String tag in tags) {
-      final tagColor = theme.color.background.markerGray;
-
       final tagWidget = buildTag(
         context,
         text: tag.toUpperCase(),
-        color: tagColor,
       );
 
       tagWidgets.add(tagWidget);

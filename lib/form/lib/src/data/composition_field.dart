@@ -10,6 +10,7 @@ abstract class FormCompositionFieldData
   TextInputAction inputAction;
   TextInputType keyboardType;
   bool isOptional;
+  double maxValue;
   int max;
   int min;
   String exceptionTitle;
@@ -19,29 +20,31 @@ abstract class FormCompositionFieldData
         for (final listener in _onSubmittedListeners) listener(value);
       };
 
-  FormCompositionFieldData(
-      {this.inputAction,
-      this.max,
-      this.min,
-      @required String title,
-      String placeholder,
-      TextInputType keyboardType,
-      bool isOptional,
-      bool autofocus,
-      String initialValue,
-      double size,
-      bool isVisible,
-      String exceptionTitle})
-      : autofocus = autofocus ?? false,
+  FormCompositionFieldData({
+    this.inputAction,
+    this.maxValue,
+    this.max,
+    this.min,
+    @required String title,
+    String placeholder,
+    TextInputType keyboardType,
+    bool isOptional,
+    bool autofocus,
+    String initialValue,
+    double size,
+    bool isVisible,
+    String exceptionTitle,
+  })  : autofocus = autofocus ?? false,
         placeholder = placeholder ?? "",
         isOptional = isOptional ?? false,
         keyboardType = keyboardType ?? TextInputType.text,
         exceptionTitle = exceptionTitle ?? title,
         super(
-            title: title,
-            initialValue: initialValue ?? "",
-            size: size,
-            isVisible: isVisible);
+          title: title,
+          initialValue: initialValue ?? "",
+          size: size,
+          isVisible: isVisible,
+        );
 
   void addOnSubmittedListener(ValueChanged<String> fn) =>
       _onSubmittedListeners.add(fn);
@@ -53,6 +56,10 @@ abstract class FormCompositionFieldData
     }
     if (min != null && value.length < min) {
       throw FormValidationException.shortString(fieldTitle: title, min: min);
+    }
+    if (maxValue != null && double.parse(value) > maxValue) {
+      throw FormValidationException.maxValue(
+          fieldTitle: title, maxValue: maxValue);
     }
   }
 }

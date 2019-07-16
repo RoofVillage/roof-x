@@ -7,7 +7,7 @@ class CellBodyTextPreview extends StatelessWidget {
 
   CellBodyTextPreview(this.text);
 
-  final _typography = typography.bodySecondary;
+  final _typography = typography.body;
   final _maxLines = 2;
   final _overflowKind = TextOverflow.ellipsis;
 

@@ -119,7 +119,7 @@ class _FieldBody extends StatefulWidget {
 
 class _FieldBodyState extends State<_FieldBody> {
   final _controller = TextEditingController();
-  final _typographyStyle = typography.bodyPrimary;
+  final _typographyStyle = typography.body;
 
   String _formattedPlaceholder = "";
   bool _didSetInitialValue = false;

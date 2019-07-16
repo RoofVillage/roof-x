@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:theme/index.dart';
 import 'package:standard_icon_library/index.dart';
@@ -7,7 +9,10 @@ import 'package:tabbed_fullscreen_artboard_template/index.dart';
 import 'package:cells_list_view_builder/index.dart';
 import 'package:button_builder/index.dart';
 import 'package:button_status_option/index.dart';
+import 'package:nav_button_builder/index.dart';
 import 'package:tab/index.dart';
+import 'package:navigator/index.dart';
+import 'package:lease_create_artboard/index.dart';
 
 import '_data.dart';
 
@@ -16,7 +21,8 @@ abstract class PropertyVerticalFullScreenArtboard
     with
         RoofCellsListViewBuilder,
         SecondaryCenterButtonBuilder,
-        PropertyArtboardBuilder {
+        IconNavButtonBuilder,
+        PropertyArtboardData {
   String get title => propertyTitle;
 
   StandardIcon get titleIcon => homeIcon;
@@ -27,11 +33,21 @@ abstract class PropertyVerticalFullScreenArtboard
     return NavigationIcon.backArrow.buildWidget(color: theme.color.icon.nav);
   }
 
+  Future<void> edit(BuildContext context) async {
+    ArtboardNavigator.of(context).goTo(
+      LeaseCreateVerticalFloatingArtboard(),
+    );
+  }
+
   @override
   List<Widget> buildActionButtons(BuildContext context) {
-    final theme = RoofTheme.of(context);
+    // final theme = RoofTheme.of(context);
 
-    final moreButton = NavigationIcon.more.buildWidget(color: theme.color.icon.nav);
+    final moreButton = buildIconNavButton(
+      context,
+      iconReference: NavigationIcon.settings,
+      onTap: edit,
+    );
 
     return [moreButton];
   }
@@ -46,7 +62,9 @@ abstract class PropertyVerticalFullScreenArtboard
       context,
       text: "Create lease",
       icon: XSmallIcon.lease,
-      onTap: (context) => print("create lease tapped"),
+      onTap: (context) => ArtboardNavigator.of(context).goTo(
+            LeaseCreateVerticalFloatingArtboard(),
+          ),
       status: ButtonStatusOption.ready,
     );
 
@@ -61,61 +79,3 @@ abstract class PropertyVerticalFullScreenArtboard
     return [leasesTab];
   }
 }
-
-// class TagsWrap extends StatelessWidget {
-//   final List<Widget> tags;
-
-//   TagsWrap(this.tags);
-
-//   final _spacing = distance.b;
-//   final _verticalMargin = distance.b;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       margin: EdgeInsets.symmetric(vertical: _verticalMargin),
-//       child: Row(
-//         mainAxisAlignment: MainAxisAlignment.start,
-//         children: [
-//           Wrap(
-//             children: tags,
-//             runSpacing: _spacing,
-//             spacing: _spacing,
-//           )
-//         ],
-//       ),
-//     );
-//   }
-// }
-
-// @override
-// List<RoofBreadcrumb> buildBreadcrumbs(BuildContext context) {
-//   return null;
-// }
-
-// @override
-// buildInfoRows(BuildContext context) {
-//   final theme = RoofTheme.of(context);
-
-//   final List<Widget> tagWidgets = [];
-
-//   for (String tag in tags) {
-//     final tagWidget = buildTag(
-//       context,
-//       text: tag,
-//       color: theme.color.background.markerGray,
-//     );
-
-//     tagWidgets.add(tagWidget);
-//   }
-
-//   final tagsWrap = TagsWrap(tagWidgets);
-
-//   final paymentProfileInfoRow = buildKeyValueRow(
-//     context,
-//     title: "Payment profile",
-//     value: paymentProfile,
-//   );
-
-//   return [tagsWrap, paymentProfileInfoRow];
-// }

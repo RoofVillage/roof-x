@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:theme/index.dart';
-import 'package:haptics/index.dart';
+import 'package:date/index.dart';
 import 'package:typography/index.dart' as typography;
 import 'package:distance/index.dart' as distance;
 
 import '_picker_field.dart';
 
-class RoofDatePickerField extends StatefulWidget {
+class RoofDatePickerField extends StatelessWidget {
   final String title;
   final DateTime initialValue;
   final DateTime startBound;
@@ -33,43 +33,28 @@ class RoofDatePickerField extends StatefulWidget {
     this.focusNode,
   });
 
-  _RoofDatePickerFieldState createState() => _RoofDatePickerFieldState();
-}
-
-class _RoofDatePickerFieldState extends State<RoofDatePickerField> {
-  final _typographyStyle = typography.bodyPrimary;
-  final _tapHapticOption = HapticOption.light;
-
-  void _fireHaptic() {
-    if (widget.onTap != null) triggerHapticWith(_tapHapticOption);
-  }
+  final _typographyStyle = typography.body;
 
   @override
   Widget build(BuildContext context) {
-    final String formattedValue =
-        widget.initialValue.toLocal().toIso8601String();
+    final String formattedValue = Date.fromDateTime(initialValue).toLongString;
     final TextStyle textStyle = _typographyStyle.textStyleWithColor(
       RoofTheme.of(context).color.text.primary,
     );
     final verticalPadding = EdgeInsets.symmetric(vertical: distance.b);
 
-    final fieldBody = Expanded(
-      child: GestureDetector(
-        onTapDown: (details) => _fireHaptic(),
-        onTap: widget.onTap,
-        child: Container(
-          padding: verticalPadding,
-          child: Text(
-            formattedValue,
-            style: textStyle,
-            textAlign: TextAlign.right,
-          ),
-        ),
+    final fieldBody = Container(
+      padding: verticalPadding,
+      child: Text(
+        formattedValue,
+        style: textStyle,
+        textAlign: TextAlign.right,
       ),
     );
 
     return RoofPickerField(
-      name: widget.title,
+      onTap: onTap,
+      name: title,
       fieldBody: fieldBody,
     );
   }

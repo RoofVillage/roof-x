@@ -1,0 +1,21 @@
+name: add_tenant_artboard
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  form_vertical_floating_artboard_template:
+    path: ../../artboard_templates/vertical_floating/form
+  form_builder:
+    path: ../../builders/form
+  app_data:
+    path: ../../app_data
+  navigator:
+    path: ../../lib/navigator
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

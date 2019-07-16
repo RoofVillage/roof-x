@@ -1,0 +1,31 @@
+name: icon_picker_builder
+description: Icon selector functionality for artboards.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  haptics:
+    path: ../../lib/haptics
+  theme:
+    path: ../../theme
+  standard_icon_library:
+    path: ../../icons/standard
+  typography:
+    path: ../../spec/typography
+  artboard:
+    path: ../../lib/artboard
+  navigator:
+    path: ../../lib/navigator
+  distance:
+    path: ../../spec/distance
+  titled_icon:
+    path: ../../titled_icon
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

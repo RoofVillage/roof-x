@@ -1,0 +1,20 @@
+name: interval
+description: Creates strings from interval values.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  period_type:
+    path: ../../types/period
+  ordinal_suffix_string_from_int:
+    path: ../ordinal_suffix_string_from_int
+  
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

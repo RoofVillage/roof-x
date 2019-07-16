@@ -14,6 +14,21 @@ class InvoiceType {
     }
   }
 
+  String get displayString {
+    switch (this.toString()) {
+      case "contractual":
+        return "Rent";
+      case "lateFee":
+        return "Late fee";
+      case "securityDeposit":
+        return "Security Deposit";
+      case "other":
+        return "Other";
+      default:
+        return null;
+    }
+  }
+
   const InvoiceType._internal(this._value);
   factory InvoiceType.fromString(String string) {
     final option = _InvoiceTypeOption.values.firstWhere(

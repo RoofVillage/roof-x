@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'field.dart';
 
-class FormSwitchData extends StreamableFormFieldData<bool> {
-  FormSwitchData({
+class FormSwitchFieldData extends StreamableFormFieldData<bool> {
+  FormSwitchFieldData({
     @required String title,
     bool initialValue = false,
     double size,
