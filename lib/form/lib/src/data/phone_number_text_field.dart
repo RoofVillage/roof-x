@@ -6,8 +6,8 @@ import 'package:form_validation_exception/index.dart';
 
 import 'text_field.dart';
 
-class PhoneNumberFormTextFieldData extends FormTextFieldData {
-  PhoneNumberFormTextFieldData(
+class FormPhoneNumberTextFieldData extends FormTextFieldData {
+  FormPhoneNumberTextFieldData(
       {String title = "Phone number",
       String placeholder,
       String initialValue,

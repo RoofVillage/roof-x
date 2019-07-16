@@ -17,7 +17,7 @@ mixin ShoppingItemCreateArtboardData implements FormBuilder {
         _outOfStock,
       ];
 
-  final _name = CurrencyFormTextFieldData(title: "Name");
+  final _name = FormCurrencyTextFieldData(title: "Name");
   final _description = FormTextAreaData(title: "Description (optional)");
   final _sharedBy = FormOptionPickerFieldData<String>(
     title: "Shared by",

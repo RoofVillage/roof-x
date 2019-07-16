@@ -122,7 +122,7 @@ class RoofStreamForm
   }
 
   Widget buildDateField({
-    FormDateFieldData fieldData,
+    FormDatePickerFieldData fieldData,
     StreamableFormData formData,
     int fieldIndex,
     int sectionIndex,
@@ -275,7 +275,7 @@ class RoofStreamForm
         fieldIndex: fieldIndex,
         sectionIndex: sectionIndex,
       );
-    } else if (fieldData is FormDateFieldData) {
+    } else if (fieldData is FormDatePickerFieldData) {
       fieldBody = buildDateField(
         fieldData: fieldData,
         fieldIndex: fieldIndex,

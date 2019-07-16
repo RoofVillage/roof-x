@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:frequency_type/index.dart';
 
-import 'picker_field.dart';
-
-class FormIntervalFrequencyOptionData extends PickerFieldData<TimeOfDay> {
+class FormIntervalFrequencyOptionData {
   int interval;
   FrequencyType frequency;
 

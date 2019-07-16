@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:form/index.dart';
 import 'package:standard_icon_library/index.dart';
 
+import 'icon_option_picker_field.dart';
 import '../options/icon_option_data.dart';
 
 class FormPropertyIconOptionPickerFieldData extends FormIconPickerFieldData {

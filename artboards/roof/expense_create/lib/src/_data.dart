@@ -17,8 +17,8 @@ mixin ExpenseCreateArtboardData implements FormBuilder {
         _for,
       ];
 
-  final _amount = CurrencyFormTextFieldData(title: "Amount");
-  final _note = ShortFormTextFieldData(title: "Note (optional)");
+  final _amount = FormCurrencyTextFieldData(title: "Amount");
+  final _note = FormShortTextFieldData(title: "Note (optional)");
   final _paidBy = FormOptionPickerFieldData<String>(
     title: "Paid by",
     options: _getRoommates(),

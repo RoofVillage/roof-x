@@ -5,7 +5,7 @@ import 'picker_field.dart';
 import '../options/icon_option_data.dart';
 
 class FormIconPickerFieldData
-    extends PickerFieldData<FormIconOptionData> {
+    extends FormPickerFieldData<FormIconOptionData> {
   List<FormIconOptionData> options;
   FormIconOptionData selectedOption;
 

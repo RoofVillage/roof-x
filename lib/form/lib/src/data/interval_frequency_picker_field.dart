@@ -1,12 +1,12 @@
-import 'package:form/src/data/interval_frequency_picker_data.dart';
 import 'package:titled_option_data/index.dart';
 import 'package:frequency_type/index.dart';
 import 'package:interval/index.dart';
 
+import '../options/interval_frequency_option_data.dart';
 import 'picker_field.dart';
 
 class FormIntervalFrequencyPickerFieldData
-    extends PickerFieldData<FormIntervalFrequencyOptionData> {
+    extends FormPickerFieldData<FormIntervalFrequencyOptionData> {
   List<TitledOptionData<int>> intervalList = [
     TitledOptionData<int>(title: toIntervalString(0), data: 0),
     TitledOptionData<int>(title: toIntervalString(1), data: 1),

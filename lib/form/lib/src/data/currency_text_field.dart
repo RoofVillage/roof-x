@@ -2,10 +2,11 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:mask/index.dart';
+
 import 'text_field.dart';
 
-class CurrencyFormTextFieldData extends FormTextFieldData {
-  CurrencyFormTextFieldData({
+class FormCurrencyTextFieldData extends FormTextFieldData {
+  FormCurrencyTextFieldData({
     String title = "Amount",
     String placeholder = "0.00",
     String initialValue,

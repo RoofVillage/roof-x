@@ -16,5 +16,5 @@ mixin ResetPasswordArtboardData implements FormBuilder {
   Future<List<StreamableFormFieldData>> get initialFieldData async =>
       [_emailFieldData];
 
-  final _emailFieldData = EmailFormTextFieldData();
+  final _emailFieldData = FormEmailTextFieldData();
 }

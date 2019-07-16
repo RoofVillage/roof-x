@@ -40,11 +40,11 @@ mixin LeaseCreateArtboardData implements FormBuilder {
 
   final _dayOfWeek = FormDayOfWeekPickerFieldData(size: 1 / 3);
 
-  final _amount = CurrencyFormTextFieldData(title: "Rent amount");
+  final _amount = FormCurrencyTextFieldData(title: "Rent amount");
 
-  final _startDate = FormDateFieldData(title: "Lease begins");
+  final _startDate = FormDatePickerFieldData(title: "Lease begins");
 
-  final _endDate = FormDateFieldData(title: "Lease ends (optional)");
+  final _endDate = FormDatePickerFieldData(title: "Lease ends (optional)");
 
   final _pastInvoices = FormSwitchFieldData(
       title:
@@ -52,7 +52,7 @@ mixin LeaseCreateArtboardData implements FormBuilder {
 
   final _continue = FormSwitchFieldData(title: _getContinueString());
 
-  final _name = ShortFormTextFieldData(
+  final _name = FormShortTextFieldData(
       title: "Lease name (optional)", placeholder: "Upstairs 2019-2020");
 
   final _rentDestination = FormOptionPickerFieldData(
@@ -62,11 +62,11 @@ mixin LeaseCreateArtboardData implements FormBuilder {
   );
 
   final _feePayer =
-      FeePayerFormSelectFieldData(title: "\$2 payment charge is covered by...");
+      FormFeePayerPickerFieldData(title: "\$2 payment charge is covered by...");
 
   final _lateFee = FormSwitchFieldData(title: "Charge a late fee?");
 
-  final _lateFeeAmount = CurrencyFormTextFieldData(title: "Late fee amount");
+  final _lateFeeAmount = FormCurrencyTextFieldData(title: "Late fee amount");
 
   final _daysUntilLateFee = IntegerFormTextFieldData(
     title: "Days before late fee charged",

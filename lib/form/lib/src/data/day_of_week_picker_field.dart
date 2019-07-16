@@ -1,6 +1,6 @@
 import 'package:titled_option_data/index.dart';
 
-import 'roller_column_picker.dart';
+import 'roller_column_picker_field.dart';
 
 class FormDayOfWeekPickerFieldData
     extends FormRollerColumnPickerFieldData<int> {

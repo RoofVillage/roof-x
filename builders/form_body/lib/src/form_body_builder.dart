@@ -94,7 +94,7 @@ mixin FormBodyBuilder implements StatefulWidget {
   void _setup(BuildContext context,
       {@required List<StreamableFormFieldData> fieldData}) async {
     for (final data in fieldData) {
-      if (data is FormDateFieldData) _setupDateFieldData(context, data: data);
+      if (data is FormDatePickerFieldData) _setupDateFieldData(context, data: data);
       if (data is FormOptionPickerFieldData)
         _setupOptionPickerFieldData(context, data: data);
       if (data is FormIconPickerFieldData)
@@ -126,7 +126,7 @@ mixin FormBodyBuilder implements StatefulWidget {
   }
 
   void _setupDateFieldData(BuildContext context,
-      {@required FormDateFieldData data}) {
+      {@required FormDatePickerFieldData data}) {
     data.addOnTapListener(() async {
       final artboard = buildDatePicker(context, selectedDate: data.value);
       final time = await goTo<Date>(context: context, artboard: artboard);

@@ -2,7 +2,7 @@ import '../options/titled_option_data.dart';
 import 'picker_field.dart';
 
 class FormOptionPickerFieldData<T>
-    extends PickerFieldData<List<FormTitledOptionData<T>>> {
+    extends FormPickerFieldData<List<FormTitledOptionData<T>>> {
   String emptyText;
   List<FormTitledOptionData<T>> selectedOptions;
   List<FormTitledOptionData<T>> options;

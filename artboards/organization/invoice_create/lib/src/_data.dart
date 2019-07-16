@@ -20,10 +20,10 @@ mixin InvoiceCreateArtboardData implements FormBuilder {
         _invoiceType,
       ];
 
-  final _name = ShortFormTextFieldData(title: "Name");
+  final _name = FormShortTextFieldData(title: "Name");
   final _note = FormTextAreaData(title: "Note (optional)");
-  final _amount = CurrencyFormTextFieldData(title: "Amount");
-  final _dueDate = FormDateFieldData(title: "Due date");
+  final _amount = FormCurrencyTextFieldData(title: "Amount");
+  final _dueDate = FormDatePickerFieldData(title: "Due date");
   final _destination = FormOptionPickerFieldData(
     title: "Destination",
     options: _getPaymentProfiles(),

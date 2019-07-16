@@ -19,6 +19,6 @@ mixin LogInArtboardData implements FormBuilder {
   Future<List<StreamableFormFieldData>> get initialFieldData async =>
       [_usernameFieldData, _passwordFieldData];
 
-  final _usernameFieldData = EmailFormTextFieldData(title: "Email or phone");
-  final _passwordFieldData = PasswordFormTextFieldData();
+  final _usernameFieldData = FormEmailTextFieldData(title: "Email or phone");
+  final _passwordFieldData = FormPasswordTextFieldData();
 }

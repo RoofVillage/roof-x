@@ -24,5 +24,5 @@ mixin ChallengeArtboardData implements FormBuilder {
   Future<List<StreamableFormFieldData>> get initialFieldData async =>
       [_codeFieldData];
 
-  final _codeFieldData = ShortFormTextFieldData(title: "Enter code");
+  final _codeFieldData = FormShortTextFieldData(title: "Enter code");
 }

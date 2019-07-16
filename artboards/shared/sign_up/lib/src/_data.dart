@@ -19,17 +19,17 @@ mixin SignUpArtboardData implements FormBuilder {
         _passwordFieldData,
       ];
 
-  final _nameFieldData = MediumFormTextFieldData(
+  final _nameFieldData = FormMediumTextFieldData(
     title: "Full name",
     placeholder: "ty hay",
   );
-  final _emailFieldData = EmailFormTextFieldData(
+  final _emailFieldData = FormEmailTextFieldData(
     placeholder: "tyhay@email.com",
   );
-  final _passwordFieldData = PasswordFormTextFieldData();
-  final _temp = CurrencyFormTextFieldData();
+  final _passwordFieldData = FormPasswordTextFieldData();
+  final _temp = FormCurrencyTextFieldData();
   final _temp2 = FormSwitchFieldData(title: "Toggle field");
-  final _temp3 = FormDateFieldData(title: "Sup");
+  final _temp3 = FormDatePickerFieldData(title: "Sup");
 
   @override
   void setupFields(BuildContext context,

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'field.dart';
 
-abstract class PickerFieldData<T> extends StreamableFormFieldData<T> {
+abstract class FormPickerFieldData<T> extends StreamableFormFieldData<T> {
   Function get onTap => () {
         for (final listener in _onTapListeners) listener();
       };
@@ -14,7 +14,7 @@ abstract class PickerFieldData<T> extends StreamableFormFieldData<T> {
     _onTapListeners.add(fn);
   }
 
-  PickerFieldData({
+  FormPickerFieldData({
     @required String title,
     T initialValue,
     double size,

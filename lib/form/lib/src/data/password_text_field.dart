@@ -2,9 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:form_validation_exception/index.dart';
+
 import 'text_field.dart';
 
-class PasswordFormTextFieldData extends FormTextFieldData {
+class FormPasswordTextFieldData extends FormTextFieldData {
   static const numberSet = '0123456789';
   static const letterSet =
       'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -12,7 +13,7 @@ class PasswordFormTextFieldData extends FormTextFieldData {
   static const characterSet =
       r'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-?><,./|][}{]~';
 
-  PasswordFormTextFieldData({
+  FormPasswordTextFieldData({
     String title = "Password",
     String placeholder = "8+ letters, numbers & symbols",
     String initialValue,

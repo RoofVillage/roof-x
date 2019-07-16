@@ -19,6 +19,6 @@ mixin MessageCreateArtboardData implements FormBuilder {
         _note,
       ];
 
-  final _subject = ShortFormTextFieldData(title: "Subject");
+  final _subject = FormShortTextFieldData(title: "Subject");
   final _note = FormTextAreaData(title: "Message");
 }

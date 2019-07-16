@@ -3,11 +3,11 @@ import 'package:date/index.dart';
 
 import 'picker_field.dart';
 
-class FormDateFieldData extends PickerFieldData<Date> {
+class FormDatePickerFieldData extends FormPickerFieldData<Date> {
   DateTime startBound;
   DateTime endBound;
 
-  FormDateFieldData({
+  FormDatePickerFieldData({
     @required String title,
     Date initialValue,
     this.startBound,

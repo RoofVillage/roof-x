@@ -22,17 +22,17 @@ mixin PropertyCreateArtboardData implements FormBuilder {
     title: "Property icon",
   );
 
-  final _address = ShortFormTextFieldData(
+  final _address = FormShortTextFieldData(
     title: "Property address",
     placeholder: "123 Veranda St.",
   );
 
-  final _unit = ShortFormTextFieldData(
+  final _unit = FormShortTextFieldData(
     title: "Unit (optional)",
     placeholder: "A",
   );
 
-  final _zip = ShortFormTextFieldData(
+  final _zip = FormShortTextFieldData(
     title: "ZIP code",
     placeholder: "27510",
   );

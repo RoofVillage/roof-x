@@ -22,11 +22,11 @@ mixin ExpenseEditArtboardData implements FormBuilder {
         _for,
       ];
 
-  final _amount = CurrencyFormTextFieldData(
+  final _amount = FormCurrencyTextFieldData(
     title: "Amount",
     initialValue: amount,
   );
-  final _note = ShortFormTextFieldData(
+  final _note = FormShortTextFieldData(
     title: "Note (optional)",
     initialValue: note,
   );

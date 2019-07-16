@@ -1,7 +1,7 @@
 import 'text_field.dart';
 
-class ShortFormTextFieldData extends FormTextFieldData {
-  ShortFormTextFieldData({
+class FormShortTextFieldData extends FormTextFieldData {
+  FormShortTextFieldData({
     String title,
     String placeholder,
     String initialValue,

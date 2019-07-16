@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mask/index.dart';
+
 import 'composition_field.dart';
 
 abstract class FormTextFieldData extends FormCompositionFieldData {

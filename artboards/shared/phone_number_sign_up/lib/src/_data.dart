@@ -21,7 +21,7 @@ mixin PhoneNumberSignUpArtboardData implements FormBuilder {
   Future<List<StreamableFormFieldData>> get initialFieldData async =>
       [_phoneNumberFieldData];
 
-  final _phoneNumberFieldData = PhoneNumberFormTextFieldData();
+  final _phoneNumberFieldData = FormPhoneNumberTextFieldData();
 
   @override
   Future<void> submit(BuildContext context) async {

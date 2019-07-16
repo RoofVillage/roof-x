@@ -20,8 +20,8 @@ mixin AddTenantArtboardData implements FormBuilder {
         _contact,
       ];
 
-  final _name = ShortFormTextFieldData(title: "Name");
+  final _name = FormShortTextFieldData(title: "Name");
   final _inviteNow = FormSwitchFieldData(title: "Invite now by email or text");
   // TODO visible if inviteNow.value == true
-  final _contact = ShortFormTextFieldData(title: "Send invite to...");
+  final _contact = FormShortTextFieldData(title: "Send invite to...");
 }

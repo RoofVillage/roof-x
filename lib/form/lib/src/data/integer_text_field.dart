@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+
 import 'text_field.dart';
 
 class IntegerFormTextFieldData extends FormTextFieldData {
