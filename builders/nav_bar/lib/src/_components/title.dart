@@ -37,16 +37,16 @@ class RoofTitleNavBar extends StatelessWidget with RoofNavBar {
       navigationWidgets.add(navButton);
     }
 
-    if (_buildTitleColumn(theme) != null) {
-      navigationWidgets.add(_buildTitleColumn(theme));
-    }
-
     if (icon != null) {
       final paddedIconWidget = Container(
         margin: EdgeInsets.only(right: distance.b),
         child: icon.buildWidget(color: theme.color.icon.logo),
       );
       navigationWidgets.add(paddedIconWidget);
+    }
+
+    if (_buildTitleColumn(theme) != null) {
+      navigationWidgets.add(_buildTitleColumn(theme));
     }
 
     return navigationWidgets;

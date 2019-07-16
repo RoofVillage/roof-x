@@ -132,7 +132,6 @@ class VerticalFloatingInheritedArtboardNavigator
   }
 
   bool _pop<T>([T result]) {
-    print("_pop");
     widget.artboard.didComplete();
     return Navigator.pop(context, result);
   }
