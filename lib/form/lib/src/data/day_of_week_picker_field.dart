@@ -1,19 +1,19 @@
-import 'package:titled_value/index.dart';
+import 'package:labeled_value/index.dart';
 
 import 'roller_column_picker_field.dart';
 
 class FormDayOfWeekPickerFieldData
     extends FormRollerColumnPickerFieldData<int> {
   @override
-  List<TitledValue<int>> buildOptions() {
-    final List<TitledValue<int>> _daysList = [
-      TitledValue(title: "on Monday", value: 0),
-      TitledValue(title: "on Tuesday", value: 1),
-      TitledValue(title: "on Wednesday", value: 2),
-      TitledValue(title: "on Thursday", value: 3),
-      TitledValue(title: "on Friday", value: 4),
-      TitledValue(title: "on Saturday", value: 5),
-      TitledValue(title: "on Sunday", value: 6),
+  List<LabeledValue<int>> buildOptions() {
+    final List<LabeledValue<int>> _daysList = [
+      LabeledValue(label: "on Monday", value: 0),
+      LabeledValue(label: "on Tuesday", value: 1),
+      LabeledValue(label: "on Wednesday", value: 2),
+      LabeledValue(label: "on Thursday", value: 3),
+      LabeledValue(label: "on Friday", value: 4),
+      LabeledValue(label: "on Saturday", value: 5),
+      LabeledValue(label: "on Sunday", value: 6),
     ];
 
     return _daysList;
@@ -21,14 +21,14 @@ class FormDayOfWeekPickerFieldData
 
   FormDayOfWeekPickerFieldData({
     String title,
-    TitledValue<int> selectedDay,
+    LabeledValue<int> selectedDay,
     double size,
     bool isVisible,
   }) : super(
           title: title,
           selectedValue: selectedDay ??
-              TitledValue(
-                title: "on Monday",
+              LabeledValue(
+                label: "on Monday",
                 value: 0,
               ),
           size: size,

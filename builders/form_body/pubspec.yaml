@@ -57,10 +57,10 @@ dependencies:
     path: ../../artboards/icon_picker
   interval_frequency_picker_artboard:
     path: ../../artboards/interval_frequency_picker
-  titled_value:
-    path: ../../titled_value
-  titled_icon:
-    path: ../../titled_icon
+  labeled_value:
+    path: ../../labeled_value
+  labeled_icon:
+    path: ../../labeled_icon
   frequency:
     path: ../../frequency
   time_picker_builder:

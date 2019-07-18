@@ -31,26 +31,26 @@ mixin InvoiceCreateArtboardData implements FormBuilder {
   final _invoiceType = FormOptionPickerFieldData(
     title: "Invoice type",
     options: [
-      FormTitledValue(
-        title: "Rent",
+      FormLabeledValue(
+        label: "Rent",
         value: InvoiceType.fromString("contractual"),
       ),
-      FormTitledValue(
-        title: "Late fee",
+      FormLabeledValue(
+        label: "Late fee",
         value: InvoiceType.fromString("lateFee"),
       ),
-      FormTitledValue(
-        title: "Security deposit",
+      FormLabeledValue(
+        label: "Security deposit",
         value: InvoiceType.fromString("securityDeposit"),
       ),
-      FormTitledValue(
-        title: "Other",
+      FormLabeledValue(
+        label: "Other",
         value: InvoiceType.fromString("other"),
       ),
     ],
   );
 
-  static List<FormTitledValue> _getPaymentProfiles() {
+  static List<FormLabeledValue> _getPaymentProfiles() {
     // TODO get payment profiels
     return [];
   }

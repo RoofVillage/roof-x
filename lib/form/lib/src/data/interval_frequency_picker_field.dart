@@ -1,4 +1,4 @@
-import 'package:titled_value/index.dart';
+import 'package:labeled_value/index.dart';
 import 'package:period_type/index.dart';
 import 'package:interval/index.dart';
 
@@ -7,23 +7,23 @@ import 'picker_field.dart';
 
 class FormIntervalFrequencyPickerFieldData
     extends FormPickerFieldData<FormIntervalFrequencyOptionData> {
-  List<TitledValue<int>> intervalList = [
-    TitledValue<int>(title: toIntervalString(0), value: 0),
-    TitledValue<int>(title: toIntervalString(1), value: 1),
-    TitledValue<int>(title: toIntervalString(2), value: 2)
+  List<LabeledValue<int>> intervalList = [
+    LabeledValue<int>(label: toIntervalString(0), value: 0),
+    LabeledValue<int>(label: toIntervalString(1), value: 1),
+    LabeledValue<int>(label: toIntervalString(2), value: 2)
   ];
 
-  List<TitledValue<PeriodType>> periodList = [
-    TitledValue<PeriodType>(
-      title: "day",
+  List<LabeledValue<PeriodType>> periodList = [
+    LabeledValue<PeriodType>(
+      label: "day",
       value: PeriodType.fromString("daily"),
     ),
-    TitledValue<PeriodType>(
-      title: "week",
+    LabeledValue<PeriodType>(
+      label: "week",
       value: PeriodType.fromString("weekly"),
     ),
-    TitledValue<PeriodType>(
-      title: "month",
+    LabeledValue<PeriodType>(
+      label: "month",
       value: PeriodType.fromString("monthly"),
     )
   ];

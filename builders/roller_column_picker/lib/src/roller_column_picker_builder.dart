@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:artboard/index.dart';
 import 'package:haptics/index.dart';
-import 'package:titled_value/index.dart';
+import 'package:labeled_value/index.dart';
 
 import '_components/roller_column_picker.dart';
 
 mixin RollerColumnPickerArtboardBuilder<T>
-    implements Artboard<TitledValue<T>> {
-  TitledValue<T> get selectedValue;
-  List<TitledValue<T>> get options => [];
+    implements Artboard<LabeledValue<T>> {
+  LabeledValue<T> get selectedValue;
+  List<LabeledValue<T>> get options => [];
   bool get canRollover => false;
 }
 
 mixin RollerColumnPickerArtboardBuilderState<T,
     U extends RollerColumnPickerArtboardBuilder> implements ArtboardState<U> {
-  TitledValue<T> _selectedValue;
+  LabeledValue<T> _selectedValue;
 
-  TitledValue<T> get selectedValue => _selectedValue;
-  set selectedValue(TitledValue<T> newValue) => _selectedValue = newValue;
+  LabeledValue<T> get selectedValue => _selectedValue;
+  set selectedValue(LabeledValue<T> newValue) => _selectedValue = newValue;
 
   Widget buildRollerColumnPicker(BuildContext context) {
     return RollerColumnPicker<T>(
@@ -28,7 +28,7 @@ mixin RollerColumnPickerArtboardBuilderState<T,
     );
   }
 
-  void _onChanged(TitledValue<T> newValue) {
+  void _onChanged(LabeledValue<T> newValue) {
     triggerHapticWith(HapticOption.click);
     selectedValue = newValue;
   }

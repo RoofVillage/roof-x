@@ -29,8 +29,8 @@ dependencies:
     path: ../../types/period
   fee_payer_type:
     path: ../../types/fee_payer
-  titled_value:
-    path: ../../titled_value
+  labeled_value:
+    path: ../../labeled_value
 
 dev_dependencies:
   flutter_test:

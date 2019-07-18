@@ -3,7 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:typography/index.dart' as typography;
 import 'package:distance/index.dart' as distance;
 import 'package:theme/index.dart';
-import 'package:titled_value/index.dart';
+import 'package:labeled_value/index.dart';
 import 'package:roller_column_builder/index.dart';
 
 import '_clock_type.dart';
@@ -22,15 +22,15 @@ class TimePickerState extends State<TimePicker> with RollerColumnBuilder {
   final double _columnWidth = distance.f;
   final double _verticalPadding = distance.c;
 
-  final List<TitledValue<int>> _minutesList = [];
-  final List<TitledValue<int>> _hoursList = [];
-  final List<TitledValue<ClockType>> _clockTypeList = [
-    TitledValue(
-      title: "am",
+  final List<LabeledValue<int>> _minutesList = [];
+  final List<LabeledValue<int>> _hoursList = [];
+  final List<LabeledValue<ClockType>> _clockTypeList = [
+    LabeledValue(
+      label: "am",
       value: ClockType.am,
     ),
-    TitledValue(
-      title: "pm",
+    LabeledValue(
+      label: "pm",
       value: ClockType.pm,
     ),
   ];
@@ -54,8 +54,8 @@ class TimePickerState extends State<TimePicker> with RollerColumnBuilder {
 
     // Generate _minutesList
     for (int i = 0; i <= 60 - _minutesSpacing; i += _minutesSpacing) {
-      final data = TitledValue<int>(
-        title: i.toString().padLeft(2, "0"),
+      final data = LabeledValue<int>(
+        label: i.toString().padLeft(2, "0"),
         value: i,
       );
       _minutesList.add(data);
@@ -64,17 +64,17 @@ class TimePickerState extends State<TimePicker> with RollerColumnBuilder {
     // Generate _hoursList
     int hoursLength = _use24HourFormat ? 24 : 12;
     for (int i = 0; i < hoursLength; i++) {
-      String title;
+      String label;
 
       if (_use24HourFormat) {
-        title = i.toString();
+        label = i.toString();
       } else {
-        title = i == 0 ? "12" : i.toString();
+        label = i == 0 ? "12" : i.toString();
       }
 
       _hoursList.add(
-        TitledValue<int>(
-          title: title,
+        LabeledValue<int>(
+          label: label,
           value: i,
         ),
       );
@@ -160,30 +160,30 @@ class TimePickerState extends State<TimePicker> with RollerColumnBuilder {
     return hour < 11 ? ClockType.am : ClockType.pm;
   }
 
-  TitledValue<int> _rollerColumnDataFromMinute(int val) {
-    for (TitledValue<int> data in _minutesList) {
+  LabeledValue<int> _rollerColumnDataFromMinute(int val) {
+    for (LabeledValue<int> data in _minutesList) {
       if ((data.value - val).abs() < _minutesSpacing / 2) return data;
     }
     return null;
   }
 
-  TitledValue<int> _rollerColumnDataFromHour(int val) {
+  LabeledValue<int> _rollerColumnDataFromHour(int val) {
     int _val = _use24HourFormat ? val : val % 12;
 
-    for (TitledValue<int> data in _hoursList) {
+    for (LabeledValue<int> data in _hoursList) {
       if (_val == data.value) return data;
     }
     return null;
   }
 
-  TitledValue<ClockType> _rollerColumnDataFromClockType(ClockType val) {
-    for (TitledValue<ClockType> data in _clockTypeList) {
+  LabeledValue<ClockType> _rollerColumnDataFromClockType(ClockType val) {
+    for (LabeledValue<ClockType> data in _clockTypeList) {
       if (val == data.value) return data;
     }
     return null;
   }
 
-  void _onMinutesChange(TitledValue<int> newVal) {
+  void _onMinutesChange(LabeledValue<int> newVal) {
     if (_selectedTime.minute != newVal.value) {
       setState(() {
         _selectedTime = TimeOfDay(
@@ -195,7 +195,7 @@ class TimePickerState extends State<TimePicker> with RollerColumnBuilder {
     }
   }
 
-  _onHoursChange(TitledValue<int> newVal) {
+  _onHoursChange(LabeledValue<int> newVal) {
     if (_selectedTime.hour != newVal.value) {
       int hour = _use24HourFormat
           ? newVal.value
@@ -208,7 +208,7 @@ class TimePickerState extends State<TimePicker> with RollerColumnBuilder {
     }
   }
 
-  _onClockTypeChange(TitledValue<ClockType> newVal) {
+  _onClockTypeChange(LabeledValue<ClockType> newVal) {
     if (_clockType != newVal.value) {
       final newSelectedTime = TimeOfDay(
         hour: _selectedTime.hour + (newVal.value == ClockType.am ? -12 : 12),

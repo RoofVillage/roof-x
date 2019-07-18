@@ -9,8 +9,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  titled_value:
-    path: ../../titled_value
+  labeled_value:
+    path: ../../labeled_value
   theme:
     path: ../../theme
   curve:

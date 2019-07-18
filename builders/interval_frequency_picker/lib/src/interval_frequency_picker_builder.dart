@@ -3,15 +3,15 @@ import 'package:artboard/index.dart';
 import 'package:period_type/index.dart';
 import 'package:haptics/index.dart';
 import 'package:frequency/index.dart';
-import 'package:titled_value/index.dart';
+import 'package:labeled_value/index.dart';
 
 import '_components/interval_frequency_picker.dart';
 
 mixin IntervalFrequencyPickerArtboardBuilder
     implements Artboard<Frequency> {
   Frequency get selectedValue;
-  List<TitledValue<int>> get intervalList;
-  List<TitledValue<PeriodType>> get periodList;
+  List<LabeledValue<int>> get intervalList;
+  List<LabeledValue<PeriodType>> get periodList;
 }
 
 mixin IntervalFrequencyPickerArtboardBuilderState<

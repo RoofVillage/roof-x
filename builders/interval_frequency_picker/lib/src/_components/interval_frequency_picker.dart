@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:period_type/index.dart';
 import 'package:distance/index.dart' as distance;
-import 'package:titled_value/index.dart';
+import 'package:labeled_value/index.dart';
 import 'package:roller_column_builder/index.dart';
 import 'package:frequency/index.dart';
 
 class IntervalFrequencyPicker extends StatefulWidget {
   final Frequency selectedValue;
-  final List<TitledValue<int>> intervalList;
-  final List<TitledValue<PeriodType>> periodList;
+  final List<LabeledValue<int>> intervalList;
+  final List<LabeledValue<PeriodType>> periodList;
   final Function(Frequency) onChanged;
 
   IntervalFrequencyPicker({
@@ -85,22 +85,22 @@ class IntervalFrequencyPickerState extends State<IntervalFrequencyPicker>
     );
   }
 
-  TitledValue<int> _rollerColumnDataFromInterval(int val) {
-    for (TitledValue<int> data in widget.intervalList) {
+  LabeledValue<int> _rollerColumnDataFromInterval(int val) {
+    for (LabeledValue<int> data in widget.intervalList) {
       if (data.value == val) return data;
     }
     return null;
   }
 
-  TitledValue<PeriodType> _rollerColumnDataFromFrequency(
+  LabeledValue<PeriodType> _rollerColumnDataFromFrequency(
       PeriodType val) {
-    for (TitledValue<PeriodType> data in widget.periodList) {
+    for (LabeledValue<PeriodType> data in widget.periodList) {
       if (data.value.toString() == val?.toString()) return data;
     }
     return null;
   }
 
-  void _onIntervalChange(TitledValue<int> newVal) {
+  void _onIntervalChange(LabeledValue<int> newVal) {
     if (_selectedSchedule.interval != newVal.value) {
       setState(() {
         _selectedSchedule.interval = newVal.value;
@@ -109,7 +109,7 @@ class IntervalFrequencyPickerState extends State<IntervalFrequencyPicker>
     }
   }
 
-  void _onFrequencyChange(TitledValue<PeriodType> newVal) {
+  void _onFrequencyChange(LabeledValue<PeriodType> newVal) {
     if (_selectedSchedule.frequency != newVal.value) {
       setState(() {
         _selectedSchedule.frequency = newVal.value;

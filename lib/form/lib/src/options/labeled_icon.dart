@@ -1,14 +1,14 @@
 import 'package:standard_icon_library/index.dart';
-import 'package:titled_value/index.dart';
+import 'package:labeled_value/index.dart';
 
-class TitledIcon extends TitledValue<StandardIcon> {
+class FormLabeledIcon extends LabeledValue<StandardIcon> {
   StandardIcon get icon => super.value;
 
-  TitledIcon({
+  FormLabeledIcon({
     String title,
     StandardIcon icon,
   }) : super(
-          title: title,
+          label: title,
           value: icon,
         );
 }

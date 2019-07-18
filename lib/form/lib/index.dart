@@ -29,5 +29,5 @@ export 'src/data/day_of_week_picker_field.dart';
 export 'src/data/roller_column_picker_field.dart';
 
 export 'src/options/interval_frequency_option_data.dart';
-export 'src/options/titled_value.dart';
-export 'src/options/titled_icon.dart';
+export 'src/options/labeled_value.dart';
+export 'src/options/labeled_icon.dart';

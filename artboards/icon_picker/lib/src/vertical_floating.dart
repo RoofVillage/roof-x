@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:empty_vertical_floating_artboard_template/index.dart';
-import 'package:titled_icon/index.dart';
+import 'package:labeled_icon/index.dart';
 import 'package:vertical_floating_artboard_scaffold/index.dart';
 import 'package:icon_picker_builder/index.dart';
 
 class IconPickerVerticalFloatingArtboard
-    extends EmptyVerticalFloatingArtboard<TitledIcon>
+    extends EmptyVerticalFloatingArtboard<LabeledIcon>
     with IconPickerArtboardBuilder {
   final String title;
-  final TitledIcon selectedOption;
-  final List<TitledIcon> options;
+  final LabeledIcon selectedOption;
+  final List<LabeledIcon> options;
 
   IconPickerVerticalFloatingArtboard({
     this.title,
@@ -27,12 +27,12 @@ class _IconPickerVerticalFloatingArtboardState
         VerticalFloatingArtboardState<IconPickerVerticalFloatingArtboard>,
         IconPickerBuilderArtboardState<IconPickerVerticalFloatingArtboard> {
   @override
-  TitledIcon get selectedOption =>
+  LabeledIcon get selectedOption =>
       VerticalFloatingArtboardNavigatorPanel.of(context, shouldRebuild: false)
           .result;
 
   @override
-  set selectedOption(TitledIcon newSelectedOption) {
+  set selectedOption(LabeledIcon newSelectedOption) {
     VerticalFloatingArtboardNavigatorPanel.of(context).result =
         newSelectedOption;
   }

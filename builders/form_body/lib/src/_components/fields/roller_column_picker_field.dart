@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:theme/index.dart';
-import 'package:titled_value/index.dart';
+import 'package:labeled_value/index.dart';
 import 'package:typography/index.dart' as typography;
 import 'package:distance/index.dart' as distance;
 
@@ -8,7 +8,7 @@ import '_picker_field.dart';
 
 class RollerColumnPickerField extends StatelessWidget {
   final String title;
-  final TitledValue selectedValue;
+  final LabeledValue selectedValue;
   final Function() onChanged;
   final Function onTap;
 
@@ -32,7 +32,7 @@ class RollerColumnPickerField extends StatelessWidget {
     final fieldBody = Container(
       padding: verticalPadding,
       child: Text(
-        selectedValue.title,
+        selectedValue.label,
         style: textStyle,
         textAlign: TextAlign.right,
         overflow: TextOverflow.ellipsis,

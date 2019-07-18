@@ -23,8 +23,8 @@ dependencies:
     path: ../../lib/navigator
   distance:
     path: ../../spec/distance
-  titled_icon:
-    path: ../../titled_icon
+  labeled_icon:
+    path: ../../labeled_icon
 
 dev_dependencies:
   flutter_test:

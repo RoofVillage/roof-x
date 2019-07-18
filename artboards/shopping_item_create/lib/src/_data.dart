@@ -25,7 +25,7 @@ mixin ShoppingItemCreateArtboardData implements FormBuilder {
   );
   final _outOfStock = FormSwitchFieldData(title: "Currently out of stock");
 
-  static List<FormTitledValue<String>> _getRoommates() {
+  static List<FormLabeledValue<String>> _getRoommates() {
     return [];
   }
 }

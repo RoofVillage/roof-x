@@ -3,15 +3,15 @@ import 'package:theme/index.dart';
 import 'package:small_icon_library/index.dart';
 import 'package:distance/index.dart' as distance;
 import 'package:typography/index.dart' as typography;
-import 'package:titled_value/index.dart';
+import 'package:labeled_value/index.dart';
 
-typedef SelectedOptionsPasser<T> = Function(List<TitledValue<T>>);
+typedef SelectedOptionsPasser<T> = Function(List<LabeledValue<T>>);
 
 class OptionPicker<T> extends StatelessWidget {
   final String title;
   final String emptyText;
-  final List<TitledValue<T>> initialSelected;
-  final List<TitledValue<T>> options;
+  final List<LabeledValue<T>> initialSelected;
+  final List<LabeledValue<T>> options;
   final bool isMultiSelect;
   final SelectedOptionsPasser<T> onChanged;
 
@@ -54,8 +54,8 @@ class OptionPicker<T> extends StatelessWidget {
     );
   }
 
-  _onOptionTap(TitledValue<T> option) {
-    List<TitledValue<T>> selectedOptions;
+  _onOptionTap(LabeledValue<T> option) {
+    List<LabeledValue<T>> selectedOptions;
 
     if (isMultiSelect) {
       selectedOptions.contains(option)
@@ -70,8 +70,8 @@ class OptionPicker<T> extends StatelessWidget {
 }
 
 class _OptionsColumn<T> extends StatelessWidget {
-  final List<TitledValue<T>> options;
-  final List<TitledValue<T>> selectedOptions;
+  final List<LabeledValue<T>> options;
+  final List<LabeledValue<T>> selectedOptions;
   final bool isMultiSelect;
   final Function onOptionTap;
   final String emptyText;
@@ -87,7 +87,7 @@ class _OptionsColumn<T> extends StatelessWidget {
   final _verticalSpacing = distance.c;
 
   Widget build(BuildContext context) {
-    List<TitledValue<T>> _selectedOptions = selectedOptions ?? [];
+    List<LabeledValue<T>> _selectedOptions = selectedOptions ?? [];
     List<Widget> optionsList = [];
 
     if (options != null && options.isNotEmpty) {
@@ -95,9 +95,9 @@ class _OptionsColumn<T> extends StatelessWidget {
         _selectedOptions.add(options[0]);
       }
 
-      for (TitledValue<T> option in options) {
+      for (LabeledValue<T> option in options) {
         final dropdownOption = _Option<T>(
-          name: option.title,
+          name: option.label,
           value: option.value,
           selected: _selectedOptions.contains(option),
           canToggle: isMultiSelect,

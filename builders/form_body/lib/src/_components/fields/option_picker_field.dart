@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:theme/index.dart';
 import 'package:typography/index.dart' as typography;
-import 'package:titled_value/index.dart';
+import 'package:labeled_value/index.dart';
 
 import '_widgets/index.dart';
 import '_picker_field.dart';
@@ -9,11 +9,11 @@ import '_picker_field.dart';
 class OptionPickerField<T> extends StatelessWidget {
   final String title;
   final String emptyText;
-  final List<TitledValue<T>> selectedOptions;
-  final List<TitledValue<T>> options;
+  final List<LabeledValue<T>> selectedOptions;
+  final List<LabeledValue<T>> options;
   final bool isMultiSelect;
   final Function onTap;
-  final Function(List<TitledValue<T>>) onChanged;
+  final Function(List<LabeledValue<T>>) onChanged;
 
   OptionPickerField({
     this.title,
@@ -27,14 +27,14 @@ class OptionPickerField<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<TitledValue<T>> _selectedOptions;
-    List<TitledValue<T>> _options;
+    List<LabeledValue<T>> _selectedOptions;
+    List<LabeledValue<T>> _options;
 
     if (options != null && options.isNotEmpty) {
       _options = options;
     } else {
       _options = [
-        TitledValue(title: emptyText),
+        LabeledValue(label: emptyText),
       ];
     }
 
@@ -66,7 +66,7 @@ class OptionPickerField<T> extends StatelessWidget {
 }
 
 class _SelectedOptionsContainer<T> extends StatelessWidget {
-  final List<TitledValue<T>> selectedOptions;
+  final List<LabeledValue<T>> selectedOptions;
   final String emptyText;
 
   final _typographyStyle = typography.body;
@@ -83,7 +83,7 @@ class _SelectedOptionsContainer<T> extends StatelessWidget {
 
       for (var i = 0; i < selectedOptions.length; i++) {
         bool isLast = i == selectedOptions.length - 1;
-        text += selectedOptions[i].title;
+        text += selectedOptions[i].label;
         if (!isLast) text += ", ";
       }
       return text;

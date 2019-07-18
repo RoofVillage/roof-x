@@ -13,9 +13,9 @@ import 'package:option_picker_artboard/index.dart';
 import 'package:button_builder/index.dart';
 import 'package:icon_picker_builder/index.dart';
 import 'package:icon_picker_artboard/index.dart';
-import 'package:titled_icon/index.dart';
+import 'package:labeled_icon/index.dart';
 import 'package:vertical_floating_artboard_scaffold/index.dart';
-import 'package:titled_value/index.dart';
+import 'package:labeled_value/index.dart';
 import 'package:frequency/index.dart';
 import 'package:time_picker_builder/index.dart';
 import 'package:time_picker_artboard/index.dart';
@@ -54,8 +54,8 @@ abstract class FormVerticalFloatingArtboard<T> extends StatefulWidget
     BuildContext context, {
     String title,
     String emptyText,
-    List<TitledValue> selectedOptions,
-    @required List<TitledValue> options,
+    List<LabeledValue> selectedOptions,
+    @required List<LabeledValue> options,
     bool isMultiSelect,
   }) {
     return OptionPickerVerticalFloatingArtboard(
@@ -71,8 +71,8 @@ abstract class FormVerticalFloatingArtboard<T> extends StatefulWidget
   IconPickerArtboardBuilder buildIconPicker(
     BuildContext context, {
     String title,
-    TitledIcon selectedOption,
-    @required List<TitledIcon> options,
+    LabeledIcon selectedOption,
+    @required List<LabeledIcon> options,
   }) {
     return IconPickerVerticalFloatingArtboard(
       title: title,
@@ -95,8 +95,8 @@ abstract class FormVerticalFloatingArtboard<T> extends StatefulWidget
   IntervalFrequencyPickerArtboardBuilder buildIntervalFrequencyPicker(
     BuildContext context, {
     Frequency selectedSchedule,
-    List<TitledValue<int>> intervalList,
-    List<TitledValue<PeriodType>> periodList,
+    List<LabeledValue<int>> intervalList,
+    List<LabeledValue<PeriodType>> periodList,
   }) {
     return IntervalFrequencyPickerVerticalFloatingArtboard(
       selectedValue: selectedSchedule,
@@ -108,8 +108,8 @@ abstract class FormVerticalFloatingArtboard<T> extends StatefulWidget
   @override
   RollerColumnPickerArtboardBuilder<T> buildRollerColumnPicker<T>(
     BuildContext context, {
-    TitledValue<T> selectedValue,
-    List<TitledValue<T>> options,
+    LabeledValue<T> selectedValue,
+    List<LabeledValue<T>> options,
   }) {
     return RollerColumnPickerVerticalFloatingArtboard(
       selectedValue: selectedValue,

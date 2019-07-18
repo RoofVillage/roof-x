@@ -28,10 +28,10 @@ dependencies:
     path: ../../../builders/time_picker
   icon_picker_builder:
     path: ../../../builders/icon_picker
-  titled_icon:
-    path: ../../../titled_icon
-  titled_value:
-    path: ../../../titled_value
+  labeled_icon:
+    path: ../../../labeled_icon
+  labeled_value:
+    path: ../../../labeled_value
   frequency:
     path: ../../../frequency    
   interval_frequency_picker_builder:

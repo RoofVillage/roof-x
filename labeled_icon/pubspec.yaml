@@ -1,4 +1,4 @@
-name: titled_icon
+name: labeled_icon
 
 version: 1.0.0+1
 
@@ -10,8 +10,8 @@ dependencies:
     sdk: flutter
   standard_icon_library:
     path: ../icons/standard
-  titled_value:
-    path: ../titled_value
+  labeled_value:
+    path: ../labeled_value
 
 dev_dependencies:
   flutter_test:

@@ -16,8 +16,8 @@ dependencies:
     path: ../../builders/form
   icon_picker_builder:
     path: ../../builders/icon_picker
-  titled_icon:
-    path: ../../titled_icon
+  labeled_icon:
+    path: ../../labeled_icon
 
 dev_dependencies:
   flutter_test:

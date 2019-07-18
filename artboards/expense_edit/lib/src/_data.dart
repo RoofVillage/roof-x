@@ -42,7 +42,7 @@ mixin ExpenseEditArtboardData implements FormBuilder {
     isMultiSelect: true,
   );
 
-  static List<FormTitledValue<String>> _getRoommates(
+  static List<FormLabeledValue<String>> _getRoommates(
       {List<String> guids}) {
     return [];
   }

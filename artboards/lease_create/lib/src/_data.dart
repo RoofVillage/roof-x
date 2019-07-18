@@ -75,17 +75,17 @@ mixin LeaseCreateArtboardData implements FormBuilder {
     placeholder: "5",
   );
 
-  static List<FormTitledValue> _buildDueOnOptions() {
-    final List<FormTitledValue> options = [];
+  static List<FormLabeledValue> _buildDueOnOptions() {
+    final List<FormLabeledValue> options = [];
 
     for (int i = 1; i < 30; i++) {
       final string = "on the ${ordinalSuffixString(i)}";
-      final option = FormTitledValue(title: string, value: i);
+      final option = FormLabeledValue(label: string, value: i);
       options.add(option);
     }
 
-    final lastOption = FormTitledValue(
-      title: "on the last day",
+    final lastOption = FormLabeledValue(
+      label: "on the last day",
       value: 30,
     );
     options.add(lastOption);
@@ -93,7 +93,7 @@ mixin LeaseCreateArtboardData implements FormBuilder {
     return options;
   }
 
-  static List<FormTitledValue> _getPaymentProfiles() {
+  static List<FormLabeledValue> _getPaymentProfiles() {
     // TODO get payment profiles
   }
 

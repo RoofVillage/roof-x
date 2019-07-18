@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:form/index.dart';
 
 import 'picker_field.dart';
-import '../options/titled_icon.dart';
+import '../options/labeled_icon.dart';
 
 class FormIconPickerFieldData
-    extends FormPickerFieldData<FormTitledIcon> {
-  List<FormTitledIcon> options;
-  FormTitledIcon selectedOption;
+    extends FormPickerFieldData<FormLabeledIcon> {
+  List<FormLabeledIcon> options;
+  FormLabeledIcon selectedOption;
 
   FormIconPickerFieldData({
     this.selectedOption,

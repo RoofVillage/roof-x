@@ -7,9 +7,9 @@ import 'package:haptics/index.dart';
 import 'package:date/index.dart';
 import 'package:date_picker_builder/index.dart';
 import 'package:option_picker_builder/index.dart';
-import 'package:titled_value/index.dart';
+import 'package:labeled_value/index.dart';
 import 'package:icon_picker_builder/index.dart';
-import 'package:titled_icon/index.dart';
+import 'package:labeled_icon/index.dart';
 import 'package:time_picker_builder/index.dart';
 import 'package:interval_frequency_picker_builder/index.dart';
 import 'package:frequency/index.dart';
@@ -56,16 +56,16 @@ mixin FormBodyBuilder implements StatefulWidget {
     BuildContext context, {
     String title,
     String emptyText,
-    List<TitledValue> selectedOptions,
-    @required List<TitledValue> options,
+    List<LabeledValue> selectedOptions,
+    @required List<LabeledValue> options,
     bool isMultiSelect,
   });
 
   IconPickerArtboardBuilder buildIconPicker(
     BuildContext context, {
     String title,
-    TitledIcon selectedOption,
-    List<TitledIcon> options,
+    LabeledIcon selectedOption,
+    List<LabeledIcon> options,
   });
 
   TimePickerArtboardBuilder buildTimePicker(
@@ -76,14 +76,14 @@ mixin FormBodyBuilder implements StatefulWidget {
   IntervalFrequencyPickerArtboardBuilder buildIntervalFrequencyPicker(
     BuildContext context, {
     Frequency selectedSchedule,
-    List<TitledValue<int>> intervalList,
-    List<TitledValue<PeriodType>> periodList,
+    List<LabeledValue<int>> intervalList,
+    List<LabeledValue<PeriodType>> periodList,
   });
 
   RollerColumnPickerArtboardBuilder buildRollerColumnPicker<T>(
     BuildContext context, {
-    TitledValue<T> selectedValue,
-    List<TitledValue<T>> options,
+    LabeledValue<T> selectedValue,
+    List<LabeledValue<T>> options,
   });
 
   Future<T> goTo<T>(
@@ -145,19 +145,19 @@ mixin FormBodyBuilder implements StatefulWidget {
         title: data.title,
         options: data.options
             .map(
-              (option) => TitledIcon(icon: option.icon),
+              (option) => LabeledIcon(icon: option.icon),
             )
             .toList(),
         selectedOption: data.selectedOption != null
-            ? TitledIcon(icon: data.selectedOption.icon)
+            ? LabeledIcon(icon: data.selectedOption.icon)
             : null,
       );
-      final newSelectedOption = await goTo<TitledIcon>(
+      final newSelectedOption = await goTo<LabeledIcon>(
         context: context,
         artboard: artboard,
       );
       if (newSelectedOption == null) return;
-      data.selectedOption = FormTitledIcon(icon: newSelectedOption.icon);
+      data.selectedOption = FormLabeledIcon(icon: newSelectedOption.icon);
       form.updateFieldData(data);
     });
   }
@@ -166,14 +166,14 @@ mixin FormBodyBuilder implements StatefulWidget {
       {@required FormOptionPickerFieldData data}) {
     data.addOnTapListener(() async {
       final convertedOptions = data.options
-          ?.map((option) => TitledValue(
-                title: option.title,
+          ?.map((option) => LabeledValue(
+                label: option.label,
                 value: option.value,
               ))
           ?.toList();
       final convertedSelectedOptions = data.selectedOptions
-          ?.map((option) => TitledValue(
-                title: option.title,
+          ?.map((option) => LabeledValue(
+                label: option.label,
                 value: option.value,
               ))
           ?.toList();
@@ -184,11 +184,11 @@ mixin FormBodyBuilder implements StatefulWidget {
         options: convertedOptions,
       );
       final newSelectedOptions =
-          await goTo<List<TitledValue>>(context: context, artboard: artboard);
+          await goTo<List<LabeledValue>>(context: context, artboard: artboard);
       if (newSelectedOptions == null) return;
       data.selectedOptions = newSelectedOptions
-          .map((option) => FormTitledValue(
-                title: option.title,
+          .map((option) => FormLabeledValue(
+                label: option.label,
                 value: option.value,
               ))
           .toList();

@@ -25,7 +25,7 @@ mixin SettlementCreateArtboardData implements FormBuilder {
   final _date = FormDatePickerFieldData(title: "Payment date");
   final _note = FormTextAreaData(title: "Note (optional)");
 
-  static List<FormTitledValue<String>> _getTenants() {
+  static List<FormLabeledValue<String>> _getTenants() {
     // TODO get tenants
     return [];
   }
