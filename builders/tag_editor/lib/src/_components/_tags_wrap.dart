@@ -92,6 +92,7 @@ class _RemoveableAnimatedTagState extends State<_RemoveableAnimatedTag>
     final textWidget = Text(
       widget.label,
       style: _typographyStyle.textStyleWithColor(theme.color.text.primary),
+      overflow: TextOverflow.fade,
     );
 
     final backgroundColor = theme.color.background.generalPrimary;
@@ -117,6 +118,19 @@ class _RemoveableAnimatedTagState extends State<_RemoveableAnimatedTag>
       curve: curve.quick,
       duration: duration.short,
       child: Container(
+        height: _height,
+        padding: _show
+            ? EdgeInsets.only(
+                left: distance.a,
+                right: distance.b,
+              )
+            : EdgeInsets.all(0),
+        decoration: BoxDecoration(
+          color: backgroundColor,
+          borderRadius: BorderRadius.all(
+            Radius.circular(_height / 2),
+          ),
+        ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: children,
@@ -126,22 +140,7 @@ class _RemoveableAnimatedTagState extends State<_RemoveableAnimatedTag>
 
     return GestureDetector(
       onTap: _remove,
-      child: Container(
-        padding: _show
-            ? EdgeInsets.only(
-                left: distance.a,
-                right: distance.b,
-              )
-            : EdgeInsets.all(0),
-        height: _height,
-        decoration: BoxDecoration(
-          color: backgroundColor,
-          borderRadius: BorderRadius.all(
-            Radius.circular(_height / 2),
-          ),
-        ),
-        child: animatedOpacityContainer,
-      ),
+      child: animatedOpacityContainer,
     );
   }
 }
