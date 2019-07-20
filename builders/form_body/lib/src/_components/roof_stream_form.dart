@@ -16,6 +16,7 @@ import 'fields/time_picker_field.dart';
 import 'fields/option_picker_field.dart';
 import 'fields/icon_picker_field.dart';
 import 'fields/roller_column_picker_field.dart';
+import 'fields/tag_field.dart';
 
 enum KeyboardAccessoryState { hideKeyboard, submit }
 
@@ -224,6 +225,19 @@ class RoofStreamForm
     );
   }
 
+  Widget buildTagEditor({
+    FormTagFieldData fieldData,
+    int fieldIndex,
+    int sectionIndex,
+  }) {
+    return TagField(
+      title: fieldData.title,
+      placeholder: fieldData.placeholder,
+      tags: fieldData.tags,
+      onTap: fieldData.onTap,
+    );
+  }
+
   @override
   Widget buildField({
     BuildContext context,
@@ -289,6 +303,12 @@ class RoofStreamForm
       );
     } else if (fieldData is FormRollerColumnPickerFieldData) {
       fieldBody = buildRollerColumnPicker(
+        fieldData: fieldData,
+        fieldIndex: fieldIndex,
+        sectionIndex: sectionIndex,
+      );
+    } else if (fieldData is FormTagFieldData) {
+      fieldBody = buildTagEditor(
         fieldData: fieldData,
         fieldIndex: fieldIndex,
         sectionIndex: sectionIndex,

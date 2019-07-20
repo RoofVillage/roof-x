@@ -1,0 +1,37 @@
+name: tag_editor_builder
+description: Tag editor functionality for artboards.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.2.2 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  haptics:
+    path: ../../lib/haptics
+  theme:
+    path: ../../theme
+  small_icon_library:
+    path: ../../icons/small
+  typography:
+    path: ../../spec/typography
+  artboard:
+    path: ../../lib/artboard
+  navigator:
+    path: ../../lib/navigator
+  curve:
+    path: ../../spec/curve
+  duration:
+    path: ../../spec/duration
+  distance:
+    path: ../../spec/distance
+  labeled_icon:
+    path: ../../labeled_icon
+  tag_builder:
+    path: ../tag
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

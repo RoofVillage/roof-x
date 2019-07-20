@@ -74,8 +74,9 @@ class _DockActionButtonState extends State<DockActionButton>
 
     final buttonIcon = Container(
       key: _buttonIconKey,
-      child:
-          widget.actionIconReference.buildWidget(color: theme.color.icon.action),
+      child: widget.actionIconReference.buildWidget(
+        color: theme.color.icon.action,
+      ),
     );
 
     final buttonText = _ButtonText(
@@ -97,10 +98,11 @@ class _DockActionButtonState extends State<DockActionButton>
         padding: containerPadding,
         decoration: buttonDecoration,
         child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: buttonChildren),
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: buttonChildren,
+        ),
       ),
     );
   }

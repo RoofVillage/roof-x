@@ -1,8 +1,11 @@
+import 'package:form/src/data/field.dart';
+
+import '_mixins/on_tap_listener_adder.dart';
 import '../options/labeled_value.dart';
-import 'picker_field.dart';
 
 class FormOptionPickerFieldData<T>
-    extends FormPickerFieldData<List<FormLabeledValue<T>>> {
+    extends StreamableFormFieldData<List<FormLabeledValue<T>>>
+    with OnTapListenerAdder {
   String emptyText;
   List<FormLabeledValue<T>> selectedOptions;
   List<FormLabeledValue<T>> options;

@@ -9,7 +9,8 @@ class SmallIcon extends IconReference {
   static final boxChecked = SmallIcon(RoofSmallIconData.box_checked);
   static final boxUnchecked = SmallIcon(RoofSmallIconData.box_unchecked);
   static final leftArrow = SmallIcon(RoofSmallIconData.left_arrow);
-  static final remove = SmallIcon(RoofSmallIconData.remove_filled);
+  static final xCircleFilled = SmallIcon(RoofSmallIconData.x_circle_filled);
+  static final x = SmallIcon(RoofSmallIconData.x);
   static final rightArrow = SmallIcon(RoofSmallIconData.right_arrow);
 
   SmallIcon(IconData iconData)

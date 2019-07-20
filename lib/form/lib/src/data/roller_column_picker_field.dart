@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:form/index.dart';
 import 'package:labeled_value/index.dart';
 
-import 'picker_field.dart';
+import '_mixins/on_tap_listener_adder.dart';
 
-class FormRollerColumnPickerFieldData<T> extends FormPickerFieldData<LabeledValue<T>> {
+class FormRollerColumnPickerFieldData<T> extends StreamableFormFieldData<LabeledValue<T>> with OnTapListenerAdder {
   List<LabeledValue<T>> buildOptions() => null;
   bool canRollover = false;
 

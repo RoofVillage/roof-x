@@ -51,12 +51,6 @@ dependencies:
     path: ../../lib/artboard
   navigator:
     path: ../../lib/navigator
-  option_picker_artboard:
-    path: ../../artboards/option_picker
-  icon_picker_artboard:
-    path: ../../artboards/icon_picker
-  interval_frequency_picker_artboard:
-    path: ../../artboards/interval_frequency_picker
   labeled_value:
     path: ../../labeled_value
   labeled_icon:
@@ -64,11 +58,19 @@ dependencies:
   frequency:
     path: ../../frequency
   time_picker_builder:
-    path: ../../builders/time_picker
+    path: ../time_picker
   interval_frequency_picker_builder:
-    path: ../../builders/interval_frequency_picker
+    path: ../interval_frequency_picker
   roller_column_picker_builder:
-    path: ../../builders/roller_column_picker
+    path: ../roller_column_picker
+  tag_builder:
+    path: ../tag
+  tag_editor_builder:
+    path: ../../builders/tag_editor
+  icon_picker_builder:
+    path: ../../builders/icon_picker
+  option_picker_builder:
+    path: ../../builders/option_picker
 
 dev_dependencies:
   flutter_test:

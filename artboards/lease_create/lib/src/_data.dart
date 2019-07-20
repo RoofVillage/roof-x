@@ -17,6 +17,7 @@ mixin LeaseCreateArtboardData implements FormBuilder {
 
   @override
   Future<List<StreamableFormFieldData>> get initialFieldData async => [
+        _tagsField,
         _intervalFrequencyField,
         _dayOfMonth,
         _amount,
@@ -31,6 +32,8 @@ mixin LeaseCreateArtboardData implements FormBuilder {
         _lateFeeAmount,
         _daysUntilLateFee,
       ];
+
+  final _tagsField = FormTagFieldData(title: "Tags", placeholder: "Add a tag");
 
   // TODO: field conditional visibility
   final _intervalFrequencyField =

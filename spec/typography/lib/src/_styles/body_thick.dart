@@ -8,13 +8,13 @@ class RoofBodyThickAndroid with _RoofBodyThick, TypographyStyle {}
 
 mixin _RoofBodyThick implements TypographyStyle {
   @override
-  final fontSize = font_size.medium;
+  final fontSize = font_size.small;
 
   @override
   final fontWeight = font_weight.thick;
 
   @override
-  final leading = font_size.medium;
+  final leading = font_size.small;
 
   @override
   final tracking = 0;

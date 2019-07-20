@@ -81,7 +81,7 @@ class RoofTextColor {
       case RoofThemeOption.light:
         return color.gray4;
       case RoofThemeOption.dark:
-        return color.gray2;
+        return color.gray3;
     }
     return null;
   }

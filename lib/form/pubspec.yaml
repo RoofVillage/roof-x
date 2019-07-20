@@ -31,6 +31,8 @@ dependencies:
     path: ../../types/fee_payer
   labeled_value:
     path: ../../labeled_value
+  small_icon_library:
+    path: ../../icons/small
 
 dev_dependencies:
   flutter_test:

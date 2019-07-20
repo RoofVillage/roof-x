@@ -23,6 +23,9 @@ import 'package:interval_frequency_picker_artboard/index.dart';
 import 'package:interval_frequency_picker_builder/index.dart';
 import 'package:roller_column_picker_builder/index.dart';
 import 'package:roller_column_picker_artboard/index.dart';
+import 'package:tag_editor_artboard/index.dart';
+import 'package:tag_editor_builder/index.dart';
+
 import 'package:period_type/index.dart';
 
 abstract class FormVerticalFloatingArtboard<T> extends StatefulWidget
@@ -115,6 +118,14 @@ abstract class FormVerticalFloatingArtboard<T> extends StatefulWidget
       selectedValue: selectedValue,
       options: options,
     );
+  }
+
+  @override
+  TagEditorArtboardBuilder buildTagEditor(
+    BuildContext context, {
+    List<String> tags,
+  }) {
+    return TagEditorVerticalFloatingArtboard(tags: tags);
   }
 
   @override

@@ -28,6 +28,8 @@ dependencies:
     path: ../../../builders/time_picker
   icon_picker_builder:
     path: ../../../builders/icon_picker
+  icon_picker_artboard:
+    path: ../../../artboards/icon_picker
   labeled_icon:
     path: ../../../labeled_icon
   labeled_value:
@@ -50,6 +52,8 @@ dependencies:
     path: ../../../artboards/time_picker
   interval_frequency_picker_artboard:
     path: ../../../artboards/interval_frequency_picker
+  tag_editor_artboard:
+    path: ../../../artboards/tag_editor
 
 dev_dependencies:
   flutter_test:

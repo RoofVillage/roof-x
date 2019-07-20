@@ -63,8 +63,8 @@ abstract class PropertyVerticalFullScreenArtboard
       text: "Create lease",
       icon: XSmallIcon.lease,
       onTap: (context) => ArtboardNavigator.of(context).goTo(
-            LeaseCreateVerticalFloatingArtboard(),
-          ),
+        LeaseCreateVerticalFloatingArtboard(),
+      ),
       status: ButtonStatusOption.ready,
     );
 
@@ -74,7 +74,11 @@ abstract class PropertyVerticalFullScreenArtboard
       button: leasesActionButton,
     );
 
-    final leasesTab = RoofTab(title: "Leases", view: leasesList);
+    final leasesTab = RoofTab(
+      title: "Leases",
+      icon: StandardIcon.lease,
+      view: leasesList,
+    );
 
     return [leasesTab];
   }

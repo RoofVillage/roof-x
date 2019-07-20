@@ -6,6 +6,6 @@ import 'package:flutter/material.dart';
 // const thick = FontWeight.w600;
 
 // Circular
-const thin = FontWeight.w200;
+const thin = FontWeight.w100;
 const medium = FontWeight.w300;
 const thick = FontWeight.w500;

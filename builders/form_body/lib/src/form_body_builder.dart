@@ -16,7 +16,7 @@ import 'package:frequency/index.dart';
 import 'package:roller_column_picker_builder/index.dart';
 import 'package:artboard/index.dart';
 import 'package:period_type/index.dart';
-
+import 'package:tag_editor_builder/index.dart';
 import '_components/keyboard_accessory_buttons/index.dart';
 import '_components/roof_stream_form.dart';
 import 'form_status.dart';
@@ -86,6 +86,9 @@ mixin FormBodyBuilder implements StatefulWidget {
     List<LabeledValue<T>> options,
   });
 
+  TagEditorArtboardBuilder buildTagEditor(BuildContext context,
+      {List<String> tags});
+
   Future<T> goTo<T>(
       {@required BuildContext context, @required Artboard<T> artboard});
   void onFocusChanged(
@@ -106,6 +109,8 @@ mixin FormBodyBuilder implements StatefulWidget {
         _setupIntervalFrequencyPickerFieldData(context, data: data);
       if (data is FormRollerColumnPickerFieldData)
         _setupRollerColumnPickerFieldData(context, data: data);
+      if (data is FormTagFieldData)
+        _setupTagFieldData(context, data: data);
     }
     setupFields(context, fieldData: fieldData);
   }
@@ -245,6 +250,23 @@ mixin FormBodyBuilder implements StatefulWidget {
       );
       if (newSelectedValue == null) return;
       data.value = newSelectedValue;
+      form.updateFieldData(data);
+    });
+  }
+
+  void _setupTagFieldData(BuildContext context,
+      {@required FormTagFieldData data}) {
+    data.addOnTapListener(() async {
+      final artboard = buildTagEditor(
+        context,
+        tags: data.tags,
+      );
+      final newSelectedValue = await goTo(
+        context: context,
+        artboard: artboard,
+      );
+      if (newSelectedValue == null) return;
+      data.tags = newSelectedValue;
       form.updateFieldData(data);
     });
   }

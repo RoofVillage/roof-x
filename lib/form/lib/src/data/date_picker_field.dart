@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:date/index.dart';
+import 'package:form/index.dart';
 
-import 'picker_field.dart';
+import '_mixins/on_tap_listener_adder.dart';
 
-class FormDatePickerFieldData extends FormPickerFieldData<Date> {
+class FormDatePickerFieldData extends StreamableFormFieldData<Date>
+    with OnTapListenerAdder {
   DateTime startBound;
   DateTime endBound;
 
@@ -12,13 +14,11 @@ class FormDatePickerFieldData extends FormPickerFieldData<Date> {
     Date initialValue,
     this.startBound,
     this.endBound,
-    Function onTap,
     double size,
     bool isVisible,
   }) : super(
           title: title,
           initialValue: initialValue ?? Date.now(),
-          onTap: onTap,
           size: size,
           isVisible: isVisible,
         );

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:form/src/data/field.dart';
 
-import 'picker_field.dart';
+import '_mixins/on_tap_listener_adder.dart';
 
-class FormTimePickerFieldData extends FormPickerFieldData<TimeOfDay> {
+class FormTimePickerFieldData extends StreamableFormFieldData<TimeOfDay> with OnTapListenerAdder {
   FormTimePickerFieldData({
     String title,
     TimeOfDay selectedTime,
