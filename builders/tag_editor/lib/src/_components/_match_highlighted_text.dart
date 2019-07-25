@@ -17,7 +17,6 @@ class MatchHighlightedText extends StatelessWidget {
 
   final _matchedStyle = typography.bodyThick;
   final _unmatchedStyle = typography.body;
-  final double _height = 40;
 
   @override
   Widget build(BuildContext context) {

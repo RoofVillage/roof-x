@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:distance/index.dart' as distance;
 import 'package:haptics/index.dart';
+import 'package:curve/index.dart' as curve;
+import 'package:duration/index.dart' as duration;
+import 'package:distance/index.dart' as distance;
 
 import '_tags_wrap.dart';
 import '_textfield_with_add_button.dart';
@@ -25,7 +27,8 @@ class TagEditor extends StatefulWidget {
   _TagEditorState createState() => _TagEditorState();
 }
 
-class _TagEditorState extends State<TagEditor> {
+class _TagEditorState extends State<TagEditor>
+    with SingleTickerProviderStateMixin {
   List<String> _tags;
   List<String> _options;
   List<String> _filteredOptions = [];
@@ -48,9 +51,21 @@ class _TagEditorState extends State<TagEditor> {
 
   @override
   Widget build(BuildContext context) {
-    final tagsWrap = TagsWrap(
-      tags: _tags,
-      tagRemoveCallback: _removeTag,
+    final animatedTagsWrap = AnimatedSize(
+      vsync: this,
+      curve: curve.easy,
+      duration: duration.short,
+      alignment: Alignment.topCenter,
+      child: Row(
+        children: [
+          Flexible(
+            child: TagsWrap(
+              tags: _tags,
+              tagRemoveCallback: _removeTag,
+            ),
+          ),
+        ],
+      ),
     );
 
     final fieldAndOptions = Container(
@@ -75,7 +90,7 @@ class _TagEditorState extends State<TagEditor> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          tagsWrap,
+          animatedTagsWrap,
           fieldAndOptions,
         ],
       ),
@@ -97,7 +112,7 @@ class _TagEditorState extends State<TagEditor> {
       _tags.add(tag);
       _filterOptions();
     });
-    
+
     _controller.clear();
     widget.onTagEdited(_tags);
   }

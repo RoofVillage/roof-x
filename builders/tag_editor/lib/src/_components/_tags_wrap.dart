@@ -72,10 +72,10 @@ class _RemoveableAnimatedTagState extends State<_RemoveableAnimatedTag>
   _remove() {
     triggerHapticWith(HapticOption.light);
 
-    setState(() => _show = false);
     Future.delayed(duration.short, () {
       widget.removeCallback();
     });
+    setState(() => _show = false);
   }
 
   final _typographyStyle = typography.detailSecondary;
@@ -99,9 +99,9 @@ class _RemoveableAnimatedTagState extends State<_RemoveableAnimatedTag>
 
     final animatedTextContainer = AnimatedSize(
       vsync: this,
-      curve: curve.quick,
+      curve: curve.easy,
       duration: duration.short,
-      alignment: Alignment.topLeft,
+      alignment: Alignment.centerLeft,
       child: Container(
         width: _show ? null : 0,
         child: textWidget,
