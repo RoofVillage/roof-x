@@ -48,7 +48,7 @@ class _RoofThreadListViewState extends State<RoofThreadListView> {
     listChildren.addAll(widget.children);
 
     return Container(
-      alignment: Alignment(0, 1),
+      alignment: Alignment.bottomCenter,
       padding: EdgeInsets.only(
         left: _spacing,
         right: _spacing,

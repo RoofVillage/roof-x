@@ -19,9 +19,9 @@ class DockInputField extends StatefulWidget {
 }
 
 class _DockInputFieldState extends State<DockInputField> {
-  static const double _maxHeight = 200;
-  static const int _maxCharCount = 750;
-  static const int _charShowCount = 720;
+  final double _maxHeight = 200;
+  final int _maxCharCount = 750;
+  final int _showCharCountAtLength = 720;
 
   final _textController = TextEditingController();
 
@@ -59,7 +59,7 @@ class _DockInputFieldState extends State<DockInputField> {
     final paddedTextField = _TextFieldComponent(
       dock: _dock,
       controller: _textController,
-      charShowCount: _charShowCount,
+      charShowCount: _showCharCountAtLength,
       maxCharCount: _maxCharCount,
     );
 
@@ -102,8 +102,12 @@ class _TextFieldComponent extends StatelessWidget {
   final int charShowCount;
   final int maxCharCount;
 
-  _TextFieldComponent(
-      {this.dock, this.controller, this.charShowCount, this.maxCharCount});
+  _TextFieldComponent({
+    this.dock,
+    this.controller,
+    this.charShowCount,
+    this.maxCharCount,
+  });
 
   static const String _hintText = "Add comment";
 

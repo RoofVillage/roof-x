@@ -37,8 +37,8 @@ class RoofInputDock extends StatefulWidget {
 
 class InheritedInputDock extends State<RoofInputDock> {
   final double baseHeight = 40;
-  final double previewHeight = 120;
-  final double previewWidth = 160;
+  final double previewHeight = 100;
+  final double previewWidth = 140;
 
   String _text = '';
   List<Asset> files = [];
@@ -46,7 +46,7 @@ class InheritedInputDock extends State<RoofInputDock> {
   bool get showSubmitButton => _text.isNotEmpty || files.isNotEmpty;
   set text(String text) => setState(() => _text = text);
 
-  void addFiles(List<Asset> files) => setState(() => files.addAll(files));
+  void addFiles(List<Asset> newFiles) => setState(() => files.addAll(newFiles));
   void removeFile(Asset file) => setState(() => files.remove(file));
 
   void onSubmit() {
@@ -79,9 +79,9 @@ class InheritedInputDock extends State<RoofInputDock> {
     }
     showDialog(
       builder: (context) => AlertDialog(
-            title: Text("submit:"),
-            content: Text(displayText),
-          ),
+        title: Text("submit:"),
+        content: Text(displayText),
+      ),
       context: context,
     );
   }
