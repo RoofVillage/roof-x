@@ -107,7 +107,7 @@ dependencies:
     git:
       url: git@github.com:RoofVillage/roof-x.git
       ref: packages
-    path: artboards/option_picker
+      path: artboards/option_picker
   time_picker_artboard:
     git:
       url: git@github.com:RoofVillage/roof-x.git
