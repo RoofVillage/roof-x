@@ -37,7 +37,7 @@ dependencies:
     git:
       url: git@github.com:RoofVillage/roof-x.git
       ref: packages
-      path: model/abstractmodel_object
+      path: model/abstract/model_object
   name_context:
     git:
       url: git@github.com:RoofVillage/roof-x.git
