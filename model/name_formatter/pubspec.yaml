@@ -10,9 +10,15 @@ dependencies:
   flutter:
     sdk: flutter
   stringify_names:
-    path: ../../lib/stringify_names
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/stringify_names
   name_defining_object:
-    path: ../mixins/name_defining_object
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/mixins/name_defining_object
 
 dev_dependencies:
   flutter_test:

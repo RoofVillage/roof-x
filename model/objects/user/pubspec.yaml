@@ -9,27 +9,60 @@ dependencies:
   flutter:
     sdk: flutter
   privacy_type:
-    path: ../../../types/privacy
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: types/privacy
   notification_category_type:
-    path: ../../../types/notification_category
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: types/notification_category
   email_category_type:
-    path: ../../../types/email_category
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: types/email_category
   model_object:
-    path: ../../abstract/model_object
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/abstract/model_object
   name_domain:
-    path: ../../properties/name_domain
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/properties/name_domain
   name_contract:
-    path: ../../properties/name_contract
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/properties/name_contract
   name_payment_profile:
-    path: ../../properties/name_payment_profile
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/properties/name_payment_profile
   billing:
-    path: ../../properties/billing
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/properties/billing
   payment_default:
-    path: ../../properties/payment_default
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/properties/payment_default
   key:
-    path: ../../key
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/key
   date:
-    path: ../../../lib/date
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/date
 
 dev_dependencies:
   flutter_test:

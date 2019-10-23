@@ -9,9 +9,15 @@ dependencies:
   flutter:
     sdk: flutter
   model_object:
-    path: ../abstract/model_object
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/abstract/model_object
   disk:
-    path: ../../lib/disk
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/disk
 
 dev_dependencies:
   flutter_test:

@@ -10,15 +10,30 @@ dependencies:
   flutter:
     sdk: flutter
   distance:
-    path: ../../spec/distance
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: spec/distance
   corner_radius:
-    path: ../../spec/corner_radius
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: spec/corner_radius
   theme:
-    path: ../../theme
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: theme
   typography:
-    path: ../../spec/typography
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: spec/typography
   tag_kind_option:
-    path: ../../options/tag_kind
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: options/tag_kind
 
 dev_dependencies:
   flutter_test:

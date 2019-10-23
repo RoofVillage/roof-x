@@ -10,29 +10,65 @@ dependencies:
   flutter:
     sdk: flutter
   stream:
-    path: ../stream
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/stream
   mask:
-    path: ../mask
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/mask
   date:
-    path: ../date
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/date
   form_validation_exception:
-    path: ../form_validation_exception
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/form_validation_exception
   typedefs:
-    path: ../typedefs
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/typedefs
   ordinal_suffix_string_from_int:
-    path: ../ordinal_suffix_string_from_int
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/ordinal_suffix_string_from_int
   standard_icon_library:
-    path: ../../icons/standard
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: icons/standard
   interval:
-    path: ../../lib/interval
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/interval
   period_type:
-    path: ../../types/period
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: types/period
   fee_payer_type:
-    path: ../../types/fee_payer
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: types/fee_payer
   labeled_value:
-    path: ../../labeled_value
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: labeled_value
   small_icon_library:
-    path: ../../icons/small
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: icons/small
 
 dev_dependencies:
   flutter_test:

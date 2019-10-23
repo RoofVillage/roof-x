@@ -9,7 +9,10 @@ dependencies:
   flutter:
     sdk: flutter
   key:
-    path: ../../key
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/key
 
 dev_dependencies:
   flutter_test:

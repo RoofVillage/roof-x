@@ -10,19 +10,40 @@ dependencies:
   flutter:
     sdk: flutter
   haptics:
-    path: ../../lib/haptics
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/haptics
   distance:
-    path: ../../spec/distance
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: spec/distance
   theme:
-    path: ../../theme
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: theme
   typography:
-    path: ../../spec/typography
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: spec/typography
   navigation_icon_library:
-    path: ../../icons/navigation
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: icons/navigation
   svg_library:
-    path: ../../svg
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: svg
   typedefs:
-    path: ../../lib/typedefs
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/typedefs
 
 dev_dependencies:
   flutter_test:

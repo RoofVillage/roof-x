@@ -9,19 +9,40 @@ dependencies:
   flutter:
     sdk: flutter
   fee_payer_type:
-    path: ../../../types/fee_payer
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: types/fee_payer
   key:
-    path: ../../key
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/key
   name_defining_object:
-    path: ../../mixins/name_defining_object
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/mixins/name_defining_object
   name_user:
-    path: ../../properties/name_user
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/properties/name_user
   stub:
-    path: ../../objects/stub
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/objects/stub
   model_object:
-    path: ../model_object
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/abstractmodel_object
   name_context:
-    path: ../../properties/name_context
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/properties/name_context
 
 dev_dependencies:
   flutter_test:

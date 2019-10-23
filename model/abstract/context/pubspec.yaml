@@ -9,13 +9,25 @@ dependencies:
   flutter:
     sdk: flutter
   domain_type:
-    path: ../../../types/domain
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: types/domain
   name_defining_object:
-    path: ../../mixins/name_defining_object
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/mixins/name_defining_object
   key:
-    path: ../../key
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/key
   model_object:
-    path: ../model_object
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/abstractmodel_object
 
 dev_dependencies:
   flutter_test:

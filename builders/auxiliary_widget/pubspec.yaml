@@ -11,25 +11,55 @@ dependencies:
   flutter:
     sdk: flutter
   standard_icon_library:
-    path: ../../icons/standard
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: icons/standard
   typography:
-    path: ../../spec/typography
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: spec/typography
   theme:
-    path: ../../theme
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: theme
   haptics:
-    path: ../../lib/haptics
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/haptics
   distance:
-    path: ../../spec/distance
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: spec/distance
   corner_radius:
-    path: ../../spec/corner_radius
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: spec/corner_radius
   typedefs:
-    path: ../../lib/typedefs
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/typedefs
   button_status_option:
-    path: ../../options/button_status
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: options/button_status
   image_picker_builder:
-    path: ../image_picker
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: builders/image_picker
   input_dock_builder:
-    path: ../input_dock
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: builders/input_dock
 
 dev_dependencies:
   flutter_test:

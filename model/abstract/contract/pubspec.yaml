@@ -9,25 +9,55 @@ dependencies:
   flutter:
     sdk: flutter
   key:
-    path: ../../key
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/key
   context:
-    path: ../context
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/abstractcontext
   fee_payer_type:
-    path: ../../../types/fee_payer
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: types/fee_payer
   contract_user:
-    path: ../../properties/contract_user
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/properties/contract_user
   name_contract_domain:
-    path: ../../properties/name_contract_domain
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/properties/name_contract_domain
   name_user:
-    path: ../../properties/name_user
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/properties/name_user
   location:
-    path: ../../properties/location
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/properties/location
   date:
-    path: ../../../lib/date
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/date
   schedule:
-    path: ../../properties/schedule
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/properties/schedule
   name_context:
-    path: ../../properties/name_context
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/properties/name_context
 
 dev_dependencies:
   flutter_test:

@@ -10,43 +10,100 @@ dependencies:
   flutter:
     sdk: flutter
   table:
-    path: ../../lib/table
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/table
   decorated_text:
-    path: ../../lib/decorated_text
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/decorated_text
   sorting:
-    path: ../../lib/sorting
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/sorting
   mask:
-    path: ../../lib/mask
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/mask
   standard_icon_library:
-    path: ../../icons/standard
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: icons/standard
   distance:
-    path: ../../spec/distance
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: spec/distance
   corner_radius:
-    path: ../../spec/corner_radius
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: spec/corner_radius
   theme:
-    path: ../../theme
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: theme
   typography:
-    path: ../../spec/typography
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: spec/typography
   key_value_builder:
-    path: ../key_value
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: builders/key_value
   key_value_row_builder:
-    path: ../key_value_row
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: builders/key_value_row
   spaced_grid_builder:
-    path: ../spaced_grid
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: builders/spaced_grid
   haptics:
-    path: ../../lib/haptics
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/haptics
   date:
-    path: ../../lib/date
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/date
   tag_builder:
-    path: ../tag
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: builders/tag
   invoice_options:
-    path: ../../types/invoice
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: types/invoice
   request_status:
-    path: ../../types/request
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: types/request
   lease_status:
-    path: ../../types/lease
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: types/lease
   tag_kind_option:
-    path: ../../options/tag_kind
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: options/tag_kind
 
 dev_dependencies:
   flutter_test:

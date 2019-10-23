@@ -9,13 +9,25 @@ dependencies:
   flutter:
     sdk: flutter
   payment_default_type:
-    path: ../../../types/payment_default
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: types/payment_default
   mappable:
-    path: ../../mixins/mappable
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/mixins/mappable
   name_payment_profile:
-    path: ../name_payment_profile
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/properties/name_payment_profile
   key:
-    path: ../../key
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/key
 
 dev_dependencies:
   flutter_test:

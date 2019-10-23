@@ -10,7 +10,10 @@ dependencies:
   flutter:
     sdk: flutter
   distance:
-    path: ../distance
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: spec/distance
 
 dev_dependencies:
   flutter_test:

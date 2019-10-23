@@ -9,13 +9,25 @@ dependencies:
   flutter:
     sdk: flutter
   form_vertical_floating_artboard_template:
-    path: ../../artboard_templates/vertical_floating/form
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: artboard_templates/vertical_floating/form
   form_builder:
-    path: ../../builders/form
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: builders/form
   app_data:
-    path: ../../app_data
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: app_data
   navigator:
-    path: ../../lib/navigator
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/navigator
 
 dev_dependencies:
   flutter_test:

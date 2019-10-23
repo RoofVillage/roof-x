@@ -9,15 +9,30 @@ dependencies:
   flutter:
     sdk: flutter
   bank_owner_reference:
-    path: ../bank_owner_reference
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/properties/bank_owner_reference
   mappable:
-    path: ../../mixins/mappable
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/mixins/mappable
   key:
-    path: ../../key
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/key
   name_formatter:
-    path: ../../name_formatter
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/name_formatter
   name_defining_object:
-    path: ../../mixins/name_defining_object
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/mixins/name_defining_object
 
 dev_dependencies:
   flutter_test:

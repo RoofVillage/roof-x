@@ -9,25 +9,55 @@ dependencies:
   flutter:
     sdk: flutter
   key:
-    path: ../../key
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/key
   feed_object:
-    path: ../feed_object
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/abstractfeed_object
   fee_payer_type:
-    path: ../../../types/fee_payer
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: types/fee_payer
   stub:
-    path: ../../objects/stub
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/objects/stub
   name_defining_object:
-    path: ../../mixins/name_defining_object
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/mixins/name_defining_object
   name_user:
-    path: ../../properties/name_user
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/properties/name_user
   location:
-    path: ../../properties/location
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/properties/location
   date:
-    path: ../../../lib/date
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/date
   user_reference:
-    path: ../../properties/user_reference
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/properties/user_reference
   name_formatter:
-    path: ../../name_formatter
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/name_formatter
 
 dev_dependencies:
   flutter_test:

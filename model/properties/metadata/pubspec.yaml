@@ -9,11 +9,20 @@ dependencies:
   flutter:
     sdk: flutter
   event_meta_value_type:
-    path: ../../../types/event_meta_value
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: types/event_meta_value
   mappable:
-    path: ../../mixins/mappable
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/mixins/mappable
   key:
-    path: ../../key
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/key
 
 dev_dependencies:
   flutter_test:

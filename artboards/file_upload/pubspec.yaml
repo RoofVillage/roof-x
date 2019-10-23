@@ -9,7 +9,10 @@ dependencies:
   flutter:
     sdk: flutter
   navigator:
-    path: ../../lib/navigator
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/navigator
   image_picker: ^0.5.0+6
 
 dev_dependencies:

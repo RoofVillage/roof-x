@@ -9,21 +9,45 @@ dependencies:
   flutter:
     sdk: flutter
   tabbed_fullscreen_artboard_template:
-    path: ../../artboard_templates/vertical_full_screen/tabbed
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: artboard_templates/vertical_full_screen/tabbed
   caret_wrap_builder:
-    path: ../../builders/caret_wrap
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: builders/caret_wrap
   tabbed_container_builder:
-    path: ../../builders/tabbed_container
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: builders/tabbed_container
   cells_list_view_builder:
-    path: ../../builders/cells_list_view
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: builders/cells_list_view
   key_value_row_builder:
-    path: ../../builders/key_value_row
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: builders/key_value_row
   tab:
-    path: ../../tab
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: tab
   navigation_icon_library:
-    path: ../../icons/navigation
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: icons/navigation
   x_small_icon_library:
-    path: ../../icons/x_small
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: icons/x_small
 
 dev_dependencies:
   flutter_test:

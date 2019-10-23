@@ -10,15 +10,30 @@ dependencies:
   flutter:
     sdk: flutter
   button_builder:
-    path: ../button
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: builders/button
   form_body_builder:
-    path: ../form_body
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: builders/form_body
   distance:
-    path: ../../spec/distance
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: spec/distance
   typography:
-    path: ../../spec/typography
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: spec/typography
   button_status_option:
-    path: ../../options/button_status
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: options/button_status
 
 dev_dependencies:
   flutter_test:

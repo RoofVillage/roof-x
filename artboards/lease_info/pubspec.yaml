@@ -9,41 +9,95 @@ dependencies:
   flutter:
     sdk: flutter
   artboard:
-    path: ../../lib/artboard
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/artboard
   stack_vertical_floating_artboard_template:
-    path: ../../artboard_templates/vertical_floating/stack
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: artboard_templates/vertical_floating/stack
   nav_bar_builder:
-    path: ../../builders/nav_bar
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: builders/nav_bar
   button_builder:
-    path: ../../builders/button
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: builders/button
   caret_wrap_builder:
-    path: ../../builders/caret_wrap
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: builders/caret_wrap
   cells_list_view_builder:
-    path: ../../builders/cells_list_view
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: builders/cells_list_view
   tag_builder:
-    path: ../../builders/tag
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: builders/tag
   key_value_row_builder:
-    path: ../../builders/key_value_row
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: builders/key_value_row
   tab:
-    path: ../../tab
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: tab
   navigation_icon_library:
-    path: ../../icons/navigation
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: icons/navigation
   x_small_icon_library:
-    path: ../../icons/x_small
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: icons/x_small
   standard_icon_library:
-    path: ../../icons/standard
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: icons/standard
   mask:
-    path: ../../lib/mask
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/mask
   date:
-    path: ../../lib/date
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/date
   interval:
-    path: ../../lib/interval
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/interval
   fee_payer_type:
-    path: ../../types/fee_payer
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: types/fee_payer
   period_type:
-    path: ../../types/period
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: types/period
   ordinal_suffix_string_from_int:
-    path: ../../lib/ordinal_suffix_string_from_int
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/ordinal_suffix_string_from_int
 
 dev_dependencies:
   flutter_test:

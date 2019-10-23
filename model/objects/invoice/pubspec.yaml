@@ -9,33 +9,75 @@ dependencies:
   flutter:
     sdk: flutter
   task:
-    path: ../../abstract/task
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/abstract/task
   context:
-    path: ../../abstract/context
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/abstract/context
   fee_payer_type:
-    path: ../../../types/fee_payer
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: types/fee_payer
   assignment_type:
-    path: ../../../types/assignment
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: types/assignment
   invoice_options:
-    path: ../../../types/invoice
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: types/invoice
   user_reference:
-    path: ../../properties/user_reference
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/properties/user_reference
   name_user:
-    path: ../../properties/name_user
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/properties/name_user
   completion_count:
-    path: ../../properties/completion_count
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/properties/completion_count
   date_parts:
-    path: ../../properties/date_parts
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/properties/date_parts
   payer:
-    path: ../../properties/payer
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/properties/payer
   schedule:
-    path: ../../properties/schedule
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/properties/schedule
   stub:
-    path: ../stub
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/objects/stub
   date:
-    path: ../../../lib/date
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/date
   key:
-    path: ../../key
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/key
 
 dev_dependencies:
   flutter_test:

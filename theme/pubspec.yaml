@@ -10,7 +10,10 @@ dependencies:
   flutter:
     sdk: flutter
   color:
-    path: ../spec/color
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: spec/color
 
 dev_dependencies:
   flutter_test:

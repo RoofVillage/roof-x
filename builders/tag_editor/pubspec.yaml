@@ -10,27 +10,60 @@ dependencies:
   flutter:
     sdk: flutter
   haptics:
-    path: ../../lib/haptics
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/haptics
   theme:
-    path: ../../theme
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: theme
   small_icon_library:
-    path: ../../icons/small
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: icons/small
   typography:
-    path: ../../spec/typography
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: spec/typography
   artboard:
-    path: ../../lib/artboard
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/artboard
   navigator:
-    path: ../../lib/navigator
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/navigator
   curve:
-    path: ../../spec/curve
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: spec/curve
   duration:
-    path: ../../spec/duration
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: spec/duration
   distance:
-    path: ../../spec/distance
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: spec/distance
   labeled_icon:
-    path: ../../labeled_icon
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: labeled_icon
   tag_builder:
-    path: ../tag
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: builders/tag
 
 dev_dependencies:
   flutter_test:

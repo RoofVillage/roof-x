@@ -10,9 +10,15 @@ dependencies:
   flutter:
     sdk: flutter
   artboard:
-    path: ../../../lib/artboard
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/artboard
   horizontal_floating_artboard_scaffold:
-    path: ../../../artboard_scaffolds/horizontal_floating
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: artboard_scaffolds/horizontal_floating
 
 dev_dependencies:
   flutter_test:

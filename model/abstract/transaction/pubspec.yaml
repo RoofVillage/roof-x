@@ -9,23 +9,50 @@ dependencies:
   flutter:
     sdk: flutter
   fee_payer_type:
-    path: ../../../types/fee_payer
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: types/fee_payer
   privacy_type:
-    path: ../../../types/privacy
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: types/privacy
   key:
-    path: ../../key
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/key
   user_reference:
-    path: ../../properties/user_reference
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/properties/user_reference
   task_reference:
-    path: ../../properties/task_reference
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/properties/task_reference
   name_user:
-    path: ../../properties/name_user
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/properties/name_user
   stub:
-    path: ../../objects/stub
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/objects/stub
   expense:
-    path: ../../objects/expense
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/objects/expense
   completion:
-    path: ../../objects/completion
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/objects/completion
 
 dev_dependencies:
   flutter_test:

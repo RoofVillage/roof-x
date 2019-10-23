@@ -9,31 +9,70 @@ dependencies:
   flutter:
     sdk: flutter
   artboard:
-    path: ../../lib/artboard
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/artboard
   tabbed_fullscreen_artboard_template:
-    path: ../../artboard_templates/vertical_full_screen/tabbed
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: artboard_templates/vertical_full_screen/tabbed
   lease_create_artboard:
-    path: ../../artboards/lease_create
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: artboards/lease_create
   nav_bar_builder:
-    path: ../../builders/nav_bar
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: builders/nav_bar
   nav_button_builder:
-    path: ../../builders/nav_button
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: builders/nav_button
   caret_wrap_builder:
-    path: ../../builders/caret_wrap
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: builders/caret_wrap
   cells_list_view_builder:
-    path: ../../builders/cells_list_view
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: builders/cells_list_view
   tag_builder:
-    path: ../../builders/tag
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: builders/tag
   key_value_row_builder:
-    path: ../../builders/key_value_row
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: builders/key_value_row
   tab:
-    path: ../../tab
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: tab
   navigation_icon_library:
-    path: ../../icons/navigation
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: icons/navigation
   x_small_icon_library:
-    path: ../../icons/x_small
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: icons/x_small
   standard_icon_library:
-    path: ../../icons/standard
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: icons/standard
 
 dev_dependencies:
   flutter_test:

@@ -10,67 +10,160 @@ dependencies:
   flutter:
     sdk: flutter
   keyboard_accessory_bar_builder:
-    path: ../keyboard_accessory_bar
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: builders/keyboard_accessory_bar
   date_picker_builder:
-    path: ../date_picker
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: builders/date_picker
   distance:
-    path: ../../spec/distance
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: spec/distance
   duration:
-    path: ../../spec/duration
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: spec/duration
   padding:
-    path: ../../spec/padding
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: spec/padding
   corner_radius:
-    path: ../../spec/corner_radius
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: spec/corner_radius
   curve:
-    path: ../../spec/curve
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: spec/curve
   typography:
-    path: ../../spec/typography
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: spec/typography
   standard_icon_library:
-    path: ../../icons/standard
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: icons/standard
   small_icon_library:
-    path: ../../icons/small
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: icons/small
   theme:
-    path: ../../theme
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: theme
   mask:
-    path: ../../lib/mask
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/mask
   form:
-    path: ../../lib/form
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/form
   keyboard_accessory:
-    path: ../../lib/keyboard_accessory
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/keyboard_accessory
   date:
-    path: ../../lib/date
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/date
   haptics:
-    path: ../../lib/haptics
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/haptics
   ordinal_suffix_string_from_int:
-    path: ../../lib/ordinal_suffix_string_from_int
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/ordinal_suffix_string_from_int
   form_validation_exception:
-    path: ../../lib/form_validation_exception
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/form_validation_exception
   typedefs:
-    path: ../../lib/typedefs
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/typedefs
   artboard:
-    path: ../../lib/artboard
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/artboard
   navigator:
-    path: ../../lib/navigator
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/navigator
   labeled_value:
-    path: ../../labeled_value
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: labeled_value
   labeled_icon:
-    path: ../../labeled_icon
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: labeled_icon
   frequency:
-    path: ../../frequency
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: frequency
   time_picker_builder:
-    path: ../time_picker
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: builders/time_picker
   interval_frequency_picker_builder:
-    path: ../interval_frequency_picker
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: builders/interval_frequency_picker
   roller_column_picker_builder:
-    path: ../roller_column_picker
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: builders/roller_column_picker
   tag_builder:
-    path: ../tag
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: builders/tag
   tag_editor_builder:
-    path: ../../builders/tag_editor
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: builders/tag_editor
   icon_picker_builder:
-    path: ../../builders/icon_picker
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: builders/icon_picker
   option_picker_builder:
-    path: ../../builders/option_picker
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: builders/option_picker
 
 dev_dependencies:
   flutter_test:

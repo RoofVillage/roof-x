@@ -10,7 +10,10 @@ dependencies:
   flutter:
     sdk: flutter
   stream:
-    path: ../stream
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/stream
 
 dev_dependencies:
   flutter_test:

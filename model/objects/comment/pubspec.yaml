@@ -9,25 +9,55 @@ dependencies:
   flutter:
     sdk: flutter
   fee_payer_type:
-    path: ../../../types/fee_payer
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: types/fee_payer
   privacy_type:
-    path: ../../../types/privacy
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: types/privacy
   feed_object:
-    path: ../../abstract/feed_object
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/abstract/feed_object
   user_reference:
-    path: ../../properties/user_reference
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/properties/user_reference
   name_defining_object:
-    path: ../../mixins/name_defining_object
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/mixins/name_defining_object
   name_user:
-    path: ../../properties/name_user
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/properties/name_user
   name_formatter:
-    path: ../../name_formatter
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/name_formatter
   commentable_object_reference:
-    path: ../../properties/commentable_object_reference
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/properties/commentable_object_reference
   stub:
-    path: ../stub
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/objects/stub
   key:
-    path: ../../key
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/key
 
 dev_dependencies:
   flutter_test:

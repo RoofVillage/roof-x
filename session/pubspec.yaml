@@ -10,17 +10,35 @@ dependencies:
   flutter:
     sdk: flutter
   cache:
-    path: ../lib/cache
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/cache
   secure_storage:
-    path: ../lib/secure_storage
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/secure_storage
   date:
-    path: ../lib/date
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/date
   user:
-    path: ../model/objects/user
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/objects/user
   context:
-    path: ../model/abstract/context
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/abstract/context
   model_object_cache:
-    path: ../model/object_cache
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/object_cache
 
 dev_dependencies:
   flutter_test:

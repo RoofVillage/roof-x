@@ -10,17 +10,35 @@ dependencies:
   flutter:
     sdk: flutter
   typography:
-    path: ../../spec/typography
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: spec/typography
   theme:
-    path: ../../theme
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: theme
   haptics:
-    path: ../../lib/haptics
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/haptics
   distance:
-    path: ../../spec/distance
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: spec/distance
   input_dock_builder:
-    path: ../input_dock
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: builders/input_dock
   tab:
-    path: ../../tab
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: tab
 
 dev_dependencies:
   flutter_test:

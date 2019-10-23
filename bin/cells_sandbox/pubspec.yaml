@@ -10,17 +10,35 @@ dependencies:
   flutter:
     sdk: flutter
   theme:
-    path: ../../theme
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: theme
   vertical_full_screen_artboard_scaffold:
-    path: ../../artboard_scaffolds/vertical_full_screen
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: artboard_scaffolds/vertical_full_screen
   artboard:
-    path: ../../lib/artboard
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/artboard
   device_screen:
-    path: ../../lib/device_screen
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/device_screen
   table_builder:
-    path: ../../builders/table
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: builders/table
   standard_icon_library:
-    path: ../../icons/standard
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: icons/standard
 
 dev_dependencies:
   flutter_test:

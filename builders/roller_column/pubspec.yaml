@@ -10,19 +10,40 @@ dependencies:
   flutter:
     sdk: flutter
   labeled_value:
-    path: ../../labeled_value
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: labeled_value
   theme:
-    path: ../../theme
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: theme
   curve:
-    path: ../../spec/curve
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: spec/curve
   duration:
-    path: ../../spec/duration
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: spec/duration
   distance:
-    path: ../../spec/distance
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: spec/distance
   haptics:
-    path: ../../lib/haptics
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/haptics
   typography:
-    path: ../../spec/typography
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: spec/typography
 
 dev_dependencies:
   flutter_test:
