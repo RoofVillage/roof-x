@@ -42,7 +42,7 @@ dependencies:
     git:
       url: git@github.com:RoofVillage/roof-x.git
       ref: packages
-      path: model/abstractcommentable_object
+      path: model/abstract/commentable_object
   task_reference:
     git:
       url: git@github.com:RoofVillage/roof-x.git
