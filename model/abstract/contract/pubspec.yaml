@@ -17,7 +17,7 @@ dependencies:
     git:
       url: git@github.com:RoofVillage/roof-x.git
       ref: packages
-      path: model/abstractcontext
+      path: model/abstract/context
   fee_payer_type:
     git:
       url: git@github.com:RoofVillage/roof-x.git
