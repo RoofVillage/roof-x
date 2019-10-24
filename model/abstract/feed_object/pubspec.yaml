@@ -27,7 +27,7 @@ dependencies:
     git:
       url: git@github.com:RoofVillage/roof-x.git
       ref: packages
-      path: model/abstractdomain_object
+      path: model/abstract/domain_object
   stub:
     git:
       url: git@github.com:RoofVillage/roof-x.git
