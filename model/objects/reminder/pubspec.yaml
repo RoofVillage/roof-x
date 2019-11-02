@@ -9,7 +9,10 @@ dependencies:
   flutter:
     sdk: flutter
   task:
-    path: ../../abstract/task
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/abstract/task
 
 dev_dependencies:
   flutter_test:

@@ -9,21 +9,45 @@ dependencies:
   flutter:
     sdk: flutter
   full_logo_table_vertical_full_screen_artboard_template:
-    path: ../../artboard_templates/vertical_full_screen/full_logo_table
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: artboard_templates/vertical_full_screen/full_logo_table
   sign_up_artboard:
-    path: ../sign_up
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: artboards/sign_up
   app_data:
-    path: ../../app_data
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: app_data
   nav_button_builder:
-    path: ../../builders/nav_button
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: builders/nav_button
   navigation_icon_library:
-    path: ../../icons/navigation
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: icons/navigation
   standard_icon_library:
-    path: ../../icons/standard
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: icons/standard
   public:
-    path: ../../model/objects/public
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/objects/public
   navigator:
-    path: ../../lib/navigator
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/navigator
 
 dev_dependencies:
   flutter_test:

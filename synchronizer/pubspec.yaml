@@ -10,7 +10,10 @@ dependencies:
   flutter:
     sdk: flutter
   network:
-    path: ../lib/network
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/network
 
 dev_dependencies:
   flutter_test:

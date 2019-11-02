@@ -9,11 +9,20 @@ dependencies:
   flutter:
     sdk: flutter
   artboard:
-    path: ../../../lib/artboard
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/artboard
   vertical_floating_artboard_scaffold:
-    path: ../../../artboard_scaffolds/vertical_floating
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: artboard_scaffolds/vertical_floating
   button_stack_builder:
-    path: ../../../builders/button_stack
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: builders/button_stack
 
 dev_dependencies:
   flutter_test:

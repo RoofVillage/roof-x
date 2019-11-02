@@ -9,9 +9,15 @@ dependencies:
   flutter:
     sdk: flutter
   artboard:
-    path: ../artboard
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/artboard
   typedefs:
-    path: ../typedefs
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/typedefs
 
 dev_dependencies:
   flutter_test:

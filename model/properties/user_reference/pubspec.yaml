@@ -9,7 +9,10 @@ dependencies:
   flutter:
     sdk: flutter
   actor_reference:
-    path: ../actor_reference
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/properties/actor_reference
 
 dev_dependencies:
   flutter_test:

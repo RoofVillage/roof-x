@@ -9,11 +9,20 @@ dependencies:
   flutter:
     sdk: flutter
   name_user:
-    path: ../name_user
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/properties/name_user
   key:
-    path: ../../key
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/key
   contract:
-    path: ../../abstract/contract
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/abstract/contract
 
 dev_dependencies:
   flutter_test:

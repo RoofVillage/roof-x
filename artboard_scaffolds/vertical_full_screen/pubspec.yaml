@@ -10,21 +10,45 @@ dependencies:
   flutter:
     sdk: flutter
   vertical_floating_artboard_scaffold:
-    path: ../vertical_floating
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: artboard_scaffolds/vertical_floating
   horizontal_floating_artboard_scaffold:
-    path: ../horizontal_floating
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: artboard_scaffolds/horizontal_floating
   keyboard_accessory:
-    path: ../../lib/keyboard_accessory
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/keyboard_accessory
   artboard:
-    path: ../../lib/artboard
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/artboard
   duration:
-    path: ../../spec/duration
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: spec/duration
   curve:
-    path: ../../spec/curve
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: spec/curve
   theme:
-    path: ../../theme
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: theme
   navigator:
-    path: ../../lib/navigator
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/navigator
 
 dev_dependencies:
   flutter_test:

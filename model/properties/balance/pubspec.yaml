@@ -9,13 +9,25 @@ dependencies:
   flutter:
     sdk: flutter
   domain_type:
-    path: ../../../types/domain
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: types/domain
   mappable:
-    path: ../../mixins/mappable
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/mixins/mappable
   key:
-    path: ../../key
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/key
   bank_owner_reference:
-    path: ../bank_owner_reference
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/properties/bank_owner_reference
 
 dev_dependencies:
   flutter_test:

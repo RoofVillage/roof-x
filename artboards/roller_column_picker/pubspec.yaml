@@ -9,13 +9,25 @@ dependencies:
   flutter:
     sdk: flutter
   empty_vertical_floating_artboard_template:
-    path: ../../artboard_templates/vertical_floating/empty
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: artboard_templates/vertical_floating/empty
   vertical_floating_artboard_scaffold:
-    path: ../../artboard_scaffolds/vertical_floating
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: artboard_scaffolds/vertical_floating
   form_builder:
-    path: ../../builders/form
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: builders/form
   roller_column_picker_builder:
-    path: ../../builders/roller_column_picker
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: builders/roller_column_picker
 
 dev_dependencies:
   flutter_test:

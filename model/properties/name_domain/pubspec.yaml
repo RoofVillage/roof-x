@@ -9,9 +9,15 @@ dependencies:
   flutter:
     sdk: flutter
   context_type:
-    path: ../../../types/context
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: types/context
   name_context:
-    path: ../name_context
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/properties/name_context
 
 dev_dependencies:
   flutter_test:

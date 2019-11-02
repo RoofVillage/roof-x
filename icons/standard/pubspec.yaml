@@ -9,4 +9,7 @@ dependencies:
   flutter:
     sdk: flutter
   icon_reference:
-    path: ../icon_reference
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: icons/icon_reference

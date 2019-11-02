@@ -10,27 +10,60 @@ dependencies:
   flutter:
     sdk: flutter
   artboard:
-    path: ../../lib/artboard
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/artboard
   theme:
-    path: ../../theme
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: theme
   duration:
-    path: ../../spec/duration
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: spec/duration
   curve:
-    path: ../../spec/curve
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: spec/curve
   period_type:
-    path: ../../types/period
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: types/period
   haptics:
-    path: ../../lib/haptics
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/haptics
   interval:
-    path: ../../lib/interval
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/interval
   frequency:
-    path: ../../frequency
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: frequency
   labeled_value:
-    path: ../../labeled_value
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: labeled_value
   roller_column_builder:
-    path: ../roller_column
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: builders/roller_column
   typography:
-    path: ../../spec/typography
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: spec/typography
 
 dev_dependencies:
   flutter_test:

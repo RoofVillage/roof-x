@@ -9,11 +9,20 @@ dependencies:
   flutter:
     sdk: flutter
   commentable_object_type:
-    path: ../../../types/commentable_object
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: types/commentable_object
   mappable:
-    path: ../../mixins/mappable
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/mixins/mappable
   key:
-    path: ../../key
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/key
 
 dev_dependencies:
   flutter_test:

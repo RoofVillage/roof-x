@@ -10,43 +10,100 @@ dependencies:
   flutter:
     sdk: flutter
   theme:
-    path: ../../theme
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: theme
   vertical_full_screen_artboard_scaffold:
-    path: ../../artboard_scaffolds/vertical_full_screen
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: artboard_scaffolds/vertical_full_screen
   tabbed_fullscreen_artboard_template:
-    path: ../../artboard_templates/vertical_full_screen/tabbed
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: artboard_templates/vertical_full_screen/tabbed
   invoice_full_screen_artboard_template:
-    path: ../../artboards/invoice
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: artboards/invoice
   lease_full_screen_artboard_template:
-    path: ../../artboards/lease
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: artboards/lease
   property_full_screen_artboard_template:
-    path: ../../artboards/property
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: artboards/property
   property_create_artboard:
-    path: ../../artboards/property_create
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: artboards/property_create
   artboard:
-    path: ../../lib/artboard
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/artboard
   device_screen:
-    path: ../../lib/device_screen
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/device_screen
   nav_bar_builder:
-    path: ../../builders/nav_bar
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: builders/nav_bar
   caret_wrap_builder:
-    path: ../../builders/caret_wrap
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: builders/caret_wrap
   table_builder:
-    path: ../../builders/table
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: builders/table
   tabbed_container_builder:
-    path: ../../builders/tabbed_container
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: builders/tabbed_container
   cells_list_view_builder:
-    path: ../../builders/cells_list_view
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: builders/cells_list_view
   button_builder:
-    path: ../../builders/button
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: builders/button
   invoice_options:
-    path: ../../types/invoice
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: types/invoice
   standard_icon_library:
-    path: ../../icons/standard
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: icons/standard
   small_icon_library:
-    path: ../../icons/small
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: icons/small
   svg_library:
-    path: ../../svg
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: svg
 
 dev_dependencies:
   flutter_test:

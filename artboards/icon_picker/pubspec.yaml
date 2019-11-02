@@ -9,15 +9,30 @@ dependencies:
   flutter:
     sdk: flutter
   empty_vertical_floating_artboard_template:
-    path: ../../artboard_templates/vertical_floating/empty
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: artboard_templates/vertical_floating/empty
   vertical_floating_artboard_scaffold:
-    path: ../../artboard_scaffolds/vertical_floating
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: artboard_scaffolds/vertical_floating
   form_builder:
-    path: ../../builders/form
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: builders/form
   icon_picker_builder:
-    path: ../../builders/icon_picker
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: builders/icon_picker
   labeled_icon:
-    path: ../../labeled_icon
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: labeled_icon
 
 dev_dependencies:
   flutter_test:

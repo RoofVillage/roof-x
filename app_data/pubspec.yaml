@@ -11,13 +11,25 @@ dependencies:
     sdk: flutter
   device_info: ^0.4.0+1
   network:
-    path: ../lib/network
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/network
   synchronizer:
-    path: ../synchronizer
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: synchronizer
   session:
-    path: ../session
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: session
   public:
-    path: ../model/objects/public
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: model/objects/public
 
 dev_dependencies:
   flutter_test:

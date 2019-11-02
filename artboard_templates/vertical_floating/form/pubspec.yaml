@@ -9,51 +9,120 @@ dependencies:
   flutter:
     sdk: flutter
   vertical_floating_artboard_scaffold:
-    path: ../../../artboard_scaffolds/vertical_floating
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: artboard_scaffolds/vertical_floating
   form_builder:
-    path: ../../../builders/form
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: builders/form
   form_body_builder:
-    path: ../../../builders/form_body
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: builders/form_body
   artboard:
-    path: ../../../lib/artboard
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/artboard
   navigator:
-    path: ../../../lib/navigator
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/navigator
   date:
-    path: ../../../lib/date
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: lib/date
   date_picker_builder:
-    path: ../../../builders/date_picker
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: builders/date_picker
   option_picker_builder:
-    path: ../../../builders/option_picker
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: builders/option_picker
   time_picker_builder:
-    path: ../../../builders/time_picker
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: builders/time_picker
   icon_picker_builder:
-    path: ../../../builders/icon_picker
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: builders/icon_picker
   icon_picker_artboard:
-    path: ../../../artboards/icon_picker
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: artboards/icon_picker
   labeled_icon:
-    path: ../../../labeled_icon
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: labeled_icon
   labeled_value:
-    path: ../../../labeled_value
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: labeled_value
   frequency:
-    path: ../../../frequency    
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: frequency    
   interval_frequency_picker_builder:
-    path: ../../../builders/interval_frequency_picker
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: builders/interval_frequency_picker
   roller_column_picker_builder:
-    path: ../../../builders/roller_column_picker
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: builders/roller_column_picker
   roller_column_picker_artboard:
-    path: ../../../artboards/roller_column_picker
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: artboards/roller_column_picker
   button_builder:
-    path: ../../../builders/button
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: builders/button
   date_picker_artboard:
-    path: ../../../artboards/date_picker
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: artboards/date_picker
   option_picker_artboard:
-    path: ../../../artboards/option_picker
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: artboards/option_picker
   time_picker_artboard:
-    path: ../../../artboards/time_picker
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: artboards/time_picker
   interval_frequency_picker_artboard:
-    path: ../../../artboards/interval_frequency_picker
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: artboards/interval_frequency_picker
   tag_editor_artboard:
-    path: ../../../artboards/tag_editor
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: packages
+      path: artboards/tag_editor
 
 dev_dependencies:
   flutter_test:
