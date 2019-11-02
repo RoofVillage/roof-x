@@ -37,7 +37,7 @@ dependencies:
     git:
       url: git@github.com:RoofVillage/roof-x.git
       ref: packages
-      path: model/abstracttransaction
+      path: model/abstract/transaction
   bank_owner_reference:
     git:
       url: git@github.com:RoofVillage/roof-x.git
