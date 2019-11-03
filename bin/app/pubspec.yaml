@@ -12,27 +12,27 @@ dependencies:
   theme:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: packages
+      ref: master
       path: theme
   public_activity_artboard:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: packages
+      ref: master
       path: artboards/public_activity
   vertical_full_screen_artboard_scaffold:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: packages
+      ref: master
       path: artboard_scaffolds/vertical_full_screen
   artboard:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: packages
+      ref: master
       path: lib/artboard
   device_screen:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: packages
+      ref: master
       path: lib/device_screen
 
 dev_dependencies:

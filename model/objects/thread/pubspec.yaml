@@ -11,42 +11,42 @@ dependencies:
   commentable_object:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: packages
+      ref: master
       path: model/abstract/commentable_object
   fee_payer_type:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: packages
+      ref: master
       path: types/fee_payer
   thread_type:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: packages
+      ref: master
       path: types/thread
   user_reference:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: packages
+      ref: master
       path: model/properties/user_reference
   name_user:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: packages
+      ref: master
       path: model/properties/name_user
   stub:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: packages
+      ref: master
       path: model/objects/stub
   date:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: packages
+      ref: master
       path: lib/date
   key:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: packages
+      ref: master
       path: model/key
 
 dev_dependencies:

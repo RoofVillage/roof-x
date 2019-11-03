@@ -11,62 +11,62 @@ dependencies:
   event_type:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: packages
+      ref: master
       path: types/event
   event_object_type:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: packages
+      ref: master
       path: types/event_object
   fee_payer_type:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: packages
+      ref: master
       path: types/fee_payer
   privacy_type:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: packages
+      ref: master
       path: types/privacy
   feed_object:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: packages
+      ref: master
       path: model/abstract/feed_object
   metadata:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: packages
+      ref: master
       path: model/properties/metadata
   user_reference:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: packages
+      ref: master
       path: model/properties/user_reference
   name_defining_object:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: packages
+      ref: master
       path: model/mixins/name_defining_object
   name_user:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: packages
+      ref: master
       path: model/properties/name_user
   name_formatter:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: packages
+      ref: master
       path: model/name_formatter
   stub:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: packages
+      ref: master
       path: model/objects/stub
   key:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: packages
+      ref: master
       path: model/key
 
 dev_dependencies:

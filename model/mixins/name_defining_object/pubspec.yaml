@@ -12,22 +12,22 @@ dependencies:
   name_user:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: packages
+      ref: master
       path: model/properties/name_user
   name_context:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: packages
+      ref: master
       path: model/properties/name_context
   user_reference:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: packages
+      ref: master
       path: model/properties/user_reference
   stub:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: packages
+      ref: master
       path: model/objects/stub
 
 dev_dependencies:

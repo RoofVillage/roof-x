@@ -11,27 +11,27 @@ dependencies:
   artboard:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: packages
+      ref: master
       path: lib/artboard
   vertical_full_screen_artboard_scaffold:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: packages
+      ref: master
       path: artboard_scaffolds/vertical_full_screen
   nav_bar_builder:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: packages
+      ref: master
       path: builders/nav_bar
   input_dock_builder:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: packages
+      ref: master
       path: builders/input_dock
   table_builder:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: packages
+      ref: master
       path: builders/table
 
 dev_dependencies:

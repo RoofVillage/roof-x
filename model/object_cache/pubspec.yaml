@@ -11,12 +11,12 @@ dependencies:
   model_object:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: packages
+      ref: master
       path: model/abstract/model_object
   disk:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: packages
+      ref: master
       path: lib/disk
 
 dev_dependencies:

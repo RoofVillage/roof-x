@@ -11,12 +11,12 @@ dependencies:
   artboard:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: packages
+      ref: master
       path: lib/artboard
   typedefs:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: packages
+      ref: master
       path: lib/typedefs
 
 dev_dependencies:

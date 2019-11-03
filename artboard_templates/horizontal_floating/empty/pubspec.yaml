@@ -12,12 +12,12 @@ dependencies:
   artboard:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: packages
+      ref: master
       path: lib/artboard
   horizontal_floating_artboard_scaffold:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: packages
+      ref: master
       path: artboard_scaffolds/horizontal_floating
 
 dev_dependencies:

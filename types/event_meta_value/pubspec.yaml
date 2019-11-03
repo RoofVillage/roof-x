@@ -11,12 +11,12 @@ dependencies:
   string_from_enum_string:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: packages
+      ref: master
       path: lib/string_from_enum_string
   date:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: packages
+      ref: master
       path: lib/date
 
 dev_dependencies:

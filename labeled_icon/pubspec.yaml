@@ -11,12 +11,12 @@ dependencies:
   standard_icon_library:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: packages
+      ref: master
       path: icons/standard
   labeled_value:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: packages
+      ref: master
       path: labeled_value
 
 dev_dependencies:

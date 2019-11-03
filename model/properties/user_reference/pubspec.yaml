@@ -11,7 +11,7 @@ dependencies:
   actor_reference:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: packages
+      ref: master
       path: model/properties/actor_reference
 
 dev_dependencies:

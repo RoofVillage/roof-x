@@ -12,7 +12,7 @@ dependencies:
   color:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: packages
+      ref: master
       path: spec/color
 
 dev_dependencies:
