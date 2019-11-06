@@ -22,7 +22,7 @@ class _SvgReference {
     if (path != null && path.endsWith(".svg")) {
       return SvgPicture.asset(
         path,
-        package: "svg",
+        package: "svg_library",
         height: height,
         width: width,
         color: color,
