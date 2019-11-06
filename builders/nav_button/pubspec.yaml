@@ -34,7 +34,7 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: master
       path: icons/navigation
-  svg_library:
+  svg:
     git:
       url: git@github.com:RoofVillage/roof-x.git
       ref: master
