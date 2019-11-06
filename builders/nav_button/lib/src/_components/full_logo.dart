@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:svg_library/index.dart';
+import 'package:svg/index.dart';
 import 'package:theme/index.dart';
 import 'package:typedefs/index.dart';
 
