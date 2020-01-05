@@ -1,0 +1,1 @@
+export 'src/views/index.dart';

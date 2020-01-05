@@ -8,17 +8,26 @@ import 'utils/index.dart';
 import '_param.dart' as _param;
 
 class PublicActivity {
-  Future<List<Object>> get(
-      {num pageSize, num pageNumber = 0, num startTimestamp = 0}) async {
+  Future<List<Object>> get({
+    num pageSize,
+    num pageNumber = 0,
+    num startTimestamp = 0,
+  }) async {
     final params = {
       _param.pageSize: pageSize,
       _param.pageNumber: pageNumber,
       _param.startTimestamp: startTimestamp
     };
 
-    final response = await post(service: Service.activity, params: params);
+    final response = await post(
+      service: Service.activity,
+      params: params,
+    );
+
     final objects = await compute<String, List<Object>>(
-        _streamableDataFromResponse, response);
+      _streamableDataFromResponse,
+      response,
+    );
 
     return objects;
   }
@@ -42,6 +51,8 @@ List<Object> _streamableDataFromResponse(String response) {
         return PublicLandlordTransfer.fromMap(json);
       case _param.maintenance:
         return PublicMaintenanceRequest.fromMap(json);
+      default:
+        return null;
     }
   }).toList();
 

@@ -48,6 +48,8 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: master
       path: lib/navigator
+  views:
+    path: ../../views
 
 dev_dependencies:
   flutter_test:
