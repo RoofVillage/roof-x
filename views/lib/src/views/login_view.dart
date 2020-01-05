@@ -1,12 +1,13 @@
 import 'package:views/src/view.dart';
+import 'package:views/src/view_model.dart';
 import 'package:views/src/view_models/index.dart';
 
-class LoginView extends View<LoginViewModel> {
+class LoginView extends View {
   @override
   String get address => "login";
 
   @override
-  LoginViewModel get model => LoginViewModel();
+  ViewModel get model => LoginViewModel();
 }
 
 
