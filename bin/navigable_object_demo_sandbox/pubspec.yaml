@@ -1,5 +1,5 @@
 name: navigable_object_demo_sandbox
-description: 
+description:
 
 version: 1.0.0+1
 
@@ -99,7 +99,7 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: master
       path: icons/small
-  svg_library:
+  svg:
     git:
       url: git@github.com:RoofVillage/roof-x.git
       ref: master
@@ -113,16 +113,16 @@ flutter:
   fonts:
     - family: RoofXSmallIcons
       fonts:
-      - asset: packages/x_small_icon_library/ttf/RoofXSmallIcons.ttf
+        - asset: packages/x_small_icon_library/ttf/RoofXSmallIcons.ttf
     - family: RoofSmallIcons
       fonts:
-      - asset: packages/small_icon_library/ttf/RoofSmallIcons.ttf
+        - asset: packages/small_icon_library/ttf/RoofSmallIcons.ttf
     - family: RoofStandardIcons
       fonts:
-      - asset: packages/standard_icon_library/ttf/RoofStandardIcons.ttf
+        - asset: packages/standard_icon_library/ttf/RoofStandardIcons.ttf
     - family: RoofNavigationIcons
       fonts:
-      - asset: packages/navigation_icon_library/ttf/RoofNavigationIcons.ttf
+        - asset: packages/navigation_icon_library/ttf/RoofNavigationIcons.ttf
     - family: azo
       fonts:
         - asset: packages/typography/fonts/azo/AzoSans-Thin.otf

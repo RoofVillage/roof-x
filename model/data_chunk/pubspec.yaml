@@ -19,10 +19,6 @@ dependencies:
       ref: master
       path: lib/disk
 
-dependency_overrides:
-  disk:
-    path: ../../lib/disk
-
 dev_dependencies:
   flutter_test:
     sdk: flutter

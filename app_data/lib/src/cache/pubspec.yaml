@@ -16,10 +16,6 @@ dependencies:
   data_chunk:
     path: ../../model/data_chunk
 
-dependency_overrides:
-  disk:
-    path: ../../lib/disk
-
 dev_dependencies:
   flutter_test:
     sdk: flutter

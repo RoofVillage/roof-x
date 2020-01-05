@@ -28,12 +28,8 @@ Future<String> post({Service service, Map<String, Object> params}) async {
     );
   }
 
-  // final response = await Network()
-  //     .post(address: service.address, params: params, headers: headers);
-  final response = await Network().get(
-    address:
-        "https://us-central1-roof-6b388.cloudfunctions.net/legacy/api/conversions/to-fahrenheit/100",
-  );
+  final response = await Network()
+      .post(address: service.address, params: params, headers: headers);
 
   print(response);
 

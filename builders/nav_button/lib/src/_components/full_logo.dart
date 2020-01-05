@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:svg_library/index.dart';
+import 'package:svg/index.dart';
 import 'package:theme/index.dart';
 import 'package:typedefs/index.dart';
 
@@ -10,7 +10,7 @@ class RoofFullLogoNavButton extends StatelessWidget with RoofNavButton {
 
   @override
   Widget iconForTheme(RoofInheritedTheme theme) {
-    // return SvgReference.logoFull.buildSvg(color: theme.color.icon.logo);
+    return SvgReference.logoFull.buildSvg(color: theme.color.icon.logo);
   }
 
   RoofFullLogoNavButton({@required this.onTap});
