@@ -1,5 +1,4 @@
 import 'package:views/src/view.dart';
-import 'package:views/src/view_model.dart';
 import 'package:views/src/view_models/index.dart';
 
 class LoginView extends View<LoginViewModel> {
@@ -7,7 +6,7 @@ class LoginView extends View<LoginViewModel> {
   String get address => "login";
 
   @override
-  ViewModel get model => LoginViewModel();
+  LoginViewModel get model => LoginViewModel();
 }
 
 
