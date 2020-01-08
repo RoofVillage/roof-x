@@ -11,31 +11,6 @@ dependencies:
     sdk: flutter
   http: ^0.12.0+3
   device_info: ^0.4.0+1
-  network:
-    git:
-      url: git@github.com:RoofVillage/roof-x.git
-      ref: master
-      path: lib/network
-  synchronizer:
-    git:
-      url: git@github.com:RoofVillage/roof-x.git
-      ref: master
-      path: synchronizer
-  session:
-    git:
-      url: git@github.com:RoofVillage/roof-x.git
-      ref: master
-      path: session
-  public:
-    git:
-      url: git@github.com:RoofVillage/roof-x.git
-      ref: master
-      path: model/objects/public
-  mappable:
-    git:
-      url: git@github.com:RoofVillage/roof-x.git
-      ref: master
-      path: model/mixins/mappable
 
 dev_dependencies:
   flutter_test:
