@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-Future<Map<String, Object>> loadViewData(String address) async {
+Future<Map<String, Object>> readViewData(String address) async {
   final url = 'https://views/$address';
 
   return http.get(url).then(
