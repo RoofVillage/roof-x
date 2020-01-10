@@ -17,6 +17,6 @@ class BlossmCommand {
 
   Future issue() {
     final url = "command.${domain.toString()}.$baseUrl/$route";
-    return http.post(url);
+    return http.post(url, body: payload);
   }
 }
