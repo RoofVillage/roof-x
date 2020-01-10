@@ -1,12 +1,13 @@
-import 'package:views/src/utils/_load.dart';
+import 'package:views/src/utils/index.dart';
 
-mixin ViewStore<View> {
-  String get address;
-  View Function(Map<String, Object>) get viewFromMap;
+mixin ViewStore<View, HttpRes> {
+  String get domain;
+  String get route;
+  View Function(HttpRes) get viewFromHttpResponse;
 
   Future<View> read() async {
-    return viewFromMap(
-      await readViewData(address),
+    return viewFromHttpResponse(
+      await readViewData<HttpRes>(route: route, domain: domain),
     );
   }
 }

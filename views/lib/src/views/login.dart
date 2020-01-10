@@ -1,12 +1,14 @@
 import 'package:views/src/view_store.dart';
 
-class LoginViewStore with ViewStore<LoginView> {
+class LoginViewStore with ViewStore<LoginView, Map> {
   @override
-  String get address => "login";
+  String get route => "login";
 
   @override
-  LoginView Function(Map<String, Object>) get viewFromMap =>
-      (Map<String, Object> map) {
+  String get domain => "auth";
+
+  @override
+  LoginView Function(Map) get viewFromHttpResponse => (Map map) {
         return LoginView(
           day: map["day"],
           temperature: map["temperature"],
