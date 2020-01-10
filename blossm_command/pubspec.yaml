@@ -1,5 +1,5 @@
-name: commands
-description: Library for issuing commands via blossm
+name: blossm_command
+description: Framework for issuing a blossm command
 
 version: 1.0.0+1
 
@@ -11,8 +11,6 @@ dependencies:
     sdk: flutter
   http: ^0.12.0+3
   device_info: ^0.4.0+1
-  blossm_command:
-    path: ../blossm_command
 
 dev_dependencies:
   flutter_test:
