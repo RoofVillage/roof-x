@@ -1,14 +1,13 @@
-import 'package:views/src/view_store.dart';
+import 'package:blossm_view_store/index.dart';
+import 'package:views/src/domains/challenge/challenge_domain_config.dart';
 
-class ChallengeViewStore with ViewStore<ChallengeView, List> {
-  @override
-  String get domain => "challenge";
-
+class CodesViewStore
+    with BlossmViewStore<CodesView, List>, ChallengeDomainConfig {
   @override
   String get route => "codes";
 
   @override
-  ChallengeView Function(List) get viewFromHttpResponse => (List list) {
+  CodesView Function(List) get viewFromHttpResponse => (List list) {
         final List<ChallengeCode> codes = List.from(
           list.map(
             (obj) => ChallengeCode(
@@ -22,14 +21,14 @@ class ChallengeViewStore with ViewStore<ChallengeView, List> {
           ),
         );
 
-        return ChallengeView(codes: codes);
+        return CodesView(codes: codes);
       };
 }
 
-class ChallengeView {
+class CodesView {
   final List<ChallengeCode> codes;
 
-  ChallengeView({this.codes});
+  CodesView({this.codes});
 }
 
 class ChallengeCode {

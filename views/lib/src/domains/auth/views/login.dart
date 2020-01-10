@@ -1,11 +1,9 @@
-import 'package:views/src/view_store.dart';
+import 'package:blossm_view_store/index.dart';
+import 'package:views/src/domains/auth/auth_domain_config.dart';
 
-class LoginViewStore with ViewStore<LoginView, Map> {
+class LoginViewStore with BlossmViewStore<LoginView, Map>, AuthDomainConfig {
   @override
   String get route => "login";
-
-  @override
-  String get domain => "auth";
 
   @override
   LoginView Function(Map) get viewFromHttpResponse => (Map map) {

@@ -1,5 +1,5 @@
-name: views
-description: Framework for loading dynamic data for different views.
+name: blossm_view_store
+description: Generic blossm view loader
 
 version: 1.0.0+1
 
@@ -11,8 +11,6 @@ dependencies:
     sdk: flutter
   http: ^0.12.0+3
   device_info: ^0.4.0+1
-  blossm_view_store:
-    path: ../blossm_view_store
 
 dev_dependencies:
   flutter_test:
