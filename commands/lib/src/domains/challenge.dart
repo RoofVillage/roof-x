@@ -21,6 +21,7 @@ class ChallengeCommands extends CommandDomain {
       route: "create",
       domain: domain,
       baseUrl: baseUrl,
+      tokenStore: tokenStore,
     ).issue();
   }
 }
