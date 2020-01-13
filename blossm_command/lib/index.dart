@@ -1,1 +1,2 @@
-export 'src/blossom_command.dart';
+export 'src/blossm_command.dart';
+export 'src/utils/index.dart';

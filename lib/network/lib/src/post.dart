@@ -7,9 +7,9 @@ class Network {
   static const _jsonContentType = 'application/json';
   static const _jsonAccept = 'application/json';
 
-  Future<String> get({String address}) async {
+  static Future<String> get({String address}) async {
     final response = await http.get(Uri.encodeFull(address));
-    print(response);
+    print("GET response: $response");
     switch (response.statusCode) {
       case 200:
         return utf8.decode(response.bodyBytes);
@@ -18,10 +18,15 @@ class Network {
     }
   }
 
-  Future<String> post(
-      {String address,
-      Map<String, Object> params,
-      Map<String, String> headers}) async {
+  static Future<String> post({
+    String address,
+    Map<String, Object> params,
+    Map<String, String> headers,
+  }) async {
+    print("POST address: $address");
+    print("POST params: $params");
+    print("POST headers: $headers");
+    
     final Map<String, String> defaultHeaders = {
       'content-type': _jsonContentType,
       'accept': _jsonAccept
@@ -33,10 +38,13 @@ class Network {
       headers = defaultHeaders;
     }
 
-    final response = await http.post(Uri.encodeFull(address),
-        body: json.encode(params), headers: headers);
+    final response = await http.post(
+      Uri.encodeFull(address),
+      body: json.encode(params),
+      headers: headers,
+    );
 
-    print(response);
+    print("POST response: ${utf8.decode(response.bodyBytes)}");
 
     switch (response.statusCode) {
       case 200:

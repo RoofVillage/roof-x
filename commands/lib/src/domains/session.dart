@@ -1,24 +1,22 @@
-import 'package:flutter/material.dart';
+import 'package:commands/src/utils/device_info.dart';
 import 'package:blossm_command/index.dart';
 import 'package:commands/src/utils/index.dart';
 
-class ChallengeCommands extends CommandDomain {
+class SessionCommands extends CommandDomain {
   @override
-  String get domain => "challenge";
+  String get domain => "session";
 
   @override
   String get baseUrl => coreStagingBaseUrl;
 
-  Future create({
-    @required String phone,
-    @required String hash,
-  }) {
+  Future start() async {
+    final deviceInfo = await DeviceInfo.read();
+
     return BlossmCommand(
       payload: {
-        phone: phone,
-        hash: hash,
+        "device": deviceInfo.toMap(),
       },
-      route: "create",
+      route: "start",
       domain: domain,
       baseUrl: baseUrl,
       tokenStore: tokenStore,

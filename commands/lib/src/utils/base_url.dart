@@ -1,1 +1,1 @@
-const String coreStagingBaseUrl = "core.roof.io";
+const String coreStagingBaseUrl = "core.staging.sm.network";

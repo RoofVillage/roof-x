@@ -21,6 +21,8 @@ class RoofPrimaryCenterButton extends StatefulWidget with RoofCenteredButton {
           case ButtonStatusOption.loading:
             return theme.color.background.primaryAction;
         }
+
+        return null;
       };
   get textColor => (context) {
         final theme = RoofTheme.of(context);
@@ -33,8 +35,8 @@ class RoofPrimaryCenterButton extends StatefulWidget with RoofCenteredButton {
     @required this.onTap,
     @required this.text,
     this.icon,
-    this.status = ButtonStatusOption.ready,
-  });
+    ButtonStatusOption status,
+  }) : this.status = status ?? ButtonStatusOption.ready;
 
   @override
   State<StatefulWidget> createState() => _RoofPrimaryCenterButtonState();

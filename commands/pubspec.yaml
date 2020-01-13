@@ -4,7 +4,7 @@ description: Library for issuing commands via blossm
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.1.0"
+  sdk: ">=2.2.2"
 
 dependencies:
   flutter:
@@ -13,6 +13,11 @@ dependencies:
   device_info: ^0.4.0+1
   blossm_command:
     path: ../blossm_command
+  secure_storage:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: lib/secure_storage
 
 dev_dependencies:
   flutter_test:
