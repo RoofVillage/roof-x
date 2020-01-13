@@ -4,13 +4,15 @@ description: Framework for issuing a blossm command
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.1.0"
+  sdk: ">=2.2.0"
 
 dependencies:
   flutter:
     sdk: flutter
   http: ^0.12.0+3
   device_info: ^0.4.0+1
+  network:
+    path: ../lib/network
 
 dev_dependencies:
   flutter_test:

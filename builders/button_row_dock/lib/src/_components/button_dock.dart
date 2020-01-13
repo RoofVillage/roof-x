@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:distance/index.dart' as distance;
 
-class RoofButtonDock extends StatelessWidget {
+class ButtonRowDock extends StatelessWidget {
   final List<Widget> buttons;
 
-  RoofButtonDock({this.buttons});
+  ButtonRowDock({this.buttons});
 
   final _paddingSize = distance.c;
 
@@ -17,9 +17,16 @@ class RoofButtonDock extends StatelessWidget {
 
     for (var button in buttons) {
       if (button == buttons.last) {
-        widgets.add(button);
+        widgets.add(
+          Expanded(child: button),
+        );
       } else {
-        widgets.addAll([button, spacer]);
+        widgets.addAll(
+          [
+            Expanded(child: button),
+            spacer,
+          ],
+        );
       }
     }
 

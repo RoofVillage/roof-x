@@ -1,1 +1,1 @@
-export 'src/button_dock_builder.dart';
+export 'src/button_row_dock_builder.dart';

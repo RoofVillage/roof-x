@@ -1,3 +1,4 @@
+import 'package:commands/index.dart';
 import 'package:flutter/material.dart';
 import 'package:stream/index.dart';
 import 'package:artboard/index.dart';
@@ -16,6 +17,8 @@ class RootWidget extends StatelessWidget {
       builder: (context, snapshot) {
         if (!snapshot.hasData) return Container();
         final appState = snapshot.data;
+
+        SessionCommands().start();
 
         Artboard startingArtboard;
         if (appState.isInSession) {

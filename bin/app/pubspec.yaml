@@ -34,10 +34,26 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: master
       path: lib/device_screen
+  commands:
+    path: ../../commands
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+dependency_overrides:
+  artboard:
+    path: ../../lib/artboard
+  vertical_full_screen_artboard_scaffold:
+    path: ../../artboard_scaffolds/vertical_full_screen
+  public_activity_artboard:
+    path: ../../artboards/public_activity
+  button_builder:
+    path: ../../builders/button
+  network:
+    path: ../../lib/network
+  app_data:
+    path: ../../app_data
 
 flutter:
   fonts:
