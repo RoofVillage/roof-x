@@ -34,6 +34,11 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: master
       path: lib/device_screen
+  commands:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: commands
 
 dev_dependencies:
   flutter_test:

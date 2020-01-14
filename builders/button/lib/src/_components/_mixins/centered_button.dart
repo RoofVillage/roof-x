@@ -57,7 +57,7 @@ mixin RoofCenteredButtonState {
 
     final decoration = BoxDecoration(
       border: Border.all(color: button.strokeColor(context)),
-      color: button.backgroundColor(context).withOpacity(opacity),
+      color: button.backgroundColor(context)?.withOpacity(opacity),
       borderRadius: BorderRadius.all(corner_radius.regular),
     );
 

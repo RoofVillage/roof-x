@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:commands/index.dart';
 import 'package:form_builder/index.dart';
 
 mixin LogInArtboardData implements FormBuilder {
@@ -14,6 +15,13 @@ mixin LogInArtboardData implements FormBuilder {
 
   @override
   String get submitButtonText => "Log in";
+
+  submit(context) {
+    return ChallengeCommands().create(
+      hash: _usernameFieldData.value,
+      phone: _passwordFieldData.value,
+    );
+  }
 
   @override
   Future<List<StreamableFormFieldData>> get initialFieldData async =>
