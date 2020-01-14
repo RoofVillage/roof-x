@@ -34,7 +34,10 @@ dependencies:
       ref: master
       path: artboards/reset_password
   commands:
-    path: ../../commands
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: commands
 
 dev_dependencies:
   flutter_test:

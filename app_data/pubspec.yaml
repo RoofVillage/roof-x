@@ -31,10 +31,6 @@ dependencies:
       ref: master
       path: model/objects/public
 
-dependency_overrides:
-  network:
-    path: ../lib/network
-
 dev_dependencies:
   flutter_test:
     sdk: flutter

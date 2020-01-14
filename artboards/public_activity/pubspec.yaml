@@ -49,27 +49,25 @@ dependencies:
       ref: master
       path: lib/navigator
   views:
-    path: ../../views
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: views
   button_row_dock_builder:
-    path: ../../builders/button_row_dock
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: builders/button_row_dock
   button_builder:
     git:
       url: git@github.com:RoofVillage/roof-x.git
       ref: master
       path: builders/button
-    # button_row_dock_builder:
-    #   git:
-    #     url: git@github.com:RoofVillage/roof-x.git
-    #     ref: master
-    #     path: builders/button_row_dock
   commands:
-    path: ../../commands
-
-dependency_overrides:
-  button_builder:
-    path: ../../builders/button
-#   button_row_dock_builder:
-#     path: ../../builders/button_row_dock
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: commands
 
 dev_dependencies:
   flutter_test:

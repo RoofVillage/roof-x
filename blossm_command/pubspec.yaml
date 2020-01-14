@@ -12,7 +12,10 @@ dependencies:
   http: ^0.12.0+3
   device_info: ^0.4.0+1
   network:
-    path: ../lib/network
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: lib/network
 
 dev_dependencies:
   flutter_test:
