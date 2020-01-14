@@ -20,6 +20,6 @@ class _StackVerticalFloatingArtboardState
     with VerticalFloatingArtboardState<StackVerticalFloatingArtboard> {
   @override
   Widget buildBody(BuildContext context) {
-    return widget.buildButtonStack(context, buttons: widget.buildButtons(context));
+    return widget.buildButtonStack(context);
   }
 }
