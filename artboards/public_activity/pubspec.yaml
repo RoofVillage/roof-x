@@ -35,6 +35,11 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: master
       path: icons/standard
+  x_small_icon_library:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: icons/x_small
   public:
     git:
       url: git@github.com:RoofVillage/roof-x.git

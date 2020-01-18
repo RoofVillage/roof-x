@@ -29,7 +29,7 @@ mixin VerticalFullScreenArtboardState<T extends VerticalFullScreenArtboard>
       child: MediaQuery.removePadding(
         context: context,
         removeTop: true,
-        removeBottom: false,
+        removeBottom: true,
         child: body,
       ),
     );
