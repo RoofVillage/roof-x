@@ -27,7 +27,7 @@ dependencies:
       path: lib/navigator
   button_row_dock_builder:
     git:
-      url: git@github.com:RoofVillage/roof-x.git
+      url: git@github.com:RoofVillage/roof-x.git  
       ref: master
       path: builders/button_row_dock
   commands:

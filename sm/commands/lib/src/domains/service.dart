@@ -20,7 +20,7 @@ class ServiceCommands extends CommandDomain {
       domain: domain,
       baseUrl: baseUrl,
       tokenStore: tokenStore,
-    ).issue();
+    ).fakeSuccess();
   }
 
   Future save() {
@@ -30,6 +30,6 @@ class ServiceCommands extends CommandDomain {
       domain: domain,
       baseUrl: baseUrl,
       tokenStore: tokenStore,
-    ).issue();
+    ).fakeSuccess();
   }
 }

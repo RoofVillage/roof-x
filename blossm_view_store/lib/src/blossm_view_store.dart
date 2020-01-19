@@ -22,4 +22,8 @@ mixin BlossmViewStore<View, HttpRes> {
       ),
     );
   }
+
+  Future<View> fakeResponse(View response) async {
+    return Future.value(response);
+  }
 }

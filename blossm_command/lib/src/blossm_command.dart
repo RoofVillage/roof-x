@@ -21,9 +21,25 @@ class BlossmCommand {
     this.tokenStore,
   });
 
-  Future stub() async {
+  Future fakeSuccess() async {
+    print(
+      "Faking success from command with route '$route' and payload: $payload",
+    );
+
     return Future.delayed(
       Duration(milliseconds: 500),
+      () => "200",
+    );
+  }
+
+  Future fakeError() async {
+    print(
+      "Faking error from command with route '$route' and payload: $payload",
+    );
+
+    return Future.delayed(
+      Duration(milliseconds: 500),
+      () => "400",
     );
   }
 
