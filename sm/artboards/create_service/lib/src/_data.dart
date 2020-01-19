@@ -18,16 +18,19 @@ mixin CreateServiceArtboardData implements FormBuilder {
   @override
   String get submitButtonText => "Create";
 
+  @override
   submit(context) {
     return ServiceCommands()
         .create(
-          name: _serviceNameFieldData.value,
-        )
+      name: _serviceNameFieldData.value,
+    )
         .then(
-          (context) => ArtboardNavigator.of(context).goTo(
-            ServiceKeyVerticalFullscreenArtboard(),
-          ),
+      (response) {
+        ArtboardNavigator.of(context).goTo(
+          ServiceKeyVerticalFullscreenArtboard(),
         );
+      },
+    );
   }
 
   @override

@@ -9,7 +9,9 @@ mixin ServiceKeyArtboardData {
       ))
           .name;
 
-  final getKey = (context) => ServiceKeyViewStore().fakeResponse(
+  Future<String> get serviceKey async =>
+      (await ServiceKeyViewStore().fakeResponse(
         ServiceKeyView(key: "uniqueKey123"),
-      );
+      ))
+          .key;
 }
