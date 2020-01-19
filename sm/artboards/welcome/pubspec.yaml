@@ -1,0 +1,66 @@
+name: welcome_activity_artboard
+description: Welcomes user to Sustainers Market app.
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  empty_table_vertical_full_screen_artboard_template:
+    path: ../../../artboard_templates/vertical_full_screen/empty_table
+  sign_up_artboard:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: artboards/sign_up
+  app_data:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: app_data
+  nav_button_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: builders/nav_button
+  navigation_icon_library:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: icons/navigation
+  standard_icon_library:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: icons/standard
+  public:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: model/objects/public
+  navigator:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: lib/navigator
+  button_row_dock_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: builders/button_row_dock
+  button:
+    path: ../../../components/button
+  commands:
+    path: ../../commands
+  views:
+    path: ../../views
+  log_in_artboard:
+    path: ../log_in
+  create_service_artboard:
+    path: ../create_service
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

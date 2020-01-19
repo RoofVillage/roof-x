@@ -1,0 +1,42 @@
+name: service_key_artboard
+description: Allows the user to generate and view key for service.
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  empty_table_vertical_full_screen_artboard_template:
+    path: ../../../artboard_templates/vertical_full_screen/empty_table
+  form_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: builders/form
+  app_data:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: app_data
+  navigator:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: lib/navigator
+  button_row_dock_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: builders/button_row_dock
+  commands:
+    path: ../../commands
+  views:
+    path: ../../views
+  button:
+    path: ../../../components/button
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

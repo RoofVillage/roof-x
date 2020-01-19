@@ -21,6 +21,12 @@ class BlossmCommand {
     this.tokenStore,
   });
 
+  Future stub() async {
+    return Future.delayed(
+      Duration(milliseconds: 500),
+    );
+  }
+
   Future issue() async {
     final url = "https://command.$domain.$baseUrl/$route";
 
