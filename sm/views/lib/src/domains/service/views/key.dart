@@ -1,5 +1,5 @@
 import 'package:blossm_view_store/index.dart';
-import 'package:views/src/domains/service/auth_domain_config.dart';
+import 'package:views/src/domains/service/service_domain_config.dart';
 
 class ServiceKeyViewStore
     with BlossmViewStore<ServiceKeyView, Map>, ServiceDomainConfig {

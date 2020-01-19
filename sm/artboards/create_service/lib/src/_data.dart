@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:commands/index.dart';
 import 'package:form_builder/index.dart';
 import 'package:navigator/index.dart';
-import 'package:service_key_artboard/index.dart';
+import 'package:services_artboard/index.dart';
 
 mixin CreateServiceArtboardData implements FormBuilder {
   @override
@@ -27,7 +27,7 @@ mixin CreateServiceArtboardData implements FormBuilder {
         .then(
       (response) {
         ArtboardNavigator.of(context).goTo(
-          ServiceKeyVerticalFullscreenArtboard(),
+          ServicesVerticalFloatingArtboard(),
         );
       },
     );
