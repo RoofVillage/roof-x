@@ -5,11 +5,13 @@ import 'package:vertical_floating_artboard_scaffold/index.dart';
 
 abstract class StackVerticalFloatingArtboard extends StatefulWidget
     with VerticalFloatingArtboard, Artboard, ButtonStackBuilder {
-  List<Widget> buildBody(BuildContext context) => null;
-  List<Widget> buildButtons(BuildContext context);
-  String get auxiliaryText => null;
-
   String get title;
+
+  List<Widget> get buttonStackButtons;
+
+  List<Widget> buildBody(BuildContext context) => null;
+
+  String get auxiliaryText => null;
 
   @override
   State<StatefulWidget> createState() => _StackVerticalFloatingArtboardState();
@@ -20,6 +22,18 @@ class _StackVerticalFloatingArtboardState
     with VerticalFloatingArtboardState<StackVerticalFloatingArtboard> {
   @override
   Widget buildBody(BuildContext context) {
-    return widget.buildButtonStack(context);
+    final List<Widget> children = [];
+
+    if (widget.buildBody != null)
+      children.addAll(
+        widget.buildBody(context).toList(),
+      );
+
+    if (widget.buttonStackButtons != null)
+      children.add(widget.buildButtonStack(context));
+
+    return Column(
+      children: children,
+    );
   }
 }

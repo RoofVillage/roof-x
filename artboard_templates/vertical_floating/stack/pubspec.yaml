@@ -19,10 +19,7 @@ dependencies:
       ref: master
       path: artboard_scaffolds/vertical_floating
   button_stack_builder:
-    git:
-      url: git@github.com:RoofVillage/roof-x.git
-      ref: master
-      path: builders/button_stack
+    path: ../../../builders/button_stack
 
 dev_dependencies:
   flutter_test:

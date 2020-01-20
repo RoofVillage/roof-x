@@ -32,8 +32,10 @@ dependencies:
     path: ../../views
   commands:
     path: ../../commands
-  service_key_artboard:
-    path: ../service_key
+  service_dashboard_artboard:
+    path: ../service_dashboard
+  view_stream_builder:
+    path: ../../../components/view_stream_builder
 
 dev_dependencies:
   flutter_test:

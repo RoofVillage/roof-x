@@ -32,4 +32,23 @@ class ServiceCommands extends CommandDomain {
       tokenStore: tokenStore,
     ).fakeSuccess();
   }
+
+  Future generateKey({
+    @required String serviceId,
+  }) {
+    return BlossmCommand(
+      payload: {
+        "service_id": serviceId,
+      },
+      route: "generate_key",
+      domain: domain,
+      baseUrl: baseUrl,
+      tokenStore: tokenStore,
+    ).fakeSuccess(
+      response: {
+        "public": serviceId,
+        "private": "secret69420",
+      },
+    );
+  }
 }

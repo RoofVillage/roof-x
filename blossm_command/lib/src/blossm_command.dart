@@ -1,10 +1,10 @@
 import 'dart:convert';
 
+import 'package:blossm_command/src/utils/fake_command_response.dart';
 import 'package:flutter/material.dart';
 import 'package:network/index.dart';
 import 'package:blossm_command/index.dart';
 import 'package:blossm_command/src/utils/index.dart';
-import 'package:blossm_command/src/utils/_params.dart' as params;
 
 class BlossmCommand {
   final String route;
@@ -21,25 +21,33 @@ class BlossmCommand {
     this.tokenStore,
   });
 
-  Future fakeSuccess() async {
+  String get _tokenKey => tokenStore.tokenKey;
+
+  Future fakeSuccess({Map response}) async {
     print(
       "Faking success from command with route '$route' and payload: $payload",
     );
 
     return Future.delayed(
       Duration(milliseconds: 500),
-      () => "200",
+      () => FakeCommandResponse(
+        status: "200",
+        body: response,
+      ),
     );
   }
 
-  Future fakeError() async {
+  Future fakeError({Object response}) async {
     print(
       "Faking error from command with route '$route' and payload: $payload",
     );
 
     return Future.delayed(
       Duration(milliseconds: 500),
-      () => "400",
+      () => {
+        "status": '400',
+        "body": response,
+      },
     );
   }
 
@@ -67,8 +75,10 @@ class BlossmCommand {
       (response) {
         final Map data = json.decode(response);
 
-        if (data.containsKey(params.sessionToken)) {
-          tokenStore.saveToken(data[params.sessionToken]);
+        if (tokenStore != null &&
+            _tokenKey != null &&
+            data.containsKey(_tokenKey)) {
+          tokenStore.saveToken(data[_tokenKey]);
         }
       },
     );

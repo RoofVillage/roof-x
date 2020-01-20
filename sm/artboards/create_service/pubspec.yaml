@@ -30,8 +30,6 @@ dependencies:
       path: lib/navigator
   commands:
     path: ../../commands
-  service_key_artboard:
-    path: ../service_key
   services_artboard:
     path: ../services
 
