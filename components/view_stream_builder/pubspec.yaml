@@ -1,0 +1,30 @@
+name: view_stream_builder
+description: Builds a widget from a stream data source with loading and empty states.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  theme:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: theme
+  haptics:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: lib/haptics
+  typedefs:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: lib/typedefs
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

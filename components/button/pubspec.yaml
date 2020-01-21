@@ -1,0 +1,65 @@
+name: button
+description: Buttons
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  standard_icon_library:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: icons/standard
+  x_small_icon_library:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: icons/x_small
+  typography:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: spec/typography
+  theme:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: theme
+  haptics:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: lib/haptics
+  distance:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: spec/distance
+  corner_radius:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: spec/corner_radius
+  typedefs:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: lib/typedefs
+  button_status_option:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: options/button_status
+  image_picker_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: builders/image_picker
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

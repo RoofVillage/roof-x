@@ -44,6 +44,14 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+dependency_overrides:
+  public_activity_artboard:
+    path: ../../artboards/public_activity
+  button_stack_builder:
+    path: ../../builders/button_stack
+  vertical_full_screen_artboard_scaffold:
+    path: ../../artboard_scaffolds/vertical_full_screen
+
 flutter:
   fonts:
     - family: RoofXSmallIcons

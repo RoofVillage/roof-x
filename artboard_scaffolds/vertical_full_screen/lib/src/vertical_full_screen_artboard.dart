@@ -24,6 +24,7 @@ mixin VerticalFullScreenArtboardState<T extends VerticalFullScreenArtboard>
     final children = <Widget>[];
 
     if (navBar != null) children.add(navBar);
+
     final stretchedBody = Expanded(
       child: MediaQuery.removePadding(
         context: context,
@@ -43,7 +44,9 @@ mixin VerticalFullScreenArtboardState<T extends VerticalFullScreenArtboard>
 
     final scaffold = Scaffold(
       backgroundColor: theme.color.background.generalSecondary,
-      body: column,
+      body: SafeArea(
+        child: column,
+      ),
     );
 
     return RoofTheme(theme.current, child: scaffold);

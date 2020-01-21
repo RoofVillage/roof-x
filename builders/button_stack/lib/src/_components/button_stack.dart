@@ -6,7 +6,8 @@ class RoofButtonStack extends StatelessWidget {
 
   RoofButtonStack({@required this.buttons});
 
-  final _buttonVerticalPadding = EdgeInsets.only(top: distance.d);
+  final padding = distance.d;
+
   @override
   Widget build(BuildContext context) {
     final List<Widget> widgets = [];
@@ -15,11 +16,18 @@ class RoofButtonStack extends StatelessWidget {
       widgets.add(
         Padding(
           child: button,
-          padding: _buttonVerticalPadding,
+          padding: EdgeInsets.only(top: padding),
         ),
       );
     }
 
-    return Column(children: widgets);
+    return Container(
+      padding: EdgeInsets.only(
+        left: padding,
+        right: padding,
+        bottom: padding,
+      ),
+      child: Column(children: widgets),
+    );
   }
 }
