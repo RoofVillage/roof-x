@@ -1,47 +1,61 @@
 import 'dart:ui';
 
 import 'package:semantic_theme/index.dart';
+import 'package:theme/src/roof_theme_option.dart';
 
-class RoofIconColor extends SemanticIconColor {
-  RoofIconColor(ThemeOption currentThemeOption) : super(currentThemeOption);
+import '../../../_constants/_colors.dart' as colors;
 
-  @override
-  // TODO: implement action
-  Color get action => null;
-
-  @override
-  // TODO: implement bad
-  Color get bad => null;
+class RoofIconColor extends SemanticIconColor<RoofThemeOption> {
+  RoofIconColor(RoofThemeOption currentThemeOption) : super(currentThemeOption);
 
   @override
-  // TODO: implement disabled
-  Color get disabled => null;
+  Color get actionPrimary => colors.brandBlue;
 
   @override
-  // TODO: implement good
-  Color get good => null;
+  Color get actionSecondary => colors.brandBlue;
 
   @override
-  // TODO: implement inactive
-  Color get inactive => null;
+  Color get actionDisabled => forThemeOption({
+        RoofThemeOption.light: colors.gray2,
+        RoofThemeOption.dark: colors.gray3,
+      });
 
   @override
-  // TODO: implement logo
-  Color get logo => null;
+  Color get inactive => forThemeOption({
+        RoofThemeOption.light: colors.gray2,
+        RoofThemeOption.dark: colors.gray3,
+      });
 
   @override
-  // TODO: implement nav
-  Color get nav => null;
+  Color get logo => colors.brandRed;
 
   @override
-  // TODO: implement primary
-  Color get primary => null;
+  Color get nav => colors.brandRed;
 
   @override
-  // TODO: implement secondary
-  Color get secondary => null;
+  Color get generalPrimary => forThemeOption({
+        RoofThemeOption.light: colors.black3,
+        RoofThemeOption.dark: colors.white2,
+      });
 
   @override
-  // TODO: implement warn
-  Color get warn => null;
+  Color get generalSecondary => forThemeOption({
+        RoofThemeOption.light: colors.gray4,
+        RoofThemeOption.dark: colors.gray1,
+      });
+
+  @override
+  Color get good => forThemeOption({
+        RoofThemeOption.light: colors.green,
+        RoofThemeOption.dark: colors.darkGreen,
+      });
+
+  @override
+  Color get bad => colors.red;
+
+  @override
+  Color get warn => forThemeOption({
+        RoofThemeOption.light: colors.yellow,
+        RoofThemeOption.dark: colors.darkYellow,
+      });
 }

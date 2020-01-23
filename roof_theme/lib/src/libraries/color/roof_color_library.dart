@@ -1,21 +1,25 @@
 import 'package:semantic_theme/index.dart';
+import 'package:theme/src/roof_theme_option.dart';
 
 import '_semantic_colors/index.dart';
 
-class RoofColorLibrary extends ColorLibrary {
-  final ThemeOption currentThemeOption;
-  RoofColorLibrary(this.currentThemeOption);
+class RoofColorLibrary extends ColorLibrary<RoofThemeOption> {
+  RoofColorLibrary(RoofThemeOption currentThemeOption)
+      : super(currentThemeOption);
 
   @override
-  SemanticBackgroundColor get background =>
+  SemanticBackgroundColor<RoofThemeOption> get background =>
       RoofBackgroundColor(currentThemeOption);
 
   @override
-  SemanticIconColor get icon => RoofIconColor(currentThemeOption);
+  SemanticIconColor<RoofThemeOption> get icon =>
+      RoofIconColor(currentThemeOption);
 
   @override
-  SemanticStrokeColor get stroke => RoofStrokeColor(currentThemeOption);
+  SemanticStrokeColor<RoofThemeOption> get stroke =>
+      RoofStrokeColor(currentThemeOption);
 
   @override
-  SemanticTextColor get text => RoofTextColor(currentThemeOption);
+  SemanticTextColor<RoofThemeOption> get text =>
+      RoofTextColor(currentThemeOption);
 }

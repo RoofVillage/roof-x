@@ -1,39 +1,47 @@
 import 'dart:ui';
 
 import 'package:semantic_theme/index.dart';
+import 'package:theme/src/roof_theme_option.dart';
 
-class RoofStrokeColor extends SemanticStrokeColor {
-  RoofStrokeColor(ThemeOption currentThemeOption) : super(currentThemeOption);
+import '../../../_constants/_colors.dart' as colors;
 
-  @override
-  // TODO: implement actionPrimary
-  Color get actionPrimary => null;
-
-  @override
-  // TODO: implement actionSecondary
-  Color get actionSecondary => null;
+class RoofStrokeColor extends SemanticStrokeColor<RoofThemeOption> {
+  RoofStrokeColor(RoofThemeOption currentThemeOption)
+      : super(currentThemeOption);
 
   @override
-  // TODO: implement bad
-  Color get bad => null;
+  Color get actionPrimary => colors.brandBlue;
 
   @override
-  // TODO: implement disabled
-  Color get disabled => null;
+  Color get actionSecondary => colors.brandBlue;
 
   @override
-  // TODO: implement focus
-  Color get focus => null;
+  Color get actionDisabled => colors.brandBlueFade;
 
   @override
-  // TODO: implement good
-  Color get good => null;
+  Color get focus => forThemeOption({
+        RoofThemeOption.light: colors.gray3,
+        RoofThemeOption.dark: colors.gray2,
+      });
 
   @override
-  // TODO: implement light
-  Color get light => null;
+  Color get light => forThemeOption({
+        RoofThemeOption.light: colors.gray1,
+        RoofThemeOption.dark: colors.gray4,
+      });
 
   @override
-  // TODO: implement warn
-  Color get warn => null;
+  Color get good => forThemeOption({
+        RoofThemeOption.light: colors.green,
+        RoofThemeOption.dark: colors.darkGreen,
+      });
+
+  @override
+  Color get bad => colors.red;
+
+  @override
+  Color get warn => forThemeOption({
+        RoofThemeOption.light: colors.yellow,
+        RoofThemeOption.dark: colors.darkYellow,
+      });
 }
