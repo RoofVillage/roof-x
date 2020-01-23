@@ -1,22 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:semantic_theme/src/option.dart';
 
+import '_actions.dart';
+import '_notify.dart';
+import '_general.dart';
+import '_inactive.dart';
 import '_semantic_color.dart';
 
-abstract class SemanticIconColor extends SemanticColor {
-  SemanticIconColor(ThemeOption currentThemeOption) : super(currentThemeOption);
-
-  Color get primary;
-  Color get secondary;
-
-  Color get good;
-  Color get bad;
-  Color get warn;
-
+abstract class SemanticIconColor<T> extends SemanticColor<T>
+    with InactiveColors, GeneralColors, NotifyColors, ActionColors {
+  SemanticIconColor(T currentThemeOption) : super(currentThemeOption);
+  
   Color get nav;
-  Color get action;
   Color get logo;
-
-  Color get inactive;
-  Color get disabled;
 }

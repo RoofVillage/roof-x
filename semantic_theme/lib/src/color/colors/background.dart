@@ -1,27 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:semantic_theme/src/option.dart';
+import 'package:semantic_theme/src/color/colors/_inactive.dart';
 
+import '_actions.dart';
+import '_notify.dart';
+import '_general.dart';
 import '_semantic_color.dart';
 
-abstract class SemanticBackgroundColor extends SemanticColor {
-  SemanticBackgroundColor(ThemeOption currentThemeOption)
+abstract class SemanticBackgroundColor<T> extends SemanticColor<T>
+    with NotifyColors, GeneralColors, ActionColors, InactiveColors {
+  SemanticBackgroundColor(T currentThemeOption)
       : super(currentThemeOption);
 
   Color get inputForeground;
   Color get inputBackground;
-
-  Color get generalPrimary;
-  Color get generalSecondary;
-
-  Color get actionPrimary;
-  Color get actionSecondary;
-
-  Color get inactive;
-  Color get disabled;
-
-  Color get good;
-  Color get warn;
-  Color get bad;
 
   Color get brand;
   Color get scrim;

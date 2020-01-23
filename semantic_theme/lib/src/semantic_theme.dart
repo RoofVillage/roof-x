@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:semantic_theme/src/color/color_library.dart';
 import 'package:semantic_theme/src/curve/curve_library.dart';
 import 'package:semantic_theme/src/distance/distance_library.dart';
@@ -8,11 +7,9 @@ import 'package:semantic_theme/src/radius/radius_library.dart';
 import 'package:semantic_theme/src/shadow/shadow_library.dart';
 import 'package:semantic_theme/src/typography/typography_library.dart';
 
-import 'option.dart';
-
-abstract class SemanticTheme extends StatefulWidget {
+abstract class SemanticTheme<T> extends StatefulWidget {
   final Widget child;
-  final ThemeOption themeOption;
+  final T themeOption;
 
   SemanticTheme(
     this.themeOption, {
@@ -20,7 +17,7 @@ abstract class SemanticTheme extends StatefulWidget {
   });
 
   @override
-  SemanticInheritedTheme createState();
+  SemanticInheritedTheme<T> createState();
 
   static SemanticInheritedTheme of(
     BuildContext context, {
@@ -34,8 +31,8 @@ abstract class SemanticTheme extends StatefulWidget {
   }
 }
 
-abstract class SemanticInheritedTheme extends State<SemanticTheme> {
-  ThemeOption currentThemeOption;
+abstract class SemanticInheritedTheme<T> extends State<SemanticTheme<T>> {
+  T currentThemeOption;
 
   ColorLibrary get colors;
   CurveLibrary get curves;
@@ -45,15 +42,15 @@ abstract class SemanticInheritedTheme extends State<SemanticTheme> {
   ShadowLibrary get shadows;
   TypographyLibrary get typography;
 
-  SystemUiOverlayStyle get systemChromeStyle {
-    switch (currentThemeOption) {
-      case ThemeOption.light:
-        return SystemUiOverlayStyle.dark;
-      case ThemeOption.dark:
-        return SystemUiOverlayStyle.light;
-    }
-    return null;
-  }
+  // SystemUiOverlayStyle get systemChromeStyle {
+  //   switch (currentThemeOption) {
+  //     case ThemeOption.light:
+  //       return SystemUiOverlayStyle.dark;
+  //     case ThemeOption.dark:
+  //       return SystemUiOverlayStyle.light;
+  //   }
+  //   return null;
+  // }
 
   @override
   void initState() {
@@ -61,7 +58,7 @@ abstract class SemanticInheritedTheme extends State<SemanticTheme> {
     super.initState();
   }
 
-  void use(ThemeOption theme) => setState(() => currentThemeOption = theme);
+  void use(T theme) => setState(() => currentThemeOption = theme);
 
   @override
   Widget build(BuildContext context) {
@@ -72,8 +69,8 @@ abstract class SemanticInheritedTheme extends State<SemanticTheme> {
   }
 }
 
-class _SemanticInheritedTheme extends InheritedWidget {
-  final SemanticInheritedTheme data;
+class _SemanticInheritedTheme<T> extends InheritedWidget {
+  final SemanticInheritedTheme<T> data;
 
   _SemanticInheritedTheme({
     @required this.data,
@@ -81,5 +78,5 @@ class _SemanticInheritedTheme extends InheritedWidget {
   }) : super(child: child);
 
   @override
-  bool updateShouldNotify(_SemanticInheritedTheme old) => true;
+  bool updateShouldNotify(_SemanticInheritedTheme<T> old) => true;
 }

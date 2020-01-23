@@ -1,12 +1,15 @@
 import 'package:semantic_theme/index.dart';
-import 'package:semantic_theme/src/_utils/theme_option_aware.dart';
 import 'package:semantic_theme/src/color/colors/background.dart';
 import 'package:semantic_theme/src/color/colors/icon.dart';
 import 'package:semantic_theme/src/color/colors/stroke.dart';
 
-abstract class ColorLibrary implements ThemeOptionDependent {
-  SemanticBackgroundColor get background;
-  SemanticStrokeColor get stroke;
-  SemanticIconColor get icon;
-  SemanticTextColor get text;
+import '../_utils/theme_option_dependent.dart';
+
+abstract class ColorLibrary<T> extends ThemeOptionDependent<T> {
+  ColorLibrary(T currentThemeOption) : super(currentThemeOption);
+
+  SemanticBackgroundColor<T> get background;
+  SemanticStrokeColor<T> get stroke;
+  SemanticIconColor<T> get icon;
+  SemanticTextColor<T> get text;
 }

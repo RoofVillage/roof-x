@@ -2,62 +2,71 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:semantic_theme/index.dart';
+import 'package:theme/src/roof_theme_option.dart';
 
-class RoofBackgroundColor extends SemanticBackgroundColor {
-  RoofBackgroundColor(ThemeOption currentThemeOption)
+import '../../../_constants/_colors.dart' as colors;
+
+class RoofBackgroundColor extends SemanticBackgroundColor<RoofThemeOption> {
+  RoofBackgroundColor(RoofThemeOption currentThemeOption)
       : super(currentThemeOption);
 
   @override
-  Color get actionPrimary => colorForThemeOption(
-        forLight: Colors.lightBlueAccent,
-        forDark: Colors.blue,
-      );
+  Color get actionPrimary => colors.brandBlue;
 
   @override
-  // TODO: implement actionSecondary
-  Color get actionSecondary => null;
+  Color get actionSecondary => colors.brandBlue;
 
   @override
-  // TODO: implement bad
-  Color get bad => null;
+  Color get actionDisabled => colors.brandBlueFade;
 
   @override
-  // TODO: implement brand
-  Color get brand => null;
+  Color get brand => colors.brandRed;
 
   @override
-  // TODO: implement disabled
-  Color get disabled => null;
+  Color get generalPrimary => forThemeOption({
+        RoofThemeOption.light: colors.white1,
+        RoofThemeOption.dark: colors.black3,
+      });
 
   @override
-  // TODO: implement generalPrimary
-  Color get generalPrimary => null;
+  Color get generalSecondary => forThemeOption({
+        RoofThemeOption.light: colors.white2,
+        RoofThemeOption.dark: colors.black2,
+      });
 
   @override
-  // TODO: implement generalSecondary
-  Color get generalSecondary => null;
-
-  @override
-  // TODO: implement good
-  Color get good => null;
-
-  @override
-  // TODO: implement inactive
   Color get inactive => null;
 
   @override
-  // TODO: implement inputBackground
-  Color get inputBackground => null;
+  Color get inputBackground => forThemeOption({
+        RoofThemeOption.light: colors.white2,
+        RoofThemeOption.dark: colors.black3,
+      });
 
   @override
-  // TODO: implement inputForeground
-  Color get inputForeground => null;
+  Color get inputForeground => forThemeOption({
+        RoofThemeOption.light: colors.white1,
+        RoofThemeOption.dark: colors.black2,
+      });
 
   @override
-  // TODO: implement scrim
-  Color get scrim => null;
+  Color get scrim => forThemeOption({
+        RoofThemeOption.light: Colors.black.withOpacity(0.2),
+        RoofThemeOption.dark: Colors.black.withOpacity(0.6),
+      });
 
   @override
-  // TODO: implement warn
-  Color get warn => null;
+  Color get good => forThemeOption({
+        RoofThemeOption.light: colors.green,
+        RoofThemeOption.dark: colors.darkGreen,
+      });
+
+  @override
+  Color get bad => colors.red;
+
+  @override
+  Color get warn => forThemeOption({
+        RoofThemeOption.light: colors.yellow,
+        RoofThemeOption.dark: colors.darkYellow,
+      });
 }

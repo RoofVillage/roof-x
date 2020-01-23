@@ -1,55 +1,67 @@
 import 'dart:ui';
 
 import 'package:semantic_theme/index.dart';
+import 'package:theme/src/roof_theme_option.dart';
 
-class RoofTextColor extends SemanticTextColor {
-  RoofTextColor(ThemeOption currentThemeOption) : super(currentThemeOption);
+import '../../../_constants/_colors.dart' as colors;
 
-  @override
-  // TODO: implement actionDisabled
-  Color get actionDisabled => null;
-
-  @override
-  // TODO: implement actionPrimary
-  Color get actionPrimary => null;
+class RoofTextColor extends SemanticTextColor<RoofThemeOption> {
+  RoofTextColor(RoofThemeOption currentThemeOption) : super(currentThemeOption);
 
   @override
-  // TODO: implement actionSecondary
-  Color get actionSecondary => null;
+  Color get actionDisabled => colors.brandBlueFade;
 
   @override
-  // TODO: implement bad
-  Color get bad => null;
+  Color get actionPrimary => colors.brandBlue;
 
   @override
-  // TODO: implement brand
-  Color get brand => null;
+  Color get actionSecondary => colors.brandBlue;
 
   @override
-  // TODO: implement good
-  Color get good => null;
+  Color get bad => colors.red;
 
   @override
-  // TODO: implement inputActive
-  Color get inputActive => null;
+  Color get brand => colors.brandRed;
 
   @override
-  // TODO: implement inputDisabled
-  Color get inputDisabled => null;
+  Color get good => forThemeOption({
+        RoofThemeOption.light: colors.green,
+        RoofThemeOption.dark: colors.darkGreen,
+      });
 
   @override
-  // TODO: implement inputPlaceholder
-  Color get inputPlaceholder => null;
+  Color get inputActive => forThemeOption({
+        RoofThemeOption.light: colors.gray4,
+        RoofThemeOption.dark: colors.gray1,
+      });
 
   @override
-  // TODO: implement primary
-  Color get primary => null;
+  Color get inputDisabled => forThemeOption({
+        RoofThemeOption.light: colors.gray2,
+        RoofThemeOption.dark: colors.gray3,
+      });
 
   @override
-  // TODO: implement secondary
-  Color get secondary => null;
+  Color get inputPlaceholder => forThemeOption({
+        RoofThemeOption.light: colors.gray1,
+        RoofThemeOption.dark: colors.gray4,
+      });
 
   @override
-  // TODO: implement warn
-  Color get warn => null;
+  Color get warn => forThemeOption({
+        RoofThemeOption.light: colors.yellow,
+        RoofThemeOption.dark: colors.darkYellow,
+      });
+
+  @override
+  Color get generalPrimary => forThemeOption({
+        RoofThemeOption.light: colors.gray3,
+        RoofThemeOption.dark: colors.gray2,
+      });
+
+  @override
+  Color get generalSecondary => forThemeOption({
+        RoofThemeOption.light: colors.gray2,
+        RoofThemeOption.dark: colors.gray3,
+      });
 }

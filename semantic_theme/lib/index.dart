@@ -1,5 +1,4 @@
-export 'src/option.dart';
-export 'src/theme.dart';
+export 'src/semantic_theme.dart';
 export 'src/color/index.dart';
 export 'src/curve/index.dart';
 export 'src/distance/index.dart';

@@ -1,19 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:semantic_theme/src/_utils/value_for_theme_option.dart';
-import 'package:semantic_theme/src/option.dart';
 
-import '../../_utils/theme_option_aware.dart';
+import '../../_utils/theme_option_dependent.dart';
+import '../../_utils/value_for_theme_option.dart';
 
-abstract class SemanticColor extends ThemeOptionDependent
-    with ValueForThemeOption {
-  SemanticColor(ThemeOption currentThemeOption) : super(currentThemeOption);
-
-  Color colorForThemeOption({
-    Color forDark,
-    Color forLight,
-  }) =>
-      valueForThemeOption<Color>(
-        forLight: forLight,
-        forDark: forDark,
-      );
+abstract class SemanticColor<T> extends ThemeOptionDependent<T>
+    with ValueForThemeOption<Color, T> {
+  SemanticColor(T currentThemeOption) : super(currentThemeOption);
 }
