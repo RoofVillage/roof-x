@@ -26,22 +26,22 @@ class RoofSemanticTheme extends SemanticTheme<RoofThemeOption> {
 class RoofInheritedSemanticTheme
     extends SemanticInheritedTheme<RoofThemeOption> {
   @override
-  SemanticColorLibrary get colors => RoofColorLibrary(currentThemeOption);
+  SemanticColorLibrary get color => RoofColorLibrary(currentThemeOption);
 
   @override
-  SemanticCurveLibrary get curves => RoofCurveLibrary();
+  SemanticCurveLibrary get curve => RoofCurveLibrary();
 
   @override
-  SemanticDistanceLibrary get distances => RoofDistanceLibrary();
+  SemanticDistanceLibrary get distance => RoofDistanceLibrary();
 
   @override
-  SemanticDurationLibrary get durations => RoofDurationLibrary();
+  SemanticDurationLibrary get duration => RoofDurationLibrary();
 
   @override
-  SemanticRadiusLibrary get radiuses => RoofRadiusLibrary();
+  SemanticRadiusLibrary get radiuse => RoofRadiusLibrary();
 
   @override
-  SemanticShadowLibrary get shadows => RoofShadowLibrary(currentThemeOption);
+  SemanticShadowLibrary get shadow => RoofShadowLibrary(currentThemeOption);
 
   @override
   SemanticTypographyLibrary get typography => RoofTypographyLibrary();
