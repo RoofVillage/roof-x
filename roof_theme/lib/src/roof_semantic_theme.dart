@@ -7,6 +7,8 @@ import 'package:theme/src/duration/roof_duration_library.dart';
 import 'package:theme/src/radius/roof_duration_library.dart';
 import 'package:theme/src/roof_theme_option.dart';
 import 'package:theme/src/shadow/roof_shadow_library.dart';
+import 'package:theme/src/system_ui_overlay_style/roof_system_ui_overlay_style.dart';
+import 'package:theme/src/typography/roof_typography_library.dart';
 
 class RoofSemanticTheme extends SemanticTheme<RoofThemeOption> {
   RoofSemanticTheme(
@@ -42,8 +44,8 @@ class RoofInheritedSemanticTheme
   SemanticShadowLibrary get shadows => RoofShadowLibrary(currentThemeOption);
 
   @override
-  SemanticTypographyLibrary get typography => null;
+  SemanticTypographyLibrary get typography => RoofTypographyLibrary();
 
   @override
-  SemanticSystemUiOverlayStyle get uiOverlayStyle => null;
+  SemanticSystemUiOverlayStyle get uiOverlayStyle => RoofSystemUiOverlayStyle(currentThemeOption);
 }
