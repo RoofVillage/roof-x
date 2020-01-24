@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:semantic_theme/index.dart';
 import 'package:theme/src/roof_theme_option.dart';
 
-import '../../../_constants/_colors.dart' as colors;
+import '../../_constants/_colors.dart' as colors;
 
 class RoofBackgroundColor extends SemanticBackgroundColor<RoofThemeOption> {
   RoofBackgroundColor(RoofThemeOption currentThemeOption)

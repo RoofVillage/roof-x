@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:semantic_theme/index.dart';
-import 'package:theme/src/libraries/color/roof_color_library.dart';
+import 'package:theme/src/color/roof_color_library.dart';
 import 'package:theme/src/roof_theme_option.dart';
 
 class RoofSemanticTheme extends SemanticTheme<RoofThemeOption> {
@@ -38,4 +38,7 @@ class RoofInheritedSemanticTheme
 
   @override
   TypographyLibrary get typography => null;
+
+  @override
+  SemanticSystemUiOverlayStyle get uiOverlayStyle => null;
 }

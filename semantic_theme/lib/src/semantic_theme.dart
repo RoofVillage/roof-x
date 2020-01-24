@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:semantic_theme/src/color/color_library.dart';
-import 'package:semantic_theme/src/curve/curve_library.dart';
-import 'package:semantic_theme/src/distance/distance_library.dart';
-import 'package:semantic_theme/src/duration/duration_library.dart';
-import 'package:semantic_theme/src/radius/radius_library.dart';
-import 'package:semantic_theme/src/shadow/shadow_library.dart';
-import 'package:semantic_theme/src/typography/typography_library.dart';
+import 'package:semantic_theme/src/color/index.dart';
+import 'package:semantic_theme/src/curve/index.dart';
+import 'package:semantic_theme/src/distance/index.dart';
+import 'package:semantic_theme/src/duration/index.dart';
+import 'package:semantic_theme/src/radius/index.dart';
+import 'package:semantic_theme/src/shadow/index.dart';
+import 'package:semantic_theme/src/typography/index.dart';
+import 'package:semantic_theme/src/system_ui_overlay_style/index.dart';
 
 abstract class SemanticTheme<T> extends StatefulWidget {
   final Widget child;
@@ -41,16 +42,7 @@ abstract class SemanticInheritedTheme<T> extends State<SemanticTheme<T>> {
   RadiusLibrary get radiuses;
   ShadowLibrary get shadows;
   TypographyLibrary get typography;
-
-  // SystemUiOverlayStyle get systemChromeStyle {
-  //   switch (currentThemeOption) {
-  //     case ThemeOption.light:
-  //       return SystemUiOverlayStyle.dark;
-  //     case ThemeOption.dark:
-  //       return SystemUiOverlayStyle.light;
-  //   }
-  //   return null;
-  // }
+  SemanticSystemUiOverlayStyle get uiOverlayStyle;
 
   @override
   void initState() {

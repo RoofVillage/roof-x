@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:semantic_theme/index.dart';
 import 'package:theme/src/roof_theme_option.dart';
 
-import '../../../_constants/_colors.dart' as colors;
+import '../../_constants/_colors.dart' as colors;
 
 class RoofIconColor extends SemanticIconColor<RoofThemeOption> {
   RoofIconColor(RoofThemeOption currentThemeOption) : super(currentThemeOption);

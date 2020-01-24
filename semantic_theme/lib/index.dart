@@ -6,3 +6,4 @@ export 'src/duration/index.dart';
 export 'src/radius/index.dart';
 export 'src/shadow/index.dart';
 export 'src/typography/index.dart';
+export 'src/system_ui_overlay_style/index.dart';
