@@ -7,7 +7,7 @@ abstract class SemanticTypography {
   String get fontFamilyFallback;
   double get letterSpacing;
 
-  Text withStyle(
+  Text styledText(
     String text, {
     @required Color color,
     FontStyle fontStyle,
