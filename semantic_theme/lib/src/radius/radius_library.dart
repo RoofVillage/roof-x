@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-abstract class RadiusLibrary {
+abstract class SemanticRadiusLibrary {
   Radius get min;
   Radius get small;
   Radius get medium;

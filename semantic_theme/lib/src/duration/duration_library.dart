@@ -1,4 +1,4 @@
-abstract class DurationLibrary {
+abstract class SemanticDurationLibrary {
   Duration get min;
   Duration get short;
   Duration get medium;

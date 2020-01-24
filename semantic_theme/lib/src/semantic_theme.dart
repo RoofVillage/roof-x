@@ -35,13 +35,13 @@ abstract class SemanticTheme<T> extends StatefulWidget {
 abstract class SemanticInheritedTheme<T> extends State<SemanticTheme<T>> {
   T currentThemeOption;
 
-  ColorLibrary get colors;
-  CurveLibrary get curves;
-  DistanceLibrary get distances;
-  DurationLibrary get durations;
-  RadiusLibrary get radiuses;
-  ShadowLibrary get shadows;
-  TypographyLibrary get typography;
+  SemanticColorLibrary get colors;
+  SemanticCurveLibrary get curves;
+  SemanticDistanceLibrary get distances;
+  SemanticDurationLibrary get durations;
+  SemanticRadiusLibrary get radiuses;
+  SemanticShadowLibrary get shadows;
+  SemanticTypographyLibrary get typography;
   SemanticSystemUiOverlayStyle get uiOverlayStyle;
 
   @override

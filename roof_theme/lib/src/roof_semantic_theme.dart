@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:semantic_theme/index.dart';
 import 'package:theme/src/color/roof_color_library.dart';
+import 'package:theme/src/curve/roof_curve_library.dart';
 import 'package:theme/src/roof_theme_option.dart';
 
 class RoofSemanticTheme extends SemanticTheme<RoofThemeOption> {
@@ -19,25 +20,25 @@ class RoofSemanticTheme extends SemanticTheme<RoofThemeOption> {
 class RoofInheritedSemanticTheme
     extends SemanticInheritedTheme<RoofThemeOption> {
   @override
-  ColorLibrary get colors => RoofColorLibrary(currentThemeOption);
+  SemanticColorLibrary get colors => RoofColorLibrary(currentThemeOption);
 
   @override
-  CurveLibrary get curves => null;
+  SemanticCurveLibrary get curves => RoofCurveLibrary();
 
   @override
-  DistanceLibrary get distances => null;
+  SemanticDistanceLibrary get distances => null;
 
   @override
-  DurationLibrary get durations => null;
+  SemanticDurationLibrary get durations => null;
 
   @override
-  RadiusLibrary get radiuses => null;
+  SemanticRadiusLibrary get radiuses => null;
 
   @override
-  ShadowLibrary get shadows => null;
+  SemanticShadowLibrary get shadows => null;
 
   @override
-  TypographyLibrary get typography => null;
+  SemanticTypographyLibrary get typography => null;
 
   @override
   SemanticSystemUiOverlayStyle get uiOverlayStyle => null;

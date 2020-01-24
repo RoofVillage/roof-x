@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-abstract class CurveLibrary {
+abstract class SemanticCurveLibrary {
   Curve get normal => Curves.linearToEaseOut;
   Curve get hurried => Curves.easeOutCirc;
   Curve get delayed => Curves.easeInCirc;

@@ -1,6 +1,6 @@
 import 'package:semantic_theme/index.dart';
 
-abstract class TypographyLibrary {
+abstract class SemanticTypographyLibrary {
   SemanticTypography get headingPrimary;
   SemanticTypography get headingSecondary;
   SemanticTypography get title;

@@ -1,6 +1,6 @@
 import 'package:semantic_theme/src/distance/sym_semantic_distance.dart';
 
-abstract class DistanceLibrary {
+abstract class SemanticDistanceLibrary {
   /// From screen
   SymSemanticDistance get gutter;
 

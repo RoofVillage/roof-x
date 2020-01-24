@@ -3,7 +3,7 @@ import 'package:theme/src/roof_theme_option.dart';
 
 import '_semantic_colors/index.dart';
 
-class RoofColorLibrary extends ColorLibrary<RoofThemeOption> {
+class RoofColorLibrary extends SemanticColorLibrary<RoofThemeOption> {
   RoofColorLibrary(RoofThemeOption currentThemeOption)
       : super(currentThemeOption);
 

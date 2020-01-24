@@ -5,8 +5,8 @@ import 'package:semantic_theme/src/color/colors/stroke.dart';
 
 import '../_utils/theme_option_dependent.dart';
 
-abstract class ColorLibrary<T> extends ThemeOptionDependent<T> {
-  ColorLibrary(T currentThemeOption) : super(currentThemeOption);
+abstract class SemanticColorLibrary<T> extends ThemeOptionDependent<T> {
+  SemanticColorLibrary(T currentThemeOption) : super(currentThemeOption);
 
   SemanticBackgroundColor<T> get background;
   SemanticStrokeColor<T> get stroke;
