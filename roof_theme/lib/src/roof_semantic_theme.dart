@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:semantic_theme/index.dart';
 import 'package:theme/src/color/roof_color_library.dart';
 import 'package:theme/src/curve/roof_curve_library.dart';
+import 'package:theme/src/distance/roof_distance_library.dart';
+import 'package:theme/src/duration/roof_duration_library.dart';
 import 'package:theme/src/roof_theme_option.dart';
 
 class RoofSemanticTheme extends SemanticTheme<RoofThemeOption> {
@@ -26,10 +28,10 @@ class RoofInheritedSemanticTheme
   SemanticCurveLibrary get curves => RoofCurveLibrary();
 
   @override
-  SemanticDistanceLibrary get distances => null;
+  SemanticDistanceLibrary get distances => RoofDistanceLibrary();
 
   @override
-  SemanticDurationLibrary get durations => null;
+  SemanticDurationLibrary get durations => RoofDurationLibrary();
 
   @override
   SemanticRadiusLibrary get radiuses => null;
