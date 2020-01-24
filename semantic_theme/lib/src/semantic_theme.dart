@@ -10,10 +10,10 @@ import 'package:semantic_theme/src/system_ui_overlay_style/index.dart';
 
 abstract class SemanticTheme<T> extends StatefulWidget {
   final Widget child;
-  final T themeOption;
+  final T initialThemeOption;
 
   SemanticTheme(
-    this.themeOption, {
+    this.initialThemeOption, {
     @required this.child,
   });
 
@@ -46,7 +46,7 @@ abstract class SemanticInheritedTheme<T> extends State<SemanticTheme<T>> {
 
   @override
   void initState() {
-    currentThemeOption = widget.themeOption;
+    currentThemeOption = widget.initialThemeOption;
     super.initState();
   }
 

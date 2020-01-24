@@ -12,10 +12,10 @@ import 'package:theme/src/typography/roof_typography_library.dart';
 
 class RoofSemanticTheme extends SemanticTheme<RoofThemeOption> {
   RoofSemanticTheme(
-    RoofThemeOption themeOption, {
+    RoofThemeOption initialThemeOption, {
     @required Widget child,
   }) : super(
-          themeOption,
+          initialThemeOption,
           child: child,
         );
 
