@@ -30,7 +30,12 @@ class _StackVerticalFloatingArtboardState
       );
 
     if (widget.buttonStackButtons != null)
-      children.add(widget.buildButtonStack(context));
+      children.add(
+        widget.buildButtonStack(
+          context,
+          widget.buttonStackButtons,
+        ),
+      );
 
     return Column(
       children: children,
