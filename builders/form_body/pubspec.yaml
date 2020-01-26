@@ -9,6 +9,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  semantic_theme:
+    path: ../../semantic_theme
   keyboard_accessory_bar_builder:
     git:
       url: git@github.com:RoofVillage/roof-x.git
@@ -19,36 +21,6 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: semantic-theme-compatible-builders
       path: builders/date_picker
-  distance:
-    git:
-      url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-theme-compatible-builders
-      path: spec/distance
-  duration:
-    git:
-      url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-theme-compatible-builders
-      path: spec/duration
-  padding:
-    git:
-      url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-theme-compatible-builders
-      path: spec/padding
-  corner_radius:
-    git:
-      url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-theme-compatible-builders
-      path: spec/corner_radius
-  curve:
-    git:
-      url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-theme-compatible-builders
-      path: spec/curve
-  typography:
-    git:
-      url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-theme-compatible-builders
-      path: spec/typography
   standard_icon_library:
     git:
       url: git@github.com:RoofVillage/roof-x.git
@@ -59,11 +31,6 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: semantic-theme-compatible-builders
       path: icons/small
-  theme:
-    git:
-      url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-theme-compatible-builders
-      path: theme
   mask:
     git:
       url: git@github.com:RoofVillage/roof-x.git

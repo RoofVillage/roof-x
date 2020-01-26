@@ -1,21 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:semantic_theme/index.dart';
 import 'package:standard_icon_library/index.dart';
 import 'package:table_builder/src/_components/_widgets/cell_primary_title.dart';
-import 'package:theme/index.dart';
 import 'package:mask/index.dart';
 import 'package:date/index.dart';
 import 'package:haptics/index.dart';
 import 'package:tag_builder/index.dart';
-import 'package:corner_radius/index.dart' as radius;
-import 'package:distance/index.dart' as distance;
-import 'package:typography/index.dart' as typography;
 
 class HomeCell extends StatelessWidget {
   final String address;
   final String unit;
   final StandardIcon iconReference;
-  final List<RoofLeasePreview> activeLeases;
-  final List<RoofLeasePreview> inactiveLeases;
+  final List<LeasePreview> activeLeases;
+  final List<LeasePreview> inactiveLeases;
   final List<String> tags;
   final VoidCallback onTap;
 
@@ -29,11 +26,6 @@ class HomeCell extends StatelessWidget {
     this.onTap,
   });
 
-  final _radius = radius.regular;
-  final _cellPadding = distance.c;
-  final _spacing = distance.b;
-  final _sectionSpacing = distance.d;
-  final _topMargin = distance.b;
   final _tapHapticOption = HapticOption.light;
 
   void _fireHaptic() {
@@ -42,13 +34,12 @@ class HomeCell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
+    final theme = SemanticTheme.of(context);
 
     final titleRow = _TitleRow(
       address: address,
       unit: unit,
       iconReference: iconReference,
-      spacing: _spacing,
     );
 
     List<Widget> columnChildren = [titleRow];
@@ -59,7 +50,7 @@ class HomeCell extends StatelessWidget {
       columnChildren.addAll([
         _SectionTitle(
           "Active leases",
-          topMargin: _sectionSpacing,
+          topMargin: theme.distance.spacing.vertical.large,
         ),
         activeLeasesColumn,
       ]);
@@ -71,7 +62,7 @@ class HomeCell extends StatelessWidget {
       columnChildren.addAll([
         _SectionTitle(
           "Inactive leases",
-          topMargin: _sectionSpacing,
+          topMargin: theme.distance.spacing.vertical.large,
         ),
         inactiveLeasesColumn,
       ]);
@@ -80,7 +71,7 @@ class HomeCell extends StatelessWidget {
     if (tags != null) {
       final tagsSection = Container(
         margin: EdgeInsets.only(
-          top: _sectionSpacing,
+          top: theme.distance.spacing.vertical.large,
         ),
         child: _TagsSection(tags: tags),
       );
@@ -97,10 +88,13 @@ class HomeCell extends StatelessWidget {
       onTapDown: (details) => _fireHaptic(),
       onTap: onTap,
       child: Container(
-        padding: EdgeInsets.all(_cellPadding),
-        margin: EdgeInsets.only(top: _topMargin),
+        padding: EdgeInsets.symmetric(
+          horizontal: theme.distance.padding.horizontal.medium,
+          vertical: theme.distance.padding.vertical.medium,
+        ),
+        margin: EdgeInsets.only(top: theme.distance.spacing.vertical.large),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(_radius),
+          borderRadius: BorderRadius.all(theme.radius.medium),
           border: Border.all(color: theme.color.stroke.light),
           color: theme.color.background.generalPrimary,
         ),
@@ -114,27 +108,28 @@ class _TitleRow extends StatelessWidget {
   final String address;
   final String unit;
   final StandardIcon iconReference;
-  final double spacing;
 
   _TitleRow({
     this.address,
     this.unit,
     this.iconReference,
-    this.spacing,
   });
 
   @override
   Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
+    final theme = SemanticTheme.of(context);
 
     final defaultIconReference = StandardIcon.house;
 
-    final StandardIcon homeIcon =
-        iconReference ?? defaultIconReference;
+    final StandardIcon homeIcon = iconReference ?? defaultIconReference;
 
     final homeIconWidget = Padding(
-      padding: EdgeInsets.only(right: spacing),
-      child: homeIcon.buildWidget(color: theme.color.icon.general),
+      padding: EdgeInsets.only(
+        right: theme.distance.spacing.horizontal.small,
+      ),
+      child: homeIcon.buildWidget(
+        color: theme.color.icon.generalPrimary,
+      ),
     );
 
     final formattedTitleString = "$address - $unit";
@@ -151,7 +146,7 @@ class _TitleRow extends StatelessWidget {
 }
 
 class _LeasePreviewsColumn extends StatelessWidget {
-  final List<RoofLeasePreview> leases;
+  final List<LeasePreview> leases;
 
   _LeasePreviewsColumn({@required this.leases});
 
@@ -166,21 +161,20 @@ class _LeasePreviewsColumn extends StatelessWidget {
   }
 
   final double _indicatorSize = 10;
-  final double _spacing = distance.b;
 
   @override
   Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
+    final theme = SemanticTheme.of(context);
 
     List<Widget> leasesWidgets = [];
 
-    for (int i = 0; i < leases.length; i++) {
-      final lease = leases[i];
-
+    for (LeasePreview lease in leases) {
       final statusIndicatorWidget = Container(
         height: _indicatorSize,
         width: _indicatorSize,
-        margin: EdgeInsets.only(right: _spacing),
+        margin: EdgeInsets.only(
+          right: theme.distance.spacing.horizontal.small,
+        ),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(_indicatorSize / 2)),
           color: _getStatusColor(lease.status),
@@ -194,24 +188,29 @@ class _LeasePreviewsColumn extends StatelessWidget {
       );
 
       final amountWidget = Container(
-        margin: EdgeInsets.only(right: _spacing),
+        margin: EdgeInsets.only(
+          right: theme.distance.spacing.horizontal.small,
+        ),
         child: Text(
           formattedAmount,
-          style: typography.bodyThick
-              .textStyleWithColor(theme.color.text.primary),
+          style: theme.typography.bodyHeavy.textStyle(
+            color: theme.color.text.generalPrimary,
+          ),
         ),
       );
 
-      final startTimestampText =
-          Date.fromSecondsSinceEpoch(lease.startTimestamp).toLongString;
-      final endTimestampText =
-          Date.fromSecondsSinceEpoch(lease.endTimestamp).toLongString;
+      final startTimestampText = Date.fromSecondsSinceEpoch(
+        lease.startTimestamp,
+      ).toLongString;
+      final endTimestampText = Date.fromSecondsSinceEpoch(
+        lease.endTimestamp,
+      ).toLongString;
       final formattedDateString = "$startTimestampText - $endTimestampText";
 
       final dateWidget = Text(
         formattedDateString,
-        style: typography.detailSecondary.textStyleWithColor(
-          theme.color.text.secondary,
+        style: theme.typography.detail.textStyle(
+          color: theme.color.text.generalSecondary,
         ),
       );
 
@@ -221,9 +220,12 @@ class _LeasePreviewsColumn extends StatelessWidget {
         children: <Widget>[amountWidget, dateWidget],
       );
 
-      final bool isLastLease = i == leases.length - 1;
       final leasePreviewWidget = Container(
-        margin: isLastLease ? null : EdgeInsets.only(bottom: _spacing),
+        margin: lease == leases.last
+            ? null
+            : EdgeInsets.only(
+                bottom: theme.distance.spacing.vertical.small,
+              ),
         child: Row(
           children: <Widget>[
             statusIndicatorWidget,
@@ -241,15 +243,15 @@ class _LeasePreviewsColumn extends StatelessWidget {
   }
 }
 
-class _TagsSection extends StatelessWidget with RoofTagBuilder {
+class _TagsSection extends StatelessWidget with TagBuilder {
   final List<String> tags;
 
   _TagsSection({@required this.tags});
 
-  final _spacing = distance.b;
-
   @override
   Widget build(BuildContext context) {
+    final theme = SemanticTheme.of(context);
+
     List<Widget> tagWidgets = [];
 
     for (String tag in tags) {
@@ -262,8 +264,8 @@ class _TagsSection extends StatelessWidget with RoofTagBuilder {
     }
 
     return Wrap(
-      spacing: _spacing,
-      runSpacing: _spacing,
+      spacing: theme.distance.spacing.horizontal.small,
+      runSpacing: theme.distance.spacing.vertical.small,
       children: tagWidgets,
     );
   }
@@ -273,32 +275,38 @@ class _SectionTitle extends StatelessWidget {
   final String text;
   final double topMargin;
 
-  _SectionTitle(this.text, {this.topMargin});
-
-  final _bottomMargin = distance.b;
+  _SectionTitle(
+    this.text, {
+    this.topMargin,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
+    final theme = SemanticTheme.of(context);
 
     return Container(
-      margin: EdgeInsets.only(top: topMargin ?? 0, bottom: _bottomMargin),
+      margin: EdgeInsets.only(
+        top: topMargin ?? 0,
+        bottom: theme.distance.spacing.vertical.small,
+      ),
       child: Text(
         text,
-        style: typography.title.textStyleWithColor(theme.color.text.secondary),
+        style: theme.typography.title.textStyle(
+          color: theme.color.text.generalSecondary,
+        ),
       ),
     );
   }
 }
 
-class RoofLeasePreview {
+class LeasePreview {
   final String title;
   final int startTimestamp;
   final int endTimestamp;
   final double amount;
   final TenantStatus status;
 
-  RoofLeasePreview({
+  LeasePreview({
     @required this.title,
     @required this.startTimestamp,
     this.endTimestamp,

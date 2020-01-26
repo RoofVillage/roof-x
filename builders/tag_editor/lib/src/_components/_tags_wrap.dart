@@ -1,25 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:theme/index.dart';
+import 'package:semantic_theme/index.dart';
 import 'package:small_icon_library/index.dart';
 import 'package:haptics/index.dart';
-import 'package:curve/index.dart' as curve;
-import 'package:duration/index.dart' as duration;
-import 'package:typography/index.dart' as typography;
-import 'package:distance/index.dart' as distance;
 
 class TagsWrap extends StatelessWidget {
   final List<String> tags;
   final void Function(String) tagRemoveCallback;
 
-  TagsWrap({tags, this.tagRemoveCallback}) : this.tags = tags ?? [];
-
-  final _wrapSpacing = distance.b;
+  TagsWrap({
+    tags,
+    this.tagRemoveCallback,
+  }) : this.tags = tags ?? [];
 
   final _emptyText = "No tags selected";
 
   @override
   Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
+    final theme = SemanticTheme.of(context);
 
     List<Widget> selectedTagWidgets = [];
 
@@ -35,16 +32,20 @@ class TagsWrap extends StatelessWidget {
 
     final emptyText = Text(
       _emptyText,
-      style: typography.heading2.textStyleWithColor(theme.color.text.secondary),
+      style: theme.typography.headingSecondary.textStyle(
+        color: theme.color.text.generalSecondary,
+      ),
     );
 
     return Container(
-      margin: EdgeInsets.only(bottom: distance.c),
+      margin: EdgeInsets.only(
+        bottom: theme.distance.spacing.vertical.medium,
+      ),
       child: tags.isNotEmpty
           ? Wrap(
               children: selectedTagWidgets,
-              runSpacing: _wrapSpacing,
-              spacing: _wrapSpacing,
+              runSpacing: theme.distance.spacing.vertical.small,
+              spacing: theme.distance.spacing.horizontal.small,
             )
           : emptyText,
     );
@@ -72,26 +73,27 @@ class _RemoveableAnimatedTagState extends State<_RemoveableAnimatedTag>
   _remove() {
     triggerHapticWith(HapticOption.light);
 
-    Future.delayed(duration.short, () {
+    Future.delayed(SemanticTheme.of(context).duration.short, () {
       widget.removeCallback();
     });
     setState(() => _show = false);
   }
 
-  final _typographyStyle = typography.detailSecondary;
   final double _height = 40;
 
   @override
   Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
+    final theme = SemanticTheme.of(context);
 
     final removeIcon = SmallIcon.x.buildWidget(
-      color: theme.color.icon.general,
+      color: theme.color.icon.generalPrimary,
     );
 
     final textWidget = Text(
       widget.label,
-      style: _typographyStyle.textStyleWithColor(theme.color.text.primary),
+      style: theme.typography.detail.textStyle(
+        color: theme.color.text.generalPrimary,
+      ),
       overflow: TextOverflow.fade,
     );
 
@@ -99,8 +101,8 @@ class _RemoveableAnimatedTagState extends State<_RemoveableAnimatedTag>
 
     final animatedTextContainer = AnimatedSize(
       vsync: this,
-      curve: curve.easy,
-      duration: duration.short,
+      curve: theme.curve.delayed,
+      duration: theme.duration.short,
       alignment: Alignment.centerLeft,
       child: Container(
         width: _show ? null : 0,
@@ -115,14 +117,14 @@ class _RemoveableAnimatedTagState extends State<_RemoveableAnimatedTag>
 
     final animatedOpacityContainer = AnimatedOpacity(
       opacity: _show ? 1 : 0,
-      curve: curve.quick,
-      duration: duration.short,
+      curve: theme.curve.hurried,
+      duration: theme.duration.short,
       child: Container(
         height: _height,
         padding: _show
             ? EdgeInsets.only(
-                left: distance.a,
-                right: distance.b,
+                left: theme.distance.padding.horizontal.min,
+                right: theme.distance.padding.horizontal.small,
               )
             : EdgeInsets.all(0),
         decoration: BoxDecoration(

@@ -8,6 +8,7 @@ abstract class SemanticTypographyLibrary {
   SemanticTypography get label;
   SemanticTypography get body;
   SemanticTypography get bodyHeavy;
+  SemanticTypography get button;
   SemanticTypography get detail;
   SemanticTypography get detailHeavy;
 }

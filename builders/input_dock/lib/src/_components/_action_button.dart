@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:semantic_theme/index.dart';
 import 'package:standard_icon_library/index.dart';
-import 'package:theme/index.dart';
 import 'package:haptics/index.dart';
-import 'package:curve/index.dart' as curve;
-import 'package:duration/index.dart' as duration;
-import 'package:distance/index.dart' as distance;
-import 'package:corner_radius/index.dart' as corner_radius;
-import 'package:typography/index.dart' as typography;
 
 import '../input_dock.dart';
 
@@ -28,7 +23,6 @@ class _DockActionButtonState extends State<DockActionButton>
     with TickerProviderStateMixin {
   final GlobalKey _buttonKey = GlobalKey();
   final GlobalKey _buttonIconKey = GlobalKey();
-  final double _buttonHorizontalPadding = distance.b;
   final _tapHapticOption = HapticOption.light;
 
   double minWidthToShowText = 0;
@@ -43,39 +37,48 @@ class _DockActionButtonState extends State<DockActionButton>
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback(_buildButtonAnimation);
 
-    widthAnimationController =
-        AnimationController(duration: duration.short, vsync: this);
-    opacityAnimationController =
-        AnimationController(duration: duration.short, vsync: this);
+    final theme = SemanticTheme.of(context);
+
+    widthAnimationController = AnimationController(
+      duration: theme.duration.short,
+      vsync: this,
+    );
+    opacityAnimationController = AnimationController(
+      duration: theme.duration.short,
+      vsync: this,
+    );
 
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    final dock = RoofInputDock.of(context);
-    final theme = RoofTheme.of(context);
+    final dock = InputDock.of(context);
+    final theme = SemanticTheme.of(context);
 
     dock.showSubmitButton ? _animateForward() : _animateReverse();
 
     final buttonDecoration = BoxDecoration(
-      border: Border.all(color: theme.color.stroke.secondaryAction),
-      borderRadius: BorderRadius.all(corner_radius.regular),
+      border: Border.all(color: theme.color.stroke.actionSecondary),
+      borderRadius: BorderRadius.all(theme.radius.medium),
     );
 
     final animatedWidth = widthAnimation != null ? widthAnimation.value : null;
     final showText =
         animatedWidth == null || animatedWidth >= minWidthToShowText;
 
-    final containerPadding =
-        showText ? EdgeInsets.fromLTRB(distance.b, 0, distance.b, 0) : null;
+    final containerPadding = showText
+        ? EdgeInsets.symmetric(
+            horizontal: theme.distance.padding.horizontal.small,
+          )
+        : null;
 
     final buttonChildren = <Widget>[];
 
     final buttonIcon = Container(
       key: _buttonIconKey,
       child: widget.actionIconReference.buildWidget(
-        color: theme.color.icon.action,
+        color: theme.color.icon.actionPrimary,
       ),
     );
 
@@ -119,7 +122,11 @@ class _DockActionButtonState extends State<DockActionButton>
 
   void _onTap() {
     showDialog(
-      builder: (context) => AlertDialog(title: Text(widget.actionTitle)),
+      builder: (context) => AlertDialog(
+        title: Text(
+          widget.actionTitle,
+        ),
+      ),
       context: context,
     );
     widget.action();
@@ -142,23 +149,27 @@ class _DockActionButtonState extends State<DockActionButton>
     buttonIconWidth = actionButtonIconRenderBox.size.width;
 
     // minWidthToShowText ensures button children don't overflow while button is collapsing by removing the text precisely before overflow would occur. Value should be at least equal to ((width of the button icon) + (button x-axis containerPadding) + (borderWidth * 2))
-    minWidthToShowText = buttonIconWidth + (_buttonHorizontalPadding * 2) + 2;
+    minWidthToShowText = buttonIconWidth +
+        (SemanticTheme.of(context).distance.padding.horizontal.small * 2) +
+        2;
   }
 
   void _buildAnimationFromMaxButtonWidth(double maxButtonWidth) {
-    final dock = RoofInputDock.of(context);
+    final dock = InputDock.of(context);
+    final theme = SemanticTheme.of(context);
+
     final double minButtonWidth = dock.baseHeight;
 
     final widthCurve = CurvedAnimation(
       parent: widthAnimationController,
-      curve: curve.quick,
-      reverseCurve: curve.quick.flipped,
+      curve: theme.curve.hurried,
+      reverseCurve: theme.curve.hurried.flipped,
     );
 
     final opacityCurve = CurvedAnimation(
       parent: opacityAnimationController,
-      curve: curve.slow,
-      reverseCurve: curve.slow.flipped,
+      curve: theme.curve.normal,
+      reverseCurve: theme.curve.normal.flipped,
     );
 
     widthAnimation = Tween(
@@ -184,27 +195,31 @@ class _ButtonText extends StatelessWidget {
   final bool show;
   final double opacity;
 
-  _ButtonText({this.text, this.show, this.opacity});
-
-  final _buttonTextStyle = typography.button;
+  _ButtonText({
+    this.text,
+    this.show,
+    this.opacity,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final buttonTextColor = RoofTheme.of(context).color.text.secondaryAction;
-
-    final textContainerPadding = EdgeInsets.fromLTRB(distance.b, 0, 0, 0);
+    final theme = SemanticTheme.of(context);
 
     return Flexible(
       child: Container(
         width: show ? null : 0,
-        padding: textContainerPadding,
+        padding: EdgeInsets.only(
+          left: theme.distance.padding.horizontal.small,
+        ),
         child: Opacity(
           opacity: opacity,
           child: Text(
             text,
             softWrap: false,
             overflow: TextOverflow.fade,
-            style: _buttonTextStyle.textStyleWithColor(buttonTextColor),
+            style: theme.typography.button.textStyle(
+              color: theme.color.text.actionSecondary,
+            ),
           ),
         ),
       ),

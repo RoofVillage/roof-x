@@ -85,7 +85,7 @@ class InvoiceCell extends StatelessWidget with KeyValueRowBuilder {
   }
 }
 
-class _StatusTag extends StatelessWidget with RoofTagBuilder {
+class _StatusTag extends StatelessWidget with TagBuilder {
   final InvoiceStatusOption status;
 
   _StatusTag(this.status);

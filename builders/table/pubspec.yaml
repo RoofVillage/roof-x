@@ -34,26 +34,6 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: semantic-theme-compatible-builders
       path: icons/standard
-  distance:
-    git:
-      url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-theme-compatible-builders
-      path: spec/distance
-  corner_radius:
-    git:
-      url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-theme-compatible-builders
-      path: spec/corner_radius
-  theme:
-    git:
-      url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-theme-compatible-builders
-      path: theme
-  typography:
-    git:
-      url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-theme-compatible-builders
-      path: spec/typography
   key_value_builder:
     git:
       url: git@github.com:RoofVillage/roof-x.git
@@ -104,6 +84,8 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: semantic-theme-compatible-builders
       path: options/tag_kind
+  semantic_theme:
+    path: ../../semantic_theme
 
 dependency_overrides:
   key_value_builder:

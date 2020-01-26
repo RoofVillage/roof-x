@@ -9,7 +9,7 @@ import '_auxiliary_widget.dart';
 class AddFileAuxiliaryWidget extends StatelessWidget
     with ImagePickerBuilder, PrimaryIconButtonBuilder {
   void action(BuildContext context) async {
-    final dock = RoofInputDock.of(context);
+    final dock = InputDock.of(context);
 
     final files = await pickImages(
       context: context,

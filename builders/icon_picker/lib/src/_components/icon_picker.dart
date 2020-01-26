@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:theme/index.dart';
+import 'package:semantic_theme/index.dart';
 import 'package:standard_icon_library/index.dart';
-import 'package:distance/index.dart' as distance;
-import 'package:typography/index.dart' as typography;
 import 'package:labeled_icon/index.dart';
 
 typedef SelectedIconPasser = Function(LabeledIcon);
@@ -22,14 +20,16 @@ class IconPicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
+    final theme = SemanticTheme.of(context);
 
     final List<Widget> columnChildren = [];
 
     if (title != null && title.isNotEmpty) {
       final titleWidget = Text(
         title,
-        style: typography.heading2.textStyleWithColor(theme.color.text.brand),
+        style: theme.typography.headingSecondary.textStyle(
+          color: theme.color.text.actionPrimary,
+        ),
       );
       columnChildren.add(titleWidget);
     }
@@ -54,9 +54,6 @@ class _IconsGrid extends StatelessWidget {
   final LabeledIcon selectedOption;
   final Function onTap;
 
-  final _verticalPadding = distance.c;
-  final _horizontalPadding = distance.b;
-
   _IconsGrid({
     this.options,
     this.selectedOption,
@@ -64,6 +61,8 @@ class _IconsGrid extends StatelessWidget {
   });
 
   Widget build(BuildContext context) {
+    final theme = SemanticTheme.of(context);
+
     final _selectedOption = selectedOption ?? options.first;
 
     List<_IconOption> optionsList = options.map(
@@ -78,8 +77,8 @@ class _IconsGrid extends StatelessWidget {
 
     return Container(
       padding: EdgeInsets.symmetric(
-        vertical: _verticalPadding,
-        horizontal: _horizontalPadding,
+        vertical: theme.distance.spacing.vertical.medium,
+        horizontal: theme.distance.spacing.horizontal.small,
       ),
       child: Column(
         children: [
@@ -95,8 +94,6 @@ class _IconOption extends StatelessWidget {
   final Function onTap;
   final bool selected;
 
-  final _padding = distance.c;
-
   _IconOption({
     this.icon,
     this.onTap,
@@ -104,10 +101,10 @@ class _IconOption extends StatelessWidget {
   });
 
   Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
+    final theme = SemanticTheme.of(context);
 
-    final selectedColor = theme.color.icon.action;
-    final unselectedColor = theme.color.icon.general;
+    final selectedColor = theme.color.icon.actionPrimary;
+    final unselectedColor = theme.color.icon.generalPrimary;
 
     final iconWidget = icon.buildWidget(
       color: selected ? selectedColor : unselectedColor,
@@ -118,7 +115,10 @@ class _IconOption extends StatelessWidget {
         onTap: onTap,
         behavior: HitTestBehavior.opaque,
         child: Padding(
-          padding: EdgeInsets.all(_padding),
+          padding: EdgeInsets.symmetric(
+            horizontal: theme.distance.padding.horizontal.medium,
+            vertical: theme.distance.padding.vertical.medium,
+          ),
           child: iconWidget,
         ),
       ),

@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:form_body_builder/src/_components/fields/_picker_field.dart';
+import 'package:semantic_theme/index.dart';
 import 'package:tag_builder/index.dart';
-import 'package:theme/index.dart';
-import 'package:typography/index.dart' as typography;
-import 'package:distance/index.dart' as distance;
 
-class TagField extends StatelessWidget with RoofTagBuilder {
+class TagField extends StatelessWidget with TagBuilder {
   final String title;
   final String placeholder;
   final List<String> tags;
@@ -18,43 +16,45 @@ class TagField extends StatelessWidget with RoofTagBuilder {
     this.onTap,
   });
 
-  final _wrapSpacing = distance.a;
-  final _placeholderTypography = typography.body;
-
   @override
   Widget build(BuildContext context) {
+    final theme = SemanticTheme.of(context);
+
     Widget fieldBody;
 
     if (tags != null && tags.isNotEmpty) {
       final List<Widget> tagWidgets = tags != null
           ? tags
-              .map((tag) => buildTag(
-                    context,
-                    text: tag,
-                  ))
+              .map(
+                (tag) => buildTag(
+                  context,
+                  text: tag,
+                ),
+              )
               ?.toList()
           : [];
 
       fieldBody = Padding(
-        padding: EdgeInsets.symmetric(vertical: _wrapSpacing),
+        padding: EdgeInsets.symmetric(
+          vertical: theme.distance.padding.vertical.min,
+        ),
         child: Wrap(
           children: tagWidgets,
-          spacing: _wrapSpacing,
-          runSpacing: _wrapSpacing,
+          spacing: theme.distance.spacing.horizontal.min,
+          runSpacing: theme.distance.spacing.vertical.min,
           alignment: WrapAlignment.end,
         ),
       );
     } else {
-      final theme = RoofTheme.of(context);
-
       fieldBody = Text(
         placeholder,
-        style: _placeholderTypography
-            .textStyleWithColor(theme.color.text.placeholder),
+        style: theme.typography.body.textStyle(
+          color: theme.color.text.inputPlaceholder,
+        ),
       );
     }
 
-    return RoofPickerField(
+    return PickerField(
       name: title,
       onTap: onTap,
       fieldBody: fieldBody,

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:haptics/index.dart';
-import 'package:theme/index.dart';
-import 'package:distance/index.dart' as distance;
-import 'package:corner_radius/index.dart' as radius;
+import 'package:semantic_theme/index.dart';
 
 import '../_widgets/cell_body_text_preview.dart';
 import '../_widgets/cell_primary_title.dart';
@@ -24,16 +22,12 @@ class CellA extends StatelessWidget {
   });
 
   final _tapHapticOption = HapticOption.light;
-  final _cellPadding = distance.c;
-  final _topMargin = distance.b;
-  final _spacing = distance.b;
-  final _cornerRadius = radius.regular;
 
   void _fireHaptic() {
     if (onTap != null) triggerHapticWith(_tapHapticOption);
   }
 
-  Widget buildTitleRow() {
+  Widget buildTitleRow(SemanticInheritedTheme theme) {
     final hasTitle = title != null && title.isNotEmpty;
     final hasTitleAccessory = title != null;
 
@@ -47,7 +41,9 @@ class CellA extends StatelessWidget {
 
     if (hasTitleAccessory) {
       final spacedTitleAccessory = Container(
-        margin: EdgeInsets.only(left: _spacing),
+        margin: EdgeInsets.only(
+          left: theme.distance.spacing.horizontal.small,
+        ),
         child: titleAccessory,
       );
 
@@ -59,18 +55,23 @@ class CellA extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
+    final theme = SemanticTheme.of(context);
 
     final List<Widget> columnChildren = [];
 
-    if (buildTitleRow() != null) columnChildren.add(buildTitleRow());
+    if (buildTitleRow(theme) != null)
+      columnChildren.add(
+        buildTitleRow(theme),
+      );
 
     if (rows != null && rows.isNotEmpty) columnChildren.addAll(rows);
 
     if (note != null && note.isNotEmpty) {
       if (columnChildren.isNotEmpty) {
         final paddedNote = Container(
-          margin: EdgeInsets.only(top: _spacing),
+          margin: EdgeInsets.only(
+            top: theme.distance.spacing.vertical.small,
+          ),
           child: CellBodyTextPreview(note),
         );
         columnChildren.add(paddedNote);
@@ -83,10 +84,15 @@ class CellA extends StatelessWidget {
       onTapDown: (details) => _fireHaptic(),
       onTap: onTap,
       child: Container(
-        padding: EdgeInsets.all(_cellPadding),
-        margin: EdgeInsets.only(top: _topMargin),
+        padding: EdgeInsets.symmetric(
+          horizontal: theme.distance.padding.horizontal.medium,
+          vertical: theme.distance.padding.vertical.medium,
+        ),
+        margin: EdgeInsets.only(
+          top: theme.distance.spacing.vertical.medium,
+        ),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(_cornerRadius),
+          borderRadius: BorderRadius.all(theme.radius.medium),
           border: Border.all(color: theme.color.stroke.light),
           color: theme.color.background.inputForeground,
         ),

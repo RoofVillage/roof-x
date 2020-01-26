@@ -1,21 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:distance/index.dart' as distance;
+import 'package:semantic_theme/index.dart';
 
 class ButtonRowDock extends StatelessWidget {
   final List<Widget> buttons;
 
   ButtonRowDock({this.buttons});
 
-  final _paddingSize = distance.c;
-
   @override
   Widget build(BuildContext context) {
-    final padding = EdgeInsets.all(_paddingSize);
-    final spacer = Container(width: _paddingSize);
+    final theme = SemanticTheme.of(context);
+    final padding = EdgeInsets.symmetric(
+      horizontal: theme.distance.padding.horizontal.medium,
+      vertical: theme.distance.padding.vertical.medium,
+    );
+    final spacer = Container(
+      width: theme.distance.spacing.horizontal.medium,
+    );
 
     List<Widget> widgets = [];
 
-    for (var button in buttons) {
+    for (Widget button in buttons) {
       if (button == buttons.last) {
         widgets.add(
           Expanded(child: button),

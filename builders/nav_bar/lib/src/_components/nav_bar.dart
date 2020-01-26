@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:distance/index.dart' as distance;
-import 'package:theme/index.dart';
+import 'package:semantic_theme/index.dart';
 
-mixin RoofNavBar implements StatelessWidget {
+mixin NavBar implements StatelessWidget {
   List<Widget> get actionButtons;
   List<Widget> buildNavigationWidgets(BuildContext context);
 
-  final _padding = EdgeInsets.fromLTRB(distance.a, distance.c, distance.a, distance.a);
-
   Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
-    SystemChrome.setSystemUIOverlayStyle(theme.systemChromeStyle);
+    final theme = SemanticTheme.of(context);
+
+    SystemChrome.setSystemUIOverlayStyle(
+      theme.systemUiStyle.systemUiOverlayStyle.value,
+    );
 
     final itemRow = Center(
       child: Column(
@@ -36,16 +36,17 @@ mixin RoofNavBar implements StatelessWidget {
     );
 
     final safeAreaTop = MediaQuery.of(context).padding.top;
-    final padding = EdgeInsets.fromLTRB(
-      _padding.left,
-      _padding.top + safeAreaTop,
-      _padding.right,
-      _padding.bottom,
-    );
 
     return Container(
-      padding: padding,
-      decoration: BoxDecoration(color: theme.color.background.inputForeground),
+      padding: EdgeInsets.fromLTRB(
+        theme.distance.padding.horizontal.min,
+        theme.distance.padding.vertical.min + safeAreaTop,
+        theme.distance.padding.horizontal.min,
+        theme.distance.padding.vertical.min,
+      ),
+      decoration: BoxDecoration(
+        color: theme.color.background.inputForeground,
+      ),
       child: itemRow,
     );
   }

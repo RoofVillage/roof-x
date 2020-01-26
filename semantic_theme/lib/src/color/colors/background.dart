@@ -11,6 +11,8 @@ abstract class SemanticBackgroundColor<T> extends SemanticColor<T>
   SemanticBackgroundColor(T currentThemeOption)
       : super(currentThemeOption);
 
+  Color get elevated;
+
   Color get inputForeground;
   Color get inputBackground;
 

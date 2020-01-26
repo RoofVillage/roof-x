@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:typography/index.dart' as typography;
-import 'package:distance/index.dart' as distance;
-import 'package:theme/index.dart';
 import 'package:labeled_value/index.dart';
 import 'package:roller_column_builder/index.dart';
+import 'package:semantic_theme/index.dart';
 
 import '_clock_type.dart';
 
@@ -12,15 +10,16 @@ class TimePicker extends StatefulWidget {
   final TimeOfDay initialValue;
   final Function(TimeOfDay) onChanged;
 
-  TimePicker({this.initialValue, this.onChanged});
+  TimePicker({
+    this.initialValue,
+    this.onChanged,
+  });
 
   TimePickerState createState() => TimePickerState();
 }
 
 class TimePickerState extends State<TimePicker> with RollerColumnBuilder {
   final int _minutesSpacing = 5;
-  final double _columnWidth = distance.f;
-  final double _verticalPadding = distance.c;
 
   final List<LabeledValue<int>> _minutesList = [];
   final List<LabeledValue<int>> _hoursList = [];
@@ -85,11 +84,15 @@ class TimePickerState extends State<TimePicker> with RollerColumnBuilder {
 
   @override
   Widget build(BuildContext context) {
+    final theme = SemanticTheme.of(context);
+
+    final columnWidth = theme.distance.spacing.horizontal.max;
+
     final selectedHour = _rollerColumnDataFromHour(_selectedTime.hour);
 
     final Widget hoursColumn = Flexible(
       child: Container(
-        width: _columnWidth,
+        width: columnWidth,
         child: buildRollerColumn(
           context,
           list: _hoursList,
@@ -99,21 +102,24 @@ class TimePickerState extends State<TimePicker> with RollerColumnBuilder {
       ),
     );
 
-    final timeDividerTextStyle = typography.body.textStyleWithColor(
-      RoofTheme.of(context).color.text.secondary,
+    final timeDividerTextStyle = theme.typography.body.textStyle(
+      color: theme.color.text.generalSecondary,
     );
     final Widget timeDivider = Flexible(
       child: Container(
-        width: _columnWidth / 2,
+        width: columnWidth / 2,
         child: Center(
-          child: Text(":", style: timeDividerTextStyle),
+          child: Text(
+            ":",
+            style: timeDividerTextStyle,
+          ),
         ),
       ),
     );
 
     final Widget minutesColumn = Flexible(
       child: Container(
-        width: _columnWidth,
+        width: columnWidth,
         child: buildRollerColumn(
           context,
           list: _minutesList,
@@ -134,7 +140,7 @@ class TimePickerState extends State<TimePicker> with RollerColumnBuilder {
 
       final Widget clockTypeColumn = Flexible(
         child: Container(
-          width: _columnWidth,
+          width: columnWidth,
           child: buildRollerColumn(
             context,
             list: _clockTypeList,
@@ -146,8 +152,10 @@ class TimePickerState extends State<TimePicker> with RollerColumnBuilder {
       columns.add(clockTypeColumn);
     }
 
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: _verticalPadding),
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        vertical: theme.distance.padding.vertical.medium,
+      ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,

@@ -1,33 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:theme/index.dart';
-import 'package:distance/index.dart' as distance;
+import 'package:semantic_theme/index.dart';
 
-class RoofCellsListView extends StatefulWidget {
+class CellsListView extends StatefulWidget {
   final List<Widget> children;
   final Widget button;
 
-  RoofCellsListView({
+  CellsListView({
     this.children,
     this.button,
   });
 
   @override
-  _RoofCellsListViewState createState() => _RoofCellsListViewState();
+  _CellsListViewState createState() => _CellsListViewState();
 }
 
-class _RoofCellsListViewState extends State<RoofCellsListView> {
-  final _spacing = distance.b;
-
+class _CellsListViewState extends State<CellsListView> {
   @override
   Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
+    final theme = SemanticTheme.of(context);
 
     List<Widget> listChildren = [];
 
     if (widget.button != null) {
       final paddedButton = Container(
-        margin: EdgeInsets.only(top: _spacing),
+        margin: EdgeInsets.only(
+          top: theme.distance.spacing.vertical.medium,
+        ),
         child: widget.button,
       );
       listChildren.add(paddedButton);
@@ -36,13 +35,14 @@ class _RoofCellsListViewState extends State<RoofCellsListView> {
     listChildren.addAll(widget.children);
 
     return Container(
-      padding: EdgeInsets.only(
-        left: _spacing,
-        right: _spacing,
+      padding: EdgeInsets.symmetric(
+        horizontal: theme.distance.padding.horizontal.small,
       ),
       color: theme.color.background.inputBackground,
       child: ListView(
-        padding: EdgeInsets.only(bottom: distance.c),
+        padding: EdgeInsets.only(
+          bottom: theme.distance.padding.vertical.medium,
+        ),
         children: listChildren,
       ),
     );

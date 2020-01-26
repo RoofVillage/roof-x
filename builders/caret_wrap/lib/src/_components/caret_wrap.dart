@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:theme/index.dart';
+import 'package:semantic_theme/index.dart';
 import 'package:x_small_icon_library/index.dart';
 import 'package:haptics/index.dart';
-import 'package:distance/index.dart' as distance;
 
 class CaretWrap extends StatelessWidget {
   final List<Widget> children;
@@ -13,8 +12,6 @@ class CaretWrap extends StatelessWidget {
     this.onTap,
   });
 
-  final _verticalMargin = distance.c;
-  final _verticalSpacing = distance.b;
   final _tapHapticOption = HapticOption.light;
 
   void _fireHaptic() {
@@ -23,23 +20,25 @@ class CaretWrap extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
+    final theme = SemanticTheme.of(context);
 
     final paddedArrowWidget = Container(
-      margin: EdgeInsets.only(left: distance.a),
+      margin: EdgeInsets.only(
+        left: theme.distance.spacing.horizontal.min,
+      ),
       child: XSmallIcon.rightArrow.buildWidget(
-        color: theme.color.icon.secondary,
+        color: theme.color.icon.generalSecondary,
       ),
     );
 
     List<Widget> wrapChildren = [];
 
-    for (int i = 0; i < children.length; i++) {
+    for (Widget child in children) {
       List<Widget> rowChildren = [];
 
-      rowChildren.add(children[i]);
+      rowChildren.add(child);
 
-      if (i < children.length - 1) {
+      if (child != children.last) {
         rowChildren.add(paddedArrowWidget);
       }
 
@@ -55,13 +54,10 @@ class CaretWrap extends StatelessWidget {
     return GestureDetector(
       onTapDown: (details) => _fireHaptic(),
       onTap: onTap,
-      child: Container(
-        padding: EdgeInsets.symmetric(vertical: _verticalMargin),
-        child: Wrap(
-          runSpacing: _verticalSpacing,
-          children: wrapChildren,
-          crossAxisAlignment: WrapCrossAlignment.center,
-        ),
+      child: Wrap(
+        runSpacing: theme.distance.padding.vertical.small,
+        children: wrapChildren,
+        crossAxisAlignment: WrapCrossAlignment.center,
       ),
     );
   }

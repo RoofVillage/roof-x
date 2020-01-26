@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:theme/index.dart';
 import 'package:multi_image_picker/multi_image_picker.dart';
+import 'package:semantic_theme/index.dart';
 
 mixin ImagePickerBuilder {
   /// Returns files as [List<Asset>]. Provide [thumbnailWidth] and [thumbnailHeight] to pre-build thumbnails and attach to files.
@@ -9,17 +9,23 @@ mixin ImagePickerBuilder {
     int thumbnailWidth,
     int thumbnailHeight,
   }) async {
-    final theme = RoofTheme.of(context);
+    final theme = SemanticTheme.of(context);
+
     const maxFiles = 300;
 
     final files = await MultiImagePicker.pickImages(
       maxImages: maxFiles,
       enableCamera: true,
       options: CupertinoOptions(
-        selectionFillColor: _convertToHex(theme.color.background.primaryAction),
-        selectionStrokeColor:
-            _convertToHex(theme.color.background.primaryAction),
-        selectionShadowColor: _convertToHex(theme.shadow.color),
+        selectionFillColor: _convertToHex(
+          theme.color.background.actionPrimary,
+        ),
+        selectionStrokeColor: _convertToHex(
+          theme.color.background.actionPrimary,
+        ),
+        selectionShadowColor: _convertToHex(
+          theme.color.background.scrim,
+        ),
         selectionTextColor: _convertToHex(Colors.white),
       ),
     );
@@ -42,8 +48,10 @@ mixin ImagePickerBuilder {
 
   static String _convertToHex(Color color) {
     final _stringWithAlpha = color.value.toRadixString(16);
-    final _stringWithoutAlpha =
-        _stringWithAlpha.substring(2, _stringWithAlpha.length);
+    final _stringWithoutAlpha = _stringWithAlpha.substring(
+      2,
+      _stringWithAlpha.length,
+    );
     return "#$_stringWithoutAlpha";
   }
 }

@@ -5,14 +5,14 @@ import '../data/index.dart';
 import '_cells/activity.dart';
 import '_section_headers/a.dart';
 
-class RoofStreamTable extends StreamTable<StreamableTableRowData,
+class StandardStreamTable extends StreamTable<StreamableTableRowData,
     StreamableTableSectionHeaderData, StreamableTableHeaderData> {
   Widget buildCellA({
     CellAData rowData,
     int rowIndex,
     int sectionIndex,
   }) {
-    return RoofActivityCell(
+    return ActivityCell(
       title: rowData.title,
       note: "" + (rowData.description ?? ""),
       iconReference: rowData.iconReference,
@@ -38,8 +38,10 @@ class RoofStreamTable extends StreamTable<StreamableTableRowData,
     return null;
   }
 
-  Widget buildSectionHeader(
-      {StreamableTableSectionHeaderData headerData, int sectionIndex}) {
-    return RoofTableSectionHeaderA(title: headerData.title);
+  Widget buildSectionHeader({
+    StreamableTableSectionHeaderData headerData,
+    int sectionIndex,
+  }) {
+    return TableSectionHeaderA(title: headerData.title);
   }
 }

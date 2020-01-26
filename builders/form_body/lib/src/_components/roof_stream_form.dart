@@ -51,7 +51,7 @@ class RoofStreamForm
     final inputAction = _getInputActionForCompositionFieldData(fieldData);
     final focusNode = _focusNodeManager.nodeFor(fieldData, context);
 
-    return RoofTextField(
+    return StandardTextField(
       autofocus: fieldData.autofocus,
       fieldName: fieldData.title,
       placeholder: fieldData.placeholder,
@@ -78,12 +78,13 @@ class RoofStreamForm
     );
   }
 
-  Widget buildTextArea(
-      {FormTextAreaData fieldData,
-      StreamableFormData formData,
-      int fieldIndex,
-      int sectionIndex,
-      BuildContext context}) {
+  Widget buildTextArea({
+    FormTextAreaData fieldData,
+    StreamableFormData formData,
+    int fieldIndex,
+    int sectionIndex,
+    BuildContext context,
+  }) {
     final inputAction = _getInputActionForCompositionFieldData(fieldData);
 
     return RoofTextArea(
@@ -129,7 +130,7 @@ class RoofStreamForm
     int sectionIndex,
     BuildContext context,
   }) {
-    return RoofDatePickerField(
+    return DatePickerField(
       title: fieldData.title,
       initialValue: fieldData.value,
       startBound: fieldData.startBound,
@@ -248,71 +249,82 @@ class RoofStreamForm
   }) {
     Widget fieldBody;
 
-    if (fieldData is FormTextFieldData) {
-      fieldBody = buildTextField(
-        fieldData: fieldData,
-        formData: formData,
-        fieldIndex: fieldIndex,
-        sectionIndex: sectionIndex,
-        context: context,
-      );
-    } else if (fieldData is FormTextAreaData) {
-      fieldBody = buildTextArea(
-        fieldData: fieldData,
-        formData: formData,
-        fieldIndex: fieldIndex,
-        sectionIndex: sectionIndex,
-        context: context,
-      );
-    } else if (fieldData is FormSwitchFieldData) {
-      fieldBody = buildSwitchField(
-        fieldData: fieldData,
-        fieldIndex: fieldIndex,
-        sectionIndex: sectionIndex,
-        context: context,
-      );
-    } else if (fieldData is FormOptionPickerFieldData) {
-      fieldBody = buildOptionPickerField(
-        fieldData: fieldData,
-        fieldIndex: fieldIndex,
-        sectionIndex: sectionIndex,
-      );
-    } else if (fieldData is FormTimePickerFieldData) {
-      fieldBody = buildTimeSelect(
-        fieldData: fieldData,
-        fieldIndex: fieldIndex,
-        sectionIndex: sectionIndex,
-      );
-    } else if (fieldData is FormIconPickerFieldData) {
-      fieldBody = buildIconOptionPickerField(
-        fieldData: fieldData,
-        fieldIndex: fieldIndex,
-        sectionIndex: sectionIndex,
-      );
-    } else if (fieldData is FormDatePickerFieldData) {
-      fieldBody = buildDateField(
-        fieldData: fieldData,
-        fieldIndex: fieldIndex,
-        sectionIndex: sectionIndex,
-      );
-    } else if (fieldData is FormIntervalFrequencyPickerFieldData) {
-      fieldBody = buildIntervalFrequencySelect(
-        fieldData: fieldData,
-        fieldIndex: fieldIndex,
-        sectionIndex: sectionIndex,
-      );
-    } else if (fieldData is FormRollerColumnPickerFieldData) {
-      fieldBody = buildRollerColumnPicker(
-        fieldData: fieldData,
-        fieldIndex: fieldIndex,
-        sectionIndex: sectionIndex,
-      );
-    } else if (fieldData is FormTagFieldData) {
-      fieldBody = buildTagEditor(
-        fieldData: fieldData,
-        fieldIndex: fieldIndex,
-        sectionIndex: sectionIndex,
-      );
+    switch (fieldBody.runtimeType) {
+      case FormTextFieldData:
+        fieldBody = buildTextField(
+          fieldData: fieldData,
+          formData: formData,
+          fieldIndex: fieldIndex,
+          sectionIndex: sectionIndex,
+          context: context,
+        );
+        break;
+      case FormTextAreaData:
+        fieldBody = buildTextArea(
+          fieldData: fieldData,
+          formData: formData,
+          fieldIndex: fieldIndex,
+          sectionIndex: sectionIndex,
+          context: context,
+        );
+        break;
+      case FormSwitchFieldData:
+        fieldBody = buildSwitchField(
+          fieldData: fieldData,
+          fieldIndex: fieldIndex,
+          sectionIndex: sectionIndex,
+          context: context,
+        );
+        break;
+      case FormOptionPickerFieldData:
+        fieldBody = buildOptionPickerField(
+          fieldData: fieldData,
+          fieldIndex: fieldIndex,
+          sectionIndex: sectionIndex,
+        );
+        break;
+      case FormTimePickerFieldData:
+        fieldBody = buildTimeSelect(
+          fieldData: fieldData,
+          fieldIndex: fieldIndex,
+          sectionIndex: sectionIndex,
+        );
+        break;
+      case FormIconPickerFieldData:
+        fieldBody = buildIconOptionPickerField(
+          fieldData: fieldData,
+          fieldIndex: fieldIndex,
+          sectionIndex: sectionIndex,
+        );
+        break;
+      case FormDatePickerFieldData:
+        fieldBody = buildDateField(
+          fieldData: fieldData,
+          fieldIndex: fieldIndex,
+          sectionIndex: sectionIndex,
+        );
+        break;
+      case FormIntervalFrequencyOptionData:
+        fieldBody = buildIntervalFrequencySelect(
+          fieldData: fieldData,
+          fieldIndex: fieldIndex,
+          sectionIndex: sectionIndex,
+        );
+        break;
+      case FormRollerColumnPickerFieldData:
+        fieldBody = buildRollerColumnPicker(
+          fieldData: fieldData,
+          fieldIndex: fieldIndex,
+          sectionIndex: sectionIndex,
+        );
+        break;
+      case FormTagFieldData:
+        fieldBody = buildTagEditor(
+          fieldData: fieldData,
+          fieldIndex: fieldIndex,
+          sectionIndex: sectionIndex,
+        );
+        break;
     }
 
     return RoofFieldContainer(
@@ -325,9 +337,10 @@ class RoofStreamForm
     KeyboardAccessory.of(context).hide();
   }
 
-  void _changeFocus(
-      {@required FormCompositionFieldData fieldData,
-      @required BuildContext context}) {
+  void _changeFocus({
+    @required FormCompositionFieldData fieldData,
+    @required BuildContext context,
+  }) {
     final nextEmptyFieldData = _nextEmptyCompositionFieldDataAfter(fieldData);
 
     if (nextEmptyFieldData != null) {
@@ -339,7 +352,8 @@ class RoofStreamForm
   }
 
   FormTextFieldData _nextEmptyCompositionFieldDataAfter(
-      FormCompositionFieldData fieldData) {
+    FormCompositionFieldData fieldData,
+  ) {
     final allCompositionFieldData = _allCompositionFieldData;
 
     final index = allCompositionFieldData.indexOf(fieldData);
@@ -357,7 +371,8 @@ class RoofStreamForm
   }
 
   TextInputAction _getInputActionForCompositionFieldData(
-      FormCompositionFieldData fieldData) {
+    FormCompositionFieldData fieldData,
+  ) {
     if (fieldData.inputAction != null) return fieldData.inputAction;
     final nextEmpty = _nextEmptyCompositionFieldDataAfter(fieldData);
 
@@ -372,18 +387,25 @@ class RoofStreamForm
   }
 
   void _onCompositionViewFocusChanged(
-      FormCompositionFieldData fieldData, bool isInFocus) {
+    FormCompositionFieldData fieldData,
+    bool isInFocus,
+  ) {
     fieldData.onFocusChanged(isInFocus);
   }
 
   void _onCompositionViewSubmitted(
-      FormCompositionFieldData fieldData, String value, BuildContext context) {
+    FormCompositionFieldData fieldData,
+    String value,
+    BuildContext context,
+  ) {
     fieldData.onSubmitted(value);
     _changeFocus(fieldData: fieldData, context: context);
   }
 
   void _onCompositionViewChanged(
-      FormCompositionFieldData fieldData, String value) {
+    FormCompositionFieldData fieldData,
+    String value,
+  ) {
     final oldValue = fieldData.value;
     fieldData.onChanged(value);
     //If the fieldValue is going from empty to not empty or vice versa.
@@ -393,9 +415,10 @@ class RoofStreamForm
     }
   }
 
-  void _resignFieldFocus(
-      {@required FormCompositionFieldData fieldData,
-      @required BuildContext context}) {
+  void _resignFieldFocus({
+    @required FormCompositionFieldData fieldData,
+    @required BuildContext context,
+  }) {
     final focusNode = _focusNodeManager.nodeFor(fieldData, context);
     if (focusNode != null) focusNode.unfocus();
     KeyboardAccessory.of(context).hide();
@@ -407,12 +430,17 @@ class RoofStreamForm
   }) {
     final _nextButton = SecondaryActionKeyboardAccessoryButton(
         title: _hideKeyboardTitle,
-        onTap: (context) =>
-            _resignFieldFocus(fieldData: fieldData, context: context));
+        onTap: (context) => _resignFieldFocus(
+              fieldData: fieldData,
+              context: context,
+            ));
+
     final _doneButton = PrimaryActionKeyboardAccessoryButton(
         title: _doneKeyboardTitle,
-        onTap: (context) =>
-            _resignFieldFocus(fieldData: fieldData, context: context));
+        onTap: (context) => _resignFieldFocus(
+              fieldData: fieldData,
+              context: context,
+            ));
 
     switch (_getInputActionForCompositionFieldData(fieldData)) {
       case TextInputAction.next:
@@ -435,14 +463,19 @@ class RoofStreamForm
 class _FocusNodeManager {
   Map<FormCompositionFieldData, FocusNode> _focusNodeMap = {};
 
-  FocusNode nodeFor(FormCompositionFieldData fieldData, BuildContext context) {
+  FocusNode nodeFor(
+    FormCompositionFieldData fieldData,
+    BuildContext context,
+  ) {
     final node = _focusNodeMap[fieldData];
     if (node != null) return node;
     return _newNodeFor(fieldData, context);
   }
 
   FocusNode _newNodeFor(
-      FormCompositionFieldData fieldData, BuildContext context) {
+    FormCompositionFieldData fieldData,
+    BuildContext context,
+  ) {
     final newNode = FocusNode();
     _focusNodeMap[fieldData] = newNode;
     return newNode;

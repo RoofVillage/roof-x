@@ -19,31 +19,11 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: semantic-theme-compatible-builders
       path: icons/x_small
-  typography:
-    git:
-      url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-theme-compatible-builders
-      path: spec/typography
-  theme:
-    git:
-      url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-theme-compatible-builders
-      path: theme
   haptics:
     git:
       url: git@github.com:RoofVillage/roof-x.git
       ref: semantic-theme-compatible-builders
       path: lib/haptics
-  distance:
-    git:
-      url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-theme-compatible-builders
-      path: spec/distance
-  corner_radius:
-    git:
-      url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-theme-compatible-builders
-      path: spec/corner_radius
   typedefs:
     git:
       url: git@github.com:RoofVillage/roof-x.git
@@ -59,6 +39,8 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: semantic-theme-compatible-builders
       path: builders/image_picker
+  semantic_theme:
+    path: ../../semantic_theme
 
 dependency_overrides:
   image_picker_builder:

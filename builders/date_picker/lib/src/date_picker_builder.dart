@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:date/index.dart';
-import 'package:haptics/index.dart';
 import 'package:artboard/index.dart';
+import 'package:date/index.dart';
+import 'package:flutter/material.dart';
+import 'package:haptics/index.dart';
 
 import '_components/date_picker.dart';
 
@@ -20,7 +20,7 @@ mixin DatePickerBuilderState<T extends DatePickerBuilder>
   set date(Date newDate) => _date = newDate;
 
   Widget buildDatePicker(BuildContext context) {
-    return RoofCalendarDatePicker(
+    return CalendarDatePicker(
       selectedDate: date ?? widget.selectedDate,
       startBound: widget.startBound,
       endBound: widget.endBound,

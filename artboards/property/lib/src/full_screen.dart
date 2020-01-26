@@ -19,7 +19,7 @@ import '_data.dart';
 abstract class PropertyVerticalFullScreenArtboard
     extends TabbedFullScreenArtboard
     with
-        RoofCellsListViewBuilder,
+        CellsListViewBuilder,
         SecondaryCenterButtonBuilder,
         IconNavButtonBuilder,
         PropertyArtboardData {

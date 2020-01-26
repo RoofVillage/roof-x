@@ -129,17 +129,17 @@ class LeaseArtboard extends LeaseVerticalFullScreenArtboard
 
   @override
   List<Widget> buildThreadCells(BuildContext context) {
-    final eventCell1 = RoofThreadEventCell(
+    final eventCell1 = ThreadEventCell(
       timestamp: 1558229172,
       title: "Kelsey Lu paid \$980 for June rent",
       iconReference: StandardIcon.cashSack,
     );
-    final eventCell2 = RoofThreadEventCell(
+    final eventCell2 = ThreadEventCell(
       timestamp: 1558229172,
       title: "Lisa Hanniga paid \$910 for June rent",
       iconReference: StandardIcon.cashSack,
     );
-    final eventCell3 = RoofThreadEventCell(
+    final eventCell3 = ThreadEventCell(
       timestamp: 1558229172,
       title: "Lisa Hannigan created a new message thread",
       note: "Thinking about starting a garden",

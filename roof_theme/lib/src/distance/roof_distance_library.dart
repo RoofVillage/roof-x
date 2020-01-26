@@ -5,11 +5,11 @@ import 'package:theme/src/distance/_distances/spacing.dart';
 
 class RoofDistanceLibrary extends SemanticDistanceLibrary {
   @override
-  SymSemanticDistance get gutter => RoofGutterDistance();
+  SemanticSymmetryDistance get gutter => RoofGutterDistance();
 
   @override
-  SymSemanticDistance get padding => RoofPaddingDistance();
+  SemanticSymmetryDistance get padding => RoofPaddingDistance();
 
   @override
-  SymSemanticDistance get spacing => RoofSpacingDistance();
+  SemanticSymmetryDistance get spacing => RoofSpacingDistance();
 }

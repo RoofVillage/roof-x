@@ -6,14 +6,14 @@ import 'package:button_builder/index.dart';
 import '_components/centered_primary_button.dart';
 
 mixin PrimaryCenterButtonBuilder {
-  RoofPrimaryCenterButton buildPrimaryCenterButton(
+  PrimaryCenterButton buildPrimaryCenterButton(
     BuildContext context, {
     @required OnTap onTap,
     @required String text,
     XSmallIcon icon,
     ButtonStatusOption status,
   }) {
-    return RoofPrimaryCenterButton(
+    return PrimaryCenterButton(
       onTap: onTap,
       text: text,
       icon: icon,

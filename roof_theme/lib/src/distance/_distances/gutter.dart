@@ -2,7 +2,7 @@ import 'package:semantic_theme/index.dart';
 
 import '_distance.dart' as distance;
 
-class RoofGutterDistance extends SymSemanticDistance {
+class RoofGutterDistance extends SemanticSymmetryDistance {
   SemanticDistance get horizontal => _Horizontal();
   SemanticDistance get vertical => _Vertical();
 }

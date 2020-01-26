@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:theme/index.dart';
-import 'package:typography/index.dart' as typography;
-import 'package:distance/index.dart' as distance;
+import 'package:form_body_builder/src/_components/fields/_widgets/index.dart';
 import 'package:mask/index.dart';
+import 'package:semantic_theme/index.dart';
 
 //TODO
 //for animating:
 // https://stackoverflow.com/questions/50736571/when-i-select-a-textfield-the-keyboard-moves-over-it
 /// may want to make this animation a mixin so text area and any other field can benefit if needed.
-class RoofTextField extends StatelessWidget {
+class StandardTextField extends StatelessWidget {
   final String fieldName;
   final String placeholder;
   final String initialValue;
@@ -23,7 +22,7 @@ class RoofTextField extends StatelessWidget {
   final Function onTap;
   final FocusNode focusNode;
 
-  RoofTextField({
+  StandardTextField({
     @required this.fieldName,
     this.placeholder,
     this.initialValue,
@@ -39,23 +38,18 @@ class RoofTextField extends StatelessWidget {
     this.focusNode,
   });
 
-  final _labelTypographyStyle = typography.title;
-
   @override
   Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
-    final secondaryTextColor = theme.color.text.secondary;
-
     final labelContainer = Flexible(
       flex: 0,
-      child: Text(
-        fieldName,
-        style: _labelTypographyStyle.textStyleWithColor(secondaryTextColor),
+      child: Container(
+        margin: EdgeInsets.only(
+          bottom: SemanticTheme.of(context).distance.spacing.horizontal.small,
+        ),
+        child: FieldLabel(
+          labelText: fieldName,
+        ),
       ),
-    );
-
-    final spacer = Container(
-      width: distance.c,
     );
 
     final fieldBody = _FieldBody(
@@ -77,7 +71,6 @@ class RoofTextField extends StatelessWidget {
       child: Row(
         children: <Widget>[
           labelContainer,
-          spacer,
           fieldBody,
         ],
       ),
@@ -119,7 +112,6 @@ class _FieldBody extends StatefulWidget {
 
 class _FieldBodyState extends State<_FieldBody> {
   final _controller = TextEditingController();
-  final _typographyStyle = typography.body;
 
   String _formattedPlaceholder = "";
   bool _didSetInitialValue = false;
@@ -154,7 +146,8 @@ class _FieldBodyState extends State<_FieldBody> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
+    final theme = SemanticTheme.of(context);
+
     final decoration = InputDecoration(
       hintText: _formattedPlaceholder,
       enabledBorder: UnderlineInputBorder(
@@ -163,8 +156,8 @@ class _FieldBodyState extends State<_FieldBody> {
       focusedBorder: UnderlineInputBorder(
         borderSide: BorderSide(color: Colors.transparent),
       ),
-      hintStyle: _typographyStyle.textStyleWithColor(
-        theme.color.text.placeholder,
+      hintStyle: theme.typography.body.textStyle(
+        color: theme.color.text.inputPlaceholder,
       ),
     );
 
@@ -174,11 +167,13 @@ class _FieldBodyState extends State<_FieldBody> {
         obscureText: widget.isPassword,
         textInputAction: widget.textInputAction,
         keyboardType: widget.keyboardType,
-        style: _typographyStyle.textStyleWithColor(theme.color.text.primary),
+        style: theme.typography.body.textStyle(
+          color: theme.color.text.generalPrimary,
+        ),
         textAlign: TextAlign.right,
         decoration: decoration,
         focusNode: widget.focusNode,
-        keyboardAppearance: _brightnessForTheme(theme.current),
+        keyboardAppearance: theme.systemUiStyle.keyboardBrightness.value,
         onSubmitted: (value) => widget.onSubmitted(value, context),
         onTap: widget.onTap,
         controller: _controller,
@@ -224,14 +219,5 @@ class _FieldBodyState extends State<_FieldBody> {
         _formattedText(text: _controller.text, context: context);
     _setText(formattedText);
     widget.onFocusChanged(widget.focusNode.hasFocus);
-  }
-
-  Brightness _brightnessForTheme(RoofThemeOption theme) {
-    switch (theme) {
-      case RoofThemeOption.dark:
-        return Brightness.dark;
-      default:
-        return Brightness.light;
-    }
   }
 }

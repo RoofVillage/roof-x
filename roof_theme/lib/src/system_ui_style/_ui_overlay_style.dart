@@ -1,13 +1,13 @@
 import 'package:flutter/services.dart';
 import 'package:semantic_theme/index.dart';
-import '../roof_theme_option.dart';
+import 'package:theme/index.dart';
 
 class RoofSystemUiOverlayStyle extends SemanticSystemUiOverlayStyle {
   RoofSystemUiOverlayStyle(currentThemeOption) : super(currentThemeOption);
 
   @override
   SystemUiOverlayStyle get value => forThemeOption({
-        RoofThemeOption.light: SystemUiOverlayStyle.dark,
-        RoofThemeOption.dark: SystemUiOverlayStyle.light,
+        RoofThemeOption.dark: SystemUiOverlayStyle.dark,
+        RoofThemeOption.light: SystemUiOverlayStyle.light,
       });
 }

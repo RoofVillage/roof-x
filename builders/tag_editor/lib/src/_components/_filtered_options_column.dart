@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:distance/index.dart' as distance;
+import 'package:semantic_theme/index.dart';
 
 import '_match_highlighted_text.dart';
 
@@ -19,19 +19,21 @@ class OptionsColumn extends StatelessWidget {
     return Column(
       children: options
           .map(
-            (option) => _buildMatchedOption(option),
+            (option) => _buildMatchedOption(option, context),
           )
           .toList(),
     );
   }
 
-  Widget _buildMatchedOption(String option) {
+  Widget _buildMatchedOption(String option, BuildContext context) {
+    final theme = SemanticTheme.of(context);
+
     return GestureDetector(
       behavior: HitTestBehavior.translucent,
       onTap: () => onTap(option),
       child: Padding(
         padding: EdgeInsets.symmetric(
-          vertical: distance.c,
+          vertical: theme.distance.padding.vertical.medium,
         ),
         child: Row(
           mainAxisSize: MainAxisSize.max,

@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:standard_icon_library/index.dart';
 
-import '_components/title.dart';
+import '_components/title_nav_bar.dart';
 import '_components/nav_bar.dart';
 
 mixin TitledIconNavBarBuilder {
-  String get title => null;
-  String buildSubtitle(BuildContext context) => null;
-  StandardIcon get titleIcon => null;
-
-  List<Widget> buildActionButtons(BuildContext context);
-  Widget buildNavButton(BuildContext context);
-
-  RoofNavBar buildTitledIconNavBar(BuildContext context) {
-    return RoofTitleNavBar(
-      actionButtons: buildActionButtons(context),
+  NavBar buildTitledIconNavBar(
+    BuildContext context, {
+    String title,
+    String subtitle,
+    StandardIcon titleIcon,
+    List<Widget> actionButtons,
+    Widget navButton,
+  }) {
+    return TitleNavBar(
+      actionButtons: actionButtons,
       title: title,
-      subtitle: buildSubtitle(context),
+      subtitle: subtitle,
       icon: titleIcon,
-      navButton: buildNavButton(context),
+      navButton: navButton,
     );
   }
 }

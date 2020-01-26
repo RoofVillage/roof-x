@@ -1,11 +1,7 @@
 import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
-import 'package:distance/index.dart' as distance;
-import 'package:duration/index.dart' as duration;
-import 'package:curve/index.dart' as curve;
-import 'package:typography/index.dart' as typography;
-import 'package:theme/index.dart';
 import 'package:haptics/index.dart';
+import 'package:semantic_theme/index.dart';
 
 class RoofSwitchField extends StatefulWidget {
   final String title;
@@ -33,31 +29,33 @@ class _RoofSwitchFieldState extends State<RoofSwitchField>
   Color isOnColor;
   Color isOffColor;
 
-  final _typographyStyle = typography.title;
-  final _duration = duration.short;
-
   initState() {
     isOn = widget.initialValue;
 
-    controller = AnimationController(duration: _duration, vsync: this);
+    controller = AnimationController(
+      duration: SemanticTheme.of(context).duration.short,
+      vsync: this,
+    );
 
     super.initState();
   }
 
   @override
   void didChangeDependencies() {
-    final theme = RoofTheme.of(context);
+    final theme = SemanticTheme.of(context);
 
-    isOnColor = theme.color.background.primaryAction;
-    isOffColor = theme.color.background.disabled;
+    isOnColor = theme.color.background.actionPrimary;
+    isOffColor = theme.color.background.actionDisabled;
 
     animation = ColorTween(
       begin: isOffColor,
       end: isOnColor,
     )
-        .chain(CurveTween(
-          curve: isOn ? curve.easy.flipped : curve.easy.flipped,
-        ))
+        .chain(
+          CurveTween(
+            curve: theme.curve.hurried,
+          ),
+        )
         .animate(controller)
           ..addListener(() {
             setState(() {});
@@ -68,16 +66,17 @@ class _RoofSwitchFieldState extends State<RoofSwitchField>
 
   @override
   Widget build(BuildContext context) {
+    final theme = SemanticTheme.of(context);
+
     isOn ? controller.forward() : controller.reverse();
 
-    final theme = RoofTheme.of(context);
-
-    final secondaryTextColor = theme.color.text.secondary;
     final labelContainer = Expanded(
       child: Text(
         widget.title,
         maxLines: labelMaxLines,
-        style: _typographyStyle.textStyleWithColor(secondaryTextColor),
+        style: theme.typography.title.textStyle(
+          color: theme.color.text.generalSecondary,
+        ),
       ),
     );
 
@@ -111,21 +110,24 @@ class _RoofAnimatedSwitch extends StatelessWidget {
   final double _width = 50;
   final double _height = 28;
   final double _innerSpacing = 4.0;
-  final _duration = duration.short;
 
-  double get _leftMargin => distance.d;
   double get _radius => _height * 0.5;
-  double get _animatedContainerWidth => _height - _innerSpacing * 2 - 2; // subtract 2 for border width * 2
-  double get _aimatedContainerRadius => _animatedContainerWidth * 0.5;
+  double get _animatedContainerWidth =>
+      _height - _innerSpacing * 2 - 2; // subtract 2 for border width * 2
+  double get _animatedContainerRadius => _animatedContainerWidth * 0.5;
 
   _RoofAnimatedSwitch({this.isOn, this.color});
 
   @override
   Widget build(BuildContext context) {
+    final theme = SemanticTheme.of(context);
+
     return Container(
       width: _width,
       height: _height,
-      margin: EdgeInsets.only(left: _leftMargin),
+      margin: EdgeInsets.only(
+        left: theme.distance.spacing.horizontal.medium,
+      ),
       decoration: BoxDecoration(
         border: Border.all(color: color),
         borderRadius: BorderRadius.all(Radius.circular(_radius)),
@@ -137,14 +139,14 @@ class _RoofAnimatedSwitch extends StatelessWidget {
             width: _animatedContainerWidth,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.all(
-                Radius.circular(_aimatedContainerRadius),
+                Radius.circular(_animatedContainerRadius),
               ),
               color: color,
             ),
           ),
           alignment: isOn ? Alignment(1.0, 0.0) : Alignment(-1.0, 0.0),
-          curve: curve.easy,
-          duration: _duration,
+          curve: theme.curve.hurried,
+          duration: theme.duration.short,
         ),
       ),
     );

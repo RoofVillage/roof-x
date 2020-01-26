@@ -5,7 +5,11 @@ class WrappingText extends StatelessWidget {
   final TextStyle style;
   final int maxLines;
 
-  WrappingText({@required this.text, this.style, this.maxLines = 2});
+  WrappingText({
+    @required this.text,
+    this.style,
+    this.maxLines = 2,
+  });
 
   final _overflowKind = TextOverflow.ellipsis;
 

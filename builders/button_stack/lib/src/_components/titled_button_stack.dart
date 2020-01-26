@@ -1,28 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:theme/index.dart';
-import 'package:typography/index.dart' as typography;
+import 'package:semantic_theme/index.dart';
 
 import 'button_stack.dart';
 
-class RoofTitledButtonStack extends StatelessWidget {
+class TitledButtonStack extends StatelessWidget {
   final List<Widget> buttons;
   final String title;
 
-  RoofTitledButtonStack({@required this.title, @required this.buttons});
-
-  final _titleStyle = typography.heading2;
+  TitledButtonStack({@required this.title, @required this.buttons});
 
   @override
   Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
+    final theme = SemanticTheme.of(context);
+
     final List<Widget> widgets = [];
     widgets.add(
       Text(
         title,
-        style: _titleStyle.textStyleWithColor(theme.color.text.primary),
+        style: theme.typography.title.textStyle(
+          color: theme.color.text.generalPrimary,
+        ),
       ),
     );
-    final buttonStack = RoofButtonStack(buttons: buttons);
+
+    final buttonStack = ButtonStack(buttons: buttons);
 
     widgets.add(buttonStack);
     return Column(children: widgets);

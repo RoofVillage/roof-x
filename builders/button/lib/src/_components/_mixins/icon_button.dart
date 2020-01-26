@@ -3,7 +3,7 @@ import 'package:button_builder/index.dart';
 import 'package:haptics/index.dart';
 import 'package:standard_icon_library/index.dart';
 
-mixin RoofIconButton {
+mixin IconStyleButton {
   OnTap get onTap;
   StandardIcon get iconReference;
   ColorGetter get iconColor;

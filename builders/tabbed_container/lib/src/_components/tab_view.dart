@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:tab/index.dart';
 import 'package:input_dock_builder/index.dart';
 
-class RoofTabView extends StatefulWidget {
-  const RoofTabView({
+class StandardTabView extends StatefulWidget {
+  const StandardTabView({
     @required this.tabs,
     @required this.controller,
   });
@@ -13,10 +13,10 @@ class RoofTabView extends StatefulWidget {
   final List<RoofTab> tabs;
 
   @override
-  _RoofTabViewState createState() => _RoofTabViewState();
+  _StandardTabViewState createState() => _StandardTabViewState();
 }
 
-class _RoofTabViewState extends State<RoofTabView> with InputDockBuilder {
+class _StandardTabViewState extends State<StandardTabView> with InputDockBuilder {
   TabController _controller;
   PageController _pageController;
   List<Widget> _children;

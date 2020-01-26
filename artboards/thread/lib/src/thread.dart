@@ -4,20 +4,20 @@
 // import 'package:input_dock_builder/index.dart';
 
 // class ThreadArtboard extends TitledTableInputDockFullScreenArtboard {
-//   final _settingsButton = RoofIconNavButton(
+//   final _settingsButton = IconNavButton(
 //       iconReference: IconReference.moreNav, onTap: (context) {});
 
 //   @override
 //   String get title => "Take out the trash";
 
 //   @override
-//   RoofNavButton get navButton => RoofIconNavButton(
+//   NavButton get navButton => IconNavButton(
 //         iconReference: IconReference.backArrowNav,
 //         onTap: (context) => print("asdf"),
 //       );
 
 //   @override
-//   List<RoofNavButton> get actionButtons => [_settingsButton];
+//   List<NavButton> get actionButtons => [_settingsButton];
 
 //   DockActionButton get actionButton => DockActionButton(
 //         action: () => print("asdf"),

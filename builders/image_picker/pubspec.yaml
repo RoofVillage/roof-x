@@ -10,11 +10,8 @@ dependencies:
   multi_image_picker: ^3.0.23
   flutter:
     sdk: flutter
-  theme:
-    git:
-      url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-theme-compatible-builders
-      path: theme
+  semantic_theme:
+    path: ../../semantic_theme
 
 dev_dependencies:
   flutter_test:

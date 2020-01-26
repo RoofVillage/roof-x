@@ -1,24 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:theme/index.dart';
-import 'package:distance/index.dart' as distance;
+import 'package:semantic_theme/index.dart';
 
-class RoofThreadListView extends StatefulWidget {
+class ThreadListView extends StatefulWidget {
   final List<Widget> children;
   final Widget button;
 
-  RoofThreadListView({
+  ThreadListView({
     this.children,
     this.button,
   });
 
   @override
-  _RoofThreadListViewState createState() => _RoofThreadListViewState();
+  _ThreadListViewState createState() => _ThreadListViewState();
 }
 
-class _RoofThreadListViewState extends State<RoofThreadListView> {
-  final _spacing = distance.b;
-
+class _ThreadListViewState extends State<ThreadListView> {
   ScrollController _controller = ScrollController();
 
   @override
@@ -33,13 +30,15 @@ class _RoofThreadListViewState extends State<RoofThreadListView> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
+    final theme = SemanticTheme.of(context);
 
     List<Widget> listChildren = [];
 
     if (widget.button != null) {
       final paddedButton = Container(
-        margin: EdgeInsets.only(top: _spacing),
+        margin: EdgeInsets.only(
+          top: theme.distance.spacing.vertical.small,
+        ),
         child: widget.button,
       );
       listChildren.add(paddedButton);
@@ -49,15 +48,16 @@ class _RoofThreadListViewState extends State<RoofThreadListView> {
 
     return Container(
       alignment: Alignment.bottomCenter,
-      padding: EdgeInsets.only(
-        left: _spacing,
-        right: _spacing,
+      padding: EdgeInsets.symmetric(
+        horizontal: theme.distance.padding.horizontal.small,
       ),
       color: theme.color.background.generalSecondary,
       child: ListView(
         reverse: true,
         controller: _controller,
-        padding: EdgeInsets.only(bottom: distance.c),
+        padding: EdgeInsets.only(
+          bottom: theme.distance.padding.vertical.medium,
+        ),
         children: listChildren,
       ),
     );

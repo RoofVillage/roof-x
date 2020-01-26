@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:decorated_text/index.dart';
+import 'package:semantic_theme/index.dart';
 import 'package:standard_icon_library/index.dart';
-import 'package:typography/index.dart' as typography;
-import 'package:distance/index.dart' as distance;
-import 'package:theme/index.dart';
 import 'package:haptics/index.dart';
 import 'package:date/index.dart';
 
-class RoofThreadCell extends StatelessWidget {
+class ThreadCell extends StatelessWidget {
   final StandardIcon iconReference;
   final String title;
   final TextStyle titleTextStyle;
@@ -16,7 +14,7 @@ class RoofThreadCell extends StatelessWidget {
   final TextStyle timestampTextStyle;
   final VoidCallback onTap;
 
-  RoofThreadCell({
+  ThreadCell({
     @required this.iconReference,
     @required this.title,
     @required this.titleTextStyle,
@@ -26,8 +24,6 @@ class RoofThreadCell extends StatelessWidget {
     @required this.onTap,
   });
 
-  final _horizontalPadding = distance.b;
-  final _verticalPadding = distance.c;
   final _tapHapticOption = HapticOption.light;
 
   void _fireHaptic() {
@@ -36,6 +32,8 @@ class RoofThreadCell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = SemanticTheme.of(context);
+
     final paddedIconWidget = _IconWidget(
       iconReference: iconReference,
     );
@@ -56,8 +54,8 @@ class RoofThreadCell extends StatelessWidget {
       onTap: onTap,
       child: Container(
         padding: EdgeInsets.symmetric(
-          horizontal: _horizontalPadding,
-          vertical: _verticalPadding,
+          horizontal: theme.distance.padding.horizontal.small,
+          vertical: theme.distance.padding.vertical.medium,
         ),
         child: Row(
           children: <Widget>[
@@ -80,9 +78,11 @@ class _IconWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
+    final theme = SemanticTheme.of(context);
 
-    return iconReference.buildWidget(color: theme.color.icon.general);
+    return iconReference.buildWidget(
+      color: theme.color.icon.generalPrimary,
+    );
   }
 }
 
@@ -97,15 +97,9 @@ class _PaddedBody extends StatelessWidget {
     @required this.secondaryText,
   });
 
-  final _secondaryTextTypographyStyle = typography.detailPrimary;
-  final _secondaryTextTypographyThinStyle = typography.detailSecondary;
-
-  final _verticalSpacing = distance.a;
-  final _horizontalSpacing = distance.b;
-
   @override
   Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
+    final theme = SemanticTheme.of(context);
 
     List<Widget> columnChildren = [];
 
@@ -117,22 +111,24 @@ class _PaddedBody extends StatelessWidget {
 
     columnChildren.add(titleWidget);
 
-    final secondaryTextColor = theme.color.text.secondary;
-    final secondaryTextThinColor = theme.color.text.secondary;
-
     if (secondaryText != null) {
+      final TextStyle defaulTextStyle = theme.typography.detailHeavy.textStyle(
+        color: theme.color.text.generalSecondary,
+      );
+      final TextStyle thinTextStyle = theme.typography.detail.textStyle(
+        color: theme.color.text.generalSecondary,
+      );
+
       final secondaryTextWidget = secondaryText.generateWidget(
-        defaultStyle: _secondaryTextTypographyStyle.textStyleWithColor(
-          secondaryTextColor,
-        ),
-        thinStyle: _secondaryTextTypographyThinStyle.textStyleWithColor(
-          secondaryTextThinColor,
-        ),
+        defaultStyle: defaulTextStyle,
+        thinStyle: thinTextStyle,
         textScaleFactor: MediaQuery.of(context).textScaleFactor,
       );
 
       final paddedSecondaryTextWidget = Padding(
-        padding: EdgeInsets.only(top: _verticalSpacing),
+        padding: EdgeInsets.only(
+          top: theme.distance.spacing.vertical.min,
+        ),
         child: secondaryTextWidget,
       );
 
@@ -141,7 +137,9 @@ class _PaddedBody extends StatelessWidget {
 
     return Expanded(
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: _horizontalSpacing),
+        padding: EdgeInsets.symmetric(
+          horizontal: theme.distance.padding.horizontal.small,
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: columnChildren,

@@ -2,13 +2,16 @@ import 'package:flutter/widgets.dart';
 
 import '_components/thread_list_view.dart';
 
-mixin RoofThreadListViewBuilder {
+mixin ThreadListViewBuilder {
   Widget buildThreadList(
     BuildContext context, {
     List<Widget> children,
     Widget button,
     bool reversed,
   }) {
-    return RoofThreadListView(children: children, button: button);
+    return ThreadListView(
+      children: children,
+      button: button,
+    );
   }
 }

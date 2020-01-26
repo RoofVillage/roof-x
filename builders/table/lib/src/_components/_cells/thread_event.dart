@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:theme/index.dart';
+import 'package:semantic_theme/index.dart';
 import 'package:standard_icon_library/index.dart';
 import 'package:key_value_builder/index.dart';
 import 'package:spaced_grid_builder/index.dart';
 import 'package:date/index.dart';
 import 'package:haptics/index.dart';
-import 'package:distance/index.dart' as distance;
-import 'package:typography/index.dart' as typography;
-import 'package:corner_radius/index.dart' as radius;
 
-class RoofThreadEventCell extends StatelessWidget {
+class ThreadEventCell extends StatelessWidget {
   final String title;
   final int timestamp;
   final StandardIcon iconReference;
@@ -17,7 +14,7 @@ class RoofThreadEventCell extends StatelessWidget {
   final List<KeyValue> details;
   final VoidCallback onTap;
 
-  RoofThreadEventCell({
+  ThreadEventCell({
     @required this.title,
     @required this.timestamp,
     this.iconReference,
@@ -26,9 +23,6 @@ class RoofThreadEventCell extends StatelessWidget {
     this.onTap,
   });
 
-  final double _horizontalPadding = distance.b;
-  final double _verticalMargin = distance.b;
-  final double _horizontalSpacing = distance.b;
   final _tapHapticOption = HapticOption.light;
 
   void _fireHaptic() {
@@ -37,13 +31,19 @@ class RoofThreadEventCell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = SemanticTheme.of(context);
+
     final _iconReference = iconReference ?? StandardIcon.event;
 
     return GestureDetector(
       onTapDown: (details) => _fireHaptic(),
       child: Container(
-        margin: EdgeInsets.symmetric(vertical: _verticalMargin),
-        padding: EdgeInsets.symmetric(horizontal: _horizontalPadding),
+        margin: EdgeInsets.symmetric(
+          vertical: theme.distance.spacing.vertical.small,
+        ),
+        padding: EdgeInsets.symmetric(
+          horizontal: theme.distance.padding.horizontal.small,
+        ),
         child: _Body(
           iconReference: _iconReference,
           title: title,
@@ -98,20 +98,18 @@ class _Icon extends StatelessWidget {
     this.iconReference,
   });
 
-  final _margin = distance.b;
-
   @override
   Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
+    final theme = SemanticTheme.of(context);
 
-    final iconColor = theme.color.icon.general;
+    final iconColor = theme.color.icon.generalPrimary;
 
     final iconWidget = iconReference.buildWidget(color: iconColor);
 
     return Padding(
       padding: EdgeInsets.only(
-        right: _margin,
-        top: _margin,
+        right: theme.distance.padding.horizontal.small,
+        top: theme.distance.padding.vertical.small,
       ),
       child: iconWidget,
     );
@@ -131,28 +129,15 @@ class _Content extends StatelessWidget with KeyValueBuilder, SpacedGridBuilder {
     this.details,
   });
 
-  final _titleTypographyStyle = typography.body;
-  final _timestampTypographyStyle = typography.detailSecondary;
-  final _noteTypographyStyle = typography.body;
-
-  final _outerPadding = distance.c;
-  final _horizontalSpacing = distance.b;
-  final _verticalSpacing = distance.a;
-  final _detailsSpacing = distance.b;
-
   @override
   Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
-
-    final backgroundColor = theme.color.background.generalPrimary;
-
-    final borderRadius = radius.large;
+    final theme = SemanticTheme.of(context);
 
     final titleWidget = Flexible(
       child: Text(
         title,
-        style: _titleTypographyStyle.textStyleWithColor(
-          theme.color.text.secondary,
+        style: theme.typography.body.textStyle(
+          color: theme.color.text.generalSecondary,
         ),
         maxLines: 2,
         overflow: TextOverflow.ellipsis,
@@ -163,11 +148,13 @@ class _Content extends StatelessWidget with KeyValueBuilder, SpacedGridBuilder {
         Date.fromSecondsSinceEpoch(timestamp).toAdaptiveString;
 
     final timestampWidget = Padding(
-      padding: EdgeInsets.only(left: _horizontalSpacing),
+      padding: EdgeInsets.only(
+        left: theme.distance.padding.horizontal.small,
+      ),
       child: Text(
         formattedTimestamp,
-        style: _timestampTypographyStyle.textStyleWithColor(
-          theme.color.text.secondary,
+        style: theme.typography.detail.textStyle(
+          color: theme.color.text.generalSecondary,
         ),
       ),
     );
@@ -182,12 +169,14 @@ class _Content extends StatelessWidget with KeyValueBuilder, SpacedGridBuilder {
     final List<Widget> verticalChildren = [titleRow];
 
     if (note != null && note.trim().isNotEmpty) {
-      final noteWidget = Padding(
-        padding: EdgeInsets.only(top: _verticalSpacing),
+      final noteWidget = Container(
+        margin: EdgeInsets.only(
+          top: theme.distance.spacing.vertical.min,
+        ),
         child: Text(
           note,
-          style: _noteTypographyStyle.textStyleWithColor(
-            theme.color.text.primary,
+          style: theme.typography.body.textStyle(
+            color: theme.color.text.generalPrimary,
           ),
         ),
       );
@@ -196,13 +185,15 @@ class _Content extends StatelessWidget with KeyValueBuilder, SpacedGridBuilder {
     }
 
     if (details != null) {
-      final detailsContainer = Padding(
-        padding: EdgeInsets.only(top: _detailsSpacing),
+      final detailsContainer = Container(
+        margin: EdgeInsets.only(
+          top: theme.distance.spacing.vertical.small,
+        ),
         child: buildSpacedGrid(
           context,
           children: details,
-          horizontalSpacing: _detailsSpacing,
-          verticalSpacing: _detailsSpacing,
+          horizontalSpacing: theme.distance.spacing.horizontal.small,
+          verticalSpacing: theme.distance.spacing.vertical.small,
         ),
       );
 
@@ -211,10 +202,13 @@ class _Content extends StatelessWidget with KeyValueBuilder, SpacedGridBuilder {
 
     return Flexible(
       child: Container(
-        padding: EdgeInsets.all(_outerPadding),
+        padding: EdgeInsets.symmetric(
+          horizontal: theme.distance.padding.horizontal.medium,
+          vertical: theme.distance.padding.vertical.medium,
+        ),
         decoration: BoxDecoration(
-          color: backgroundColor,
-          borderRadius: BorderRadius.all(borderRadius),
+          color: theme.color.background.generalPrimary,
+          borderRadius: BorderRadius.all(theme.radius.large),
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,

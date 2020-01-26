@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:button_builder/index.dart';
 import 'package:form_body_builder/index.dart';
-import 'package:typography/index.dart' as typography;
-import 'package:distance/index.dart' as distance;
-import 'package:theme/index.dart';
 import 'package:button_status_option/index.dart';
+import 'package:semantic_theme/index.dart';
 
 mixin FormBuilder implements FormBodyBuilder, PrimaryCenterButtonBuilder {
   String get title;
@@ -48,24 +46,16 @@ mixin FormBuilderState<T extends FormBuilder>
     return null;
   }
 
-  final _headerStyle = typography.heading1;
-  final _subtitleStyle = typography.body;
-
-  final _bodyVerticalPadding = EdgeInsets.only(top: distance.d);
-  final _buttonPadding = EdgeInsets.only(
-    top: distance.d,
-    left: distance.c,
-    right: distance.c,
-  );
-
   Widget buildForm(BuildContext context) {
     addFocusChangedListeners();
-    final theme = RoofTheme.of(context);
+    final theme = SemanticTheme.of(context);
 
-    final headerColor = theme.color.text.brand;
-    final subtitleColor = theme.color.text.secondary;
-    final headerStyle = _headerStyle.textStyleWithColor(headerColor);
-    final subtitleStyle = _subtitleStyle.textStyleWithColor(subtitleColor);
+    final headerStyle = theme.typography.headingSecondary.textStyle(
+      color: theme.color.text.brand,
+    );
+    final subtitleStyle = theme.typography.subtitle.textStyle(
+      color: theme.color.text.generalSecondary,
+    );
 
     final widgets = <Widget>[];
 
@@ -85,7 +75,9 @@ mixin FormBuilderState<T extends FormBuilder>
       );
       widgets.add(
         Padding(
-          padding: EdgeInsets.all(distance.b),
+          padding: EdgeInsets.all(
+            theme.distance.spacing.vertical.medium,
+          ),
           child: subtitleTextWidget,
         ),
       );
@@ -93,15 +85,21 @@ mixin FormBuilderState<T extends FormBuilder>
 
     widgets.add(
       Padding(
-        padding: _bodyVerticalPadding,
+        padding: EdgeInsets.symmetric(
+          vertical: theme.distance.padding.vertical.medium,
+        ),
         child: buildFormBody(context),
       ),
     );
 
     if (!shouldHideButtons) {
       widgets.add(
-        Padding(
-          padding: _buttonPadding,
+        Container(
+          margin: EdgeInsets.only(
+            left: theme.distance.spacing.horizontal.medium,
+            right: theme.distance.spacing.horizontal.medium,
+            top: theme.distance.spacing.vertical.medium,
+          ),
           child: submitButton,
         ),
       );

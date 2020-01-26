@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:theme/index.dart';
-import 'package:typography/index.dart' as typography;
 import 'package:labeled_value/index.dart';
+import 'package:semantic_theme/index.dart';
 
 import '_widgets/index.dart';
 import '_picker_field.dart';
@@ -47,7 +46,7 @@ class OptionPickerField<T> extends StatelessWidget {
     final List<Widget> columnChildren = [];
 
     if (title != null && title.isNotEmpty) {
-      final label = RoofFieldLabel(labelText: title);
+      final label = FieldLabel(labelText: title);
       columnChildren.add(label);
     }
 
@@ -57,7 +56,7 @@ class OptionPickerField<T> extends StatelessWidget {
     );
     columnChildren.add(selectedOptionsContainer);
 
-    return RoofPickerField(
+    return PickerField(
       name: title,
       onTap: onTap,
       fieldBody: selectedOptionsContainer,
@@ -69,7 +68,6 @@ class _SelectedOptionsContainer<T> extends StatelessWidget {
   final List<LabeledValue<T>> selectedOptions;
   final String emptyText;
 
-  final _typographyStyle = typography.body;
   final _maxLines = 10;
 
   _SelectedOptionsContainer({
@@ -93,12 +91,12 @@ class _SelectedOptionsContainer<T> extends StatelessWidget {
   }
 
   Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
+    final theme = SemanticTheme.of(context);
 
     return Text(
       _textForSelectedOptions(),
-      style: _typographyStyle.textStyleWithColor(
-        theme.color.text.primary,
+      style: theme.typography.body.textStyle(
+        color: theme.color.text.generalPrimary,
       ),
       softWrap: true,
       maxLines: _maxLines,

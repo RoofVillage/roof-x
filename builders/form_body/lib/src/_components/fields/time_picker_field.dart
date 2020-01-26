@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:theme/index.dart';
-import 'package:typography/index.dart' as typography;
-import 'package:distance/index.dart' as distance;
+import 'package:semantic_theme/index.dart';
 
 import '_picker_field.dart';
 
@@ -18,35 +16,30 @@ class TimePickerField extends StatelessWidget {
     this.onTap,
   });
 
-  final _typographyStyle = typography.body;
-
   @override
   Widget build(BuildContext context) {
-    String formattedValue;
+    final theme = SemanticTheme.of(context);
 
-    if (initialValue != null) {
-      formattedValue = initialValue.format(context);
-    } else {
-      final noon = TimeOfDay(hour: 12, minute: 0);
-      formattedValue = noon.format(context);
-    }
+    final String formattedValue = initialValue != null
+        ? initialValue.format(context)
+        : TimeOfDay(hour: 12, minute: 0).format(context);
 
-    final TextStyle textStyle = _typographyStyle.textStyleWithColor(
-      RoofTheme.of(context).color.text.primary,
+    final verticalPadding = EdgeInsets.symmetric(
+      vertical: theme.distance.padding.vertical.small,
     );
-
-    final verticalPadding = EdgeInsets.symmetric(vertical: distance.b);
 
     final fieldBody = Container(
       padding: verticalPadding,
       child: Text(
         formattedValue,
-        style: textStyle,
+        style: theme.typography.body.textStyle(
+          color: theme.color.text.generalPrimary,
+        ),
         textAlign: TextAlign.right,
       ),
     );
 
-    return RoofPickerField(
+    return PickerField(
       onTap: onTap,
       name: title,
       fieldBody: fieldBody,

@@ -1,6 +1,6 @@
 import 'package:semantic_theme/src/distance/semantic_distance.dart';
 
-abstract class SymSemanticDistance {
+abstract class SemanticSymmetryDistance {
   SemanticDistance get vertical;
   SemanticDistance get horizontal;
 }

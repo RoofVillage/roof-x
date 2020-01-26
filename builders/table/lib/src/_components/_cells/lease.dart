@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:theme/index.dart';
 import 'package:mask/index.dart';
 import 'package:date/index.dart';
 import 'package:haptics/index.dart';
+import 'package:semantic_theme/index.dart';
 import 'package:tag_builder/index.dart';
 import 'package:lease_status/index.dart';
 import 'package:tag_kind_option/index.dart';
-import 'package:typography/index.dart' as typography;
-import 'package:distance/index.dart' as distance;
-import 'package:corner_radius/index.dart' as radius;
 
 import '../_widgets/cell_primary_title.dart';
 import '../_widgets/cell_spaced_row.dart';
@@ -30,11 +27,6 @@ class LeaseCell extends StatelessWidget {
     this.onTap,
   });
 
-  final _radius = radius.regular;
-  final _cellPadding = distance.c;
-  final _spacing = distance.b;
-  final _sectionSpacing = distance.c;
-  final _topMargin = distance.b;
   final _tapHapticOption = HapticOption.light;
 
   void _fireHaptic() {
@@ -43,14 +35,16 @@ class LeaseCell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
+    final theme = SemanticTheme.of(context);
 
     final titleWidget = CellPrimaryTitle(title);
 
     final leaseStatus = LeaseStatus.fromLease(startTimestamp, endTimestamp);
 
     final statusWidget = Container(
-      margin: EdgeInsets.only(left: _spacing),
+      margin: EdgeInsets.only(
+        left: theme.distance.spacing.horizontal.small,
+      ),
       child: _StatusTag(leaseStatus),
     );
 
@@ -69,11 +63,13 @@ class LeaseCell extends StatelessWidget {
     );
 
     final rentWidget = Container(
-      margin: EdgeInsets.only(right: _spacing),
+      margin: EdgeInsets.only(
+        right: theme.distance.spacing.horizontal.small,
+      ),
       child: Text(
         formattedAmount,
-        style: typography.bodyThick.textStyleWithColor(
-          theme.color.text.primary,
+        style: theme.typography.bodyHeavy.textStyle(
+          color: theme.color.text.generalPrimary,
         ),
       ),
     );
@@ -84,7 +80,9 @@ class LeaseCell extends StatelessWidget {
     );
 
     final statsRow = Container(
-      margin: EdgeInsets.only(top: _sectionSpacing),
+      margin: EdgeInsets.only(
+        top: theme.distance.spacing.vertical.large,
+      ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.baseline,
         textBaseline: TextBaseline.alphabetic,
@@ -100,7 +98,7 @@ class LeaseCell extends StatelessWidget {
     if (tenants != null) {
       final tenantsSection = Container(
         margin: EdgeInsets.only(
-          top: _sectionSpacing,
+          top: theme.distance.spacing.vertical.large,
         ),
         child: _Tenants(tenants),
       );
@@ -116,10 +114,15 @@ class LeaseCell extends StatelessWidget {
       onTapDown: (details) => _fireHaptic(),
       onTap: onTap,
       child: Container(
-        padding: EdgeInsets.all(_cellPadding),
-        margin: EdgeInsets.only(top: _topMargin),
+        padding: EdgeInsets.symmetric(
+          horizontal: theme.distance.padding.horizontal.medium,
+          vertical: theme.distance.padding.vertical.medium,
+        ),
+        margin: EdgeInsets.only(
+          top: theme.distance.spacing.vertical.small,
+        ),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(_radius),
+          borderRadius: BorderRadius.all(theme.radius.medium),
           border: Border.all(color: theme.color.stroke.light),
           color: theme.color.background.generalPrimary,
         ),
@@ -136,7 +139,7 @@ class _Tenants extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
+    final theme = SemanticTheme.of(context);
 
     String tenantString = "";
 
@@ -148,8 +151,8 @@ class _Tenants extends StatelessWidget {
 
     return Text(
       tenantString,
-      style: typography.body.textStyleWithColor(
-        theme.color.text.primary,
+      style: theme.typography.body.textStyle(
+        color: theme.color.text.generalPrimary,
       ),
     );
   }
@@ -166,7 +169,7 @@ class _DateRange extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
+    final theme = SemanticTheme.of(context);
 
     final startTimestampText =
         Date.fromSecondsSinceEpoch(startTimestamp).toLongString;
@@ -176,14 +179,14 @@ class _DateRange extends StatelessWidget {
 
     return Text(
       formattedDateString,
-      style: typography.detailSecondary.textStyleWithColor(
-        theme.color.text.secondary,
+      style: theme.typography.detail.textStyle(
+        color: theme.color.text.generalSecondary,
       ),
     );
   }
 }
 
-class _StatusTag extends StatelessWidget with RoofTagBuilder {
+class _StatusTag extends StatelessWidget with TagBuilder {
   final LeaseStatusOption status;
 
   _StatusTag(this.status);
@@ -217,7 +220,7 @@ class _StatusTag extends StatelessWidget with RoofTagBuilder {
     return buildTag(
       context,
       text: _getStatusText(status),
-      kind: _getTagKind(status)
+      kind: _getTagKind(status),
     );
   }
 }

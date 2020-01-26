@@ -13,7 +13,7 @@ import '_data.dart';
 abstract class InvoiceVerticalFullScreenArtboard
     extends TabbedFullScreenArtboard
     with
-        RoofCellsListViewBuilder,
+        CellsListViewBuilder,
         SecondaryCenterButtonBuilder,
         InvoiceArtboardData {
   @override
@@ -66,15 +66,15 @@ abstract class InvoiceVerticalFullScreenArtboard
 }
 
 // @override
-// List<RoofBreadcrumb> buildBreadcrumbs(BuildContext context) {
+// List<Breadcrumb> buildBreadcrumbs(BuildContext context) {
 //   // TODO handle passing in data for navigating to home/lease
 
-//   final homeBreadcrumb = RoofBreadcrumb(
+//   final homeBreadcrumb = Breadcrumb(
 //     title: homeTitle,
 //     iconReference: IconReference.houseXSmall,
 //   );
 
-//   final leaseBreadcrumb = RoofBreadcrumb(
+//   final leaseBreadcrumb = Breadcrumb(
 //     title: leaseTitle,
 //     iconReference: IconReference.leaseXSmall,
 //   );

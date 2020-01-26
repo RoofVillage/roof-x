@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:multi_image_picker/asset.dart';
-import 'package:padding/index.dart' as padding;
-import 'package:theme/index.dart';
+import 'package:semantic_theme/index.dart';
 
 import '_components/_file_preview.dart';
 import '_components/_input_field.dart';
@@ -10,32 +9,41 @@ class DockSubmitData {
   String text;
   List<String> files;
 
-  DockSubmitData({this.text, this.files});
+  DockSubmitData({
+    this.text,
+    this.files,
+  });
 }
 
 typedef DockDataHandler = void Function(DockSubmitData data);
 
-class RoofInputDock extends StatefulWidget {
+class InputDock extends StatefulWidget {
   final Widget actionButton;
   final DockDataHandler onSubmit;
   final List<Widget> auxiliaryWidgets;
 
-  RoofInputDock({this.actionButton, this.onSubmit, this.auxiliaryWidgets});
+  InputDock({
+    this.actionButton,
+    this.onSubmit,
+    this.auxiliaryWidgets,
+  });
 
   @override
   State<StatefulWidget> createState() => InheritedInputDock();
 
-  static InheritedInputDock of(BuildContext context,
-      {bool shouldRebuild = true}) {
+  static InheritedInputDock of(
+    BuildContext context, {
+    bool shouldRebuild = true,
+  }) {
     final inheritedWidget = (shouldRebuild
-        ? context.inheritFromWidgetOfExactType(_InheritedInputDock)
-        : context.ancestorWidgetOfExactType(_InheritedInputDock));
+        ? context.dependOnInheritedWidgetOfExactType<_InheritedInputDock>()
+        : context.findAncestorWidgetOfExactType<_InheritedInputDock>());
 
-    return (inheritedWidget as _InheritedInputDock).data;
+    return inheritedWidget.data;
   }
 }
 
-class InheritedInputDock extends State<RoofInputDock> {
+class InheritedInputDock extends State<InputDock> {
   final double baseHeight = 40;
   final double previewHeight = 100;
   final double previewWidth = 140;
@@ -88,7 +96,7 @@ class InheritedInputDock extends State<RoofInputDock> {
 
   @override
   Widget build(BuildContext context) {
-    final RoofInheritedTheme theme = RoofTheme.of(context);
+    final theme = SemanticTheme.of(context);
 
     final columnChildren = <Widget>[];
 
@@ -105,7 +113,10 @@ class InheritedInputDock extends State<RoofInputDock> {
     if (widget.actionButton != null) rowChildren.add(widget.actionButton);
 
     final Widget fieldRow = Container(
-      padding: padding.container1,
+      padding: EdgeInsets.symmetric(
+        horizontal: theme.distance.padding.horizontal.medium,
+        vertical: theme.distance.padding.vertical.medium,
+      ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: rowChildren,
@@ -122,7 +133,9 @@ class InheritedInputDock extends State<RoofInputDock> {
       padding: bottomPadding,
       decoration: BoxDecoration(
         color: backgroundColor,
-        border: Border(top: BorderSide(color: topBorderColor)),
+        border: Border(
+          top: BorderSide(color: topBorderColor),
+        ),
       ),
       child: Column(
         children: columnChildren,
@@ -136,8 +149,10 @@ class InheritedInputDock extends State<RoofInputDock> {
 class _InheritedInputDock extends InheritedWidget {
   final InheritedInputDock data;
 
-  _InheritedInputDock({@required this.data, @required Widget child})
-      : super(child: child);
+  _InheritedInputDock({
+    @required this.data,
+    @required Widget child,
+  }) : super(child: child);
 
   @override
   bool updateShouldNotify(_InheritedInputDock old) => true;

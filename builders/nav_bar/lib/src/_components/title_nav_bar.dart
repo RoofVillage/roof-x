@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:semantic_theme/index.dart';
 
-import 'package:theme/index.dart';
 import 'package:standard_icon_library/index.dart';
-import 'package:distance/index.dart' as distance;
-import 'package:typography/index.dart' as typography;
 
 import 'nav_bar.dart';
 import '_widgets/nav_title_baseline.dart';
 
-class RoofTitleNavBar extends StatelessWidget with RoofNavBar {
+class TitleNavBar extends StatelessWidget with NavBar {
   final List<Widget> actionButtons;
   final Widget navButton;
   final String title;
   final String subtitle;
   final StandardIcon icon;
 
-  RoofTitleNavBar({
+  TitleNavBar({
     Key key,
     this.navButton,
     this.title,
@@ -24,12 +22,9 @@ class RoofTitleNavBar extends StatelessWidget with RoofNavBar {
     this.icon,
   });
 
-  final _titleTypographyStyle = typography.heading1;
-  final _subtitleTypographyStyle = typography.detailSecondary;
-
   @override
   List<Widget> buildNavigationWidgets(BuildContext context) {
-    final theme = RoofTheme.of(context);
+    final theme = SemanticTheme.of(context);
 
     List<Widget> navigationWidgets = [];
 
@@ -39,20 +34,26 @@ class RoofTitleNavBar extends StatelessWidget with RoofNavBar {
 
     if (icon != null) {
       final paddedIconWidget = Container(
-        margin: EdgeInsets.only(right: distance.b),
-        child: icon.buildWidget(color: theme.color.icon.logo),
+        margin: EdgeInsets.only(
+          right: theme.distance.spacing.horizontal.medium,
+        ),
+        child: icon.buildWidget(
+          color: theme.color.icon.logo,
+        ),
       );
       navigationWidgets.add(paddedIconWidget);
     }
 
     if (_buildTitleColumn(theme) != null) {
-      navigationWidgets.add(_buildTitleColumn(theme));
+      navigationWidgets.add(
+        _buildTitleColumn(theme),
+      );
     }
 
     return navigationWidgets;
   }
 
-  Widget _buildTitleColumn(RoofInheritedTheme theme) {
+  Widget _buildTitleColumn(SemanticInheritedTheme theme) {
     if (title == null && subtitle == null) return null;
 
     final List<Widget> titleColumnChildren = [];
@@ -60,7 +61,9 @@ class RoofTitleNavBar extends StatelessWidget with RoofNavBar {
     if (title != null) {
       final titleWidget = Text(
         title,
-        style: _titleTypographyStyle.textStyleWithColor(theme.color.text.brand),
+        style: theme.typography.headingPrimary.textStyle(
+          color: theme.color.text.brand,
+        ),
         overflow: TextOverflow.ellipsis,
       );
       titleColumnChildren.add(NavTitleBaseline(text: titleWidget));
@@ -69,8 +72,9 @@ class RoofTitleNavBar extends StatelessWidget with RoofNavBar {
     if (subtitle != null) {
       final subtitleWidget = Text(
         subtitle,
-        style: _subtitleTypographyStyle
-            .textStyleWithColor(theme.color.text.secondary),
+        style: theme.typography.subtitle.textStyle(
+          color: theme.color.text.generalSecondary,
+        ),
         overflow: TextOverflow.ellipsis,
       );
       titleColumnChildren.add(subtitleWidget);

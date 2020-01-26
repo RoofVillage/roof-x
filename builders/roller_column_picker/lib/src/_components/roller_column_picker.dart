@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:distance/index.dart' as distance;
 import 'package:labeled_value/index.dart';
 import 'package:roller_column_builder/index.dart';
+import 'package:semantic_theme/index.dart';
 
 class RollerColumnPicker<T> extends StatefulWidget {
   final LabeledValue<T> selectedValue;
@@ -22,8 +22,6 @@ class RollerColumnPicker<T> extends StatefulWidget {
 
 class RollerColumnPickerState<T> extends State<RollerColumnPicker<T>>
     with RollerColumnBuilder {
-  final double _verticalPadding = distance.c;
-
   LabeledValue<T> _selectedValue;
 
   @override
@@ -35,6 +33,8 @@ class RollerColumnPickerState<T> extends State<RollerColumnPicker<T>>
 
   @override
   Widget build(BuildContext context) {
+    final theme = SemanticTheme.of(context);
+
     final Widget column = buildRollerColumn<T>(
       context,
       list: widget.options,
@@ -43,7 +43,9 @@ class RollerColumnPickerState<T> extends State<RollerColumnPicker<T>>
       canRollover: widget.canRollover,
     );
     return Container(
-      padding: EdgeInsets.symmetric(vertical: _verticalPadding),
+      padding: EdgeInsets.symmetric(
+        vertical: theme.distance.padding.vertical.medium,
+      ),
       child: Center(child: column),
     );
   }

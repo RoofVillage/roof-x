@@ -6,14 +6,14 @@ import 'package:button_builder/index.dart';
 import '_components/centered_secondary_button.dart';
 
 mixin SecondaryCenterButtonBuilder {
-  RoofSecondaryCenterButton buildSecondaryCenterButton(
+  SecondaryCenterButton buildSecondaryCenterButton(
     BuildContext context, {
     @required OnTap onTap,
     @required String text,
     XSmallIcon icon,
     ButtonStatusOption status,
   }) {
-    return RoofSecondaryCenterButton(
+    return SecondaryCenterButton(
       onTap: onTap,
       text: text,
       icon: icon,

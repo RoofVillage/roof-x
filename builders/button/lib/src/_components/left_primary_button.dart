@@ -1,31 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:theme/index.dart';
+import 'package:semantic_theme/index.dart';
 import 'package:standard_icon_library/index.dart';
 import 'package:typedefs/index.dart';
 
 import '_mixins/left_button.dart';
 export '_mixins/left_button.dart';
 
-class RoofPrimaryLeftButton extends StatefulWidget with RoofLeftButton {
+class PrimaryLeftButton extends StatefulWidget with LeftStyleButton {
   final ContextPasser onTap;
   final String text;
   final StandardIcon iconReference;
   final bool hasArrow;
 
   get backgroundColor => (context) {
-        final theme = RoofTheme.of(context);
-        return theme.color.background.secondaryAction;
-      };
-  get textColor => (context) {
-        final theme = RoofTheme.of(context);
-        return theme.color.text.secondaryAction;
-      };
-  get arrowColor => (context) {
-        final theme = RoofTheme.of(context);
-        return theme.color.icon.general;
+        return SemanticTheme.of(context).color.background.actionSecondary;
       };
 
-  RoofPrimaryLeftButton({
+  get textColor => (context) {
+        return SemanticTheme.of(context).color.text.actionSecondary;
+      };
+
+  get arrowColor => (context) {
+        return SemanticTheme.of(context).color.icon.generalSecondary;
+      };
+
+  PrimaryLeftButton({
     @required this.onTap,
     @required this.text,
     this.iconReference,
@@ -33,14 +32,14 @@ class RoofPrimaryLeftButton extends StatefulWidget with RoofLeftButton {
   });
 
   @override
-  State<StatefulWidget> createState() => _RoofPrimaryLeftButtonState();
+  State<StatefulWidget> createState() => _PrimaryLeftButtonState();
 }
 
-class _RoofPrimaryLeftButtonState extends State<RoofPrimaryLeftButton>
-    with RoofLeftButtonState {
+class _PrimaryLeftButtonState extends State<PrimaryLeftButton>
+    with LeftButtonState {
   @override
   Widget build(BuildContext context) => buildButton(context);
 
   @override
-  RoofLeftButton get button => widget;
+  LeftStyleButton get button => widget;
 }

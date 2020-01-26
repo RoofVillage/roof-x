@@ -3,11 +3,11 @@ import 'package:tab/index.dart';
 
 import 'tabbed_container.dart';
 
-mixin RoofTabbedContainerBuilder {
-  RoofTabbedContainer buildTabbedContainer(
+mixin TabbedContainerBuilder {
+  TabbedContainer buildTabbedContainer(
     BuildContext context,
     List<RoofTab> tabs,
   ) {
-    return RoofTabbedContainer(tabs: tabs);
+    return TabbedContainer(tabs: tabs);
   }
 }

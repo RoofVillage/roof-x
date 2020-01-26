@@ -5,14 +5,14 @@ import 'package:typedefs/index.dart';
 import '_components/left_secondary_button.dart';
 
 mixin SecondaryLeftButtonBuilder {
-  RoofSecondaryLeftButton buildSecondaryLeftButton(
+  SecondaryLeftButton buildSecondaryLeftButton(
     BuildContext context, {
     @required ContextPasser onTap,
     @required String text,
     StandardIcon iconReference,
     bool hasArrow,
   }) {
-    return RoofSecondaryLeftButton(
+    return SecondaryLeftButton(
       onTap: onTap,
       text: text,
       iconReference: iconReference,

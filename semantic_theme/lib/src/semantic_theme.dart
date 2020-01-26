@@ -39,10 +39,10 @@ abstract class SemanticInheritedTheme<T> extends State<SemanticTheme<T>> {
   SemanticCurveLibrary get curve;
   SemanticDistanceLibrary get distance;
   SemanticDurationLibrary get duration;
-  SemanticRadiusLibrary get radiuse;
+  SemanticRadiusLibrary get radius;
   SemanticShadowLibrary get shadow;
   SemanticTypographyLibrary get typography;
-  SemanticSystemUiOverlayStyle get uiOverlayStyle;
+  SemanticSystemUiStyle get systemUiStyle;
 
   @override
   void initState() {

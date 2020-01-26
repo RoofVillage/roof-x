@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:labeled_value/index.dart';
 import 'package:haptics/index.dart';
-import 'package:curve/index.dart' as curve;
-import 'package:duration/index.dart' as duration;
+import 'package:semantic_theme/index.dart';
 
 import '_components/roller_column_body.dart';
 
@@ -100,6 +99,8 @@ class _RollerColumnState<T> extends State<RollerColumn<T>> {
   }
 
   void _snapScroll() {
+    final theme = SemanticTheme.of(context);
+
     if (_scrollController.offset % _stepHeight == 0) return;
 
     final delayBeforeSnap = Duration(milliseconds: 50);
@@ -111,8 +112,8 @@ class _RollerColumnState<T> extends State<RollerColumn<T>> {
 
       _scrollController.animateTo(
         targetOffset,
-        duration: duration.short,
-        curve: curve.quick,
+        duration: theme.duration.short,
+        curve: theme.curve.hurried,
       );
     });
   }
@@ -143,11 +144,16 @@ class _RollerColumnState<T> extends State<RollerColumn<T>> {
       height: _stepsVisible * _stepHeight,
       child: NotificationListener<Notification>(
         onNotification: (scrollNotification) {
-          if (scrollNotification is ScrollEndNotification) {
-            _snapScroll();
-          } else if (scrollNotification is ScrollUpdateNotification) {
-            _onScroll();
+          switch (scrollNotification.runtimeType) {
+            case ScrollEndNotification:
+              _snapScroll();
+              break;
+            case ScrollUpdateNotification:
+              _onScroll();
+              break;
           }
+          // TODO return false/null or true for `onNotification`?
+          return false;
         },
         child: ListView(
           controller: _scrollController,

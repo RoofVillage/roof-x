@@ -16,8 +16,8 @@ import '_data.dart';
 
 abstract class LeaseVerticalFullScreenArtboard extends TabbedFullScreenArtboard
     with
-        RoofCellsListViewBuilder,
-        RoofThreadListViewBuilder,
+        CellsListViewBuilder,
+        ThreadListViewBuilder,
         SecondaryCenterButtonBuilder,
         LeaseArtboardData,
         AddFileAuxiliaryWidgetBuilder {

@@ -1,8 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:theme/index.dart';
-import 'package:typography/index.dart' as typography;
+import 'package:semantic_theme/index.dart';
 
 class MatchHighlightedText extends StatelessWidget {
   final String text;
@@ -15,12 +14,9 @@ class MatchHighlightedText extends StatelessWidget {
     this.onTap,
   }) : this.compareTo = compareTo ?? "";
 
-  final _matchedStyle = typography.bodyThick;
-  final _unmatchedStyle = typography.body;
-
   @override
   Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
+    final theme = SemanticTheme.of(context);
 
     return RichText(
       text: TextSpan(
@@ -29,10 +25,7 @@ class MatchHighlightedText extends StatelessWidget {
     );
   }
 
-  List<TextSpan> _buildTextSpans(RoofInheritedTheme theme) {
-    final matchColor = theme.color.text.primary;
-    final unmatchColor = theme.color.text.secondary;
-
+  List<TextSpan> _buildTextSpans(SemanticInheritedTheme theme) {
     String prematch = "";
     String match = "";
     String postmatch = "";
@@ -58,17 +51,31 @@ class MatchHighlightedText extends StatelessWidget {
       }
     }
 
+    final matchColor = theme.color.text.generalPrimary;
+    final unmatchColor = theme.color.text.generalSecondary;
+
     final color = isMatch ? matchColor : unmatchColor;
 
-    final matchedTextStyle = _matchedStyle.textStyleWithColor(color);
-    final unmatchedTextStyle = _unmatchedStyle.textStyleWithColor(color);
+    final matchedTextStyle = theme.typography.bodyHeavy.textStyle(color: color);
+    final unmatchedTextStyle = theme.typography.body.textStyle(color: color);
 
-    final prematchTextSpan =
-        TextSpan(text: prematch, style: unmatchedTextStyle);
-    final matchTextSpan = TextSpan(text: match, style: matchedTextStyle);
-    final postmatchTextSpan =
-        TextSpan(text: postmatch, style: unmatchedTextStyle);
+    final prematchTextSpan = TextSpan(
+      text: prematch,
+      style: unmatchedTextStyle,
+    );
+    final matchTextSpan = TextSpan(
+      text: match,
+      style: matchedTextStyle,
+    );
+    final postmatchTextSpan = TextSpan(
+      text: postmatch,
+      style: unmatchedTextStyle,
+    );
 
-    return [prematchTextSpan, matchTextSpan, postmatchTextSpan];
+    return [
+      prematchTextSpan,
+      matchTextSpan,
+      postmatchTextSpan,
+    ];
   }
 }

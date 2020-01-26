@@ -5,12 +5,12 @@ import 'package:button_builder/index.dart';
 import '_components/primary_icon_button.dart';
 
 mixin PrimaryIconButtonBuilder {
-  RoofPrimaryIconButton buildPrimaryIconButton(
+  PrimaryIconButton buildPrimaryIconButton(
     BuildContext context, {
     @required OnTap onTap,
     StandardIcon iconReference,
   }) {
-    return RoofPrimaryIconButton(
+    return PrimaryIconButton(
       onTap: onTap,
       iconReference: iconReference,
     );

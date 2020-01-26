@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:button_builder/index.dart';
+import 'package:semantic_theme/index.dart';
 import 'package:x_small_icon_library/index.dart';
 import 'package:haptics/index.dart';
-import 'package:typography/index.dart' as typography;
-import 'package:corner_radius/index.dart' as corner_radius;
-import 'package:distance/index.dart' as distance;
 
-mixin RoofCenteredButton {
+mixin CenteredStyleButton {
   OnTap get onTap;
   String get text => null;
   ColorGetter get backgroundColor;
@@ -15,33 +13,33 @@ mixin RoofCenteredButton {
   XSmallIcon get icon;
 }
 
-mixin RoofCenteredButtonState {
-  RoofCenteredButton get button;
+mixin CenteredStyleButtonState {
+  CenteredStyleButton get button;
   BuildContext get context;
 
   bool _tapped = false;
   final double _tappedOpacity = 0.75;
-  final _textStyle = typography.button;
   final double _height = 50;
   final _tapHapticOption = HapticOption.light;
-  final _spacing = distance.b;
 
   void setState(dynamic());
 
   Widget buildButton(BuildContext context) {
+    final theme = SemanticTheme.of(context);
+
     final textColor = button.textColor(context);
 
     List<Widget> buttonChildren = [];
 
     if (button.icon != null) {
       final paddedIconWidget = Container(
-        margin: EdgeInsets.only(right: _spacing),
+        margin: EdgeInsets.only(right: theme.distance.spacing.horizontal.small),
         child: button.icon.buildWidget(color: textColor),
       );
       buttonChildren.add(paddedIconWidget);
     }
 
-    final textDecoration = _textStyle.textStyleWithColor(textColor);
+    final textDecoration = theme.typography.button.textStyle(color: textColor);
 
     final styledButtonText = Text(
       button.text,
@@ -56,7 +54,7 @@ mixin RoofCenteredButtonState {
     final decoration = BoxDecoration(
       border: Border.all(color: button.strokeColor(context)),
       color: button.backgroundColor(context)?.withOpacity(opacity),
-      borderRadius: BorderRadius.all(corner_radius.regular),
+      borderRadius: BorderRadius.all(theme.radius.medium),
     );
 
     return GestureDetector(

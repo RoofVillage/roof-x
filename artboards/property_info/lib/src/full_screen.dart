@@ -13,7 +13,7 @@ abstract class PropertyInfoVerticalFloatingArtboard
     with
         SecondaryCenterButtonBuilder,
         PropertyInfoArtboardData,
-        RoofTagBuilder,
+        TagBuilder,
         KeyValueRowBuilder {
   String get title => propertyTitle;
 
