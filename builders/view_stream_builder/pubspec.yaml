@@ -1,4 +1,4 @@
-name: view_stream_builder
+name: view_stream_builder_builder
 description: Builds a widget from a stream data source with loading and empty states.
 
 version: 1.0.0+1
