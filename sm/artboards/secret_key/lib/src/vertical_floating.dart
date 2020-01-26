@@ -1,22 +1,24 @@
-import 'package:button/index.dart';
+import 'package:button_builder/index.dart';
 import 'package:flutter/material.dart';
 import 'package:stack_vertical_floating_artboard_template/index.dart';
 
 import '_data.dart';
 
 class SecretKeyVerticalFloatingArtboard extends StackVerticalFloatingArtboard
-    with SecretKeyArtboardData {
+    with SecretKeyArtboardData, SecondaryCenterButtonBuilder {
   final String secretKey;
 
   SecretKeyVerticalFloatingArtboard({@required this.secretKey});
 
   @override
-  List<Widget> get buttonStackButtons => [
-        RoofSecondaryCenterButton(
-          text: "Copy to clipboard",
-          onTap: (_) => print('copying $secretKey'),
-        ),
-      ];
+  List<Widget> Function(BuildContext) get buildButtonStackButtons =>
+      (BuildContext context) => [
+            buildSecondaryCenterButton(
+              context,
+              text: "Copy to clipboard",
+              onTap: (_) => print('copying $secretKey'),
+            ),
+          ];
 
   @override
   List<Widget> buildBody(BuildContext context) {

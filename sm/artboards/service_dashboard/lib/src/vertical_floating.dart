@@ -1,4 +1,4 @@
-import 'package:button/index.dart';
+import 'package:button_builder/index.dart';
 import 'package:button_row_dock_builder/index.dart';
 import 'package:commands/index.dart';
 import 'package:empty_table_vertical_full_screen_artboard_template/index.dart';
@@ -6,13 +6,18 @@ import 'package:flutter/material.dart';
 import 'package:navigator/index.dart';
 import 'package:secret_key_artboard/index.dart';
 import 'package:views/index.dart';
-import 'package:view_stream_builder/index.dart';
+import 'package:view_stream_builder_builder/index.dart';
 
 import '_data.dart';
 
 class ServiceDashboardVerticalFullscreenArtboard
     extends EmptyTableVerticalFullScreenArtboard
-    with ServiceDashboardArtboardData, ButtonRowDockBuilder {
+    with
+        ServiceDashboardArtboardData,
+        ButtonRowDockBuilder,
+        SecondaryCenterButtonBuilder,
+        PrimaryCenterButtonBuilder,
+        ViewStreamBuilderBuilder {
   void _generateKey(BuildContext context) {
     ServiceCommands()
         .generateKey(
@@ -60,7 +65,8 @@ class ServiceDashboardVerticalFullscreenArtboard
 
   @override
   Widget buildBody(BuildContext context) => Center(
-        child: ViewStreamBuilder<ServiceDashboardView>(
+        child: buildViewStreamBuilder<ServiceDashboardView>(
+          context,
           stream: service,
           loading: Text('loadin'),
           empty: Text('nothin'),
@@ -70,7 +76,8 @@ class ServiceDashboardVerticalFullscreenArtboard
               _serviceName(view),
               _serviceKeys(view),
               Container(
-                child: RoofSecondaryCenterButton(
+                child: buildSecondaryCenterButton(
+                  context,
                   text: "Generate new key",
                   onTap: (context) => _generateKey(context),
                 ),
@@ -83,7 +90,8 @@ class ServiceDashboardVerticalFullscreenArtboard
 
   @override
   List<Widget> Function(BuildContext) get dockButtons => (context) => [
-        RoofPrimaryCenterButton(
+        buildPrimaryCenterButton(
+          context,
           text: "Save",
           onTap: (context) => ServiceCommands().save(),
         )

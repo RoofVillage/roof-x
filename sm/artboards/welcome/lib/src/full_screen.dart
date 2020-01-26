@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:button/index.dart';
+import 'package:button_builder/index.dart';
 import 'package:button_row_dock_builder/index.dart';
 import 'package:empty_table_vertical_full_screen_artboard_template/index.dart';
 import 'package:log_in_artboard/index.dart';
@@ -10,7 +10,11 @@ import '_data.dart';
 
 class WelcomeVerticalFullScreenArtboard
     extends EmptyTableVerticalFullScreenArtboard
-    with WelcomeScreenArtboardData, ButtonRowDockBuilder {
+    with
+        WelcomeScreenArtboardData,
+        ButtonRowDockBuilder,
+        PrimaryCenterButtonBuilder,
+        SecondaryCenterButtonBuilder {
   @override
   Widget buildBody(BuildContext context) {
     return Center(
@@ -28,13 +32,15 @@ class WelcomeVerticalFullScreenArtboard
 
   @override
   List<Widget> Function(BuildContext) get dockButtons => (context) => [
-        RoofPrimaryCenterButton(
+        buildPrimaryCenterButton(
+          context,
           text: "Create service",
           onTap: (context) => ArtboardNavigator.of(context).goTo(
             CreateServiceVerticalFloatingArtboard(),
           ),
         ),
-        RoofSecondaryCenterButton(
+        buildSecondaryCenterButton(
+          context,
           text: "Log in",
           onTap: (context) => ArtboardNavigator.of(context).goTo(
             LogInVerticalFloatingArtboard(),

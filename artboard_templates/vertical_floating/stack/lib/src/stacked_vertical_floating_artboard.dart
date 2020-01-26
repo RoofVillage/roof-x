@@ -7,7 +7,7 @@ abstract class StackVerticalFloatingArtboard extends StatefulWidget
     with VerticalFloatingArtboard, Artboard, ButtonStackBuilder {
   String get title;
 
-  List<Widget> get buttonStackButtons;
+  List<Widget> Function(BuildContext) get buildButtonStackButtons;
 
   List<Widget> buildBody(BuildContext context) => null;
 
@@ -29,11 +29,11 @@ class _StackVerticalFloatingArtboardState
         widget.buildBody(context).toList(),
       );
 
-    if (widget.buttonStackButtons != null)
+    if (widget.buildButtonStackButtons != null)
       children.add(
         widget.buildButtonStack(
           context,
-          widget.buttonStackButtons,
+          widget.buildButtonStackButtons(context),
         ),
       );
 

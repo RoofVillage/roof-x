@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '_components/view_stream_builder.dart';
 
-mixin ViewStreamBuilderBuilder<T> {
-  ViewStreamBuilder buildViewStreamBuilder(
+mixin ViewStreamBuilderBuilder {
+  ViewStreamBuilder buildViewStreamBuilder<T>(
     BuildContext context, {
     Stream stream,
     Widget loading,
