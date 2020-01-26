@@ -42,7 +42,7 @@ dependencies:
 
 dependency_overrides:
   nav_button_builder:
-    path: ../nav_button_builder
+    path: ../nav_button
 
 dev_dependencies:
   flutter_test:
