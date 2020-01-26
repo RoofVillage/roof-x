@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:button/src/types/index.dart';
+import 'package:button_builder/src/types/index.dart';
 import 'package:theme/index.dart';
 import 'package:standard_icon_library/index.dart';
 
