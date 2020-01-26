@@ -12,47 +12,47 @@ dependencies:
   theme:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: theme
   public_activity_artboard:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: artboards/public_activity
   vertical_full_screen_artboard_scaffold:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: artboard_scaffolds/vertical_full_screen
   artboard:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: lib/artboard
   device_screen:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: lib/device_screen
   invoice_full_screen_artboard_template:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: artboards/invoice
   lease_full_screen_artboard_template:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: artboards/lease
   property_full_screen_artboard_template:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: artboards/property
   property_create_artboard:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: artboards/property_create
 
 dev_dependencies:

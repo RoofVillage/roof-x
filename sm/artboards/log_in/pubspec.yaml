@@ -11,30 +11,34 @@ dependencies:
   form_vertical_floating_artboard_template:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: artboard_templates/vertical_floating/form
   form_builder:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: builders/form
   app_data:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: app_data
   navigator:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: lib/navigator
   reset_password_artboard:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: artboards/reset_password
   commands:
     path: ../../commands
+
+dependency_overrides:
+  form_builder:
+    path: ../../../builders/form
 
 dev_dependencies:
   flutter_test:

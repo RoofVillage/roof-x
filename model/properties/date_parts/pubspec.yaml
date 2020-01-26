@@ -11,12 +11,12 @@ dependencies:
   mappable:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: model/mixins/mappable
   key:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: model/key
 
 dev_dependencies:

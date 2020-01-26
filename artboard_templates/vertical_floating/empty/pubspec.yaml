@@ -11,17 +11,17 @@ dependencies:
   artboard:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: lib/artboard
   vertical_floating_artboard_button_option:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: options/vertical_floating_artboard_button
   vertical_floating_artboard_scaffold:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: artboard_scaffolds/vertical_floating
 
 dev_dependencies:

@@ -12,58 +12,62 @@ dependencies:
   keyboard_accessory:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: lib/keyboard_accessory
   artboard:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: lib/artboard
   curve:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: spec/curve
   distance:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: spec/distance
   duration:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: spec/duration
   corner_radius:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: spec/corner_radius
   theme:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: theme
   navigator:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: lib/navigator
   vertical_floating_artboard_button_option:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: options/vertical_floating_artboard_button
   nav_button_builder:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: builders/nav_button
   navigation_icon_library:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: icons/navigation
+
+dependency_overrides:
+  nav_button_builder:
+    path: ../../builders/nav_button
 
 dev_dependencies:
   flutter_test:

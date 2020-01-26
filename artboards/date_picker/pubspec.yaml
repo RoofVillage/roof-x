@@ -11,23 +11,29 @@ dependencies:
   empty_vertical_floating_artboard_template:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: artboard_templates/vertical_floating/empty
   vertical_floating_artboard_scaffold:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: artboard_scaffolds/vertical_floating
   form_builder:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: builders/form
   date_picker_builder:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: builders/date_picker
+
+dependency_overrides:
+  form_builder:
+    path: ../../builders/form
+  date_picker_builder:
+    path: ../../builders/date_picker
 
 dev_dependencies:
   flutter_test:

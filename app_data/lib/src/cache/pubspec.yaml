@@ -11,7 +11,7 @@ dependencies:
   disk:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: lib/disk
   data_chunk:
     path: ../../model/data_chunk

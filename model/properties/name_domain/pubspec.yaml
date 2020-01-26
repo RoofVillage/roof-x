@@ -11,12 +11,12 @@ dependencies:
   context_type:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: types/context
   name_context:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: model/properties/name_context
 
 dev_dependencies:

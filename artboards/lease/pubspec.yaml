@@ -11,83 +11,103 @@ dependencies:
   artboard:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: lib/artboard
   vertical_full_screen_artboard_scaffold:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: artboard_scaffolds/vertical_full_screen
   tabbed_fullscreen_artboard_template:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: artboard_templates/vertical_full_screen/tabbed
   nav_bar_builder:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: builders/nav_bar
   input_dock_builder:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: builders/input_dock
   table_builder:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: builders/table
   caret_wrap_builder:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: builders/caret_wrap
   tabbed_container_builder:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: builders/tabbed_container
   cells_list_view_builder:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: builders/cells_list_view
   thread_list_view_builder:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: builders/thread_list_view
   key_value_row_builder:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: builders/key_value_row
   auxiliary_widget_builder:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: builders/auxiliary_widget
   tab:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: tab
   navigation_icon_library:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: icons/navigation
   x_small_icon_library:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: icons/x_small
   schedule:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: model/properties/schedule
+
+dependency_overrides:
+  nav_bar_builder:
+    path: ../../builders/nav_bar
+  input_dock_builder:
+    path: ../../builders/input_dock
+  table_builder:
+    path: ../../builders/table
+  caret_wrap_builder:
+    path: ../../builders/caret_wrap
+  tabbed_container_builder:
+    path: ../../builders/tabbed_container
+  cells_list_view_builder:
+    path: ../../builders/cells_list_view
+  thread_list_view_builder:
+    path: ../../builders/thread_list_view
+  key_value_row_builder:
+    path: ../../builders/key_value_row
+  auxiliary_widget_builder:
+    path: ../../builders/auxiliary_widget
 
 dev_dependencies:
   flutter_test:

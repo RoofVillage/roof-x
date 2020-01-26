@@ -11,7 +11,7 @@ dependencies:
   navigator:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: lib/navigator
   image_picker: ^0.5.0+6
 

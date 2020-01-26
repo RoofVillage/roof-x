@@ -11,48 +11,62 @@ dependencies:
   artboard:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: lib/artboard
   vertical_full_screen_artboard_scaffold:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: artboard_scaffolds/vertical_full_screen
   nav_bar_builder:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: builders/nav_bar
   input_dock_builder:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: builders/input_dock
   table_builder:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: builders/table
   key_value_row_builder:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: builders/key_value_row
   caret_wrap_builder:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: builders/caret_wrap
   tabbed_container_builder:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: builders/tabbed_container
   tab:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: tab
+
+dependency_overrides:
+  nav_bar_builder:
+    path: ../../../builders/nav_bar
+  input_dock_builder:
+    path: ../../../builders/input_dock
+  table_builder:
+    path: ../../../builders/table
+  key_value_row_builder:
+    path: ../../../builders/key_value_row
+  caret_wrap_builder:
+    path: ../../../builders/caret_wrap
+  tabbed_container_builder:
+    path: ../../../builders/tabbed_container
 
 dev_dependencies:
   flutter_test:

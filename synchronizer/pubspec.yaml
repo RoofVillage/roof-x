@@ -12,7 +12,7 @@ dependencies:
   network:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: lib/network
 
 dev_dependencies:

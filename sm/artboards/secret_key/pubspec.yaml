@@ -11,21 +11,33 @@ dependencies:
   app_data:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: app_data
   navigator:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: lib/navigator
   commands:
     path: ../../commands
-  button:
-    path: ../../../components/button
-  view_stream_builder:
-    path: ../../../components/view_stream_builder
+  button_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-theme-compatible-builders
+      path: builders/button
+  view_stream_builder_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-theme-compatible-builders
+      path: builders/view_stream_builder
   stack_vertical_floating_artboard_template:
     path: ../../../artboard_templates/vertical_floating/stack
+
+dependency_overrides:
+  button_builder:
+    path: ../../../builders/button
+  view_stream_builder_builder:
+    path: ../../../builders/view_stream_builder
 
 dev_dependencies:
   flutter_test:

@@ -12,12 +12,12 @@ dependencies:
   period_type:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: types/period
   ordinal_suffix_string_from_int:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-theme-compatible-builders
       path: lib/ordinal_suffix_string_from_int
   
 
