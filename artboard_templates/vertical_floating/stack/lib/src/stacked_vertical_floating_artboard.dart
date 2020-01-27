@@ -31,9 +31,9 @@ class _StackVerticalFloatingArtboardState
 
     if (widget.buildStandardButtonStackButtons != null)
       children.add(
-        widget.buildStandardButtonStack(
+        widget.buildStandardStack(
           context,
-          widget.buildStandardButtonStackButtons(context),
+          children: widget.buildStandardButtonStackButtons(context),
         ),
       );
 
