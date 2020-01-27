@@ -35,7 +35,7 @@ class RoofBackgroundColor extends SemanticBackgroundColor<RoofThemeOption> {
       });
 
   @override
-  Color get elevated => forThemeOption({
+  Color get neutralContrast => forThemeOption({
         RoofThemeOption.light: colors.gray2,
         RoofThemeOption.dark: colors.gray3,
       });

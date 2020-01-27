@@ -16,7 +16,7 @@ class StandardTag extends StatelessWidget {
     final theme = SemanticTheme.of(context);
 
     Color _textColor = theme.color.text.generalPrimary;
-    Color _backgroundColor = theme.color.background.elevated;
+    Color _backgroundColor = theme.color.background.neutralContrast;
 
     switch (kind) {
       case TagKindOption.error:
