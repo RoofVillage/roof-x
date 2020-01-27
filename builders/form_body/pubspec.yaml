@@ -9,8 +9,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  semantic_theme:
-    path: ../../semantic_theme
   keyboard_accessory_bar_builder:
     git:
       url: git@github.com:RoofVillage/roof-x.git
@@ -131,8 +129,15 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: semantic-theme-compatible-builders
       path: builders/option_picker
+  semantic_theme:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-theme-compatible-builders
+      path: semantic_theme
 
 dependency_overrides:
+  semantic_theme:
+    path: ../../semantic_theme
   keyboard_accessory_bar_builder:
     path: ../keyboard_accessory_bar
   date_picker_builder:

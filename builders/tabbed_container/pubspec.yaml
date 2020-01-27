@@ -25,9 +25,14 @@ dependencies:
       ref: semantic-theme-compatible-builders
       path: tab
   semantic_theme:
-    path: ../../semantic_theme
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-theme-compatible-builders
+      path: semantic_theme
 
 dependency_overrides:
+  semantic_theme:
+    path: ../../semantic_theme
   input_dock_builder:
     path: ../input_dock
 

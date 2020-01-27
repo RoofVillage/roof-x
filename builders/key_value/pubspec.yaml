@@ -14,4 +14,11 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   semantic_theme:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-theme-compatible-builders
+      path: semantic_theme
+
+dependency_overrides:
+  semantic_theme:
     path: ../../semantic_theme

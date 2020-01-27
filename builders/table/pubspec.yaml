@@ -85,9 +85,14 @@ dependencies:
       ref: semantic-theme-compatible-builders
       path: options/tag_kind
   semantic_theme:
-    path: ../../semantic_theme
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-theme-compatible-builders
+      path: semantic_theme
 
 dependency_overrides:
+  semantic_theme:
+    path: ../../semantic_theme
   key_value_builder:
     path: ../key_value
   key_value_row_builder:

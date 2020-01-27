@@ -35,9 +35,14 @@ dependencies:
       ref: semantic-theme-compatible-builders
       path: builders/button
   semantic_theme:
-    path: ../../semantic_theme
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-theme-compatible-builders
+      path: semantic_theme
 
 dependency_overrides:
+  semantic_theme:
+    path: ../../semantic_theme
   image_picker_builder:
     path: ../image_picker
   button_builder:

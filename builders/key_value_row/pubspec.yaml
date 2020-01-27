@@ -19,4 +19,11 @@ dev_dependencies:
       ref: semantic-theme-compatible-builders
       path: spec/typography
   semantic_theme:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-theme-compatible-builders
+      path: semantic_theme
+
+dependency_overrides:
+  semantic_theme:
     path: ../../semantic_theme

@@ -45,9 +45,14 @@ dependencies:
       ref: semantic-theme-compatible-builders
       path: builders/roller_column
   semantic_theme:
-    path: ../../semantic_theme
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-theme-compatible-builders
+      path: semantic_theme
 
 dependency_overrides:
+  semantic_theme:
+    path: ../../semantic_theme
   roller_column_builder:
     path: ../roller_column
 
