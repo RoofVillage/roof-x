@@ -11,7 +11,7 @@ class SecretKeyVerticalFloatingArtboard extends StackVerticalFloatingArtboard
   SecretKeyVerticalFloatingArtboard({@required this.secretKey});
 
   @override
-  List<Widget> Function(BuildContext) get buildButtonStackButtons =>
+  List<Widget> Function(BuildContext) get buildStandardButtonStackButtons =>
       (BuildContext context) => [
             buildSecondaryCenterButton(
               context,

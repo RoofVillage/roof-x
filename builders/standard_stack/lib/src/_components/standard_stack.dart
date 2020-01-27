@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:semantic_theme/index.dart';
 
-class ButtonStack extends StatelessWidget {
-  final List<Widget> buttons;
+class StandardStack extends StatelessWidget {
+  final List<Widget> children;
 
-  ButtonStack({@required this.buttons});
+  StandardStack({@required this.children});
 
   @override
   Widget build(BuildContext context) {
     final theme = SemanticTheme.of(context);
 
-    final List<Widget> widgets = [];
+    final List<Widget> stackChildren = [];
 
-    for (final button in buttons) {
-      widgets.add(
+    for (final child in children) {
+      stackChildren.add(
         Padding(
-          child: button,
+          child: child,
           padding: EdgeInsets.only(
             top: theme.distance.spacing.vertical.small,
           ),
@@ -29,7 +29,7 @@ class ButtonStack extends StatelessWidget {
         right: theme.distance.padding.horizontal.small,
         bottom: theme.distance.padding.vertical.small,
       ),
-      child: Column(children: widgets),
+      child: Column(children: stackChildren),
     );
   }
 }
