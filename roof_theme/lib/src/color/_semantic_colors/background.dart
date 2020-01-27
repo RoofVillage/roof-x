@@ -41,7 +41,10 @@ class RoofBackgroundColor extends SemanticBackgroundColor<RoofThemeOption> {
       });
 
   @override
-  Color get inactive => null;
+  Color get inactive => forThemeOption({
+        RoofThemeOption.light: colors.gray1,
+        RoofThemeOption.dark: colors.gray4,
+      });
 
   @override
   Color get inputBackground => forThemeOption({
