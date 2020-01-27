@@ -25,7 +25,7 @@ class DueSoonThreadCell extends StatelessWidget {
     final theme = SemanticTheme.of(context);
 
     final titleTextStyle = theme.typography.body.textStyle(
-      color: theme.color.text.actionSecondary,
+      color: theme.color.text.action,
     );
 
     final timestampTextStyle = theme.typography.body.textStyle(

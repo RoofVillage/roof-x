@@ -28,7 +28,7 @@ class IconPicker extends StatelessWidget {
       final titleWidget = Text(
         title,
         style: theme.typography.headingSecondary.textStyle(
-          color: theme.color.text.actionPrimary,
+          color: theme.color.text.generalPrimary,
         ),
       );
       columnChildren.add(titleWidget);
@@ -103,7 +103,7 @@ class _IconOption extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = SemanticTheme.of(context);
 
-    final selectedColor = theme.color.icon.actionPrimary;
+    final selectedColor = theme.color.icon.action;
     final unselectedColor = theme.color.icon.generalPrimary;
 
     final iconWidget = icon.buildWidget(

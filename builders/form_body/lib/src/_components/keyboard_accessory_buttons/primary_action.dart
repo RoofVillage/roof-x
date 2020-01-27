@@ -27,7 +27,7 @@ class PrimaryActionKeyboardAccessoryButton extends StatelessWidget
           child: Text(
             title,
             style: theme.typography.button.textStyle(
-              color: theme.color.text.actionPrimary,
+              color: theme.color.text.onActionPrimaryBackground,
             ),
           ),
         ),

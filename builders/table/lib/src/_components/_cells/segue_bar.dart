@@ -93,7 +93,7 @@ class _AuxiliaryTextWidget extends StatelessWidget {
     final textWidget = Text(
       text,
       style: theme.typography.bodyHeavy.textStyle(
-        color: theme.color.text.actionSecondary,
+        color: theme.color.text.action,
       ),
     );
 

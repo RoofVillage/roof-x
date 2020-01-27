@@ -17,7 +17,7 @@ class SecondaryLeftButton extends StatefulWidget with LeftStyleButton {
       };
 
   get textColor => (context) {
-        return SemanticTheme.of(context).color.text.actionSecondary;
+        return SemanticTheme.of(context).color.text.onActionSecondaryBackground;
       };
 
   get arrowColor => (context) {

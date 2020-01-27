@@ -25,7 +25,7 @@ class SecondaryCenterButton extends StatefulWidget with CenteredStyleButton {
             return theme.color.text.warn;
           case ButtonStatusOption.ready:
           case ButtonStatusOption.loading:
-            return theme.color.text.actionSecondary;
+            return theme.color.text.onActionSecondaryBackground;
         }
         return null;
       };

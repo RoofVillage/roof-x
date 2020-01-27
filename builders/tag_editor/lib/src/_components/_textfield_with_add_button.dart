@@ -63,7 +63,7 @@ class TextFieldWithAddButton extends StatelessWidget {
             "Create tag",
             style: theme.typography.button.textStyle(
               color: canCreateTag
-                  ? theme.color.text.actionSecondary
+                  ? theme.color.text.action
                   : theme.color.text.actionDisabled,
             ),
           ),

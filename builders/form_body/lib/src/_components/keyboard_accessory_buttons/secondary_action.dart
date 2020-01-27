@@ -33,7 +33,7 @@ class SecondaryActionKeyboardAccessoryButton extends StatelessWidget
           child: Text(
             title,
             style: theme.typography.button.textStyle(
-              color: theme.color.text.actionSecondary,
+              color: theme.color.text.onActionSecondaryBackground,
             ),
           ),
         ),

@@ -78,7 +78,7 @@ class _DockActionButtonState extends State<DockActionButton>
     final buttonIcon = Container(
       key: _buttonIconKey,
       child: widget.actionIconReference.buildWidget(
-        color: theme.color.icon.actionPrimary,
+        color: theme.color.icon.action,
       ),
     );
 
@@ -218,7 +218,7 @@ class _ButtonText extends StatelessWidget {
             softWrap: false,
             overflow: TextOverflow.fade,
             style: theme.typography.button.textStyle(
-              color: theme.color.text.actionSecondary,
+              color: theme.color.text.action,
             ),
           ),
         ),

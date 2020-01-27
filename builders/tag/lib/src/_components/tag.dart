@@ -20,15 +20,15 @@ class StandardTag extends StatelessWidget {
 
     switch (kind) {
       case TagKindOption.error:
-        _textColor = theme.color.text.actionSecondary;
+        _textColor = theme.color.text.onNotifyBackground;
         _backgroundColor = theme.color.background.warn;
         break;
       case TagKindOption.good:
-        _textColor = theme.color.text.actionSecondary;
+        _textColor = theme.color.text.onNotifyBackground;
         _backgroundColor = theme.color.background.good;
         break;
       case TagKindOption.emergency:
-        _textColor = theme.color.text.actionSecondary;
+        _textColor = theme.color.text.onNotifyBackground;
         _backgroundColor = theme.color.background.bad;
         break;
       case TagKindOption.normal:

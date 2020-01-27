@@ -9,13 +9,22 @@ class RoofTextColor extends SemanticTextColor<RoofThemeOption> {
   RoofTextColor(RoofThemeOption currentThemeOption) : super(currentThemeOption);
 
   @override
+  Color get action => colors.brandBlueFade;
+
+  @override
   Color get actionDisabled => colors.brandBlueFade;
 
   @override
-  Color get actionPrimary => colors.brandBlue;
+  Color get onActionPrimaryBackground => colors.white1;
 
   @override
-  Color get actionSecondary => colors.brandBlue;
+  Color get onActionSecondaryBackground => colors.brandBlue;
+
+  @override
+  Color get onActionDisabledBackground => colors.white2;
+
+  @override
+  Color get onNotifyBackground => colors.white1;
 
   @override
   Color get bad => colors.red;

@@ -42,14 +42,17 @@ class CalendarDatePicker extends StatelessWidget {
     );
 
     final todayTextStyle = theme.typography.bodyHeavy.textStyle(
-      color: theme.color.text.actionSecondary,
+      color: theme.color.text.action,
     );
 
     final arrowIconColor = theme.color.text.brand;
 
-    final leftIcon = StandardIcon.leftArrow.buildWidget(color: arrowIconColor);
-    final rightIcon =
-        StandardIcon.rightArrow.buildWidget(color: arrowIconColor);
+    final leftIcon = StandardIcon.leftArrow.buildWidget(
+      color: arrowIconColor,
+    );
+    final rightIcon = StandardIcon.rightArrow.buildWidget(
+      color: arrowIconColor,
+    );
 
     return Container(
       child: CalendarCarousel(
