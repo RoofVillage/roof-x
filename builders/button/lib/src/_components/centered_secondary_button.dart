@@ -38,8 +38,8 @@ class SecondaryCenterButton extends StatefulWidget with CenteredStyleButton {
     @required this.onTap,
     @required this.text,
     this.icon,
-    this.status = ButtonStatusOption.ready,
-  });
+    status,
+  }) : this.status = status ?? ButtonStatusOption.ready;
 
   @override
   State<StatefulWidget> createState() => _SecondaryCenterButton();
