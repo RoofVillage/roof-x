@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:sm_theme/index.dart';
 import 'package:stream/index.dart';
-import 'package:theme/index.dart';
+import 'package:semantic_theme/index.dart';
 
 import 'src/bloc.dart';
 import 'src/widget.dart';
 
 void main() {
-  runApp(_Roof());
+  runApp(_SustainersMarket());
 }
 
-class _Roof extends StatelessWidget {
+class _SustainersMarket extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return RoofTheme(
-      RoofThemeOption.dark,
+    return SemanticTheme(
+      themeData: SmSemanticTheme(SmThemeOption.light),
       child: MaterialApp(
-        title: 'Roof',
+        title: 'Sustainers Market',
         debugShowCheckedModeBanner: false,
         home: BlocProvider(
           bloc: AppBloc(),

@@ -16,10 +16,10 @@ class SmTextColor extends SemanticTextColor<SmThemeOption> {
   Color get actionDisabled => Colors.grey;
 
   @override
-  Color get onActionPrimaryBackground => colors.white1;
+  Color get onActionPrimaryBackground => colors.brandGreenDark;
 
   @override
-  Color get onActionSecondaryBackground => colors.brandGreenDark;
+  Color get onActionSecondaryBackground => colors.white1;
 
   @override
   Color get onActionDisabledBackground => colors.white2;

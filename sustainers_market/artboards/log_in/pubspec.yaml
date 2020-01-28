@@ -28,15 +28,15 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: semantic-sm-app
       path: lib/navigator
-  reset_password_artboard:
+  commands:
     git:
       url: git@github.com:RoofVillage/roof-x.git
       ref: semantic-sm-app
-      path: sustainers_market/artboards/reset_password
-  commands:
-    path: ../../commands
+      path: sustainers_market/commands
 
 dependency_overrides:
+  commands:
+    path: ../../commands
   form_builder:
     path: ../../../builders/form
 
