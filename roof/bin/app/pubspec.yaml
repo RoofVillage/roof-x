@@ -81,15 +81,15 @@ dependency_overrides:
   challenge_artboard:
     path: ../../artboards/challenge
   commands:
-    path: ../../../commands
+    path: ../../commands
   context:
     path: ../../../model/abstract/context
   context_type:
-      path: ../../../types/context
+    path: ../../../types/context
   date:
     path: ../../../lib/date
   date_picker_artboard:
-    path: ../../artboards/date_picker
+    path: ../../../artboards/date_picker
   date_picker_builder:
     path: ../../../builders/date_picker
   decorated_text:
@@ -123,7 +123,7 @@ dependency_overrides:
   haptics:
     path: ../../../lib/haptics
   icon_picker_artboard:
-    path: ../../artboards/icon_picker
+    path: ../../../artboards/icon_picker
   icon_picker_builder:
     path: ../../../builders/icon_picker
   icon_reference:
@@ -133,7 +133,7 @@ dependency_overrides:
   interval:
     path: ../../../lib/interval
   interval_frequency_picker_artboard:
-    path: ../../artboards/interval_frequency_picker
+    path: ../../../artboards/interval_frequency_picker
   interval_frequency_picker_builder:
     path: ../../../builders/interval_frequency_picker
   invoice_options:
@@ -185,7 +185,7 @@ dependency_overrides:
   notification_category_type:
     path: ../../../types/notification_category
   option_picker_artboard:
-    path: ../../artboards/option_picker
+    path: ../../../artboards/option_picker
   option_picker_builder:
     path: ../../../builders/option_picker
   ordinal_suffix_string_from_int:
@@ -207,7 +207,7 @@ dependency_overrides:
   roller_column_builder:
     path: ../../../builders/roller_column
   roller_column_picker_artboard:
-    path: ../../artboards/roller_column_picker
+    path: ../../../artboards/roller_column_picker
   roller_column_picker_builder:
     path: ../../../builders/roller_column_picker
   secure_storage:
@@ -247,13 +247,13 @@ dependency_overrides:
   tag_builder:
     path: ../../../builders/tag
   tag_editor_artboard:
-    path: ../../artboards/tag_editor
+    path: ../../../artboards/tag_editor
   tag_editor_builder:
     path: ../../../builders/tag_editor
   tag_kind_option:
     path: ../../../options/tag_kind
   time_picker_artboard:
-    path: ../../artboards/time_picker
+    path: ../../../artboards/time_picker
   time_picker_builder:
     path: ../../../builders/time_picker
   typedefs:
@@ -265,7 +265,7 @@ dependency_overrides:
   vertical_floating_artboard_button_option:
     path: ../../../options/vertical_floating_artboard_button
   views:
-    path: ../../../views
+    path: ../../views
   x_small_icon_library:
     path: ../../../icons/x_small
       
