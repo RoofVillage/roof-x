@@ -1,0 +1,24 @@
+import 'dart:ui';
+
+import 'package:semantic_theme/index.dart';
+
+import '../_constants/_font_family.dart' as ff;
+import '../_constants/_font_size.dart' as fs;
+import '../_constants/_font_weight.dart' as fw;
+
+class SmSubtitleTypography extends SemanticTypography {
+  @override
+  String get fontFamily => ff.circular;
+
+  @override
+  String get fontFamilyFallback => null;
+
+  @override
+  double get fontSize => fs.medium;
+
+  @override
+  FontWeight get fontWeight => fw.thick;
+
+  @override
+  double get letterSpacing => 1;
+}

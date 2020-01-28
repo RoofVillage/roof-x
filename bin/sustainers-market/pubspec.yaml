@@ -46,25 +46,25 @@ flutter:
   fonts:
     - family: RoofXSmallIcons
       fonts:
-        - asset: packages/x_small_icon_library/ttf/RoofXSmallIcons.ttf
+      - asset: packages/x_small_icon_library/ttf/RoofXSmallIcons.ttf
     - family: RoofSmallIcons
       fonts:
-        - asset: packages/small_icon_library/ttf/RoofSmallIcons.ttf
+      - asset: packages/small_icon_library/ttf/RoofSmallIcons.ttf
     - family: RoofStandardIcons
       fonts:
-        - asset: packages/standard_icon_library/ttf/RoofStandardIcons.ttf
+      - asset: packages/standard_icon_library/ttf/RoofStandardIcons.ttf
     - family: RoofNavigationIcons
       fonts:
-        - asset: packages/navigation_icon_library/ttf/RoofNavigationIcons.ttf
-    - family: azo
+      - asset: packages/navigation_icon_library/ttf/RoofNavigationIcons.ttf
+    - family: circular
       fonts:
-        - asset: packages/typography/fonts/azo/AzoSans-Thin.otf
+        - asset: packages/typography/fonts/circular/CircularStd-Book.otf
           weight: 100
-        - asset: packages/typography/fonts/azo/AzoSans-Light.otf
+        - asset: packages/typography/fonts/circular/CircularStd-Book.otf
           weight: 200
-        - asset: packages/typography/fonts/azo/AzoSans-Regular.otf
+        - asset: packages/typography/fonts/circular/CircularStd-Medium.otf
           weight: 300
-        - asset: packages/typography/fonts/azo/AzoSans-Medium.otf
+        - asset: packages/typography/fonts/circular/CircularStd-Bold.otf
           weight: 400
-        - asset: packages/typography/fonts/azo/AzoSans-Bold.otf
+        - asset: packages/typography/fonts/circular/CircularStd-Black.otf
           weight: 500
