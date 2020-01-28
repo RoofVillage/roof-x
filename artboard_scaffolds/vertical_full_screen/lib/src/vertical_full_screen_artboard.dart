@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:theme/index.dart';
+import 'package:semantic_theme/index.dart';
 import 'package:artboard/index.dart';
 
 mixin VerticalFullScreenArtboard implements StatefulWidget, Artboard {
@@ -15,7 +15,7 @@ mixin VerticalFullScreenArtboardState<T extends VerticalFullScreenArtboard>
     implements State<T> {
   @override
   Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
+    final theme = SemanticTheme.of(context);
 
     final navBar = widget.buildNavBar(context);
     final body = widget.buildBody(context);
@@ -49,7 +49,7 @@ mixin VerticalFullScreenArtboardState<T extends VerticalFullScreenArtboard>
       ),
     );
 
-    return RoofTheme(theme.current, child: scaffold);
+    return scaffold;
   }
 }
 

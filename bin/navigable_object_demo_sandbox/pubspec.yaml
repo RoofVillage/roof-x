@@ -106,6 +106,8 @@ dependencies:
       path: svg
 
 dependency_overrides:
+  vertical_full_screen_artboard_scaffold:
+    path: ../../artboard_scaffolds/vertical_full_screen
   nav_bar_builder:
     path: ../../builders/nav_bar
   caret_wrap_builder:

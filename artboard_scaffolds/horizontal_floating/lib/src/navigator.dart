@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:theme/index.dart';
 import 'package:artboard/index.dart';
 import 'package:navigator/index.dart';
 import 'package:keyboard_accessory/index.dart';
@@ -18,16 +17,17 @@ class HorizontalFloatingArtboardNavigator extends StatefulWidget {
   State<StatefulWidget> createState() =>
       HorizontalFloatingInheritedArtboardNavigator();
 
-  static HorizontalFloatingInheritedArtboardNavigator of(BuildContext context,
-      {bool shouldRebuild = false}) {
-    final inheritedWidget = (shouldRebuild
-        ? context.inheritFromWidgetOfExactType(
-            _HorizontalFloatingInheritedArtboardNavigator)
-        : context.ancestorWidgetOfExactType(
-            _HorizontalFloatingInheritedArtboardNavigator));
+  static HorizontalFloatingInheritedArtboardNavigator of(
+    BuildContext context, {
+    bool shouldRebuild = false,
+  }) {
+    final inheritedWidget = shouldRebuild
+        ? context.dependOnInheritedWidgetOfExactType<
+            _HorizontalFloatingInheritedArtboardNavigator>()
+        : context.findAncestorWidgetOfExactType<
+            _HorizontalFloatingInheritedArtboardNavigator>();
 
-    return (inheritedWidget as _HorizontalFloatingInheritedArtboardNavigator)
-        .data;
+    return inheritedWidget.data;
   }
 }
 
@@ -70,7 +70,6 @@ class HorizontalFloatingInheritedArtboardNavigator
       physics: NeverScrollableScrollPhysics(),
     );
 
-    final theme = RoofTheme.of(context);
     final swippablePage = GestureDetector(
       onTap: (() => Navigator.pop(context)),
       onHorizontalDragStart: _onHorizontalDragStart,
@@ -83,8 +82,11 @@ class HorizontalFloatingInheritedArtboardNavigator
       child: pageView,
     );
 
-    final navigator =
-        ArtboardNavigator(child: swippablePage, goTo: _goTo, pop: _pop);
+    final navigator = ArtboardNavigator(
+      child: swippablePage,
+      goTo: _goTo,
+      pop: _pop,
+    );
 
     final scaffold = Scaffold(
       body: KeyboardAccessory(child: navigator),
@@ -93,7 +95,7 @@ class HorizontalFloatingInheritedArtboardNavigator
 
     return _HorizontalFloatingInheritedArtboardNavigator(
       data: this,
-      child: RoofTheme(theme.current, child: scaffold),
+      child: scaffold,
     );
   }
 
@@ -107,6 +109,7 @@ class HorizontalFloatingInheritedArtboardNavigator
     } else {
       Navigator.pop(context, artboard);
     }
+
     return artboard.popped;
   }
 
@@ -140,9 +143,12 @@ class HorizontalFloatingInheritedArtboardNavigator
 class _HorizontalFloatingInheritedArtboardNavigator extends InheritedWidget {
   final HorizontalFloatingInheritedArtboardNavigator data;
 
-  _HorizontalFloatingInheritedArtboardNavigator(
-      {@required this.data, @required Widget child})
-      : super(child: child);
+  _HorizontalFloatingInheritedArtboardNavigator({
+    @required this.data,
+    @required Widget child,
+  }) : super(
+          child: child,
+        );
 
   @override
   bool updateShouldNotify(_HorizontalFloatingInheritedArtboardNavigator old) =>

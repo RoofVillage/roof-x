@@ -9,11 +9,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  theme:
+  roof_theme:
     git:
       url: git@github.com:RoofVillage/roof-x.git
       ref: semantic-theme-compatible-builders
-      path: theme
+      path: roof_theme
   public_activity_artboard:
     git:
       url: git@github.com:RoofVillage/roof-x.git
@@ -40,6 +40,20 @@ dependencies:
       ref: semantic-theme-compatible-builders
       path: commands
 
+dependency_overrides:
+  artboard:
+    path: ../../lib/artboard
+  public_activity_artboard:
+    path: ../../artboards/public_activity
+  vertical_full_screen_artboard_scaffold:
+    path: ../../artboard_scaffolds/vertical_full_screen
+  vertical_floating_artboard_scaffold:
+    path: ../../artboard_scaffolds/vertical_floating
+  horizontal_floating_artboard_scaffold:
+    path: ../../artboard_scaffolds/horizontal_floating
+  roof_theme:
+    path: ../../roof_theme
+      
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -60,13 +74,13 @@ flutter:
         - asset: packages/navigation_icon_library/ttf/RoofNavigationIcons.ttf
     - family: azo
       fonts:
-        - asset: packages/typography/fonts/azo/AzoSans-Thin.otf
+        - asset: packages/roof_theme/fonts/azo/AzoSans-Thin.otf
           weight: 100
-        - asset: packages/typography/fonts/azo/AzoSans-Light.otf
+        - asset: packages/roof_theme/fonts/azo/AzoSans-Light.otf
           weight: 200
-        - asset: packages/typography/fonts/azo/AzoSans-Regular.otf
+        - asset: packages/roof_theme/fonts/azo/AzoSans-Regular.otf
           weight: 300
-        - asset: packages/typography/fonts/azo/AzoSans-Medium.otf
+        - asset: packages/roof_theme/fonts/azo/AzoSans-Medium.otf
           weight: 400
-        - asset: packages/typography/fonts/azo/AzoSans-Bold.otf
+        - asset: packages/roof_theme/fonts/azo/AzoSans-Bold.otf
           weight: 500

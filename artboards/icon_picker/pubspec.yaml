@@ -35,6 +35,8 @@ dependencies:
       path: labeled_icon
 
 dependency_overrides:
+  vertical_floating_artboard_scaffold:
+    path: ../../artboard_scaffolds/vertical_floating
   form_builder:
     path: ../../builders/form
   icon_picker_builder:

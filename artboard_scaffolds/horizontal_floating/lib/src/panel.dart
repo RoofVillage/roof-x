@@ -12,17 +12,16 @@ class HorizontalFloatingArtboardNavigatorPanel<T> extends StatefulWidget {
       InheritedHorizontalFloatingArtboardNavigatorPanel<T>();
 
   static InheritedHorizontalFloatingArtboardNavigatorPanel of(
-      BuildContext context,
-      {bool shouldRebuild = true}) {
-    final inheritedWidget = (shouldRebuild
-        ? context.inheritFromWidgetOfExactType(
-            _InheritedHorizontalFloatingArtboardNavigatorPanel)
-        : context.ancestorWidgetOfExactType(
-            _InheritedHorizontalFloatingArtboardNavigatorPanel));
+    BuildContext context, {
+    bool shouldRebuild = true,
+  }) {
+    final inheritedWidget = shouldRebuild
+        ? context.dependOnInheritedWidgetOfExactType<
+            _InheritedHorizontalFloatingArtboardNavigatorPanel>()
+        : context.findAncestorWidgetOfExactType<
+            _InheritedHorizontalFloatingArtboardNavigatorPanel>();
 
-    return (inheritedWidget
-            as _InheritedHorizontalFloatingArtboardNavigatorPanel)
-        .data;
+    return inheritedWidget.data;
   }
 }
 
@@ -45,13 +44,16 @@ class InheritedHorizontalFloatingArtboardNavigatorPanel<T>
     super.build(context); //necessary for the mixin.
 
     final child = Row(
-        mainAxisSize: MainAxisSize.max,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [widget.artboard]);
+      mainAxisSize: MainAxisSize.max,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [widget.artboard],
+    );
 
     return _InheritedHorizontalFloatingArtboardNavigatorPanel(
-        data: this, child: child);
+      data: this,
+      child: child,
+    );
   }
 
   @override
@@ -66,9 +68,12 @@ class _InheritedHorizontalFloatingArtboardNavigatorPanel
     extends InheritedWidget {
   final InheritedHorizontalFloatingArtboardNavigatorPanel data;
 
-  _InheritedHorizontalFloatingArtboardNavigatorPanel(
-      {@required this.data, @required Widget child})
-      : super(child: child);
+  _InheritedHorizontalFloatingArtboardNavigatorPanel({
+    @required this.data,
+    @required Widget child,
+  }) : super(
+          child: child,
+        );
 
   @override
   bool updateShouldNotify(

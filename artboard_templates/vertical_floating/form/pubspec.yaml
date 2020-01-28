@@ -125,6 +125,8 @@ dependencies:
       path: artboards/tag_editor
 
 dependency_overrides:
+  vertical_floating_artboard_scaffold:
+    path: ../../../artboard_scaffolds/vertical_floating
   interval_frequency_picker_builder:
     path: ../../../builders//interval_frequency_picker
   roller_column_picker_builder:

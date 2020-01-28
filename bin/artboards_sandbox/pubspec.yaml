@@ -55,6 +55,10 @@ dependencies:
       ref: semantic-theme-compatible-builders
       path: artboards/property_create
 
+dependency_overrides:
+  vertical_full_screen_artboard_scaffold:
+    path: ../../artboard_scaffolds/vertical_full_screen
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

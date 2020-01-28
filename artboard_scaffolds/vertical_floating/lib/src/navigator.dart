@@ -1,12 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:theme/index.dart';
-import 'package:duration/index.dart' as duration;
-import 'package:curve/index.dart' as curve;
 import 'package:artboard/index.dart';
 import 'package:navigator/index.dart';
 import 'package:keyboard_accessory/index.dart';
+import 'package:semantic_theme/index.dart';
 import 'package:vertical_floating_artboard_button_option/index.dart';
 
 import 'panel.dart';
@@ -14,23 +12,28 @@ import 'vertical_floating_artboard.dart';
 
 class VerticalFloatingArtboardNavigator extends StatefulWidget {
   final Artboard artboard;
+  final SemanticInheritedTheme theme;
 
-  VerticalFloatingArtboardNavigator({this.artboard});
+  VerticalFloatingArtboardNavigator({
+    this.artboard,
+    this.theme,
+  });
 
   @override
   State<StatefulWidget> createState() =>
       VerticalFloatingInheritedArtboardNavigator();
 
-  static VerticalFloatingInheritedArtboardNavigator of(BuildContext context,
-      {bool shouldRebuild = false}) {
-    final inheritedWidget = (shouldRebuild
-        ? context.inheritFromWidgetOfExactType(
-            _VerticalFloatingInheritedArtboardNavigator)
-        : context.ancestorWidgetOfExactType(
-            _VerticalFloatingInheritedArtboardNavigator));
+  static VerticalFloatingInheritedArtboardNavigator of(
+    BuildContext context, {
+    bool shouldRebuild = false,
+  }) {
+    final inheritedWidget = shouldRebuild
+        ? context.dependOnInheritedWidgetOfExactType<
+            _VerticalFloatingInheritedArtboardNavigator>()
+        : context.findAncestorWidgetOfExactType<
+            _VerticalFloatingInheritedArtboardNavigator>();
 
-    return (inheritedWidget as _VerticalFloatingInheritedArtboardNavigator)
-        .data;
+    return inheritedWidget.data;
   }
 }
 
@@ -41,8 +44,6 @@ class VerticalFloatingInheritedArtboardNavigator
   List<VerticalFloatingArtboardNavigatorPanel> _floatingArtboardPanels = [];
 
   final _pageController = PageController();
-  final _slideDuration = duration.medium;
-  final _slideCurve = curve.easy;
 
   @override
   void initState() {
@@ -64,7 +65,10 @@ class VerticalFloatingInheritedArtboardNavigator
       _timeDelta < _popMinDragDistanceDelta &&
       _downDistanceDelta > _popMaxDragTimeDelta;
 
-  get childrenDelegate => SliverChildBuilderDelegate((context, position) {
+  get childrenDelegate => SliverChildBuilderDelegate((
+        context,
+        position,
+      ) {
         if (position >= _floatingArtboardPanels.length) return Container();
         return _floatingArtboardPanels[position];
       });
@@ -77,7 +81,6 @@ class VerticalFloatingInheritedArtboardNavigator
       physics: NeverScrollableScrollPhysics(),
     );
 
-    final theme = RoofTheme.of(context);
     final swippablePage = GestureDetector(
       onTap: (() => Navigator.pop(context)),
       onVerticalDragStart: _onVerticalDragStart,
@@ -104,14 +107,18 @@ class VerticalFloatingInheritedArtboardNavigator
 
     return _VerticalFloatingInheritedArtboardNavigator(
       data: this,
-      child: RoofTheme(theme.current, child: scaffold),
+      child: scaffold,
     );
   }
 
   void back() async {
     await _pageController.previousPage(
-        duration: _slideDuration, curve: _slideCurve);
-    setState(() => _floatingArtboardPanels.removeLast());
+      duration: widget.theme.duration.medium,
+      curve: widget.theme.curve.exit,
+    );
+    setState(
+      () => _floatingArtboardPanels.removeLast(),
+    );
   }
 
   void toggleNavButtonVisibilityTo(bool shouldShow) {
@@ -119,15 +126,23 @@ class VerticalFloatingInheritedArtboardNavigator
     setState(() => showsNavButton = shouldShow);
   }
 
-  Future<T> _goTo<T>(Artboard<T> artboard,
-      {@required BuildContext context}) async {
+  Future<T> _goTo<T>(
+    Artboard<T> artboard, {
+    @required BuildContext context,
+  }) async {
     if (artboard is VerticalFloatingArtboard) {
       final panel = _buildPanelForArtboard<T>(artboard);
+
       setState(() => _floatingArtboardPanels.add(panel));
-      _pageController.nextPage(duration: _slideDuration, curve: _slideCurve);
+
+      _pageController.nextPage(
+        duration: widget.theme.duration.medium,
+        curve: widget.theme.curve.enter,
+      );
     } else {
       Navigator.pop(context, artboard);
     }
+
     return artboard.popped;
   }
 
@@ -147,13 +162,16 @@ class VerticalFloatingInheritedArtboardNavigator
   }
 
   void toggleNavButtonsHidden(bool isHidden) {
-    setState(() => toggleNavButtonVisibilityTo(!isHidden));
+    setState(
+      () => toggleNavButtonVisibilityTo(!isHidden),
+    );
   }
 
   VerticalFloatingArtboardNavigatorPanel _buildPanelForArtboard<T>(
       VerticalFloatingArtboard<T> artboard) {
     final artboardIsFirst = _floatingArtboardPanels.isEmpty ||
         artboard == _floatingArtboardPanels.first.artboard;
+
     final defaultNavButtonOption = artboardIsFirst
         ? VerticalFloatingArtboardButtonOption.close
         : VerticalFloatingArtboardButtonOption.previous;
@@ -170,9 +188,12 @@ class VerticalFloatingInheritedArtboardNavigator
 class _VerticalFloatingInheritedArtboardNavigator extends InheritedWidget {
   final VerticalFloatingInheritedArtboardNavigator data;
 
-  _VerticalFloatingInheritedArtboardNavigator(
-      {@required this.data, @required Widget child})
-      : super(child: child);
+  _VerticalFloatingInheritedArtboardNavigator({
+    @required this.data,
+    @required Widget child,
+  }) : super(
+          child: child,
+        );
 
   @override
   bool updateShouldNotify(_VerticalFloatingInheritedArtboardNavigator old) =>

@@ -108,6 +108,8 @@ dependency_overrides:
     path: ../../builders/key_value_row
   auxiliary_widget_builder:
     path: ../../builders/auxiliary_widget
+  vertical_full_screen_artboard_scaffold:
+    path: ../../artboard_scaffolds/vertical_full_screen
 
 dev_dependencies:
   flutter_test:

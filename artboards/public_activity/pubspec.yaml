@@ -72,6 +72,8 @@ dependencies:
       path: builders/button
 
 dependency_overrides:
+  navigator:
+    path: ../../lib/navigator
   nav_button_builder:
     path: ../../builders/nav_button
   standard_stack_builder:

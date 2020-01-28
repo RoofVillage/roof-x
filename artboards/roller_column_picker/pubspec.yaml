@@ -30,6 +30,8 @@ dependencies:
       path: builders/roller_column_picker
 
 dependency_overrides:
+  vertical_floating_artboard_scaffold:
+    path: ../../artboard_scaffolds/vertical_floating
   form_builder:
     path: ../../builders/form
   roller_column_picker_builder:

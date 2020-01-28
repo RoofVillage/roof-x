@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:semantic_theme/index.dart';
 import 'package:semantic_theme/src/color/index.dart';
 import 'package:semantic_theme/src/curve/index.dart';
 import 'package:semantic_theme/src/distance/index.dart';

@@ -25,6 +25,8 @@ dependencies:
       path: builders/standard_stack
 
 dependency_overrides:
+  vertical_floating_artboard_scaffold:
+    path: ../../../artboard_scaffolds/vertical_floating
   standard_stack_builder:
     path: ../../../builders/standard_stack
 

@@ -24,6 +24,10 @@ dependencies:
       ref: semantic-theme-compatible-builders
       path: artboard_scaffolds/vertical_floating
 
+dependency_overrides:
+  vertical_floating_artboard_scaffold:
+    path: ../../../artboard_scaffolds/vertical_floating
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

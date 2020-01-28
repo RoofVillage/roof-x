@@ -30,6 +30,8 @@ dependencies:
       path: builders/date_picker
 
 dependency_overrides:
+  vertical_floating_artboard_scaffold:
+    path: ../../artboard_scaffolds/vertical_floating
   form_builder:
     path: ../../builders/form
   date_picker_builder:

@@ -19,31 +19,6 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: semantic-theme-compatible-builders
       path: lib/artboard
-  curve:
-    git:
-      url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-theme-compatible-builders
-      path: spec/curve
-  distance:
-    git:
-      url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-theme-compatible-builders
-      path: spec/distance
-  duration:
-    git:
-      url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-theme-compatible-builders
-      path: spec/duration
-  corner_radius:
-    git:
-      url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-theme-compatible-builders
-      path: spec/corner_radius
-  theme:
-    git:
-      url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-theme-compatible-builders
-      path: theme
   navigator:
     git:
       url: git@github.com:RoofVillage/roof-x.git
@@ -64,10 +39,21 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: semantic-theme-compatible-builders
       path: icons/navigation
+  semantic_theme:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-theme-compatible-builders
+      path: semantic_theme
 
 dependency_overrides:
+  artboard:
+    path: ../../lib/artboard
+  navigator:
+    path: ../../lib/navigator
   nav_button_builder:
     path: ../../builders/nav_button
+  semantic_theme:
+    path: ../../semantic_theme
 
 dev_dependencies:
   flutter_test:

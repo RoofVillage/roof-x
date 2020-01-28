@@ -41,6 +41,8 @@ dependency_overrides:
     path: ../../../builders/input_dock
   table_builder:
     path: ../../../builders/table
+  vertical_full_screen_artboard_scaffold:
+    path: ../../../artboard_scaffolds/vertical_full_screen
 
 dev_dependencies:
   flutter_test:

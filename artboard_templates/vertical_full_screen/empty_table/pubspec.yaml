@@ -25,6 +25,8 @@ dependencies:
       path: builders/table
 
 dependency_overrides:
+  vertical_full_screen_artboard_scaffold:
+    path: ../../../artboard_scaffolds/vertical_full_screen
   table_builder:
     path: ../../../builders/table
 

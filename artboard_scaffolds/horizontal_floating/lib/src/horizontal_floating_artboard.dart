@@ -2,39 +2,45 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:artboard/index.dart';
 
-import 'package:distance/index.dart' as distance;
-import 'package:corner_radius/index.dart' as corner_radius;
-import 'package:theme/index.dart';
+import 'package:semantic_theme/index.dart';
 
 mixin HorizontalFloatingArtboard<T> implements StatefulWidget, Artboard<T> {}
 
 mixin HorizontalFloatingArtboardState<T extends HorizontalFloatingArtboard>
     implements State<T>, ArtboardState<T> {
-  final _margin =
-      EdgeInsets.fromLTRB(distance.e, distance.c, distance.c, distance.c);
-  final _padding =
-      EdgeInsets.fromLTRB(distance.c, distance.c, distance.c, distance.c);
-
   Widget buildBody(BuildContext context);
 
   Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
+    final theme = SemanticTheme.of(context);
+
     final decoration = BoxDecoration(
       color: theme.color.background.generalSecondary,
-      borderRadius: BorderRadius.all(corner_radius.large),
+      borderRadius: BorderRadius.all(theme.radius.large),
       boxShadow: [
-        theme.shadow,
+        theme.shadow.large,
       ],
     );
 
-    final pageContent = Container(padding: _padding, child: buildBody(context));
+    final pageContent = Container(
+      padding: EdgeInsets.symmetric(
+        horizontal: theme.distance.gutter.horizontal.medium,
+        vertical: theme.distance.gutter.vertical.medium,
+      ),
+      child: buildBody(context),
+    );
 
     final safeArea = MediaQuery.of(context).padding;
+    final margin = EdgeInsets.fromLTRB(
+      theme.distance.gutter.horizontal.large,
+      theme.distance.gutter.vertical.medium,
+      theme.distance.gutter.horizontal.medium,
+      theme.distance.gutter.vertical.medium,
+    );
     final safeAreaMargin = EdgeInsets.fromLTRB(
-      _margin.left,
-      max(_margin.top, safeArea.top),
-      _margin.right,
-      max(_margin.bottom, safeArea.bottom),
+      margin.left,
+      max(margin.top, safeArea.top),
+      margin.right,
+      max(margin.bottom, safeArea.bottom),
     );
 
     final nonClickableSurface = GestureDetector(
