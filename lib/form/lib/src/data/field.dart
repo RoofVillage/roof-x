@@ -38,7 +38,6 @@ abstract class StreamableFormFieldData<T> extends StreamableData {
 
   StreamableFormFieldData({
     @required this.title,
-    String placeholder,
     T initialValue,
     double size,
     bool isEnabled,

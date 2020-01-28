@@ -18,6 +18,11 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: semantic-sm-app
       path: app_data
+  standard_stack_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: builders/standard_stack
   nav_button_builder:
     git:
       url: git@github.com:RoofVillage/roof-x.git
@@ -85,6 +90,8 @@ dependency_overrides:
     path: ../create_service
   nav_button_builder:
     path: ../../../builders/nav_button
+  standard_stack_builder:
+    path: ../../../builders/standard_stack
   button_row_dock_builder:
     path: ../../../builders/button_row_dock
   button_builder:

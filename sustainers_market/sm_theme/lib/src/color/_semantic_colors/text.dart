@@ -10,13 +10,13 @@ class SmTextColor extends SemanticTextColor<SmThemeOption> {
   SmTextColor(SmThemeOption currentThemeOption) : super(currentThemeOption);
 
   @override
-  Color get action => colors.white1;
+  Color get action => colors.brandGreen;
 
   @override
-  Color get actionDisabled => Colors.grey;
+  Color get actionDisabled => colors.brandGreenFade;
 
   @override
-  Color get onActionPrimaryBackground => colors.brandGreenDark;
+  Color get onActionPrimaryBackground => colors.white1;
 
   @override
   Color get onActionSecondaryBackground => colors.white1;
@@ -35,36 +35,36 @@ class SmTextColor extends SemanticTextColor<SmThemeOption> {
 
   @override
   Color get good => forThemeOption({
-        SmThemeOption.light: Colors.green,
+        SmThemeOption.dark: Colors.green,
       });
 
   @override
   Color get inputActive => forThemeOption({
-        SmThemeOption.light: Colors.grey,
+        SmThemeOption.dark: Colors.grey,
       });
 
   @override
   Color get inputDisabled => forThemeOption({
-        SmThemeOption.light: Colors.grey,
+        SmThemeOption.dark: Colors.grey,
       });
 
   @override
   Color get inputPlaceholder => forThemeOption({
-        SmThemeOption.light: Colors.grey,
+        SmThemeOption.dark: Colors.grey,
       });
 
   @override
   Color get warn => forThemeOption({
-        SmThemeOption.light: Colors.yellow,
+        SmThemeOption.dark: Colors.yellow,
       });
 
   @override
   Color get generalPrimary => forThemeOption({
-        SmThemeOption.light: colors.black1,
+        SmThemeOption.dark: colors.white1,
       });
 
   @override
   Color get generalSecondary => forThemeOption({
-        SmThemeOption.light: Colors.grey,
+        SmThemeOption.dark: Colors.grey,
       });
 }

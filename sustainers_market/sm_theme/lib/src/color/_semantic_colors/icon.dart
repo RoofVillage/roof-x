@@ -16,19 +16,19 @@ class SmIconColor extends SemanticIconColor<SmThemeOption> {
   Color get onActionPrimaryBackground => colors.brandGreen;
 
   @override
-  Color get onActionSecondaryBackground => colors.white1;
+  Color get onActionSecondaryBackground => colors.brandGreen;
 
   @override
   Color get onActionDisabledBackground => colors.white2;
 
   @override
   Color get actionDisabled => forThemeOption({
-        SmThemeOption.light: Colors.grey,
+        SmThemeOption.dark: Colors.grey,
       });
 
   @override
   Color get inactive => forThemeOption({
-        SmThemeOption.light: Colors.grey,
+        SmThemeOption.dark: Colors.grey,
       });
 
   @override
@@ -39,17 +39,17 @@ class SmIconColor extends SemanticIconColor<SmThemeOption> {
 
   @override
   Color get generalPrimary => forThemeOption({
-        SmThemeOption.light: colors.white1,
+        SmThemeOption.dark: colors.white2,
       });
 
   @override
   Color get generalSecondary => forThemeOption({
-        SmThemeOption.light: Colors.grey,
+        SmThemeOption.dark: Colors.grey,
       });
 
   @override
   Color get good => forThemeOption({
-        SmThemeOption.light: Colors.green,
+        SmThemeOption.dark: Colors.green,
       });
 
   @override
@@ -57,6 +57,6 @@ class SmIconColor extends SemanticIconColor<SmThemeOption> {
 
   @override
   Color get warn => forThemeOption({
-        SmThemeOption.light: Colors.yellow,
+        SmThemeOption.dark: Colors.yellow,
       });
 }

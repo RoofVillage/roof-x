@@ -7,6 +7,6 @@ class SmKeyboardBrightness extends SemanticKeyboardBrightness {
 
   @override
   Brightness get value => forThemeOption({
-        SmThemeOption.light: Brightness.light,
+        SmThemeOption.dark: Brightness.light,
       });
 }

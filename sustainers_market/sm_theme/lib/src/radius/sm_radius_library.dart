@@ -7,14 +7,14 @@ class SmRadiusLibrary extends SemanticRadiusLibrary {
   Radius get min => Radius.circular(2);
 
   @override
-  Radius get small => Radius.circular(4);
+  Radius get small => Radius.circular(6);
 
   @override
-  Radius get medium => Radius.circular(6);
+  Radius get medium => Radius.circular(12);
 
   @override
-  Radius get large => Radius.circular(8);
+  Radius get large => Radius.circular(18);
 
   @override
-  Radius get max => Radius.circular(12);
+  Radius get max => Radius.circular(22);
 }

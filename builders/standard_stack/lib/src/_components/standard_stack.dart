@@ -17,17 +17,16 @@ class StandardStack extends StatelessWidget {
         Padding(
           child: child,
           padding: EdgeInsets.only(
-            top: theme.distance.spacing.vertical.small,
+            top: theme.distance.spacing.vertical.medium,
           ),
         ),
       );
     }
 
     return Container(
-      padding: EdgeInsets.only(
-        left: theme.distance.padding.horizontal.small,
-        right: theme.distance.padding.horizontal.small,
-        bottom: theme.distance.padding.vertical.small,
+      padding: EdgeInsets.symmetric(
+        horizontal: theme.distance.padding.horizontal.medium,
+        vertical: theme.distance.padding.vertical.medium,
       ),
       child: Column(children: stackChildren),
     );

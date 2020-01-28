@@ -128,8 +128,10 @@ class _FieldBodyState extends State<_FieldBody> {
   @override
   void didChangeDependencies() {
     if (!_didSetInitialValue) {
-      _formattedPlaceholder =
-          _formattedText(text: widget.placeholder, context: context);
+      _formattedPlaceholder = _formattedText(
+        text: widget.placeholder,
+        context: context,
+      );
       _setInitialValue();
     }
 
@@ -139,8 +141,10 @@ class _FieldBodyState extends State<_FieldBody> {
 
   void _setInitialValue() {
     if (widget.initialValue.isEmpty) return;
-    final formattedText =
-        _formattedText(text: widget.initialValue, context: context);
+    final formattedText = _formattedText(
+      text: widget.initialValue,
+      context: context,
+    );
     _setText(formattedText);
   }
 
@@ -190,18 +194,26 @@ class _FieldBodyState extends State<_FieldBody> {
 
   void _controllerUpdated() {
     if (widget.mask != null) {
-      final formattedText =
-          _formattedText(text: _controller.text, context: context);
+      final formattedText = _formattedText(
+        text: _controller.text,
+        context: context,
+      );
       if (formattedText != _controller.text) return _setText(formattedText);
     }
     widget.onChanged(_controller.text);
   }
 
-  String _formattedText(
-      {@required String text, @required BuildContext context}) {
+  String _formattedText({
+    @required String text,
+    @required BuildContext context,
+  }) {
     if (widget.mask == null) return text;
-    final formattedText = applyMask(widget.mask,
-        text: text, isEditing: widget.focusNode.hasFocus, context: context);
+    final formattedText = applyMask(
+      widget.mask,
+      text: text,
+      isEditing: widget.focusNode.hasFocus,
+      context: context,
+    );
     return formattedText;
   }
 
@@ -210,13 +222,18 @@ class _FieldBodyState extends State<_FieldBody> {
     TextSelection cursorPos = _controller.selection;
     _controller.text = text ?? '';
     cursorPos = TextSelection.fromPosition(
-        TextPosition(offset: _controller.text.length));
+      TextPosition(
+        offset: _controller.text.length,
+      ),
+    );
     _controller.selection = cursorPos;
   }
 
   void _focusUpdated() {
-    final formattedText =
-        _formattedText(text: _controller.text, context: context);
+    final formattedText = _formattedText(
+      text: _controller.text,
+      context: context,
+    );
     _setText(formattedText);
     widget.onFocusChanged(widget.focusNode.hasFocus);
   }

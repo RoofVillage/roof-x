@@ -1,1 +1,1 @@
-enum SmThemeOption { light }
+enum SmThemeOption { dark }

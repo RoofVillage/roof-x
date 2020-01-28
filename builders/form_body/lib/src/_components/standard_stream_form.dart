@@ -249,82 +249,71 @@ class StandardStreamForm
   }) {
     Widget fieldBody;
 
-    switch (fieldBody.runtimeType) {
-      case FormTextFieldData:
-        fieldBody = buildTextField(
-          fieldData: fieldData,
-          formData: formData,
-          fieldIndex: fieldIndex,
-          sectionIndex: sectionIndex,
-          context: context,
-        );
-        break;
-      case FormTextAreaData:
-        fieldBody = buildTextArea(
-          fieldData: fieldData,
-          formData: formData,
-          fieldIndex: fieldIndex,
-          sectionIndex: sectionIndex,
-          context: context,
-        );
-        break;
-      case FormSwitchFieldData:
-        fieldBody = buildSwitchField(
-          fieldData: fieldData,
-          fieldIndex: fieldIndex,
-          sectionIndex: sectionIndex,
-          context: context,
-        );
-        break;
-      case FormOptionPickerFieldData:
-        fieldBody = buildOptionPickerField(
-          fieldData: fieldData,
-          fieldIndex: fieldIndex,
-          sectionIndex: sectionIndex,
-        );
-        break;
-      case FormTimePickerFieldData:
-        fieldBody = buildTimeSelect(
-          fieldData: fieldData,
-          fieldIndex: fieldIndex,
-          sectionIndex: sectionIndex,
-        );
-        break;
-      case FormIconPickerFieldData:
-        fieldBody = buildIconOptionPickerField(
-          fieldData: fieldData,
-          fieldIndex: fieldIndex,
-          sectionIndex: sectionIndex,
-        );
-        break;
-      case FormDatePickerFieldData:
-        fieldBody = buildDateField(
-          fieldData: fieldData,
-          fieldIndex: fieldIndex,
-          sectionIndex: sectionIndex,
-        );
-        break;
-      case FormIntervalFrequencyOptionData:
-        fieldBody = buildIntervalFrequencySelect(
-          fieldData: fieldData,
-          fieldIndex: fieldIndex,
-          sectionIndex: sectionIndex,
-        );
-        break;
-      case FormRollerColumnPickerFieldData:
-        fieldBody = buildRollerColumnPicker(
-          fieldData: fieldData,
-          fieldIndex: fieldIndex,
-          sectionIndex: sectionIndex,
-        );
-        break;
-      case FormTagFieldData:
-        fieldBody = buildTagEditor(
-          fieldData: fieldData,
-          fieldIndex: fieldIndex,
-          sectionIndex: sectionIndex,
-        );
-        break;
+    if (fieldData is FormTextFieldData) {
+      fieldBody = buildTextField(
+        fieldData: fieldData,
+        formData: formData,
+        fieldIndex: fieldIndex,
+        sectionIndex: sectionIndex,
+        context: context,
+      );
+    } else if (fieldData is FormTextAreaData) {
+      fieldBody = buildTextArea(
+        fieldData: fieldData,
+        formData: formData,
+        fieldIndex: fieldIndex,
+        sectionIndex: sectionIndex,
+        context: context,
+      );
+    } else if (fieldData is FormSwitchFieldData) {
+      fieldBody = buildSwitchField(
+        fieldData: fieldData,
+        fieldIndex: fieldIndex,
+        sectionIndex: sectionIndex,
+        context: context,
+      );
+    } else if (fieldData is FormOptionPickerFieldData) {
+      fieldBody = buildOptionPickerField(
+        fieldData: fieldData,
+        fieldIndex: fieldIndex,
+        sectionIndex: sectionIndex,
+      );
+    } else if (fieldData is FormTimePickerFieldData) {
+      fieldBody = buildTimeSelect(
+        fieldData: fieldData,
+        fieldIndex: fieldIndex,
+        sectionIndex: sectionIndex,
+      );
+    } else if (fieldData is FormIconPickerFieldData) {
+      fieldBody = buildIconOptionPickerField(
+        fieldData: fieldData,
+        fieldIndex: fieldIndex,
+        sectionIndex: sectionIndex,
+      );
+    } else if (fieldData is FormDatePickerFieldData) {
+      fieldBody = buildDateField(
+        fieldData: fieldData,
+        fieldIndex: fieldIndex,
+        sectionIndex: sectionIndex,
+      );
+    } else if (fieldData is FormIntervalFrequencyPickerFieldData) {
+      fieldBody = buildIntervalFrequencySelect(
+        fieldData: fieldData,
+        fieldIndex: fieldIndex,
+        sectionIndex: sectionIndex,
+      );
+    } else if (fieldData is FormRollerColumnPickerFieldData) {
+      fieldBody = buildRollerColumnPicker(
+        fieldData: fieldData,
+        fieldIndex: fieldIndex,
+        sectionIndex: sectionIndex,
+      );
+    } else if (fieldData is FormTagFieldData) {
+      fieldBody = buildTagEditor(
+        fieldData: fieldData,
+        fieldIndex: fieldIndex,
+        sectionIndex: sectionIndex,
+      );
     }
 
     return FieldContainer(

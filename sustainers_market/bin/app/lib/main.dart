@@ -14,7 +14,7 @@ class _SustainersMarket extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SemanticTheme(
-      themeData: SmSemanticTheme(SmThemeOption.light),
+      themeData: SmSemanticTheme(SmThemeOption.dark),
       child: MaterialApp(
         title: 'Sustainers Market',
         debugShowCheckedModeBanner: false,

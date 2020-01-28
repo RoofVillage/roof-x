@@ -10,27 +10,27 @@ class SmStrokeColor extends SemanticStrokeColor<SmThemeOption> {
   SmStrokeColor(SmThemeOption currentThemeOption) : super(currentThemeOption);
 
   @override
-  Color get actionPrimary => colors.brandGreen;
+  Color get actionPrimary => Colors.transparent;
 
   @override
-  Color get actionSecondary => colors.white1;
+  Color get actionSecondary => Colors.transparent;
 
   @override
   Color get actionDisabled => colors.brandGreenFade;
 
   @override
   Color get focus => forThemeOption({
-        SmThemeOption.light: Colors.grey,
+        SmThemeOption.dark: Colors.grey,
       });
 
   @override
   Color get light => forThemeOption({
-        SmThemeOption.light: Colors.white.withAlpha(100),
+        SmThemeOption.dark: Colors.white38,
       });
 
   @override
   Color get good => forThemeOption({
-        SmThemeOption.light: Colors.green,
+        SmThemeOption.dark: Colors.green,
       });
 
   @override
@@ -38,6 +38,6 @@ class SmStrokeColor extends SemanticStrokeColor<SmThemeOption> {
 
   @override
   Color get warn => forThemeOption({
-        SmThemeOption.light: Colors.yellow,
+        SmThemeOption.dark: Colors.yellow,
       });
 }

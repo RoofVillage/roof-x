@@ -49,6 +49,10 @@ dependency_overrides:
     path: ../../sm_theme
   artboard:
     path: ../../../lib/artboard
+  welcome_activity_artboard:
+    path: ../../artboards/welcome
+  create_service_artboard:
+    path: ../../artboards/create_service
   horizontal_floating_artboard_scaffold:
     path: ../../../artboard_scaffolds/horizontal_floating
   actor_reference:
@@ -262,16 +266,16 @@ flutter:
   fonts:
     - family: RoofXSmallIcons
       fonts:
-      - asset: packages/x_small_icon_library/ttf/RoofXSmallIcons.ttf
+        - asset: packages/x_small_icon_library/ttf/RoofXSmallIcons.ttf
     - family: RoofSmallIcons
       fonts:
-      - asset: packages/small_icon_library/ttf/RoofSmallIcons.ttf
+        - asset: packages/small_icon_library/ttf/RoofSmallIcons.ttf
     - family: RoofStandardIcons
       fonts:
-      - asset: packages/standard_icon_library/ttf/RoofStandardIcons.ttf
+        - asset: packages/standard_icon_library/ttf/RoofStandardIcons.ttf
     - family: RoofNavigationIcons
       fonts:
-      - asset: packages/navigation_icon_library/ttf/RoofNavigationIcons.ttf
+        - asset: packages/navigation_icon_library/ttf/RoofNavigationIcons.ttf
     - family: circular
       fonts:
         - asset: packages/sm_theme/fonts/circular/CircularStd-Book.otf

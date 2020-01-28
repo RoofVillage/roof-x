@@ -49,25 +49,28 @@ mixin CenteredStyleButtonState {
 
     buttonChildren.add(styledButtonText);
 
-    double opacity = _tapped ? _tappedOpacity : 1;
-
     final decoration = BoxDecoration(
       border: Border.all(color: button.strokeColor(context)),
-      color: button.backgroundColor(context)?.withOpacity(opacity),
+      color: button.backgroundColor(context),
       borderRadius: BorderRadius.all(theme.radius.medium),
     );
+
+    double opacity = _tapped ? _tappedOpacity : 1;
 
     return GestureDetector(
       onTapDown: _onTapDown,
       onTap: _onTap,
       onTapUp: _onTapUp,
       onTapCancel: _onTapCancel,
-      child: Container(
-        height: _height,
-        decoration: decoration,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: buttonChildren,
+      child: Opacity(
+        opacity: opacity,
+        child: Container(
+          height: _height,
+          decoration: decoration,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: buttonChildren,
+          ),
         ),
       ),
     );

@@ -40,5 +40,6 @@ mixin CreateServiceArtboardData implements FormBuilder {
 
   final _serviceNameFieldData = FormShortTextFieldData(
     title: "Name of service",
+    placeholder: "Flo's Flowers",
   );
 }

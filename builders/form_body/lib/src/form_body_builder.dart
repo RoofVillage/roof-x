@@ -108,30 +108,21 @@ mixin FormBodyBuilder implements StatefulWidget {
     @required List<StreamableFormFieldData> fieldData,
   }) async {
     for (final data in fieldData) {
-      switch (data.runtimeType) {
-        case FormDatePickerFieldData:
-          _setupDateFieldData(context, data: data);
-          break;
-        case FormOptionPickerFieldData:
-          _setupOptionPickerFieldData(context, data: data);
-          break;
-        case FormIconPickerFieldData:
-          _setupIconPickerFieldData(context, data: data);
-          break;
-        case FormTimePickerFieldData:
-          _setupTimePickerFieldData(context, data: data);
-          break;
-        case FormIntervalFrequencyPickerFieldData:
-          _setupIntervalFrequencyPickerFieldData(context, data: data);
-          break;
-        case FormRollerColumnPickerFieldData:
-          _setupRollerColumnPickerFieldData(context, data: data);
-          break;
-        case FormTagFieldData:
-          _setupTagFieldData(context, data: data);
-          break;
-      }
+      if (data is FormDatePickerFieldData)
+        _setupDateFieldData(context, data: data);
+      if (data is FormOptionPickerFieldData)
+        _setupOptionPickerFieldData(context, data: data);
+      if (data is FormIconPickerFieldData)
+        _setupIconPickerFieldData(context, data: data);
+      if (data is FormTimePickerFieldData)
+        _setupTimePickerFieldData(context, data: data);
+      if (data is FormIntervalFrequencyPickerFieldData)
+        _setupIntervalFrequencyPickerFieldData(context, data: data);
+      if (data is FormRollerColumnPickerFieldData)
+        _setupRollerColumnPickerFieldData(context, data: data);
+      if (data is FormTagFieldData) _setupTagFieldData(context, data: data);
     }
+
     setupFields(context, fieldData: fieldData);
   }
 
@@ -411,6 +402,7 @@ mixin FormBodyBuilderState<T extends FormBodyBuilder> implements State<T> {
     }
 
     final fieldData = await widget.initialFieldData;
+
     if (fieldData.isNotEmpty) {
       return StreamableFormData.withFields(
         fieldData: fieldData,

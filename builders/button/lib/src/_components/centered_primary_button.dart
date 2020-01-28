@@ -30,6 +30,10 @@ class PrimaryCenterButton extends StatefulWidget with CenteredStyleButton {
         return SemanticTheme.of(context).color.text.onActionPrimaryBackground;
       };
 
+  get strokeColor => (context) {
+        return SemanticTheme.of(context).color.stroke.actionPrimary;
+      };
+
   PrimaryCenterButton({
     @required this.onTap,
     @required this.text,

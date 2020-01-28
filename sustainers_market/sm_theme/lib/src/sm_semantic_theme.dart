@@ -3,7 +3,7 @@ import 'package:sm_theme/src/color/sm_color_library.dart';
 import 'package:sm_theme/src/curve/sm_curve_library.dart';
 import 'package:sm_theme/src/distance/roof_distance_library.dart';
 import 'package:sm_theme/src/duration/sm_duration_library.dart';
-import 'package:sm_theme/src/radius/sm_duration_library.dart';
+import 'package:sm_theme/src/radius/sm_radius_library.dart';
 import 'package:sm_theme/src/shadow/sm_shadow_library.dart';
 import 'package:sm_theme/src/sm_theme_option.dart';
 import 'package:sm_theme/src/system_ui_style/sm_system_ui_style.dart';

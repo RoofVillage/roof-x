@@ -11,55 +11,55 @@ class SmBackgroundColor extends SemanticBackgroundColor<SmThemeOption> {
       : super(currentThemeOption);
 
   @override
-  Color get actionPrimary => colors.white1;
+  Color get actionPrimary => colors.brandGreenDark;
 
   @override
-  Color get actionSecondary => colors.brandGreen;
+  Color get actionSecondary => colors.whiteTint;
 
   @override
-  Color get actionDisabled => colors.brandGreenFade;
+  Color get actionDisabled => colors.white1.withOpacity(.7);
 
   @override
   Color get brand => colors.brandGreen;
 
   @override
   Color get generalPrimary => forThemeOption({
-        SmThemeOption.light: colors.white1,
+        SmThemeOption.dark: colors.black1,
       });
 
   @override
   Color get generalSecondary => forThemeOption({
-        SmThemeOption.light: colors.white2,
+        SmThemeOption.dark: colors.black2,
       });
 
   @override
   Color get neutralContrast => forThemeOption({
-        SmThemeOption.light: colors.white2,
+        SmThemeOption.dark: colors.black3,
       });
 
   @override
   Color get inactive => forThemeOption({
-        SmThemeOption.light: colors.white2,
+        SmThemeOption.dark: Colors.grey,
       });
 
   @override
   Color get inputBackground => forThemeOption({
-        SmThemeOption.light: colors.white2,
+        SmThemeOption.dark: colors.black2,
       });
 
   @override
   Color get inputForeground => forThemeOption({
-        SmThemeOption.light: colors.white1,
+        SmThemeOption.dark: colors.black3,
       });
 
   @override
   Color get scrim => forThemeOption({
-        SmThemeOption.light: Colors.black.withOpacity(0.2),
+        SmThemeOption.dark: Colors.black.withOpacity(0.7),
       });
 
   @override
   Color get good => forThemeOption({
-        SmThemeOption.light: Colors.green,
+        SmThemeOption.dark: Colors.green,
       });
 
   @override
@@ -67,6 +67,6 @@ class SmBackgroundColor extends SemanticBackgroundColor<SmThemeOption> {
 
   @override
   Color get warn => forThemeOption({
-        SmThemeOption.light: Colors.yellow,
+        SmThemeOption.dark: Colors.yellow,
       });
 }
