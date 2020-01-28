@@ -28,19 +28,34 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: semantic-sm-app
       path: lib/navigator
-  views:
-    path: ../../views
-  commands:
-    path: ../../commands
-  service_dashboard_artboard:
-    path: ../service_dashboard
   view_stream_builder_builder:
     git:
       url: git@github.com:RoofVillage/roof-x.git
       ref: semantic-sm-app
       path: builders/view_stream_builder
+  commands:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: sustainers_market/commands
+  views:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: sustainers_market/views
+  service_dashboard_artboard:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: sustainers_market/artboards/service_dashboard
 
 dependency_overrides:
+  service_dashboard_artboard:
+    path: ../service_dashboard
+  views:
+    path: ../../views
+  commands:
+    path: ../../commands
   form_builder:
     path: ../../../builders/form
   view_stream_builder_builder:

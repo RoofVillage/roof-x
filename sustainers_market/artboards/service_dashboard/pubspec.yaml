@@ -8,8 +8,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  empty_table_vertical_full_screen_artboard_template:
-    path: ../../../artboard_templates/vertical_full_screen/empty_table
   form_builder:
     git:
       url: git@github.com:RoofVillage/roof-x.git
@@ -31,9 +29,15 @@ dependencies:
       ref: semantic-sm-app
       path: builders/button_row_dock
   commands:
-    path: ../../commands
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: sustainers_market/commands
   views:
-    path: ../../views
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: sustainers_market/views
   button_builder:
     git:
       url: git@github.com:RoofVillage/roof-x.git
@@ -44,10 +48,26 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: semantic-sm-app
       path: builders/view_stream_builder
+  empty_table_vertical_full_screen_artboard_template:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: artboard_templates/vertical_full_screen/empty_table
   secret_key_artboard:
-    path: ../secret_key
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: sustainers_market/artboards/secret_key
 
 dependency_overrides:
+  secret_key_artboard:
+    path: ../secret_key
+  empty_table_vertical_full_screen_artboard_template:
+    path: ../../../artboard_templates/vertical_full_screen/empty_table
+  commands:
+    path: ../../commands
+  views:
+    path: ../../views
   form_builder:
     path: ../../../builders/form
   button_row_dock_builder:

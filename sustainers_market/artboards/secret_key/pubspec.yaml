@@ -18,8 +18,6 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: semantic-sm-app
       path: lib/navigator
-  commands:
-    path: ../../commands
   button_builder:
     git:
       url: git@github.com:RoofVillage/roof-x.git
@@ -30,10 +28,22 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: semantic-sm-app
       path: builders/view_stream_builder
+  commands:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: sustainers_market/commands
   stack_vertical_floating_artboard_template:
-    path: ../../../artboard_templates/vertical_floating/stack
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: artboard_templates/vertical_floating/stack
 
 dependency_overrides:
+  stack_vertical_floating_artboard_template:
+    path: ../../../artboard_templates/vertical_floating/stack
+  commands:
+    path: ../../commands
   button_builder:
     path: ../../../builders/button
   view_stream_builder_builder:

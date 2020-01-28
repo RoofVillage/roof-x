@@ -18,7 +18,7 @@ dependencies:
     git:
       url: git@github.com:RoofVillage/roof-x.git
       ref: semantic-sm-app
-      path: sm/artboards/welcome
+      path: sustainers_market/artboards/welcome
   vertical_full_screen_artboard_scaffold:
     git:
       url: git@github.com:RoofVillage/roof-x.git
@@ -38,7 +38,7 @@ dependencies:
     git:
       url: git@github.com:RoofVillage/roof-x.git
       ref: semantic-sm-app
-      path: sm/commands
+      path: sustainers_market/commands
 
 dependency_overrides:
   commands:
