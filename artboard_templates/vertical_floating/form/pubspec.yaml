@@ -11,117 +11,117 @@ dependencies:
   vertical_floating_artboard_scaffold:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-theme-compatible-builders
+      ref: semantic-sm-app
       path: artboard_scaffolds/vertical_floating
   form_builder:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-theme-compatible-builders
+      ref: semantic-sm-app
       path: builders/form
   form_body_builder:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-theme-compatible-builders
+      ref: semantic-sm-app
       path: builders/form_body
   artboard:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-theme-compatible-builders
+      ref: semantic-sm-app
       path: lib/artboard
   navigator:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-theme-compatible-builders
+      ref: semantic-sm-app
       path: lib/navigator
   date:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-theme-compatible-builders
+      ref: semantic-sm-app
       path: lib/date
   date_picker_builder:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-theme-compatible-builders
+      ref: semantic-sm-app
       path: builders/date_picker
   option_picker_builder:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-theme-compatible-builders
+      ref: semantic-sm-app
       path: builders/option_picker
   time_picker_builder:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-theme-compatible-builders
+      ref: semantic-sm-app
       path: builders/time_picker
   icon_picker_builder:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-theme-compatible-builders
+      ref: semantic-sm-app
       path: builders/icon_picker
   icon_picker_artboard:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-theme-compatible-builders
+      ref: semantic-sm-app
       path: artboards/icon_picker
   labeled_icon:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-theme-compatible-builders
+      ref: semantic-sm-app
       path: labeled_icon
   labeled_value:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-theme-compatible-builders
+      ref: semantic-sm-app
       path: labeled_value
   frequency:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-theme-compatible-builders
+      ref: semantic-sm-app
       path: frequency    
   interval_frequency_picker_builder:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-theme-compatible-builders
+      ref: semantic-sm-app
       path: builders/interval_frequency_picker
   roller_column_picker_builder:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-theme-compatible-builders
+      ref: semantic-sm-app
       path: builders/roller_column_picker
   roller_column_picker_artboard:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-theme-compatible-builders
+      ref: semantic-sm-app
       path: artboards/roller_column_picker
   button_builder:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-theme-compatible-builders
+      ref: semantic-sm-app
       path: builders/button
   date_picker_artboard:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-theme-compatible-builders
+      ref: semantic-sm-app
       path: artboards/date_picker
   option_picker_artboard:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-theme-compatible-builders
+      ref: semantic-sm-app
       path: artboards/option_picker
   time_picker_artboard:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-theme-compatible-builders
+      ref: semantic-sm-app
       path: artboards/time_picker
   interval_frequency_picker_artboard:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-theme-compatible-builders
+      ref: semantic-sm-app
       path: artboards/interval_frequency_picker
   tag_editor_artboard:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-theme-compatible-builders
+      ref: semantic-sm-app
       path: artboards/tag_editor
 
 dependency_overrides:

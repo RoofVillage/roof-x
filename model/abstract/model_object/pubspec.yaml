@@ -11,22 +11,22 @@ dependencies:
   domain_type:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-theme-compatible-builders
+      ref: semantic-sm-app
       path: types/domain
   mappable:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-theme-compatible-builders
+      ref: semantic-sm-app
       path: model/mixins/mappable
   key:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-theme-compatible-builders
+      ref: semantic-sm-app
       path: model/key
   date:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-theme-compatible-builders
+      ref: semantic-sm-app
       path: lib/date
 
 dev_dependencies:

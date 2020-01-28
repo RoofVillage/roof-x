@@ -1,0 +1,115 @@
+name: invoice_info_floating_artboard_template
+description: A stack artboard for displaying invoice info and an edit button.
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  artboard:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: lib/artboard
+  stack_vertical_floating_artboard_template:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: artboard_templates/vertical_floating/stack
+  nav_bar_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: builders/nav_bar
+  button_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: builders/button
+  caret_wrap_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: builders/caret_wrap
+  breadcrumb_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: builders/breadcrumb
+  cells_list_view_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: builders/cells_list_view
+  tag_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: builders/tag
+  key_value_row_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: builders/key_value_row
+  tab:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: tab
+  navigation_icon_library:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: icons/navigation
+  x_small_icon_library:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: icons/x_small
+  standard_icon_library:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: icons/standard
+  mask:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: lib/mask
+  schedule:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: model/properties/schedule
+  date:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: lib/date
+  fee_payer_type:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: types/fee_payer
+
+dependency_overrides:
+  nav_bar_builder:
+    path: ../../../builders/nav_bar
+  button_builder:
+    path: ../../../builders/button
+  caret_wrap_builder:
+    path: ../../../builders/caret_wrap
+  breadcrumb_builder:
+    path: ../../../builders/breadcrumb
+  cells_list_view_builder:
+    path: ../../../builders/cells_list_view
+  tag_builder:
+    path: ../../../builders/tag
+  key_value_row_builder:
+    path: ../../../builders/key_value_row
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

@@ -11,27 +11,27 @@ dependencies:
   fee_payer_type:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-theme-compatible-builders
+      ref: semantic-sm-app
       path: types/fee_payer
   name_user:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-theme-compatible-builders
+      ref: semantic-sm-app
       path: model/properties/name_user
   key:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-theme-compatible-builders
+      ref: semantic-sm-app
       path: model/key
   domain_object:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-theme-compatible-builders
+      ref: semantic-sm-app
       path: model/abstract/domain_object
   stub:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-theme-compatible-builders
+      ref: semantic-sm-app
       path: model/objects/stub
 
 dev_dependencies:

@@ -12,7 +12,7 @@ dependencies:
   color:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-theme-compatible-builders
+      ref: semantic-sm-app
       path: spec/color
 
 dev_dependencies:

@@ -11,12 +11,12 @@ dependencies:
   artboard:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-theme-compatible-builders
+      ref: semantic-sm-app
       path: lib/artboard
   vertical_full_screen_artboard_scaffold:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-theme-compatible-builders
+      ref: semantic-sm-app
       path: artboard_scaffolds/vertical_full_screen
 
 dependency_overrides:

@@ -11,12 +11,12 @@ dependencies:
   string_from_enum_string:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-theme-compatible-builders
+      ref: semantic-sm-app
       path: lib/string_from_enum_string
   date:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-theme-compatible-builders
+      ref: semantic-sm-app
       path: lib/date
 
 dev_dependencies:

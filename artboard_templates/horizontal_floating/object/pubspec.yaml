@@ -12,12 +12,12 @@ dependencies:
   artboard:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-theme-compatible-builders
+      ref: semantic-sm-app
       path: lib/artboard
   horizontal_floating_artboard_scaffold:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-theme-compatible-builders
+      ref: semantic-sm-app
       path: artboard_scaffolds/horizontal_floating
   # tabs_builder:
   #   path: ../builders/tabs

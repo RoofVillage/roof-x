@@ -12,7 +12,7 @@ dependencies:
   standard_icon_library:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-theme-compatible-builders
+      ref: semantic-sm-app
       path: icons/standard
 
 dev_dependencies:
