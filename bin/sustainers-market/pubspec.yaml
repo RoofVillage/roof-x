@@ -15,7 +15,10 @@ dependencies:
       ref: semantic-theme-compatible-builders
       path: theme
   welcome_activity_artboard:
-    path: ../../sm/artboards/welcome
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-theme-compatible-builders
+      path: sm/artboards/welcome
   vertical_full_screen_artboard_scaffold:
     git:
       url: git@github.com:RoofVillage/roof-x.git
@@ -32,11 +35,18 @@ dependencies:
       ref: semantic-theme-compatible-builders
       path: lib/device_screen
   commands:
-    path: ../../sm/commands
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-theme-compatible-builders
+      path: sm/commands
 
 dependency_overrides:
+  commands:
+    path: ../../sm/commands
   vertical_full_screen_artboard_scaffold:
     path: ../../artboard_scaffolds/vertical_full_screen
+  welcome_activity_artboard:
+    path: ../../sm/artboards/welcome
 
 dev_dependencies:
   flutter_test:
