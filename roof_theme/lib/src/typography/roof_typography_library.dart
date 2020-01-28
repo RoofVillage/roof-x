@@ -1,14 +1,14 @@
 import 'package:semantic_theme/index.dart';
-import 'package:theme/src/typography/_body.dart';
-import 'package:theme/src/typography/_body_heavy.dart';
-import 'package:theme/src/typography/_button.dart';
-import 'package:theme/src/typography/_detail.dart';
-import 'package:theme/src/typography/_detail_heavy.dart';
-import 'package:theme/src/typography/_heading_primary.dart';
-import 'package:theme/src/typography/_heading_secondary.dart';
-import 'package:theme/src/typography/_label.dart';
-import 'package:theme/src/typography/_subtitle.dart';
-import 'package:theme/src/typography/_title.dart';
+import 'package:roof_theme/src/typography/_body.dart';
+import 'package:roof_theme/src/typography/_body_heavy.dart';
+import 'package:roof_theme/src/typography/_button.dart';
+import 'package:roof_theme/src/typography/_detail.dart';
+import 'package:roof_theme/src/typography/_detail_heavy.dart';
+import 'package:roof_theme/src/typography/_heading_primary.dart';
+import 'package:roof_theme/src/typography/_heading_secondary.dart';
+import 'package:roof_theme/src/typography/_label.dart';
+import 'package:roof_theme/src/typography/_subtitle.dart';
+import 'package:roof_theme/src/typography/_title.dart';
 
 class RoofTypographyLibrary extends SemanticTypographyLibrary {
   @override
