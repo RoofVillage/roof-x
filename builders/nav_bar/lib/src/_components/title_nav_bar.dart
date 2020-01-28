@@ -53,7 +53,7 @@ class TitleNavBar extends StatelessWidget with NavBar {
     return navigationWidgets;
   }
 
-  Widget _buildTitleColumn(SemanticInheritedTheme theme) {
+  Widget _buildTitleColumn(SemanticThemeData theme) {
     if (title == null && subtitle == null) return null;
 
     final List<Widget> titleColumnChildren = [];

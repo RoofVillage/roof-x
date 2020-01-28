@@ -9,7 +9,7 @@ class LogoNavButton extends StatelessWidget with NavButton {
   final ContextPasser onTap;
 
   @override
-  Widget iconForTheme(SemanticInheritedTheme theme) {
+  Widget iconForTheme(SemanticThemeData theme) {
     return NavigationIcon.logoHouse.buildWidget(
       color: theme.color.icon.logo,
     );

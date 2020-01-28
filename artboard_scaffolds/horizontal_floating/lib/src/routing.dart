@@ -3,7 +3,7 @@ import 'package:semantic_theme/index.dart';
 
 class HorizontalFloatingRoute<T> extends ModalRoute<T> {
   WidgetBuilder builder;
-  SemanticInheritedTheme theme;
+  SemanticThemeData theme;
 
   @override
   Duration get transitionDuration => theme.duration.short;

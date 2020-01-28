@@ -12,7 +12,7 @@ import 'vertical_floating_artboard.dart';
 
 class VerticalFloatingArtboardNavigator extends StatefulWidget {
   final Artboard artboard;
-  final SemanticInheritedTheme theme;
+  final SemanticThemeData theme;
 
   VerticalFloatingArtboardNavigator({
     this.artboard,

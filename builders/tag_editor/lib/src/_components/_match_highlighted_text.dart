@@ -25,7 +25,7 @@ class MatchHighlightedText extends StatelessWidget {
     );
   }
 
-  List<TextSpan> _buildTextSpans(SemanticInheritedTheme theme) {
+  List<TextSpan> _buildTextSpans(SemanticThemeData theme) {
     String prematch = "";
     String match = "";
     String postmatch = "";

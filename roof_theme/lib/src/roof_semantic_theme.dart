@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:roof_theme/index.dart';
 import 'package:semantic_theme/index.dart';
 import 'package:roof_theme/src/color/roof_color_library.dart';
 import 'package:roof_theme/src/curve/roof_curve_library.dart';
@@ -10,21 +10,14 @@ import 'package:roof_theme/src/shadow/roof_shadow_library.dart';
 import 'package:roof_theme/src/system_ui_style/roof_system_ui_style.dart';
 import 'package:roof_theme/src/typography/roof_typography_library.dart';
 
-class RoofSemanticTheme extends SemanticTheme<RoofThemeOption> {
-  RoofSemanticTheme(
-    RoofThemeOption initialThemeOption, {
-    @required Widget child,
-  }) : super(
-          initialThemeOption,
-          child: child,
-        );
+class RoofSemanticTheme extends SemanticThemeData<RoofThemeOption> {
+  RoofSemanticTheme(RoofThemeOption themeOption) : super(themeOption);
 
   @override
-  RoofInheritedSemanticTheme createState() => RoofInheritedSemanticTheme();
-}
+  SemanticThemeData<RoofThemeOption> forThemeOption(RoofThemeOption option) {
+    return RoofSemanticTheme(option);
+  }
 
-class RoofInheritedSemanticTheme
-    extends SemanticInheritedTheme<RoofThemeOption> {
   @override
   SemanticColorLibrary get color => RoofColorLibrary(currentThemeOption);
 

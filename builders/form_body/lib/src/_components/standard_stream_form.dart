@@ -20,7 +20,7 @@ import 'fields/tag_field.dart';
 
 enum KeyboardAccessoryState { hideKeyboard, submit }
 
-class RoofStreamForm
+class StandardStreamForm
     extends StreamForm<StreamableFormFieldData, StreamableFormSectionHeaderData>
     with KeyboardAccessoryBarBuilder {
   static const _hideKeyboardTitle = "Hide keyboard";
@@ -327,7 +327,7 @@ class RoofStreamForm
         break;
     }
 
-    return RoofFieldContainer(
+    return FieldContainer(
       child: fieldBody,
     );
   }

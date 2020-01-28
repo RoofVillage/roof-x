@@ -51,7 +51,7 @@ class StandardTabBar extends StatelessWidget {
     );
   }
 
-  Widget _buildTabWidget(RoofTab tab, SemanticInheritedTheme theme) {
+  Widget _buildTabWidget(RoofTab tab, SemanticThemeData theme) {
     final List<Widget> children = [];
 
     if (tab.icon != null) {

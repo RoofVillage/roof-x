@@ -1,4 +1,5 @@
 export 'src/semantic_theme.dart';
+export 'src/semantic_theme_data.dart';
 export 'src/color/index.dart';
 export 'src/curve/index.dart';
 export 'src/distance/index.dart';

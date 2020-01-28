@@ -3,7 +3,7 @@ import 'package:semantic_theme/index.dart';
 
 class VerticalFullScreenRoute<T> extends PageRoute<T> {
   WidgetBuilder builder;
-  SemanticInheritedTheme theme;
+  SemanticThemeData theme;
 
   @override
   Duration get transitionDuration => theme.duration.short;

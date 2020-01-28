@@ -27,7 +27,7 @@ class CellA extends StatelessWidget {
     if (onTap != null) triggerHapticWith(_tapHapticOption);
   }
 
-  Widget buildTitleRow(SemanticInheritedTheme theme) {
+  Widget buildTitleRow(SemanticThemeData theme) {
     final hasTitle = title != null && title.isNotEmpty;
     final hasTitleAccessory = title != null;
 

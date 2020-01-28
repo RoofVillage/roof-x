@@ -12,12 +12,19 @@ dependencies:
   http: ^0.12.0+3
   device_info: ^0.4.0+1
   blossm_command:
-    path: ../blossm_command
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-theme-compatible-builders
+      path: blossm_command
   secure_storage:
     git:
       url: git@github.com:RoofVillage/roof-x.git
       ref: semantic-theme-compatible-builders
       path: lib/secure_storage
+
+dependency_overrides:
+  blossm_command:
+    path: ../blossm_command
 
 dev_dependencies:
   flutter_test:

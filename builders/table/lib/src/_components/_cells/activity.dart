@@ -112,7 +112,7 @@ class _Body extends StatelessWidget {
     );
   }
 
-  List<Widget> _relevantLabels(SemanticInheritedTheme theme) {
+  List<Widget> _relevantLabels(SemanticThemeData theme) {
     var list = <Widget>[_TitleLabel(decoratedText: title)];
     if (note != null && note.trim().isNotEmpty) {
       list.add(

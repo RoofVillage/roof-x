@@ -9,7 +9,7 @@ class FullLogoNavButton extends StatelessWidget with NavButton {
   final ContextPasser onTap;
 
   @override
-  Widget iconForTheme(SemanticInheritedTheme theme) {
+  Widget iconForTheme(SemanticThemeData theme) {
     return SvgReference.logoFull.buildSvg(
       color: theme.color.icon.logo,
     );

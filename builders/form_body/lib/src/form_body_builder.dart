@@ -18,7 +18,7 @@ import 'package:artboard/index.dart';
 import 'package:period_type/index.dart';
 import 'package:tag_editor_builder/index.dart';
 import '_components/keyboard_accessory_buttons/index.dart';
-import '_components/roof_stream_form.dart';
+import '_components/standard_stream_form.dart';
 import 'form_status.dart';
 
 mixin FormBodyBuilder implements StatefulWidget {
@@ -37,7 +37,7 @@ mixin FormBodyBuilder implements StatefulWidget {
 
   StreamFormBloc get form => _form.bloc;
 
-  final _form = RoofStreamForm();
+  final _form = StandardStreamForm();
 
   // An opportunity for forms to throw an exception before being submitted.
   Future<void> validate() async {}
@@ -347,7 +347,7 @@ mixin FormBodyBuilderState<T extends FormBodyBuilder> implements State<T> {
     );
   }
 
-  RoofStreamForm buildFormBody(BuildContext context) {
+  StandardStreamForm buildFormBody(BuildContext context) {
     _load(context);
     widget.form.addOnValueChangedListener(_restoreState);
     return widget._form;

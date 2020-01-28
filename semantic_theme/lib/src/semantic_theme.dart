@@ -1,27 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:semantic_theme/index.dart';
-import 'package:semantic_theme/src/color/index.dart';
-import 'package:semantic_theme/src/curve/index.dart';
-import 'package:semantic_theme/src/distance/index.dart';
-import 'package:semantic_theme/src/duration/index.dart';
-import 'package:semantic_theme/src/radius/index.dart';
-import 'package:semantic_theme/src/shadow/index.dart';
-import 'package:semantic_theme/src/typography/index.dart';
-import 'package:semantic_theme/src/system_ui_overlay_style/index.dart';
+import 'package:semantic_theme/src/semantic_theme_data.dart';
 
-abstract class SemanticTheme<T> extends StatefulWidget {
+class SemanticTheme<T> extends StatefulWidget {
+  final SemanticThemeData<T> themeData;
   final Widget child;
-  final T initialThemeOption;
 
-  SemanticTheme(
-    this.initialThemeOption, {
+  SemanticTheme({
+    @required this.themeData,
     @required this.child,
   });
 
   @override
-  SemanticInheritedTheme<T> createState();
+  SemanticInheritedTheme<T> createState() => SemanticInheritedTheme<T>();
 
-  static SemanticInheritedTheme of(
+  static SemanticThemeData of(
     BuildContext context, {
     bool shouldRebuild = true,
   }) {
@@ -29,47 +22,38 @@ abstract class SemanticTheme<T> extends StatefulWidget {
         ? context.dependOnInheritedWidgetOfExactType<_SemanticInheritedTheme>()
         : context.findAncestorWidgetOfExactType<_SemanticInheritedTheme>();
 
-    return inheritedWidget.data;
+    return inheritedWidget.themeData;
   }
 }
 
-abstract class SemanticInheritedTheme<T> extends State<SemanticTheme<T>> {
-  T currentThemeOption;
-
-  SemanticColorLibrary get color;
-  SemanticCurveLibrary get curve;
-  SemanticDistanceLibrary get distance;
-  SemanticDurationLibrary get duration;
-  SemanticRadiusLibrary get radius;
-  SemanticShadowLibrary get shadow;
-  SemanticTypographyLibrary get typography;
-  SemanticSystemUiStyle get systemUiStyle;
+class SemanticInheritedTheme<T> extends State<SemanticTheme<T>> {
+  T _currentThemeOption;
 
   @override
   void initState() {
-    currentThemeOption = widget.initialThemeOption;
+    _currentThemeOption = widget.themeData.currentThemeOption;
     super.initState();
   }
 
-  void use(T theme) => setState(() => currentThemeOption = theme);
+  void use(T themeOption) => setState(() => _currentThemeOption = themeOption);
 
   @override
   Widget build(BuildContext context) {
     return _SemanticInheritedTheme(
-      data: this,
+      themeData: this.widget.themeData.forThemeOption(_currentThemeOption),
       child: widget.child,
     );
   }
 }
 
-class _SemanticInheritedTheme<T> extends InheritedWidget {
-  final SemanticInheritedTheme<T> data;
+class _SemanticInheritedTheme extends InheritedWidget {
+  final SemanticThemeData themeData;
 
   _SemanticInheritedTheme({
-    @required this.data,
+    @required this.themeData,
     @required Widget child,
   }) : super(child: child);
 
   @override
-  bool updateShouldNotify(_SemanticInheritedTheme<T> old) => true;
+  bool updateShouldNotify(_SemanticInheritedTheme old) => true;
 }

@@ -16,7 +16,7 @@ abstract class SemanticTypography {
       color: color,
       fontSize: fontSize,
       fontWeight: fontWeight,
-      fontFamily: fontFamilyFallback,
+      fontFamily: fontFamily,
       letterSpacing: letterSpacing,
       textBaseline: textBaseline,
     );

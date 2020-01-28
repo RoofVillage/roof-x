@@ -5,6 +5,7 @@ import 'package:artboard/index.dart';
 import 'package:public_activity_artboard/index.dart';
 import 'package:vertical_full_screen_artboard_scaffold/index.dart';
 import 'package:device_screen/index.dart';
+import 'package:roof_theme/index.dart';
 
 import 'bloc.dart';
 import 'data/index.dart';
@@ -29,7 +30,9 @@ class RootWidget extends StatelessWidget {
           //PublicActivityArtboard();
         }
 
-        return VerticalFullScreenArtboardNavigator(artboard: startingArtboard);
+        return VerticalFullScreenArtboardNavigator(
+          artboard: startingArtboard,
+        );
       },
     );
     return DeviceScreen(child: stream);
