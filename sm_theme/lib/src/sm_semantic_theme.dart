@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:semantic_theme/index.dart';
 import 'package:sm_theme/src/color/sm_color_library.dart';
 import 'package:sm_theme/src/curve/sm_curve_library.dart';
@@ -10,20 +9,14 @@ import 'package:sm_theme/src/sm_theme_option.dart';
 import 'package:sm_theme/src/system_ui_style/sm_system_ui_style.dart';
 import 'package:sm_theme/src/typography/sm_typography_library.dart';
 
-class SmSemanticTheme extends SemanticTheme<SmThemeOption> {
-  SmSemanticTheme(
-    SmThemeOption initialThemeOption, {
-    @required Widget child,
-  }) : super(
-          initialThemeOption,
-          child: child,
-        );
+class SmSemanticTheme extends SemanticThemeData<SmThemeOption> {
+  SmSemanticTheme(SmThemeOption themeOption) : super(themeOption);
 
   @override
-  SmInheritedSemanticTheme createState() => SmInheritedSemanticTheme();
-}
+  SemanticThemeData<SmThemeOption> forThemeOption(SmThemeOption option) {
+    return SmSemanticTheme(option);
+  }
 
-class SmInheritedSemanticTheme extends SemanticInheritedTheme<SmThemeOption> {
   @override
   SemanticColorLibrary get color => SmColorLibrary(currentThemeOption);
 
