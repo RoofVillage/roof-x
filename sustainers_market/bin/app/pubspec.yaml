@@ -43,6 +43,12 @@ dependencies:
 dependency_overrides:
   commands:
     path: ../../commands
+  service_dashboard_artboard:
+    path: ../../artboards/service_dashboard
+  log_in_artboard:
+    path: ../../artboards/log_in
+  auth_verify_code_artboard:
+    path: ../../artboards/auth_verify_code
   vertical_full_screen_artboard_scaffold:
     path: ../../../artboard_scaffolds/vertical_full_screen
   vertical_floating_artboard_scaffold:

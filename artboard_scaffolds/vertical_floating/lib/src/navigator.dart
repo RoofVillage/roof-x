@@ -135,9 +135,10 @@ class VerticalFloatingInheritedArtboardNavigator
 
       setState(() => _floatingArtboardPanels.add(panel));
 
+      final theme = SemanticTheme.of(context);
       _pageController.nextPage(
-        duration: widget.theme.duration.medium,
-        curve: widget.theme.curve.enter,
+        duration: theme.duration.medium,
+        curve: theme.curve.enter,
       );
     } else {
       Navigator.pop(context, artboard);

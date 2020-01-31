@@ -5,19 +5,17 @@ import 'package:form_builder/index.dart';
 import 'package:navigator/index.dart';
 
 mixin AuthVerifyCodeArtboardData implements FormBuilder {
-  String get email => "tyler@gmail.com";
-
   @override
-  String get title => "Enter the code sent to $email";
+  String get title => "Enter the code sent to your phone number";
 
   @override
   String get submitButtonText => "Submit";
 
   @override
   submit(context) async {
-    // await ServiceCommands().create(
-    //   name: _serviceNameFieldData.value,
-    // );
+    await ChallengeCommands().answer(
+      code: _serviceNameFieldData.value,
+    );
   }
 
   @override

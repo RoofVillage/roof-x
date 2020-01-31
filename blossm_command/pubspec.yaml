@@ -17,6 +17,10 @@ dependencies:
       ref: semantic-sm-app
       path: lib/network
 
+dependency_overrides:
+  network:
+    path: ../lib/network
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

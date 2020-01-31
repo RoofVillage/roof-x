@@ -71,16 +71,20 @@ class BlossmCommand {
       },
     };
 
-    return Network.post(address: url, params: body, headers: headers).then(
-      (response) {
-        final Map data = json.decode(response);
-
-        if (tokenStore != null &&
-            _tokenKey != null &&
-            data.containsKey(_tokenKey)) {
-          tokenStore.saveToken(data[_tokenKey]);
-        }
-      },
+    final response = await Network.post(
+      address: url,
+      params: body,
+      headers: headers,
     );
+
+    final Map data = json.decode(response);
+
+    if (tokenStore != null &&
+        _tokenKey != null &&
+        data.containsKey(_tokenKey)) {
+      tokenStore.saveToken(data[_tokenKey]);
+    }
+    
+    return Future.value(response);
   }
 }

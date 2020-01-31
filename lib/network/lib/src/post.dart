@@ -26,7 +26,7 @@ class Network {
     print("POST address: $address");
     print("POST params: $params");
     print("POST headers: $headers");
-    
+
     final Map<String, String> defaultHeaders = {
       'content-type': _jsonContentType,
       'accept': _jsonAccept
@@ -46,9 +46,16 @@ class Network {
 
     print("POST response: ${utf8.decode(response.bodyBytes)}");
 
+    // for testing
+    return Future.value(
+      utf8.decode(response.bodyBytes),
+    );
+
     switch (response.statusCode) {
       case 200:
-        return utf8.decode(response.bodyBytes);
+        return Future.value(
+          utf8.decode(response.bodyBytes),
+        );
       default:
         throw Error();
     }
