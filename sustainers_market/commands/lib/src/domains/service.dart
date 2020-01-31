@@ -9,6 +9,20 @@ class ServiceCommands extends CommandDomain {
   @override
   String get baseUrl => coreStagingBaseUrl;
 
+  Future register({
+    @required String serviceName,
+  }) {
+    return BlossmCommand(
+      payload: {
+        "name": serviceName,
+      },
+      route: "register",
+      domain: domain,
+      baseUrl: baseUrl,
+      tokenStore: tokenStore,
+    ).issue();
+  }
+
   Future create({
     @required String name,
   }) {
