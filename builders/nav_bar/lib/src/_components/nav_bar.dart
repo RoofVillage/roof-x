@@ -13,6 +13,19 @@ mixin NavBar implements StatelessWidget {
       theme.systemUiStyle.systemUiOverlayStyle.value,
     );
 
+    final List<Widget> rowChildren = [
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: buildNavigationWidgets(context),
+      ),
+    ];
+
+    if (actionButtons != null) {
+      rowChildren.add(
+        Row(children: actionButtons),
+      );
+    }
+
     final itemRow = Center(
       child: Column(
         // Stretch the cards in horizontal axis
@@ -23,13 +36,7 @@ mixin NavBar implements StatelessWidget {
         children: <Widget>[
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: buildNavigationWidgets(context),
-              ),
-              Row(children: actionButtons),
-            ],
+            children: rowChildren,
           ),
         ],
       ),

@@ -42,13 +42,8 @@ class StandardTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     final labelContainer = Flexible(
       flex: 0,
-      child: Container(
-        margin: EdgeInsets.only(
-          bottom: SemanticTheme.of(context).distance.spacing.horizontal.small,
-        ),
-        child: FieldLabel(
-          labelText: fieldName,
-        ),
+      child: FieldLabel(
+        labelText: fieldName,
       ),
     );
 
@@ -69,6 +64,7 @@ class StandardTextField extends StatelessWidget {
 
     return Container(
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           labelContainer,
           fieldBody,

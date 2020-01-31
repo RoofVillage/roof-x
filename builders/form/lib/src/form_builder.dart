@@ -51,7 +51,7 @@ mixin FormBuilderState<T extends FormBuilder>
     final theme = SemanticTheme.of(context);
 
     final headerStyle = theme.typography.headingSecondary.textStyle(
-      color: theme.color.text.brand,
+      color: theme.color.text.generalPrimary,
     );
     final subtitleStyle = theme.typography.subtitle.textStyle(
       color: theme.color.text.generalSecondary,
@@ -86,7 +86,7 @@ mixin FormBuilderState<T extends FormBuilder>
     widgets.add(
       Padding(
         padding: EdgeInsets.symmetric(
-          vertical: theme.distance.padding.vertical.medium,
+          vertical: theme.distance.spacing.vertical.large,
         ),
         child: buildFormBody(context),
       ),
@@ -94,11 +94,9 @@ mixin FormBuilderState<T extends FormBuilder>
 
     if (!shouldHideButtons) {
       widgets.add(
-        Container(
-          margin: EdgeInsets.only(
-            left: theme.distance.spacing.horizontal.medium,
-            right: theme.distance.spacing.horizontal.medium,
-            top: theme.distance.spacing.vertical.medium,
+        Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: theme.distance.padding.horizontal.medium,
           ),
           child: submitButton,
         ),
