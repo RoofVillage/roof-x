@@ -123,7 +123,7 @@ class InheritedVerticalFloatingArtboardNavigatorPanel<T>
             VerticalFloatingArtboardNavigator.of(
               context,
               shouldRebuild: false,
-            ).back();
+            ).back(context);
           },
         );
         break;

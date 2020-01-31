@@ -12,11 +12,9 @@ import 'vertical_floating_artboard.dart';
 
 class VerticalFloatingArtboardNavigator extends StatefulWidget {
   final Artboard artboard;
-  final SemanticThemeData theme;
 
   VerticalFloatingArtboardNavigator({
     this.artboard,
-    this.theme,
   });
 
   @override
@@ -111,10 +109,12 @@ class VerticalFloatingInheritedArtboardNavigator
     );
   }
 
-  void back() async {
+  void back(BuildContext context) async {
+    final theme = SemanticTheme.of(context);
+
     await _pageController.previousPage(
-      duration: widget.theme.duration.medium,
-      curve: widget.theme.curve.exit,
+      duration: theme.duration.medium,
+      curve: theme.curve.exit,
     );
     setState(
       () => _floatingArtboardPanels.removeLast(),

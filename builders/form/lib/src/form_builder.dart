@@ -57,13 +57,15 @@ mixin FormBuilderState<T extends FormBuilder>
       color: theme.color.text.generalSecondary,
     );
 
-    final widgets = <Widget>[];
+    final formWidgets = <Widget>[];
+    final headerWidgets = <Widget>[];
 
     if (widget.title != null) {
-      widgets.add(
+      headerWidgets.add(
         Text(
           widget.title,
           style: headerStyle,
+          textAlign: TextAlign.center,
         ),
       );
     }
@@ -73,7 +75,7 @@ mixin FormBuilderState<T extends FormBuilder>
         widget.subtitle,
         style: subtitleStyle,
       );
-      widgets.add(
+      headerWidgets.add(
         Padding(
           padding: EdgeInsets.all(
             theme.distance.spacing.vertical.medium,
@@ -83,7 +85,20 @@ mixin FormBuilderState<T extends FormBuilder>
       );
     }
 
-    widgets.add(
+    if (headerWidgets.isNotEmpty) {
+      formWidgets.add(
+        Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: theme.distance.padding.horizontal.medium,
+          ),
+          child: Column(
+            children: headerWidgets,
+          ),
+        ),
+      );
+    }
+
+    formWidgets.add(
       Padding(
         padding: EdgeInsets.symmetric(
           vertical: theme.distance.spacing.vertical.large,
@@ -93,7 +108,7 @@ mixin FormBuilderState<T extends FormBuilder>
     );
 
     if (!shouldHideButtons) {
-      widgets.add(
+      formWidgets.add(
         Padding(
           padding: EdgeInsets.symmetric(
             horizontal: theme.distance.padding.horizontal.medium,
@@ -103,6 +118,6 @@ mixin FormBuilderState<T extends FormBuilder>
       );
     }
 
-    return Column(children: widgets);
+    return Column(children: formWidgets);
   }
 }

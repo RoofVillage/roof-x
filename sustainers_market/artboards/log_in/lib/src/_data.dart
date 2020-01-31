@@ -30,5 +30,6 @@ mixin LogInArtboardData implements FormBuilder {
 
   final _phoneNumberFieldData = FormPhoneNumberTextFieldData(
     title: "Phone number",
+    autofocus: true,
   );
 }

@@ -52,6 +52,11 @@ mixin VerticalFloatingArtboardState<T extends VerticalFloatingArtboard>
       behavior: HitTestBehavior.opaque,
       onTap: () {},
       child: pageContent,
+      // child: Container(
+      //   color: Colors.yellow,
+      //   width: 100,
+      //   height: 100,
+      // ),
     );
 
     return Container(
