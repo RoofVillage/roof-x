@@ -48,6 +48,8 @@ dependency_overrides:
     path: ../../../builders/form
   form:
     path: ../../../lib/form
+  navigator:
+    path: ../../../lib/navigator
 
 dev_dependencies:
   flutter_test:

@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:titled_table_vertical_full_screen_artboard_template/index.dart';
 import 'package:view_stream_builder_builder/index.dart';
@@ -11,18 +9,18 @@ class ServicesVerticalFloatingArtboard
     extends TitledVerticalFullTableScreenArtboard
     with ServicesArtboardData, ViewStreamBuilderBuilder {
   @override
-  List<Widget> buildActionButtons(BuildContext context) => [];
-
-  @override
-  Widget buildNavButton(BuildContext context) => null;
-
-  @override
   Widget buildBody(BuildContext context) =>
       buildViewStreamBuilder<UserServicesView>(
         context,
         stream: servicesView,
-        loading: Text('loadin'),
-        empty: Text('nothin'),
+        loading: Text(
+          'loadin',
+          style: TextStyle(color: Colors.white70),
+        ),
+        empty: Text(
+          'nothin',
+          style: TextStyle(color: Colors.white70),
+        ),
         child: (context, view) => Column(
           children: view.services
               .map(

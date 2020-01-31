@@ -45,10 +45,16 @@ dependency_overrides:
     path: ../../commands
   vertical_full_screen_artboard_scaffold:
     path: ../../../artboard_scaffolds/vertical_full_screen
+  vertical_floating_artboard_scaffold:
+    path: ../../../artboard_scaffolds/vertical_floating
+  view_stream_builder_builder:
+    path: ../../../builders/view_stream_builder
   sm_theme:
     path: ../../sm_theme
   artboard:
     path: ../../../lib/artboard
+  services_artboard:
+    path: ../../artboards/services
   welcome_activity_artboard:
     path: ../../artboards/welcome
   create_service_artboard:
@@ -167,6 +173,8 @@ dependency_overrides:
     path: ../../../model/properties/name_payment_profile
   name_user:
     path: ../../../model/properties/name_user
+  nav_bar_builder:
+    path: ../../../builders/nav_bar
   nav_button_builder:
     path: ../../../builders/nav_button
   navigation_icon_library:

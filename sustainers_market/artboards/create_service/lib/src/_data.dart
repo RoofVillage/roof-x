@@ -19,17 +19,13 @@ mixin CreateServiceArtboardData implements FormBuilder {
   String get submitButtonText => "Create";
 
   @override
-  submit(context) {
-    return ServiceCommands()
-        .create(
+  submit(context) async {
+    await ServiceCommands().create(
       name: _serviceNameFieldData.value,
-    )
-        .then(
-      (response) {
-        ArtboardNavigator.of(context).goTo(
-          ServicesVerticalFloatingArtboard(),
-        );
-      },
+    );
+
+    ArtboardNavigator.of(context).goTo(
+      ServicesVerticalFloatingArtboard(),
     );
   }
 
@@ -39,7 +35,8 @@ mixin CreateServiceArtboardData implements FormBuilder {
       ];
 
   final _serviceNameFieldData = FormShortTextFieldData(
-    title: "Name of service",
+    title: "Service Name",
     placeholder: "Flo's Flowers",
+    autofocus: true,
   );
 }
