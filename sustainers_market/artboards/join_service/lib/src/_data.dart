@@ -20,17 +20,17 @@ mixin CreateServiceArtboardData implements FormBuilder {
 
   @override
   submit(context) {
-    return ServiceCommands()
-        .create(
-      name: _serviceNameFieldData.value,
-    )
-        .then(
-      (response) {
-        ArtboardNavigator.of(context).goTo(
-          ServicesVerticalFloatingArtboard(),
-        );
-      },
-    );
+    // return ServiceCommands()
+    //     .create(
+    //   name: _serviceNameFieldData.value,
+    // )
+    //     .then(
+    //   (response) {
+    //     ArtboardNavigator.of(context).goTo(
+    //       ServicesVerticalFloatingArtboard(),
+    //     );
+    //   },
+    // );
   }
 
   @override

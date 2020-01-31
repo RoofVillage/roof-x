@@ -19,22 +19,22 @@ class ServiceDashboardVerticalFullscreenArtboard
         PrimaryCenterButtonBuilder,
         ViewStreamBuilderBuilder {
   void _generateKey(BuildContext context) {
-    ServiceCommands()
-        .generateKey(
-      serviceId: "unique123",
-    )
-        .then(
-      (onValue) {
-        print("then");
-        final key = onValue.body['private'];
-        print("key $key");
-        return ArtboardNavigator.of(context).goTo(
-          SecretKeyVerticalFloatingArtboard(
-            secretKey: key,
-          ),
-        );
-      },
-    );
+    // ServiceCommands()
+    //     .generateKey(
+    //   serviceId: "unique123",
+    // )
+    //     .then(
+    //   (onValue) {
+    //     print("then");
+    //     final key = onValue.body['private'];
+    //     print("key $key");
+    //     return ArtboardNavigator.of(context).goTo(
+    //       SecretKeyVerticalFloatingArtboard(
+    //         secretKey: key,
+    //       ),
+    //     );
+    //   },
+    // );
   }
 
   Widget _serviceName(ServiceDashboardView view) => Text(
@@ -93,7 +93,7 @@ class ServiceDashboardVerticalFullscreenArtboard
         buildPrimaryCenterButton(
           context,
           text: "Save",
-          onTap: (context) => ServiceCommands().save(),
+          onTap: (context) => print('save'), // ServiceCommands().save(),
         )
       ];
 
