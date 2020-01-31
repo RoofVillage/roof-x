@@ -63,6 +63,7 @@ class VerticalFullScreenInheritedArtboardNavigator
           theme: SemanticTheme.of(context),
         ),
       );
+
       if (result is Artboard) {
         return await _goTo<T>(
           result,
@@ -98,9 +99,12 @@ class VerticalFullScreenInheritedArtboardNavigator
     } else {
       return await Navigator.of(context).push<T>(
         VerticalFullScreenRoute(
-          builder: (context) => VerticalFullScreenArtboardNavigator(
-            artboard: artboard,
-          ),
+          builder: (context) {
+            return VerticalFullScreenArtboardNavigator(
+              artboard: artboard,
+            );
+          },
+          theme: SemanticTheme.of(context),
         ),
       );
     }

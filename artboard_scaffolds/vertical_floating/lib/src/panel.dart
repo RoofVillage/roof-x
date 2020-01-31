@@ -56,14 +56,16 @@ class InheritedVerticalFloatingArtboardNavigatorPanel<T>
     final theme = SemanticTheme.of(context);
 
     final flexibleColumn = Column(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          Flexible(
-              child: SingleChildScrollView(
+      mainAxisSize: MainAxisSize.max,
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        Flexible(
+          child: SingleChildScrollView(
             child: widget.artboard,
-          ))
-        ]);
+          ),
+        )
+      ],
+    );
 
     ///The percent from the bottom where the button will live;
     final halfHeight = MediaQuery.of(context).size.height * 0.5;
@@ -101,28 +103,38 @@ class InheritedVerticalFloatingArtboardNavigatorPanel<T>
     final buttonOption =
         widget.artboard.navButtonOption ?? widget.defaultNavButtonOption;
 
+    Widget button;
     switch (buttonOption) {
       case VerticalFloatingArtboardButtonOption.close:
-        return buildIconNavButton(
+        button = buildIconNavButton(
           context,
           iconReference: NavigationIcon.downArrow,
           onTap: (context) {
             ArtboardNavigator.of(context).pop(_result);
           },
         );
+        break;
       case VerticalFloatingArtboardButtonOption.previous:
-        return buildIconNavButton(
+        button = buildIconNavButton(
           context,
           iconReference: NavigationIcon.backArrow,
           onTap: (context) {
             widget.artboard.didComplete(_result);
-            VerticalFloatingArtboardNavigator.of(context, shouldRebuild: false)
-                .back();
+            VerticalFloatingArtboardNavigator.of(
+              context,
+              shouldRebuild: false,
+            ).back();
           },
         );
+        break;
     }
 
-    return null;
+    return Padding(
+      padding: EdgeInsets.only(
+        bottom: SemanticTheme.of(context).distance.padding.vertical.min,
+      ),
+      child: button,
+    );
   }
 }
 

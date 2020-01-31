@@ -35,7 +35,10 @@ class VerticalFullScreenRoute<T> extends PageRoute<T> {
     end: Offset.zero,
   );
 
-  VerticalFullScreenRoute({@required this.builder});
+  VerticalFullScreenRoute({
+    @required this.builder,
+    @required this.theme,
+  });
 
   @override
   Widget buildPage(
