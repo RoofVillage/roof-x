@@ -3,24 +3,22 @@ import 'dart:async';
 import 'package:commands/index.dart';
 import 'package:form_builder/index.dart';
 import 'package:navigator/index.dart';
-import 'package:services_artboard/index.dart';
 
-mixin CreateServiceArtboardData implements FormBuilder {
+mixin AuthEmailArtboardData implements FormBuilder {
   @override
   String get title => "Create service";
+
+  @override
+  String get subtitle => null;
 
   @override
   String get submitButtonText => "Create";
 
   @override
   submit(context) async {
-    await ServiceCommands().create(
-      name: _serviceNameFieldData.value,
-    );
-
-    ArtboardNavigator.of(context).goTo(
-      ServicesVerticalFloatingArtboard(),
-    );
+    // await ServiceCommands().create(
+    //   name: _serviceNameFieldData.value,
+    // );
   }
 
   @override
@@ -28,9 +26,9 @@ mixin CreateServiceArtboardData implements FormBuilder {
         _serviceNameFieldData,
       ];
 
-  final _serviceNameFieldData = FormShortTextFieldData(
-    title: "Service Name",
-    placeholder: "Flo's Flowers",
+  final _serviceNameFieldData = FormEmailTextFieldData(
+    title: "Email address",
+    placeholder: "name@email.com",
     autofocus: true,
   );
 }

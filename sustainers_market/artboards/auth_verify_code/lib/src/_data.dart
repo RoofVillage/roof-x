@@ -1,0 +1,32 @@
+import 'dart:async';
+
+import 'package:commands/index.dart';
+import 'package:form_builder/index.dart';
+import 'package:navigator/index.dart';
+
+mixin AuthVerifyCodeArtboardData implements FormBuilder {
+  String get email => "tyler@gmail.com";
+
+  @override
+  String get title => "Enter the code sent to $email";
+
+  @override
+  String get submitButtonText => "Submit";
+
+  @override
+  submit(context) async {
+    // await ServiceCommands().create(
+    //   name: _serviceNameFieldData.value,
+    // );
+  }
+
+  @override
+  Future<List<StreamableFormFieldData>> get initialFieldData async => [
+        _serviceNameFieldData,
+      ];
+
+  final _serviceNameFieldData = FormShortTextFieldData(
+    title: "Verification code",
+    autofocus: true,
+  );
+}
