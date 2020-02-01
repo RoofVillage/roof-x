@@ -1,4 +1,6 @@
 import 'package:roof_theme/index.dart';
+import 'package:roof_theme/src/_constants/_theme_option_key.dart';
+import 'package:cache/index.dart';
 import 'package:semantic_theme/index.dart';
 import 'package:roof_theme/src/color/roof_color_library.dart';
 import 'package:roof_theme/src/curve/roof_curve_library.dart';
@@ -14,8 +16,30 @@ class RoofSemanticTheme extends SemanticThemeData<RoofThemeOption> {
   RoofSemanticTheme(RoofThemeOption themeOption) : super(themeOption);
 
   @override
-  SemanticThemeData<RoofThemeOption> forThemeOption(RoofThemeOption option) {
+  SemanticThemeData<RoofThemeOption> build(RoofThemeOption option) {
     return RoofSemanticTheme(option);
+  }
+
+  @override
+  Future<RoofThemeOption> loadThemeOption() async {
+    final String key = await stringForKey(themeOptionKey);
+
+    switch (key) {
+      case "light":
+        return RoofThemeOption.light;
+      case "dark":
+        return RoofThemeOption.dark;
+      default:
+        return currentThemeOption;
+    }
+  }
+
+  @override
+  void themeOptionDidChange(RoofThemeOption themeOption) {
+    saveString(
+      key: themeOptionKey,
+      string: themeOption.toString(),
+    );
   }
 
   @override

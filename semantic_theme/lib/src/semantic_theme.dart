@@ -22,16 +22,40 @@ class SemanticTheme<T> extends StatefulWidget {
         ? context.dependOnInheritedWidgetOfExactType<_SemanticInheritedTheme>()
         : context.findAncestorWidgetOfExactType<_SemanticInheritedTheme>();
 
-    return inheritedWidget.themeData;
+    return inheritedWidget.data.themeData;
+  }
+
+  static void setThemeOption(
+    BuildContext context, {
+    @required dynamic themeOption,
+  }) {
+    final inheritedWidget =
+        context.dependOnInheritedWidgetOfExactType<_SemanticInheritedTheme>();
+
+    assert(inheritedWidget != null, "SemanticInheritedTheme not found.");
+
+    inheritedWidget.data.use(themeOption);
+
+    inheritedWidget.data.themeData.themeOptionDidChange(themeOption);
   }
 }
 
 class SemanticInheritedTheme<T> extends State<SemanticTheme<T>> {
   T _currentThemeOption;
 
+  SemanticThemeData<T> get themeData =>
+      widget.themeData.build(_currentThemeOption);
+
+  void _initializeCurrentThemeOption() async {
+    final T themeOption = await widget.themeData.loadThemeOption() ??
+        widget.themeData.currentThemeOption;
+
+    use(themeOption);
+  }
+
   @override
   void initState() {
-    _currentThemeOption = widget.themeData.currentThemeOption;
+    _initializeCurrentThemeOption();
     super.initState();
   }
 
@@ -40,17 +64,17 @@ class SemanticInheritedTheme<T> extends State<SemanticTheme<T>> {
   @override
   Widget build(BuildContext context) {
     return _SemanticInheritedTheme(
-      themeData: this.widget.themeData.forThemeOption(_currentThemeOption),
+      data: this,
       child: widget.child,
     );
   }
 }
 
 class _SemanticInheritedTheme extends InheritedWidget {
-  final SemanticThemeData themeData;
+  final SemanticInheritedTheme data;
 
   _SemanticInheritedTheme({
-    @required this.themeData,
+    @required this.data,
     @required Widget child,
   }) : super(child: child);
 
