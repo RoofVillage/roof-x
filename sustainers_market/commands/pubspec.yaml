@@ -18,6 +18,22 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: semantic-sm-app
       path: lib/secure_storage
+  navigator:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: lib/navigator
+  welcome_artboard:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: sustainers_market/artboards/welcome
+
+dependency_overrides:
+  welcome_artboard:
+    path: ../artboards/welcome
+  register_artboard:
+    path: ../artboards/register
 
 dev_dependencies:
   flutter_test:

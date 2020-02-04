@@ -1,39 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:blossm_command/index.dart';
-import 'package:commands/src/utils/index.dart';
 
-class ChallengeCommands extends CommandDomain {
-  @override
-  String get domain => "challenge";
+import '../_utils/dispatcher_config.dart';
+
+class ChallengeCommands extends BlossmCommandDispatcher with DispatcherConfig {
+  final BuildContext context;
+
+  ChallengeCommands(this.context);
 
   @override
-  String get baseUrl => coreStagingBaseUrl;
+  String get domain => "session";
+
+  @override
+  Future Function() get onTokenInvalid => () => redirectToWelcome(context);
 
   Future issue({
     @required String phoneNumber,
   }) {
-    return BlossmCommand(
+    return dispatch(
+      route: "issue",
       payload: {
         "phone": phoneNumber,
       },
-      route: "issue",
-      domain: domain,
-      baseUrl: baseUrl,
-      tokenStore: tokenStore,
-    ).issue();
+    );
   }
 
   Future answer({
     @required String code,
   }) {
-    return BlossmCommand(
+    return dispatch(
+      route: "answer",
       payload: {
         "code": code,
       },
-      route: "answer",
-      domain: domain,
-      baseUrl: baseUrl,
-      tokenStore: tokenStore,
-    ).issue();
+    );
   }
 }

@@ -13,7 +13,7 @@ mixin AuthVerifyCodeArtboardData implements FormBuilder {
 
   @override
   submit(context) async {
-    await ChallengeCommands().answer(
+    await ChallengeCommands(context).answer(
       code: _serviceNameFieldData.value,
     );
   }

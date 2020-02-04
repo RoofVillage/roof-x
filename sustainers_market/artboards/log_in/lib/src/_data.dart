@@ -10,16 +10,18 @@ mixin LogInArtboardData implements FormBuilder {
   String get title => "Log in";
 
   @override
-  String get submitButtonText => "Log in";
+  String get submitButtonText => "Submit";
 
   @override
   submit(context) async {
-    await ChallengeCommands().issue(
+    await ChallengeCommands(context).issue(
       phoneNumber: _phoneNumberFieldData.value,
     );
 
     ArtboardNavigator.of(context).goTo(
-      AuthVerifyCodeVerticalFloatingArtboard(),
+      AuthVerifyCodeVerticalFloatingArtboard(
+        phoneNumber: _phoneNumberFieldData.value,
+      ),
     );
   }
 

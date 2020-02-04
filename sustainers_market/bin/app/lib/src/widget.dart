@@ -4,7 +4,7 @@ import 'package:stream/index.dart';
 import 'package:artboard/index.dart';
 import 'package:vertical_full_screen_artboard_scaffold/index.dart';
 import 'package:device_screen/index.dart';
-import 'package:welcome_activity_artboard/index.dart';
+import 'package:welcome_artboard/index.dart';
 
 import 'bloc.dart';
 import 'data/index.dart';
@@ -18,7 +18,7 @@ class RootWidget extends StatelessWidget {
         if (!snapshot.hasData) return Container();
         final appState = snapshot.data;
 
-        SessionCommands().start();
+        SessionCommands(context).start();
 
         Artboard startingArtboard;
         if (appState.isInSession) {

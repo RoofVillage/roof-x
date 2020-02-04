@@ -21,10 +21,24 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: semantic-sm-app
       path: lib/secure_storage
+  navigator:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: lib/navigator
+  public_activity_artboard:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: bin/app/roof/artboards/public_activity
 
 dependency_overrides:
   blossm_command:
     path: ../../blossm_command
+  navigator:
+    path: ../../lib/navigator
+  public_activity_artboard:
+    path: ../artboards/public_activity
 
 dev_dependencies:
   flutter_test:

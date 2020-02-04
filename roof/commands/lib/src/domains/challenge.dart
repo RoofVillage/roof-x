@@ -1,27 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:blossm_command/index.dart';
-import 'package:commands/src/utils/index.dart';
 
-class ChallengeCommands extends CommandDomain {
+import '../_utils/dispatcher_config.dart';
+
+class ChallengeCommands extends BlossmCommandDispatcher
+    with DispatcherConfig {
+  final BuildContext context;
+
+  ChallengeCommands(this.context);
+
   @override
   String get domain => "challenge";
 
   @override
-  String get baseUrl => coreStagingBaseUrl;
+  Future Function() get onTokenInvalid => () => redirectToWelcome(context);
 
   Future create({
     @required String phone,
     @required String hash,
   }) {
-    return BlossmCommand(
+    return dispatch(
+      route: "create",
       payload: {
         phone: phone,
         hash: hash,
       },
-      route: "create",
-      domain: domain,
-      baseUrl: baseUrl,
-      tokenStore: tokenStore,
-    ).issue();
+    );
   }
 }

@@ -19,7 +19,7 @@ class RootWidget extends StatelessWidget {
         if (!snapshot.hasData) return Container();
         final appState = snapshot.data;
 
-        SessionCommands().start();
+        SessionCommands(context).start();
 
         Artboard startingArtboard;
         if (appState.isInSession) {

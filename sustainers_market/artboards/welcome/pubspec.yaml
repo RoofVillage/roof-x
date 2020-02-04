@@ -1,4 +1,4 @@
-name: welcome_activity_artboard
+name: welcome_artboard
 description: Welcomes user to Sustainers Market app.
 version: 1.0.0+1
 
@@ -78,6 +78,11 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: semantic-sm-app
       path: sustainers_market/artboards/create_service
+  register_artboard:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: sustainers_market/artboards/register
 
 dependency_overrides:
   commands:
@@ -86,6 +91,8 @@ dependency_overrides:
     path: ../../views
   log_in_artboard:
     path: ../log_in
+  register_artboard:
+    path: ../register
   create_service_artboard:
     path: ../create_service
   nav_button_builder:

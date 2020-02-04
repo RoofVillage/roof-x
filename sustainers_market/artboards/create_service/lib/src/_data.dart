@@ -14,7 +14,7 @@ mixin CreateServiceArtboardData implements FormBuilder {
 
   @override
   submit(context) async {
-    await ServiceCommands().register(
+    await ServiceCommands(context).register(
       serviceName: _serviceNameFieldData.value,
     );
 

@@ -1,57 +1,21 @@
 import 'dart:convert';
 
 import 'package:blossm_command/src/utils/fake_command_response.dart';
+import 'package:blossm_command/src/utils/response.dart';
 import 'package:flutter/material.dart';
 import 'package:network/index.dart';
 import 'package:blossm_command/index.dart';
 import 'package:blossm_command/src/utils/index.dart';
 
-class BlossmCommand {
-  final String route;
-  final String domain;
-  final String baseUrl;
-  final Map payload;
-  final TokenStore tokenStore;
+abstract class BlossmCommandDispatcher {
+  String get domain;
+  String get baseUrl;
+  TokenStore get tokenStore;
 
-  BlossmCommand({
-    @required this.route,
-    @required this.domain,
-    @required this.baseUrl,
-    this.payload,
-    this.tokenStore,
-  });
+  // This method is called whenever a command is issued without a valid authentication token.
+  Future<void> Function() get onTokenInvalid;
 
-  String get _tokenKey => tokenStore.tokenKey;
-
-  Future fakeSuccess({Map response}) async {
-    print(
-      "Faking success from command with route '$route' and payload: $payload",
-    );
-
-    return Future.delayed(
-      Duration(milliseconds: 500),
-      () => FakeCommandResponse(
-        status: "200",
-        body: response,
-      ),
-    );
-  }
-
-  Future fakeError({Object response}) async {
-    print(
-      "Faking error from command with route '$route' and payload: $payload",
-    );
-
-    return Future.delayed(
-      Duration(milliseconds: 500),
-      () => {
-        "status": '400',
-        "body": response,
-      },
-    );
-  }
-
-  Future issue() async {
+  Future dispatch({@required String route, Map payload}) async {
     final url = "https://command.$domain.$baseUrl/$route";
 
     final Map<String, String> headers = {};
@@ -77,14 +41,53 @@ class BlossmCommand {
       headers: headers,
     );
 
-    final Map data = json.decode(response);
+    final BlossmResponse data = json.decode(response);
 
-    if (tokenStore != null &&
-        _tokenKey != null &&
-        data.containsKey(_tokenKey)) {
-      tokenStore.saveToken(data[_tokenKey]);
+    if (data.statusCode == 401) {
+      onTokenInvalid();
+      return;
     }
-    
+
+    if (tokenStore != null && data.token != null) {
+      tokenStore.saveToken(data.token);
+    }
+
     return Future.value(response);
+  }
+
+  Future fakeSuccess({
+    @required String route,
+    @required Map payload,
+    @required Map response,
+  }) async {
+    print(
+      "Faking success from command with route '$route' and payload: $payload",
+    );
+
+    return Future.delayed(
+      Duration(milliseconds: 500),
+      () => FakeCommandResponse(
+        status: "200",
+        body: response,
+      ),
+    );
+  }
+
+  Future fakeError({
+    @required String route,
+    @required Map payload,
+    @required Map response,
+  }) async {
+    print(
+      "Faking error from command with route '$route' and payload: $payload",
+    );
+
+    return Future.delayed(
+      Duration(milliseconds: 500),
+      () => {
+        "status": '400',
+        "body": response,
+      },
+    );
   }
 }

@@ -1,25 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:blossm_command/index.dart';
-import 'package:commands/src/utils/index.dart';
 
-class ServiceCommands extends CommandDomain {
-  @override
-  String get domain => "service";
+import '../_utils/dispatcher_config.dart';
+
+class ServiceCommands extends BlossmCommandDispatcher with DispatcherConfig {
+  final BuildContext context;
+
+  ServiceCommands(this.context);
 
   @override
-  String get baseUrl => coreStagingBaseUrl;
+  String get domain => "session";
+
+  @override
+  Future Function() get onTokenInvalid => () => redirectToWelcome(context);
 
   Future register({
     @required String serviceName,
   }) {
-    return BlossmCommand(
+    return dispatch(
+      route: "register",
       payload: {
         "name": serviceName,
       },
-      route: "register",
-      domain: domain,
-      baseUrl: baseUrl,
-      tokenStore: tokenStore,
-    ).issue();
+    );
   }
 }

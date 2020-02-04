@@ -14,7 +14,7 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: semantic-sm-app
       path: sm_theme
-  welcome_activity_artboard:
+  welcome_artboard:
     git:
       url: git@github.com:RoofVillage/roof-x.git
       ref: semantic-sm-app
@@ -45,6 +45,8 @@ dependency_overrides:
     path: ../../commands
   service_dashboard_artboard:
     path: ../../artboards/service_dashboard
+  register_artboard:
+    path: ../../artboards/register
   log_in_artboard:
     path: ../../artboards/log_in
   auth_verify_code_artboard:
@@ -61,7 +63,7 @@ dependency_overrides:
     path: ../../../lib/artboard
   services_artboard:
     path: ../../artboards/services
-  welcome_activity_artboard:
+  welcome_artboard:
     path: ../../artboards/welcome
   create_service_artboard:
     path: ../../artboards/create_service

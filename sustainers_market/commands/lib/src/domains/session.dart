@@ -1,64 +1,61 @@
-import 'package:commands/src/utils/device_info.dart';
 import 'package:blossm_command/index.dart';
-import 'package:commands/src/utils/index.dart';
 import 'package:flutter/material.dart';
 
-class SessionCommands extends CommandDomain {
+import '../_utils/dispatcher_config.dart';
+import '../_utils/device_info.dart';
+
+class SessionCommands extends BlossmCommandDispatcher
+    with DispatcherConfig {
+  final BuildContext context;
+
+  SessionCommands(this.context);
+
   @override
   String get domain => "session";
 
   @override
-  String get baseUrl => coreStagingBaseUrl;
+  Future Function() get onTokenInvalid => () => redirectToWelcome(context);
 
   Future start() async {
+    final _hasToken = await tokenStore.readToken() != null;
+    if (_hasToken) return;
+
     final deviceInfo = await DeviceInfo.read();
 
-    return BlossmCommand(
+    return dispatch(
+      route: "start",
       payload: {
         "device": deviceInfo.toMap(),
       },
-      route: "start",
-      domain: domain,
-      baseUrl: baseUrl,
-      tokenStore: tokenStore,
-    ).issue();
+    );
   }
 
   Future save({
     @required String phoneNumber,
   }) async {
-    return BlossmCommand(
+    return dispatch(
       payload: {
         "phone": phoneNumber,
       },
       route: "save",
-      domain: domain,
-      baseUrl: baseUrl,
-      tokenStore: tokenStore,
-    ).issue();
+    );
   }
 
-  Future logout() async {
-    return BlossmCommand(
+  Future logout() {
+    return dispatch(
       payload: {},
       route: "logout",
-      domain: domain,
-      baseUrl: baseUrl,
-      tokenStore: tokenStore,
-    ).issue();
+    );
   }
 
   Future switchContext({
     @required String context,
-  }) async {
-    return BlossmCommand(
+  }) {
+    return dispatch(
       payload: {
         "context": context,
       },
       route: "switch-context",
-      domain: domain,
-      baseUrl: baseUrl,
-      tokenStore: tokenStore,
-    ).issue();
+    );
   }
 }
