@@ -6,7 +6,7 @@ import 'package:typedefs/index.dart';
 mixin NavButton implements StatelessWidget {
   ContextPasser get onTap;
 
-  Widget iconForTheme(SemanticThemeData theme);
+  Widget buildIcon(BuildContext context) => null;
 
   final _tapHapticOption = HapticOption.light;
 
@@ -22,7 +22,7 @@ mixin NavButton implements StatelessWidget {
           horizontal: theme.distance.padding.horizontal.small,
           vertical: theme.distance.padding.vertical.small,
         ),
-        child: iconForTheme(theme),
+        child: buildIcon(context),
       ),
     );
   }

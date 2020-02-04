@@ -19,11 +19,6 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: semantic-sm-app
       path: icons/navigation
-  svg:
-    git:
-      url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-sm-app
-      path: svg
   typedefs:
     git:
       url: git@github.com:RoofVillage/roof-x.git

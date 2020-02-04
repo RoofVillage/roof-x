@@ -1,6 +1,7 @@
 import 'package:roof_theme/index.dart';
 import 'package:roof_theme/src/_constants/_theme_option_key.dart';
 import 'package:cache/index.dart';
+import 'package:roof_theme/src/logo/roof_logo_library.dart';
 import 'package:semantic_theme/index.dart';
 import 'package:roof_theme/src/color/roof_color_library.dart';
 import 'package:roof_theme/src/curve/roof_curve_library.dart';
@@ -66,4 +67,7 @@ class RoofSemanticTheme extends SemanticThemeData<RoofThemeOption> {
   @override
   SemanticSystemUiStyle get systemUiStyle =>
       RoofSystemUiStyle(currentThemeOption);
+
+  @override
+  SemanticLogoLibrary get logo => RoofLogoLibrary(currentThemeOption);
 }

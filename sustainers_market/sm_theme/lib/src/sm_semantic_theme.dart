@@ -4,6 +4,7 @@ import 'package:sm_theme/src/color/sm_color_library.dart';
 import 'package:sm_theme/src/curve/sm_curve_library.dart';
 import 'package:sm_theme/src/distance/roof_distance_library.dart';
 import 'package:sm_theme/src/duration/sm_duration_library.dart';
+import 'package:sm_theme/src/logo/sm_logo_library.dart';
 import 'package:sm_theme/src/radius/sm_radius_library.dart';
 import 'package:sm_theme/src/shadow/sm_shadow_library.dart';
 import 'package:sm_theme/src/sm_theme_option.dart';
@@ -63,4 +64,7 @@ class SmSemanticTheme extends SemanticThemeData<SmThemeOption> {
   @override
   SemanticSystemUiStyle get systemUiStyle =>
       SmSystemUiStyle(currentThemeOption);
+
+  @override
+  SemanticLogoLibrary get logo => SmLogoLibrary(currentThemeOption);
 }

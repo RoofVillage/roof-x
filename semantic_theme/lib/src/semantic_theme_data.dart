@@ -23,4 +23,5 @@ abstract class SemanticThemeData<T> extends ThemeOptionDependent<T> {
   SemanticShadowLibrary get shadow;
   SemanticTypographyLibrary get typography;
   SemanticSystemUiStyle get systemUiStyle;
+  SemanticLogoLibrary get logo;
 }

@@ -11,7 +11,9 @@ class IconNavButton extends StatelessWidget with NavButton {
   final NavigationIcon iconReference;
 
   @override
-  Widget iconForTheme(SemanticThemeData theme) {
+  Widget buildIcon(BuildContext context) {
+    final theme = SemanticTheme.of(context);
+    
     final _blank = NavigationIcon(null);
 
     return (iconReference ?? _blank).buildWidget(
