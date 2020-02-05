@@ -36,6 +36,7 @@ class SessionCommands extends BlossmCommandDispatcher
     return dispatch(
       payload: {
         "phone": phoneNumber,
+        "id": phoneNumber,
       },
       route: "save",
     );

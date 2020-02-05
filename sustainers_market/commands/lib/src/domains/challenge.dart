@@ -18,10 +18,11 @@ class ChallengeCommands extends BlossmCommandDispatcher with DispatcherConfig {
     @required String phoneNumber,
   }) {
     return dispatch(
-      route: "issue",
       payload: {
         "phone": phoneNumber,
+        "id": phoneNumber,
       },
+      route: "issue",
     );
   }
 
@@ -29,10 +30,10 @@ class ChallengeCommands extends BlossmCommandDispatcher with DispatcherConfig {
     @required String code,
   }) {
     return dispatch(
-      route: "answer",
       payload: {
         "code": code,
       },
+      route: "answer",
     );
   }
 }

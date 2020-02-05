@@ -1,18 +1,26 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 
-import 'package:http/http.dart' as http;
+// import 'package:http/http.dart' as http;
 
 class Network {
   static const _jsonContentType = 'application/json';
   static const _jsonAccept = 'application/json';
 
   static Future<String> get({String address}) async {
-    final response = await http.get(Uri.encodeFull(address));
+    final HttpClientResponse response = await HttpClient()
+        .getUrl(
+          Uri.parse(address),
+        )
+        .then(
+          (HttpClientRequest request) => request.close(),
+        );
+
     print("GET response: $response");
     switch (response.statusCode) {
       case 200:
-        return utf8.decode(response.bodyBytes);
+      // return utf8.decode(response.);
       default:
         throw Error();
     }
@@ -38,10 +46,13 @@ class Network {
       headers = defaultHeaders;
     }
 
-    final response = await http.post(
-      Uri.encodeFull(address),
-      body: json.encode(params),
-      headers: headers,
+    final response = await HttpClient().postUrl(Uri.parse(address)).then(
+      (HttpClientRequest request) {
+        request.write(params);
+        headers.forEach(
+          (key, value) => request.headers.add(key, value),
+        );
+      },
     );
 
     print("POST response: ${utf8.decode(response.bodyBytes)}");
