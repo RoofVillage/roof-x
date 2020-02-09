@@ -17,8 +17,8 @@ class SessionCommands extends BlossmCommandDispatcher
   Future Function() get onTokenInvalid => () => redirectToWelcome(context);
 
   Future start() async {
-    final _hasToken = await tokenStore.readToken() != null;
-    if (_hasToken) return;
+    // final _hasToken = await tokenStore.readToken() != null;
+    // if (_hasToken) return;
 
     final deviceInfo = await DeviceInfo.read();
 

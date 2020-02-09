@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:blossm_command/src/utils/fake_command_response.dart';
 import 'package:blossm_command/src/utils/response.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +6,9 @@ import 'package:blossm_command/index.dart';
 import 'package:blossm_command/src/utils/index.dart';
 
 abstract class BlossmCommandDispatcher {
+  static const _cookieKey = 'set-cookie';
+  static const _sessionTokenPrefix = 'session=';
+  
   String get domain;
   String get baseUrl;
   TokenStore get tokenStore;
@@ -41,15 +42,19 @@ abstract class BlossmCommandDispatcher {
       headers: headers,
     );
 
-    final BlossmResponse data = json.decode(response);
+    final BlossmResponse data = BlossmResponse.fromMap(response.body);
 
     if (data.statusCode == 401) {
       onTokenInvalid();
       return;
     }
 
-    if (tokenStore != null && data.token != null) {
-      tokenStore.saveToken(data.token);
+    final String cookie = response.headers[_cookieKey];
+
+    final String newToken = cookie?.split(_sessionTokenPrefix)[1];
+
+    if (tokenStore != null && newToken != null) {
+      tokenStore.saveToken(newToken);
     }
 
     return Future.value(response);
