@@ -77,7 +77,7 @@ mixin CenteredStyleButtonState {
   }
 
   void _onTap() {
-    if (button.onTap != null) button.onTap(context);
+    if (button.onTap != null) button.onTap();
   }
 
   void _onTapDown(TapDownDetails details) {

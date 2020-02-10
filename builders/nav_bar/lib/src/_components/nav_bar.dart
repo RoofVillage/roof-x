@@ -49,7 +49,7 @@ mixin NavBar implements StatelessWidget {
         theme.distance.padding.horizontal.min,
         theme.distance.padding.vertical.small + safeAreaTop,
         theme.distance.padding.horizontal.min,
-        theme.distance.padding.vertical.small,
+        theme.distance.padding.vertical.min,
       ),
       decoration: BoxDecoration(
         color: theme.color.background.generalSecondary,

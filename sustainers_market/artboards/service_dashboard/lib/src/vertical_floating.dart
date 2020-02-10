@@ -79,7 +79,7 @@ class ServiceDashboardVerticalFullscreenArtboard
                 child: buildSecondaryCenterButton(
                   context,
                   text: "Generate new key",
-                  onTap: (context) => _generateKey(context),
+                  onTap: () => _generateKey(context),
                 ),
                 margin: EdgeInsets.symmetric(vertical: 50),
               ),
@@ -93,7 +93,7 @@ class ServiceDashboardVerticalFullscreenArtboard
         buildPrimaryCenterButton(
           context,
           text: "Save",
-          onTap: (context) => print('save'), // ServiceCommands().save(),
+          onTap: () => print('save'), // ServiceCommands().save(),
         )
       ];
 

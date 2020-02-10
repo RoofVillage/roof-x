@@ -20,10 +20,11 @@ class TitleNavBar extends StatelessWidget with NavBar {
     this.subtitle,
     this.actionButtons,
     this.icon,
-  });
+  }): super(key: GlobalKey());
 
   @override
   List<Widget> buildNavigationWidgets(BuildContext context) {
+    print('navbar key ${super.key}');
     final theme = SemanticTheme.of(context);
 
     List<Widget> navigationWidgets = [];

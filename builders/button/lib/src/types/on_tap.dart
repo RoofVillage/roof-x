@@ -1,3 +1,1 @@
-import 'package:flutter/material.dart';
-
-typedef OnTap = void Function(BuildContext context);
+typedef OnTap = void Function();

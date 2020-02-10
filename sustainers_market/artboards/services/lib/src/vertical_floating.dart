@@ -1,16 +1,25 @@
+import 'package:cells_list_view_builder/index.dart';
+import 'package:create_service_artboard/index.dart';
 import 'package:flutter/material.dart';
+import 'package:nav_button_builder/index.dart';
 import 'package:navigation_icon_library/index.dart';
 import 'package:titled_table_vertical_full_screen_artboard_template/index.dart';
 import 'package:view_stream_builder_builder/index.dart';
 import 'package:views/index.dart';
 import 'package:navigator/index.dart';
 import 'package:semantic_theme/index.dart';
+import 'package:button_builder/index.dart';
 
 import '_data.dart';
 
 class ServicesVerticalFloatingArtboard
     extends TitledVerticalFullTableScreenArtboard
-    with ServicesArtboardData, ViewStreamBuilderBuilder {
+    with
+        ServicesArtboardData,
+        ViewStreamBuilderBuilder,
+        IconNavButtonBuilder,
+        SecondaryCenterButtonBuilder,
+        CellsListViewBuilder {
   final List<String> pendingServiceNames;
 
   ServicesVerticalFloatingArtboard({this.pendingServiceNames});
@@ -78,14 +87,19 @@ class ServicesVerticalFloatingArtboard
         'nothin',
         style: TextStyle(color: Colors.white70),
       ),
-      child: (context, view) => ListView(
+      child: (context, view) => buildCellsList(
         children: [
           ...serviceRows(view),
           ...pendingServices,
         ],
-        padding: EdgeInsets.symmetric(
-          vertical: theme.distance.padding.vertical.small,
+        button: buildSecondaryCenterButton(
+          context,
+          onTap: () => ArtboardNavigator.of(context).goTo(
+            CreateServiceVerticalFloatingArtboard(),
+          ),
+          text: "Create service",
         ),
+        buttonIsLast: true,
       ),
     );
   }
@@ -106,6 +120,12 @@ class ServicesVerticalFloatingArtboard
 
   @override
   List<Widget> artboardActionButtons(BuildContext context) {
-    return null;
+    return [
+      buildIconNavButton(
+        context,
+        iconReference: NavigationIcon.settings,
+        onTap: null,
+      )
+    ];
   }
 }

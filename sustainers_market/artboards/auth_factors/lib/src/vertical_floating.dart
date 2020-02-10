@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:empty_table_vertical_full_screen_artboard_template/index.dart';
 import 'package:form_builder/index.dart';
-import 'package:form_vertical_floating_artboard_template/index.dart';
 import 'package:key_value_row_builder/index.dart';
-import 'package:navigator/index.dart';
 import 'package:standard_stack_builder/index.dart';
 
 import '_data.dart';
@@ -37,7 +35,7 @@ class AuthSetFactorsVerticalFloatingArtboard
           buildSecondaryCenterButton(
             context,
             text: "Set phone number",
-            onTap: _setPhoneNumber,
+            onTap: () => _setPhoneNumber(context),
           ),
           buildKeyValueRow(
             context,
@@ -47,7 +45,7 @@ class AuthSetFactorsVerticalFloatingArtboard
           buildSecondaryCenterButton(
             context,
             text: "Set password",
-            onTap: _setPhoneNumber,
+            onTap: () => _setPhoneNumber(context),
           ),
         ],
       );

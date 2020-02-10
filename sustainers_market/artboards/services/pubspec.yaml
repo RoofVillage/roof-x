@@ -48,13 +48,42 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: semantic-sm-app
       path: sustainers_market/artboards/service_dashboard
+  create_service_artboard:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: sustainers_market/artboards/create_service
   navigation_icon_library:
     git:
       url: git@github.com:RoofVillage/roof-x.git
       ref: semantic-sm-app
       path: icons/navigation
+  nav_button_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: builders/nav_button
+  cells_list_view_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: builders/cells_list_view
+  button_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: builders/button
+
 
 dependency_overrides:
+  create_service_artboard:
+    path: ../create_service
+  button_builder:
+    path: ../../../builders/button
+  nav_button_builder:
+    path: ../../../builders/nav_button
+  cells_list_view_builder:
+    path: ../../../builders/cells_list_view
   service_dashboard_artboard:
     path: ../service_dashboard
   views:

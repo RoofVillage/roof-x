@@ -35,7 +35,7 @@ class SmIconColor extends SemanticIconColor<SmThemeOption> {
   Color get logo => colors.brandGreen;
 
   @override
-  Color get nav => colors.brandGreen;
+  Color get nav => colors.brandGreenFade;
 
   @override
   Color get generalPrimary => forThemeOption({

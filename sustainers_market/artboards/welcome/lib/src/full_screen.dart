@@ -43,28 +43,28 @@ class WelcomeVerticalFullScreenArtboard
         buildPrimaryCenterButton(
           context,
           text: "Join service",
-          onTap: (context) => ArtboardNavigator.of(context).goTo(
+          onTap: () => ArtboardNavigator.of(context).goTo(
             CreateServiceVerticalFloatingArtboard(),
           ),
         ),
         buildPrimaryCenterButton(
           context,
           text: "Create service",
-          onTap: (context) => ArtboardNavigator.of(context).goTo(
+          onTap: () => ArtboardNavigator.of(context).goTo(
             CreateServiceVerticalFloatingArtboard(),
           ),
         ),
         buildSecondaryCenterButton(
           context,
           text: "Register",
-          onTap: (context) => ArtboardNavigator.of(context).goTo(
+          onTap: () => ArtboardNavigator.of(context).goTo(
             RegisterVerticalFloatingArtboard(),
           ),
         ),
         buildSecondaryCenterButton(
           context,
           text: "Log in",
-          onTap: (context) => ArtboardNavigator.of(context).goTo(
+          onTap: () => ArtboardNavigator.of(context).goTo(
             LogInVerticalFloatingArtboard(),
           ),
         ),

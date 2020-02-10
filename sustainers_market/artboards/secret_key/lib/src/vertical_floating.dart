@@ -16,7 +16,7 @@ class SecretKeyVerticalFloatingArtboard extends StackVerticalFloatingArtboard
             buildSecondaryCenterButton(
               context,
               text: "Copy to clipboard",
-              onTap: (_) => print('copying $secretKey'),
+              onTap: () => print('copying $secretKey'),
             ),
           ];
 

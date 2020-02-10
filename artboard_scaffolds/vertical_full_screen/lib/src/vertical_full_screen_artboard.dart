@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:semantic_theme/index.dart';
 import 'package:artboard/index.dart';
 
@@ -13,40 +14,95 @@ mixin VerticalFullScreenArtboard implements StatefulWidget, Artboard {
 
 mixin VerticalFullScreenArtboardState<T extends VerticalFullScreenArtboard>
     implements State<T> {
+  double _navBarHeight;
+  double _dockHeight;
+  final _navBarContainerKey = GlobalKey();
+  final _dockContainerKey = GlobalKey();
+
+  @override
+  void initState() {
+    SchedulerBinding.instance.addPostFrameCallback(
+      (_) => _readWidgetHeights(),
+    );
+  }
+
+  void _readWidgetHeights() {
+    final navBarContext = _navBarContainerKey.currentContext;
+    final dockContext = _dockContainerKey.currentContext;
+
+    if (navBarContext == null && dockContext == null) return;
+
+    setState(() {
+      if (navBarContext != null) {
+        _navBarHeight = navBarContext.size.height ?? 0;
+      }
+      if (dockContext != null) {
+        _dockHeight = dockContext.size.height ?? 0;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = SemanticTheme.of(context);
 
-    final navBar = widget.buildNavBar(context);
     final body = widget.buildBody(context);
+    final navBar = widget.buildNavBar(context);
     final dock = widget.buildDock(context);
 
-    final children = <Widget>[];
+    final stackChildren = <Widget>[];
 
-    if (navBar != null) children.add(navBar);
-
-    final stretchedBody = Expanded(
-      child: MediaQuery.removePadding(
-        context: context,
-        removeTop: true,
-        removeBottom: true,
-        child: body,
+    final positionedBody = Positioned(
+      top: _navBarHeight ?? 0,
+      bottom: _dockHeight ?? 0,
+      left: 0,
+      right: 0,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Expanded(
+            child: body,
+          )
+        ],
       ),
     );
 
-    children.add(stretchedBody);
-    if (dock != null) children.add(dock);
+    stackChildren.add(positionedBody);
 
-    final column = Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: children,
+    if (navBar != null) {
+      stackChildren.add(
+        Positioned(
+          key: _navBarContainerKey,
+          top: 0,
+          left: 0,
+          right: 0,
+          child: navBar,
+        ),
+      );
+    }
+
+    if (dock != null) {
+      stackChildren.add(
+        Positioned(
+          key: _dockContainerKey,
+          bottom: 0,
+          left: 0,
+          right: 0,
+          child: dock,
+        ),
+      );
+    }
+
+    final stack = Stack(
+      children: stackChildren,
+      alignment: AlignmentDirectional.bottomCenter,
     );
 
     final scaffold = Scaffold(
       backgroundColor: theme.color.background.generalSecondary,
       body: SafeArea(
         top: false,
-        child: column,
+        child: stack,
       ),
     );
 

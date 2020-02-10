@@ -17,7 +17,7 @@ mixin FormBuilderState<T extends FormBuilder>
     return widget.buildPrimaryCenterButton(
       context,
       text: submitButtonText,
-      onTap: onSubmitButtonTap,
+      onTap: () => onSubmitButtonTap(context),
       status: _submitButtonState,
     );
   }

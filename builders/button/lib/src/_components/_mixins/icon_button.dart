@@ -17,7 +17,7 @@ mixin IconStyleButton {
 
     return GestureDetector(
       onTapDown: (details) => triggerHapticWith(_tapHapticOption),
-      onTap: () => onTap(context),
+      onTap: onTap,
       child: Container(
         child: iconWidget,
       ),

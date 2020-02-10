@@ -45,6 +45,8 @@ dependency_overrides:
     path: ../../commands
   service_dashboard_artboard:
     path: ../../artboards/service_dashboard
+  secret_key_artboard:
+    path: ../../artboards/secret_key
   register_artboard:
     path: ../../artboards/register
   log_in_artboard:
@@ -87,6 +89,8 @@ dependency_overrides:
     path: ../../../blossm_view_store
   button_builder:
     path: ../../../builders/button
+  cells_list_view_builder:
+    path: ../../../builders/cells_list_view
   button_status_option:
     path: ../../../options/button_status
   cache:
