@@ -7,11 +7,12 @@ class KeyboardAccessory extends StatefulWidget {
 
   static InheritedKeyboardAccessory of(BuildContext context,
       {bool shouldRebuild = true}) {
-    final inheritedWidget = (shouldRebuild
-        ? context.inheritFromWidgetOfExactType(_InheritedKeyboardAccessory)
-        : context.ancestorWidgetOfExactType(_InheritedKeyboardAccessory));
+    final inheritedWidget = shouldRebuild
+        ? context
+            .dependOnInheritedWidgetOfExactType<_InheritedKeyboardAccessory>()
+        : context.findAncestorWidgetOfExactType<_InheritedKeyboardAccessory>();
 
-    return (inheritedWidget as _InheritedKeyboardAccessory).data;
+    return inheritedWidget.data;
   }
 
   @override
@@ -39,10 +40,12 @@ class InheritedKeyboardAccessory extends State<KeyboardAccessory> {
     if (!_isHidden && _child != null) children.add(_child);
 
     return _InheritedKeyboardAccessory(
-        data: this,
-        child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: children));
+      data: this,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: children,
+      ),
+    );
   }
 }
 

@@ -33,15 +33,8 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: semantic-sm-app
       path: sustainers_market/commands
-  auth_verify_code_artboard:
-    git:
-      url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-sm-app
-      path: sustainers_market/artboards/auth_verify_code
 
 dependency_overrides:
-  auth_verify_code_artboard:
-    path: ../auth_verify_code
   commands:
     path: ../../commands
   form_builder:

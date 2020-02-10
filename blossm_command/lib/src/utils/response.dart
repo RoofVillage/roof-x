@@ -12,11 +12,12 @@ class BlossmResponse {
   });
 
   factory BlossmResponse.fromMap(Map map) {
+    final _map = map ?? {};
     return BlossmResponse._internal(
-      statusCode: map['statusCode'],
-      code: map['code'],
-      message: map['message'],
-      info: map['info'],
+      statusCode: _map['statusCode'],
+      code: _map['code'],
+      message: _map['message'],
+      info: _map['info'],
     );
   }
 }

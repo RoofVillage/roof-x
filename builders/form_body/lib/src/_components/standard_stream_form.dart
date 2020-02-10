@@ -68,9 +68,15 @@ class StandardStreamForm
       },
       onFocusChanged: (isInFocus) {
         if (isInFocus) {
-          final button = _buttonFor(fieldData: fieldData, formData: formData);
-          KeyboardAccessory.of(context).child =
-              buildKeybordAccessoryShortBar(context, children: [button]);
+          final button = _buttonFor(
+            fieldData: fieldData,
+            formData: formData,
+            context: context,
+          );
+          KeyboardAccessory.of(context).child = buildKeybordAccessoryShortBar(
+            context,
+            children: [button],
+          );
         }
         _onCompositionViewFocusChanged(fieldData, isInFocus);
       },
@@ -322,7 +328,7 @@ class StandardStreamForm
   }
 
   void resignFocus(BuildContext context) {
-    FocusScope.of(context).requestFocus(FocusNode());
+    FocusScope.of(context).unfocus();
     KeyboardAccessory.of(context).hide();
   }
 
@@ -416,17 +422,18 @@ class StandardStreamForm
   ActionKeyboardAccessoryButton _buttonFor({
     @required FormCompositionFieldData fieldData,
     StreamableFormData formData,
+    BuildContext context,
   }) {
     final _nextButton = SecondaryActionKeyboardAccessoryButton(
         title: _hideKeyboardTitle,
-        onTap: (context) => _resignFieldFocus(
+        onTap: () => _resignFieldFocus(
               fieldData: fieldData,
               context: context,
             ));
 
     final _doneButton = PrimaryActionKeyboardAccessoryButton(
         title: _doneKeyboardTitle,
-        onTap: (context) => _resignFieldFocus(
+        onTap: () => _resignFieldFocus(
               fieldData: fieldData,
               context: context,
             ));

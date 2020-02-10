@@ -14,6 +14,10 @@ class ServiceCommands extends BlossmCommandDispatcher with DispatcherConfig {
   @override
   Future Function() get onTokenInvalid => () => redirectToWelcome(context);
 
+  @override
+  Future<void> Function() get onChallengeIssued =>
+      () => redirectToChallengeAnswer(context);
+
   Future register({
     @required String serviceName,
   }) {

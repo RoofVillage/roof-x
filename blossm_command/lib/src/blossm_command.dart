@@ -8,7 +8,8 @@ import 'package:blossm_command/src/utils/index.dart';
 abstract class BlossmCommandDispatcher {
   static const _cookieKey = 'set-cookie';
   static const _sessionTokenPrefix = 'session=';
-  
+  static const _challengeTokenPrefix = 'challenge=';
+
   String get domain;
   String get baseUrl;
   TokenStore get tokenStore;
@@ -16,13 +17,21 @@ abstract class BlossmCommandDispatcher {
   // This method is called whenever a command is issued without a valid authentication token.
   Future<void> Function() get onTokenInvalid;
 
-  Future dispatch({@required String route, Map payload}) async {
+  // This method is called whenever a challenge is issued.
+  Future<void> Function() get onChallengeIssued;
+
+  Future<BlossmResponse> dispatch({
+    @required String route,
+    Map payload,
+    bool isChallenge,
+  }) async {
     final url = "https://command.$domain.$baseUrl/$route";
-    print('dispatch $url');
 
     final Map<String, String> headers = {};
 
-    final String token = await tokenStore.readToken();
+    final String token = isChallenge == true
+        ? await tokenStore.readChallengeToken()
+        : await tokenStore.readSessionToken();
 
     if (token != null) {
       headers.addAll({
@@ -43,27 +52,42 @@ abstract class BlossmCommandDispatcher {
       headers: headers,
     );
 
-    print('response ${response.body}');
-
     final BlossmResponse data = BlossmResponse.fromMap(response.body);
-
-    print('data $data');
 
     if (data.statusCode == 401) {
       print('invalid code');
       onTokenInvalid();
-      return;
+      return null;
+    }
+
+    if (isChallenge == true && tokenStore != null) {
+      print('deleting token');
+      tokenStore.deleteChallengeToken();
     }
 
     final String cookie = response.headers[_cookieKey];
+    _handleTokenFromCookie(cookie);
 
-    final String newToken = cookie?.split(_sessionTokenPrefix)[1];
+    return Future.value(data);
+  }
 
-    if (tokenStore != null && newToken != null) {
-      tokenStore.saveToken(newToken);
+  void _handleTokenFromCookie(String cookie) {
+    if (cookie == null || tokenStore == null) return;
+
+    if (cookie.contains(_challengeTokenPrefix)) {
+      print('challenge token found');
+      final String newChallengeToken = cookie.split(_challengeTokenPrefix)[1];
+
+      print('newChallengeToken $newChallengeToken');
+      if (newChallengeToken != null)
+        tokenStore.saveChallengeToken(newChallengeToken);
+
+      onChallengeIssued();
+    } else if (cookie.contains(_sessionTokenPrefix)) {
+      final String newSessionToken = cookie.split(_sessionTokenPrefix)[1];
+
+      if (newSessionToken != null) tokenStore.saveSessionToken(newSessionToken);
     }
-
-    return Future.value(response);
   }
 
   Future fakeSuccess({

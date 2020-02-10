@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:commands/index.dart';
 import 'package:form_builder/index.dart';
 import 'package:navigator/index.dart';
+import 'package:services_artboard/index.dart';
 
 mixin AuthVerifyCodeArtboardData implements FormBuilder {
   @override
@@ -15,6 +16,10 @@ mixin AuthVerifyCodeArtboardData implements FormBuilder {
   submit(context) async {
     await ChallengeCommands(context).answer(
       code: _serviceNameFieldData.value,
+    );
+
+    ArtboardNavigator.of(context).goTo(
+      ServicesVerticalFloatingArtboard(),
     );
   }
 

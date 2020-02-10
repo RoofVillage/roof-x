@@ -138,16 +138,6 @@ mixin FormBodyBuilder implements StatefulWidget {
     );
   }
 
-  Widget _buildSubmitKeyboardAccessory(BuildContext context) {
-    return PrimaryActionKeyboardAccessoryButton(
-      onTap: (context) {
-        _form.resignFocus(context);
-        submit(context);
-      },
-      title: submitButtonText,
-    );
-  }
-
   void _setupDateFieldData(
     BuildContext context, {
     @required FormDatePickerFieldData data,
@@ -386,6 +376,16 @@ mixin FormBodyBuilderState<T extends FormBodyBuilder> implements State<T> {
     widget.form.update(formData);
   }
 
+    Widget _buildSubmitKeyboardAccessory(BuildContext context) {
+    return PrimaryActionKeyboardAccessoryButton(
+      onTap: () {
+        widget._form.resignFocus(context);
+        onSubmitButtonTap(context);
+      },
+      title: widget.submitButtonText,
+    );
+  }
+
   Future<StreamableFormData> _createInitialFormData(
     BuildContext context,
   ) async {
@@ -396,7 +396,7 @@ mixin FormBodyBuilderState<T extends FormBodyBuilder> implements State<T> {
     if (sectionData.isNotEmpty) {
       return StreamableFormData(
         sectionData: sectionData,
-        submitKeyboardAccessory: widget._buildSubmitKeyboardAccessory(context),
+        submitKeyboardAccessory: _buildSubmitKeyboardAccessory(context),
         canSubmitWithKeyboardRaised: widget.canSubmitWithKeyboardRaised,
       );
     }
@@ -407,7 +407,7 @@ mixin FormBodyBuilderState<T extends FormBodyBuilder> implements State<T> {
       return StreamableFormData.withFields(
         fieldData: fieldData,
         fieldHorizontalSpacing: widget.fieldHorizontalSpacing,
-        submitKeyboardAccessory: widget._buildSubmitKeyboardAccessory(context),
+        submitKeyboardAccessory: _buildSubmitKeyboardAccessory(context),
         canSubmitWithKeyboardRaised: widget.canSubmitWithKeyboardRaised,
       );
     }

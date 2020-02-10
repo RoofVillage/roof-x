@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:semantic_theme/index.dart';
-import 'package:typedefs/index.dart';
 
 import 'mixins/index.dart';
 
 class PrimaryActionKeyboardAccessoryButton extends StatelessWidget
     with ActionKeyboardAccessoryButton {
   final String title;
-  final ContextPasser onTap;
+  final void Function() onTap;
 
   PrimaryActionKeyboardAccessoryButton({
     @required this.title,
@@ -20,7 +19,7 @@ class PrimaryActionKeyboardAccessoryButton extends StatelessWidget
 
     return buildButton(
       context: context,
-      onTap: () => onTap(context),
+      onTap: onTap,
       child: Container(
         color: theme.color.background.actionPrimary,
         child: Center(

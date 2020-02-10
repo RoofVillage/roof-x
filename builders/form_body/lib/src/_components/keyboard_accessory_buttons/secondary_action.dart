@@ -8,7 +8,7 @@ import 'mixins/index.dart';
 class SecondaryActionKeyboardAccessoryButton extends StatelessWidget
     with ActionKeyboardAccessoryButton {
   final String title;
-  final ContextPasser onTap;
+  final void Function() onTap;
   
   SecondaryActionKeyboardAccessoryButton({
     @required this.title,
@@ -21,7 +21,7 @@ class SecondaryActionKeyboardAccessoryButton extends StatelessWidget
 
     _onTap() {
       triggerHapticWith(HapticOption.click);
-      onTap(context);
+      onTap();
     }
 
     return buildButton(

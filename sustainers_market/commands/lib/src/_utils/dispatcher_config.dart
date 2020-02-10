@@ -1,3 +1,4 @@
+import 'package:auth_verify_code_artboard/index.dart';
 import 'package:blossm_command/index.dart';
 import 'package:flutter/material.dart';
 import 'package:navigator/index.dart';
@@ -14,4 +15,11 @@ mixin DispatcherConfig {
       (BuildContext context) => ArtboardNavigator.of(context).goTo(
             WelcomeVerticalFullScreenArtboard(),
           );
+
+  final Function(BuildContext) redirectToChallengeAnswer =
+      (BuildContext context) {
+    return ArtboardNavigator.of(context).goTo(
+      AuthVerifyCodeVerticalFloatingArtboard(),
+    );
+  };
 }

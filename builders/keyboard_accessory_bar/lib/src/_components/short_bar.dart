@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:semantic_theme/index.dart';
 
-class RoofKeyboardAccessoryShortBar extends StatelessWidget {
+class KeyboardAccessoryShortBar extends StatelessWidget {
   final List<Widget> children;
 
-  RoofKeyboardAccessoryShortBar({this.children});
+  KeyboardAccessoryShortBar({this.children});
 
   @override
   Widget build(BuildContext context) {

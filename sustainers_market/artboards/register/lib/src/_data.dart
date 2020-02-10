@@ -1,9 +1,7 @@
 import 'dart:async';
 
-import 'package:auth_verify_code_artboard/index.dart';
 import 'package:commands/index.dart';
 import 'package:form_builder/index.dart';
-import 'package:navigator/index.dart';
 
 mixin RegisterArtboardData implements FormBuilder {
   @override
@@ -16,12 +14,6 @@ mixin RegisterArtboardData implements FormBuilder {
   submit(context) async {
     await SessionCommands(context).save(
       phoneNumber: _phoneNumberFieldData.value,
-    );
-
-    ArtboardNavigator.of(context).goTo(
-      AuthVerifyCodeVerticalFloatingArtboard(
-        phoneNumber: _phoneNumberFieldData.value,
-      ),
     );
   }
 

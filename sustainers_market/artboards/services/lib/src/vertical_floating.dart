@@ -19,7 +19,7 @@ class ServicesVerticalFloatingArtboard
   Widget buildBody(BuildContext context) {
     final theme = SemanticTheme.of(context);
 
-    List<Row> serviceRows(UserServicesView view) => view.services
+    List<Row> serviceRows(UserServicesView view) => (view.services ?? [])
         .map(
           (service) => Row(
             children: [
@@ -43,7 +43,7 @@ class ServicesVerticalFloatingArtboard
         )
         .toList();
 
-    final List<Row> pendingServices = pendingServiceNames
+    final List<Row> pendingServices = (pendingServiceNames ?? [])
         .map(
           (serviceName) => Row(
             children: [
