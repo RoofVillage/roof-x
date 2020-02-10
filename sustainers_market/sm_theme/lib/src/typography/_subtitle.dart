@@ -14,10 +14,10 @@ class SmSubtitleTypography extends SemanticTypography {
   String get fontFamilyFallback => null;
 
   @override
-  double get fontSize => fs.medium;
+  double get fontSize => fs.small;
 
   @override
-  FontWeight get fontWeight => fw.thick;
+  FontWeight get fontWeight => fw.medium;
 
   @override
   double get letterSpacing => 1;

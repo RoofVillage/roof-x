@@ -18,6 +18,7 @@ abstract class BlossmCommandDispatcher {
 
   Future dispatch({@required String route, Map payload}) async {
     final url = "https://command.$domain.$baseUrl/$route";
+    print('dispatch $url');
 
     final Map<String, String> headers = {};
 
@@ -42,9 +43,14 @@ abstract class BlossmCommandDispatcher {
       headers: headers,
     );
 
+    print('response ${response.body}');
+
     final BlossmResponse data = BlossmResponse.fromMap(response.body);
 
+    print('data $data');
+
     if (data.statusCode == 401) {
+      print('invalid code');
       onTokenInvalid();
       return;
     }

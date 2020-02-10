@@ -3,7 +3,7 @@ description: Allows the user to view their services.
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.2.2 <3.0.0"
 
 dependencies:
   flutter:
@@ -48,6 +48,11 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: semantic-sm-app
       path: sustainers_market/artboards/service_dashboard
+  navigation_icon_library:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: icons/navigation
 
 dependency_overrides:
   service_dashboard_artboard:
@@ -60,6 +65,8 @@ dependency_overrides:
     path: ../../../builders/form
   view_stream_builder_builder:
     path: ../../../builders/view_stream_builder
+  titled_table_vertical_full_screen_artboard_template:
+    path: ../../../artboard_templates/vertical_full_screen/titled_table
 
 dev_dependencies:
   flutter_test:

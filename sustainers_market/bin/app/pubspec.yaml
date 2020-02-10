@@ -69,6 +69,8 @@ dependency_overrides:
     path: ../../artboards/create_service
   horizontal_floating_artboard_scaffold:
     path: ../../../artboard_scaffolds/horizontal_floating
+  titled_table_vertical_full_screen_artboard_template:
+    path: ../../../artboard_templates/vertical_full_screen/titled_table
   actor_reference:
     path: ../../../model/properties/actor_reference
   app_data:

@@ -29,7 +29,14 @@ class TitleNavBar extends StatelessWidget with NavBar {
     List<Widget> navigationWidgets = [];
 
     if (navButton != null) {
-      navigationWidgets.add(navButton);
+      navigationWidgets.add(
+        Padding(
+          padding: EdgeInsets.only(
+            right: theme.distance.spacing.horizontal.small,
+          ),
+          child: navButton,
+        ),
+      );
     }
 
     if (icon != null) {
@@ -66,7 +73,12 @@ class TitleNavBar extends StatelessWidget with NavBar {
         ),
         overflow: TextOverflow.ellipsis,
       );
-      titleColumnChildren.add(NavTitleBaseline(text: titleWidget));
+      titleColumnChildren.add(
+        NavTitleBaseline(
+          text: titleWidget,
+          baseline: theme.typography.headingPrimary.fontSize * .9,
+        ),
+      );
     }
 
     if (subtitle != null) {

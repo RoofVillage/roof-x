@@ -9,7 +9,7 @@ class ServiceCommands extends BlossmCommandDispatcher with DispatcherConfig {
   ServiceCommands(this.context);
 
   @override
-  String get domain => "session";
+  String get domain => "service";
 
   @override
   Future Function() get onTokenInvalid => () => redirectToWelcome(context);

@@ -7,11 +7,13 @@ mixin TitledNavBarBuilder {
   NavBar buildTitledNavBar(
     BuildContext context, {
     String title,
+    String subtitle,
     Widget navButton,
     List<Widget> actionButtons,
   }) {
     return TitleNavBar(
       title: title,
+      subtitle: subtitle,
       navButton: navButton,
       actionButtons: actionButtons,
     );

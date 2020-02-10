@@ -48,13 +48,18 @@ class Network {
       headers: headers,
     );
 
+    print('post response status ${response.statusCode}');
+    print('post response json ${utf8.decode(response.bodyBytes)}');
+
+    final decodedBodyBytes = utf8.decode(response.bodyBytes);
+
     final PostResponse postResponse = PostResponse(
-      body: json.decode(
-        utf8.decode(response.bodyBytes),
-      ),
+      body: decodedBodyBytes != null ? json.decode(decodedBodyBytes) : null,
       headers: response.headers,
       statusCode: response.statusCode,
     );
+
+    print('post postResponse $postResponse');
 
     return Future.value(postResponse);
   }

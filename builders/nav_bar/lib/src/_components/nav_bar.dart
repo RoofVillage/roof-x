@@ -47,12 +47,13 @@ mixin NavBar implements StatelessWidget {
     return Container(
       padding: EdgeInsets.fromLTRB(
         theme.distance.padding.horizontal.min,
-        theme.distance.padding.vertical.min + safeAreaTop,
+        theme.distance.padding.vertical.small + safeAreaTop,
         theme.distance.padding.horizontal.min,
-        theme.distance.padding.vertical.min,
+        theme.distance.padding.vertical.small,
       ),
       decoration: BoxDecoration(
-        color: theme.color.background.inputForeground,
+        color: theme.color.background.generalSecondary,
+        boxShadow: [theme.shadow.medium],
       ),
       child: itemRow,
     );

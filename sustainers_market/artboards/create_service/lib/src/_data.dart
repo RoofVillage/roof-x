@@ -14,12 +14,22 @@ mixin CreateServiceArtboardData implements FormBuilder {
 
   @override
   submit(context) async {
+    final serviceName = _serviceNameFieldData.value;
+
+    print('serviceName $serviceName');
+
     await ServiceCommands(context).register(
-      serviceName: _serviceNameFieldData.value,
+      serviceName: serviceName,
     );
 
+    print('command issued');
+
     ArtboardNavigator.of(context).goTo(
-      ServicesVerticalFloatingArtboard(),
+      ServicesVerticalFloatingArtboard(
+        pendingServiceNames: [
+          serviceName,
+        ],
+      ),
     );
   }
 
