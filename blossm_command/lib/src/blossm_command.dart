@@ -48,20 +48,16 @@ abstract class BlossmCommandDispatcher {
       },
     };
 
-    try {
-      final response = await Network.post(
-        address: url,
-        params: body,
-        headers: headers,
-      );
+    final response = await Network.post(
+      address: url,
+      params: body,
+      headers: headers,
+    );
 
-      return _handlePostResponse(
-        response: response,
-        isChallenge: isChallenge,
-      );
-    } on TimeoutException catch (e) {
-      throw e;
-    }
+    return _handlePostResponse(
+      response: response,
+      isChallenge: isChallenge,
+    );
   }
 
   Future<BlossmResponse> _handlePostResponse({
