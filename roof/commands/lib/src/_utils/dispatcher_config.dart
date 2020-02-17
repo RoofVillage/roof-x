@@ -14,4 +14,11 @@ mixin DispatcherConfig {
       (BuildContext context) => ArtboardNavigator.of(context).goTo(
             PublicActivityVerticalFullScreenArtboard(),
           );
+
+  final Function(BuildContext) redirectToChallengeAnswer =
+      (BuildContext context) {
+    // TODO implement redirectToChallengeAnswer
+    print('redirect to challenge answer!');
+    return Future.value();
+  };
 }
