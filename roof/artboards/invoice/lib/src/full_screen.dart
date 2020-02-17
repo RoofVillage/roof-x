@@ -53,8 +53,10 @@ abstract class InvoiceVerticalFullScreenArtboard
       status: ButtonStatusOption.ready,
     );
 
-    final paymentsList = buildCellsList(context,
-        children: buildPaymentsCells(context), button: paymentsActionButton);
+    final paymentsList = buildCellsList(
+      children: buildPaymentsCells(context),
+      button: paymentsActionButton,
+    );
 
     return [
       RoofTab(

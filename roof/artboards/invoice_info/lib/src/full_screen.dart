@@ -98,7 +98,7 @@ abstract class InvoiceInfoVerticalFloatingArtboard
 
   @override
   List<Widget> buildButtons(BuildContext context) {
-    _goToEditArtboard(BuildContext context) {
+    _goToEditArtboard() {
       // TODO nav to edit invoice form
     }
 

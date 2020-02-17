@@ -120,7 +120,7 @@ abstract class PropertyInfoVerticalFloatingArtboard
 
   @override
   List<Widget> buildButtons(BuildContext context) {
-    _goToEditArtboard(BuildContext context) {
+    _goToEditArtboard() {
       // TODO nav to edit property form
     }
 

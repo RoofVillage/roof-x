@@ -18,7 +18,7 @@ class PublicActivityVerticalFullScreenArtboard
       (BuildContext context) => [
             buildPrimaryCenterButton(
               context,
-              onTap: (context) {
+              onTap: () {
                 ArtboardNavigator.of(context).goTo(
                   SignUpVerticalFloatingArtboard(),
                 );
@@ -28,19 +28,19 @@ class PublicActivityVerticalFullScreenArtboard
             ),
             buildPrimaryCenterButton(
               context,
-              onTap: (context) => print('login'),
+              onTap: () => print('login'),
               icon: XSmallIcon.house,
               text: "I'm a tenant",
             ),
             buildPrimaryCenterButton(
               context,
-              onTap: (context) => print('login'),
+              onTap: () => print('login'),
               icon: XSmallIcon.house,
               text: "I'm a landlord",
             ),
             buildPrimaryCenterButton(
               context,
-              onTap: (context) => print('login'),
+              onTap: () => print('login'),
               icon: XSmallIcon.house,
               text: "Log in",
             ),

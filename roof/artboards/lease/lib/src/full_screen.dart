@@ -73,7 +73,6 @@ abstract class LeaseVerticalFullScreenArtboard extends TabbedFullScreenArtboard
     );
 
     final tenantsList = buildCellsList(
-      context,
       children: buildTenantsCells(context),
       button: tenantsActionButton,
     );
@@ -92,7 +91,6 @@ abstract class LeaseVerticalFullScreenArtboard extends TabbedFullScreenArtboard
     );
 
     final invoicesList = buildCellsList(
-      context,
       children: buildInvoicesCells(context),
       button: invoicesActionButton,
     );
@@ -106,13 +104,11 @@ abstract class LeaseVerticalFullScreenArtboard extends TabbedFullScreenArtboard
     );
 
     final messagesList = buildCellsList(
-      context,
       children: buildMessagesCells(context),
       button: messagesActionButton,
     );
 
     final maintenanceList = buildCellsList(
-      context,
       children: buildMaintenanceCells(context),
     );
 

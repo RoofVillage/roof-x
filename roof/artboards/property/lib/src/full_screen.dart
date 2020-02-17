@@ -69,7 +69,6 @@ abstract class PropertyVerticalFullScreenArtboard
     );
 
     final leasesList = buildCellsList(
-      context,
       children: buildLeasesCells(context),
       button: leasesActionButton,
     );
