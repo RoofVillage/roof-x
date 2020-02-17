@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:blossm_command/src/utils/fake_command_response.dart';
 import 'package:blossm_command/src/utils/response.dart';
 import 'package:flutter/material.dart';
@@ -46,18 +48,40 @@ abstract class BlossmCommandDispatcher {
       },
     };
 
-    final response = await Network.post(
-      address: url,
-      params: body,
-      headers: headers,
-    );
+    try {
+      final response = await Network.post(
+        address: url,
+        params: body,
+        headers: headers,
+      );
 
+      return _handlePostResponse(
+        response: response,
+        isChallenge: isChallenge,
+      );
+    } on TimeoutException catch (e) {
+      throw e;
+    }
+  }
+
+  Future<BlossmResponse> _handlePostResponse({
+    PostResponse response,
+    bool isChallenge,
+  }) {
     final BlossmResponse data = BlossmResponse.fromMap(response.body);
 
-    if (data.statusCode == 401) {
-      print('invalid code');
-      onTokenInvalid();
-      return null;
+    switch (data.statusCode) {
+      case 401:
+        print('unauthorized');
+        onTokenInvalid();
+        return Future.value(
+          BlossmResponse.fromMap({}),
+        );
+      case 400:
+      case 404:
+      case 409:
+      case 500:
+        throw ('Blossm command error: ${data.message}');
     }
 
     if (isChallenge == true && tokenStore != null) {
@@ -66,7 +90,7 @@ abstract class BlossmCommandDispatcher {
     }
 
     final String cookie = response.headers[_cookieKey];
-    _handleTokenFromCookie(cookie);
+    if (cookie != null) _handleTokenFromCookie(cookie);
 
     return Future.value(data);
   }
@@ -75,10 +99,8 @@ abstract class BlossmCommandDispatcher {
     if (cookie == null || tokenStore == null) return;
 
     if (cookie.contains(_challengeTokenPrefix)) {
-      print('challenge token found');
       final String newChallengeToken = cookie.split(_challengeTokenPrefix)[1];
 
-      print('newChallengeToken $newChallengeToken');
       if (newChallengeToken != null)
         tokenStore.saveChallengeToken(newChallengeToken);
 

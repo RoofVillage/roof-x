@@ -64,6 +64,11 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: semantic-sm-app
       path: lib/form_validation_exception
+  form_submission_exception:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: lib/form_submission_exception
   typedefs:
     git:
       url: git@github.com:RoofVillage/roof-x.git
@@ -136,6 +141,8 @@ dependencies:
       path: semantic_theme
 
 dependency_overrides:
+  form_submission_exception:
+    path: ../../lib/form_submission_exception
   semantic_theme:
     path: ../../semantic_theme
   keyboard_accessory_bar_builder:

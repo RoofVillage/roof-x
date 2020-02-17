@@ -24,10 +24,9 @@ mixin FormBuilderState<T extends FormBuilder>
 
   ButtonStatusOption get _submitButtonState {
     switch (formSubmitState) {
-      case FormSubmitStatus.exception:
-        return ButtonStatusOption.error;
       case FormSubmitStatus.loading:
         return ButtonStatusOption.loading;
+      case FormSubmitStatus.exception:
       case FormSubmitStatus.ready:
         return ButtonStatusOption.ready;
     }
@@ -36,10 +35,9 @@ mixin FormBuilderState<T extends FormBuilder>
 
   String get submitButtonText {
     switch (formSubmitState) {
-      case FormSubmitStatus.exception:
-        return exception.message;
       case FormSubmitStatus.loading:
         return "Loading";
+      case FormSubmitStatus.exception:
       case FormSubmitStatus.ready:
         return widget.submitButtonText ?? "Submit";
     }
@@ -106,6 +104,38 @@ mixin FormBuilderState<T extends FormBuilder>
         child: buildFormBody(context),
       ),
     );
+
+    if (validationException != null) {
+      formWidgets.add(
+        Container(
+          margin: EdgeInsets.symmetric(
+            vertical: theme.distance.spacing.vertical.medium,
+          ),
+          child: Text(
+            validationException.message,
+            style: theme.typography.detailHeavy.textStyle(
+              color: theme.color.text.warn,
+            ),
+          ),
+        ),
+      );
+    }
+
+    if (submissionException != null) {
+      formWidgets.add(
+        Container(
+          margin: EdgeInsets.symmetric(
+            vertical: theme.distance.spacing.vertical.medium,
+          ),
+          child: Text(
+            submissionException.message,
+            style: theme.typography.detailHeavy.textStyle(
+              color: theme.color.text.warn,
+            ),
+          ),
+        ),
+      );
+    }
 
     if (!shouldHideButtons) {
       formWidgets.add(

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:commands/index.dart';
 import 'package:form_builder/index.dart';
+import 'package:form_validation_exception/index.dart';
 import 'package:navigator/index.dart';
 import 'package:services_artboard/index.dart';
 
@@ -13,16 +14,22 @@ mixin CreateServiceArtboardData implements FormBuilder {
   String get submitButtonText => "Create";
 
   @override
-  submit(context) async {
-    final serviceName = _serviceNameFieldData.value;
+  Future<void> validate() {
+    if (_serviceNameFieldData.value.isEmpty) {
+      throw FormValidationException.emptyNotAllowed(
+        fieldTitle: _serviceNameFieldData.title,
+      );
+    }
+    return Future.value();
+  }
 
-    print('serviceName $serviceName');
+  @override
+  Future<void> submit(context) async {
+    final serviceName = _serviceNameFieldData.value;
 
     await ServiceCommands(context).register(
       serviceName: serviceName,
     );
-
-    print('command issued');
 
     ArtboardNavigator.of(context).goTo(
       ServicesVerticalFloatingArtboard(

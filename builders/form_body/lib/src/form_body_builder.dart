@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:form/index.dart';
+import 'package:form_submission_exception/index.dart';
 import 'package:form_validation_exception/index.dart';
 import 'package:haptics/index.dart';
 import 'package:date/index.dart';
@@ -315,7 +316,8 @@ mixin FormBodyBuilder implements StatefulWidget {
 }
 
 mixin FormBodyBuilderState<T extends FormBodyBuilder> implements State<T> {
-  FormValidationException exception;
+  FormValidationException validationException;
+  FormSubmissionException submissionException;
   FormSubmitStatus formSubmitState = FormSubmitStatus.ready;
 
   bool _hasSetUp = false;
@@ -334,7 +336,8 @@ mixin FormBodyBuilderState<T extends FormBodyBuilder> implements State<T> {
     return widget._form;
   }
 
-  Future<void> onSubmitButtonTap(BuildContext context) async {
+  Future onSubmitButtonTap(BuildContext context) async {
+    _clearExceptions(context);
     widget.form.disableFields();
 
     try {
@@ -344,14 +347,22 @@ mixin FormBodyBuilderState<T extends FormBodyBuilder> implements State<T> {
       _handleException(context, e);
       widget.form.enableFields();
 
-      /// TODO commented out for testing;
-      // return;
+      return;
     }
 
     _handleLoading(context);
-    await widget.submit(context);
-    _restoreState();
+
+    try {
+      await widget.submit(context);
+    } on TimeoutException catch (_) {
+      _handleException(context, FormSubmissionException.didTimeout());
+      widget.form.enableFields();
+
+      return;
+    }
+
     widget.form.enableFields();
+    _restoreState();
   }
 
   void addFocusChangedListeners() {
@@ -376,7 +387,7 @@ mixin FormBodyBuilderState<T extends FormBodyBuilder> implements State<T> {
     widget.form.update(formData);
   }
 
-    Widget _buildSubmitKeyboardAccessory(BuildContext context) {
+  Widget _buildSubmitKeyboardAccessory(BuildContext context) {
     return PrimaryActionKeyboardAccessoryButton(
       onTap: () {
         widget._form.resignFocus(context);
@@ -426,11 +437,26 @@ mixin FormBodyBuilderState<T extends FormBodyBuilder> implements State<T> {
 
   void _handleException(
     BuildContext context,
-    FormValidationException exception,
+    Exception exception,
   ) {
-    this.exception = exception;
-    setState(() => formSubmitState = FormSubmitStatus.exception);
+    setState(() {
+      if (exception is FormValidationException) {
+        validationException = exception;
+      }
+      if (exception is FormSubmissionException) {
+        submissionException = exception;
+      }
+      formSubmitState = FormSubmitStatus.exception;
+    });
     triggerHapticWith(HapticOption.medium);
+  }
+
+  void _clearExceptions(BuildContext context) {
+    setState(() {
+      validationException = null;
+      submissionException = null;
+      formSubmitState = FormSubmitStatus.ready;
+    });
   }
 
   void _handleLoading(BuildContext context) {

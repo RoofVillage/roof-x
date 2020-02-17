@@ -17,7 +17,7 @@ class SmBackgroundColor extends SemanticBackgroundColor<SmThemeOption> {
   Color get actionSecondary => colors.whiteTint;
 
   @override
-  Color get actionDisabled => colors.white1.withOpacity(.7);
+  Color get actionDisabled => colors.white1.withOpacity(.4);
 
   @override
   Color get brand => colors.brandGreen;

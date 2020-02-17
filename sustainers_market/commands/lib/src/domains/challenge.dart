@@ -15,7 +15,7 @@ class ChallengeCommands extends BlossmCommandDispatcher with DispatcherConfig {
   Future Function() get onTokenInvalid => () => redirectToWelcome(context);
 
   @override
-  Future<void> Function() get onChallengeIssued =>
+  Future Function() get onChallengeIssued =>
       () => redirectToChallengeAnswer(context);
 
   Future issue({

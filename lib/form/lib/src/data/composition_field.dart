@@ -52,10 +52,10 @@ abstract class FormCompositionFieldData
   @override
   Future<void> validate() async {
     if (max != null && value.length > max) {
-      throw FormValidationException.longString(fieldTitle: title, max: max);
+      throw FormValidationException.tooLongString(fieldTitle: title, max: max);
     }
     if (min != null && value.length < min) {
-      throw FormValidationException.shortString(fieldTitle: title, min: min);
+      throw FormValidationException.tooShortString(fieldTitle: title, min: min);
     }
     if (maxValue != null && double.parse(value) > maxValue) {
       throw FormValidationException.maxValue(

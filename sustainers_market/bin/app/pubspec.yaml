@@ -129,6 +129,8 @@ dependency_overrides:
     path: ../../../builders/form
   form_validation_exception:
     path: ../../../lib/form_validation_exception
+  form_submission_exception:
+    path: ../../../lib/form_submission_exception
   form_vertical_floating_artboard_template:
     path: ../../../artboard_templates/vertical_floating/form
   frequency:

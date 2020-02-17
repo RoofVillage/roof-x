@@ -70,6 +70,10 @@ dependencies:
       ref: semantic-sm-app
       path: icons/small
 
+dependency_overrides:
+  form_validation_exception:
+    path: ../../lib/form_validation_exception
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

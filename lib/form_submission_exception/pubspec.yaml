@@ -1,5 +1,5 @@
-name: form_validation_exception
-description: Exceptions to throw when validating forms.
+name: form_submission_exception
+description: Exceptions to throw when submitting forms.
 
 version: 1.0.0+1
 

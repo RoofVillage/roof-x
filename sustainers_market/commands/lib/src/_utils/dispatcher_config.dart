@@ -17,9 +17,7 @@ mixin DispatcherConfig {
           );
 
   final Function(BuildContext) redirectToChallengeAnswer =
-      (BuildContext context) {
-    return ArtboardNavigator.of(context).goTo(
-      AuthVerifyCodeVerticalFloatingArtboard(),
-    );
-  };
+      (BuildContext context) => ArtboardNavigator.of(context).goTo(
+            AuthVerifyCodeVerticalFloatingArtboard(),
+          );
 }
