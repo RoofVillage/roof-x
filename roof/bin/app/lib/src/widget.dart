@@ -1,4 +1,5 @@
 import 'package:commands/index.dart';
+import 'package:domains_artboard/index.dart';
 import 'package:flutter/material.dart';
 import 'package:stream/index.dart';
 import 'package:artboard/index.dart';
@@ -23,9 +24,10 @@ class RootWidget extends StatelessWidget {
 
         Artboard startingArtboard;
         if (appState.isInSession) {
-          startingArtboard = PublicActivityVerticalFullScreenArtboard();
+          startingArtboard = DomainsVerticalFullscreenArtboard();
         } else {
-          startingArtboard = PublicActivityVerticalFullScreenArtboard();
+          startingArtboard = DomainsVerticalFullscreenArtboard();
+          // startingArtboard = PublicActivityVerticalFullScreenArtboard();
           // ThreadArtboard();
           //PublicActivityArtboard();
         }

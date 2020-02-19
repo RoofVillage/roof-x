@@ -1,7 +1,9 @@
 import 'dart:async';
 
 import 'package:commands/index.dart';
+import 'package:domains_artboard/index.dart';
 import 'package:form_builder/index.dart';
+import 'package:navigator/index.dart';
 
 mixin LogInArtboardData implements FormBuilder {
   @override
@@ -17,10 +19,12 @@ mixin LogInArtboardData implements FormBuilder {
   String get submitButtonText => "Log in";
 
   submit(context) {
-    return ChallengeCommands().create(
+    ChallengeCommands(context).create(
       hash: _usernameFieldData.value,
       phone: _passwordFieldData.value,
     );
+    ArtboardNavigator.of(context).goTo(DomainsVerticalFullscreenArtboard());
+    return Future.value();
   }
 
   @override

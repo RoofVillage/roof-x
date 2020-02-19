@@ -19,6 +19,11 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: semantic-sm-app
       path: roof/artboards/public_activity
+  domains_artboard:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: roof/artboards/domains
   vertical_full_screen_artboard_scaffold:
     git:
       url: git@github.com:RoofVillage/roof-x.git
@@ -50,6 +55,12 @@ dependency_overrides:
     path: ../../../lib/artboard
   public_activity_artboard:
     path: ../../artboards/public_activity
+  domains_artboard:
+    path: ../../artboards/domains
+  nav_header_builder:
+    path: ../../../builders/nav_header
+  header_empty_vertical_full_screen_artboard_template:
+    path: ../../../artboard_templates/vertical_full_screen/header_empty
   vertical_full_screen_artboard_scaffold:
     path: ../../../artboard_scaffolds/vertical_full_screen
   vertical_floating_artboard_scaffold:

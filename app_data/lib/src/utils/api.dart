@@ -26,7 +26,8 @@ Future<String> post({Service service, Map<String, Object> params}) async {
     headers: headers,
   );
 
-  return response;
+  // TODO compatibility with PostResponse
+  return null;
 }
 
 Map<String, Object> addStandardParams(Map<String, Object> params) {
