@@ -31,7 +31,7 @@ class DomainsVerticalFullscreenArtboard
 
   @override
   Widget artboardBody(BuildContext context) {
-    return buildViewStreamBuilder(
+    return buildViewStreamBuilder<LandlordProfilesView>(
       context,
       stream: data,
       loading: Text('loading'),
@@ -39,7 +39,7 @@ class DomainsVerticalFullscreenArtboard
       child: (context, LandlordProfilesView snapshot) {
         final theme = SemanticTheme.of(context);
 
-        final cells = snapshot.profiles.map(
+        final List<Widget> cells = snapshot.profiles.map<Widget>(
           (profile) {
             final List<Widget> rowChildren = [];
 
@@ -50,7 +50,8 @@ class DomainsVerticalFullscreenArtboard
               ),
             );
 
-            if (profile.notificationCount > 0) {
+            if (profile.notificationCount != null &&
+                profile.notificationCount > 0) {
               final notificationText = Text(
                 profile.notificationCount.toString(),
                 style: theme.typography.bodyHeavy.textStyle(
@@ -68,6 +69,11 @@ class DomainsVerticalFullscreenArtboard
             }
 
             return Container(
+              margin: EdgeInsets.only(
+                bottom: theme.distance.spacing.vertical.small,
+                left: theme.distance.gutter.horizontal.small,
+                right: theme.distance.gutter.horizontal.small,
+              ),
               padding: EdgeInsets.symmetric(
                 horizontal: theme.distance.padding.horizontal.medium,
                 vertical: theme.distance.padding.vertical.medium,
@@ -83,7 +89,7 @@ class DomainsVerticalFullscreenArtboard
           },
         ).toList();
 
-        return buildCellsList(children: cells);
+        return Column(children: cells);
       },
     );
   }

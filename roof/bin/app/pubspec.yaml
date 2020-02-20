@@ -123,6 +123,8 @@ dependency_overrides:
     path: ../../../lib/form
   form_body_builder:
     path: ../../../builders/form_body
+  view_stream_builder_builder:
+    path: ../../../builders/view_stream_builder
   form_builder:
     path: ../../../builders/form
   form_validation_exception:

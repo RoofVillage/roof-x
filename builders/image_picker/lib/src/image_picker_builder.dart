@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:multi_image_picker/multi_image_picker.dart';
 import 'package:semantic_theme/index.dart';
 
+// TODO update to use new ImagePicker API
 mixin ImagePickerBuilder {
   /// Returns files as [List<Asset>]. Provide [thumbnailWidth] and [thumbnailHeight] to pre-build thumbnails and attach to files.
   Future<List<Asset>> pickImages({
@@ -16,18 +17,19 @@ mixin ImagePickerBuilder {
     final files = await MultiImagePicker.pickImages(
       maxImages: maxFiles,
       enableCamera: true,
-      options: CupertinoOptions(
-        selectionFillColor: _convertToHex(
-          theme.color.background.actionPrimary,
-        ),
-        selectionStrokeColor: _convertToHex(
-          theme.color.background.actionPrimary,
-        ),
-        selectionShadowColor: _convertToHex(
-          theme.color.background.scrim,
-        ),
-        selectionTextColor: _convertToHex(Colors.white),
-      ),
+      // commented out due to deprecation
+      // options: CupertinoOptions(
+      //   selectionFillColor: _convertToHex(
+      //     theme.color.background.actionPrimary,
+      //   ),
+      //   selectionStrokeColor: _convertToHex(
+      //     theme.color.background.actionPrimary,
+      //   ),
+      //   selectionShadowColor: _convertToHex(
+      //     theme.color.background.scrim,
+      //   ),
+      //   selectionTextColor: _convertToHex(Colors.white),
+      // ),
     );
 
     if (files == null) return [];

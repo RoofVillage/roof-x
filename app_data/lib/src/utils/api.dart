@@ -7,7 +7,7 @@ import '../_param.dart' as _param;
 import 'service.dart';
 
 final _bearerTokenPrefix = 'Bearer ';
-Future<String> post({Service service, Map<String, Object> params}) async {
+Future<PostResponse> post({Service service, Map<String, Object> params}) async {
   Map<String, String> headers;
   final token = await _session.token;
   if (token != null) {
@@ -26,8 +26,7 @@ Future<String> post({Service service, Map<String, Object> params}) async {
     headers: headers,
   );
 
-  // TODO compatibility with PostResponse
-  return null;
+  return response;
 }
 
 Map<String, Object> addStandardParams(Map<String, Object> params) {

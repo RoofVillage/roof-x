@@ -15,14 +15,18 @@ abstract class HeaderEmptyVerticalFullScreenArtboard extends StatefulWidget
 
   @override
   Widget buildBody(BuildContext context) {
-    return Column(children: [
-      buildNavHeader(
-        context,
-        title: artboardTitle,
-        navButton: artboardNavButton(context),
-        actionButtons: artboardActionButtons(context),
-      ),
-      artboardBody(context),
-    ]);
+    return Column(
+      children: [
+        buildNavHeader(
+          context,
+          title: artboardTitle,
+          navButton: artboardNavButton(context),
+          actionButtons: artboardActionButtons(context),
+        ),
+        Expanded(
+          child: artboardBody(context),
+        )
+      ],
+    );
   }
 }
