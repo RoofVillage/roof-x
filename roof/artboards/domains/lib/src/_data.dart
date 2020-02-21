@@ -32,12 +32,6 @@ mixin DomainsArtboardData {
       LandlordProfile("Mills Rentals", 7),
       LandlordProfile("Dallas Crash Pads", null),
       LandlordProfile("GN Company", 2),
-      LandlordProfile("Mills Rentals", 7),
-      LandlordProfile("Dallas Crash Pads", null),
-      LandlordProfile("GN Company", 2),
-      LandlordProfile("Mills Rentals", 7),
-      LandlordProfile("Dallas Crash Pads", null),
-      LandlordProfile("GN Company", 2),
     ]),
   );
 }

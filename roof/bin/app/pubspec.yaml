@@ -241,6 +241,8 @@ dependency_overrides:
     path: ../../../lib/sorting
   spaced_grid_builder:
     path: ../../../builders/spaced_grid
+  table_cell_builder:
+    path: ../../../builders/table_cell
   spaced_list_view_builder:
     path: ../../../builders/spaced_list_view
   standard_icon_library:

@@ -58,8 +58,15 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: semantic-sm-app
       path: icons/standard
+  table_cell_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: builders/table_cell
 
 dependency_overrides:
+  table_cell_builder:
+    path: ../../../builders/table_cell
   spaced_list_view_builder:
     path: ../../../builders/spaced_list_view
   view_stream_builder_builder:
