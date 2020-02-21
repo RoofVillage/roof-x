@@ -5,8 +5,8 @@ class InheritedScrollControllerProvider extends StatefulWidget {
   final Widget child;
 
   InheritedScrollControllerProvider({
-    this.scrollController,
-    this.child,
+    @required this.scrollController,
+    @required this.child,
   });
 
   @override
@@ -14,7 +14,8 @@ class InheritedScrollControllerProvider extends StatefulWidget {
       _InheritedScrollControllerState();
 }
 
-class _InheritedScrollControllerState extends State<InheritedScrollControllerProvider> {
+class _InheritedScrollControllerState
+    extends State<InheritedScrollControllerProvider> {
   @override
   Widget build(BuildContext context) {
     return ScrollControllerInheritedWidget(

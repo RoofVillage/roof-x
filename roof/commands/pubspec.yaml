@@ -30,7 +30,7 @@ dependencies:
     git:
       url: git@github.com:RoofVillage/roof-x.git
       ref: semantic-sm-app
-      path: bin/app/roof/artboards/public_activity
+      path: roof/artboards/public_activity
 
 dependency_overrides:
   blossm_command:

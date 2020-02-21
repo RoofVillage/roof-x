@@ -12,22 +12,16 @@ class PageHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = SemanticTheme.of(context);
 
-    final titleText = Padding(
-      padding: EdgeInsets.symmetric(
-        vertical: theme.distance.padding.vertical.medium,
-      ),
-      child: Text(
-        title,
-        style: theme.typography.headingPrimary.textStyle(
-          color: theme.color.text.generalPrimary,
-        ),
+    final titleText = Text(
+      title,
+      style: theme.typography.headingPrimary.textStyle(
+        color: theme.color.text.generalPrimary,
       ),
     );
 
     return Container(
       padding: EdgeInsets.symmetric(
-        horizontal: theme.distance.gutter.horizontal.small,
-        vertical: theme.distance.padding.vertical.medium,
+        vertical: theme.distance.padding.vertical.large,
       ),
       child: Row(
         children: [titleText],

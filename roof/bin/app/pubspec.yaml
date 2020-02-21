@@ -59,8 +59,8 @@ dependency_overrides:
     path: ../../artboards/domains
   page_header_builder:
     path: ../../../builders/page_header
-  header_empty_vertical_full_screen_artboard_template:
-    path: ../../../artboard_templates/vertical_full_screen/header_empty
+  stream_list_view_vertical_full_screen_artboard_template:
+    path: ../../../artboard_templates/vertical_full_screen/stream_list_view
   vertical_full_screen_artboard_scaffold:
     path: ../../../artboard_scaffolds/vertical_full_screen
   vertical_floating_artboard_scaffold:
@@ -241,6 +241,8 @@ dependency_overrides:
     path: ../../../lib/sorting
   spaced_grid_builder:
     path: ../../../builders/spaced_grid
+  spaced_list_view_builder:
+    path: ../../../builders/spaced_list_view
   standard_icon_library:
     path: ../../../icons/standard
   standard_stack_builder:

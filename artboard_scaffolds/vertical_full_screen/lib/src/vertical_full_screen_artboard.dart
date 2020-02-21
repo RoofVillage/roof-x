@@ -10,7 +10,7 @@ mixin VerticalFullScreenArtboard implements StatefulWidget, Artboard {
   Widget buildNavBar(BuildContext context) => null;
   Widget buildDock(BuildContext context) => null;
 
-  bool get provideInheritedScrollController => false;
+  ScrollController get artboardBodyScrollController => null;
 
   @override
   State<StatefulWidget> createState() => _VerticalFullScreenArtboardState();
@@ -50,12 +50,6 @@ mixin VerticalFullScreenArtboardState<T extends VerticalFullScreenArtboard>
   Widget build(BuildContext context) {
     final theme = SemanticTheme.of(context);
 
-    ScrollController scrollController;
-
-    if (widget.provideInheritedScrollController == true) {
-      scrollController = ScrollController();
-    }
-
     final body = widget.buildBody(context);
     final navBar = widget.buildNavBar(context);
     final dock = widget.buildDock(context);
@@ -68,10 +62,7 @@ mixin VerticalFullScreenArtboardState<T extends VerticalFullScreenArtboard>
       left: 0,
       right: 0,
       child: Container(
-        child: SingleChildScrollView(
-          controller: scrollController,
-          child: body,
-        ),
+        child: body,
       ),
     );
 
@@ -106,10 +97,12 @@ mixin VerticalFullScreenArtboardState<T extends VerticalFullScreenArtboard>
       alignment: AlignmentDirectional.bottomCenter,
     );
 
-    final bodyChild = widget.provideInheritedScrollController == true
+    print('building scaffold with controller? ${widget.artboardBodyScrollController}');
+
+    final bodyChild = widget.artboardBodyScrollController != null
         ? buildInheritedScrollController(
-            scrollController: scrollController,
             child: stack,
+            scrollController: widget.artboardBodyScrollController,
           )
         : stack;
 

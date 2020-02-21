@@ -38,11 +38,11 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: semantic-sm-app
       path: builders/caret_wrap
-  cells_list_view_builder:
+  spaced_list_view_builder:
     git:
       url: git@github.com:RoofVillage/roof-x.git
       ref: semantic-sm-app
-      path: builders/cells_list_view
+      path: builders/spaced_list_view
   tag_builder:
     git:
       url: git@github.com:RoofVillage/roof-x.git
@@ -81,8 +81,8 @@ dependency_overrides:
     path: ../../../builders/nav_button
   caret_wrap_builder:
     path: ../../../builders/caret_wrap
-  cells_list_view_builder:
-    path: ../../../builders/cells_list_view
+  spaced_list_view_builder:
+    path: ../../../builders/spaced_list_view
   tag_builder:
     path: ../../../builders/tag
   key_value_row_builder:

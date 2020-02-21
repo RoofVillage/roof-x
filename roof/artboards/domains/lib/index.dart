@@ -1,1 +1,1 @@
-export 'src/vertical_floating.dart';
+export 'src/vertical_full_screen.dart';

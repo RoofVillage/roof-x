@@ -6,14 +6,14 @@ import 'package:tabbed_fullscreen_artboard_template/index.dart';
 import 'package:tab/index.dart';
 import 'package:button_builder/index.dart';
 import 'package:button_status_option/index.dart';
-import 'package:cells_list_view_builder/index.dart';
+import 'package:spaced_list_view_builder/index.dart';
 
 import '_data.dart';
 
 abstract class InvoiceVerticalFullScreenArtboard
     extends TabbedFullScreenArtboard
     with
-        CellsListViewBuilder,
+        SpacedListViewBuilder,
         SecondaryCenterButtonBuilder,
         InvoiceArtboardData {
   @override
@@ -53,7 +53,7 @@ abstract class InvoiceVerticalFullScreenArtboard
       status: ButtonStatusOption.ready,
     );
 
-    final paymentsList = buildCellsList(
+    final paymentsList = buildSpacedListView(
       children: buildPaymentsCells(context),
       button: paymentsActionButton,
     );

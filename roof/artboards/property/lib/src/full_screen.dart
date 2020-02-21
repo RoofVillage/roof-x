@@ -6,7 +6,7 @@ import 'package:standard_icon_library/index.dart';
 import 'package:navigation_icon_library/index.dart';
 import 'package:x_small_icon_library/index.dart';
 import 'package:tabbed_fullscreen_artboard_template/index.dart';
-import 'package:cells_list_view_builder/index.dart';
+import 'package:spaced_list_view_builder/index.dart';
 import 'package:button_builder/index.dart';
 import 'package:button_status_option/index.dart';
 import 'package:nav_button_builder/index.dart';
@@ -19,7 +19,7 @@ import '_data.dart';
 abstract class PropertyVerticalFullScreenArtboard
     extends TabbedFullScreenArtboard
     with
-        CellsListViewBuilder,
+        SpacedListViewBuilder,
         SecondaryCenterButtonBuilder,
         IconNavButtonBuilder,
         PropertyArtboardData {
@@ -68,7 +68,7 @@ abstract class PropertyVerticalFullScreenArtboard
       status: ButtonStatusOption.ready,
     );
 
-    final leasesList = buildCellsList(
+    final leasesList = buildSpacedListView(
       children: buildLeasesCells(context),
       button: leasesActionButton,
     );

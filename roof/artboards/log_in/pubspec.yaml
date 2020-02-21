@@ -51,8 +51,8 @@ dependency_overrides:
     path: ../../../builders/form
   page_header_builder:
     path: ../../../builders/page_header
-  header_empty_vertical_full_screen_artboard_template:
-    path: ../../../artboard_templates/vertical_full_screen/header_empty
+  stream_list_view_vertical_full_screen_artboard_template:
+    path: ../../../artboard_templates/vertical_full_screen/stream_list_view
 
 dev_dependencies:
   flutter_test:

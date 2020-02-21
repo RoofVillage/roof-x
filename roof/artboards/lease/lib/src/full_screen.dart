@@ -5,7 +5,7 @@ import 'package:x_small_icon_library/index.dart';
 import 'package:tabbed_fullscreen_artboard_template/index.dart';
 import 'package:button_builder/index.dart';
 import 'package:button_status_option/index.dart';
-import 'package:cells_list_view_builder/index.dart';
+import 'package:spaced_list_view_builder/index.dart';
 import 'package:thread_list_view_builder/index.dart';
 import 'package:auxiliary_widget_builder/index.dart';
 import 'package:tab/index.dart';
@@ -16,7 +16,7 @@ import '_data.dart';
 
 abstract class LeaseVerticalFullScreenArtboard extends TabbedFullScreenArtboard
     with
-        CellsListViewBuilder,
+        SpacedListViewBuilder,
         ThreadListViewBuilder,
         SecondaryCenterButtonBuilder,
         LeaseArtboardData,
@@ -72,7 +72,7 @@ abstract class LeaseVerticalFullScreenArtboard extends TabbedFullScreenArtboard
       status: ButtonStatusOption.ready,
     );
 
-    final tenantsList = buildCellsList(
+    final tenantsList = buildSpacedListView(
       children: buildTenantsCells(context),
       button: tenantsActionButton,
     );
@@ -90,7 +90,7 @@ abstract class LeaseVerticalFullScreenArtboard extends TabbedFullScreenArtboard
       status: ButtonStatusOption.ready,
     );
 
-    final invoicesList = buildCellsList(
+    final invoicesList = buildSpacedListView(
       children: buildInvoicesCells(context),
       button: invoicesActionButton,
     );
@@ -103,12 +103,12 @@ abstract class LeaseVerticalFullScreenArtboard extends TabbedFullScreenArtboard
       status: ButtonStatusOption.ready,
     );
 
-    final messagesList = buildCellsList(
+    final messagesList = buildSpacedListView(
       children: buildMessagesCells(context),
       button: messagesActionButton,
     );
 
-    final maintenanceList = buildCellsList(
+    final maintenanceList = buildSpacedListView(
       children: buildMaintenanceCells(context),
     );
 

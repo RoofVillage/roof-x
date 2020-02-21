@@ -1,4 +1,4 @@
-import 'package:cells_list_view_builder/index.dart';
+import 'package:spaced_list_view_builder/index.dart';
 import 'package:create_service_artboard/index.dart';
 import 'package:flutter/material.dart';
 import 'package:nav_button_builder/index.dart';
@@ -19,7 +19,7 @@ class ServicesVerticalFloatingArtboard
         ViewStreamBuilderBuilder,
         IconNavButtonBuilder,
         SecondaryCenterButtonBuilder,
-        CellsListViewBuilder {
+        SpacedListViewBuilder {
   final List<String> pendingServiceNames;
 
   ServicesVerticalFloatingArtboard({this.pendingServiceNames});
@@ -87,7 +87,7 @@ class ServicesVerticalFloatingArtboard
         'nothin',
         style: TextStyle(color: Colors.white70),
       ),
-      child: (context, view) => buildCellsList(
+      child: (context, view) => buildSpacedListView(
         children: [
           ...serviceRows(view),
           ...pendingServices,
