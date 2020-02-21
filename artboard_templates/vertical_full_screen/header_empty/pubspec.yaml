@@ -18,17 +18,26 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: semantic-sm-app
       path: artboard_scaffolds/vertical_full_screen
-  nav_header_builder:
+  page_header_builder:
     git:
       url: git@github.com:RoofVillage/roof-x.git
       ref: semantic-sm-app
-      path: builders/nav_header
+      path: builders/page_header
+  nav_bar_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: builders/nav_bar
 
 dependency_overrides:
-  nav_header_builder:
-    path: ../../../builders/nav_header
+  page_header_builder:
+    path: ../../../builders/page_header
+  nav_bar_builder:
+    path: ../../../builders/nav_bar
   vertical_full_screen_artboard_scaffold:
     path: ../../../artboard_scaffolds/vertical_full_screen
+  inherited_scroll_controller_builder:
+    path: ../../../builders/inherited_scroll_controller
 
 dev_dependencies:
   flutter_test:

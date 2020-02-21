@@ -14,17 +14,15 @@ class TitleNavBar extends StatelessWidget with NavBar {
   final StandardIcon icon;
 
   TitleNavBar({
-    Key key,
     this.navButton,
     this.title,
     this.subtitle,
     this.actionButtons,
     this.icon,
-  }): super(key: GlobalKey());
+  });
 
   @override
   List<Widget> buildNavigationWidgets(BuildContext context) {
-    print('navbar key ${super.key}');
     final theme = SemanticTheme.of(context);
 
     List<Widget> navigationWidgets = [];
@@ -52,7 +50,7 @@ class TitleNavBar extends StatelessWidget with NavBar {
       navigationWidgets.add(paddedIconWidget);
     }
 
-    if (_buildTitleColumn(theme) != null) {
+    if (title != null || subtitle != null) {
       navigationWidgets.add(
         _buildTitleColumn(theme),
       );
@@ -62,14 +60,12 @@ class TitleNavBar extends StatelessWidget with NavBar {
   }
 
   Widget _buildTitleColumn(SemanticThemeData theme) {
-    if (title == null && subtitle == null) return null;
-
     final List<Widget> titleColumnChildren = [];
 
     if (title != null) {
       final titleWidget = Text(
         title,
-        style: theme.typography.headingPrimary.textStyle(
+        style: theme.typography.title.textStyle(
           color: theme.color.text.brand,
         ),
         overflow: TextOverflow.ellipsis,
@@ -77,7 +73,7 @@ class TitleNavBar extends StatelessWidget with NavBar {
       titleColumnChildren.add(
         NavTitleBaseline(
           text: titleWidget,
-          baseline: theme.typography.headingPrimary.fontSize * .9,
+          baseline: theme.typography.title.fontSize,
         ),
       );
     }

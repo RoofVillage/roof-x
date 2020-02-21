@@ -1,19 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:inherited_scroll_controller_builder/index.dart';
 import 'package:semantic_theme/index.dart';
 import 'package:artboard/index.dart';
 
 mixin VerticalFullScreenArtboard implements StatefulWidget, Artboard {
   Widget buildBody(BuildContext context);
+  // TODO make buildNavBar and buildDock not resolve to null
   Widget buildNavBar(BuildContext context) => null;
   Widget buildDock(BuildContext context) => null;
+
+  bool get provideInheritedScrollController => false;
 
   @override
   State<StatefulWidget> createState() => _VerticalFullScreenArtboardState();
 }
 
 mixin VerticalFullScreenArtboardState<T extends VerticalFullScreenArtboard>
-    implements State<T> {
+    implements State<T>, InheritedScrollControllerBuilder {
   double _navBarHeight;
   double _dockHeight;
   final _navBarContainerKey = GlobalKey();
@@ -46,6 +50,12 @@ mixin VerticalFullScreenArtboardState<T extends VerticalFullScreenArtboard>
   Widget build(BuildContext context) {
     final theme = SemanticTheme.of(context);
 
+    ScrollController scrollController;
+
+    if (widget.provideInheritedScrollController == true) {
+      scrollController = ScrollController();
+    }
+
     final body = widget.buildBody(context);
     final navBar = widget.buildNavBar(context);
     final dock = widget.buildDock(context);
@@ -57,13 +67,11 @@ mixin VerticalFullScreenArtboardState<T extends VerticalFullScreenArtboard>
       bottom: _dockHeight ?? 0,
       left: 0,
       right: 0,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Expanded(
-            child: body,
-          )
-        ],
+      child: Container(
+        child: SingleChildScrollView(
+          controller: scrollController,
+          child: body,
+        ),
       ),
     );
 
@@ -98,11 +106,18 @@ mixin VerticalFullScreenArtboardState<T extends VerticalFullScreenArtboard>
       alignment: AlignmentDirectional.bottomCenter,
     );
 
+    final bodyChild = widget.provideInheritedScrollController == true
+        ? buildInheritedScrollController(
+            scrollController: scrollController,
+            child: stack,
+          )
+        : stack;
+
     final scaffold = Scaffold(
       backgroundColor: theme.color.background.generalSecondary,
       body: SafeArea(
         top: false,
-        child: stack,
+        child: bodyChild,
       ),
     );
 
@@ -111,4 +126,5 @@ mixin VerticalFullScreenArtboardState<T extends VerticalFullScreenArtboard>
 }
 
 class _VerticalFullScreenArtboardState<T extends VerticalFullScreenArtboard>
-    extends State<T> with VerticalFullScreenArtboardState<T> {}
+    extends State<T>
+    with VerticalFullScreenArtboardState<T>, InheritedScrollControllerBuilder {}

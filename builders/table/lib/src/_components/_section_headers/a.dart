@@ -33,7 +33,7 @@ class _TitleLabel extends StatelessWidget {
 
     return Text(
       text,
-      style: theme.typography.headingSecondary.textStyle(
+      style: theme.typography.title.textStyle(
         color: theme.color.text.brand,
       ),
     );

@@ -17,7 +17,7 @@ class RoofHeadingPrimaryTypography extends SemanticTypography {
   double get fontSize => fs.extraLarge;
 
   @override
-  FontWeight get fontWeight => fw.medium;
+  FontWeight get fontWeight => fw.thick;
 
   @override
   double get letterSpacing => null;

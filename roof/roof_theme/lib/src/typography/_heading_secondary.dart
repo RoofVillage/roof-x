@@ -14,7 +14,7 @@ class RoofHeadingSecondaryTypography extends SemanticTypography {
   String get fontFamilyFallback => null;
 
   @override
-  double get fontSize => fs.large;
+  double get fontSize => fs.extraLarge;
 
   @override
   FontWeight get fontWeight => fw.medium;

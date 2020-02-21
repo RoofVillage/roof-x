@@ -7,7 +7,7 @@ class RoofSystemUiOverlayStyle extends SemanticSystemUiOverlayStyle {
 
   @override
   SystemUiOverlayStyle get value => forThemeOption({
-        RoofThemeOption.dark: SystemUiOverlayStyle.dark,
-        RoofThemeOption.light: SystemUiOverlayStyle.light,
+        RoofThemeOption.dark: SystemUiOverlayStyle.light,
+        RoofThemeOption.light: SystemUiOverlayStyle.dark,
       });
 }

@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:nav_header_builder/index.dart';
+import 'package:page_header_builder/index.dart';
 import 'package:artboard/index.dart';
 import 'package:vertical_full_screen_artboard_scaffold/index.dart';
+import 'package:nav_bar_builder/index.dart';
 
 abstract class HeaderEmptyVerticalFullScreenArtboard extends StatefulWidget
-    with VerticalFullScreenArtboard, NavHeaderBuilder, Artboard {
+    with
+        VerticalFullScreenArtboard,
+        PageHeaderBuilder,
+        Artboard,
+        AnimatedTitleNavBarBuilder {
   String get artboardTitle;
 
   Widget artboardBody(BuildContext context);
@@ -14,18 +19,23 @@ abstract class HeaderEmptyVerticalFullScreenArtboard extends StatefulWidget
   List<Widget> artboardActionButtons(BuildContext context);
 
   @override
+  bool get provideInheritedScrollController => true;
+
+  @override
+  Widget buildNavBar(BuildContext context) {
+    return buildAnimatedTitleNavBar(
+      title: artboardTitle,
+      actionButtons: artboardActionButtons(context),
+      navButton: artboardNavButton(context),
+    );
+  }
+
+  @override
   Widget buildBody(BuildContext context) {
     return Column(
       children: [
-        buildNavHeader(
-          context,
-          title: artboardTitle,
-          navButton: artboardNavButton(context),
-          actionButtons: artboardActionButtons(context),
-        ),
-        Expanded(
-          child: artboardBody(context),
-        )
+        buildPageHeader(artboardTitle),
+        artboardBody(context),
       ],
     );
   }

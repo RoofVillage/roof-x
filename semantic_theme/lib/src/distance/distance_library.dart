@@ -1,12 +1,12 @@
 import 'package:semantic_theme/src/distance/sym_semantic_distance.dart';
 
 abstract class SemanticDistanceLibrary {
-  /// From screen
+  /// From screen edges, between table objects.
   SemanticSymmetryDistance get gutter;
 
-  /// Between objects
+  /// Between child elements in a container object.
   SemanticSymmetryDistance get spacing;
 
-  /// Within objects
+  /// Padding between edge of container and child elements.
   SemanticSymmetryDistance get padding;
 }

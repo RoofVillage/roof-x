@@ -57,8 +57,8 @@ dependency_overrides:
     path: ../../artboards/public_activity
   domains_artboard:
     path: ../../artboards/domains
-  nav_header_builder:
-    path: ../../../builders/nav_header
+  page_header_builder:
+    path: ../../../builders/page_header
   header_empty_vertical_full_screen_artboard_template:
     path: ../../../artboard_templates/vertical_full_screen/header_empty
   vertical_full_screen_artboard_scaffold:
@@ -85,6 +85,8 @@ dependency_overrides:
     path: ../../../blossm_view_store
   button_builder:
     path: ../../../builders/button
+  inherited_scroll_controller_builder:
+    path: ../../../builders/inherited_scroll_controller
   button_status_option:
     path: ../../../options/button_status
   cache:
@@ -187,6 +189,8 @@ dependency_overrides:
     path: ../../../model/properties/name_payment_profile
   name_user:
     path: ../../../model/properties/name_user
+  nav_bar_builder:
+    path: ../../../builders/nav_bar
   nav_button_builder:
     path: ../../../builders/nav_button
   navigation_icon_library:

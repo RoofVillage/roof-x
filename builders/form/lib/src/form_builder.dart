@@ -48,7 +48,7 @@ mixin FormBuilderState<T extends FormBuilder>
     addFocusChangedListeners();
     final theme = SemanticTheme.of(context);
 
-    final headerStyle = theme.typography.headingSecondary.textStyle(
+    final headerStyle = theme.typography.title.textStyle(
       color: theme.color.text.generalPrimary,
     );
     final subtitleStyle = theme.typography.subtitle.textStyle(

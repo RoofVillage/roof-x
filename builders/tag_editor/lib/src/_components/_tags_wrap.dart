@@ -32,7 +32,7 @@ class TagsWrap extends StatelessWidget {
 
     final emptyText = Text(
       _emptyText,
-      style: theme.typography.headingSecondary.textStyle(
+      style: theme.typography.body.textStyle(
         color: theme.color.text.generalSecondary,
       ),
     );
