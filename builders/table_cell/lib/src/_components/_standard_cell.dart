@@ -11,15 +11,15 @@ class StandardCell extends StatelessWidget {
     this.onTap,
   });
 
-  final _tapHapticOption = HapticOption.light;
-
   @override
   Widget build(BuildContext context) {
     final theme = SemanticTheme.of(context);
 
     return GestureDetector(
-      onTap: () => onTap,
-      onTapDown: (_) => triggerHapticWith(_tapHapticOption),
+      onTap: () => triggerHaptic(
+        HapticOption.light,
+        and: onTap,
+      ),
       child: Container(
         padding: EdgeInsets.symmetric(
           horizontal: theme.distance.padding.horizontal.medium,

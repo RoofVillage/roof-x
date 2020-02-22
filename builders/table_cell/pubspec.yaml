@@ -21,6 +21,8 @@ dependencies:
       path: lib/haptics
 
 dependency_overrides:
+  haptics:
+    path: ../../lib/haptics
   semantic_theme:
     path: ../../semantic_theme
 
