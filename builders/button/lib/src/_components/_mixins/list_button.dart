@@ -77,6 +77,7 @@ mixin ListButtonState {
       child: Opacity(
         opacity: opacity,
         child: Container(
+          color: Colors.transparent,
           height: _height,
           padding: EdgeInsets.symmetric(
             horizontal: theme.distance.padding.horizontal.medium,
