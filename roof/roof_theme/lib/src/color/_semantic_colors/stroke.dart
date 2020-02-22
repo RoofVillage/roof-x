@@ -27,7 +27,7 @@ class RoofStrokeColor extends SemanticStrokeColor<RoofThemeOption> {
   @override
   Color get light => forThemeOption({
         RoofThemeOption.light: colors.gray1,
-        RoofThemeOption.dark: colors.gray4,
+        RoofThemeOption.dark: colors.black3,
       });
 
   @override

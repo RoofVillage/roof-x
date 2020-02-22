@@ -11,11 +11,6 @@ mixin DomainsArtboardData {
         )
       ];
 
-  Widget artboardNavButton(BuildContext context) =>
-      NavigationIcon.backArrow.buildWidget(
-        color: SemanticTheme.of(context).color.icon.nav,
-      );
-
   String get artboardTitle => "Your landlord profiles";
 
   final stream = Stream.value(

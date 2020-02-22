@@ -97,8 +97,6 @@ mixin VerticalFullScreenArtboardState<T extends VerticalFullScreenArtboard>
       alignment: AlignmentDirectional.bottomCenter,
     );
 
-    print('building scaffold with controller? ${widget.artboardBodyScrollController}');
-
     final bodyChild = widget.artboardBodyScrollController != null
         ? buildInheritedScrollController(
             child: stack,

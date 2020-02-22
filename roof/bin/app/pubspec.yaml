@@ -59,10 +59,16 @@ dependency_overrides:
     path: ../../artboards/domains
   page_header_builder:
     path: ../../../builders/page_header
+  nav_vertical_drawer_artboard_template:
+    path: ../../../artboard_templates/vertical_drawer/nav_drawer
+  landlord_nav_drawer_artboard:
+    path: ../../artboards/landlord_nav_drawer
   stream_list_view_vertical_full_screen_artboard_template:
     path: ../../../artboard_templates/vertical_full_screen/stream_list_view
   vertical_full_screen_artboard_scaffold:
     path: ../../../artboard_scaffolds/vertical_full_screen
+  vertical_drawer_artboard_scaffold:
+    path: ../../../artboard_scaffolds/vertical_drawer
   vertical_floating_artboard_scaffold:
     path: ../../../artboard_scaffolds/vertical_floating
   horizontal_floating_artboard_scaffold:

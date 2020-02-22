@@ -19,6 +19,11 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: semantic-sm-app
       path: artboard_scaffolds/horizontal_floating
+  vertical_drawer_artboard_scaffold:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: artboard_scaffolds/vertical_drawer
   keyboard_accessory:
     git:
       url: git@github.com:RoofVillage/roof-x.git
@@ -58,6 +63,8 @@ dependency_overrides:
     path: ../vertical_floating
   horizontal_floating_artboard_scaffold:
     path: ../horizontal_floating
+  vertical_drawer_artboard_scaffold:
+    path: ../vertical_drawer
 
 dev_dependencies:
   flutter_test:

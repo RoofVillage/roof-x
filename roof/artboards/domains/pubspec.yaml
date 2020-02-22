@@ -63,8 +63,20 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: semantic-sm-app
       path: builders/table_cell
+  nav_button_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: builders/nav_button
+  landlord_nav_drawer_artboard:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: roof/artboards/landlord_nav_drawer
 
 dependency_overrides:
+  landlord_nav_drawer_artboard:
+    path: ../landlord_nav_drawer
   table_cell_builder:
     path: ../../../builders/table_cell
   spaced_list_view_builder:
@@ -77,6 +89,10 @@ dependency_overrides:
     path: ../../views
   stream_list_view_vertical_full_screen_artboard_template:
     path: ../../../artboard_templates/vertical_full_screen/stream_list_view
+  nav_vertical_drawer_artboard_template:
+    path: ../../../artboard_templates/vertical_drawer/nav_drawer
+  vertical_drawer_artboard_scaffold:
+    path: ../../../artboard_scaffolds/vertical_drawer
 
 dev_dependencies:
   flutter_test:

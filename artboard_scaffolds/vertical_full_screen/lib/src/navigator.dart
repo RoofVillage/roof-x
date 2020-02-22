@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:semantic_theme/index.dart';
+import 'package:vertical_drawer_artboard_scaffold/index.dart';
 import 'package:vertical_floating_artboard_scaffold/index.dart';
 import 'package:horizontal_floating_artboard_scaffold/index.dart';
 import 'package:artboard/index.dart';
@@ -60,6 +61,28 @@ class VerticalFullScreenInheritedArtboardNavigator
       final result = await Navigator.of(context).push<dynamic>(
         VerticalFloatingRoute(
           builder: (context) => floatingNavigator,
+          theme: SemanticTheme.of(context),
+        ),
+      );
+
+      if (result is Artboard) {
+        return await _goTo<T>(
+          result,
+          context: context,
+        );
+      } else if (result is T) {
+        return result;
+      }
+
+      return Future.value();
+    } else if (artboard is VerticalDrawerArtboard) {
+      final drawerNavigator = VerticalDrawerArtboardNavigator(
+        artboard: artboard,
+      );
+
+      final result = await Navigator.of(context).push<dynamic>(
+        VerticalDrawerRoute(
+          builder: (context) => drawerNavigator,
           theme: SemanticTheme.of(context),
         ),
       );

@@ -13,7 +13,7 @@ const red = Color.fromRGBO(221, 72, 36, 1);
 const white1 = Color.fromRGBO(255, 255, 255, 1);
 const white2 = Color.fromRGBO(243, 243, 243, 1);
 
-const black3 = Color.fromRGBO(54, 54, 54, 1);
+const black3 = Color.fromRGBO(57, 57, 57, 1);
 const black2 = Color.fromRGBO(32, 32, 32, 1);
 const black1 = Color.fromRGBO(18, 18, 18, 1);
 
