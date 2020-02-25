@@ -1,1 +1,1 @@
-enum MaskOption { phoneNumber, money }
+enum MaskOption { phoneNumber, money, moneyNoDecimals }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:semantic_theme/index.dart';
 
-import '_standard_cell.dart';
+import 'standard_cell.dart';
 
 class TitleBadgeCell extends StatelessWidget {
   final String title;

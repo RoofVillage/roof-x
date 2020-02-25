@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nav_vertical_drawer_artboard_template/index.dart';
+import 'package:properties_artboard/index.dart';
 import 'package:semantic_theme/index.dart';
 import 'package:standard_icon_library/index.dart';
 
@@ -10,7 +11,7 @@ class LandlordNavVerticalDrawerArtboard extends NavVerticalDrawerArtboard
   @override
   List<ArtboardNavButtonConfig> get bodyNavButtons => [
         ArtboardNavButtonConfig(
-          artboard: null,
+          artboard: PropertiesVerticalFullscreenArtboard(),
           title: "Properties",
           icon: StandardIcon.camper,
         ),

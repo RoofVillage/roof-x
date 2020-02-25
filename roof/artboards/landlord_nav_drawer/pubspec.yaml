@@ -48,10 +48,19 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: semantic-sm-app
       path: builders/table_cell
+  properties_artboard:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: roof/artboards/properties
 
 dependency_overrides:
+  properties_artboard:
+    path: ../properties
   table_cell_builder:
     path: ../../../builders/table_cell
+  roof_table_cell_builder:
+    path: ../../builders/table_cell
   spaced_list_view_builder:
     path: ../../../builders/spaced_list_view
   view_stream_builder_builder:
@@ -62,6 +71,8 @@ dependency_overrides:
     path: ../../views
   nav_vertical_drawer_artboard_template:
     path: ../../../artboard_templates/vertical_drawer/nav_drawer
+  stream_list_view_vertical_full_screen_artboard_template:
+    path: ../../../artboard_templates/vertical_full_screen/stream_list_view
   vertical_drawer_artboard_scaffold:
     path: ../../../artboard_scaffolds/vertical_drawer
 

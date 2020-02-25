@@ -20,7 +20,7 @@ class DomainsVerticalFullscreenArtboard
         TitleBadgeCellBuilder {
   Widget artboardNavButton(BuildContext context) => buildIconNavButton(
         context,
-        iconReference: NavigationIcon.backArrow,
+        iconReference: NavigationIcon.logoHouse,
         onTap: (context) => ArtboardNavigator.of(context).goTo(
           LandlordNavVerticalDrawerArtboard(),
         ),
