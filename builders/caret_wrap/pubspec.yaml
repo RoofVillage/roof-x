@@ -12,17 +12,17 @@ dependencies:
   x_small_icon_library:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-sm-app
+      ref: master
       path: icons/x_small
   haptics:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-sm-app
+      ref: master
       path: lib/haptics
   semantic_theme:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-sm-app
+      ref: master
       path: semantic_theme
 
 dependency_overrides:

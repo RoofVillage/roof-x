@@ -11,77 +11,77 @@ dependencies:
   fee_payer_type:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-sm-app
+      ref: master
       path: types/fee_payer
   assignment_type:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-sm-app
+      ref: master
       path: types/assignment
   key:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-sm-app
+      ref: master
       path: model/key
   name_defining_object:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-sm-app
+      ref: master
       path: model/mixins/name_defining_object
   user_reference:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-sm-app
+      ref: master
       path: model/properties/user_reference
   completion_count:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-sm-app
+      ref: master
       path: model/properties/completion_count
   commentable_object:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-sm-app
+      ref: master
       path: model/abstract/commentable_object
   task_reference:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-sm-app
+      ref: master
       path: model/properties/task_reference
   date:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-sm-app
+      ref: master
       path: lib/date
   schedule:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-sm-app
+      ref: master
       path: model/properties/schedule
   context:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-sm-app
+      ref: master
       path: model/abstract/context
   name_user:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-sm-app
+      ref: master
       path: model/properties/name_user
   date_parts:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-sm-app
+      ref: master
       path: model/properties/date_parts
   name_formatter:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-sm-app
+      ref: master
       path: model/name_formatter
   stub:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-sm-app
+      ref: master
       path: model/objects/stub
 
 dev_dependencies:

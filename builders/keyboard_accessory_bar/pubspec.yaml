@@ -13,12 +13,12 @@ dependencies:
   haptics:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-sm-app
+      ref: master
       path: lib/haptics
   semantic_theme:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-sm-app
+      ref: master
       path: semantic_theme
 
 dependency_overrides:

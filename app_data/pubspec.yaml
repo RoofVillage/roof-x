@@ -13,22 +13,22 @@ dependencies:
   network:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-sm-app
+      ref: master
       path: lib/network
   synchronizer:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-sm-app
+      ref: master
       path: synchronizer
   session:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-sm-app
+      ref: master
       path: session
   public:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-sm-app
+      ref: master
       path: model/objects/public
 
 dependency_overrides:

@@ -11,7 +11,7 @@ dependencies:
   task:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-sm-app
+      ref: master
       path: model/abstract/task
 
 dev_dependencies:

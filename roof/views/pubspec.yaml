@@ -14,7 +14,7 @@ dependencies:
   blossm_view_store:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-sm-app
+      ref: master
       path: blossm_view_store
 
 dev_dependencies:

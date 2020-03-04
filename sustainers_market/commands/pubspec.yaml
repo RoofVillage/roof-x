@@ -16,22 +16,22 @@ dependencies:
   secure_storage:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-sm-app
+      ref: master
       path: lib/secure_storage
   navigator:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-sm-app
+      ref: master
       path: lib/navigator
   welcome_artboard:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-sm-app
+      ref: master
       path: sustainers_market/artboards/welcome
   auth_verify_code_artboard:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-sm-app
+      ref: master
       path: sustainers_market/artboards/auth_verify_code
 
 dependency_overrides:

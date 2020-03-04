@@ -11,7 +11,7 @@ dependencies:
   one_to_one_transaction:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-sm-app
+      ref: master
       path: model/abstract/one_to_one_transaction
 
 dev_dependencies:

@@ -11,7 +11,7 @@ dependencies:
   key:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-sm-app
+      ref: master
       path: model/key
   data_chunk:
     path: ../../data_chunk

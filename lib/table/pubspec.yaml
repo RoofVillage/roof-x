@@ -12,7 +12,7 @@ dependencies:
   stream:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: semantic-sm-app
+      ref: master
       path: lib/stream
 
 dev_dependencies:
