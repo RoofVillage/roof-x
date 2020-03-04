@@ -1,0 +1,103 @@
+name: artboards_sandbox
+description: Delightful renting for roommates and landlords.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  theme:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: theme
+  public_activity_artboard:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: roof/artboards/public_activity
+  vertical_full_screen_artboard_scaffold:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: artboard_scaffolds/vertical_full_screen
+  artboard:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: lib/artboard
+  device_screen:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: lib/device_screen
+  invoice_full_screen_artboard_template:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: roof/artboards/invoice
+  lease_full_screen_artboard_template:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: roof/artboards/lease
+  property_full_screen_artboard_template:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: roof/artboards/property
+  property_create_artboard:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: roof/artboards/property_create
+
+dependency_overrides:
+  vertical_full_screen_artboard_scaffold:
+    path: ../../../artboard_scaffolds/vertical_full_screen
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  fonts:
+    - family: RoofXSmallIcons
+      fonts:
+      - asset: packages/x_small_icon_library/ttf/RoofXSmallIcons.ttf
+    - family: RoofSmallIcons
+      fonts:
+      - asset: packages/small_icon_library/ttf/RoofSmallIcons.ttf
+    - family: RoofStandardIcons
+      fonts:
+      - asset: packages/standard_icon_library/ttf/RoofStandardIcons.ttf
+    - family: RoofNavigationIcons
+      fonts:
+      - asset: packages/navigation_icon_library/ttf/RoofNavigationIcons.ttf
+    - family: circular
+      fonts:
+        - asset: packages/typography/fonts/circular/CircularStd-Book.otf
+          weight: 100
+        - asset: packages/typography/fonts/circular/CircularStd-Book.otf
+          weight: 200
+        - asset: packages/typography/fonts/circular/CircularStd-Medium.otf
+          weight: 300
+        - asset: packages/typography/fonts/circular/CircularStd-Bold.otf
+          weight: 400
+        - asset: packages/typography/fonts/circular/CircularStd-Black.otf
+          weight: 500
+    - family: azo
+      fonts:
+        - asset: packages/typography/fonts/azo/AzoSans-Thin.otf
+          weight: 100
+        - asset: packages/typography/fonts/azo/AzoSans-Light.otf
+          weight: 200
+        - asset: packages/typography/fonts/azo/AzoSans-Regular.otf
+          weight: 300
+        - asset: packages/typography/fonts/azo/AzoSans-Medium.otf
+          weight: 400
+        - asset: packages/typography/fonts/azo/AzoSans-Bold.otf
+          weight: 500

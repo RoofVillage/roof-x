@@ -12,38 +12,22 @@ dependencies:
   labeled_value:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-sm-app
       path: labeled_value
-  theme:
-    git:
-      url: git@github.com:RoofVillage/roof-x.git
-      ref: master
-      path: theme
-  curve:
-    git:
-      url: git@github.com:RoofVillage/roof-x.git
-      ref: master
-      path: spec/curve
-  duration:
-    git:
-      url: git@github.com:RoofVillage/roof-x.git
-      ref: master
-      path: spec/duration
-  distance:
-    git:
-      url: git@github.com:RoofVillage/roof-x.git
-      ref: master
-      path: spec/distance
   haptics:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-sm-app
       path: lib/haptics
-  typography:
+  semantic_theme:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
-      path: spec/typography
+      ref: semantic-sm-app
+      path: semantic_theme
+
+dependency_overrides:
+  semantic_theme:
+    path: ../../semantic_theme
 
 dev_dependencies:
   flutter_test:

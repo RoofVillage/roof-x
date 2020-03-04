@@ -19,14 +19,16 @@ String applyMask(
       mask = PhoneNumberStringMask();
       break;
     case MaskOption.money:
-      mask = _makeMoneyStringMask(context, isEditing);
+      mask = _makeMoneyStringMask(context, isEditing, true);
       break;
+    case MaskOption.moneyNoDecimals:
+      mask = _makeMoneyStringMask(context, isEditing, false);
   }
 
   return mask.apply(text, isEditing);
 }
 
-MoneyStringMask _makeMoneyStringMask(BuildContext context, bool isEditing) {
+MoneyStringMask _makeMoneyStringMask(BuildContext context, bool isEditing, bool withDecimals) {
   final locale = Localizations.localeOf(context);
   final format =
       NumberFormat(null, locale.languageCode + '_' + locale.countryCode);
@@ -35,6 +37,7 @@ MoneyStringMask _makeMoneyStringMask(BuildContext context, bool isEditing) {
   final thousandsSeperator = format.symbols.GROUP_SEP;
   return MoneyStringMask(
     isEditing: isEditing,
+    withDecimals: withDecimals,
     leftSymbol: symbol,
     decimalSeparator: decimalSeperator,
     groupSeparator: thousandsSeperator,

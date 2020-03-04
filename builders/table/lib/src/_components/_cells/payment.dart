@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:semantic_theme/index.dart';
 import 'package:tag_kind_option/index.dart';
-import 'package:theme/index.dart';
 import 'package:mask/index.dart';
 import 'package:date/index.dart';
 import 'package:haptics/index.dart';
 import 'package:tag_builder/index.dart';
 import 'package:key_value_row_builder/index.dart';
-import 'package:typography/index.dart' as typography;
-import 'package:distance/index.dart' as distance;
-import 'package:corner_radius/index.dart' as radius;
 
 import '../_widgets/cell_primary_title.dart';
 import '../_widgets/cell_spaced_row.dart';
@@ -30,10 +27,10 @@ class PaymentCell extends StatelessWidget with KeyValueRowBuilder {
     this.onTap,
   });
 
-  final _radius = radius.regular;
-  final _cellPadding = distance.c;
-  final _spacing = distance.b;
-  final _topMargin = distance.b;
+  // final _radius = radius.regular;
+  // final _cellPadding = distance.c;
+  // final _spacing = distance.b;
+  // final _topMargin = distance.b;
   final _tapHapticOption = HapticOption.light;
 
   void _fireHaptic() {
@@ -42,12 +39,14 @@ class PaymentCell extends StatelessWidget with KeyValueRowBuilder {
 
   @override
   Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
+    final theme = SemanticTheme.of(context);
 
     final tenantNameWidget = CellPrimaryTitle(tenant);
 
     final statusTag = Container(
-      margin: EdgeInsets.only(left: _spacing),
+      margin: EdgeInsets.only(
+        left: theme.distance.spacing.horizontal.small,
+      ),
       child: _StatusTag(paymentStatus),
     );
 
@@ -64,11 +63,13 @@ class PaymentCell extends StatelessWidget with KeyValueRowBuilder {
 
     if (note != null && note.isNotEmpty) {
       final messageRow = Container(
-        margin: EdgeInsets.only(top: _spacing),
+        margin: EdgeInsets.only(
+          top: theme.distance.spacing.vertical.small,
+        ),
         child: Text(
           note,
-          style: typography.body.textStyleWithColor(
-            theme.color.text.secondary,
+          style: theme.typography.body.textStyle(
+            color: theme.color.text.generalSecondary,
           ),
           maxLines: 2,
           overflow: TextOverflow.ellipsis,
@@ -81,8 +82,8 @@ class PaymentCell extends StatelessWidget with KeyValueRowBuilder {
       context,
       title: "Date",
       value: dateText,
-      valueStyle: typography.bodyThick.textStyleWithColor(
-        theme.color.text.primary,
+      valueStyle: theme.typography.bodyHeavy.textStyle(
+        color: theme.color.text.generalPrimary,
       ),
     );
     columnChildren.add(dateRow);
@@ -109,10 +110,17 @@ class PaymentCell extends StatelessWidget with KeyValueRowBuilder {
       onTapDown: (details) => _fireHaptic(),
       onTap: onTap,
       child: Container(
-        padding: EdgeInsets.all(_cellPadding),
-        margin: EdgeInsets.only(top: _topMargin),
+        padding: EdgeInsets.symmetric(
+          horizontal: theme.distance.padding.horizontal.medium,
+          vertical: theme.distance.padding.vertical.medium,
+        ),
+        margin: EdgeInsets.only(
+          top: theme.distance.spacing.vertical.small,
+        ),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(_radius),
+          borderRadius: BorderRadius.all(
+            theme.radius.medium,
+          ),
           border: Border.all(color: theme.color.stroke.light),
           color: theme.color.background.generalPrimary,
         ),
@@ -122,7 +130,7 @@ class PaymentCell extends StatelessWidget with KeyValueRowBuilder {
   }
 }
 
-class _StatusTag extends StatelessWidget with RoofTagBuilder {
+class _StatusTag extends StatelessWidget with TagBuilder {
   final PaymentStatus status;
 
   _StatusTag(this.status);

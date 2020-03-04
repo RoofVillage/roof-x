@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:distance/index.dart' as distance;
 import 'package:navigation_icon_library/index.dart';
 import 'package:nav_button_builder/index.dart';
 import 'package:navigator/index.dart';
+import 'package:semantic_theme/index.dart';
 import 'package:vertical_floating_artboard_button_option/index.dart';
 
 import 'vertical_floating_artboard.dart';
@@ -22,16 +22,16 @@ class VerticalFloatingArtboardNavigatorPanel<T> extends StatefulWidget {
       InheritedVerticalFloatingArtboardNavigatorPanel<T>();
 
   static InheritedVerticalFloatingArtboardNavigatorPanel of(
-      BuildContext context,
-      {bool shouldRebuild = true}) {
-    final inheritedWidget = (shouldRebuild
-        ? context.inheritFromWidgetOfExactType(
-            _InheritedVerticalFloatingArtboardNavigatorPanel)
-        : context.ancestorWidgetOfExactType(
-            _InheritedVerticalFloatingArtboardNavigatorPanel));
+    BuildContext context, {
+    bool shouldRebuild = true,
+  }) {
+    final inheritedWidget = shouldRebuild
+        ? context.dependOnInheritedWidgetOfExactType<
+            _InheritedVerticalFloatingArtboardNavigatorPanel>()
+        : context.findAncestorWidgetOfExactType<
+            _InheritedVerticalFloatingArtboardNavigatorPanel>();
 
-    return (inheritedWidget as _InheritedVerticalFloatingArtboardNavigatorPanel)
-        .data;
+    return inheritedWidget.data;
   }
 }
 
@@ -41,7 +41,6 @@ class InheritedVerticalFloatingArtboardNavigatorPanel<T>
     extends State<VerticalFloatingArtboardNavigatorPanel<T>>
     with AutomaticKeepAliveClientMixin, IconNavButtonBuilder {
   bool _wantKeepAlive = true;
-  final _buttonMarginBottom = distance.b;
   T _result;
 
   set result(T value) => setState(() => _result = value);
@@ -54,18 +53,26 @@ class InheritedVerticalFloatingArtboardNavigatorPanel<T>
   Widget build(BuildContext context) {
     super.build(context); //necessary for the mixin.
 
+    final theme = SemanticTheme.of(context);
+
     final flexibleColumn = Column(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          Flexible(child: SingleChildScrollView(child: widget.artboard))
-        ]);
+      mainAxisSize: MainAxisSize.max,
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        Flexible(
+          child: SingleChildScrollView(
+            child: widget.artboard,
+          ),
+        )
+      ],
+    );
 
     ///The percent from the bottom where the button will live;
     final halfHeight = MediaQuery.of(context).size.height * 0.5;
     final safeArea = MediaQuery.of(context).padding.bottom;
+    final buttonMarginBottom = theme.distance.spacing.vertical.small;
 
-    final ratio = (halfHeight - _buttonMarginBottom - safeArea) / halfHeight;
+    final ratio = (halfHeight - buttonMarginBottom - safeArea) / halfHeight;
 
     final _alignment = Alignment(0, ratio);
 
@@ -75,9 +82,14 @@ class InheritedVerticalFloatingArtboardNavigatorPanel<T>
       children.add(button);
     }
 
-    final child = Stack(alignment: _alignment, children: children);
+    final child = Stack(
+      alignment: _alignment,
+      children: children,
+    );
     return _InheritedVerticalFloatingArtboardNavigatorPanel(
-        data: this, child: child);
+      data: this,
+      child: child,
+    );
   }
 
   @override
@@ -90,31 +102,51 @@ class InheritedVerticalFloatingArtboardNavigatorPanel<T>
   Widget _navButton() {
     final buttonOption =
         widget.artboard.navButtonOption ?? widget.defaultNavButtonOption;
+
+    Widget button;
     switch (buttonOption) {
       case VerticalFloatingArtboardButtonOption.close:
-        return buildIconNavButton(context,
-            iconReference: NavigationIcon.downArrow, onTap: (context) {
-          ArtboardNavigator.of(context).pop(_result);
-        });
+        button = buildIconNavButton(
+          context,
+          iconReference: NavigationIcon.downArrow,
+          onTap: (context) {
+            ArtboardNavigator.of(context).pop(_result);
+          },
+        );
+        break;
       case VerticalFloatingArtboardButtonOption.previous:
-        return buildIconNavButton(context,
-            iconReference: NavigationIcon.backArrow, onTap: (context) {
-          widget.artboard.didComplete(_result);
-          VerticalFloatingArtboardNavigator.of(context, shouldRebuild: false)
-              .back();
-        });
+        button = buildIconNavButton(
+          context,
+          iconReference: NavigationIcon.backArrow,
+          onTap: (context) {
+            widget.artboard.didComplete(_result);
+            VerticalFloatingArtboardNavigator.of(
+              context,
+              shouldRebuild: false,
+            ).back(context);
+          },
+        );
+        break;
     }
 
-    return null;
+    return Padding(
+      padding: EdgeInsets.only(
+        bottom: SemanticTheme.of(context).distance.padding.vertical.min,
+      ),
+      child: button,
+    );
   }
 }
 
 class _InheritedVerticalFloatingArtboardNavigatorPanel extends InheritedWidget {
   final InheritedVerticalFloatingArtboardNavigatorPanel data;
 
-  _InheritedVerticalFloatingArtboardNavigatorPanel(
-      {@required this.data, @required Widget child})
-      : super(child: child);
+  _InheritedVerticalFloatingArtboardNavigatorPanel({
+    @required this.data,
+    @required Widget child,
+  }) : super(
+          child: child,
+        );
 
   @override
   bool updateShouldNotify(

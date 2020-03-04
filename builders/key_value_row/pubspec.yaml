@@ -13,18 +13,12 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  typography:
+  semantic_theme:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
-      path: spec/typography
-  distance:
-    git:
-      url: git@github.com:RoofVillage/roof-x.git
-      ref: master
-      path: spec/distance
-  theme:
-    git:
-      url: git@github.com:RoofVillage/roof-x.git
-      ref: master
-      path: theme
+      ref: semantic-sm-app
+      path: semantic_theme
+
+dependency_overrides:
+  semantic_theme:
+    path: ../../semantic_theme

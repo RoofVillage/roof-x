@@ -20,8 +20,7 @@ class ViewStreamBuilder<T> extends StatelessWidget {
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
           return loading;
-        } else if (snapshot.data.runtimeType == List &&
-            (snapshot.data as List).isEmpty) {
+        } else if (snapshot.data is List && (snapshot.data as List).isEmpty) {
           return empty;
         } else if (snapshot.data == null) {
           return empty;

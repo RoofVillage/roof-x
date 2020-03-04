@@ -1,0 +1,45 @@
+name: roof_theme
+description: Roof semantic theme.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  semantic_theme:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: semantic_theme
+  cache:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: lib/cache
+  svg:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: svg
+  navigation_icon_library:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: icons/navigation
+
+dependency_overrides:
+  semantic_theme:
+    path: ../../semantic_theme
+  cache:
+    path: ../../lib/cache
+  svg:
+    path: ../../svg
+  navigation_icon_library:
+    path: ../../icons/navigation
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

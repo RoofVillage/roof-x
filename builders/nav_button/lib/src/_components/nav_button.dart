@@ -1,28 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:theme/index.dart';
 import 'package:haptics/index.dart';
+import 'package:semantic_theme/index.dart';
 import 'package:typedefs/index.dart';
-import 'package:distance/index.dart' as distance;
 
-mixin RoofNavButton implements StatelessWidget {
+mixin NavButton implements StatelessWidget {
   ContextPasser get onTap;
 
-  Widget iconForTheme(RoofInheritedTheme theme);
-
-  final _padding = EdgeInsets.all(distance.b);
+  Widget buildIcon(BuildContext context) => null;
 
   final _tapHapticOption = HapticOption.light;
 
   @override
   Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
+    final theme = SemanticTheme.of(context);
 
     return GestureDetector(
       onTapDown: (details) => _fireHaptic(),
       onTap: () => onTap(context),
       child: Container(
-        padding: _padding,
-        child: iconForTheme(theme),
+        padding: EdgeInsets.symmetric(
+          horizontal: theme.distance.padding.horizontal.small,
+          vertical: theme.distance.padding.vertical.small,
+        ),
+        child: buildIcon(context),
       ),
     );
   }

@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:theme/index.dart';
+import 'package:semantic_theme/index.dart';
 import 'package:date/index.dart';
-import 'package:typography/index.dart' as typography;
-import 'package:distance/index.dart' as distance;
 
 import '_picker_field.dart';
 
-class RoofDatePickerField extends StatelessWidget {
+class DatePickerField extends StatelessWidget {
   final String title;
   final DateTime initialValue;
   final DateTime startBound;
@@ -19,7 +17,7 @@ class RoofDatePickerField extends StatelessWidget {
   final Function onTap;
   final FocusNode focusNode;
 
-  RoofDatePickerField({
+  DatePickerField({
     this.title,
     this.initialValue,
     this.startBound,
@@ -33,26 +31,26 @@ class RoofDatePickerField extends StatelessWidget {
     this.focusNode,
   });
 
-  final _typographyStyle = typography.body;
-
   @override
   Widget build(BuildContext context) {
-    final String formattedValue = Date.fromDateTime(initialValue).toLongString;
-    final TextStyle textStyle = _typographyStyle.textStyleWithColor(
-      RoofTheme.of(context).color.text.primary,
-    );
-    final verticalPadding = EdgeInsets.symmetric(vertical: distance.b);
+    final theme = SemanticTheme.of(context);
 
-    final fieldBody = Container(
-      padding: verticalPadding,
+    final String formattedValue = Date.fromDateTime(initialValue).toLongString;
+
+    final fieldBody = Padding(
+      padding: EdgeInsets.symmetric(
+        vertical: theme.distance.padding.vertical.small,
+      ),
       child: Text(
         formattedValue,
-        style: textStyle,
+        style: theme.typography.body.textStyle(
+          color: theme.color.text.generalPrimary,
+        ),
         textAlign: TextAlign.right,
       ),
     );
 
-    return RoofPickerField(
+    return PickerField(
       onTap: onTap,
       name: title,
       fieldBody: fieldBody,

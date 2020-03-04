@@ -1,17 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:distance/index.dart' as distance;
-import 'package:theme/index.dart';
+import 'package:semantic_theme/index.dart';
 
-mixin RoofNavBar implements StatelessWidget {
+mixin NavBar implements StatelessWidget {
   List<Widget> get actionButtons;
   List<Widget> buildNavigationWidgets(BuildContext context);
 
-  final _padding = EdgeInsets.fromLTRB(distance.a, distance.c, distance.a, distance.a);
-
   Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
-    SystemChrome.setSystemUIOverlayStyle(theme.systemChromeStyle);
+    final theme = SemanticTheme.of(context);
+
+    SystemChrome.setSystemUIOverlayStyle(
+      theme.systemUiStyle.systemUiOverlayStyle.value,
+    );
+
+    final List<Widget> rowChildren = [
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: buildNavigationWidgets(context),
+      ),
+    ];
+
+    if (actionButtons != null) {
+      rowChildren.add(
+        Row(children: actionButtons),
+      );
+    }
 
     final itemRow = Center(
       child: Column(
@@ -23,29 +36,25 @@ mixin RoofNavBar implements StatelessWidget {
         children: <Widget>[
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: buildNavigationWidgets(context),
-              ),
-              Row(children: actionButtons),
-            ],
+            children: rowChildren,
           ),
         ],
       ),
     );
 
     final safeAreaTop = MediaQuery.of(context).padding.top;
-    final padding = EdgeInsets.fromLTRB(
-      _padding.left,
-      _padding.top + safeAreaTop,
-      _padding.right,
-      _padding.bottom,
-    );
 
     return Container(
-      padding: padding,
-      decoration: BoxDecoration(color: theme.color.background.inputForeground),
+      padding: EdgeInsets.fromLTRB(
+        theme.distance.gutter.horizontal.small,
+        theme.distance.gutter.vertical.small + safeAreaTop,
+        theme.distance.gutter.horizontal.small,
+        theme.distance.gutter.vertical.small,
+      ),
+      decoration: BoxDecoration(
+        color: theme.color.background.generalSecondary,
+        boxShadow: [theme.shadow.medium],
+      ),
       child: itemRow,
     );
   }

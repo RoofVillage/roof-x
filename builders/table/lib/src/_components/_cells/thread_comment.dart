@@ -1,26 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:theme/index.dart';
+import 'package:semantic_theme/index.dart';
 import 'package:date/index.dart';
 import 'package:haptics/index.dart';
-import 'package:distance/index.dart' as distance;
-import 'package:typography/index.dart' as typography;
 
-class RoofThreadCommentCell extends StatelessWidget {
+class ThreadCommentCell extends StatelessWidget {
   final String creator;
   final int timestamp;
   final String note;
   final VoidCallback onTap;
 
-  RoofThreadCommentCell({
+  ThreadCommentCell({
     @required this.creator,
     @required this.timestamp,
     @required this.note,
     this.onTap,
   });
 
-  final double _horizontalPadding = distance.b;
-  final double _verticalPadding = distance.b;
-  final double _verticalMargin = distance.b;
   final _tapHapticOption = HapticOption.light;
 
   void _fireHaptic() {
@@ -29,14 +24,18 @@ class RoofThreadCommentCell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = SemanticTheme.of(context);
+
     return GestureDetector(
       onTapDown: (details) => _fireHaptic(),
       onTap: onTap,
       child: Container(
-        margin: EdgeInsets.symmetric(vertical: _verticalMargin),
+        margin: EdgeInsets.symmetric(
+          vertical: theme.distance.spacing.vertical.small,
+        ),
         padding: EdgeInsets.symmetric(
-          horizontal: _horizontalPadding,
-          vertical: _verticalPadding,
+          horizontal: theme.distance.padding.horizontal.small,
+          vertical: theme.distance.padding.vertical.small,
         ),
         child: _Body(
           creator: creator,
@@ -59,32 +58,26 @@ class _Body extends StatelessWidget {
     @required this.note,
   });
 
-  final _noteTypographyStyle = typography.body;
-  final _creatorTypographyStyle = typography.bodyThick;
-  final _timestampTypographyStyle = typography.detailSecondary;
-  final _horizontalSpacing = distance.b;
-  final _verticalSpacing = distance.a;
-
   @override
   Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
+    final theme = SemanticTheme.of(context);
 
     final creatorWidget = Text(
       creator,
-      style: _creatorTypographyStyle.textStyleWithColor(
-        theme.color.text.primary,
+      style: theme.typography.bodyHeavy.textStyle(
+        color: theme.color.text.generalPrimary,
       ),
     );
 
     final formattedTimestamp =
         Date.fromSecondsSinceEpoch(timestamp).toAdaptiveString;
 
-    final timestampWidget = Padding(
-      padding: EdgeInsets.only(left: _horizontalSpacing),
+    final timestampWidget = Container(
+      margin: EdgeInsets.only(left: theme.distance.spacing.horizontal.small),
       child: Text(
         formattedTimestamp,
-        style: _timestampTypographyStyle.textStyleWithColor(
-          theme.color.text.secondary,
+        style: theme.typography.detail.textStyle(
+          color: theme.color.text.generalSecondary,
         ),
       ),
     );
@@ -98,12 +91,14 @@ class _Body extends StatelessWidget {
       ],
     );
 
-    final noteWidget = Padding(
-      padding: EdgeInsets.only(top: _verticalSpacing),
+    final noteWidget = Container(
+      margin: EdgeInsets.only(
+        top: theme.distance.spacing.vertical.min,
+      ),
       child: Text(
         note,
-        style: _noteTypographyStyle.textStyleWithColor(
-          theme.color.text.primary,
+        style: theme.typography.body.textStyle(
+          color: theme.color.text.generalPrimary,
         ),
       ),
     );

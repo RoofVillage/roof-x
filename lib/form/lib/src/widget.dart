@@ -25,7 +25,10 @@ class StreamFormBuilder<T extends StreamFormBloc> extends StatelessWidget {
     return StreamBuilder<StreamableFormData>(
       stream: formBloc.outForm,
       builder: (context, snapshot) {
-        if (!snapshot.hasData) return Container(child: Text("Moo"));
+        if (!snapshot.hasData)
+          return Container(
+            child: Text("Snapshot has no data"),
+          );
 
         return _createForm(
           bloc: formBloc,

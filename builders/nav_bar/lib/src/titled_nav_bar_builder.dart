@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 
-import '_components/title.dart';
+import '_components/title_nav_bar.dart';
 import '_components/nav_bar.dart';
 
 mixin TitledNavBarBuilder {
-  String get title => null;
-
-  List<Widget> buildActionButtons(BuildContext context);
-  Widget buildNavButton(BuildContext context);
-
-  RoofNavBar buildTitledNavBar(BuildContext context) {
-    return RoofTitleNavBar(
-      actionButtons: buildActionButtons(context),
+  NavBar buildTitledNavBar(
+    BuildContext context, {
+    String title,
+    String subtitle,
+    Widget navButton,
+    List<Widget> actionButtons,
+  }) {
+    return TitleNavBar(
       title: title,
-      navButton: buildNavButton(context),
+      subtitle: subtitle,
+      navButton: navButton,
+      actionButtons: actionButtons,
     );
   }
 }

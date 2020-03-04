@@ -12,28 +12,22 @@ dependencies:
   x_small_icon_library:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-sm-app
       path: icons/x_small
-  typography:
-    git:
-      url: git@github.com:RoofVillage/roof-x.git
-      ref: master
-      path: spec/typography
-  theme:
-    git:
-      url: git@github.com:RoofVillage/roof-x.git
-      ref: master
-      path: theme
   haptics:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-sm-app
       path: lib/haptics
-  distance:
+  semantic_theme:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
-      path: spec/distance
+      ref: semantic-sm-app
+      path: semantic_theme
+
+dependency_overrides:
+  semantic_theme:
+    path: ../../semantic_theme
 
 dev_dependencies:
   flutter_test:

@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:table/index.dart';
 
-import '_components/roof_stream_table.dart';
+import '_components/standard_stream_table.dart';
 
 mixin TableBuilder {
   Future<List<StreamableTableRowData>> get rowData => null;
@@ -12,9 +12,9 @@ mixin TableBuilder {
 
   StreamTableBloc get table => _table.bloc;
 
-  final _table = RoofStreamTable();
+  final _table = StandardStreamTable();
 
-  RoofStreamTable buildTable(BuildContext context) {
+  StandardStreamTable buildTable(BuildContext context) {
     _load(context);
     return _table;
   }

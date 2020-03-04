@@ -9,36 +9,32 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  typography:
-    git:
-      url: git@github.com:RoofVillage/roof-x.git
-      ref: master
-      path: spec/typography
-  theme:
-    git:
-      url: git@github.com:RoofVillage/roof-x.git
-      ref: master
-      path: theme
   haptics:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-sm-app
       path: lib/haptics
-  distance:
-    git:
-      url: git@github.com:RoofVillage/roof-x.git
-      ref: master
-      path: spec/distance
   input_dock_builder:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-sm-app
       path: builders/input_dock
   tab:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-sm-app
       path: tab
+  semantic_theme:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: semantic_theme
+
+dependency_overrides:
+  semantic_theme:
+    path: ../../semantic_theme
+  input_dock_builder:
+    path: ../input_dock
 
 dev_dependencies:
   flutter_test:

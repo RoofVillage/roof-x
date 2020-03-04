@@ -13,23 +13,27 @@ dependencies:
   network:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-sm-app
       path: lib/network
   synchronizer:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-sm-app
       path: synchronizer
   session:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-sm-app
       path: session
   public:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-sm-app
       path: model/objects/public
+
+dependency_overrides:
+  network:
+    path: ../lib/network
 
 dev_dependencies:
   flutter_test:

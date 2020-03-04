@@ -12,58 +12,48 @@ dependencies:
   keyboard_accessory:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-sm-app
       path: lib/keyboard_accessory
   artboard:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-sm-app
       path: lib/artboard
-  curve:
-    git:
-      url: git@github.com:RoofVillage/roof-x.git
-      ref: master
-      path: spec/curve
-  distance:
-    git:
-      url: git@github.com:RoofVillage/roof-x.git
-      ref: master
-      path: spec/distance
-  duration:
-    git:
-      url: git@github.com:RoofVillage/roof-x.git
-      ref: master
-      path: spec/duration
-  corner_radius:
-    git:
-      url: git@github.com:RoofVillage/roof-x.git
-      ref: master
-      path: spec/corner_radius
-  theme:
-    git:
-      url: git@github.com:RoofVillage/roof-x.git
-      ref: master
-      path: theme
   navigator:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-sm-app
       path: lib/navigator
   vertical_floating_artboard_button_option:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-sm-app
       path: options/vertical_floating_artboard_button
   nav_button_builder:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-sm-app
       path: builders/nav_button
   navigation_icon_library:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-sm-app
       path: icons/navigation
+  semantic_theme:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: semantic_theme
+
+dependency_overrides:
+  artboard:
+    path: ../../lib/artboard
+  navigator:
+    path: ../../lib/navigator
+  nav_button_builder:
+    path: ../../builders/nav_button
+  semantic_theme:
+    path: ../../semantic_theme
 
 dev_dependencies:
   flutter_test:

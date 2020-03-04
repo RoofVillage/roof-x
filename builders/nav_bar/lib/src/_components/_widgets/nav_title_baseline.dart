@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 
 class NavTitleBaseline extends StatelessWidget {
   final Text text;
+  final double baseline;
 
-  final double baseline = 20;
-
-  NavTitleBaseline({this.text});
+  NavTitleBaseline({
+    this.text,
+    baseline,
+  }) : this.baseline = baseline ?? 25;
 
   @override
   Widget build(BuildContext context) {

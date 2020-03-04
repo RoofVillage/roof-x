@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:duration/index.dart' as duration;
-import 'package:curve/index.dart' as curve;
-import 'package:distance/index.dart' as distance;
+import 'package:semantic_theme/index.dart';
 import 'package:standard_icon_library/index.dart';
-import 'package:theme/index.dart';
-import 'package:typography/index.dart' as typography;
 import 'package:haptics/index.dart';
 
 import '../input_dock.dart';
@@ -29,11 +25,11 @@ class _DockInputFieldState extends State<DockInputField> {
 
   _textChanged() {
     _dock.text = _textController.text;
-    RoofInputDock.of(context, shouldRebuild: false).text = _textController.text;
+    InputDock.of(context, shouldRebuild: false).text = _textController.text;
   }
 
   _resetText() {
-    RoofInputDock.of(context, shouldRebuild: false).text = _textController.text;
+    InputDock.of(context, shouldRebuild: false).text = _textController.text;
   }
 
   @override
@@ -51,7 +47,7 @@ class _DockInputFieldState extends State<DockInputField> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    _dock = RoofInputDock.of(context);
+    _dock = InputDock.of(context);
   }
 
   @override
@@ -111,8 +107,6 @@ class _TextFieldComponent extends StatelessWidget {
 
   static const String _hintText = "Add comment";
 
-  final _commentTextStyle = typography.body;
-
   final _enabledBorder =
       OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent));
   final _focusedBorder =
@@ -120,19 +114,14 @@ class _TextFieldComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
-
-    final hintStyle = _commentTextStyle.textStyleWithColor(
-      theme.color.text.placeholder,
-    );
-    final textStyle = _commentTextStyle.textStyleWithColor(
-      theme.color.text.primary,
-    );
+    final theme = SemanticTheme.of(context);
 
     final textFieldDecoration = InputDecoration(
       contentPadding: EdgeInsets.all(0),
       hintText: _hintText,
-      hintStyle: hintStyle,
+      hintStyle: theme.typography.body.textStyle(
+        color: theme.color.text.inputPlaceholder,
+      ),
       border: OutlineInputBorder(),
       enabledBorder: _enabledBorder,
       focusedBorder: _focusedBorder,
@@ -140,7 +129,9 @@ class _TextFieldComponent extends StatelessWidget {
 
     final textField = TextField(
       maxLines: null,
-      style: textStyle,
+      style: theme.typography.body.textStyle(
+        color: theme.color.text.generalPrimary,
+      ),
       textInputAction: TextInputAction.done,
       decoration: textFieldDecoration,
       controller: controller,
@@ -179,21 +170,23 @@ class _TextCounter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
+    final theme = SemanticTheme.of(context);
 
     final bool showTextCounter = charCount > charShowCount;
     final bool showAlert = charCount > charMaxCount;
 
-    final textCounterStyle = typography.detailSecondary.textStyleWithColor(
-      showAlert ? theme.color.text.alert : theme.color.text.placeholder,
-    );
-
     return Container(
-      padding: EdgeInsets.symmetric(vertical: distance.a),
+      padding: EdgeInsets.symmetric(
+        vertical: theme.distance.padding.vertical.min,
+      ),
       height: showTextCounter ? null : 0,
       child: Text(
         showTextCounter ? "$charCount/$charMaxCount" : "",
-        style: textCounterStyle,
+        style: theme.typography.detail.textStyle(
+          color: showAlert
+              ? theme.color.text.warn
+              : theme.color.text.inputPlaceholder,
+        ),
       ),
     );
   }
@@ -207,19 +200,19 @@ class _SubmitButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final dock = RoofInputDock.of(context);
-    final theme = RoofTheme.of(context);
+    final dock = InputDock.of(context);
+    final theme = SemanticTheme.of(context);
 
-    final activeIconColor = theme.color.background.primaryAction;
-    final inactiveIconColor = theme.color.background.inactiveAction;
+    final activeIconColor = theme.color.background.actionPrimary;
+    final inactiveIconColor = theme.color.background.actionDisabled;
     final sendIcon = StandardIcon.send;
     final activeSendIcon = sendIcon.buildWidget(color: activeIconColor);
     final inactiveSendIcon = sendIcon.buildWidget(color: inactiveIconColor);
 
     final animatedSubmitButton = AnimatedCrossFade(
-      duration: duration.short,
-      firstCurve: curve.easy,
-      secondCurve: curve.quick,
+      duration: theme.duration.short,
+      firstCurve: theme.curve.delayed,
+      secondCurve: theme.curve.hurried,
       crossFadeState:
           canSubmit ? CrossFadeState.showFirst : CrossFadeState.showSecond,
       firstChild: activeSendIcon,
@@ -242,16 +235,19 @@ class _SubmitButton extends StatelessWidget {
 
     return Container(
       alignment: Alignment.centerRight,
-      padding: EdgeInsets.only(right: distance.c),
+      margin: EdgeInsets.only(
+        right: theme.distance.spacing.horizontal.medium,
+      ),
       height: dock.baseHeight,
       child: AnimatedOpacity(
         opacity: dock.showSubmitButton ? 1 : 0,
-        duration: duration.short,
-        curve: curve.easy,
+        duration: theme.duration.short,
+        curve: theme.curve.delayed,
         child: GestureDetector(
-            onTap: tapAction,
-            onTapDown: tapDownAction,
-            child: animatedSubmitButton),
+          onTap: tapAction,
+          onTapDown: tapDownAction,
+          child: animatedSubmitButton,
+        ),
       ),
     );
   }

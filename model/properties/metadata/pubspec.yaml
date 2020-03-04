@@ -11,17 +11,17 @@ dependencies:
   event_meta_value_type:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-sm-app
       path: types/event_meta_value
   mappable:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-sm-app
       path: model/mixins/mappable
   key:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-sm-app
       path: model/key
 
 dev_dependencies:

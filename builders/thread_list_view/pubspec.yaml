@@ -9,16 +9,15 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  theme:
+  semantic_theme:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
-      path: theme
-  distance:
-    git:
-      url: git@github.com:RoofVillage/roof-x.git
-      ref: master
-      path: spec/distance
+      ref: semantic-sm-app
+      path: semantic_theme
+
+dependency_overrides:
+  semantic_theme:
+    path: ../../semantic_theme
 
 dev_dependencies:
   flutter_test:

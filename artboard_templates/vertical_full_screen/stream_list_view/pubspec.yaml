@@ -1,0 +1,58 @@
+name: stream_list_view_vertical_full_screen_artboard_template
+description: A vertical full screen frame with a list view and nav header.
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.2.2 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  artboard:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: lib/artboard
+  vertical_full_screen_artboard_scaffold:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: artboard_scaffolds/vertical_full_screen
+  page_header_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: builders/page_header
+  nav_bar_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: builders/nav_bar
+  view_stream_builder_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: builders/view_stream_builder
+  spaced_list_view_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: builders/spaced_list_view
+
+dependency_overrides:
+  page_header_builder:
+    path: ../../../builders/page_header
+  view_stream_builder_builder:
+    path: ../../../builders/view_stream_builder
+  nav_bar_builder:
+    path: ../../../builders/nav_bar
+  vertical_full_screen_artboard_scaffold:
+    path: ../../../artboard_scaffolds/vertical_full_screen
+  inherited_scroll_controller_builder:
+    path: ../../../builders/inherited_scroll_controller
+  spaced_list_view_builder:
+    path: ../../../builders/spaced_list_view
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

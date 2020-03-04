@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:tag_kind_option/index.dart';
-import 'package:theme/index.dart';
 import 'package:date/index.dart';
 import 'package:tag_builder/index.dart';
 import 'package:key_value_row_builder/index.dart';
@@ -47,7 +46,7 @@ class MaintenanceCell extends StatelessWidget with KeyValueRowBuilder {
   }
 }
 
-class _StatusTag extends StatelessWidget with RoofTagBuilder {
+class _StatusTag extends StatelessWidget with TagBuilder {
   final RequestStatusOption status;
 
   _StatusTag(this.status);

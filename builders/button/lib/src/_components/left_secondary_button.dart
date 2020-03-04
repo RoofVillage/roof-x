@@ -1,31 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:theme/index.dart';
+import 'package:semantic_theme/index.dart';
 import 'package:standard_icon_library/index.dart';
 import 'package:typedefs/index.dart';
 
 import '_mixins/left_button.dart';
 export '_mixins/left_button.dart';
 
-class RoofSecondaryLeftButton extends StatefulWidget with RoofLeftButton {
+class SecondaryLeftButton extends StatefulWidget with LeftStyleButton {
   final ContextPasser onTap;
   final String text;
   final StandardIcon iconReference;
   final bool hasArrow;
 
   get backgroundColor => (context) {
-        final theme = RoofTheme.of(context);
-        return theme.color.background.secondaryAction;
-      };
-  get textColor => (context) {
-        final theme = RoofTheme.of(context);
-        return theme.color.text.secondary;
-      };
-  get arrowColor => (context) {
-        final theme = RoofTheme.of(context);
-        return theme.color.icon.general;
+        return SemanticTheme.of(context).color.background.actionSecondary;
       };
 
-  RoofSecondaryLeftButton({
+  get textColor => (context) {
+        return SemanticTheme.of(context).color.text.onActionSecondaryBackground;
+      };
+
+  get arrowColor => (context) {
+        return SemanticTheme.of(context).color.icon.generalSecondary;
+      };
+
+  SecondaryLeftButton({
     @required this.onTap,
     @required this.text,
     this.iconReference,
@@ -33,14 +32,14 @@ class RoofSecondaryLeftButton extends StatefulWidget with RoofLeftButton {
   });
 
   @override
-  State<StatefulWidget> createState() => _RoofSecondaryLeftButtonState();
+  State<StatefulWidget> createState() => _SecondaryLeftButtonState();
 }
 
-class _RoofSecondaryLeftButtonState extends State<RoofSecondaryLeftButton>
-    with RoofLeftButtonState {
+class _SecondaryLeftButtonState extends State<SecondaryLeftButton>
+    with LeftButtonState {
   @override
   Widget build(BuildContext context) => buildButton(context);
 
   @override
-  RoofLeftButton get button => widget;
+  LeftStyleButton get button => widget;
 }

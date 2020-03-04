@@ -1,7 +1,10 @@
-import 'dart:async';
-
 abstract class TokenStore {
-  String get tokenKey;
-  void Function(String) get saveToken;
-  FutureOr<String> Function() get readToken;
+  void Function(String) get saveSessionToken;
+  void Function(String) get saveChallengeToken;
+
+  Future<String> Function() get readSessionToken;
+  Future<String> Function() get readChallengeToken;
+
+  void Function() get deleteSessionToken;
+  void Function() get deleteChallengeToken;
 }

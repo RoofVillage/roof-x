@@ -1,0 +1,24 @@
+import 'package:semantic_theme/index.dart';
+
+import '_distance.dart' as distance;
+
+class RoofGutterDistance extends SemanticSymmetryDistance {
+  SemanticDistance get horizontal => _Horizontal();
+  SemanticDistance get vertical => _Vertical();
+}
+
+class _Horizontal extends SemanticDistance {
+  double get min => distance.b;
+  double get small => distance.c;
+  double get medium => distance.d;
+  double get large => distance.e;
+  double get max => distance.f;
+}
+
+class _Vertical extends SemanticDistance {
+  double get min => distance.a;
+  double get small => distance.b;
+  double get medium => distance.c;
+  double get large => distance.d;
+  double get max => distance.e;
+}

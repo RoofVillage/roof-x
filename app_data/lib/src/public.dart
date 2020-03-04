@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
+import 'package:network/index.dart';
 import 'package:public/index.dart';
 
 import 'utils/index.dart';
@@ -24,7 +25,7 @@ class PublicActivity {
       params: params,
     );
 
-    final objects = await compute<String, List<Object>>(
+    final objects = await compute<PostResponse, List<Object>>(
       _streamableDataFromResponse,
       response,
     );
@@ -33,8 +34,8 @@ class PublicActivity {
   }
 }
 
-List<Object> _streamableDataFromResponse(String response) {
-  final dataConvertedToJson = json.decode(response);
+List<Object> _streamableDataFromResponse(PostResponse response) {
+  final dataConvertedToJson = response.body;
   final List publicActivity = dataConvertedToJson[_param.publicActivity];
 
   if (publicActivity == null) return [];

@@ -1,0 +1,57 @@
+name: vertical_drawer_artboard_scaffold
+description: Tools to for scaffolding and navigating to a vertical drawer artboard.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  vertical_floating_artboard_scaffold:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: artboard_scaffolds/vertical_floating
+  horizontal_floating_artboard_scaffold:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: artboard_scaffolds/horizontal_floating
+  keyboard_accessory:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: lib/keyboard_accessory
+  artboard:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: lib/artboard
+  semantic_theme:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: semantic_theme
+  navigator:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: lib/navigator
+
+dependency_overrides:
+  navigator:
+    path: ../../lib/navigator
+  artboard:
+    path: ../../lib/artboard
+  semantic_theme:
+    path: ../../semantic_theme
+  vertical_floating_artboard_scaffold:
+    path: ../vertical_floating
+  horizontal_floating_artboard_scaffold:
+    path: ../horizontal_floating
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

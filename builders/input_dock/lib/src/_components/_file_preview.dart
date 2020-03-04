@@ -2,10 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:multi_image_picker/asset.dart';
-import 'package:duration/index.dart' as duration;
-import 'package:curve/index.dart' as curve;
-import 'package:distance/index.dart' as distance;
-import 'package:corner_radius/index.dart' as corner_radius;
+import 'package:semantic_theme/index.dart';
 import 'package:standard_icon_library/index.dart';
 import 'package:haptics/index.dart';
 
@@ -21,11 +18,13 @@ class DockFilePreviewState extends State<DockFilePreview>
 
   @override
   void didChangeDependencies() {
-    Future.delayed(duration.short, () {
+    final theme = SemanticTheme.of(context);
+
+    Future.delayed(theme.duration.short, () {
       _listViewController.animateTo(
         _listViewController.position.maxScrollExtent,
-        duration: duration.short,
-        curve: curve.quick,
+        duration: theme.duration.short,
+        curve: theme.curve.hurried,
       );
     });
     super.didChangeDependencies();
@@ -33,7 +32,8 @@ class DockFilePreviewState extends State<DockFilePreview>
 
   @override
   Widget build(BuildContext context) {
-    final dock = RoofInputDock.of(context);
+    final dock = InputDock.of(context);
+    final theme = SemanticTheme.of(context);
 
     final previews = <Widget>[];
 
@@ -53,7 +53,9 @@ class DockFilePreviewState extends State<DockFilePreview>
       height: dock.files.isNotEmpty ? dock.previewHeight : 0,
       child: ListView(
         controller: _listViewController,
-        padding: EdgeInsets.symmetric(horizontal: distance.c),
+        padding: EdgeInsets.symmetric(
+          horizontal: theme.distance.padding.horizontal.medium,
+        ),
         scrollDirection: Axis.horizontal,
         children: previews,
       ),
@@ -61,8 +63,8 @@ class DockFilePreviewState extends State<DockFilePreview>
 
     return AnimatedSize(
       vsync: this,
-      curve: curve.quick,
-      duration: duration.short,
+      curve: theme.curve.hurried,
+      duration: theme.duration.short,
       child: previewRow,
     );
   }
@@ -93,14 +95,19 @@ class _FilePreviewState extends State<_FilePreview>
   bool _show = true;
 
   _remove() {
+    final theme = SemanticTheme.of(context);
+
     triggerHapticWith(HapticOption.click);
 
     if (widget.animateOnRemove) {
       setState(() => _show = false);
-      Future.delayed(duration.short, () {
-        widget.removeFile();
-        widget.file.release();
-      });
+      Future.delayed(
+        theme.duration.short,
+        () {
+          widget.removeFile();
+          widget.file.release();
+        },
+      );
     } else {
       widget.removeFile();
       widget.file.release();
@@ -109,6 +116,8 @@ class _FilePreviewState extends State<_FilePreview>
 
   @override
   Widget build(BuildContext context) {
+    final theme = SemanticTheme.of(context);
+
     final removeIcon = StandardIcon.close.buildWidget(
       color: Colors.black.withAlpha(180),
     );
@@ -117,7 +126,9 @@ class _FilePreviewState extends State<_FilePreview>
       onTap: _remove,
       child: Container(
         width: _show ? null : 0,
-        padding: EdgeInsets.all(distance.a),
+        padding: EdgeInsets.all(
+          theme.distance.padding.horizontal.small,
+        ),
         child: removeIcon,
       ),
     );
@@ -129,15 +140,15 @@ class _FilePreviewState extends State<_FilePreview>
     );
 
     final imageWidget = ClipRRect(
-      borderRadius: BorderRadius.all(corner_radius.small),
+      borderRadius: BorderRadius.all(theme.radius.small),
       clipBehavior: Clip.antiAliasWithSaveLayer,
       child: thumbnail,
     );
 
     final animatedWidthContainer = AnimatedSize(
       vsync: this,
-      curve: curve.quick,
-      duration: duration.short,
+      curve: theme.curve.hurried,
+      duration: theme.duration.short,
       alignment: Alignment.topLeft,
       child: Container(
         width: _show ? widget.previewWidth : 0,
@@ -147,15 +158,19 @@ class _FilePreviewState extends State<_FilePreview>
 
     return AnimatedOpacity(
       opacity: _show ? 1 : 0,
-      curve: curve.quick,
-      duration: duration.short,
+      curve: theme.curve.hurried,
+      duration: theme.duration.short,
       child: Container(
         margin: EdgeInsets.only(
-          top: distance.c,
-          right: widget.isRightPadded ? distance.a : 0,
+          top: theme.distance.spacing.vertical.medium,
+          right:
+              widget.isRightPadded ? theme.distance.spacing.horizontal.min : 0,
         ),
         child: Stack(
-          children: [animatedWidthContainer, removeButton],
+          children: [
+            animatedWidthContainer,
+            removeButton,
+          ],
         ),
       ),
     );

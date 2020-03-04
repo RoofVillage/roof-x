@@ -13,7 +13,9 @@ abstract class StreamForm<T extends StreamableFormFieldData,
 
   Widget build(BuildContext context) {
     final form = StreamFormBuilder(
-        buildField: buildField, buildSectionHeader: buildSectionHeader);
+      buildField: buildField,
+      buildSectionHeader: buildSectionHeader,
+    );
 
     return BlocProvider(
       bloc: bloc,
@@ -21,17 +23,19 @@ abstract class StreamForm<T extends StreamableFormFieldData,
     );
   }
 
-  Widget buildField(
-          {@required T fieldData,
-          @required StreamableFormData formData,
-          @required int fieldIndex,
-          @required int sectionIndex,
-          @required BuildContext context}) =>
+  Widget buildField({
+    @required T fieldData,
+    @required StreamableFormData formData,
+    @required int fieldIndex,
+    @required int sectionIndex,
+    @required BuildContext context,
+  }) =>
       null;
 
-  Widget buildSectionHeader(
-          {@required U headerData,
-          @required int sectionIndex,
-          @required BuildContext context}) =>
+  Widget buildSectionHeader({
+    @required U headerData,
+    @required int sectionIndex,
+    @required BuildContext context,
+  }) =>
       null;
 }

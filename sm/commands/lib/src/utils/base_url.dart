@@ -1,1 +1,0 @@
-const String coreStagingBaseUrl = "core.staging.sm.network";

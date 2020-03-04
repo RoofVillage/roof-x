@@ -5,19 +5,22 @@ class MoneyStringMask extends StringMask {
   static final intMask = "0";
 
   final bool isEditing;
+  final bool withDecimals;
   final String decimalSeparator;
   final String groupSeparator;
   final String rightSymbol;
   final String leftSymbol;
   final int precision;
 
-  MoneyStringMask(
-      {this.isEditing,
-      this.decimalSeparator = ',',
-      this.groupSeparator = '.',
-      this.rightSymbol = '',
-      this.leftSymbol = '',
-      this.precision = 2});
+  MoneyStringMask({
+    this.isEditing,
+    this.withDecimals = true,
+    this.decimalSeparator = ',',
+    this.groupSeparator = '.',
+    this.rightSymbol = '',
+    this.leftSymbol = '',
+    this.precision = 2,
+  });
 
   @override
   String apply(String text, bool isEditing) {
@@ -46,6 +49,8 @@ class MoneyStringMask extends StringMask {
 
     String body = applyMask(integer, _maskForInteger(integer));
 
+    if (!withDecimals) return body;
+    
     if (numDecimalSeparators > 0) {
       body += decimalSeparator;
       if (decimalGroups.length > 1) {

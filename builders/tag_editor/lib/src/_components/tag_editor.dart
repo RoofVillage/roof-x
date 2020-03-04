@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:haptics/index.dart';
-import 'package:curve/index.dart' as curve;
-import 'package:duration/index.dart' as duration;
-import 'package:distance/index.dart' as distance;
+import 'package:semantic_theme/index.dart';
 
 import '_tags_wrap.dart';
 import '_textfield_with_add_button.dart';
@@ -51,10 +49,12 @@ class _TagEditorState extends State<TagEditor>
 
   @override
   Widget build(BuildContext context) {
+    final theme = SemanticTheme.of(context);
+
     final animatedTagsWrap = AnimatedSize(
       vsync: this,
-      curve: curve.easy,
-      duration: duration.short,
+      curve: theme.curve.delayed,
+      duration: theme.duration.short,
       alignment: Alignment.topCenter,
       child: Row(
         children: [
@@ -85,8 +85,11 @@ class _TagEditorState extends State<TagEditor>
       ),
     );
 
-    return Container(
-      padding: EdgeInsets.all(distance.c),
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        horizontal: theme.distance.padding.horizontal.medium,
+        vertical: theme.distance.padding.vertical.medium,
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[

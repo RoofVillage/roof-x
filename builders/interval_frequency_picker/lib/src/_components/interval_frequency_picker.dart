@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:period_type/index.dart';
-import 'package:distance/index.dart' as distance;
 import 'package:labeled_value/index.dart';
 import 'package:roller_column_builder/index.dart';
 import 'package:frequency/index.dart';
+import 'package:semantic_theme/index.dart';
 
 class IntervalFrequencyPicker extends StatefulWidget {
   final Frequency selectedValue;
@@ -24,9 +24,6 @@ class IntervalFrequencyPicker extends StatefulWidget {
 
 class IntervalFrequencyPickerState extends State<IntervalFrequencyPicker>
     with RollerColumnBuilder {
-  final double _verticalPadding = distance.c;
-  final double _columnSpacing = distance.e;
-
   Frequency _selectedSchedule;
 
   @override
@@ -42,9 +39,13 @@ class IntervalFrequencyPickerState extends State<IntervalFrequencyPicker>
 
   @override
   Widget build(BuildContext context) {
+    final theme = SemanticTheme.of(context);
+
+    final double columnSpacing = theme.distance.spacing.horizontal.large;
+
     final Widget intervalColumn = Flexible(
       child: Container(
-        padding: EdgeInsets.only(right: _columnSpacing / 2),
+        padding: EdgeInsets.only(right: columnSpacing / 2),
         child: buildRollerColumn<int>(
           context,
           list: widget.intervalList,
@@ -59,7 +60,7 @@ class IntervalFrequencyPickerState extends State<IntervalFrequencyPicker>
 
     final Widget frequencyColumn = Flexible(
       child: Container(
-        padding: EdgeInsets.only(left: _columnSpacing / 2),
+        padding: EdgeInsets.only(left: columnSpacing / 2),
         child: buildRollerColumn<PeriodType>(
           context,
           list: widget.periodList,
@@ -73,7 +74,9 @@ class IntervalFrequencyPickerState extends State<IntervalFrequencyPicker>
     );
 
     return Container(
-      padding: EdgeInsets.symmetric(vertical: _verticalPadding),
+      padding: EdgeInsets.symmetric(
+        vertical: theme.distance.padding.vertical.medium,
+      ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
@@ -92,8 +95,7 @@ class IntervalFrequencyPickerState extends State<IntervalFrequencyPicker>
     return null;
   }
 
-  LabeledValue<PeriodType> _rollerColumnDataFromFrequency(
-      PeriodType val) {
+  LabeledValue<PeriodType> _rollerColumnDataFromFrequency(PeriodType val) {
     for (LabeledValue<PeriodType> data in widget.periodList) {
       if (data.value.toString() == val?.toString()) return data;
     }

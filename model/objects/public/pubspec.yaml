@@ -11,7 +11,7 @@ dependencies:
   key:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-sm-app
       path: model/key
 
 dev_dependencies:

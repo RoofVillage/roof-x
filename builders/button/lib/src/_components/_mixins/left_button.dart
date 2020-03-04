@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:semantic_theme/index.dart';
 import 'package:standard_icon_library/index.dart';
 import 'package:haptics/index.dart';
 import 'package:typedefs/index.dart';
-import 'package:distance/index.dart' as distance;
-import 'package:corner_radius/index.dart' as corner_radius;
-import 'package:typography/index.dart' as typography;
 
-mixin RoofLeftButton {
+mixin LeftStyleButton {
   ContextPasser get onTap;
   String get text;
   StandardIcon get iconReference => null;
@@ -16,39 +14,44 @@ mixin RoofLeftButton {
   ColorGetter get textColor;
 }
 
-mixin RoofLeftButtonState {
-  RoofLeftButton get button;
+mixin LeftButtonState {
+  LeftStyleButton get button;
   BuildContext get context;
 
   bool _tapped = false;
   double _tappedOpacity = 0.75;
-  final _textStyle = typography.button;
   final double _height = 50;
   final _tapHapticOption = HapticOption.light;
 
   void setState(dynamic());
 
   Widget buildButton(BuildContext context) {
+    final theme = SemanticTheme.of(context);
+
     List<Widget> buttonChildren = [];
 
     final textColor = button.textColor(context);
 
     if (button.iconReference != null) {
       final iconPadding = button.text != null
-          ? EdgeInsets.only(right: distance.b)
+          ? EdgeInsets.only(right: theme.distance.padding.horizontal.small)
           : EdgeInsets.all(0);
 
       final buttonIcon = Container(
-          padding: iconPadding,
-          child: button.iconReference.buildWidget(color: textColor));
+        padding: iconPadding,
+        child: button.iconReference.buildWidget(color: textColor),
+      );
 
       buttonChildren.add(buttonIcon);
     }
 
-    final textDecoration = _textStyle.textStyleWithColor(textColor);
+    final textDecoration = theme.typography.button.textStyle(color: textColor);
 
-    final styledButtonText =
-        Text(button.text, style: textDecoration, textAlign: TextAlign.center);
+    final styledButtonText = Text(
+      button.text,
+      style: textDecoration,
+      textAlign: TextAlign.center,
+    );
 
     final textContainer = Expanded(child: styledButtonText);
 
@@ -64,7 +67,9 @@ mixin RoofLeftButtonState {
 
     final decoration = BoxDecoration(
       color: button.backgroundColor(context).withOpacity(opacity),
-      borderRadius: BorderRadius.all(corner_radius.regular),
+      borderRadius: BorderRadius.all(
+        theme.radius.medium,
+      ),
     );
 
     return GestureDetector(

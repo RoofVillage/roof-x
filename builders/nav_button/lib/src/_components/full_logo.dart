@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:svg/index.dart';
-import 'package:theme/index.dart';
+import 'package:semantic_theme/index.dart';
 import 'package:typedefs/index.dart';
 
 import 'nav_button.dart';
 
-class RoofFullLogoNavButton extends StatelessWidget with RoofNavButton {
+class FullLogoNavButton extends StatelessWidget with NavButton {
   final ContextPasser onTap;
 
   @override
-  Widget iconForTheme(RoofInheritedTheme theme) {
-    return SvgReference.logoFull.buildSvg(color: theme.color.icon.logo);
+  Widget buildIcon(BuildContext context) {
+    return SemanticTheme.of(context).logo.full;
   }
 
-  RoofFullLogoNavButton({@required this.onTap});
+  FullLogoNavButton({
+    @required this.onTap,
+  });
 }

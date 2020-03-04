@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:form/index.dart';
+import 'package:form_submission_exception/index.dart';
 import 'package:form_validation_exception/index.dart';
 import 'package:haptics/index.dart';
 import 'package:date/index.dart';
@@ -18,7 +19,7 @@ import 'package:artboard/index.dart';
 import 'package:period_type/index.dart';
 import 'package:tag_editor_builder/index.dart';
 import '_components/keyboard_accessory_buttons/index.dart';
-import '_components/roof_stream_form.dart';
+import '_components/standard_stream_form.dart';
 import 'form_status.dart';
 
 mixin FormBodyBuilder implements StatefulWidget {
@@ -37,15 +38,17 @@ mixin FormBodyBuilder implements StatefulWidget {
 
   StreamFormBloc get form => _form.bloc;
 
-  final _form = RoofStreamForm();
+  final _form = StandardStreamForm();
 
   // An opportunity for forms to throw an exception before being submitted.
   Future<void> validate() async {}
   Future<void> submit(BuildContext context);
 
   // An opportunity for forms to setup additional properties before building.
-  void setupFields(BuildContext context,
-      {@required List<StreamableFormFieldData> fieldData}) {}
+  void setupFields(
+    BuildContext context, {
+    @required List<StreamableFormFieldData> fieldData,
+  }) {}
 
   DatePickerBuilder buildDatePicker(
     BuildContext context, {
@@ -86,16 +89,25 @@ mixin FormBodyBuilder implements StatefulWidget {
     List<LabeledValue<T>> options,
   });
 
-  TagEditorArtboardBuilder buildTagEditor(BuildContext context,
-      {List<String> tags});
+  TagEditorArtboardBuilder buildTagEditor(
+    BuildContext context, {
+    List<String> tags,
+  });
 
-  Future<T> goTo<T>(
-      {@required BuildContext context, @required Artboard<T> artboard});
-  void onFocusChanged(
-      {@required BuildContext context, @required bool isInFocus});
+  Future<T> goTo<T>({
+    @required BuildContext context,
+    @required Artboard<T> artboard,
+  });
 
-  void _setup(BuildContext context,
-      {@required List<StreamableFormFieldData> fieldData}) async {
+  void onFocusChanged({
+    @required BuildContext context,
+    @required bool isInFocus,
+  });
+
+  void _setup(
+    BuildContext context, {
+    @required List<StreamableFormFieldData> fieldData,
+  }) async {
     for (final data in fieldData) {
       if (data is FormDatePickerFieldData)
         _setupDateFieldData(context, data: data);
@@ -109,41 +121,47 @@ mixin FormBodyBuilder implements StatefulWidget {
         _setupIntervalFrequencyPickerFieldData(context, data: data);
       if (data is FormRollerColumnPickerFieldData)
         _setupRollerColumnPickerFieldData(context, data: data);
-      if (data is FormTagFieldData)
-        _setupTagFieldData(context, data: data);
+      if (data is FormTagFieldData) _setupTagFieldData(context, data: data);
     }
+
     setupFields(context, fieldData: fieldData);
   }
 
   Future<void> _validateFields() async {
-    return Future.wait(form.formData.fieldData
-        .where((data) => data.isVisible)
-        .map((data) async => await data.validate()));
-  }
-
-  Widget _buildSubmitKeyboardAccessory(BuildContext context) {
-    return PrimaryActionKeyboardAccessoryButton(
-      onTap: (context) {
-        _form.resignFocus(context);
-        submit(context);
-      },
-      title: submitButtonText,
+    return Future.wait(
+      form.formData.fieldData
+          .where(
+            (data) => data.isVisible,
+          )
+          .map(
+            (data) async => await data.validate(),
+          ),
     );
   }
 
-  void _setupDateFieldData(BuildContext context,
-      {@required FormDatePickerFieldData data}) {
+  void _setupDateFieldData(
+    BuildContext context, {
+    @required FormDatePickerFieldData data,
+  }) {
     data.addOnTapListener(() async {
-      final artboard = buildDatePicker(context, selectedDate: data.value);
-      final time = await goTo<Date>(context: context, artboard: artboard);
+      final artboard = buildDatePicker(
+        context,
+        selectedDate: data.value,
+      );
+      final time = await goTo<Date>(
+        context: context,
+        artboard: artboard,
+      );
       if (time == null) return;
       data.value = time;
       form.updateFieldData(data);
     });
   }
 
-  void _setupIconPickerFieldData(BuildContext context,
-      {@required FormIconPickerFieldData data}) {
+  void _setupIconPickerFieldData(
+    BuildContext context, {
+    @required FormIconPickerFieldData data,
+  }) {
     data.addOnTapListener(() async {
       final artboard = buildIconPicker(
         context,
@@ -162,13 +180,17 @@ mixin FormBodyBuilder implements StatefulWidget {
         artboard: artboard,
       );
       if (newSelectedOption == null) return;
-      data.selectedOption = FormLabeledIcon(icon: newSelectedOption.icon);
+      data.selectedOption = FormLabeledIcon(
+        icon: newSelectedOption.icon,
+      );
       form.updateFieldData(data);
     });
   }
 
-  void _setupOptionPickerFieldData<T>(BuildContext context,
-      {@required FormOptionPickerFieldData data}) {
+  void _setupOptionPickerFieldData<T>(
+    BuildContext context, {
+    @required FormOptionPickerFieldData data,
+  }) {
     data.addOnTapListener(() async {
       final convertedOptions = data.options
           ?.map((option) => LabeledValue(
@@ -188,33 +210,46 @@ mixin FormBodyBuilder implements StatefulWidget {
         selectedOptions: convertedSelectedOptions,
         options: convertedOptions,
       );
-      final newSelectedOptions =
-          await goTo<List<LabeledValue>>(context: context, artboard: artboard);
+      final newSelectedOptions = await goTo<List<LabeledValue>>(
+        context: context,
+        artboard: artboard,
+      );
       if (newSelectedOptions == null) return;
       data.selectedOptions = newSelectedOptions
-          .map((option) => FormLabeledValue(
-                label: option.label,
-                value: option.value,
-              ))
+          .map(
+            (option) => FormLabeledValue(
+              label: option.label,
+              value: option.value,
+            ),
+          )
           .toList();
       form.updateFieldData(data);
     });
   }
 
-  void _setupTimePickerFieldData(BuildContext context,
-      {@required FormTimePickerFieldData data}) {
+  void _setupTimePickerFieldData(
+    BuildContext context, {
+    @required FormTimePickerFieldData data,
+  }) {
     data.addOnTapListener(() async {
-      final artboard = buildTimePicker(context, selectedTime: data.value);
-      final newSelectedTime =
-          await goTo<TimeOfDay>(context: context, artboard: artboard);
+      final artboard = buildTimePicker(
+        context,
+        selectedTime: data.value,
+      );
+      final newSelectedTime = await goTo<TimeOfDay>(
+        context: context,
+        artboard: artboard,
+      );
       if (newSelectedTime == null) return;
       data.value = newSelectedTime;
       form.updateFieldData(data);
     });
   }
 
-  void _setupIntervalFrequencyPickerFieldData(BuildContext context,
-      {@required FormIntervalFrequencyPickerFieldData data}) {
+  void _setupIntervalFrequencyPickerFieldData(
+    BuildContext context, {
+    @required FormIntervalFrequencyPickerFieldData data,
+  }) {
     data.addOnTapListener(() async {
       final artboard = buildIntervalFrequencyPicker(
         context,
@@ -225,8 +260,10 @@ mixin FormBodyBuilder implements StatefulWidget {
         periodList: data.periodList,
         intervalList: data.intervalList,
       );
-      final newSelectedSchedule =
-          await goTo<Frequency>(context: context, artboard: artboard);
+      final newSelectedSchedule = await goTo<Frequency>(
+        context: context,
+        artboard: artboard,
+      );
       if (newSelectedSchedule == null) return;
       data.value = FormIntervalFrequencyOptionData(
         frequency: newSelectedSchedule.frequency,
@@ -236,8 +273,10 @@ mixin FormBodyBuilder implements StatefulWidget {
     });
   }
 
-  void _setupRollerColumnPickerFieldData(BuildContext context,
-      {@required FormRollerColumnPickerFieldData data}) {
+  void _setupRollerColumnPickerFieldData(
+    BuildContext context, {
+    @required FormRollerColumnPickerFieldData data,
+  }) {
     data.addOnTapListener(() async {
       final artboard = buildRollerColumnPicker(
         context,
@@ -254,8 +293,10 @@ mixin FormBodyBuilder implements StatefulWidget {
     });
   }
 
-  void _setupTagFieldData(BuildContext context,
-      {@required FormTagFieldData data}) {
+  void _setupTagFieldData(
+    BuildContext context, {
+    @required FormTagFieldData data,
+  }) {
     data.addOnTapListener(() async {
       final artboard = buildTagEditor(
         context,
@@ -275,7 +316,8 @@ mixin FormBodyBuilder implements StatefulWidget {
 }
 
 mixin FormBodyBuilderState<T extends FormBodyBuilder> implements State<T> {
-  FormValidationException exception;
+  FormValidationException validationException;
+  FormSubmissionException submissionException;
   FormSubmitStatus formSubmitState = FormSubmitStatus.ready;
 
   bool _hasSetUp = false;
@@ -283,16 +325,19 @@ mixin FormBodyBuilderState<T extends FormBodyBuilder> implements State<T> {
   bool _shouldHideButtons = false;
   get shouldHideButtons => _shouldHideButtons;
   set shouldHideButtons(bool shouldHide) {
-    setState(() => _shouldHideButtons = shouldHide);
+    setState(
+      () => _shouldHideButtons = shouldHide,
+    );
   }
 
-  RoofStreamForm buildFormBody(BuildContext context) {
+  StandardStreamForm buildFormBody(BuildContext context) {
     _load(context);
     widget.form.addOnValueChangedListener(_restoreState);
     return widget._form;
   }
 
-  Future<void> onSubmitButtonTap(BuildContext context) async {
+  Future onSubmitButtonTap(BuildContext context) async {
+    _clearExceptions(context);
     widget.form.disableFields();
 
     try {
@@ -302,14 +347,22 @@ mixin FormBodyBuilderState<T extends FormBodyBuilder> implements State<T> {
       _handleException(context, e);
       widget.form.enableFields();
 
-      ///commented out for testing;
-      // return;
+      return;
     }
 
     _handleLoading(context);
-    await widget.submit(context);
-    _restoreState();
+
+    try {
+      await widget.submit(context);
+    } on TimeoutException catch (_) {
+      _handleException(context, FormSubmissionException.didTimeout());
+      widget.form.enableFields();
+
+      return;
+    }
+
     widget.form.enableFields();
+    _restoreState();
   }
 
   void addFocusChangedListeners() {
@@ -327,12 +380,26 @@ mixin FormBodyBuilderState<T extends FormBodyBuilder> implements State<T> {
 
     final formData = await _createInitialFormData(context);
     if (formData == null) return;
-    _setupIfNeeded(context, fieldData: formData.fieldData);
+    _setupIfNeeded(
+      context,
+      fieldData: formData.fieldData,
+    );
     widget.form.update(formData);
   }
 
+  Widget _buildSubmitKeyboardAccessory(BuildContext context) {
+    return PrimaryActionKeyboardAccessoryButton(
+      onTap: () {
+        widget._form.resignFocus(context);
+        onSubmitButtonTap(context);
+      },
+      title: widget.submitButtonText,
+    );
+  }
+
   Future<StreamableFormData> _createInitialFormData(
-      BuildContext context) async {
+    BuildContext context,
+  ) async {
     final formData = await widget.initialFormData;
     if (formData != null) return formData;
 
@@ -340,17 +407,18 @@ mixin FormBodyBuilderState<T extends FormBodyBuilder> implements State<T> {
     if (sectionData.isNotEmpty) {
       return StreamableFormData(
         sectionData: sectionData,
-        submitKeyboardAccessory: widget._buildSubmitKeyboardAccessory(context),
+        submitKeyboardAccessory: _buildSubmitKeyboardAccessory(context),
         canSubmitWithKeyboardRaised: widget.canSubmitWithKeyboardRaised,
       );
     }
 
     final fieldData = await widget.initialFieldData;
+
     if (fieldData.isNotEmpty) {
       return StreamableFormData.withFields(
         fieldData: fieldData,
         fieldHorizontalSpacing: widget.fieldHorizontalSpacing,
-        submitKeyboardAccessory: widget._buildSubmitKeyboardAccessory(context),
+        submitKeyboardAccessory: _buildSubmitKeyboardAccessory(context),
         canSubmitWithKeyboardRaised: widget.canSubmitWithKeyboardRaised,
       );
     }
@@ -358,18 +426,37 @@ mixin FormBodyBuilderState<T extends FormBodyBuilder> implements State<T> {
     return null;
   }
 
-  void _setupIfNeeded(BuildContext context,
-      {@required List<StreamableFormFieldData> fieldData}) {
+  void _setupIfNeeded(
+    BuildContext context, {
+    @required List<StreamableFormFieldData> fieldData,
+  }) {
     if (_hasSetUp) return;
     widget._setup(context, fieldData: fieldData);
     _hasSetUp = true;
   }
 
   void _handleException(
-      BuildContext context, FormValidationException exception) {
-    this.exception = exception;
-    setState(() => formSubmitState = FormSubmitStatus.exception);
+    BuildContext context,
+    Exception exception,
+  ) {
+    setState(() {
+      if (exception is FormValidationException) {
+        validationException = exception;
+      }
+      if (exception is FormSubmissionException) {
+        submissionException = exception;
+      }
+      formSubmitState = FormSubmitStatus.exception;
+    });
     triggerHapticWith(HapticOption.medium);
+  }
+
+  void _clearExceptions(BuildContext context) {
+    setState(() {
+      validationException = null;
+      submissionException = null;
+      formSubmitState = FormSubmitStatus.ready;
+    });
   }
 
   void _handleLoading(BuildContext context) {

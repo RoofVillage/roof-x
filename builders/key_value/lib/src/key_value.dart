@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:typography/index.dart' as typography;
-import 'package:distance/index.dart' as distance;
-import 'package:theme/index.dart';
+import 'package:semantic_theme/index.dart';
 
 class KeyValue extends StatelessWidget {
   final String title;
@@ -12,41 +10,31 @@ class KeyValue extends StatelessWidget {
     @required this.value,
   });
 
-  final _titleTypographyStyle = typography.detailSecondary;
-  final _valueTypographyStyle = typography.body;
-  final _verticalSpacing = distance.a;
-  final _verticalMargin = distance.d;
-  final _horizontalMargin = distance.c;
-
   @override
   Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
+    final theme = SemanticTheme.of(context);
 
     final titleWidget = Text(
       title.toUpperCase(),
-      style: _titleTypographyStyle.textStyleWithColor(
-        theme.color.text.secondary,
+      style: theme.typography.label.textStyle(
+        color: theme.color.text.generalSecondary,
       ),
     );
 
     final valueWidget = Container(
       margin: EdgeInsets.only(
-        top: _verticalSpacing,
+        top: theme.distance.spacing.vertical.min,
       ),
       child: Text(
         value,
-        style: _valueTypographyStyle.textStyleWithColor(
-          theme.color.text.primary,
+        style: theme.typography.body.textStyle(
+          color: theme.color.text.generalPrimary,
         ),
         softWrap: true,
       ),
     );
 
     return Container(
-      margin: EdgeInsets.only(
-        right: _horizontalMargin,
-        top: _verticalMargin,
-      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[

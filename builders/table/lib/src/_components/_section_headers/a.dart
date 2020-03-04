@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:typography/index.dart' as typography;
-import 'package:theme/index.dart';
+import 'package:semantic_theme/index.dart';
 
-class RoofTableSectionHeaderA extends StatelessWidget {
+class TableSectionHeaderA extends StatelessWidget {
   final String title;
 
-  RoofTableSectionHeaderA({@required this.title});
+  TableSectionHeaderA({@required this.title});
 
   @override
   Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
+    final theme = SemanticTheme.of(context);
+
     return Container(
       color: theme.color.background.generalSecondary,
       child: Center(
@@ -21,13 +21,21 @@ class RoofTableSectionHeaderA extends StatelessWidget {
 
 class _TitleLabel extends StatelessWidget {
   final String text;
-  final _typographyStyle = typography.heading2;
 
-  _TitleLabel({Key key, @required this.text}) : super(key: key);
+  _TitleLabel({
+    Key key,
+    @required this.text,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final brandColor = RoofTheme.of(context).color.text.brand;
-    return Text(text, style: _typographyStyle.textStyleWithColor(brandColor));
+    final theme = SemanticTheme.of(context);
+
+    return Text(
+      text,
+      style: theme.typography.title.textStyle(
+        color: theme.color.text.brand,
+      ),
+    );
   }
 }

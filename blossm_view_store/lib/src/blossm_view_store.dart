@@ -1,6 +1,4 @@
-import 'dart:convert';
-
-import 'package:http/http.dart' as http;
+import 'package:network/index.dart';
 
 mixin BlossmViewStore<View, HttpRes> {
   String get baseUrl;
@@ -23,13 +21,11 @@ mixin BlossmViewStore<View, HttpRes> {
   }
 
   Future<View> read() async {
-    return viewFromHttpResponse(
-      await http.get(_url).then(
-        (res) {
-          return json.decode(res.body) as HttpRes;
-        },
-      ),
-    );
+    final HttpRes response = await Network.get(
+      address: _url,
+    ) as HttpRes;
+
+    return viewFromHttpResponse(response);
   }
 
   Future<View> fakeResponse(View response) async {

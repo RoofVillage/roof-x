@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:button_stack_builder/index.dart';
+import 'package:standard_stack_builder/index.dart';
 import 'package:artboard/index.dart';
 import 'package:vertical_floating_artboard_scaffold/index.dart';
 
 abstract class StackVerticalFloatingArtboard extends StatefulWidget
-    with VerticalFloatingArtboard, Artboard, ButtonStackBuilder {
+    with VerticalFloatingArtboard, Artboard, StandardStackBuilder {
   String get title;
 
-  List<Widget> get buttonStackButtons;
+  List<Widget> Function(BuildContext) get buildStandardButtonStackButtons;
 
   List<Widget> buildBody(BuildContext context) => null;
 
@@ -29,8 +29,13 @@ class _StackVerticalFloatingArtboardState
         widget.buildBody(context).toList(),
       );
 
-    if (widget.buttonStackButtons != null)
-      children.add(widget.buildButtonStack(context));
+    if (widget.buildStandardButtonStackButtons != null)
+      children.add(
+        widget.buildStandardStack(
+          context,
+          children: widget.buildStandardButtonStackButtons(context),
+        ),
+      );
 
     return Column(
       children: children,

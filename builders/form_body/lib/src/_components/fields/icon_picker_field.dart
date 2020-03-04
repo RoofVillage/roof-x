@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:theme/index.dart';
 import 'package:labeled_icon/index.dart';
+import 'package:semantic_theme/index.dart';
 
 import '_widgets/index.dart';
 import '_picker_field.dart';
@@ -22,22 +22,22 @@ class IconPickerField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    LabeledIcon _selectedOption = selectedOption ?? options[0];
+    final theme = SemanticTheme.of(context);
 
-    final theme = RoofTheme.of(context);
+    LabeledIcon _selectedOption = selectedOption ?? options[0];
 
     final List<Widget> columnChildren = [];
 
     if (title != null && title.isNotEmpty) {
-      final label = RoofFieldLabel(labelText: title);
+      final label = FieldLabel(labelText: title);
       columnChildren.add(label);
     }
 
     final selectedIconWidget = _selectedOption.icon.buildWidget(
-      color: theme.color.icon.general,
+      color: theme.color.icon.generalPrimary,
     );
 
-    return RoofPickerField(
+    return PickerField(
       name: title,
       fieldBody: selectedIconWidget,
       onTap: onTap,

@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:theme/index.dart';
+import 'package:semantic_theme/index.dart';
 import 'package:standard_icon_library/index.dart';
 import 'package:date/index.dart';
 import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart';
-import 'package:typography/index.dart' as typography;
 
 typedef DateTimePasser = Function(Date);
 
-class RoofCalendarDatePicker extends StatelessWidget {
+class CalendarDatePicker extends StatelessWidget {
   final DateTime selectedDate;
   final DateTime startBound;
   final DateTime endBound;
@@ -15,7 +14,7 @@ class RoofCalendarDatePicker extends StatelessWidget {
 
   final double _height = 400;
 
-  RoofCalendarDatePicker({
+  CalendarDatePicker({
     DateTime selectedDate,
     @required this.onDayPressed,
     this.startBound,
@@ -24,32 +23,36 @@ class RoofCalendarDatePicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
+    final theme = SemanticTheme.of(context);
 
-    final headerStyle = typography.heading2.textStyleWithColor(
-      theme.color.text.brand,
+    final headerStyle = theme.typography.headingSecondary.textStyle(
+      color: theme.color.text.brand,
     );
 
-    final daysPrimaryStyle = typography.bodyThick.textStyleWithColor(
-      theme.color.text.primary,
+    final daysPrimaryStyle = theme.typography.bodyHeavy.textStyle(
+      color: theme.color.text.generalPrimary,
     );
 
-    final inactiveTextStyle = typography.body.textStyleWithColor(
-      theme.color.text.secondary,
+    final inactiveTextStyle = theme.typography.body.textStyle(
+      color: theme.color.text.generalSecondary,
     );
 
-    final smallTextStyle = typography.body.textStyleWithColor(
-      theme.color.text.brand,
+    final smallTextStyle = theme.typography.body.textStyle(
+      color: theme.color.text.brand,
     );
 
-    final todayTextStyle = typography.bodyThick.textStyleWithColor(
-      theme.color.text.secondaryAction,
+    final todayTextStyle = theme.typography.bodyHeavy.textStyle(
+      color: theme.color.text.action,
     );
 
     final arrowIconColor = theme.color.text.brand;
 
-    final leftIcon = StandardIcon.leftArrow.buildWidget(color: arrowIconColor);
-    final rightIcon = StandardIcon.rightArrow.buildWidget(color: arrowIconColor);
+    final leftIcon = StandardIcon.leftArrow.buildWidget(
+      color: arrowIconColor,
+    );
+    final rightIcon = StandardIcon.rightArrow.buildWidget(
+      color: arrowIconColor,
+    );
 
     return Container(
       child: CalendarCarousel(
@@ -64,7 +67,7 @@ class RoofCalendarDatePicker extends StatelessWidget {
         todayBorderColor: Colors.transparent,
         selectedDayTextStyle: daysPrimaryStyle,
         todayTextStyle: todayTextStyle,
-        selectedDayButtonColor: theme.color.background.primaryAction,
+        selectedDayButtonColor: theme.color.background.actionPrimary,
         inactiveDaysTextStyle: inactiveTextStyle,
         nextDaysTextStyle: inactiveTextStyle,
         prevDaysTextStyle: inactiveTextStyle,

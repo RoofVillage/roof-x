@@ -10,7 +10,7 @@ abstract class TabbedFullScreenArtboard extends StatefulWidget
         VerticalFullScreenArtboard,
         Artboard,
         TitledIconNavBarBuilder,
-        RoofTabbedContainerBuilder {
+        TabbedContainerBuilder {
   @override
   Widget buildNavBar(BuildContext context) => buildTitledIconNavBar(context);
 

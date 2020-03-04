@@ -1,0 +1,245 @@
+name: navigable_object_demo_sandbox
+description: sandbox
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  theme:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: theme
+  vertical_full_screen_artboard_scaffold:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: artboard_scaffolds/vertical_full_screen
+  tabbed_fullscreen_artboard_template:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: artboard_templates/vertical_full_screen/tabbed
+  invoice_full_screen_artboard_template:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: roof/artboards/invoice
+  lease_full_screen_artboard_template:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: roof/artboards/lease
+  property_full_screen_artboard_template:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: roof/artboards/property
+  property_create_artboard:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: roof/artboards/property_create
+  artboard:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: lib/artboard
+  device_screen:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: lib/device_screen
+  nav_bar_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: builders/nav_bar
+  caret_wrap_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: builders/caret_wrap
+  table_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: builders/table
+  tabbed_container_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: builders/tabbed_container
+  spaced_list_view_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: builders/spaced_list_view
+  button_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: builders/button
+  invoice_options:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: types/invoice
+  standard_icon_library:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: icons/standard
+  small_icon_library:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: icons/small
+  svg:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: svg
+
+dependency_overrides:
+  vertical_full_screen_artboard_scaffold:
+    path: ../../../artboard_scaffolds/vertical_full_screen
+  nav_bar_builder:
+    path: ../../../builders/nav_bar
+  caret_wrap_builder:
+    path: ../../../builders/caret_wrap
+  table_builder:
+    path: ../../../builders/table
+  tabbed_container_builder:
+    path: ../../../builders/tabbed_container
+  spaced_list_view_builder:
+    path: ../../../builders/spaced_list_view
+  button_builder:
+    path: ../../../builders/button
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  fonts:
+    - family: RoofXSmallIcons
+      fonts:
+        - asset: packages/x_small_icon_library/ttf/RoofXSmallIcons.ttf
+    - family: RoofSmallIcons
+      fonts:
+        - asset: packages/small_icon_library/ttf/RoofSmallIcons.ttf
+    - family: RoofStandardIcons
+      fonts:
+        - asset: packages/standard_icon_library/ttf/RoofStandardIcons.ttf
+    - family: RoofNavigationIcons
+      fonts:
+        - asset: packages/navigation_icon_library/ttf/RoofNavigationIcons.ttf
+    - family: azo
+      fonts:
+        - asset: packages/typography/fonts/azo/AzoSans-Thin.otf
+          weight: 100
+        - asset: packages/typography/fonts/azo/AzoSans-Light.otf
+          weight: 200
+        - asset: packages/typography/fonts/azo/AzoSans-Regular.otf
+          weight: 300
+        - asset: packages/typography/fonts/azo/AzoSans-Medium.otf
+          weight: 400
+        - asset: packages/typography/fonts/azo/AzoSans-Bold.otf
+          weight: 500
+    - family: circular
+      fonts:
+        - asset: packages/typography/fonts/circular/CircularStd-Book.otf
+          weight: 100
+        - asset: packages/typography/fonts/circular/CircularStd-Book.otf
+          weight: 200
+        - asset: packages/typography/fonts/circular/CircularStd-Medium.otf
+          weight: 300
+        - asset: packages/typography/fonts/circular/CircularStd-Bold.otf
+          weight: 400
+        - asset: packages/typography/fonts/circular/CircularStd-Black.otf
+          weight: 500
+    - family: open
+      fonts:
+        - asset: packages/typography/fonts/open/OpenSans-Regular.ttf
+          weight: 100
+        - asset: packages/typography/fonts/open/OpenSans-SemiBold.ttf
+          weight: 200
+        - asset: packages/typography/fonts/open/OpenSans-Bold.ttf
+          weight: 300
+        - asset: packages/typography/fonts/open/OpenSans-ExtraBold.ttf
+          weight: 400
+        - asset: packages/typography/fonts/open/OpenSans-ExtraBold.ttf
+          weight: 500
+    - family: titillium
+      fonts:
+        - asset: packages/typography/fonts/titillium/Titillium-Thin.otf
+          weight: 100
+        - asset: packages/typography/fonts/titillium/Titillium-Light.otf
+          weight: 200
+        - asset: packages/typography/fonts/titillium/Titillium-Regular.otf
+          weight: 300
+        - asset: packages/typography/fonts/titillium/Titillium-SemiBold.otf
+          weight: 400
+        - asset: packages/typography/fonts/titillium/Titillium-Bold.otf
+          weight: 500
+    - family: nunito
+      fonts:
+        - asset: packages/typography/fonts/nunito/Nunito-ExtraLight.ttf
+          weight: 100
+        - asset: packages/typography/fonts/nunito/Nunito-Light.ttf
+          weight: 200
+        - asset: packages/typography/fonts/nunito/Nunito-Regular.ttf
+          weight: 300
+        - asset: packages/typography/fonts/nunito/Nunito-Medium.ttf
+          weight: 400
+        - asset: packages/typography/fonts/nunito/Nunito-SemiBold.ttf
+          weight: 500
+        - asset: packages/typography/fonts/nunito/Nunito-Bold.ttf
+          weight: 600
+    - family: nunito-sans
+      fonts:
+        - asset: packages/typography/fonts/nunito-sans/NunitoSans-ExtraLight.ttf
+          weight: 100
+        - asset: packages/typography/fonts/nunito-sans/NunitoSans-Light.ttf
+          weight: 200
+        - asset: packages/typography/fonts/nunito-sans/NunitoSans-Regular.ttf
+          weight: 300
+        - asset: packages/typography/fonts/nunito-sans/NunitoSans-SemiBold.ttf
+          weight: 400
+        - asset: packages/typography/fonts/nunito-sans/NunitoSans-Bold.ttf
+          weight: 500
+        - asset: packages/typography/fonts/nunito-sans/NunitoSans-Black.ttf
+          weight: 600
+    - family: gotham
+      fonts:
+        - asset: packages/typography/fonts/gotham/Gotham-Light.otf
+          weight: 100
+        - asset: packages/typography/fonts/gotham/Gotham-Light.otf
+          weight: 200
+        - asset: packages/typography/fonts/gotham/GothamMedium.ttf
+          weight: 300
+        - asset: packages/typography/fonts/gotham/GothamMedium.ttf
+          weight: 400
+        - asset: packages/typography/fonts/gotham/GothamBold.ttf
+          weight: 500
+        - asset: packages/typography/fonts/gotham/Gotham-Black.otf
+          weight: 600
+    - family: muli
+      fonts:
+        - asset: packages/typography/fonts/muli/Muli-ExtraLight.ttf
+          weight: 100
+        - asset: packages/typography/fonts/muli/Muli-Light.ttf
+          weight: 200
+        - asset: packages/typography/fonts/muli/Muli.ttf
+          weight: 300
+        - asset: packages/typography/fonts/muli/Muli-SemiBold.ttf
+          weight: 400
+        - asset: packages/typography/fonts/muli/Muli-Bold.ttf
+          weight: 500
+        - asset: packages/typography/fonts/muli/Muli-Bold.ttf
+          weight: 600

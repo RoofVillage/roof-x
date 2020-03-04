@@ -5,10 +5,12 @@ import 'package:typedefs/index.dart';
 import '_components/icon.dart';
 
 mixin IconNavButtonBuilder {
-  RoofIconNavButton buildIconNavButton(BuildContext context,
-      {@required NavigationIcon iconReference,
-      @required ContextPasser onTap}) {
-    return RoofIconNavButton(
+  IconNavButton buildIconNavButton(
+    BuildContext context, {
+    @required NavigationIcon iconReference,
+    @required ContextPasser onTap,
+  }) {
+    return IconNavButton(
       onTap: onTap,
       iconReference: iconReference,
     );

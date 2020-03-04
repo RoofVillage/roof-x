@@ -1,1 +1,0 @@
-export 'src/domains/index.dart';

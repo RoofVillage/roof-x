@@ -1,0 +1,31 @@
+name: table_cell_builder
+description: Library of builders for table cells.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  semantic_theme:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: semantic_theme
+  haptics:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: lib/haptics
+
+dependency_overrides:
+  haptics:
+    path: ../../lib/haptics
+  semantic_theme:
+    path: ../../semantic_theme
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

@@ -1,0 +1,82 @@
+name: service_dashboard_artboard
+description: Informational dashboard for a service. Allows user to generate new keys for service.
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  form_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: builders/form
+  app_data:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: app_data
+  navigator:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: lib/navigator
+  button_row_dock_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: builders/button_row_dock
+  commands:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: sustainers_market/commands
+  views:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: sustainers_market/views
+  button_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: builders/button
+  view_stream_builder_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: builders/view_stream_builder
+  empty_table_vertical_full_screen_artboard_template:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: artboard_templates/vertical_full_screen/empty_table
+  secret_key_artboard:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: sustainers_market/artboards/secret_key
+
+dependency_overrides:
+  secret_key_artboard:
+    path: ../secret_key
+  empty_table_vertical_full_screen_artboard_template:
+    path: ../../../artboard_templates/vertical_full_screen/empty_table
+  commands:
+    path: ../../commands
+  views:
+    path: ../../views
+  form_builder:
+    path: ../../../builders/form
+  button_row_dock_builder:
+    path: ../../../builders/button_row_dock
+  button_builder:
+    path: ../../../builders/button
+  view_stream_builder_builder:
+    path: ../../../builders/view_stream_builder
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

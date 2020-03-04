@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:theme/index.dart';
-import 'package:distance/index.dart' as distance;
-import 'package:typography/index.dart' as typography;
+import 'package:semantic_theme/index.dart';
 
 class TextFieldWithAddButton extends StatelessWidget {
   final TextEditingController controller;
@@ -16,7 +14,7 @@ class TextFieldWithAddButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
+    final theme = SemanticTheme.of(context);
 
     final List<Widget> fieldRowChildren = [];
 
@@ -28,8 +26,8 @@ class TextFieldWithAddButton extends StatelessWidget {
       focusedBorder: UnderlineInputBorder(
         borderSide: BorderSide(color: Colors.transparent),
       ),
-      hintStyle: typography.body.textStyleWithColor(
-        theme.color.text.placeholder,
+      hintStyle: theme.typography.body.textStyle(
+        color: theme.color.text.inputPlaceholder,
       ),
     );
 
@@ -38,7 +36,9 @@ class TextFieldWithAddButton extends StatelessWidget {
         child: TextField(
           autofocus: true,
           controller: controller,
-          style: typography.body.textStyleWithColor(theme.color.text.primary),
+          style: theme.typography.body.textStyle(
+            color: theme.color.text.generalPrimary,
+          ),
           decoration: decoration,
         ),
       ),
@@ -55,16 +55,16 @@ class TextFieldWithAddButton extends StatelessWidget {
         onTap: canCreateTag ? () => addTagCallback(controller.text) : null,
         child: Container(
           padding: EdgeInsets.only(
-            left: distance.c,
-            top: distance.b,
-            bottom: distance.b,
+            left: theme.distance.padding.horizontal.medium,
+            top: theme.distance.padding.vertical.small,
+            bottom: theme.distance.padding.vertical.small,
           ),
           child: Text(
             "Create tag",
-            style: typography.button.textStyleWithColor(
-              canCreateTag
-                  ? theme.color.text.secondaryAction
-                  : theme.color.text.inactiveAction,
+            style: theme.typography.button.textStyle(
+              color: canCreateTag
+                  ? theme.color.text.action
+                  : theme.color.text.actionDisabled,
             ),
           ),
         ),
@@ -74,10 +74,16 @@ class TextFieldWithAddButton extends StatelessWidget {
     }
 
     return Container(
-      padding: EdgeInsets.only(bottom: distance.b),
-      margin: EdgeInsets.symmetric(vertical: distance.b),
+      padding: EdgeInsets.only(
+        bottom: theme.distance.padding.vertical.small,
+      ),
+      margin: EdgeInsets.symmetric(
+        vertical: theme.distance.spacing.horizontal.small,
+      ),
       decoration: BoxDecoration(
-        border: Border(bottom: BorderSide(color: theme.color.stroke.light)),
+        border: Border(
+          bottom: BorderSide(color: theme.color.stroke.light),
+        ),
       ),
       child: Row(
         children: fieldRowChildren,

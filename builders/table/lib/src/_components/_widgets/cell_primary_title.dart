@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:theme/index.dart';
-import 'package:typography/index.dart' as typography;
+import 'package:semantic_theme/index.dart';
 
 import '_wrapping_text.dart';
 
@@ -9,19 +8,15 @@ class CellPrimaryTitle extends StatelessWidget {
 
   CellPrimaryTitle(this.text);
 
-  final _typography = typography.bodyThick;
-
   @override
   Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
+    final theme = SemanticTheme.of(context);
 
-    final color = theme.color.text.secondaryAction;
-
-    final textStyle = _typography.textStyleWithColor(color);
-    
     return WrappingText(
       text: text,
-      style: textStyle,
+      style: theme.typography.bodyHeavy.textStyle(
+        color: theme.color.text.action,
+      ),
     );
   }
 }

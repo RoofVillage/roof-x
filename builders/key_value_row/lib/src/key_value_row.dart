@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:typography/index.dart' as typography;
-import 'package:distance/index.dart' as distance;
-import 'package:theme/index.dart';
+import 'package:semantic_theme/index.dart';
 
 class KeyValueRow extends StatelessWidget {
   final String title;
@@ -16,29 +14,24 @@ class KeyValueRow extends StatelessWidget {
     this.valueStyle,
   });
 
-  final _titleTypographyStyle = typography.detailSecondary;
-  final _valueTypographyStyle = typography.body;
-
-  final _horizontalSpacing = distance.c;
-  final _verticalSpacing = distance.a;
   final double _minTitleWidth = 110;
 
   @override
   Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
+    final theme = SemanticTheme.of(context);
 
     final titleWidget = Container(
       constraints: BoxConstraints(
         minWidth: _minTitleWidth,
       ),
       margin: EdgeInsets.only(
-        right: _horizontalSpacing,
+        right: theme.distance.spacing.horizontal.medium,
       ),
       child: Text(
         title,
         style: titleStyle ??
-            _titleTypographyStyle.textStyleWithColor(
-              theme.color.text.secondary,
+            theme.typography.label.textStyle(
+              color: theme.color.text.generalSecondary,
             ),
         overflow: TextOverflow.ellipsis,
       ),
@@ -48,8 +41,8 @@ class KeyValueRow extends StatelessWidget {
       child: Text(
         value,
         style: valueStyle ??
-            _valueTypographyStyle.textStyleWithColor(
-              theme.color.text.primary,
+            theme.typography.body.textStyle(
+              color: theme.color.text.generalPrimary,
             ),
         maxLines: 2,
         overflow: TextOverflow.ellipsis,
@@ -57,7 +50,6 @@ class KeyValueRow extends StatelessWidget {
     );
 
     return Container(
-      padding: EdgeInsets.only(top: _verticalSpacing),
       child: Row(
         textBaseline: TextBaseline.alphabetic,
         crossAxisAlignment: CrossAxisAlignment.baseline,

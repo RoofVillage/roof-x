@@ -11,12 +11,12 @@ dependencies:
   standard_icon_library:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-sm-app
       path: icons/standard
   labeled_value:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-sm-app
       path: labeled_value
 
 dev_dependencies:

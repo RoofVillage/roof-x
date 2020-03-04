@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:theme/index.dart';
 import 'package:labeled_value/index.dart';
-import 'package:typography/index.dart' as typography;
-import 'package:distance/index.dart' as distance;
+import 'package:semantic_theme/index.dart';
 
 import '_picker_field.dart';
 
@@ -19,27 +17,25 @@ class RollerColumnPickerField extends StatelessWidget {
     this.onTap,
   });
 
-  final _typographyStyle = typography.body;
-
   @override
   Widget build(BuildContext context) {
-    final TextStyle textStyle = _typographyStyle.textStyleWithColor(
-      RoofTheme.of(context).color.text.primary,
-    );
+    final theme = SemanticTheme.of(context);
 
-    final verticalPadding = EdgeInsets.symmetric(vertical: distance.b);
-
-    final fieldBody = Container(
-      padding: verticalPadding,
+    final fieldBody = Padding(
+      padding: EdgeInsets.symmetric(
+        vertical: theme.distance.padding.vertical.small,
+      ),
       child: Text(
         selectedValue.label,
-        style: textStyle,
+        style: theme.typography.body.textStyle(
+          color: theme.color.text.generalPrimary,
+        ),
         textAlign: TextAlign.right,
         overflow: TextOverflow.ellipsis,
       ),
     );
 
-    return RoofPickerField(
+    return PickerField(
       onTap: onTap,
       name: title,
       fieldBody: fieldBody,

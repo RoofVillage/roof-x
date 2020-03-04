@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:button_builder/index.dart';
 import 'package:form_body_builder/index.dart';
-import 'package:typography/index.dart' as typography;
-import 'package:distance/index.dart' as distance;
-import 'package:theme/index.dart';
 import 'package:button_status_option/index.dart';
+import 'package:semantic_theme/index.dart';
 
 mixin FormBuilder implements FormBodyBuilder, PrimaryCenterButtonBuilder {
   String get title;
@@ -19,17 +17,16 @@ mixin FormBuilderState<T extends FormBuilder>
     return widget.buildPrimaryCenterButton(
       context,
       text: submitButtonText,
-      onTap: onSubmitButtonTap,
+      onTap: () => onSubmitButtonTap(context),
       status: _submitButtonState,
     );
   }
 
   ButtonStatusOption get _submitButtonState {
     switch (formSubmitState) {
-      case FormSubmitStatus.exception:
-        return ButtonStatusOption.error;
       case FormSubmitStatus.loading:
         return ButtonStatusOption.loading;
+      case FormSubmitStatus.exception:
       case FormSubmitStatus.ready:
         return ButtonStatusOption.ready;
     }
@@ -38,42 +35,35 @@ mixin FormBuilderState<T extends FormBuilder>
 
   String get submitButtonText {
     switch (formSubmitState) {
-      case FormSubmitStatus.exception:
-        return exception.message;
       case FormSubmitStatus.loading:
         return "Loading";
+      case FormSubmitStatus.exception:
       case FormSubmitStatus.ready:
         return widget.submitButtonText ?? "Submit";
     }
     return null;
   }
 
-  final _headerStyle = typography.heading1;
-  final _subtitleStyle = typography.body;
-
-  final _bodyVerticalPadding = EdgeInsets.only(top: distance.d);
-  final _buttonPadding = EdgeInsets.only(
-    top: distance.d,
-    left: distance.c,
-    right: distance.c,
-  );
-
   Widget buildForm(BuildContext context) {
     addFocusChangedListeners();
-    final theme = RoofTheme.of(context);
+    final theme = SemanticTheme.of(context);
 
-    final headerColor = theme.color.text.brand;
-    final subtitleColor = theme.color.text.secondary;
-    final headerStyle = _headerStyle.textStyleWithColor(headerColor);
-    final subtitleStyle = _subtitleStyle.textStyleWithColor(subtitleColor);
+    final headerStyle = theme.typography.title.textStyle(
+      color: theme.color.text.generalPrimary,
+    );
+    final subtitleStyle = theme.typography.subtitle.textStyle(
+      color: theme.color.text.generalSecondary,
+    );
 
-    final widgets = <Widget>[];
+    final formWidgets = <Widget>[];
+    final headerWidgets = <Widget>[];
 
     if (widget.title != null) {
-      widgets.add(
+      headerWidgets.add(
         Text(
           widget.title,
           style: headerStyle,
+          textAlign: TextAlign.center,
         ),
       );
     }
@@ -83,30 +73,81 @@ mixin FormBuilderState<T extends FormBuilder>
         widget.subtitle,
         style: subtitleStyle,
       );
-      widgets.add(
+      headerWidgets.add(
         Padding(
-          padding: EdgeInsets.all(distance.b),
+          padding: EdgeInsets.all(
+            theme.distance.spacing.vertical.medium,
+          ),
           child: subtitleTextWidget,
         ),
       );
     }
 
-    widgets.add(
+    if (headerWidgets.isNotEmpty) {
+      formWidgets.add(
+        Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: theme.distance.padding.horizontal.medium,
+          ),
+          child: Column(
+            children: headerWidgets,
+          ),
+        ),
+      );
+    }
+
+    formWidgets.add(
       Padding(
-        padding: _bodyVerticalPadding,
+        padding: EdgeInsets.symmetric(
+          vertical: theme.distance.spacing.vertical.large,
+        ),
         child: buildFormBody(context),
       ),
     );
 
+    if (validationException != null) {
+      formWidgets.add(
+        Container(
+          margin: EdgeInsets.symmetric(
+            vertical: theme.distance.spacing.vertical.medium,
+          ),
+          child: Text(
+            validationException.message,
+            style: theme.typography.detailHeavy.textStyle(
+              color: theme.color.text.warn,
+            ),
+          ),
+        ),
+      );
+    }
+
+    if (submissionException != null) {
+      formWidgets.add(
+        Container(
+          margin: EdgeInsets.symmetric(
+            vertical: theme.distance.spacing.vertical.medium,
+          ),
+          child: Text(
+            submissionException.message,
+            style: theme.typography.detailHeavy.textStyle(
+              color: theme.color.text.warn,
+            ),
+          ),
+        ),
+      );
+    }
+
     if (!shouldHideButtons) {
-      widgets.add(
+      formWidgets.add(
         Padding(
-          padding: _buttonPadding,
+          padding: EdgeInsets.symmetric(
+            horizontal: theme.distance.padding.horizontal.medium,
+          ),
           child: submitButton,
         ),
       );
     }
 
-    return Column(children: widgets);
+    return Column(children: formWidgets);
   }
 }

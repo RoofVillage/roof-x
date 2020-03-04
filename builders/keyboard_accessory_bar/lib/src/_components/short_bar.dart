@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:distance/index.dart' as distance;
+import 'package:semantic_theme/index.dart';
 
-class RoofKeyboardAccessoryShortBar extends StatelessWidget {
-  static const _height = distance.e;
-
+class KeyboardAccessoryShortBar extends StatelessWidget {
   final List<Widget> children;
 
-  RoofKeyboardAccessoryShortBar({this.children});
+  KeyboardAccessoryShortBar({this.children});
 
   @override
   Widget build(BuildContext context) {
+    final theme = SemanticTheme.of(context);
+
     final row = Row(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: children,
     );
 
-    return Container(height: _height, child: row);
+    return Container(
+      height: theme.distance.spacing.vertical.large,
+      child: row,
+    );
   }
 }

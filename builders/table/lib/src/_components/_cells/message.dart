@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:theme/index.dart';
 import 'package:key_value_row_builder/index.dart';
 import 'package:date/index.dart';
-import 'package:typography/index.dart' as typography;
+import 'package:semantic_theme/index.dart';
 
 import '_a.dart';
 
@@ -21,15 +20,15 @@ class MessageCell extends StatelessWidget with KeyValueRowBuilder {
 
   @override
   Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
+    final theme = SemanticTheme.of(context);
 
     final formattedDateText =
         Date.fromSecondsSinceEpoch(latestActivityTimestamp).toAdaptiveString;
 
     final dateWidget = Text(
       formattedDateText,
-      style: typography.detailSecondary.textStyleWithColor(
-        theme.color.text.secondary,
+      style: theme.typography.detail.textStyle(
+        color: theme.color.text.generalSecondary,
       ),
     );
 

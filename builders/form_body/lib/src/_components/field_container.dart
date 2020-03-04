@@ -1,33 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:theme/index.dart';
-import 'package:distance/index.dart' as distance;
+import 'package:semantic_theme/index.dart';
 
-class RoofFieldContainer extends StatelessWidget {
+class FieldContainer extends StatelessWidget {
   final Widget child;
 
-  RoofFieldContainer({this.child});
+  FieldContainer({this.child});
 
   final double _minHeight = 55.0;
   final double _verticalSpacing = 1;
 
   @override
   Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
+    final theme = SemanticTheme.of(context);
 
     final margin = EdgeInsets.only(
       top: _verticalSpacing,
-    );
-
-    final padding = EdgeInsets.symmetric(
-      vertical: distance.a,
-      horizontal: distance.c,
     );
 
     final backgroundColor = theme.color.background.inputForeground;
 
     return Container(
       margin: margin,
-      padding: padding,
+      padding: EdgeInsets.symmetric(
+        vertical: theme.distance.padding.vertical.min,
+        horizontal: theme.distance.padding.horizontal.medium,
+      ),
       constraints: BoxConstraints(
         minHeight: _minHeight,
       ),

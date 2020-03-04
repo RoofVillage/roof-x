@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:theme/index.dart';
-import 'package:curve/index.dart' as curve;
-import 'package:duration/index.dart' as duration;
+import 'package:semantic_theme/index.dart';
 
 class VerticalFloatingRoute<T> extends ModalRoute<T> {
   WidgetBuilder builder;
-  RoofThemeOption currentTheme;
+  SemanticThemeData theme;
 
   @override
-  Duration get transitionDuration => duration.short;
+  Duration get transitionDuration => theme.duration.short;
 
   @override
   bool get opaque => false;
@@ -17,8 +15,7 @@ class VerticalFloatingRoute<T> extends ModalRoute<T> {
   bool get barrierDismissible => false;
 
   @override
-  Color get barrierColor =>
-      RoofSemanticColor(current: currentTheme).background.scrim;
+  Color get barrierColor => theme.color.background.scrim;
 
   @override
   String get barrierLabel => null;
@@ -28,12 +25,24 @@ class VerticalFloatingRoute<T> extends ModalRoute<T> {
 
   @override
   Animation<double> get animation => CurvedAnimation(
-      curve: curve.quick, reverseCurve: curve.quick, parent: controller);
+        curve: theme.curve.hurried,
+        reverseCurve: theme.curve.hurried,
+        parent: controller,
+      );
 
-  final _fadeTween = Tween<double>(begin: 0.0, end: 1);
-  final _slideTween = Tween<Offset>(begin: Offset(0.0, 0.6), end: Offset.zero);
+  final _fadeTween = Tween<double>(
+    begin: 0.0,
+    end: 1,
+  );
+  final _slideTween = Tween<Offset>(
+    begin: Offset(0.0, 0.6),
+    end: Offset.zero,
+  );
 
-  VerticalFloatingRoute({@required this.builder, @required this.currentTheme});
+  VerticalFloatingRoute({
+    @required this.builder,
+    @required this.theme,
+  });
 
   @override
   Widget buildPage(
@@ -45,13 +54,21 @@ class VerticalFloatingRoute<T> extends ModalRoute<T> {
   }
 
   @override
-  Widget buildTransitions(BuildContext context, Animation<double> animation,
-      Animation<double> secondaryAnimation, Widget child) {
-    final slidingFloatingWidget =
-        SlideTransition(position: animation.drive(_slideTween), child: child);
+  Widget buildTransitions(
+    BuildContext context,
+    Animation<double> animation,
+    Animation<double> secondaryAnimation,
+    Widget child,
+  ) {
+    final slidingFloatingWidget = SlideTransition(
+      position: animation.drive(_slideTween),
+      child: child,
+    );
 
     final fadeSlidingFloatingWidget = FadeTransition(
-        opacity: animation.drive(_fadeTween), child: slidingFloatingWidget);
+      opacity: animation.drive(_fadeTween),
+      child: slidingFloatingWidget,
+    );
 
     return fadeSlidingFloatingWidget;
   }

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:semantic_theme/index.dart';
 import 'package:standard_icon_library/index.dart';
-import 'package:theme/index.dart';
 import 'package:haptics/index.dart';
-import 'package:corner_radius/index.dart' as radius;
-import 'package:distance/index.dart' as distance;
 
 class LoadMoreCell extends StatefulWidget {
   final VoidCallback onTap;
@@ -16,9 +14,6 @@ class LoadMoreCell extends StatefulWidget {
 
 class _LoadMoreCellState extends State<LoadMoreCell> {
   final _tapHapticOption = HapticOption.light;
-  final _padding = distance.c;
-  final _topMargin = distance.b;
-  final _radius = radius.regular;
 
   bool loading = false;
 
@@ -42,10 +37,10 @@ class _LoadMoreCellState extends State<LoadMoreCell> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
+    final theme = SemanticTheme.of(context);
 
     final loadMoreIcon = StandardIcon.loadMore.buildWidget(
-      color: theme.color.icon.general,
+      color: theme.color.icon.generalPrimary,
     );
 
     final loadingIcon = CircularProgressIndicator();
@@ -54,11 +49,15 @@ class _LoadMoreCellState extends State<LoadMoreCell> {
       onTapDown: (details) => _fireHaptic(),
       onTap: _onTap,
       child: Container(
-        margin: EdgeInsets.only(top: _topMargin),
-        padding: EdgeInsets.all(_padding),
+        margin: EdgeInsets.only(
+          top: theme.distance.spacing.vertical.small,
+        ),
+        padding: EdgeInsets.symmetric(
+          horizontal: theme.distance.padding.horizontal.medium,
+          vertical: theme.distance.padding.vertical.medium,
+        ),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(_radius),
-          // border: Border.all(color: theme.color.stroke.light),
+          borderRadius: BorderRadius.all(theme.radius.medium),
           color: theme.color.background.generalPrimary,
         ),
         child: Center(

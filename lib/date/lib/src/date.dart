@@ -18,6 +18,11 @@ class Date extends DateTime {
     return formatter.format(this);
   }
 
+  String get toFullDigits {
+    final formatter = DateFormat("M/d/yy");
+    return formatter.format(this);
+  }
+
   String get toLongString {
     final formatter = DateFormat("MMM d, yyyy");
     return formatter.format(this);

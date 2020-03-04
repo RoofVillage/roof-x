@@ -2,23 +2,27 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:network/src/post_response.dart';
 
 class Network {
   static const _jsonContentType = 'application/json';
   static const _jsonAccept = 'application/json';
 
-  static Future<String> get({String address}) async {
+  static Future<Map> get({String address}) async {
     final response = await http.get(Uri.encodeFull(address));
+
     print("GET response: $response");
     switch (response.statusCode) {
       case 200:
-        return utf8.decode(response.bodyBytes);
+        return json.decode(
+          utf8.decode(response.bodyBytes),
+        );
       default:
         throw Error();
     }
   }
 
-  static Future<String> post({
+  static Future<PostResponse> post({
     String address,
     Map<String, Object> params,
     Map<String, String> headers,
@@ -26,7 +30,7 @@ class Network {
     print("POST address: $address");
     print("POST params: $params");
     print("POST headers: $headers");
-    
+
     final Map<String, String> defaultHeaders = {
       'content-type': _jsonContentType,
       'accept': _jsonAccept
@@ -44,13 +48,15 @@ class Network {
       headers: headers,
     );
 
-    print("POST response: ${utf8.decode(response.bodyBytes)}");
+    final decodedBodyBytes = utf8.decode(response.bodyBytes);
 
-    switch (response.statusCode) {
-      case 200:
-        return utf8.decode(response.bodyBytes);
-      default:
-        throw Error();
-    }
+    final PostResponse postResponse = PostResponse(
+      body: (decodedBodyBytes != null && decodedBodyBytes.isNotEmpty) ? json.decode(decodedBodyBytes) : null,
+      headers: response.headers,
+      statusCode: response.statusCode,
+    );
+
+    print('POST complete');
+    return Future.value(postResponse);
   }
 }

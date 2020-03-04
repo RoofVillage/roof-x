@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:semantic_theme/index.dart';
 import 'package:standard_icon_library/index.dart';
 import 'package:decorated_text/index.dart';
-import 'package:typography/index.dart' as typography;
-import 'package:theme/index.dart';
 
 import '_thread.dart';
 
-class RoofDueSoonThreadCell extends StatelessWidget {
+class DueSoonThreadCell extends StatelessWidget {
   final String title;
   final WeightDecoratedText secondaryText;
   final StandardIcon iconReference;
   final int timestamp;
   final VoidCallback onTap;
 
-  RoofDueSoonThreadCell({
+  DueSoonThreadCell({
     @required this.title,
     this.secondaryText,
     @required this.iconReference,
@@ -21,22 +20,19 @@ class RoofDueSoonThreadCell extends StatelessWidget {
     @required this.onTap,
   });
 
-  final _titleTypographyStyle = typography.body;
-  final _timestampTypographyStyle = typography.body;
-
   @override
   Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
+    final theme = SemanticTheme.of(context);
 
-    final titleTextStyle = _titleTypographyStyle.textStyleWithColor(
-      theme.color.text.secondaryAction,
+    final titleTextStyle = theme.typography.body.textStyle(
+      color: theme.color.text.action,
     );
 
-    final timestampTextStyle = _timestampTypographyStyle.textStyleWithColor(
-      theme.color.text.secondary,
+    final timestampTextStyle = theme.typography.body.textStyle(
+      color: theme.color.text.generalSecondary,
     );
 
-    return RoofThreadCell(
+    return ThreadCell(
       title: title,
       titleTextStyle: titleTextStyle,
       secondaryText: secondaryText,

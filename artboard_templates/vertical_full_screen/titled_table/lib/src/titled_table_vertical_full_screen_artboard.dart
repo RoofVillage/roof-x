@@ -10,8 +10,22 @@ abstract class TitledVerticalFullTableScreenArtboard extends StatefulWidget
         Artboard,
         TableBuilder,
         TitledNavBarBuilder {
+  String get artboardTitle;
+
+  String get artboardSubtitle;
+
+  Widget artboardNavButton(BuildContext context);
+
+  List<Widget> artboardActionButtons(BuildContext context);
+
   @override
   Widget buildBody(BuildContext context) => buildTable(context);
   @override
-  Widget buildNavBar(BuildContext context) => buildTitledNavBar(context);
+  Widget buildNavBar(BuildContext context) => buildTitledNavBar(
+        context,
+        title: artboardTitle,
+        subtitle: artboardSubtitle,
+        navButton: artboardNavButton(context),
+        actionButtons: artboardActionButtons(context),
+      );
 }

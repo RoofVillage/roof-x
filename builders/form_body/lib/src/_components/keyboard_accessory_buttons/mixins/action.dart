@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:haptics/index.dart';
-import 'package:typedefs/index.dart';
 
 mixin ActionKeyboardAccessoryButton implements StatelessWidget {
   String get title;
-  ContextPasser get onTap;
+  void Function() get onTap;
+  
   final _tapHapticOption = HapticOption.light;
 
   void _fireHaptic() {
@@ -13,7 +13,7 @@ mixin ActionKeyboardAccessoryButton implements StatelessWidget {
 
   Widget buildButton({
     @required BuildContext context,
-    @required Function onTap,
+    @required void Function() onTap,
     @required Widget child,
   }) {
     return Expanded(

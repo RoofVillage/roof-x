@@ -11,15 +11,24 @@ dependencies:
   artboard:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-sm-app
       path: lib/artboard
   vertical_floating_artboard_scaffold:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-sm-app
       path: artboard_scaffolds/vertical_floating
-  button_stack_builder:
-    path: ../../../builders/button_stack
+  standard_stack_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: builders/standard_stack
+
+dependency_overrides:
+  vertical_floating_artboard_scaffold:
+    path: ../../../artboard_scaffolds/vertical_floating
+  standard_stack_builder:
+    path: ../../../builders/standard_stack
 
 dev_dependencies:
   flutter_test:

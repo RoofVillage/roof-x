@@ -1,23 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:decorated_text/index.dart';
+import 'package:semantic_theme/index.dart';
 import 'package:standard_icon_library/index.dart';
 import 'package:date/index.dart';
 import 'package:haptics/index.dart';
-import 'package:distance/index.dart' as distance;
-import 'package:theme/index.dart';
-import 'package:typography/index.dart' as typography;
 
-class RoofActivityCell extends StatelessWidget {
+class ActivityCell extends StatelessWidget {
   final WeightDecoratedText title;
   final int timestamp;
   final StandardIcon iconReference;
   final String note;
   final VoidCallback onTap;
 
-  final double _horizontalPadding = distance.b;
-  final double _verticalPadding = distance.a;
-
-  RoofActivityCell({
+  ActivityCell({
     @required this.title,
     @required this.timestamp,
     @required this.iconReference,
@@ -34,6 +29,8 @@ class RoofActivityCell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = SemanticTheme.of(context);
+
     return Container(
       child: GestureDetector(
         onTapDown: (details) => _fireHaptic(),
@@ -42,8 +39,8 @@ class RoofActivityCell extends StatelessWidget {
           // Everything in the cell is relative to the horizontal padding.
           child: Padding(
             padding: EdgeInsets.symmetric(
-              horizontal: _horizontalPadding,
-              vertical: _verticalPadding,
+              horizontal: theme.distance.padding.horizontal.small,
+              vertical: theme.distance.padding.vertical.min,
             ),
 
             ///This column contains the body of the cell, and the divider;
@@ -73,10 +70,6 @@ class _Body extends StatelessWidget {
   final StandardIcon iconReference;
   final String note;
 
-  final _verticalPadding = distance.b;
-  final _imagePaddingRight = distance.b;
-  final _detailPaddingTop = distance.a;
-
   _Body({
     @required this.title,
     @required this.iconReference,
@@ -86,17 +79,24 @@ class _Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
+    final theme = SemanticTheme.of(context);
+
     return Container(
-      padding: EdgeInsets.symmetric(vertical: _verticalPadding),
+      padding: EdgeInsets.symmetric(
+        vertical: theme.distance.padding.vertical.small,
+      ),
       //The body of the cell contains the icon and the labels.
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Container(
-            padding: EdgeInsets.only(right: _imagePaddingRight),
-            child: iconReference.buildWidget(color: theme.color.icon.general),
+            padding: EdgeInsets.only(
+              right: theme.distance.spacing.horizontal.small,
+            ),
+            child: iconReference.buildWidget(
+              color: theme.color.icon.generalPrimary,
+            ),
           ),
 
           ///This child should expand to occupy remaining space.
@@ -104,7 +104,7 @@ class _Body extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: _relevantLabels(),
+              children: _relevantLabels(theme),
             ),
           ),
         ],
@@ -112,12 +112,14 @@ class _Body extends StatelessWidget {
     );
   }
 
-  List<Widget> _relevantLabels() {
+  List<Widget> _relevantLabels(SemanticThemeData theme) {
     var list = <Widget>[_TitleLabel(decoratedText: title)];
     if (note != null && note.trim().isNotEmpty) {
       list.add(
         Container(
-          padding: EdgeInsets.only(top: _detailPaddingTop),
+          padding: EdgeInsets.only(
+            top: theme.distance.padding.vertical.min,
+          ),
           child: _DetailLabel(text: note),
         ),
       );
@@ -129,33 +131,34 @@ class _Body extends StatelessWidget {
 class _DetailLabel extends StatelessWidget {
   final String text;
 
-  final _typographyStyle = typography.body;
-
-  _DetailLabel({Key key, @required this.text}) : super(key: key);
+  _DetailLabel({
+    Key key,
+    @required this.text,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final secondaryTextColor = RoofTheme.of(context).color.text.secondary;
+    final theme = SemanticTheme.of(context);
 
     return Text(
       text,
-      style: _typographyStyle.textStyleWithColor(secondaryTextColor),
+      style: theme.typography.body.textStyle(
+        color: theme.color.text.generalSecondary,
+      ),
     );
   }
 }
 
 class _CellDivider extends StatelessWidget {
-
-  final _topMargin = distance.b;
-
   @override
   Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
-    final dividerColor = theme.color.stroke.light;
+    final theme = SemanticTheme.of(context);
 
     return Container(
-      margin: EdgeInsets.only(top: _topMargin),
+      margin: EdgeInsets.only(
+        top: theme.distance.spacing.vertical.small,
+      ),
       height: 1,
-      decoration: BoxDecoration(color: dividerColor),
+      decoration: BoxDecoration(color: theme.color.stroke.light),
     );
   }
 }
@@ -163,20 +166,23 @@ class _CellDivider extends StatelessWidget {
 class _TitleLabel extends StatelessWidget {
   final WeightDecoratedText decoratedText;
 
-  final _defaultTypographyStyle = typography.bodyThick;
-  final _thinTypographyStyle = typography.body;
-
-  _TitleLabel({Key key, @required this.decoratedText}) : super(key: key);
+  _TitleLabel({
+    Key key,
+    @required this.decoratedText,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final primaryTextColor = RoofTheme.of(context).color.text.primary;
+    final theme = SemanticTheme.of(context);
+
+    final primaryTextColor = theme.color.text.generalPrimary;
 
     return decoratedText.generateWidget(
-        defaultStyle:
-            _defaultTypographyStyle.textStyleWithColor(primaryTextColor),
-        thinStyle: _thinTypographyStyle.textStyleWithColor(primaryTextColor),
-        textScaleFactor: MediaQuery.of(context).textScaleFactor);
+      defaultStyle:
+          theme.typography.bodyHeavy.textStyle(color: primaryTextColor),
+      thinStyle: theme.typography.body.textStyle(color: primaryTextColor),
+      textScaleFactor: MediaQuery.of(context).textScaleFactor,
+    );
   }
 }
 
@@ -185,19 +191,17 @@ class _TimeLabel extends StatelessWidget {
 
   _TimeLabel(this.timestamp);
 
-  final _typographyStyle = typography.detailSecondary;
-
   @override
   Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
+    final theme = SemanticTheme.of(context);
 
     final formattedTimestamp =
         Date.fromSecondsSinceEpoch(timestamp).toAdaptiveString;
 
     final textWidget = Text(
       formattedTimestamp,
-      style: _typographyStyle.textStyleWithColor(
-        theme.color.text.secondary,
+      style: theme.typography.detail.textStyle(
+        color: theme.color.text.generalSecondary,
       ),
     );
 

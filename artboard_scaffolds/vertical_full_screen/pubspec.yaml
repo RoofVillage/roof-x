@@ -12,43 +12,59 @@ dependencies:
   vertical_floating_artboard_scaffold:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-sm-app
       path: artboard_scaffolds/vertical_floating
   horizontal_floating_artboard_scaffold:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-sm-app
       path: artboard_scaffolds/horizontal_floating
+  vertical_drawer_artboard_scaffold:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: artboard_scaffolds/vertical_drawer
   keyboard_accessory:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-sm-app
       path: lib/keyboard_accessory
   artboard:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-sm-app
       path: lib/artboard
-  duration:
+  semantic_theme:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
-      path: spec/duration
-  curve:
-    git:
-      url: git@github.com:RoofVillage/roof-x.git
-      ref: master
-      path: spec/curve
-  theme:
-    git:
-      url: git@github.com:RoofVillage/roof-x.git
-      ref: master
-      path: theme
+      ref: semantic-sm-app
+      path: semantic_theme
   navigator:
     git:
       url: git@github.com:RoofVillage/roof-x.git
-      ref: master
+      ref: semantic-sm-app
       path: lib/navigator
+  inherited_scroll_controller_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: semantic-sm-app
+      path: builders/inherited_scroll_controller
+
+dependency_overrides:
+  inherited_scroll_controller_builder:
+    path: ../../builders/inherited_scroll_controller
+  navigator:
+    path: ../../lib/navigator
+  artboard:
+    path: ../../lib/artboard
+  semantic_theme:
+    path: ../../semantic_theme
+  vertical_floating_artboard_scaffold:
+    path: ../vertical_floating
+  horizontal_floating_artboard_scaffold:
+    path: ../horizontal_floating
+  vertical_drawer_artboard_scaffold:
+    path: ../vertical_drawer
 
 dev_dependencies:
   flutter_test:

@@ -1,27 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:theme/index.dart';
-import 'package:typography/index.dart' as typography;
-import 'package:distance/index.dart' as distance;
+import 'package:semantic_theme/index.dart';
 
 class EmptyMessageCell extends StatelessWidget {
   final String text;
 
   EmptyMessageCell({this.text});
 
-  final _verticalMargin = distance.d;
-  final _typographyStyle = typography.body;
-
   @override
   Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
+    final theme = SemanticTheme.of(context);
 
     final textWidget = Text(
       text,
-      style: _typographyStyle.textStyleWithColor(theme.color.text.placeholder),
+      style: theme.typography.body.textStyle(
+        color: theme.color.text.inputPlaceholder,
+      ),
     );
 
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: _verticalMargin),
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        vertical: theme.distance.padding.vertical.large,
+      ),
       child: Center(
         child: textWidget,
       ),

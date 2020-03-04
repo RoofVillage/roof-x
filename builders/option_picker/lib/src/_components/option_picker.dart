@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:theme/index.dart';
 import 'package:small_icon_library/index.dart';
-import 'package:distance/index.dart' as distance;
-import 'package:typography/index.dart' as typography;
 import 'package:labeled_value/index.dart';
+import 'package:semantic_theme/index.dart';
 
 typedef SelectedOptionsPasser<T> = Function(List<LabeledValue<T>>);
 
@@ -26,14 +24,16 @@ class OptionPicker<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
+    final theme = SemanticTheme.of(context);
 
     final List<Widget> columnChildren = [];
 
     if (title != null && title.isNotEmpty) {
       final titleWidget = Text(
         title,
-        style: typography.heading2.textStyleWithColor(theme.color.text.brand),
+        style: theme.typography.title.textStyle(
+          color: theme.color.text.generalPrimary,
+        ),
       );
       columnChildren.add(titleWidget);
     }
@@ -84,9 +84,9 @@ class _OptionsColumn<T> extends StatelessWidget {
     this.emptyText,
   }) : isMultiSelect = isMultiSelect ?? false;
 
-  final _verticalSpacing = distance.c;
-
   Widget build(BuildContext context) {
+    final theme = SemanticTheme.of(context);
+
     List<LabeledValue<T>> _selectedOptions = selectedOptions ?? [];
     List<Widget> optionsList = [];
 
@@ -117,7 +117,9 @@ class _OptionsColumn<T> extends StatelessWidget {
     }
 
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: _verticalSpacing),
+      padding: EdgeInsets.symmetric(
+        vertical: theme.distance.padding.vertical.medium,
+      ),
       child: Column(
         children: optionsList,
       ),
@@ -132,10 +134,8 @@ class _Option<T> extends StatelessWidget {
   final bool canToggle;
   final bool selected;
 
-  final _typographyStyle = typography.body;
   final _checkIcon = SmallIcon.boxChecked;
   final _uncheckedIcon = SmallIcon.boxUnchecked;
-  final _iconPadding = distance.c;
 
   _Option({
     this.name,
@@ -146,18 +146,24 @@ class _Option<T> extends StatelessWidget {
   }) : canToggle = canToggle ?? false;
 
   Widget build(BuildContext context) {
-    final theme = RoofTheme.of(context);
+    final theme = SemanticTheme.of(context);
 
     List<Widget> rowChildren = [];
 
     if (canToggle) {
-      final generalIconColor = theme.color.icon.general;
+      final generalIconColor = theme.color.icon.generalPrimary;
       Widget checkedIcon = Padding(
-        padding: EdgeInsets.only(right: _iconPadding),
-        child: _checkIcon.buildWidget(color: generalIconColor),
+        padding: EdgeInsets.only(
+          right: theme.distance.padding.horizontal.medium,
+        ),
+        child: _checkIcon.buildWidget(
+          color: generalIconColor,
+        ),
       );
       Widget uncheckedIcon = Padding(
-        padding: EdgeInsets.only(right: _iconPadding),
+        padding: EdgeInsets.only(
+          right: theme.distance.padding.horizontal.medium,
+        ),
         child: _uncheckedIcon.buildWidget(color: generalIconColor),
       );
 
@@ -167,20 +173,26 @@ class _Option<T> extends StatelessWidget {
     final optionTitle = Text(
       name,
       style: (selected || canToggle)
-          ? _typographyStyle.textStyleWithColor(theme.color.text.primary)
-          : _typographyStyle.textStyleWithColor(theme.color.text.secondary),
+          ? theme.typography.body.textStyle(
+              color: theme.color.text.generalPrimary,
+            )
+          : theme.typography.body.textStyle(
+              color: theme.color.text.generalSecondary,
+            ),
     );
 
     final optionPadding = EdgeInsets.symmetric(
-      horizontal: distance.b,
-      vertical: distance.d,
+      horizontal: theme.distance.padding.horizontal.small,
+      vertical: theme.distance.padding.vertical.large,
     );
 
     rowChildren.add(optionTitle);
 
     return Container(
       decoration: BoxDecoration(
-        border: Border(bottom: BorderSide(color: theme.color.stroke.light)),
+        border: Border(
+          bottom: BorderSide(color: theme.color.stroke.light),
+        ),
       ),
       child: GestureDetector(
         onTap: onTap,
