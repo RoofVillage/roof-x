@@ -34,6 +34,11 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: master
       path: lib/date
+  decorated_text:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: lib/decorated_text
   mask:
     git:
       url: git@github.com:RoofVillage/roof-x.git

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:semantic_theme/index.dart';
 
-import 'standard_cell.dart';
+import 'card_cell.dart';
 
 class TitleBadgeCell extends StatelessWidget {
   final String title;
@@ -44,7 +44,7 @@ class TitleBadgeCell extends StatelessWidget {
       rowChildren.add(nameText);
     }
 
-    return StandardCell(
+    return CardCell(
       child: Row(children: rowChildren),
       onTap: onTap,
     );

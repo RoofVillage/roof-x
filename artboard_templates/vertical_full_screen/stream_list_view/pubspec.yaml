@@ -1,5 +1,5 @@
 name: stream_list_view_vertical_full_screen_artboard_template
-description: A vertical full screen frame with a list view and nav header.
+description: A vertical full screen frame with a list view and animated title nav header.
 version: 1.0.0+1
 
 environment:

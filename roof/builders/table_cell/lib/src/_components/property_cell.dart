@@ -7,7 +7,7 @@ import 'package:tag_builder/index.dart';
 import 'package:views/index.dart';
 
 class PropertyCell extends StatelessWidget
-    with StandardCellBuilder, TagBuilder {
+    with CardCellBuilder, TagBuilder {
   final Property property;
   final void Function() onTap;
 
@@ -86,7 +86,7 @@ class PropertyCell extends StatelessWidget
       children: columnChildren,
     );
 
-    return buildStandardCell(child: cellColumn);
+    return buildCardCell(child: cellColumn);
   }
 
   Widget _buildTitleWidget(Property property, BuildContext context) {

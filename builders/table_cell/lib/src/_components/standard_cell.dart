@@ -22,14 +22,15 @@ class StandardCell extends StatelessWidget {
       ),
       child: Container(
         padding: EdgeInsets.symmetric(
-          horizontal: theme.distance.padding.horizontal.medium,
-          vertical: theme.distance.padding.vertical.medium,
-        ),
-        decoration: BoxDecoration(
-          color: theme.color.background.generalPrimary,
-          borderRadius: BorderRadius.all(theme.radius.medium),
+          horizontal: theme.distance.gutter.horizontal.medium,
+          vertical: theme.distance.gutter.vertical.medium,
         ),
         child: child,
+        decoration: BoxDecoration(
+          border: Border(
+            bottom: BorderSide(color: theme.color.stroke.light),
+          ),
+        ),
       ),
     );
   }
