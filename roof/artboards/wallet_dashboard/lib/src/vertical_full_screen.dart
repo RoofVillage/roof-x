@@ -11,6 +11,7 @@ import 'package:scroll_view_vertical_full_screen_artboard_template/index.dart';
 import 'package:table_cell_builder/index.dart';
 import 'package:view_stream_builder_builder/index.dart';
 import 'package:x_small_icon_library/index.dart';
+import 'package:choose_wallet_verification_type_artboard/index.dart';
 
 import '_data.dart';
 
@@ -60,19 +61,24 @@ class WalletDashboardVerticalFullscreenArtboard
           if (snapshot.status == WalletStatus.verified) {
             return SliverToBoxAdapter(
               child: Padding(
+                child: balanceCell,
                 padding: EdgeInsets.fromLTRB(
                   horizontalGutter(context),
                   theme.distance.gutter.vertical.medium,
                   horizontalGutter(context),
                   theme.distance.gutter.vertical.max,
                 ),
-                child: balanceCell,
               ),
             );
           } else {
+            final sliverWidgets = <Widget>[];
+
             String statusAlertText;
             AlertType alertType;
-            bool statusAlertHasAction = true;
+            void Function() statusAlertAction =
+                () => ArtboardNavigator.of(context).goTo(
+                      ChooseWalletVerificationTypeVerticalFloatingArtboard(),
+                    );
 
             switch (snapshot.status) {
               case WalletStatus.verified:
@@ -93,41 +99,46 @@ class WalletDashboardVerticalFullscreenArtboard
                 break;
               case WalletStatus.suspended:
                 alertType = AlertType.warn;
-                statusAlertHasAction = false;
+                statusAlertAction = null;
                 statusAlertText =
                     "Your account has been suspended, please email support@roof.io to learn more.";
                 break;
             }
 
-            final alertCell = Padding(
-              child: buildAlertCell(
-                text: statusAlertText,
-                icon: statusAlertHasAction ? XSmallIcon.rightArrow : null,
-                type: alertType,
-                onTap:
-                    statusAlertHasAction ? () => print('go to settings') : null,
-              ),
-              padding: EdgeInsets.fromLTRB(
-                horizontalGutter(context),
-                theme.distance.gutter.vertical.medium,
-                horizontalGutter(context),
-                theme.distance.gutter.vertical.medium,
+            if (statusAlertText != null) {
+              final alertCell = Padding(
+                child: buildAlertCell(
+                  text: statusAlertText,
+                  icon:
+                      statusAlertAction != null ? XSmallIcon.rightArrow : null,
+                  type: alertType,
+                  onTap: statusAlertAction,
+                ),
+                padding: EdgeInsets.fromLTRB(
+                  horizontalGutter(context),
+                  theme.distance.gutter.vertical.medium,
+                  horizontalGutter(context),
+                  theme.distance.gutter.vertical.medium,
+                ),
+              );
+
+              sliverWidgets.add(alertCell);
+            }
+
+            sliverWidgets.add(
+              Padding(
+                child: balanceCell,
+                padding: EdgeInsets.fromLTRB(
+                  horizontalGutter(context),
+                  0,
+                  horizontalGutter(context),
+                  theme.distance.gutter.vertical.max,
+                ),
               ),
             );
 
             return SliverList(
-              delegate: SliverChildListDelegate.fixed([
-                alertCell,
-                Padding(
-                  child: balanceCell,
-                  padding: EdgeInsets.fromLTRB(
-                    horizontalGutter(context),
-                    0,
-                    horizontalGutter(context),
-                    theme.distance.gutter.vertical.max,
-                  ),
-                )
-              ]),
+              delegate: SliverChildListDelegate.fixed(sliverWidgets),
             );
           }
         },

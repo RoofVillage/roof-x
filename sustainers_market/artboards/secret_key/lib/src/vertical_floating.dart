@@ -11,7 +11,7 @@ class SecretKeyVerticalFloatingArtboard extends SpacedColumnVerticalFloatingArtb
   SecretKeyVerticalFloatingArtboard({@required this.secretKey});
 
   @override
-  List<Widget> Function(BuildContext) get buildStandardButtonStackButtons =>
+  List<Widget> Function(BuildContext) get buildSpacedColumnChildren =>
       (BuildContext context) => [
             buildSecondaryCenterButton(
               context,

@@ -60,6 +60,10 @@ dependency_overrides:
     path: ../../../lib/artboard
   public_activity_artboard:
     path: ../../artboards/public_activity
+  choose_wallet_verification_type_artboard:
+    path: ../../artboards/choose_wallet_verification_type
+  choose_business_type_artboard:
+    path: ../../artboards/choose_business_type
   properties_artboard:
     path: ../../artboards/properties
   wallet_dashboard_artboard:

@@ -28,6 +28,11 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: master
       path: artboard_templates/vertical_full_screen/scroll_view
+  choose_wallet_verification_type_artboard:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: roof/artboards/choose_wallet_verification_type
   views:
     git:
       url: git@github.com:RoofVillage/roof-x.git
@@ -90,6 +95,8 @@ dependencies:
       path: roof/artboards/balance_actions
 
 dependency_overrides:
+  choose_wallet_verification_type_artboard:
+    path: ../choose_wallet_verification_type
   landlord_nav_drawer_artboard:
     path: ../landlord_nav_drawer
   balance_actions_artboard:

@@ -10,7 +10,7 @@ class BalanceActionsVerticalFloatingArtboard
   String get title => null;
 
   @override
-  List<Widget> Function(BuildContext) get buildStandardButtonStackButtons =>
+  List<Widget> Function(BuildContext) get buildSpacedColumnChildren =>
       (context) => [
             buildSecondaryCenterButton(
               context,

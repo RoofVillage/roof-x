@@ -6,7 +6,7 @@ class VerticalFloatingRoute<T> extends ModalRoute<T> {
   SemanticThemeData theme;
 
   @override
-  Duration get transitionDuration => theme.duration.short;
+  Duration get transitionDuration => theme.duration.medium;
 
   @override
   bool get opaque => false;
