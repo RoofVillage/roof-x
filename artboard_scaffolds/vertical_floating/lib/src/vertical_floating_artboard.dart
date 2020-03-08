@@ -16,7 +16,7 @@ mixin VerticalFloatingArtboardState<T extends VerticalFloatingArtboard>
     final theme = SemanticTheme.of(context);
 
     final decoration = BoxDecoration(
-      color: theme.color.background.inputBackground,
+      color: theme.color.background.generalPrimary,
       borderRadius: BorderRadius.all(theme.radius.max),
       boxShadow: [
         theme.shadow.medium,

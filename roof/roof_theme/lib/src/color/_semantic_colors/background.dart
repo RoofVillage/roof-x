@@ -16,7 +16,7 @@ class RoofBackgroundColor extends SemanticBackgroundColor<RoofThemeOption> {
   @override
   Color get actionSecondary => forThemeOption({
         RoofThemeOption.light: colors.white2,
-        RoofThemeOption.dark: colors.black3,
+        RoofThemeOption.dark: colors.black2,
       });
 
   @override
@@ -64,7 +64,7 @@ class RoofBackgroundColor extends SemanticBackgroundColor<RoofThemeOption> {
   @override
   Color get scrim => forThemeOption({
         RoofThemeOption.light: Colors.black.withOpacity(0.2),
-        RoofThemeOption.dark: Colors.black.withOpacity(0.1),
+        RoofThemeOption.dark: Colors.black.withOpacity(0.5),
       });
 
   @override

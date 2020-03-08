@@ -50,9 +50,9 @@ class WalletDashboardVerticalFullscreenArtboard
           return SliverToBoxAdapter(
             child: Padding(
               padding: EdgeInsets.fromLTRB(
-                theme.distance.gutter.horizontal.medium,
+                horizontalGutter(context),
                 theme.distance.gutter.vertical.medium,
-                theme.distance.gutter.horizontal.medium,
+                horizontalGutter(context),
                 theme.distance.gutter.vertical.max,
               ),
               child: buildBalanceCell(
