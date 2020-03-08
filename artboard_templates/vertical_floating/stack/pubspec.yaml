@@ -18,17 +18,17 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: master
       path: artboard_scaffolds/vertical_floating
-  standard_stack_builder:
+  vertical_spaced_column_builder:
     git:
       url: git@github.com:RoofVillage/roof-x.git
       ref: master
-      path: builders/standard_stack
+      path: builders/vertical_spaced_column
 
 dependency_overrides:
   vertical_floating_artboard_scaffold:
     path: ../../../artboard_scaffolds/vertical_floating
-  standard_stack_builder:
-    path: ../../../builders/standard_stack
+  vertical_spaced_column_builder:
+    path: ../../../builders/vertical_spaced_column
 
 dev_dependencies:
   flutter_test:

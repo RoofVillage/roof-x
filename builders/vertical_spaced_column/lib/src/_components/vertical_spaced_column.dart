@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:semantic_theme/index.dart';
 
-class StandardStack extends StatelessWidget {
+class VerticalSpacedColumn extends StatelessWidget {
   final List<Widget> children;
 
-  StandardStack({@required this.children});
+  VerticalSpacedColumn({@required this.children});
 
   @override
   Widget build(BuildContext context) {

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-import '_components/titled_standard_stack.dart';
+import '_components/titled_vertical_spaced_column.dart';
 
-mixin TitledStandardStackBuilder {
-  TitledStandardStack buildTitledStandardStack(
+mixin TitledVerticalSpacedColumnBuilder {
+  TitledVerticalSpacedColumn buildTitledVerticalSpacedColumn(
     BuildContext context, {
     @required List<Widget> children,
     @required String title,
   }) {
-    return TitledStandardStack(
+    return TitledVerticalSpacedColumn(
       children: children,
       title: title,
     );

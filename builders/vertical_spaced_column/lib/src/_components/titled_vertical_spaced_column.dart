@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:semantic_theme/index.dart';
 
-import 'standard_stack.dart';
+import 'vertical_spaced_column.dart';
 
-class TitledStandardStack extends StatelessWidget {
+class TitledVerticalSpacedColumn extends StatelessWidget {
   final List<Widget> children;
   final String title;
 
-  TitledStandardStack({
+  TitledVerticalSpacedColumn({
     @required this.title,
     @required this.children,
   });
@@ -26,7 +26,7 @@ class TitledStandardStack extends StatelessWidget {
       ),
     );
 
-    final stack = StandardStack(children: children);
+    final stack = VerticalSpacedColumn(children: children);
 
     stackChildren.add(stack);
     return Column(children: stackChildren);

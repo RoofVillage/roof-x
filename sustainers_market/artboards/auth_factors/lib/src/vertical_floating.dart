@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:empty_table_vertical_full_screen_artboard_template/index.dart';
 import 'package:form_builder/index.dart';
 import 'package:key_value_row_builder/index.dart';
-import 'package:standard_stack_builder/index.dart';
+import 'package:vertical_spaced_column_builder/index.dart';
 
 import '_data.dart';
 
@@ -10,7 +10,7 @@ class AuthSetFactorsVerticalFloatingArtboard
     extends EmptyTableVerticalFullScreenArtboard
     with
         AuthSetFactorsArtboardData,
-        StandardStackBuilder,
+        VerticalSpacedColumnBuilder,
         PrimaryLeftButtonBuilder,
         SecondaryCenterButtonBuilder,
         KeyValueRowBuilder {
@@ -19,7 +19,7 @@ class AuthSetFactorsVerticalFloatingArtboard
     // ArtboardNavigator.of(context).goTo();
   }
 
-  Widget buildDock(BuildContext context) => buildStandardStack(
+  Widget buildDock(BuildContext context) => buildVerticalSpacedColumn(
         context,
         children: [
           buildKeyValueRow(

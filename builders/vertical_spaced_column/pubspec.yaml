@@ -1,4 +1,4 @@
-name: standard_stack_builder
+name: vertical_spaced_column_builder
 description: Functionality for displaying a list of widgets in a vertical stack.
 
 version: 1.0.0+1

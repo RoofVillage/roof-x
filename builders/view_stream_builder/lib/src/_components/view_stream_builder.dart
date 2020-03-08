@@ -15,19 +15,14 @@ class ViewStreamBuilder<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('stream $stream');
     return StreamBuilder<T>(
       stream: stream,
       builder: (context, snapshot) {
-        print('data: ${snapshot.data}');
         if (!snapshot.hasData) {
-          print('NO DATA');
           return loading;
         } else if (snapshot.data is List && (snapshot.data as List).isEmpty) {
-          print('EMPTY');
           return empty;
         } else if (snapshot.data == null) {
-          print('HAS DATA');
           return empty;
         }
 

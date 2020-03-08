@@ -1,7 +1,7 @@
 import 'package:button_builder/index.dart';
 import 'package:empty_table_vertical_full_screen_artboard_template/index.dart';
 import 'package:flutter/material.dart';
-import 'package:standard_stack_builder/index.dart';
+import 'package:vertical_spaced_column_builder/index.dart';
 import 'package:navigator/index.dart';
 import 'package:sign_up_artboard/index.dart';
 import 'package:x_small_icon_library/index.dart';
@@ -12,9 +12,9 @@ class PublicActivityVerticalFullScreenArtboard
     extends EmptyTableVerticalFullScreenArtboard
     with
         PublicActivityArtboardData,
-        StandardStackBuilder,
+        VerticalSpacedColumnBuilder,
         PrimaryCenterButtonBuilder {
-  List<Widget> Function(BuildContext) get buildStandardStackButtons =>
+  List<Widget> Function(BuildContext) get buildVerticalSpacedColumnButtons =>
       (BuildContext context) => [
             buildPrimaryCenterButton(
               context,
@@ -47,8 +47,8 @@ class PublicActivityVerticalFullScreenArtboard
           ];
 
   @override
-  Widget buildDock(BuildContext context) => buildStandardStack(
+  Widget buildDock(BuildContext context) => buildVerticalSpacedColumn(
         context,
-        children: buildStandardStackButtons(context),
+        children: buildVerticalSpacedColumnButtons(context),
       );
 }
