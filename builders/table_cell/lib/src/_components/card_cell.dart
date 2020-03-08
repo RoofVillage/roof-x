@@ -5,10 +5,14 @@ import 'package:semantic_theme/index.dart';
 class CardCell extends StatelessWidget {
   final Widget child;
   final void Function() onTap;
+  final Color backgroundColor;
+  final Color borderColor;
 
   CardCell({
     @required this.child,
     this.onTap,
+    this.backgroundColor,
+    this.borderColor,
   });
 
   @override
@@ -26,8 +30,9 @@ class CardCell extends StatelessWidget {
           vertical: theme.distance.padding.vertical.medium,
         ),
         decoration: BoxDecoration(
-          color: theme.color.background.generalPrimary,
+          color: backgroundColor ?? theme.color.background.generalPrimary,
           borderRadius: BorderRadius.all(theme.radius.medium),
+          border: borderColor != null ? Border.all(color: borderColor) : null,
         ),
         child: child,
       ),

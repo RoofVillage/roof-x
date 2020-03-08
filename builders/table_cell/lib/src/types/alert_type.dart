@@ -1,0 +1,1 @@
+enum AlertType { good, warn, bad, neutral }

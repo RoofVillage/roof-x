@@ -14,6 +14,11 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: master
       path: semantic_theme
+  x_small_icon_library:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: icons/x_small
   haptics:
     git:
       url: git@github.com:RoofVillage/roof-x.git

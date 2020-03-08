@@ -11,8 +11,11 @@ mixin WalletDashboardArtboardData {
         )
       ];
 
-  final balanceStream = Stream.value(
-    BalanceView(850000),
+  final walletOverviewStream = Stream.value(
+    WalletOverview(
+      balance: 850000,
+      status: WalletStatus.unverified,
+    ),
   );
 
   final transfersStream = Stream.value(
@@ -81,8 +84,20 @@ class Transfer {
   });
 }
 
-class BalanceView {
+class WalletOverview {
   final double balance; // in USD?
+  final WalletStatus status;
 
-  BalanceView(this.balance);
+  WalletOverview({
+    this.balance,
+    this.status,
+  });
+}
+
+enum WalletStatus {
+  unverified,
+  verified,
+  retry,
+  suspended,
+  document,
 }

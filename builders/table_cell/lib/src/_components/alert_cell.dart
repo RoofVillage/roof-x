@@ -1,0 +1,82 @@
+import 'package:flutter/material.dart';
+import 'package:semantic_theme/index.dart';
+import 'package:table_cell_builder/src/types/alert_type.dart';
+import 'package:x_small_icon_library/index.dart';
+
+import 'card_cell.dart';
+
+class AlertCell extends StatelessWidget {
+  final String text;
+  final XSmallIcon icon;
+  final AlertType type;
+  final void Function() onTap;
+
+  AlertCell({
+    @required this.text,
+    this.icon,
+    this.type,
+    this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = SemanticTheme.of(context);
+
+    Color textColor;
+    Color iconColor;
+    Color strokeColor;
+
+    switch (type) {
+      case AlertType.good:
+        textColor = theme.color.text.good;
+        iconColor = theme.color.icon.good;
+        strokeColor = theme.color.stroke.good;
+        break;
+      case AlertType.warn:
+        textColor = theme.color.text.warn;
+        iconColor = theme.color.icon.warn;
+        strokeColor = theme.color.stroke.warn;
+        break;
+      case AlertType.bad:
+        textColor = theme.color.text.bad;
+        iconColor = theme.color.icon.bad;
+        strokeColor = theme.color.stroke.bad;
+        break;
+      case AlertType.neutral:
+      default:
+        textColor = theme.color.text.generalSecondary;
+        iconColor = theme.color.icon.generalSecondary;
+        strokeColor = theme.color.stroke.light;
+        break;
+    }
+
+    final nameText = Expanded(
+      child: Text(
+        text,
+        style: theme.typography.detailHeavy.textStyle(color: textColor),
+      ),
+    );
+
+    final List<Widget> rowChildren = [nameText];
+
+    if (icon != null) {
+      final iconWidget = icon.buildWidget(color: iconColor);
+
+      rowChildren.add(
+        Padding(
+          padding: EdgeInsets.only(
+            left: theme.distance.spacing.horizontal.small,
+          ),
+          child: iconWidget,
+        ),
+      );
+    }
+
+    return CardCell(
+      child: Row(children: rowChildren),
+      borderColor: strokeColor,
+      backgroundColor: Colors.transparent,
+      onTap: onTap,
+    );
+  }
+}
