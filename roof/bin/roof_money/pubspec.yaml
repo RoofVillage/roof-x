@@ -70,6 +70,8 @@ dependency_overrides:
     path: ../../builders/table_cell
   nav_vertical_drawer_artboard_template:
     path: ../../../artboard_templates/vertical_drawer/nav_drawer
+  spaced_column_vertical_floating_artboard_template:
+    path: ../../../artboard_templates/vertical_floating/spaced_column
   landlord_nav_drawer_artboard:
     path: ../../artboards/landlord_nav_drawer
   stream_list_view_vertical_full_screen_artboard_template:
@@ -232,6 +234,8 @@ dependency_overrides:
     path: ../../../types/period
   phone_number_sign_up_artboard:
     path: ../../artboards/phone_number_sign_up
+  balance_actions_artboard:
+    path: ../../artboards/balance_actions
   privacy_type:
     path: ../../../types/privacy
   public:
@@ -264,8 +268,8 @@ dependency_overrides:
     path: ../../../builders/spaced_list_view
   standard_icon_library:
     path: ../../../icons/standard
-  vertical_spaced_column_builder:
-    path: ../../../builders/vertical_spaced_column
+  spaced_column_builder:
+    path: ../../../builders/spaced_column
   stream:
     path: ../../../lib/stream
   string_from_enum_string:

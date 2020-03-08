@@ -1,0 +1,24 @@
+name: spaced_column_builder
+description: Functionality for displaying a list of widgets in a vertical stack.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  semantic_theme:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: semantic_theme
+
+dependency_overrides:
+  semantic_theme:
+    path: ../../semantic_theme
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

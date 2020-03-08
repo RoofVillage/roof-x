@@ -18,11 +18,11 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: master
       path: app_data
-  vertical_spaced_column_builder:
+  spaced_column_builder:
     git:
       url: git@github.com:RoofVillage/roof-x.git
       ref: master
-      path: builders/vertical_spaced_column
+      path: builders/spaced_column
   nav_button_builder:
     git:
       url: git@github.com:RoofVillage/roof-x.git
@@ -97,8 +97,8 @@ dependency_overrides:
     path: ../create_service
   nav_button_builder:
     path: ../../../builders/nav_button
-  vertical_spaced_column_builder:
-    path: ../../../builders/vertical_spaced_column
+  spaced_column_builder:
+    path: ../../../builders/spaced_column
   button_row_dock_builder:
     path: ../../../builders/button_row_dock
   button_builder:

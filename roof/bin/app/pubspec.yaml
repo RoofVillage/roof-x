@@ -262,8 +262,8 @@ dependency_overrides:
     path: ../../../builders/spaced_list_view
   standard_icon_library:
     path: ../../../icons/standard
-  vertical_spaced_column_builder:
-    path: ../../../builders/vertical_spaced_column
+  spaced_column_builder:
+    path: ../../../builders/spaced_column
   stream:
     path: ../../../lib/stream
   string_from_enum_string:

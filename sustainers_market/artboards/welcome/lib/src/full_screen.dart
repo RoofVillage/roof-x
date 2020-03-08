@@ -7,7 +7,7 @@ import 'package:navigator/index.dart';
 import 'package:create_service_artboard/index.dart';
 import 'package:register_artboard/index.dart';
 import 'package:semantic_theme/index.dart';
-import 'package:vertical_spaced_column_builder/index.dart';
+import 'package:spaced_column_builder/index.dart';
 
 import '_data.dart';
 
@@ -16,7 +16,7 @@ class WelcomeVerticalFullScreenArtboard
     with
         WelcomeScreenArtboardData,
         ButtonRowDockBuilder,
-        VerticalSpacedColumnBuilder,
+        SpacedColumnBuilder,
         PrimaryCenterButtonBuilder,
         SecondaryCenterButtonBuilder {
   @override
@@ -71,7 +71,7 @@ class WelcomeVerticalFullScreenArtboard
       ];
 
   @override
-  Widget buildDock(BuildContext context) => buildVerticalSpacedColumn(
+  Widget buildDock(BuildContext context) => buildSpacedColumn(
         context,
         children: dockButtons(context),
       );

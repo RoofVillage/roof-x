@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:balance_actions_artboard/index.dart';
 import 'package:landlord_nav_drawer_artboard/index.dart';
 import 'package:nav_button_builder/index.dart';
 import 'package:navigation_icon_library/index.dart';
@@ -56,7 +57,9 @@ class WalletDashboardVerticalFullscreenArtboard
               ),
               child: buildBalanceCell(
                 balance: snapshot.balance,
-                onTap: () => print('goto deposit/withdraw button sheet'),
+                onTap: () => ArtboardNavigator.of(context).goTo(
+                  BalanceActionsVerticalFloatingArtboard(),
+                ),
               ),
             ),
           );

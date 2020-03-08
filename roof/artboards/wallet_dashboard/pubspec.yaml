@@ -78,16 +78,25 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: master
       path: roof/artboards/landlord_nav_drawer
+  balance_actions_artboard:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: roof/artboards/balance_actions
 
 dependency_overrides:
   landlord_nav_drawer_artboard:
     path: ../landlord_nav_drawer
+  balance_actions_artboard:
+    path: ../balance_actions
   roof_table_cell_builder:
     path: ../../builders/table_cell
   table_cell_builder:
     path: ../../../builders/table_cell
   spaced_list_view_builder:
     path: ../../../builders/spaced_list_view
+  spaced_column_builder:
+    path: ../../../builders/spaced_column
   view_stream_builder_builder:
     path: ../../../builders/view_stream_builder
   commands:
@@ -96,6 +105,8 @@ dependency_overrides:
     path: ../../views
   scroll_view_vertical_full_screen_artboard_template:
     path: ../../../artboard_templates/vertical_full_screen/scroll_view
+  spaced_column_vertical_floating_artboard_template:
+    path: ../../../artboard_templates/vertical_floating/spaced_column
   nav_vertical_drawer_artboard_template:
     path: ../../../artboard_templates/vertical_drawer/nav_drawer
   vertical_drawer_artboard_scaffold:

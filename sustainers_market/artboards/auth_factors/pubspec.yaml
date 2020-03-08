@@ -38,11 +38,11 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: master
       path: sustainers_market/commands
-  vertical_spaced_column_builder:
+  spaced_column_builder:
     git:
       url: git@github.com:RoofVillage/roof-x.git
       ref: master
-      path: builders/vertical_spaced_column
+      path: builders/spaced_column
   key_value_row_builder:
     git:
       url: git@github.com:RoofVillage/roof-x.git
@@ -65,8 +65,8 @@ dependency_overrides:
     path: ../../../lib/navigator
   empty_table_vertical_full_screen_artboard_template:
     path: ../../../artboard_templates/vertical_full_screen/empty_table
-  vertical_spaced_column_builder:
-    path: ../../../builders/vertical_spaced_column
+  spaced_column_builder:
+    path: ../../../builders/spaced_column
   button_builder:
     path: ../../../builders/button
   key_value_row_builder:
