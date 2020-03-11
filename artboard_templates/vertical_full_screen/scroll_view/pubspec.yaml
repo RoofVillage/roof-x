@@ -18,11 +18,11 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: master
       path: artboard_scaffolds/vertical_full_screen
-  page_header_builder:
+  header_builder:
     git:
       url: git@github.com:RoofVillage/roof-x.git
       ref: master
-      path: builders/page_header
+      path: builders/header
   semantic_theme:
     git:
       url: git@github.com:RoofVillage/roof-x.git
@@ -35,8 +35,8 @@ dependencies:
       path: builders/nav_bar
 
 dependency_overrides:
-  page_header_builder:
-    path: ../../../builders/page_header
+  header_builder:
+    path: ../../../builders/header
   nav_bar_builder:
     path: ../../../builders/nav_bar
   vertical_full_screen_artboard_scaffold:

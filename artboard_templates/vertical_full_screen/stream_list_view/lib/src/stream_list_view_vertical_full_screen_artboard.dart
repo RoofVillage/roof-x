@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:page_header_builder/index.dart';
+import 'package:header_builder/index.dart';
 import 'package:artboard/index.dart';
 import 'package:spaced_list_view_builder/index.dart';
 import 'package:vertical_full_screen_artboard_scaffold/index.dart';
@@ -32,9 +32,6 @@ abstract class StreamListViewVerticalFullScreenArtboard<T>
   List<Widget> listViewChildren(BuildContext context, T streamSnapshot);
 
   @override
-  ScrollController get artboardBodyScrollController => _scrollController;
-
-  @override
   Widget buildNavBar(BuildContext context) => buildAnimatedTitleNavBar(
         title: artboardTitle,
         actionButtons: artboardActionButtons(context),
@@ -49,8 +46,14 @@ abstract class StreamListViewVerticalFullScreenArtboard<T>
         empty: emptyStateWidget(context),
         child: (BuildContext context, T streamSnapshot) => buildSpacedListView(
           children: [
-            buildPageHeader(artboardTitle),
-            ...listViewChildren(context, streamSnapshot),
+            buildPageHeader(
+              text: artboardTitle,
+              horizontalGutter: 0,
+            ),
+            ...listViewChildren(
+              context,
+              streamSnapshot,
+            ),
           ],
           scrollController: _scrollController,
         ),

@@ -11,7 +11,7 @@ class RoofDetailTypography extends SemanticTypography {
   String get fontFamily => ff.azo;
 
   @override
-  String get fontFamilyFallback => null;
+  List<String> get fontFamilyFallback => null;
 
   @override
   double get fontSize => fs.extraSmall;

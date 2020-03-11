@@ -41,10 +41,15 @@ mixin CenteredStyleButtonState {
 
     final textDecoration = theme.typography.button.textStyle(color: textColor);
 
-    final styledButtonText = Text(
-      button.text,
-      style: textDecoration,
-      textAlign: TextAlign.center,
+    // TODO formalize as OpticallyCenteredBaselineBuilder?
+    final styledButtonText = Baseline(
+      baseline: theme.typography.button.fontSize,
+      baselineType: TextBaseline.alphabetic,
+      child: Text(
+        button.text,
+        style: textDecoration,
+        textAlign: TextAlign.center,
+      ),
     );
 
     buttonChildren.add(styledButtonText);
@@ -77,11 +82,12 @@ mixin CenteredStyleButtonState {
   }
 
   void _onTap() {
-    if (button.onTap != null) button.onTap();
+    if (button.onTap == null) return;
+    triggerHaptic(_tapHapticOption);
+    button.onTap();
   }
 
   void _onTapDown(TapDownDetails details) {
-    triggerHapticWith(_tapHapticOption);
     setState(() => _tapped = true);
   }
 

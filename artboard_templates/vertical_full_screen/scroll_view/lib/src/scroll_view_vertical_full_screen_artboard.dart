@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:page_header_builder/index.dart';
+import 'package:header_builder/index.dart';
 import 'package:artboard/index.dart';
 import 'package:semantic_theme/index.dart';
 import 'package:vertical_full_screen_artboard_scaffold/index.dart';
@@ -35,11 +35,9 @@ abstract class ScrollViewVerticalFullScreenArtboard extends StatefulWidget
   List<Widget> _sliverChildren(BuildContext context) {
     if (artboardTitle != null) {
       final pageHeader = SliverToBoxAdapter(
-        child: Padding(
-          child: buildPageHeader(artboardTitle),
-          padding: EdgeInsets.symmetric(
-            horizontal: horizontalGutter(context),
-          ),
+        child: buildPageHeader(
+          text: artboardTitle,
+          horizontalGutter: horizontalGutter(context),
         ),
       );
 

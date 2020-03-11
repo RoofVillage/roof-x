@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:semantic_theme/index.dart';
 
 class PageHeader extends StatelessWidget {
-  final String title;
+  final String text;
+  final double horizontalGutter;
 
   PageHeader({
-    @required this.title,
+    @required this.text,
+    this.horizontalGutter,
   });
 
   @override
@@ -13,18 +15,19 @@ class PageHeader extends StatelessWidget {
     final theme = SemanticTheme.of(context);
 
     final titleText = Text(
-      title,
+      text,
       style: theme.typography.headingPrimary.textStyle(
         color: theme.color.text.generalPrimary,
       ),
     );
 
-    return Container(
-      padding: EdgeInsets.symmetric(
-        vertical: theme.distance.padding.vertical.large,
-      ),
+    return Padding(
       child: Row(
         children: [titleText],
+      ),
+      padding: EdgeInsets.symmetric(
+        vertical: theme.distance.padding.vertical.large,
+        horizontal: horizontalGutter,
       ),
     );
   }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:haptics/index.dart';
 import 'package:semantic_theme/index.dart';
 
+// TODO use statefulWidget to handle tapped state (like button builder)
 class CardCell extends StatelessWidget {
   final Widget child;
   final void Function() onTap;

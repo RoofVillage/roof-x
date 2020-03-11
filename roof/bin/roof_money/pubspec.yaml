@@ -70,8 +70,8 @@ dependency_overrides:
     path: ../../artboards/properties
   wallet_dashboard_artboard:
     path: ../../artboards/wallet_dashboard
-  page_header_builder:
-    path: ../../../builders/page_header
+  header_builder:
+    path: ../../../builders/header
   roof_table_cell_builder:
     path: ../../builders/table_cell
   nav_vertical_drawer_artboard_template:

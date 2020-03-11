@@ -1,5 +1,5 @@
-name: page_header_builder
-description: Builds header with title, nav button, and action button row.
+name: header_builder
+description: Text headers.
 
 version: 1.0.0+1
 

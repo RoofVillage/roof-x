@@ -4,12 +4,12 @@ import 'package:nav_button_builder/index.dart';
 import 'package:navigation_icon_library/index.dart';
 import 'package:navigator/index.dart';
 import 'package:scroll_view_vertical_full_screen_artboard_template/index.dart';
-import 'package:semantic_theme/index.dart';
 import 'package:spaced_sliver_list_builder/index.dart';
 import 'package:view_stream_builder_builder/index.dart';
 import 'package:table_cell_builder/index.dart';
 import 'package:roof_table_cell_builder/index.dart';
 import 'package:wallet_dashboard_artboard/index.dart';
+import 'package:header_builder/index.dart';
 
 import '_data.dart';
 
@@ -20,6 +20,7 @@ class DomainsVerticalFullscreenArtboard
         IconNavButtonBuilder,
         ViewStreamBuilderBuilder,
         TransferCellBuilder,
+        SectionHeaderBuilder,
         SpacedSliverListBuilder,
         TitleBadgeCellBuilder {
   Widget artboardNavButton(BuildContext context) => buildIconNavButton(
@@ -57,77 +58,45 @@ class DomainsVerticalFullscreenArtboard
         ),
       );
 
-  Widget recentTransfersSection(BuildContext context) => buildViewStreamBuilder(
-        context,
-        stream: transfersStream,
-        loading: SliverToBoxAdapter(child: Text('loading')),
-        empty: SliverToBoxAdapter(child: Text('empty')),
-        child: (context, RecentTransfersView snapshot) => SliverList(
-          delegate: SliverChildListDelegate(
-            snapshot.transfers
-                .map(
-                  (Transfer transfer) => buildTransferCell(
-                    amount: transfer.amount,
-                    date: transfer.date,
-                    sender: transfer.sender,
-                    receiver: transfer.receiver,
-                    note: transfer.note,
-                    onTap: () => print(
-                      'goto transfer view for transfer w/ amount: ${transfer.amount}',
-                    ),
-                  ),
-                )
-                .toList(),
-          ),
-        ),
-      );
+  Widget recentTransfersSection(BuildContext context) =>
+      buildViewStreamBuilder(context,
+          stream: transfersStream,
+          loading: SliverToBoxAdapter(child: Text('loading')),
+          empty: SliverToBoxAdapter(child: Text('empty')),
+          child: (context, RecentTransfersView snapshot) {
+        final header = buildSectionHeader(
+          text: 'Recent',
+          horizontalGutter: horizontalGutter(context),
+        );
+
+        final cells = snapshot.transfers
+            .map(
+              (Transfer transfer) => buildTransferCell(
+                amount: transfer.amount,
+                date: transfer.date,
+                sender: transfer.sender,
+                receiver: transfer.receiver,
+                note: transfer.note,
+                onTap: () => print(
+                  'goto transfer view for transfer w/ amount: ${transfer.amount}',
+                ),
+              ),
+            )
+            .toList();
+
+        return SliverList(
+          delegate: SliverChildListDelegate([
+            header,
+            ...cells,
+          ]),
+        );
+      });
 
   @override
   List<Widget> children(BuildContext context) {
     return [
       profilesSection(context),
-      SliverToBoxAdapter(
-        child: _SectionHeader(
-          'Recent activity',
-          horizontalGutter: horizontalGutter(context),
-        ),
-      ),
       recentTransfersSection(context),
     ];
-  }
-}
-
-// TODO formalize as builder
-class _SectionHeader extends StatelessWidget {
-  final String text;
-  final double horizontalGutter;
-
-  _SectionHeader(
-    this.text, {
-    this.horizontalGutter,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = SemanticTheme.of(context);
-
-    return Row(
-      children: [
-        Padding(
-          child: Text(
-            text,
-            style: theme.typography.title.textStyle(
-              color: theme.color.text.generalSecondary,
-            ),
-          ),
-          padding: EdgeInsets.only(
-            top: theme.distance.spacing.vertical.large,
-            bottom: theme.distance.spacing.vertical.small,
-            left: horizontalGutter ?? 0,
-            right: horizontalGutter ?? 0,
-          ),
-        )
-      ],
-    );
   }
 }

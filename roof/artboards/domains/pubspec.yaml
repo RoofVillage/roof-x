@@ -3,7 +3,7 @@ description: Allows the user to see their domains and enter one.
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.2.2 <3.0.0"
 
 dependencies:
   flutter:
@@ -48,6 +48,11 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: master
       path: builders/spaced_list_view
+  header_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: builders/header
   semantic_theme:
     git:
       url: git@github.com:RoofVillage/roof-x.git
@@ -104,6 +109,8 @@ dependency_overrides:
     path: ../../../artboard_templates/vertical_floating/spaced_column
   table_cell_builder:
     path: ../../../builders/table_cell
+  header_builder:
+    path: ../../../builders/header
   roof_table_cell_builder:
     path: ../../builders/table_cell
   spaced_list_view_builder:

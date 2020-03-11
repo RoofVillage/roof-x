@@ -13,7 +13,7 @@ class RoofStrokeColor extends SemanticStrokeColor<RoofThemeOption> {
   Color get actionPrimary => colors.brandBlue;
 
   @override
-  Color get actionSecondary => colors.brandBlue;
+  Color get actionSecondary => colors.brandBlue.withOpacity(.25);
 
   @override
   Color get actionDisabled => colors.brandBlueFade;

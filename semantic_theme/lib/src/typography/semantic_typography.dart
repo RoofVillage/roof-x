@@ -4,7 +4,7 @@ abstract class SemanticTypography {
   double get fontSize;
   FontWeight get fontWeight;
   String get fontFamily;
-  String get fontFamilyFallback;
+  List<String> get fontFamilyFallback;
   double get letterSpacing;
 
   TextStyle textStyle({

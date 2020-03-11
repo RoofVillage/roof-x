@@ -3,7 +3,7 @@ description: A top-level overview of the wallet.
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.2.2 <3.0.0"
 
 dependencies:
   flutter:
@@ -83,6 +83,16 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: master
       path: builders/table_cell
+  button_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: builders/button
+  header_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: builders/header
   nav_button_builder:
     git:
       url: git@github.com:RoofVillage/roof-x.git
@@ -112,6 +122,10 @@ dependency_overrides:
     path: ../../builders/table_cell
   table_cell_builder:
     path: ../../../builders/table_cell
+  header_builder:
+    path: ../../../builders/header
+  button_builder:
+    path: ../../../builders/button
   spaced_list_view_builder:
     path: ../../../builders/spaced_list_view
   spaced_sliver_list_builder:
