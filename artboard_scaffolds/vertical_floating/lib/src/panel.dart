@@ -78,7 +78,7 @@ class InheritedVerticalFloatingArtboardNavigatorPanel<T>
 
     List<Widget> children = [flexibleColumn];
     if (VerticalFloatingArtboardNavigator.of(context).showsNavButton) {
-      final button = _navButton();
+      final button = _navButton(context);
       children.add(button);
     }
 
@@ -99,7 +99,7 @@ class InheritedVerticalFloatingArtboardNavigatorPanel<T>
     super.dispose();
   }
 
-  Widget _navButton() {
+  Widget _navButton(BuildContext context) {
     final buttonOption =
         widget.artboard.navButtonOption ?? widget.defaultNavButtonOption;
 
@@ -109,16 +109,14 @@ class InheritedVerticalFloatingArtboardNavigatorPanel<T>
         button = buildIconNavButton(
           context,
           iconReference: NavigationIcon.downArrow,
-          onTap: (context) {
-            ArtboardNavigator.of(context).pop(_result);
-          },
+          onTap: () => ArtboardNavigator.of(context).pop(_result),
         );
         break;
       case VerticalFloatingArtboardButtonOption.previous:
         button = buildIconNavButton(
           context,
           iconReference: NavigationIcon.backArrow,
-          onTap: (context) {
+          onTap: () {
             widget.artboard.didComplete(_result);
             VerticalFloatingArtboardNavigator.of(
               context,
@@ -131,7 +129,7 @@ class InheritedVerticalFloatingArtboardNavigatorPanel<T>
 
     return Padding(
       padding: EdgeInsets.only(
-        bottom: SemanticTheme.of(context).distance.padding.vertical.min,
+        bottom: SemanticTheme.of(context).distance.padding.vertical.small,
       ),
       child: button,
     );

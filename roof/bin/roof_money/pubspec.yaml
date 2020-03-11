@@ -19,11 +19,6 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: master
       path: roof/artboards/public_activity
-  properties_artboard:
-    git:
-      url: git@github.com:RoofVillage/roof-x.git
-      ref: master
-      path: roof/artboards/properties
   wallet_dashboard_artboard:
     git:
       url: git@github.com:RoofVillage/roof-x.git
@@ -70,6 +65,8 @@ dependency_overrides:
     path: ../../artboards/properties
   wallet_dashboard_artboard:
     path: ../../artboards/wallet_dashboard
+  add_profile_artboard:
+    path: ../../artboards/add_profile
   header_builder:
     path: ../../../builders/header
   roof_table_cell_builder:

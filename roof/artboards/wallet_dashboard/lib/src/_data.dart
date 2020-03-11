@@ -1,16 +1,6 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
-import 'package:navigation_icon_library/index.dart';
-import 'package:semantic_theme/index.dart';
-
 mixin WalletDashboardArtboardData {
-  List<Widget> artboardActionButtons(BuildContext context) => [
-        NavigationIcon.settings.buildWidget(
-          color: SemanticTheme.of(context).color.icon.generalSecondary,
-        )
-      ];
-
   final walletOverviewStream = Stream.value(
     WalletOverview(
       balance: 850000,

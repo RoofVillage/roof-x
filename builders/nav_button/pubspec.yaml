@@ -19,11 +19,6 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: master
       path: icons/navigation
-  typedefs:
-    git:
-      url: git@github.com:RoofVillage/roof-x.git
-      ref: master
-      path: lib/typedefs
   semantic_theme:
     git:
       url: git@github.com:RoofVillage/roof-x.git

@@ -4,12 +4,14 @@ import 'package:nav_button_builder/index.dart';
 import 'package:navigation_icon_library/index.dart';
 import 'package:navigator/index.dart';
 import 'package:scroll_view_vertical_full_screen_artboard_template/index.dart';
+import 'package:semantic_theme/index.dart';
 import 'package:spaced_sliver_list_builder/index.dart';
 import 'package:view_stream_builder_builder/index.dart';
 import 'package:table_cell_builder/index.dart';
 import 'package:roof_table_cell_builder/index.dart';
 import 'package:wallet_dashboard_artboard/index.dart';
 import 'package:header_builder/index.dart';
+import 'package:add_profile_artboard/index.dart';
 
 import '_data.dart';
 
@@ -26,10 +28,21 @@ class DomainsVerticalFullscreenArtboard
   Widget artboardNavButton(BuildContext context) => buildIconNavButton(
         context,
         iconReference: NavigationIcon.logoHouse,
-        onTap: (context) => ArtboardNavigator.of(context).goTo(
+        onTap: () => ArtboardNavigator.of(context).goTo(
           LandlordNavVerticalDrawerArtboard(),
         ),
       );
+
+  List<Widget> artboardActionButtons(BuildContext context) => [
+        buildIconNavButton(
+          context,
+          iconReference: NavigationIcon.add,
+          color: SemanticTheme.of(context).color.icon.action,
+          onTap: () => ArtboardNavigator.of(context).goTo(
+            AddProfileVerticalFloatingArtboard(),
+          ),
+        )
+      ];
 
   Widget profilesSection(BuildContext context) => buildViewStreamBuilder(
         context,

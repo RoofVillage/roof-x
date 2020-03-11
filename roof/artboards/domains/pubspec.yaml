@@ -105,12 +105,16 @@ dependency_overrides:
     path: ../choose_business_type
   balance_actions_artboard:
     path: ../balance_actions
+  add_profile_artboard:
+    path: ../add_profile
   spaced_column_vertical_floating_artboard_template:
     path: ../../../artboard_templates/vertical_floating/spaced_column
   table_cell_builder:
     path: ../../../builders/table_cell
   header_builder:
     path: ../../../builders/header
+  nav_button_builder:
+    path: ../../../builders/nav_button
   roof_table_cell_builder:
     path: ../../builders/table_cell
   spaced_list_view_builder:

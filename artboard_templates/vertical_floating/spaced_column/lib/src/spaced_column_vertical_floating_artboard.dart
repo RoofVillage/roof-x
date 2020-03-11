@@ -37,7 +37,7 @@ class _SpacedColumnVerticalFloatingArtboardState
         Padding(
           child: title,
           padding: EdgeInsets.symmetric(
-            vertical: theme.distance.spacing.vertical.large,
+            vertical: theme.distance.spacing.vertical.medium,
           ),
         ),
       );

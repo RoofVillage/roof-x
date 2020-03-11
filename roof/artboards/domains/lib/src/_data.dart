@@ -1,16 +1,6 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
-import 'package:navigation_icon_library/index.dart';
-import 'package:semantic_theme/index.dart';
-
 mixin DomainsArtboardData {
-  List<Widget> artboardActionButtons(BuildContext context) => [
-        NavigationIcon.add.buildWidget(
-          color: SemanticTheme.of(context).color.icon.action,
-        )
-      ];
-
   String get artboardTitle => null;
 
   final profilesStream = Stream.value(

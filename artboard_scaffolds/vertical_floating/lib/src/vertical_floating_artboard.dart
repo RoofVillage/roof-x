@@ -28,7 +28,7 @@ mixin VerticalFloatingArtboardState<T extends VerticalFloatingArtboard>
         0,
         theme.distance.gutter.vertical.medium,
         0,
-        theme.distance.gutter.vertical.medium * 4,
+        theme.distance.gutter.vertical.large * 3,
       ),
       child: buildBody(context),
     );

@@ -37,8 +37,18 @@ class WalletDashboardVerticalFullscreenArtboard
   Widget artboardNavButton(BuildContext context) => buildIconNavButton(
         context,
         iconReference: NavigationIcon.backArrow,
-        onTap: (context) => ArtboardNavigator.of(context).pop(),
+        onTap: () => ArtboardNavigator.of(context).pop(),
       );
+
+  List<Widget> artboardActionButtons(BuildContext context) => [
+        // TODO formalize SecondaryIconNavButton instead of passing color?
+        buildIconNavButton(
+          context,
+          iconReference: NavigationIcon.settings,
+          color: SemanticTheme.of(context).color.icon.generalSecondary,
+          onTap: null,
+        )
+      ];
 
   Widget balanceSection(BuildContext context) => buildViewStreamBuilder(
         context,
