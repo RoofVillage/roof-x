@@ -20,7 +20,6 @@ mixin CenteredStyleButtonState {
   bool _tapped = false;
   final double _tappedOpacity = 0.75;
   final double _height = 50;
-  final _tapHapticOption = HapticOption.light;
 
   void setState(dynamic());
 
@@ -64,7 +63,10 @@ mixin CenteredStyleButtonState {
 
     return GestureDetector(
       onTapDown: _onTapDown,
-      onTap: _onTap,
+      onTap: () => hapticAction(
+        HapticOption.light,
+        action: button.onTap,
+      ),
       onTapUp: _onTapUp,
       onTapCancel: _onTapCancel,
       child: Opacity(
@@ -79,12 +81,6 @@ mixin CenteredStyleButtonState {
         ),
       ),
     );
-  }
-
-  void _onTap() {
-    if (button.onTap == null) return;
-    triggerHaptic(_tapHapticOption);
-    button.onTap();
   }
 
   void _onTapDown(TapDownDetails details) {

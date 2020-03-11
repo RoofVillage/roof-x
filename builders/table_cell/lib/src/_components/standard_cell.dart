@@ -16,9 +16,9 @@ class StandardCell extends StatelessWidget {
     final theme = SemanticTheme.of(context);
 
     return GestureDetector(
-      onTap: () => triggerHaptic(
+      onTap: () => hapticAction(
         HapticOption.light,
-        and: onTap,
+        action: onTap,
       ),
       child: Container(
         padding: EdgeInsets.symmetric(

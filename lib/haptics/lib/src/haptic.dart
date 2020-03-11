@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 enum HapticOption { light, medium, heavy, click }
@@ -28,7 +29,7 @@ Future triggerHapticWith(HapticOption option) async {
   );
 }
 
-void triggerHaptic(HapticOption option, {void Function() and}) {
+void triggerHaptic(HapticOption option) {
   String typeString = "HapticFeedbackType.";
 
   switch (option) {
@@ -50,6 +51,14 @@ void triggerHaptic(HapticOption option, {void Function() and}) {
     'HapticFeedback.vibrate',
     typeString,
   );
+}
 
-  and();
+void hapticAction(
+  HapticOption option, {
+  @required void Function() action,
+}) {
+  triggerHaptic(option);
+
+  if (action == null) return;
+  action();
 }

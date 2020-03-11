@@ -28,6 +28,8 @@ dependencies:
 dependency_overrides:
   semantic_theme:
     path: ../../semantic_theme
+  haptics:
+    path: ../../lib/haptics
 
 dev_dependencies:
   flutter_test:

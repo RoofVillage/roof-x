@@ -7,16 +7,14 @@ mixin NavButton implements StatelessWidget {
 
   Widget buildIcon(BuildContext context) => null;
 
-  final _tapHapticOption = HapticOption.light;
-
   @override
   Widget build(BuildContext context) {
     final theme = SemanticTheme.of(context);
 
     return GestureDetector(
-      onTap: () => triggerHaptic(
-        _tapHapticOption,
-        and: onTap,
+      onTap: () => hapticAction(
+        HapticOption.light,
+        action: onTap,
       ),
       child: Container(
         padding: EdgeInsets.symmetric(

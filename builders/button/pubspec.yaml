@@ -50,6 +50,8 @@ dependency_overrides:
     path: ../../semantic_theme
   image_picker_builder:
     path: ../image_picker
+  haptics:
+    path: ../../lib/haptics
 
 dev_dependencies:
   flutter_test:

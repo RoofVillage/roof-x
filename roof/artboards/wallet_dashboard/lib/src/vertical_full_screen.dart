@@ -46,7 +46,7 @@ class WalletDashboardVerticalFullscreenArtboard
           context,
           iconReference: NavigationIcon.settings,
           color: SemanticTheme.of(context).color.icon.generalSecondary,
-          onTap: null,
+          onTap: () => print('settings'),
         )
       ];
 
