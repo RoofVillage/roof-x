@@ -125,14 +125,9 @@ class WalletDashboardVerticalFullscreenArtboard
 
             sliverWidgets.add(newTransferButton);
 
-            return SliverPadding(
-              sliver: buildSpacedSliverList(
-                children: sliverWidgets,
-                horizontalGutter: horizontalGutter(context),
-              ),
-              padding: EdgeInsets.only(
-                bottom: theme.distance.gutter.vertical.large,
-              ),
+            return buildSpacedSliverList(
+              children: sliverWidgets,
+              horizontalGutter: horizontalGutter(context),
             );
           }
         },
