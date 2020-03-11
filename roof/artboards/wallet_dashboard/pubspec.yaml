@@ -48,6 +48,11 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: master
       path: builders/spaced_list_view
+  spaced_sliver_list_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: builders/spaced_sliver_list
   semantic_theme:
     git:
       url: git@github.com:RoofVillage/roof-x.git
@@ -97,6 +102,8 @@ dependencies:
 dependency_overrides:
   choose_wallet_verification_type_artboard:
     path: ../choose_wallet_verification_type
+  choose_business_type_artboard:
+    path: ../choose_business_type
   landlord_nav_drawer_artboard:
     path: ../landlord_nav_drawer
   balance_actions_artboard:
@@ -107,6 +114,8 @@ dependency_overrides:
     path: ../../../builders/table_cell
   spaced_list_view_builder:
     path: ../../../builders/spaced_list_view
+  spaced_sliver_list_builder:
+    path: ../../../builders/spaced_sliver_list
   spaced_column_builder:
     path: ../../../builders/spaced_column
   view_stream_builder_builder:

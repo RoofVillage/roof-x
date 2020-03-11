@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
-import 'package:inherited_scroll_controller_builder/index.dart';
 import 'package:semantic_theme/index.dart';
 
 import '_widgets/nav_title_baseline.dart';
 
 class AnimatedTitleNavBar extends StatefulWidget {
+  final ScrollController scrollController;
   final List<Widget> actionButtons;
   final Widget navButton;
   final String title;
 
   AnimatedTitleNavBar({
+    @required this.scrollController,
     this.actionButtons,
     this.navButton,
     this.title,
@@ -23,49 +24,45 @@ class AnimatedTitleNavBar extends StatefulWidget {
 
 class _AnimatedTitleNavBarState extends State<AnimatedTitleNavBar> {
   final _containerKey = GlobalKey();
-  final _opacityChangeScrollDistance = 30;
+  final _transitionScrollDistance = 30;
 
-  ScrollController _scrollController;
   double _opacity = 0;
-  double _containerHeight = 100;
+  double _containerHeight;
 
-  double get _opacityChangeStartOffset =>
-      _containerHeight - _opacityChangeScrollDistance;
+  // Opacity == 1 when scrollController is at this offset.
+  double get _visibleOffset => _containerHeight - 20;
+
+  // Opacity == 0 when scrollController is at this offset.
+  double get _invisibleOffset => _visibleOffset - _transitionScrollDistance;
 
   @override
   void initState() {
+    widget.scrollController.addListener(() => _updateOpacityOnScroll());
+
     SchedulerBinding.instance.addPostFrameCallback(
       (_) => _setContainerHeight(),
     );
     super.initState();
   }
 
-  @override
-  didChangeDependencies() {
-    _scrollController = InheritedScrollController.of(context);
-    assert(_scrollController != null);
-
-    _scrollController.addListener(() => _updateOpacityOnScroll());
-    super.didChangeDependencies();
-  }
-
   void _updateOpacityOnScroll() {
     double newOpacity;
 
-    if (_scrollController.offset < _opacityChangeStartOffset) {
+    final offset = widget.scrollController.offset;
+
+    if (offset < _invisibleOffset) {
       newOpacity = 0;
-    } else if (_scrollController.offset < _containerHeight) {
-      newOpacity = (_scrollController.offset - _opacityChangeStartOffset) /
-          _opacityChangeScrollDistance;
+    } else if (offset < _visibleOffset) {
+      newOpacity = (offset - _invisibleOffset) / _transitionScrollDistance;
     } else if (_opacity != 1) {
       newOpacity = 1;
     }
 
-    if (newOpacity != null) {
-      setState(() {
-        _opacity = newOpacity;
-      });
-    }
+    if (newOpacity == null) return;
+
+    setState(() {
+      _opacity = newOpacity;
+    });
   }
 
   void _setContainerHeight() {
@@ -117,6 +114,10 @@ class _AnimatedTitleNavBarState extends State<AnimatedTitleNavBar> {
       rowChildren.add(
         Expanded(child: opacityTitle),
       );
+    } else {
+      rowChildren.add(Expanded(
+        child: Container(),
+      ));
     }
 
     if (widget.actionButtons != null) {

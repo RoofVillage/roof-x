@@ -47,7 +47,7 @@ class RoofIconColor extends SemanticIconColor<RoofThemeOption> {
   @override
   Color get generalSecondary => forThemeOption({
         RoofThemeOption.light: colors.gray4,
-        RoofThemeOption.dark: colors.gray1,
+        RoofThemeOption.dark: colors.gray3,
       });
 
   @override

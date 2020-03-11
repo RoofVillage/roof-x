@@ -3,20 +3,24 @@ import 'package:landlord_nav_drawer_artboard/index.dart';
 import 'package:nav_button_builder/index.dart';
 import 'package:navigation_icon_library/index.dart';
 import 'package:navigator/index.dart';
-import 'package:spaced_list_view_builder/index.dart';
-import 'package:stream_list_view_vertical_full_screen_artboard_template/index.dart';
+import 'package:scroll_view_vertical_full_screen_artboard_template/index.dart';
+import 'package:semantic_theme/index.dart';
+import 'package:spaced_sliver_list_builder/index.dart';
 import 'package:view_stream_builder_builder/index.dart';
 import 'package:table_cell_builder/index.dart';
+import 'package:roof_table_cell_builder/index.dart';
+import 'package:wallet_dashboard_artboard/index.dart';
 
 import '_data.dart';
 
 class DomainsVerticalFullscreenArtboard
-    extends StreamListViewVerticalFullScreenArtboard<LandlordProfilesView>
+    extends ScrollViewVerticalFullScreenArtboard
     with
         DomainsArtboardData,
         IconNavButtonBuilder,
         ViewStreamBuilderBuilder,
-        SpacedListViewBuilder,
+        TransferCellBuilder,
+        SpacedSliverListBuilder,
         TitleBadgeCellBuilder {
   Widget artboardNavButton(BuildContext context) => buildIconNavButton(
         context,
@@ -26,27 +30,104 @@ class DomainsVerticalFullscreenArtboard
         ),
       );
 
-  @override
-  Widget emptyStateWidget(BuildContext context) => Text('empty');
+  Widget profilesSection(BuildContext context) => buildViewStreamBuilder(
+        context,
+        stream: profilesStream,
+        loading: SliverToBoxAdapter(),
+        empty: SliverToBoxAdapter(),
+        child: (context, ServiceProfilesView snapshot) => buildSpacedSliverList(
+          children: snapshot.profiles.map(
+            (profile) {
+              final badgeText = (profile.notificationCount != null &&
+                      profile.notificationCount > 0)
+                  ? profile.notificationCount.toString()
+                  : null;
 
-  @override
-  Widget loadingStateWidget(BuildContext context) => Text('loading');
+              final _onTap = () => ArtboardNavigator.of(context).goTo(
+                    WalletDashboardVerticalFullscreenArtboard(profile.name),
+                  );
 
-  @override
-  List<Widget> listViewChildren(
-    BuildContext context,
-    LandlordProfilesView streamSnapshot,
-  ) {
-    return streamSnapshot.profiles.map((profile) {
-      final String badgeText =
-          (profile.notificationCount != null && profile.notificationCount > 0)
-              ? profile.notificationCount.toString()
-              : null;
-
-      return buildTitleBadgeCell(
-        title: profile.name,
-        badgeText: badgeText,
+              return buildTitleBadgeCell(
+                title: profile.name,
+                badgeText: badgeText,
+                onTap: _onTap,
+              );
+            },
+          ).toList(),
+        ),
       );
-    }).toList();
+
+  Widget recentTransfersSection(BuildContext context) => buildViewStreamBuilder(
+        context,
+        stream: transfersStream,
+        loading: SliverToBoxAdapter(child: Text('loading')),
+        empty: SliverToBoxAdapter(child: Text('empty')),
+        child: (context, RecentTransfersView snapshot) => SliverList(
+          delegate: SliverChildListDelegate(
+            snapshot.transfers
+                .map(
+                  (Transfer transfer) => buildTransferCell(
+                    amount: transfer.amount,
+                    date: transfer.date,
+                    sender: transfer.sender,
+                    receiver: transfer.receiver,
+                    note: transfer.note,
+                    onTap: () => print(
+                      'goto transfer view for transfer w/ amount: ${transfer.amount}',
+                    ),
+                  ),
+                )
+                .toList(),
+          ),
+        ),
+      );
+
+  @override
+  List<Widget> children(BuildContext context) {
+    return [
+      profilesSection(context),
+      SliverToBoxAdapter(
+        child: _SectionHeader(
+          'Recent activity',
+          horizontalGutter: horizontalGutter(context),
+        ),
+      ),
+      recentTransfersSection(context),
+    ];
+  }
+}
+
+// TODO formalize as builder
+class _SectionHeader extends StatelessWidget {
+  final String text;
+  final double horizontalGutter;
+
+  _SectionHeader(
+    this.text, {
+    this.horizontalGutter,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = SemanticTheme.of(context);
+
+    return Row(
+      children: [
+        Padding(
+          child: Text(
+            text,
+            style: theme.typography.title.textStyle(
+              color: theme.color.text.generalSecondary,
+            ),
+          ),
+          padding: EdgeInsets.only(
+            top: theme.distance.spacing.vertical.large,
+            bottom: theme.distance.spacing.vertical.small,
+            left: horizontalGutter ?? 0,
+            right: horizontalGutter ?? 0,
+          ),
+        )
+      ],
+    );
   }
 }

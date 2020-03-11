@@ -44,15 +44,8 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: master
       path: lib/navigator
-  inherited_scroll_controller_builder:
-    git:
-      url: git@github.com:RoofVillage/roof-x.git
-      ref: master
-      path: builders/inherited_scroll_controller
 
 dependency_overrides:
-  inherited_scroll_controller_builder:
-    path: ../../builders/inherited_scroll_controller
   navigator:
     path: ../../lib/navigator
   artboard:

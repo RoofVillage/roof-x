@@ -5,6 +5,7 @@ import 'package:stream/index.dart';
 import 'package:artboard/index.dart';
 import 'package:vertical_full_screen_artboard_scaffold/index.dart';
 import 'package:device_screen/index.dart';
+import 'package:domains_artboard/index.dart';
 
 import 'bloc.dart';
 import 'data/index.dart';
@@ -22,11 +23,11 @@ class RootWidget extends StatelessWidget {
 
         Artboard startingArtboard;
         if (appState.isInSession) {
-          startingArtboard =
-              WalletDashboardVerticalFullscreenArtboard('Mills Rentals');
+          startingArtboard = DomainsVerticalFullscreenArtboard();
+          // startingArtboard =
+          //     WalletDashboardVerticalFullscreenArtboard('Mills Rentals');
         } else {
-          startingArtboard =
-              WalletDashboardVerticalFullscreenArtboard('Mills Rentals');
+          startingArtboard = DomainsVerticalFullscreenArtboard();
         }
 
         return VerticalFullScreenArtboardNavigator(

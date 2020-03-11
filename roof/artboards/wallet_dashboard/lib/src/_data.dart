@@ -6,8 +6,8 @@ import 'package:semantic_theme/index.dart';
 
 mixin WalletDashboardArtboardData {
   List<Widget> artboardActionButtons(BuildContext context) => [
-        NavigationIcon.add.buildWidget(
-          color: SemanticTheme.of(context).color.icon.nav,
+        NavigationIcon.settings.buildWidget(
+          color: SemanticTheme.of(context).color.icon.generalSecondary,
         )
       ];
 

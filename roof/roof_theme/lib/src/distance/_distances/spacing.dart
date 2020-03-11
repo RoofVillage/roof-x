@@ -19,6 +19,6 @@ class _Vertical extends SemanticDistance {
   double get min => distance.a;
   double get small => distance.b;
   double get medium => distance.c;
-  double get large => distance.d;
-  double get max => distance.e;
+  double get large => distance.e;
+  double get max => distance.f;
 }

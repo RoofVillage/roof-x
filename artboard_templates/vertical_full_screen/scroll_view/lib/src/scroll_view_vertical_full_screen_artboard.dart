@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:page_header_builder/index.dart';
 import 'package:artboard/index.dart';
+import 'package:semantic_theme/index.dart';
 import 'package:vertical_full_screen_artboard_scaffold/index.dart';
 import 'package:nav_bar_builder/index.dart';
 
@@ -12,12 +13,10 @@ abstract class ScrollViewVerticalFullScreenArtboard extends StatefulWidget
         AnimatedTitleNavBarBuilder {
   final _scrollController = ScrollController();
 
-  @override
-  ScrollController get artboardBodyScrollController => _scrollController;
-
   String get artboardTitle;
 
-  double horizontalGutter(BuildContext context) => 0;
+  double horizontalGutter(BuildContext context) =>
+      SemanticTheme.of(context).distance.gutter.horizontal.medium;
 
   Widget artboardNavButton(BuildContext context);
 
@@ -28,23 +27,43 @@ abstract class ScrollViewVerticalFullScreenArtboard extends StatefulWidget
   @override
   Widget buildNavBar(BuildContext context) => buildAnimatedTitleNavBar(
         title: artboardTitle,
+        scrollController: _scrollController,
         actionButtons: artboardActionButtons(context),
         navButton: artboardNavButton(context),
       );
 
+  List<Widget> _sliverChildren(BuildContext context) {
+    if (artboardTitle != null) {
+      final pageHeader = SliverToBoxAdapter(
+        child: Padding(
+          child: buildPageHeader(artboardTitle),
+          padding: EdgeInsets.symmetric(
+            horizontal: horizontalGutter(context),
+          ),
+        ),
+      );
+
+      return [
+        pageHeader,
+        ...children(context),
+      ];
+    } else {
+      final spacer = SliverToBoxAdapter(
+        child: Container(
+          height: SemanticTheme.of(context).distance.gutter.vertical.medium,
+        ),
+      );
+
+      return [
+        spacer,
+        ...children(context),
+      ];
+    }
+  }
+
   @override
   Widget buildBody(BuildContext context) => CustomScrollView(
         controller: _scrollController,
-        slivers: [
-          SliverToBoxAdapter(
-            child: Padding(
-              child: buildPageHeader(artboardTitle),
-              padding: EdgeInsets.symmetric(
-                horizontal: horizontalGutter(context),
-              ),
-            ),
-          ),
-          ...children(context),
-        ],
+        slivers: _sliverChildren(context),
       );
 }

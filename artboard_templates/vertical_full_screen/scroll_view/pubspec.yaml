@@ -1,5 +1,5 @@
 name: scroll_view_vertical_full_screen_artboard_template
-description: A vertical full screen frame with a custom scroll view and animated title nav header.
+description: A vertical full screen frame with a CustomScrollView and animated title navbar.
 version: 1.0.0+1
 
 environment:
@@ -23,6 +23,11 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: master
       path: builders/page_header
+  semantic_theme:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: semantic_theme
   nav_bar_builder:
     git:
       url: git@github.com:RoofVillage/roof-x.git
@@ -36,8 +41,6 @@ dependency_overrides:
     path: ../../../builders/nav_bar
   vertical_full_screen_artboard_scaffold:
     path: ../../../artboard_scaffolds/vertical_full_screen
-  inherited_scroll_controller_builder:
-    path: ../../../builders/inherited_scroll_controller
 
 dev_dependencies:
   flutter_test:

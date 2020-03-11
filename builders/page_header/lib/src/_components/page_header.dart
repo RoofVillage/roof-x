@@ -5,7 +5,7 @@ class PageHeader extends StatelessWidget {
   final String title;
 
   PageHeader({
-    this.title,
+    @required this.title,
   });
 
   @override

@@ -8,6 +8,7 @@ import 'package:roof_table_cell_builder/index.dart';
 import 'package:semantic_theme/index.dart';
 import 'package:spaced_list_view_builder/index.dart';
 import 'package:scroll_view_vertical_full_screen_artboard_template/index.dart';
+import 'package:spaced_sliver_list_builder/index.dart';
 import 'package:table_cell_builder/index.dart';
 import 'package:view_stream_builder_builder/index.dart';
 import 'package:x_small_icon_library/index.dart';
@@ -24,23 +25,17 @@ class WalletDashboardVerticalFullscreenArtboard
         BalanceCellBuilder,
         TransferCellBuilder,
         AlertCellBuilder,
-        SpacedListViewBuilder {
+        SpacedSliverListBuilder {
   final String walletName;
 
   WalletDashboardVerticalFullscreenArtboard(this.walletName);
 
   String get artboardTitle => walletName;
 
-  @override
-  horizontalGutter(BuildContext context) =>
-      SemanticTheme.of(context).distance.gutter.horizontal.medium;
-
   Widget artboardNavButton(BuildContext context) => buildIconNavButton(
         context,
-        iconReference: NavigationIcon.logoHouse,
-        onTap: (context) => ArtboardNavigator.of(context).goTo(
-          LandlordNavVerticalDrawerArtboard(),
-        ),
+        iconReference: NavigationIcon.backArrow,
+        onTap: (context) => ArtboardNavigator.of(context).pop(),
       );
 
   Widget balanceSection(BuildContext context) => buildViewStreamBuilder(
@@ -106,39 +101,27 @@ class WalletDashboardVerticalFullscreenArtboard
             }
 
             if (statusAlertText != null) {
-              final alertCell = Padding(
-                child: buildAlertCell(
+              sliverWidgets.add(
+                buildAlertCell(
                   text: statusAlertText,
                   icon:
                       statusAlertAction != null ? XSmallIcon.rightArrow : null,
                   type: alertType,
                   onTap: statusAlertAction,
                 ),
-                padding: EdgeInsets.fromLTRB(
-                  horizontalGutter(context),
-                  theme.distance.gutter.vertical.medium,
-                  horizontalGutter(context),
-                  theme.distance.gutter.vertical.medium,
-                ),
               );
-
-              sliverWidgets.add(alertCell);
             }
 
-            sliverWidgets.add(
-              Padding(
-                child: balanceCell,
-                padding: EdgeInsets.fromLTRB(
-                  horizontalGutter(context),
-                  0,
-                  horizontalGutter(context),
-                  theme.distance.gutter.vertical.max,
-                ),
-              ),
-            );
+            sliverWidgets.add(balanceCell);
 
-            return SliverList(
-              delegate: SliverChildListDelegate.fixed(sliverWidgets),
+            return SliverPadding(
+              sliver: buildSpacedSliverList(
+                children: sliverWidgets,
+                horizontalGutter: horizontalGutter(context),
+              ),
+              padding: EdgeInsets.only(
+                bottom: theme.distance.gutter.vertical.max,
+              ),
             );
           }
         },

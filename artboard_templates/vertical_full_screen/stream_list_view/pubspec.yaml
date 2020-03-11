@@ -48,8 +48,6 @@ dependency_overrides:
     path: ../../../builders/nav_bar
   vertical_full_screen_artboard_scaffold:
     path: ../../../artboard_scaffolds/vertical_full_screen
-  inherited_scroll_controller_builder:
-    path: ../../../builders/inherited_scroll_controller
   spaced_list_view_builder:
     path: ../../../builders/spaced_list_view
 

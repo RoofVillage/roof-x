@@ -100,8 +100,6 @@ dependency_overrides:
     path: ../../../blossm_view_store
   button_builder:
     path: ../../../builders/button
-  inherited_scroll_controller_builder:
-    path: ../../../builders/inherited_scroll_controller
   button_status_option:
     path: ../../../options/button_status
   cache:

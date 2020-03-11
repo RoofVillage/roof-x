@@ -60,6 +60,8 @@ dependency_overrides:
     path: ../../../lib/artboard
   public_activity_artboard:
     path: ../../artboards/public_activity
+  domains_artboard:
+    path: ../../artboards/domains
   choose_wallet_verification_type_artboard:
     path: ../../artboards/choose_wallet_verification_type
   choose_business_type_artboard:
@@ -108,8 +110,6 @@ dependency_overrides:
     path: ../../../blossm_view_store
   button_builder:
     path: ../../../builders/button
-  inherited_scroll_controller_builder:
-    path: ../../../builders/inherited_scroll_controller
   button_status_option:
     path: ../../../options/button_status
   cache:
@@ -270,6 +270,8 @@ dependency_overrides:
     path: ../../../builders/table_cell
   spaced_list_view_builder:
     path: ../../../builders/spaced_list_view
+  spaced_sliver_list_builder:
+    path: ../../../builders/spaced_sliver_list
   standard_icon_library:
     path: ../../../icons/standard
   spaced_column_builder:
