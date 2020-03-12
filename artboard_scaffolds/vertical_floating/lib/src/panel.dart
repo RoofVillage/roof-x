@@ -107,14 +107,12 @@ class InheritedVerticalFloatingArtboardNavigatorPanel<T>
     switch (buttonOption) {
       case VerticalFloatingArtboardButtonOption.close:
         button = buildIconNavButton(
-          context,
           iconReference: NavigationIcon.downArrow,
           onTap: () => ArtboardNavigator.of(context).pop(_result),
         );
         break;
       case VerticalFloatingArtboardButtonOption.previous:
         button = buildIconNavButton(
-          context,
           iconReference: NavigationIcon.backArrow,
           onTap: () {
             widget.artboard.didComplete(_result);

@@ -8,7 +8,7 @@ class LogoNavButton extends StatelessWidget with NavButton {
 
   @override
   Widget buildIcon(BuildContext context) {
-    return SemanticTheme.of(context).logo.full;
+    return SemanticTheme.of(context).logo.icon;
   }
 
   LogoNavButton({@required this.onTap});

@@ -6,24 +6,20 @@ import 'nav_button.dart';
 
 class IconNavButton extends StatelessWidget with NavButton {
   final void Function() onTap;
-  final Color color;
 
   final NavigationIcon iconReference;
 
   @override
   Widget buildIcon(BuildContext context) {
-    final theme = SemanticTheme.of(context);
-
     final _blank = NavigationIcon(null);
 
     return (iconReference ?? _blank).buildWidget(
-      color: color ?? theme.color.icon.nav,
+      color: SemanticTheme.of(context).color.icon.nav,
     );
   }
 
   IconNavButton({
     @required this.iconReference,
     @required this.onTap,
-    this.color,
   });
 }

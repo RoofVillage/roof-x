@@ -19,7 +19,6 @@ class PropertiesVerticalFullscreenArtboard
         SpacedListViewBuilder,
         PropertyCellBuilder {
   Widget artboardNavButton(BuildContext context) => buildIconNavButton(
-        context,
         iconReference: NavigationIcon.backArrow,
         onTap: () => ArtboardNavigator.of(context).pop(),
       );

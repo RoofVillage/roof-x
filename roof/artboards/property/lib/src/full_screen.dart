@@ -33,7 +33,7 @@ abstract class PropertyVerticalFullScreenArtboard
     return NavigationIcon.backArrow.buildWidget(color: theme.color.icon.nav);
   }
 
-  Future<void> edit(BuildContext context) async {
+  void edit(BuildContext context) {
     ArtboardNavigator.of(context).goTo(
       LeaseCreateVerticalFloatingArtboard(),
     );
@@ -44,9 +44,8 @@ abstract class PropertyVerticalFullScreenArtboard
     // final theme = RoofTheme.of(context);
 
     final moreButton = buildIconNavButton(
-      context,
       iconReference: NavigationIcon.settings,
-      onTap: edit,
+      onTap: () => edit(context),
     );
 
     return [moreButton];

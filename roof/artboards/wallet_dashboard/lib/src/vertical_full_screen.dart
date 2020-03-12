@@ -13,6 +13,7 @@ import 'package:view_stream_builder_builder/index.dart';
 import 'package:x_small_icon_library/index.dart';
 import 'package:choose_wallet_verification_type_artboard/index.dart';
 import 'package:button_builder/index.dart';
+import 'package:icon_button_builder/index.dart';
 
 import '_data.dart';
 
@@ -26,6 +27,8 @@ class WalletDashboardVerticalFullscreenArtboard
         TransferCellBuilder,
         AlertCellBuilder,
         SectionHeaderBuilder,
+        NavIconButtonBuilder,
+        ActionIconButtonBuilder,
         SecondaryCenterButtonBuilder,
         SpacedSliverListBuilder {
   final String walletName;
@@ -34,18 +37,14 @@ class WalletDashboardVerticalFullscreenArtboard
 
   String get artboardTitle => walletName;
 
-  Widget artboardNavButton(BuildContext context) => buildIconNavButton(
-        context,
+  Widget artboardNavButton(BuildContext context) => buildNavIconButton(
         iconReference: NavigationIcon.backArrow,
         onTap: () => ArtboardNavigator.of(context).pop(),
       );
 
   List<Widget> artboardActionButtons(BuildContext context) => [
-        // TODO formalize SecondaryIconNavButton instead of passing color?
-        buildIconNavButton(
-          context,
-          iconReference: NavigationIcon.settings,
-          color: SemanticTheme.of(context).color.icon.generalSecondary,
+        buildSecondaryActionIconButton(
+          iconReference: XSmallIcon.thread,
           onTap: () => print('settings'),
         )
       ];

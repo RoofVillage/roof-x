@@ -12,7 +12,6 @@ class FullLogoNavBar extends StatelessWidget
   List<Widget> buildNavigationWidgets(BuildContext context) {
     return [
       buildFullLogoNavButton(
-        context,
         onTap: onLogoTap,
       )
     ];

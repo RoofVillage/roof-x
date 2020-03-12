@@ -122,7 +122,6 @@ class ServicesVerticalFloatingArtboard
   List<Widget> artboardActionButtons(BuildContext context) {
     return [
       buildIconNavButton(
-        context,
         iconReference: NavigationIcon.settings,
         onTap: null,
       )
