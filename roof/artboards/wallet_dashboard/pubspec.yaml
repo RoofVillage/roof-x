@@ -68,11 +68,11 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: master
       path: icons/standard
-  x_small_icon_library:
+  small_icon_library:
     git:
       url: git@github.com:RoofVillage/roof-x.git
       ref: master
-      path: icons/x_small
+      path: icons/small
   roof_table_cell_builder:
     git:
       url: git@github.com:RoofVillage/roof-x.git
@@ -110,6 +110,8 @@ dependencies:
       path: roof/artboards/balance_actions
 
 dependency_overrides:
+  small_icon_library:
+    path: ../../../icons/small
   icon_button_builder:
     path: ../../../builders/icon_button
   choose_wallet_verification_type_artboard:

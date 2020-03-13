@@ -7,6 +7,7 @@ import 'package:navigator/index.dart';
 import 'package:roof_table_cell_builder/index.dart';
 import 'package:semantic_theme/index.dart';
 import 'package:scroll_view_vertical_full_screen_artboard_template/index.dart';
+import 'package:small_icon_library/index.dart';
 import 'package:spaced_sliver_list_builder/index.dart';
 import 'package:table_cell_builder/index.dart';
 import 'package:view_stream_builder_builder/index.dart';
@@ -44,7 +45,7 @@ class WalletDashboardVerticalFullscreenArtboard
 
   List<Widget> artboardActionButtons(BuildContext context) => [
         buildSecondaryActionIconButton(
-          iconReference: XSmallIcon.thread,
+          iconReference: SmallIcon.settings,
           onTap: () => print('settings'),
         )
       ];

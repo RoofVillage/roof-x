@@ -4,6 +4,7 @@ import 'package:nav_button_builder/index.dart';
 import 'package:navigation_icon_library/index.dart';
 import 'package:navigator/index.dart';
 import 'package:scroll_view_vertical_full_screen_artboard_template/index.dart';
+import 'package:small_icon_library/index.dart';
 import 'package:spaced_sliver_list_builder/index.dart';
 import 'package:view_stream_builder_builder/index.dart';
 import 'package:table_cell_builder/index.dart';
@@ -11,7 +12,6 @@ import 'package:roof_table_cell_builder/index.dart';
 import 'package:wallet_dashboard_artboard/index.dart';
 import 'package:header_builder/index.dart';
 import 'package:add_profile_artboard/index.dart';
-import 'package:x_small_icon_library/index.dart';
 import 'package:icon_button_builder/index.dart';
 
 import '_data.dart';
@@ -37,7 +37,7 @@ class DomainsVerticalFullscreenArtboard
 
   List<Widget> artboardActionButtons(BuildContext context) => [
         buildSecondaryActionIconButton(
-          iconReference: XSmallIcon.thread,
+          iconReference: SmallIcon.settings,
           onTap: () => print('goto settings'),
         ),
         buildPrimaryActionIconButton(

@@ -213,6 +213,8 @@ dependency_overrides:
     path: ../../../builders/nav_bar
   nav_button_builder:
     path: ../../../builders/nav_button
+  icon_button_builder:
+    path: ../../../builders/icon_button
   navigation_icon_library:
     path: ../../../icons/navigation
   navigator:

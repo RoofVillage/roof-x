@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:navigation_icon_library/index.dart';
-import 'package:x_small_icon_library/index.dart';
+import 'package:small_icon_library/index.dart';
 
 import '_components/primary_action_icon_button.dart';
 import '_components/secondary_action_icon_button.dart';
@@ -17,7 +17,7 @@ mixin ActionIconButtonBuilder {
   }
 
   SecondaryActionIconButton buildSecondaryActionIconButton({
-    @required XSmallIcon iconReference,
+    @required SmallIcon iconReference,
     @required void Function() onTap,
   }) {
     return SecondaryActionIconButton(

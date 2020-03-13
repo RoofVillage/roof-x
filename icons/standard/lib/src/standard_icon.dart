@@ -3,6 +3,9 @@ import 'package:icon_reference/index.dart';
 
 import '_data/roof_standard_icons_data.dart';
 
+// TODO remove this
+export '_data/roof_standard_icons_data.dart';
+
 class StandardIcon extends IconReference {
   static const double _size = 28;
 

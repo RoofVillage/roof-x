@@ -14,11 +14,11 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: master
       path: lib/haptics
-  x_small_icon_library:
+  small_icon_library:
     git:
       url: git@github.com:RoofVillage/roof-x.git
       ref: master
-      path: icons/x_small
+      path: icons/small
   navigation_icon_library:
     git:
       url: git@github.com:RoofVillage/roof-x.git
