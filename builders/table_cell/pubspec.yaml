@@ -29,8 +29,15 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: master
       path: lib/tappable
+  vertically_centered_text_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: builders/vertically_centered_text
 
 dependency_overrides:
+  vertically_centered_text_builder:
+    path: ../../builders/vertically_centered_text
   tappable:
     path: ../../lib/tappable
   haptics:

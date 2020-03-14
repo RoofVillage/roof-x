@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:semantic_theme/index.dart';
+import 'package:vertically_centered_text_builder/index.dart';
 
 import 'card_cell.dart';
 
-class TitleBadgeCell extends StatelessWidget {
+class TitleBadgeCell extends StatelessWidget
+    with VerticallyCenteredTextBuilder {
   final String title;
   final String badgeText;
   final void Function() onTap;
@@ -20,18 +22,22 @@ class TitleBadgeCell extends StatelessWidget {
 
     final List<Widget> rowChildren = [];
 
-    final nameText = Text(
-      title,
-      style: theme.typography.title.textStyle(
-        color: theme.color.text.generalPrimary,
+    final nameText = buildVerticallyCenteredText(
+      Text(
+        title,
+        style: theme.typography.title.textStyle(
+          color: theme.color.text.generalPrimary,
+        ),
       ),
     );
 
     if (badgeText != null) {
-      final notificationText = Text(
-        badgeText,
-        style: theme.typography.bodyHeavy.textStyle(
-          color: theme.color.text.action,
+      final notificationText = buildVerticallyCenteredText(
+        Text(
+          badgeText,
+          style: theme.typography.bodyHeavy.textStyle(
+            color: theme.color.text.action,
+          ),
         ),
       );
       rowChildren.addAll([

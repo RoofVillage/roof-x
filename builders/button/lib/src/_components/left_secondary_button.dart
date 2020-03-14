@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:semantic_theme/index.dart';
+import 'package:vertically_centered_text_builder/index.dart';
 import 'package:standard_icon_library/index.dart';
 import 'package:tappable/index.dart';
 import 'package:typedefs/index.dart';
@@ -37,7 +38,7 @@ class SecondaryLeftButton extends StatefulWidget with LeftStyleButton {
 }
 
 class _SecondaryLeftButtonState extends State<SecondaryLeftButton>
-    with Tappable, LeftButtonState {
+    with VerticallyCenteredTextBuilder, Tappable, LeftButtonState {
   @override
   Widget build(BuildContext context) => buildButton(context);
 

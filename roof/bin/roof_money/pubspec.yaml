@@ -317,9 +317,11 @@ dependency_overrides:
     path: ../../../options/vertical_floating_artboard_button
   views:
     path: ../../views
+  vertically_centered_text_builder:
+    path: ../../../builders/vertically_centered_text
   x_small_icon_library:
     path: ../../../icons/x_small
-      
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

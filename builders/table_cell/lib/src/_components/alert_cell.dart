@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:semantic_theme/index.dart';
-import 'package:table_cell_builder/src/_components/ghost_cell.dart';
-import 'package:table_cell_builder/src/types/alert_type.dart';
+import 'package:vertically_centered_text_builder/index.dart';
 import 'package:x_small_icon_library/index.dart';
 
-import 'card_cell.dart';
+import 'ghost_cell.dart';
+import '../types/alert_type.dart';
 
-class AlertCell extends StatelessWidget {
+class AlertCell extends StatelessWidget with VerticallyCenteredTextBuilder {
   final String text;
   final XSmallIcon icon;
   final AlertType type;
@@ -52,9 +52,11 @@ class AlertCell extends StatelessWidget {
     }
 
     final nameText = Expanded(
-      child: Text(
-        text,
-        style: theme.typography.detailHeavy.textStyle(color: textColor),
+      child: buildVerticallyCenteredText(
+        Text(
+          text,
+          style: theme.typography.detailHeavy.textStyle(color: textColor),
+        ),
       ),
     );
 

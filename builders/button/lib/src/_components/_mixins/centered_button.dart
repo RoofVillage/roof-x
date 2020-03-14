@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:button_builder/index.dart';
 import 'package:semantic_theme/index.dart';
+import 'package:vertically_centered_text_builder/index.dart';
 import 'package:tappable/index.dart';
 import 'package:x_small_icon_library/index.dart';
 import 'package:haptics/index.dart';
@@ -14,7 +15,8 @@ mixin CenteredStyleButton {
   XSmallIcon get icon;
 }
 
-mixin CenteredStyleButtonState<T extends StatefulWidget> on Tappable<T> {
+mixin CenteredStyleButtonState<T extends StatefulWidget>
+    on Tappable<T>, VerticallyCenteredTextBuilder {
   CenteredStyleButton get button;
   BuildContext get context;
 
@@ -37,19 +39,13 @@ mixin CenteredStyleButtonState<T extends StatefulWidget> on Tappable<T> {
       buttonChildren.add(paddedIconWidget);
     }
 
-    final textDecoration = theme.typography.button.textStyle(color: textColor);
-
-    // TODO formalize as OpticallyCenteredBaselineBuilder?
-    final styledButtonText = Baseline(
-      baseline: theme.typography.button.fontSize,
-      baselineType: TextBaseline.alphabetic,
-      child: Text(
+    final styledButtonText = buildVerticallyCenteredText(
+      Text(
         button.text,
-        style: textDecoration,
+        style: theme.typography.button.textStyle(color: textColor),
         textAlign: TextAlign.center,
       ),
     );
-
     buttonChildren.add(styledButtonText);
 
     final decoration = BoxDecoration(

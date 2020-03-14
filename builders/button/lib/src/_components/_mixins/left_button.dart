@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:semantic_theme/index.dart';
+import 'package:vertically_centered_text_builder/index.dart';
 import 'package:standard_icon_library/index.dart';
 import 'package:haptics/index.dart';
 import 'package:tappable/index.dart';
@@ -15,7 +16,8 @@ mixin LeftStyleButton {
   ColorGetter get textColor;
 }
 
-mixin LeftButtonState<T extends StatefulWidget> on Tappable<T> {
+mixin LeftButtonState<T extends StatefulWidget>
+    on Tappable<T>, VerticallyCenteredTextBuilder {
   LeftStyleButton get button;
   BuildContext get context;
 
@@ -43,12 +45,12 @@ mixin LeftButtonState<T extends StatefulWidget> on Tappable<T> {
       buttonChildren.add(buttonIcon);
     }
 
-    final textDecoration = theme.typography.button.textStyle(color: textColor);
-
-    final styledButtonText = Text(
-      button.text,
-      style: textDecoration,
-      textAlign: TextAlign.center,
+    final styledButtonText = buildVerticallyCenteredText(
+      Text(
+        button.text,
+        style: theme.typography.button.textStyle(color: textColor),
+        textAlign: TextAlign.center,
+      ),
     );
 
     final textContainer = Expanded(child: styledButtonText);

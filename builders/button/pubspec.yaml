@@ -44,6 +44,11 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: master
       path: builders/image_picker
+  vertically_centered_text_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: builders/vertically_centered_text
   semantic_theme:
     git:
       url: git@github.com:RoofVillage/roof-x.git
@@ -51,6 +56,8 @@ dependencies:
       path: semantic_theme
 
 dependency_overrides:
+  vertically_centered_text_builder:
+    path: ../../builders/vertically_centered_text
   semantic_theme:
     path: ../../semantic_theme
   image_picker_builder:
