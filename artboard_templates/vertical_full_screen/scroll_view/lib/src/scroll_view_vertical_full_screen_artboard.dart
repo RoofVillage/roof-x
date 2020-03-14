@@ -15,6 +15,12 @@ abstract class ScrollViewVerticalFullScreenArtboard extends StatefulWidget
 
   String get artboardTitle;
 
+  @override
+  bool get hideNavBarOnScroll => true;
+
+  @override
+  ScrollController get bodyScrollController => _scrollController;
+
   double horizontalGutter(BuildContext context) =>
       SemanticTheme.of(context).distance.gutter.horizontal.medium;
 
@@ -32,7 +38,8 @@ abstract class ScrollViewVerticalFullScreenArtboard extends StatefulWidget
         navButton: artboardNavButton(context),
       );
 
-  List<Widget> _sliverChildren(BuildContext context) {
+  @override
+  List<Widget> buildBodySlivers(BuildContext context) {
     if (artboardTitle != null) {
       final pageHeader = SliverToBoxAdapter(
         child: buildPageHeader(
@@ -58,10 +65,4 @@ abstract class ScrollViewVerticalFullScreenArtboard extends StatefulWidget
       ];
     }
   }
-
-  @override
-  Widget buildBody(BuildContext context) => CustomScrollView(
-        controller: _scrollController,
-        slivers: _sliverChildren(context),
-      );
 }

@@ -24,20 +24,15 @@ class AnimatedTitleNavBar extends StatefulWidget {
 
 class _AnimatedTitleNavBarState extends State<AnimatedTitleNavBar> {
   final _containerKey = GlobalKey();
-  final _transitionScrollDistance = 30;
 
-  double _opacity = 0;
+  bool _titleVisible = false;
   double _containerHeight;
 
-  // Opacity == 1 when scrollController is at this offset.
-  double get _visibleOffset => _containerHeight - 20;
-
-  // Opacity == 0 when scrollController is at this offset.
-  double get _invisibleOffset => _visibleOffset - _transitionScrollDistance;
+  double get _opacityChangeOffset => _containerHeight - 25;
 
   @override
   void initState() {
-    widget.scrollController.addListener(() => _updateOpacityOnScroll());
+    widget.scrollController.addListener(() => _updateTitleVisibleOnScroll());
 
     SchedulerBinding.instance.addPostFrameCallback(
       (_) => _setContainerHeight(),
@@ -45,23 +40,14 @@ class _AnimatedTitleNavBarState extends State<AnimatedTitleNavBar> {
     super.initState();
   }
 
-  void _updateOpacityOnScroll() {
-    double newOpacity;
+  void _updateTitleVisibleOnScroll() {
+    bool newTitleVisible =
+        widget.scrollController.offset >= _opacityChangeOffset ? true : false;
 
-    final offset = widget.scrollController.offset;
-
-    if (offset < _invisibleOffset) {
-      newOpacity = 0;
-    } else if (offset < _visibleOffset) {
-      newOpacity = (offset - _invisibleOffset) / _transitionScrollDistance;
-    } else if (_opacity != 1) {
-      newOpacity = 1;
-    }
-
-    if (newOpacity == null) return;
+    if (_titleVisible == newTitleVisible) return;
 
     setState(() {
-      _opacity = newOpacity;
+      _titleVisible = newTitleVisible;
     });
   }
 
@@ -97,8 +83,10 @@ class _AnimatedTitleNavBarState extends State<AnimatedTitleNavBar> {
     }
 
     if (widget.title != null) {
-      final opacityTitle = Opacity(
-        opacity: _opacity,
+      final opacityTitle = AnimatedOpacity(
+        opacity: _titleVisible ? 1 : 0,
+        curve: theme.curve.normal,
+        duration: theme.duration.medium,
         child: NavTitleBaseline(
           text: Text(
             widget.title,

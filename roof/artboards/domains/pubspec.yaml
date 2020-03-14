@@ -100,6 +100,8 @@ dependencies:
       path: artboard_templates/vertical_full_screen/scroll_view
 
 dependency_overrides:
+  vertical_full_screen_artboard_scaffold:
+    path: ../../../artboard_scaffolds/vertical_full_screen
   landlord_nav_drawer_artboard:
     path: ../landlord_nav_drawer
   wallet_dashboard_artboard:

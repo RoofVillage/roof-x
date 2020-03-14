@@ -46,6 +46,42 @@ mixin WalletDashboardArtboardData {
         date: DateTime.now(),
         note: 'Refund a bitch',
       ),
+      Transfer(
+        amount: 12.69,
+        sender: 'Jo',
+        date: DateTime.now(),
+        note: 'Take this bread and buy some bread',
+      ),
+      Transfer(
+        amount: 2015,
+        receiver: 'Mills',
+        date: DateTime.now(),
+        note: 'Enjoy your rent ya fuckin asshole',
+      ),
+      Transfer(
+        amount: 420,
+        sender: 'Mills',
+        date: DateTime.now(),
+        note: 'Refund a bitch',
+      ),
+      Transfer(
+        amount: 12.69,
+        sender: 'Jo',
+        date: DateTime.now(),
+        note: 'Take this bread and buy some bread',
+      ),
+      Transfer(
+        amount: 2015,
+        receiver: 'Mills',
+        date: DateTime.now(),
+        note: 'Enjoy your rent ya fuckin asshole',
+      ),
+      Transfer(
+        amount: 420,
+        sender: 'Mills',
+        date: DateTime.now(),
+        note: 'Refund a bitch',
+      ),
     ]),
   );
 }
