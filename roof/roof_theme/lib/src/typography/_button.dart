@@ -14,7 +14,7 @@ class RoofButtonTypography extends SemanticTypography {
   List<String> get fontFamilyFallback => null;
 
   @override
-  double get fontSize => fs.small;
+  double get fontSize => fs.medium;
 
   @override
   FontWeight get fontWeight => fw.medium;

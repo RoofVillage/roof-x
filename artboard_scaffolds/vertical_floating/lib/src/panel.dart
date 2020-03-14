@@ -53,10 +53,7 @@ class InheritedVerticalFloatingArtboardNavigatorPanel<T>
   Widget build(BuildContext context) {
     super.build(context); //necessary for the mixin.
 
-    final theme = SemanticTheme.of(context);
-
     final flexibleColumn = Column(
-      mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         Flexible(
@@ -67,15 +64,6 @@ class InheritedVerticalFloatingArtboardNavigatorPanel<T>
       ],
     );
 
-    ///The percent from the bottom where the button will live;
-    final halfHeight = MediaQuery.of(context).size.height * 0.5;
-    final safeArea = MediaQuery.of(context).padding.bottom;
-    final buttonMarginBottom = theme.distance.spacing.vertical.small;
-
-    final ratio = (halfHeight - buttonMarginBottom - safeArea) / halfHeight;
-
-    final _alignment = Alignment(0, ratio);
-
     List<Widget> children = [flexibleColumn];
     if (VerticalFloatingArtboardNavigator.of(context).showsNavButton) {
       final button = _navButton(context);
@@ -83,7 +71,7 @@ class InheritedVerticalFloatingArtboardNavigatorPanel<T>
     }
 
     final child = Stack(
-      alignment: _alignment,
+      alignment: AlignmentDirectional.center,
       children: children,
     );
     return _InheritedVerticalFloatingArtboardNavigatorPanel(
@@ -100,37 +88,41 @@ class InheritedVerticalFloatingArtboardNavigatorPanel<T>
   }
 
   Widget _navButton(BuildContext context) {
+    final theme = SemanticTheme.of(context);
+
     final buttonOption =
         widget.artboard.navButtonOption ?? widget.defaultNavButtonOption;
 
     Widget button;
     switch (buttonOption) {
       case VerticalFloatingArtboardButtonOption.close:
-        button = buildIconNavButton(
-          iconReference: NavigationIcon.downArrow,
-          onTap: () => ArtboardNavigator.of(context).pop(_result),
+        button = Positioned(
+          bottom: theme.distance.gutter.vertical.small,
+          child: buildIconNavButton(
+            iconReference: NavigationIcon.downArrow,
+            onTap: () => ArtboardNavigator.of(context).pop(_result),
+          ),
         );
         break;
       case VerticalFloatingArtboardButtonOption.previous:
-        button = buildIconNavButton(
-          iconReference: NavigationIcon.backArrow,
-          onTap: () {
-            widget.artboard.didComplete(_result);
-            VerticalFloatingArtboardNavigator.of(
-              context,
-              shouldRebuild: false,
-            ).back(context);
-          },
+        button = Positioned(
+          bottom: theme.distance.gutter.vertical.small,
+          left: theme.distance.gutter.horizontal.medium,
+          child: buildIconNavButton(
+            iconReference: NavigationIcon.backArrow,
+            onTap: () {
+              widget.artboard.didComplete(_result);
+              VerticalFloatingArtboardNavigator.of(
+                context,
+                shouldRebuild: false,
+              ).back(context);
+            },
+          ),
         );
         break;
     }
 
-    return Padding(
-      padding: EdgeInsets.only(
-        bottom: SemanticTheme.of(context).distance.padding.vertical.small,
-      ),
-      child: button,
-    );
+    return button;
   }
 }
 

@@ -7,7 +7,7 @@ import 'package:roof_theme/src/color/roof_color_library.dart';
 import 'package:roof_theme/src/curve/roof_curve_library.dart';
 import 'package:roof_theme/src/duration/roof_duration_library.dart';
 import 'package:roof_theme/src/distance/roof_distance_library.dart';
-import 'package:roof_theme/src/radius/roof_duration_library.dart';
+import 'package:roof_theme/src/radius/roof_radius_library.dart';
 import 'package:roof_theme/src/roof_theme_option.dart';
 import 'package:roof_theme/src/shadow/roof_shadow_library.dart';
 import 'package:roof_theme/src/system_ui_style/roof_system_ui_style.dart';

@@ -54,7 +54,7 @@ mixin CenteredStyleButtonState {
     buttonChildren.add(styledButtonText);
 
     final decoration = BoxDecoration(
-      border: Border.all(color: button.strokeColor(context)),
+      border: Border.all(color: button.strokeColor(context), width: 2),
       color: button.backgroundColor(context),
       borderRadius: BorderRadius.all(theme.radius.medium),
     );

@@ -29,7 +29,7 @@ class RoofShadowLibrary extends SemanticShadowLibrary {
         ),
         RoofThemeOption.dark: BoxShadow(
           blurRadius: 12,
-          color: Colors.black.withOpacity(.5),
+          color: Colors.black.withOpacity(.9),
           offset: Offset(0, 5),
         ),
       });
