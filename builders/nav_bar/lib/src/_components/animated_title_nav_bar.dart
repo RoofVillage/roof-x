@@ -10,12 +10,14 @@ class AnimatedTitleNavBar extends StatefulWidget {
   final List<Widget> actionButtons;
   final Widget navButton;
   final String title;
+  final bool hideOnScroll;
 
   AnimatedTitleNavBar({
     @required this.scrollController,
     this.actionButtons,
     this.navButton,
     this.title,
+    this.hideOnScroll,
   });
 
   @override
@@ -25,13 +27,17 @@ class AnimatedTitleNavBar extends StatefulWidget {
 class _AnimatedTitleNavBarState extends State<AnimatedTitleNavBar> {
   final _containerKey = GlobalKey();
 
+  // titleCanShow pattern prevents titleVisible being set to true while scrollPosition is near 0, and scroll direction is up. This is intended to allow adequate scroll distance for the navBar to hide on initial scroll-up before title becomes visible.
+  bool _titleCanShow = true;
   bool _titleVisible = false;
   double _containerHeight;
 
-  double get _opacityChangeOffset => _containerHeight - 25;
+  double get _titleVisibilityOffset => _containerHeight - 25;
 
   @override
   void initState() {
+    if (widget.hideOnScroll == true) _titleCanShow = false;
+
     widget.scrollController.addListener(() => _updateTitleVisibleOnScroll());
 
     SchedulerBinding.instance.addPostFrameCallback(
@@ -41,13 +47,29 @@ class _AnimatedTitleNavBarState extends State<AnimatedTitleNavBar> {
   }
 
   void _updateTitleVisibleOnScroll() {
-    bool newTitleVisible =
-        widget.scrollController.offset >= _opacityChangeOffset ? true : false;
+    bool newTitleCanShow;
+    bool newTitleVisible;
 
-    if (_titleVisible == newTitleVisible) return;
+    final scrollPosition = widget.scrollController.offset;
+
+    newTitleVisible =
+        scrollPosition >= _titleVisibilityOffset && _titleCanShow == true;
+
+    if (widget.hideOnScroll == true) {
+      if (scrollPosition > _titleVisibilityOffset * 2)
+        newTitleCanShow = true;
+      else if (scrollPosition <= _titleVisibilityOffset)
+        newTitleCanShow = false;
+    }
+
+    if (_titleVisible == newTitleVisible && _titleCanShow == newTitleCanShow)
+      return;
 
     setState(() {
-      _titleVisible = newTitleVisible;
+      if (_titleVisible != newTitleVisible && newTitleVisible != null)
+        _titleVisible = newTitleVisible;
+      if (_titleCanShow != newTitleCanShow && newTitleCanShow != null)
+        _titleCanShow = newTitleCanShow;
     });
   }
 

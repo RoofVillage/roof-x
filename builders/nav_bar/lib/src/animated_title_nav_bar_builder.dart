@@ -8,11 +8,13 @@ mixin AnimatedTitleNavBarBuilder {
     ScrollController scrollController,
     Widget navButton,
     List<Widget> actionButtons,
+    bool hideOnScroll,
   }) =>
       AnimatedTitleNavBar(
         scrollController: scrollController,
         title: title,
         navButton: navButton,
         actionButtons: actionButtons,
+        hideOnScroll: hideOnScroll,
       );
 }

@@ -158,6 +158,17 @@ mixin VerticalFullScreenArtboardState<T extends VerticalFullScreenArtboard>
       );
     }
 
+    final menuBarScrim = Positioned(
+      top: 0,
+      left: 0,
+      right: 0,
+      height: 20,
+      child: Container(
+        color: theme.color.background.generalSecondary?.withOpacity(.85),
+      ),
+    );
+    stackChildren.add(menuBarScrim);
+
     if (dock != null) {
       stackChildren.add(
         Positioned(

@@ -36,6 +36,7 @@ abstract class ScrollViewVerticalFullScreenArtboard extends StatefulWidget
         scrollController: _scrollController,
         actionButtons: artboardActionButtons(context),
         navButton: artboardNavButton(context),
+        hideOnScroll: true,
       );
 
   @override
