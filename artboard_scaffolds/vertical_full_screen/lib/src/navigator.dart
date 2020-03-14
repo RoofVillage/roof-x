@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io' show Platform;
 
 import 'package:flutter/material.dart';
 import 'package:semantic_theme/index.dart';
@@ -36,9 +37,33 @@ class VerticalFullScreenArtboardNavigator extends StatefulWidget {
 
 class VerticalFullScreenInheritedArtboardNavigator
     extends State<VerticalFullScreenArtboardNavigator> {
+  final _popMinDragDistanceDelta = 30;
+  final _popMaxDragTimeDelta = 40;
+
+  int _initialDragTime;
+  double _initialDragDy;
+  int _timeDelta;
+  double _downDistanceDelta;
+
+  // Must drag _popMinDragDistanceDelta in less time than _popMaxDragTimeDelta to pop
+  get _shouldPop =>
+      _timeDelta < _popMaxDragTimeDelta &&
+      _downDistanceDelta > _popMinDragDistanceDelta;
+
   Widget build(BuildContext context) {
-    final navigator = ArtboardNavigator(
+    final swipablePage = GestureDetector(
+      onHorizontalDragStart: _onHorizontalDragStart,
+      onHorizontalDragUpdate: (details) {
+        if (!Platform.isIOS || details.primaryDelta < 0) return;
+        _onDragRightUpdate(details);
+        if (_shouldPop) Navigator.maybePop(context);
+      },
+      behavior: HitTestBehavior.opaque,
       child: widget.artboard,
+    );
+
+    final navigator = ArtboardNavigator(
+      child: swipablePage,
       goTo: _goTo,
       pop: _pop,
     );
@@ -47,6 +72,16 @@ class VerticalFullScreenInheritedArtboardNavigator
       data: this,
       child: KeyboardAccessory(child: navigator),
     );
+  }
+
+  void _onHorizontalDragStart(DragStartDetails details) {
+    _initialDragTime = details.sourceTimeStamp.inMilliseconds;
+    _initialDragDy = details.globalPosition.dx;
+  }
+
+  void _onDragRightUpdate(DragUpdateDetails details) {
+    _timeDelta = details.sourceTimeStamp.inMilliseconds - _initialDragTime;
+    _downDistanceDelta = details.globalPosition.dx - _initialDragDy;
   }
 
   Future<T> _goTo<T>(

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:semantic_theme/index.dart';
 import 'package:semantic_theme/src/semantic_theme_data.dart';
 
@@ -36,12 +35,6 @@ class SemanticTheme<T> extends StatefulWidget {
     assert(inheritedWidget != null, "SemanticInheritedTheme not found.");
 
     inheritedWidget.data.use(themeOption);
-
-    // SystemChrome.setSystemUIOverlayStyle(
-    //   inheritedWidget.data.themeData.systemUiStyle.systemUiOverlayStyle.value,
-    // );
-    print(
-        'VAL ${inheritedWidget.data.themeData.systemUiStyle.systemUiOverlayStyle.value}');
 
     inheritedWidget.data.themeData.themeOptionDidChange(themeOption);
   }
