@@ -26,7 +26,7 @@ class SectionHeader extends StatelessWidget {
         ],
       ),
       padding: EdgeInsets.only(
-        top: theme.distance.spacing.vertical.large,
+        top: theme.distance.spacing.vertical.max,
         bottom: theme.distance.spacing.vertical.small,
         left: horizontalGutter ?? 0,
         right: horizontalGutter ?? 0,

@@ -47,7 +47,7 @@ mixin NavBar implements StatelessWidget {
         theme.distance.gutter.vertical.small,
       ),
       decoration: BoxDecoration(
-        color: theme.color.background.generalSecondary,
+        color: theme.color.background.general,
         boxShadow: [theme.shadow.medium],
       ),
       child: itemRow,

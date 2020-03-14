@@ -12,7 +12,7 @@ void main() {
 }
 
 class _RoofMoney extends StatelessWidget {
-  final initialThemeData = RoofSemanticTheme(RoofThemeOption.dark);
+  final initialThemeData = RoofSemanticTheme(RoofThemeOption.light);
 
   @override
   Widget build(BuildContext context) {

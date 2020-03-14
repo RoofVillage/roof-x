@@ -1,7 +1,7 @@
 import 'package:semantic_theme/src/_utils/theme_option_dependent.dart';
 
-mixin ValueForThemeOption<V, T> on ThemeOptionDependent<T> {
-  V forThemeOption(Map<T, V> map) {
+mixin ValueForThemeOption<ThemeOption> on ThemeOptionDependent<ThemeOption> {
+  T forThemeOption<T>(Map<ThemeOption, T> map) {
     return map[currentThemeOption];
   }
 }

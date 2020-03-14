@@ -1,6 +1,9 @@
 import 'package:semantic_theme/index.dart';
+import 'package:semantic_theme/src/_utils/theme_option_dependent.dart';
 
-abstract class SemanticTypographyLibrary {
+abstract class SemanticTypographyLibrary<T> extends ThemeOptionDependent<T> {
+  SemanticTypographyLibrary(T currentThemeOption) : super(currentThemeOption);
+
   /// Header for high-level pages.
   SemanticTypography get headingPrimary;
 

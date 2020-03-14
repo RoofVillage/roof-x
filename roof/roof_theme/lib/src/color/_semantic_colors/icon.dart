@@ -12,24 +12,24 @@ class RoofIconColor extends SemanticIconColor<RoofThemeOption> {
   Color get action => colors.brandBlue;
 
   @override
-  Color get onActionPrimaryBackground => colors.white1;
+  Color get onActionPrimaryBackground => colors.white;
 
   @override
   Color get onActionSecondaryBackground => colors.brandBlue;
   
   @override
-  Color get onActionDisabledBackground => colors.white2;
+  Color get onActionDisabledBackground => colors.whiteMid;
 
   @override
   Color get actionDisabled => forThemeOption({
-        RoofThemeOption.light: colors.gray2,
-        RoofThemeOption.dark: colors.gray3,
+        RoofThemeOption.light: colors.grayMidLight,
+        RoofThemeOption.dark: colors.grayMidDark,
       });
 
   @override
   Color get inactive => forThemeOption({
-        RoofThemeOption.light: colors.gray2,
-        RoofThemeOption.dark: colors.gray3,
+        RoofThemeOption.light: colors.grayMidLight,
+        RoofThemeOption.dark: colors.grayMidDark,
       });
 
   @override
@@ -40,14 +40,14 @@ class RoofIconColor extends SemanticIconColor<RoofThemeOption> {
 
   @override
   Color get generalPrimary => forThemeOption({
-        RoofThemeOption.light: colors.black3,
-        RoofThemeOption.dark: colors.white2,
+        RoofThemeOption.light: colors.blackLight,
+        RoofThemeOption.dark: colors.whiteMid,
       });
 
   @override
   Color get generalSecondary => forThemeOption({
-        RoofThemeOption.light: colors.gray4,
-        RoofThemeOption.dark: colors.gray3,
+        RoofThemeOption.light: colors.grayMidDark,
+        RoofThemeOption.dark: colors.grayMidDark,
       });
 
   @override

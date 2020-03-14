@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:semantic_theme/index.dart';
+import 'package:table_cell_builder/src/_components/ghost_cell.dart';
 import 'package:table_cell_builder/src/types/alert_type.dart';
 import 'package:x_small_icon_library/index.dart';
 
@@ -72,10 +73,9 @@ class AlertCell extends StatelessWidget {
       );
     }
 
-    return CardCell(
+    return GhostCell(
       child: Row(children: rowChildren),
       borderColor: strokeColor,
-      backgroundColor: Colors.transparent,
       onTap: onTap,
     );
   }

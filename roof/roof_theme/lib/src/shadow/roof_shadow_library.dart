@@ -25,12 +25,12 @@ class RoofShadowLibrary extends SemanticShadowLibrary {
         RoofThemeOption.light: BoxShadow(
           blurRadius: 12,
           color: Colors.black.withOpacity(.2),
-          offset: Offset(0, 5),
+          offset: Offset(0, 4),
         ),
         RoofThemeOption.dark: BoxShadow(
           blurRadius: 12,
           color: Colors.black.withOpacity(.9),
-          offset: Offset(0, 5),
+          offset: Offset(0, 4),
         ),
       });
 
@@ -44,7 +44,31 @@ class RoofShadowLibrary extends SemanticShadowLibrary {
         RoofThemeOption.dark: BoxShadow(
           blurRadius: 16,
           color: Colors.black.withOpacity(.5),
-          offset: Offset(0, 7),
+          offset: Offset(0, 4),
         ),
+      });
+
+  @override
+  BoxShadow get card => forThemeOption({
+        RoofThemeOption.light: BoxShadow(
+          blurRadius: 3,
+          color: Colors.black.withOpacity(.12),
+          offset: Offset(0, 2),
+        ),
+        RoofThemeOption.dark: BoxShadow(
+          blurRadius: 3,
+          color: Colors.black.withOpacity(.4),
+          offset: Offset(0, 2),
+        ),
+      });
+
+  @override
+  BoxShadow get appBar => forThemeOption({
+        RoofThemeOption.light: BoxShadow(
+          blurRadius: 3,
+          color: Colors.black.withOpacity(.12),
+          offset: Offset(0, 2),
+        ),
+        RoofThemeOption.dark: BoxShadow(),
       });
 }

@@ -207,7 +207,7 @@ class _Content extends StatelessWidget with KeyValueBuilder, SpacedGridBuilder {
           vertical: theme.distance.padding.vertical.medium,
         ),
         decoration: BoxDecoration(
-          color: theme.color.background.generalPrimary,
+          color: theme.color.background.raised,
           borderRadius: BorderRadius.all(theme.radius.large),
         ),
         child: Column(

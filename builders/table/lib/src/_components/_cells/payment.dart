@@ -122,7 +122,7 @@ class PaymentCell extends StatelessWidget with KeyValueRowBuilder {
             theme.radius.medium,
           ),
           border: Border.all(color: theme.color.stroke.light),
-          color: theme.color.background.generalPrimary,
+          color: theme.color.background.raised,
         ),
         child: bodyColumn,
       ),

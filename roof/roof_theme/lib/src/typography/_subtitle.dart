@@ -7,6 +7,8 @@ import '../_constants/_font_size.dart' as fs;
 import '../_constants/_font_weight.dart' as fw;
 
 class RoofSubtitleTypography extends SemanticTypography {
+  RoofSubtitleTypography(currentThemeOption) : super(currentThemeOption);
+
   @override
   String get fontFamily => ff.azo;
 

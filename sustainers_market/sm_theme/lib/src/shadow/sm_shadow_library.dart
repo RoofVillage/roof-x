@@ -32,4 +32,10 @@ class SmShadowLibrary extends SemanticShadowLibrary {
           offset: Offset(0, 2),
         ),
       });
+
+  @override
+  BoxShadow get appBar => null;
+
+  @override
+  BoxShadow get card => null;
 }

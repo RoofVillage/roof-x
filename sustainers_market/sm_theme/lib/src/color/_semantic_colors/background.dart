@@ -23,12 +23,12 @@ class SmBackgroundColor extends SemanticBackgroundColor<SmThemeOption> {
   Color get brand => colors.brandGreen;
 
   @override
-  Color get generalPrimary => forThemeOption({
+  Color get raised => forThemeOption({
         SmThemeOption.dark: colors.black1,
       });
 
   @override
-  Color get generalSecondary => forThemeOption({
+  Color get general => forThemeOption({
         SmThemeOption.dark: colors.black2,
       });
 
@@ -40,16 +40,6 @@ class SmBackgroundColor extends SemanticBackgroundColor<SmThemeOption> {
   @override
   Color get inactive => forThemeOption({
         SmThemeOption.dark: Colors.grey,
-      });
-
-  @override
-  Color get inputBackground => forThemeOption({
-        SmThemeOption.dark: colors.black2,
-      });
-
-  @override
-  Color get inputForeground => forThemeOption({
-        SmThemeOption.dark: colors.black3,
       });
 
   @override

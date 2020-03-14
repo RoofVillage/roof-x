@@ -62,7 +62,8 @@ class RoofSemanticTheme extends SemanticThemeData<RoofThemeOption> {
   SemanticShadowLibrary get shadow => RoofShadowLibrary(currentThemeOption);
 
   @override
-  SemanticTypographyLibrary get typography => RoofTypographyLibrary();
+  SemanticTypographyLibrary get typography =>
+      RoofTypographyLibrary(currentThemeOption);
 
   @override
   SemanticSystemUiStyle get systemUiStyle =>

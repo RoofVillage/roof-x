@@ -11,7 +11,7 @@ class TableSectionHeaderA extends StatelessWidget {
     final theme = SemanticTheme.of(context);
 
     return Container(
-      color: theme.color.background.generalSecondary,
+      color: theme.color.background.general,
       child: Center(
         child: _TitleLabel(text: title),
       ),

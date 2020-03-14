@@ -59,7 +59,7 @@ class SmSemanticTheme extends SemanticThemeData<SmThemeOption> {
   SemanticShadowLibrary get shadow => SmShadowLibrary(currentThemeOption);
 
   @override
-  SemanticTypographyLibrary get typography => SmTypographyLibrary();
+  SemanticTypographyLibrary get typography => SmTypographyLibrary(currentThemeOption);
 
   @override
   SemanticSystemUiStyle get systemUiStyle =>

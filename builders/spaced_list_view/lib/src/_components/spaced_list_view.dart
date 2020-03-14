@@ -52,7 +52,7 @@ class _SpacedListViewState extends State<SpacedListView> {
       padding: EdgeInsets.symmetric(
         horizontal: theme.distance.gutter.horizontal.medium,
       ),
-      color: theme.color.background.generalSecondary,
+      color: theme.color.background.general,
       child: ListView(
         controller: widget.scrollController,
         padding: EdgeInsets.only(

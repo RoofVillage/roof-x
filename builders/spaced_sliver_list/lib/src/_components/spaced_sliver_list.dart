@@ -22,18 +22,20 @@ class _SpacedSliverListState extends State<SpacedSliverList> {
   Widget build(BuildContext context) {
     final theme = SemanticTheme.of(context);
 
-    final spacing = widget.spacing ?? theme.distance.gutter.vertical.medium;
+    final spacing = widget.spacing ?? theme.distance.spacing.vertical.medium;
     final horizontalGutter =
         widget.horizontalGutter ?? theme.distance.gutter.horizontal.medium;
 
     List<Widget> spacedChildren = widget.children
         .map(
-          (child) => Padding(
-            child: child,
-            padding: EdgeInsets.only(
-              bottom: spacing,
-            ),
-          ),
+          (child) => child == widget.children.last
+              ? child
+              : Padding(
+                  child: child,
+                  padding: EdgeInsets.only(
+                    bottom: spacing,
+                  ),
+                ),
         )
         .toList();
 

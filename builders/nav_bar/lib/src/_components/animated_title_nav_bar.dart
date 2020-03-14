@@ -27,17 +27,20 @@ class _AnimatedTitleNavBarState extends State<AnimatedTitleNavBar> {
   final _containerKey = GlobalKey();
 
   // titleCanShow pattern prevents titleVisible being set to true while scrollPosition is near 0, and scroll direction is up. This is intended to allow adequate scroll distance for the navBar to hide on initial scroll-up before title becomes visible.
-  bool _titleCanShow = true;
-  bool _titleVisible = false;
+  bool _transitionCanStart = true;
+  bool _titleVisible = true;
+  double _transitionValue = 0;
   double _containerHeight;
 
-  double get _titleVisibilityOffset => _containerHeight - 25;
+  double get _transitionOffset => _containerHeight * 1.5;
 
   @override
   void initState() {
-    if (widget.hideOnScroll == true) _titleCanShow = false;
-
-    widget.scrollController.addListener(() => _updateTitleVisibleOnScroll());
+    if (widget.hideOnScroll == true) {
+      _transitionCanStart = false;
+      _titleVisible = false;
+      widget.scrollController.addListener(() => _onScroll());
+    }
 
     SchedulerBinding.instance.addPostFrameCallback(
       (_) => _setContainerHeight(),
@@ -45,30 +48,50 @@ class _AnimatedTitleNavBarState extends State<AnimatedTitleNavBar> {
     super.initState();
   }
 
-  void _updateTitleVisibleOnScroll() {
-    bool newTitleCanShow;
+  void _onScroll() {
+    double newTransitionValue;
     bool newTitleVisible;
+    bool newTransitionCanStart;
 
     final scrollPosition = widget.scrollController.offset;
 
-    newTitleVisible =
-        scrollPosition >= _titleVisibilityOffset && _titleCanShow == true;
-
-    if (widget.hideOnScroll == true) {
-      if (scrollPosition > _titleVisibilityOffset * 2)
-        newTitleCanShow = true;
-      else if (scrollPosition <= _titleVisibilityOffset)
-        newTitleCanShow = false;
+    if (scrollPosition >= _transitionOffset) {
+      newTransitionCanStart = true;
+    } else if (scrollPosition <= 0) {
+      newTransitionCanStart = false;
     }
 
-    if (_titleVisible == newTitleVisible && _titleCanShow == newTitleCanShow)
-      return;
+    if (scrollPosition >= _transitionOffset) {
+      newTransitionValue = 1;
+    } else if (scrollPosition <= 0) {
+      newTransitionValue = 0;
+    } else if (_transitionCanStart == true) {
+      newTransitionValue = scrollPosition / _transitionOffset;
+    }
+
+    if (scrollPosition < _containerHeight)
+      newTitleVisible = false;
+    else if (_transitionCanStart) newTitleVisible = true;
+
+    if (newTransitionValue == null &&
+        newTransitionCanStart == null &&
+        newTitleVisible == null &&
+        newTransitionValue == _transitionValue &&
+        newTransitionCanStart == _transitionCanStart &&
+        newTitleVisible == _titleVisible) return;
 
     setState(() {
-      if (_titleVisible != newTitleVisible && newTitleVisible != null)
+      if (newTransitionValue != _transitionValue &&
+          newTransitionValue != null) {
+        _transitionValue = newTransitionValue;
+      }
+      if (newTransitionCanStart != _transitionCanStart &&
+          newTransitionCanStart != null) {
+        _transitionCanStart = newTransitionCanStart;
+      }
+      if (newTitleVisible != _titleVisible && newTitleVisible != null) {
         _titleVisible = newTitleVisible;
-      if (_titleCanShow != newTitleCanShow && newTitleCanShow != null)
-        _titleCanShow = newTitleCanShow;
+      }
     });
   }
 
@@ -149,6 +172,21 @@ class _AnimatedTitleNavBarState extends State<AnimatedTitleNavBar> {
 
     final safeAreaTop = MediaQuery.of(context).padding.top;
 
+    final shadow = theme.shadow.appBar;
+
+    List<BoxShadow> opacityAdjustedShadow;
+    if (shadow != null) {
+      opacityAdjustedShadow = [
+        BoxShadow(
+          color:
+              shadow.color.withOpacity(shadow.color.opacity * _transitionValue),
+          blurRadius: shadow.blurRadius,
+          spreadRadius: shadow.spreadRadius,
+          offset: shadow.offset,
+        )
+      ];
+    }
+
     return Container(
       key: _containerKey,
       padding: EdgeInsets.fromLTRB(
@@ -158,7 +196,8 @@ class _AnimatedTitleNavBarState extends State<AnimatedTitleNavBar> {
         theme.distance.gutter.vertical.small,
       ),
       decoration: BoxDecoration(
-        color: theme.color.background.generalSecondary,
+        color: theme.color.background.general,
+        boxShadow: opacityAdjustedShadow,
       ),
       child: itemRow,
     );

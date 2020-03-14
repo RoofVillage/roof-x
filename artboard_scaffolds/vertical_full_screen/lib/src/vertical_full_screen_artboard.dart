@@ -27,10 +27,11 @@ mixin VerticalFullScreenArtboardState<T extends VerticalFullScreenArtboard>
     implements State<T> {
   final _navBarContainerKey = GlobalKey();
   final _dockContainerKey = GlobalKey();
+  final double _statusBarScrimHeight = 20;
 
-  double _fullNavBarHeight;
-  double _navBarHeight;
-  double _dockHeight;
+  double _navBarHeight = 0;
+  double _navBarOffset = 0;
+  double _dockHeight = 0;
   double _lastBodyScrollPosition = 0;
 
   @override
@@ -56,21 +57,25 @@ mixin VerticalFullScreenArtboardState<T extends VerticalFullScreenArtboard>
     final scrollPosition = controller.offset;
     final scrollDelta = scrollPosition - _lastBodyScrollPosition;
 
-    double _newNavBarHeight;
+    double _newNavBarOffset;
 
     if (controller.position.extentBefore <= 0) {
-      _newNavBarHeight = _fullNavBarHeight;
+      // At beginning of scroll range
+      _newNavBarOffset = 0;
     } else if (controller.position.extentAfter <= 0) {
-      _newNavBarHeight = 0;
-    } else if (scrollDelta > 0 && _navBarHeight >= 0) {
-      _newNavBarHeight = max(0, _navBarHeight - scrollDelta);
-    } else if (scrollDelta < 0 && _navBarHeight < _fullNavBarHeight) {
-      _newNavBarHeight = min(_navBarHeight - scrollDelta, _fullNavBarHeight);
+      // At end of scroll range
+      _newNavBarOffset = -_navBarHeight;
+    } else if (scrollDelta > 0 && _navBarOffset > -_navBarHeight) {
+      // Scrolling up
+      _newNavBarOffset = max(-_navBarHeight, _navBarOffset - scrollDelta);
+    } else if (scrollDelta < 0 && _navBarOffset < 0) {
+      // Scrolling down
+      _newNavBarOffset = min(0, _navBarOffset - scrollDelta);
     }
 
     setState(() {
-      if (_newNavBarHeight != null) {
-        _navBarHeight = _newNavBarHeight;
+      if (_newNavBarOffset != null && _newNavBarOffset != _navBarOffset) {
+        _navBarOffset = _newNavBarOffset;
       }
       _lastBodyScrollPosition = scrollPosition;
     });
@@ -84,8 +89,7 @@ mixin VerticalFullScreenArtboardState<T extends VerticalFullScreenArtboard>
 
     setState(() {
       if (navBarContext != null) {
-        _fullNavBarHeight = navBarContext.size.height ?? 0;
-        _navBarHeight = _fullNavBarHeight;
+        _navBarHeight = navBarContext.size.height ?? 0;
       }
       if (dockContext != null) {
         _dockHeight = dockContext.size.height ?? 0;
@@ -102,13 +106,13 @@ mixin VerticalFullScreenArtboardState<T extends VerticalFullScreenArtboard>
     if (widget.buildBodySlivers(context) != null) {
       final navBarSpacer = SliverToBoxAdapter(
         child: Container(
-          height: _fullNavBarHeight ?? 0,
+          height: _navBarHeight,
         ),
       );
 
       final dockSpacer = SliverToBoxAdapter(
         child: Container(
-          height: _dockHeight ?? 0,
+          height: _dockHeight,
         ),
       );
 
@@ -146,28 +150,24 @@ mixin VerticalFullScreenArtboardState<T extends VerticalFullScreenArtboard>
       stackChildren.add(
         Positioned(
           key: _navBarContainerKey,
-          top: 0,
+          top: _navBarOffset,
           left: 0,
           right: 0,
-          height: _navBarHeight,
-          child: Wrap(
-            children: [navBar],
-            verticalDirection: VerticalDirection.up,
-          ),
+          child: navBar,
         ),
       );
     }
 
-    final menuBarScrim = Positioned(
+    final statusBarScrim = Positioned(
       top: 0,
       left: 0,
       right: 0,
-      height: 20,
+      height: _statusBarScrimHeight,
       child: Container(
-        color: theme.color.background.generalSecondary?.withOpacity(.85),
+        color: theme.color.background.general?.withOpacity(.85),
       ),
     );
-    stackChildren.add(menuBarScrim);
+    stackChildren.add(statusBarScrim);
 
     if (dock != null) {
       stackChildren.add(
@@ -187,7 +187,7 @@ mixin VerticalFullScreenArtboardState<T extends VerticalFullScreenArtboard>
     );
 
     final scaffold = Scaffold(
-      backgroundColor: theme.color.background.generalSecondary,
+      backgroundColor: theme.color.background.general,
       body: SafeArea(
         top: false,
         child: stack,
