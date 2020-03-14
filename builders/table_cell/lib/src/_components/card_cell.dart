@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:haptics/index.dart';
 import 'package:semantic_theme/index.dart';
+import 'package:tappable/index.dart';
 
-// TODO use statefulWidget to handle tapped state (like button builder)
-class CardCell extends StatelessWidget {
+class CardCell extends StatefulWidget {
   final Widget child;
   final void Function() onTap;
   final Color backgroundColor;
@@ -17,25 +17,36 @@ class CardCell extends StatelessWidget {
   });
 
   @override
+  _CardCellState createState() => _CardCellState();
+}
+
+class _CardCellState extends State<CardCell> with Tappable {
+  @override
   Widget build(BuildContext context) {
     final theme = SemanticTheme.of(context);
 
-    return GestureDetector(
+    return buildTappedAwareGestureDetector(
       onTap: () => hapticAction(
         HapticOption.light,
-        action: onTap,
+        action: widget.onTap,
       ),
-      child: Container(
-        padding: EdgeInsets.symmetric(
-          horizontal: theme.distance.padding.horizontal.medium,
-          vertical: theme.distance.padding.vertical.medium,
+      child: Opacity(
+        opacity: tapped ? .7 : 1,
+        child: Container(
+          padding: EdgeInsets.symmetric(
+            horizontal: theme.distance.padding.horizontal.medium,
+            vertical: theme.distance.padding.vertical.medium,
+          ),
+          decoration: BoxDecoration(
+            color:
+                widget.backgroundColor ?? theme.color.background.generalPrimary,
+            borderRadius: BorderRadius.all(theme.radius.medium),
+            border: widget.borderColor != null
+                ? Border.all(color: widget.borderColor)
+                : null,
+          ),
+          child: widget.child,
         ),
-        decoration: BoxDecoration(
-          color: backgroundColor ?? theme.color.background.generalPrimary,
-          borderRadius: BorderRadius.all(theme.radius.medium),
-          border: borderColor != null ? Border.all(color: borderColor) : null,
-        ),
-        child: child,
       ),
     );
   }

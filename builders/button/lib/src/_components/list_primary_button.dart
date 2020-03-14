@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:semantic_theme/index.dart';
 import 'package:standard_icon_library/index.dart';
+import 'package:tappable/index.dart';
 import 'package:typedefs/index.dart';
 
 import '_mixins/list_button.dart';
@@ -14,7 +15,7 @@ class PrimaryListButton extends StatefulWidget with ListStyleButton {
   @override
   get textColor =>
       (context) => SemanticTheme.of(context).color.text.generalPrimary;
-  
+
   @override
   get badgeTextColor =>
       (context) => SemanticTheme.of(context).color.text.action;
@@ -35,7 +36,7 @@ class PrimaryListButton extends StatefulWidget with ListStyleButton {
 }
 
 class _PrimaryListButtonState extends State<PrimaryListButton>
-    with ListButtonState {
+    with Tappable, ListButtonState {
   @override
   Widget build(BuildContext context) => buildButton(context);
 

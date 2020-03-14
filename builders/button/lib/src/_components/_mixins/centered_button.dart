@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:button_builder/index.dart';
 import 'package:semantic_theme/index.dart';
+import 'package:tappable/index.dart';
 import 'package:x_small_icon_library/index.dart';
 import 'package:haptics/index.dart';
 
@@ -13,12 +14,10 @@ mixin CenteredStyleButton {
   XSmallIcon get icon;
 }
 
-mixin CenteredStyleButtonState {
+mixin CenteredStyleButtonState<T extends StatefulWidget> on Tappable<T> {
   CenteredStyleButton get button;
   BuildContext get context;
 
-  bool _tapped = false;
-  final double _tappedOpacity = 0.75;
   final double _height = 50;
 
   void setState(dynamic());
@@ -59,18 +58,13 @@ mixin CenteredStyleButtonState {
       borderRadius: BorderRadius.all(theme.radius.medium),
     );
 
-    double opacity = _tapped ? _tappedOpacity : 1;
-
-    return GestureDetector(
-      onTapDown: _onTapDown,
+    return buildTappedAwareGestureDetector(
       onTap: () => hapticAction(
         HapticOption.light,
         action: button.onTap,
       ),
-      onTapUp: _onTapUp,
-      onTapCancel: _onTapCancel,
       child: Opacity(
-        opacity: opacity,
+        opacity: tapped ? .7 : 1,
         child: Container(
           height: _height,
           decoration: decoration,
@@ -81,17 +75,5 @@ mixin CenteredStyleButtonState {
         ),
       ),
     );
-  }
-
-  void _onTapDown(TapDownDetails details) {
-    setState(() => _tapped = true);
-  }
-
-  void _onTapUp(TapUpDetails details) {
-    setState(() => _tapped = false);
-  }
-
-  void _onTapCancel() {
-    setState(() => _tapped = false);
   }
 }

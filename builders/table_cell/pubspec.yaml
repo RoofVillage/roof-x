@@ -24,8 +24,15 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: master
       path: lib/haptics
+  tappable:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: lib/tappable
 
 dependency_overrides:
+  tappable:
+    path: ../../lib/tappable
   haptics:
     path: ../../lib/haptics
   semantic_theme:

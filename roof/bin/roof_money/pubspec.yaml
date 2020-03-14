@@ -221,6 +221,8 @@ dependency_overrides:
     path: ../../../lib/navigator
   network:
     path: ../../../lib/network
+  tappable:
+    path: ../../../lib/tappable
   notification_category_type:
     path: ../../../types/notification_category
   option_picker_artboard:

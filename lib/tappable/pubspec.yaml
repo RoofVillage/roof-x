@@ -1,0 +1,16 @@
+name: tappable
+description: Supplies custom GestureDetector builder method and tapped state tools.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0"
+  
+dependencies:
+  flutter:
+    sdk: flutter
+  path_provider: ^0.5.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
