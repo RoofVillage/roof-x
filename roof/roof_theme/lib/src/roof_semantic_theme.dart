@@ -25,21 +25,28 @@ class RoofSemanticTheme extends SemanticThemeData<RoofThemeOption> {
   Future<RoofThemeOption> loadThemeOption() async {
     final String key = await stringForKey(themeOptionKey);
 
-    switch (key) {
-      case "light":
-        return RoofThemeOption.light;
-      case "dark":
-        return RoofThemeOption.dark;
-      default:
-        return currentThemeOption;
+    for (RoofThemeOption option in RoofThemeOption.values) {
+      if (key == option.toString()) return option;
     }
+    return currentThemeOption;
   }
 
   @override
   void themeOptionDidChange(RoofThemeOption themeOption) {
+    String string;
+
+    switch (themeOption) {
+      case RoofThemeOption.light:
+        string = RoofThemeOption.light.toString();
+        break;
+      case RoofThemeOption.dark:
+        string = RoofThemeOption.dark.toString();
+        break;
+    }
+
     saveString(
       key: themeOptionKey,
-      string: themeOption.toString(),
+      string: string,
     );
   }
 
