@@ -13,6 +13,7 @@ import 'package:wallet_dashboard_artboard/index.dart';
 import 'package:header_builder/index.dart';
 import 'package:add_profile_artboard/index.dart';
 import 'package:icon_button_builder/index.dart';
+import 'package:user_settings_artboard/index.dart';
 
 import '_data.dart';
 
@@ -38,7 +39,9 @@ class DomainsVerticalFullscreenArtboard
   List<Widget> artboardActionButtons(BuildContext context) => [
         buildSecondaryActionIconButton(
           iconReference: SmallIcon.settings,
-          onTap: () => print('goto settings'),
+          onTap: () => ArtboardNavigator.of(context).goTo(
+            UserSettingsVerticalFullscreenArtboard(),
+          ),
         ),
         buildPrimaryActionIconButton(
           iconReference: NavigationIcon.add,

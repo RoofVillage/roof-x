@@ -223,6 +223,8 @@ dependency_overrides:
     path: ../../../lib/network
   tappable:
     path: ../../../lib/tappable
+  user_settings_artboard:
+    path: ../../artboards/user_settings
   notification_category_type:
     path: ../../../types/notification_category
   option_picker_artboard:

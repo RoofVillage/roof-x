@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:semantic_theme/index.dart';
 
 mixin NavBar implements StatelessWidget {
@@ -8,10 +7,6 @@ mixin NavBar implements StatelessWidget {
 
   Widget build(BuildContext context) {
     final theme = SemanticTheme.of(context);
-
-    SystemChrome.setSystemUIOverlayStyle(
-      theme.systemUiStyle.systemUiOverlayStyle.value,
-    );
 
     final List<Widget> rowChildren = [
       Row(

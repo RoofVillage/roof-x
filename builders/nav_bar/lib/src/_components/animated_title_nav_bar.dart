@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter/services.dart';
 import 'package:semantic_theme/index.dart';
 
 import '_widgets/nav_title_baseline.dart';
@@ -86,12 +85,6 @@ class _AnimatedTitleNavBarState extends State<AnimatedTitleNavBar> {
   @override
   Widget build(BuildContext context) {
     final theme = SemanticTheme.of(context);
-
-    if (theme.systemUiStyle.systemUiOverlayStyle.value != null) {
-      SystemChrome.setSystemUIOverlayStyle(
-        theme.systemUiStyle.systemUiOverlayStyle.value,
-      );
-    }
 
     final List<Widget> rowChildren = [];
 

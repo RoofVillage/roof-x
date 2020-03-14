@@ -24,13 +24,13 @@ class RoofBackgroundColor extends SemanticBackgroundColor<RoofThemeOption> {
 
   @override
   Color get generalPrimary => forThemeOption({
-        RoofThemeOption.light: colors.white1,
+        RoofThemeOption.light: colors.white2,
         RoofThemeOption.dark: colors.black2,
       });
 
   @override
   Color get generalSecondary => forThemeOption({
-        RoofThemeOption.light: colors.white2,
+        RoofThemeOption.light: colors.white1,
         RoofThemeOption.dark: colors.black1,
       });
 
