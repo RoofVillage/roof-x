@@ -21,5 +21,5 @@ const grayMidDark = Color.fromRGBO(150, 150, 150, 1);
 const grayDark = Color.fromRGBO(114, 114, 114, 1);
 
 const blackLight = Color.fromRGBO(51, 48, 45, 1);
-const blackMid = Color.fromRGBO(38, 36, 34, 1);
+const blackMid = Color.fromRGBO(37, 35, 33, 1);
 const black = Color.fromRGBO(24, 23, 22, 1);

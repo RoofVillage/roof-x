@@ -6,6 +6,7 @@ import 'package:navigator/index.dart';
 import 'package:scroll_view_vertical_full_screen_artboard_template/index.dart';
 import 'package:small_icon_library/index.dart';
 import 'package:spaced_sliver_list_builder/index.dart';
+import 'package:standard_icon_library/index.dart';
 import 'package:view_stream_builder_builder/index.dart';
 import 'package:table_cell_builder/index.dart';
 import 'package:roof_table_cell_builder/index.dart';
@@ -56,26 +57,40 @@ class DomainsVerticalFullscreenArtboard
         stream: profilesStream,
         loading: SliverToBoxAdapter(),
         empty: SliverToBoxAdapter(),
-        child: (context, ServiceProfilesView snapshot) => buildSpacedSliverList(
-          children: snapshot.profiles.map(
-            (profile) {
-              final badgeText = (profile.notificationCount != null &&
-                      profile.notificationCount > 0)
-                  ? profile.notificationCount.toString()
-                  : null;
+        child: (context, ServiceProfilesView snapshot) {
+          Widget buildProfileCell(ServiceProfile profile) {
+            final badgeText = (profile.notificationCount != null &&
+                    profile.notificationCount > 0)
+                ? profile.notificationCount.toString()
+                : null;
 
-              final _onTap = () => ArtboardNavigator.of(context).goTo(
-                    WalletDashboardVerticalFullscreenArtboard(profile.name),
-                  );
+            final onTap = () => ArtboardNavigator.of(context).goTo(
+                  WalletDashboardVerticalFullscreenArtboard(profile.name),
+                );
 
-              return buildTitleBadgeCell(
-                title: profile.name,
-                badgeText: badgeText,
-                onTap: _onTap,
-              );
-            },
-          ).toList(),
-        ),
+            return buildTitleBadgeCell(
+              title: profile.name,
+              subtitle: profile.ownerIsInScope == true ? "(Personal)" : null,
+              badgeText: badgeText,
+              onTap: onTap,
+            );
+          }
+
+          final ownDomains = snapshot.profiles
+              .where((profile) => profile.ownerIsInScope == true)
+              .map((profile) => buildProfileCell(profile))
+              .toList();
+
+          final businessDomains = snapshot.profiles
+              .where((profile) => profile.ownerIsInScope != true)
+              .map((profile) => buildProfileCell(profile))
+              .toList();
+
+          return buildSpacedSliverList(children: [
+            ...ownDomains,
+            ...businessDomains,
+          ]);
+        },
       );
 
   Widget recentTransfersSection(BuildContext context) =>
@@ -94,9 +109,14 @@ class DomainsVerticalFullscreenArtboard
               (Transfer transfer) => buildTransferCell(
                 amount: transfer.amount,
                 date: transfer.date,
+                domain: transfer.domain,
                 sender: transfer.sender,
                 receiver: transfer.receiver,
                 note: transfer.note,
+                paymentStatus: transfer.paymentStatus
+                    .toString()
+                    .split('PaymentStatus.')
+                    .last,
                 onTap: () => print(
                   'goto transfer view for transfer w/ amount: ${transfer.amount}',
                 ),

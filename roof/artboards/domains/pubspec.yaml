@@ -6,6 +6,7 @@ environment:
   sdk: ">=2.2.2 <3.0.0"
 
 dependencies:
+  faker: ^1.2.1
   flutter:
     sdk: flutter
   app_data:
@@ -105,6 +106,8 @@ dependencies:
       path: artboard_templates/vertical_full_screen/scroll_view
 
 dependency_overrides:
+  vertically_centered_text_builder:
+    path: ../../../builders/vertically_centered_text
   vertical_full_screen_artboard_scaffold:
     path: ../../../artboard_scaffolds/vertical_full_screen
   landlord_nav_drawer_artboard:
