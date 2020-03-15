@@ -10,13 +10,16 @@ class RoofStrokeColor extends SemanticStrokeColor<RoofThemeOption> {
       : super(currentThemeOption);
 
   @override
-  Color get actionPrimary => colors.brandBlue;
+  Color get actionPrimary => forThemeOption({
+        RoofThemeOption.light: colors.brandBlue,
+        RoofThemeOption.dark: colors.brandBlueAccent,
+      });
 
   @override
   Color get actionSecondary => forThemeOption({
-    RoofThemeOption.dark: colors.brandBlue.withOpacity(.15),
-    RoofThemeOption.light: colors.brandBlue.withOpacity(.3),
-  });
+        RoofThemeOption.light: colors.brandBlue.withOpacity(.3),
+        RoofThemeOption.dark: colors.brandBlueAccent.withOpacity(.15),
+      });
 
   @override
   Color get actionDisabled => colors.brandBlueFade;

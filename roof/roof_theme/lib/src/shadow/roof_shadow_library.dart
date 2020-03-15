@@ -65,10 +65,10 @@ class RoofShadowLibrary extends SemanticShadowLibrary {
   @override
   BoxShadow get appBar => forThemeOption({
         RoofThemeOption.light: BoxShadow(
-          blurRadius: 3,
-          color: Colors.black.withOpacity(.12),
-          offset: Offset(0, 2),
+          blurRadius: 6,
+          color: Colors.black.withOpacity(.24),
+          offset: Offset(0, 0),
         ),
-        RoofThemeOption.dark: BoxShadow(),
+        RoofThemeOption.dark: null,
       });
 }

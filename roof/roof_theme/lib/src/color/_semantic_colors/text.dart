@@ -9,7 +9,10 @@ class RoofTextColor extends SemanticTextColor<RoofThemeOption> {
   RoofTextColor(RoofThemeOption currentThemeOption) : super(currentThemeOption);
 
   @override
-  Color get action => colors.brandBlue;
+  Color get action => forThemeOption({
+        RoofThemeOption.light: colors.brandBlue,
+        RoofThemeOption.dark: colors.brandBlueAccent,
+      });
 
   @override
   Color get actionDisabled => colors.brandBlueFade;
@@ -18,7 +21,10 @@ class RoofTextColor extends SemanticTextColor<RoofThemeOption> {
   Color get onActionPrimaryBackground => colors.white;
 
   @override
-  Color get onActionSecondaryBackground => colors.brandBlue;
+  Color get onActionSecondaryBackground => forThemeOption({
+        RoofThemeOption.light: colors.brandBlue,
+        RoofThemeOption.dark: colors.brandBlueAccent,
+      });
 
   @override
   Color get onActionDisabledBackground => colors.whiteMid;
@@ -64,7 +70,7 @@ class RoofTextColor extends SemanticTextColor<RoofThemeOption> {
 
   @override
   Color get generalPrimary => forThemeOption({
-        RoofThemeOption.light: colors.blackMid,
+        RoofThemeOption.light: colors.black,
         RoofThemeOption.dark: colors.grayLight,
       });
 

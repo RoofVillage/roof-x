@@ -5,5 +5,5 @@ abstract class SemanticCurveLibrary {
   Curve get hurried => Curves.easeOutCirc;
   Curve get delayed => Curves.easeInQuad;
   Curve get enter => Curves.easeOutExpo;
-  Curve get exit => Curves.easeInExpo;
+  Curve get exit => Curves.easeInQuart;
 }

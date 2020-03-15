@@ -38,7 +38,7 @@ class VerticalFullScreenArtboardNavigator extends StatefulWidget {
 class VerticalFullScreenInheritedArtboardNavigator
     extends State<VerticalFullScreenArtboardNavigator> {
   final _popMinDragDistanceDelta = 30;
-  final _popMaxDragTimeDelta = 40;
+  final _popMaxDragTimeDelta = 60;
 
   int _initialDragTime;
   double _initialDragDy;
@@ -58,7 +58,7 @@ class VerticalFullScreenInheritedArtboardNavigator
         _onDragRightUpdate(details);
         if (_shouldPop) Navigator.maybePop(context);
       },
-      behavior: HitTestBehavior.opaque,
+      behavior: HitTestBehavior.translucent,
       child: widget.artboard,
     );
 

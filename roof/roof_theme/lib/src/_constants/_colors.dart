@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 const brandRed = Color.fromRGBO(255, 90, 100, 1);
-const brandBlue = Color.fromRGBO(0, 187, 184, 1);
+const brandBlue = Color.fromRGBO(0, 168, 165, 1);
+const brandBlueAccent = Color.fromRGBO(0, 187, 184, 1);
 const brandBlueFade = Color.fromRGBO(0, 187, 184, .7);
 
 const yellow = Color.fromRGBO(249, 210, 69, 1);
@@ -16,9 +17,9 @@ const whiteMid = Color.fromRGBO(248, 244, 241, 1);
 
 const grayLight = Color.fromRGBO(221, 221, 221, 1);
 const grayMidLight = Color.fromRGBO(189, 189, 189, 1);
-const grayMidDark = Color.fromRGBO(140, 140, 140, 1);
+const grayMidDark = Color.fromRGBO(150, 150, 150, 1);
 const grayDark = Color.fromRGBO(114, 114, 114, 1);
 
 const blackLight = Color.fromRGBO(48, 48, 48, 1);
-const blackMid = Color.fromRGBO(32, 32, 32, 1);
-const black = Color.fromRGBO(18, 18, 18, 1);
+const blackMid = Color.fromRGBO(34, 34, 34, 1);
+const black = Color.fromRGBO(21, 21, 21, 1);

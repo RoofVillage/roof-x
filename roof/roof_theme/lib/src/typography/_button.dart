@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:roof_theme/index.dart';
 import 'package:semantic_theme/index.dart';
 
 import '../_constants/_font_family.dart' as ff;
@@ -19,7 +20,10 @@ class RoofButtonTypography extends SemanticTypography {
   double get fontSize => fs.medium;
 
   @override
-  FontWeight get fontWeight => fw.medium;
+  FontWeight get fontWeight => forThemeOption({
+        RoofThemeOption.light: fw.thick,
+        RoofThemeOption.dark: fw.medium,
+      });
 
   @override
   double get letterSpacing => null;

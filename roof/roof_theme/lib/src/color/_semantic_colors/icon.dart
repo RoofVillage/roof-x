@@ -9,13 +9,19 @@ class RoofIconColor extends SemanticIconColor<RoofThemeOption> {
   RoofIconColor(RoofThemeOption currentThemeOption) : super(currentThemeOption);
 
   @override
-  Color get action => colors.brandBlue;
+  Color get action => forThemeOption({
+    RoofThemeOption.light: colors.brandBlue,
+    RoofThemeOption.dark: colors.brandBlueAccent,
+  });
 
   @override
   Color get onActionPrimaryBackground => colors.white;
 
   @override
-  Color get onActionSecondaryBackground => colors.brandBlue;
+  Color get onActionSecondaryBackground => forThemeOption({
+    RoofThemeOption.light: colors.brandBlue,
+    RoofThemeOption.dark: colors.brandBlueAccent,
+  });
   
   @override
   Color get onActionDisabledBackground => colors.whiteMid;

@@ -11,10 +11,16 @@ class RoofBackgroundColor extends SemanticBackgroundColor<RoofThemeOption> {
       : super(currentThemeOption);
 
   @override
-  Color get actionPrimary => colors.brandBlue;
+  Color get actionPrimary => forThemeOption({
+    RoofThemeOption.light: colors.brandBlue,
+    RoofThemeOption.dark: colors.brandBlueAccent,
+  });
 
   @override
-  Color get actionSecondary => Colors.transparent;
+  Color get actionSecondary => forThemeOption({
+    RoofThemeOption.light: Colors.transparent,
+    RoofThemeOption.dark: Colors.transparent,
+  });
 
   @override
   Color get actionDisabled => colors.brandBlueFade;
