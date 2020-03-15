@@ -59,8 +59,16 @@ dependency_overrides:
     path: ../properties
   table_cell_builder:
     path: ../../../builders/table_cell
+  semantic_theme:
+    path: ../../../semantic_theme
   roof_table_cell_builder:
     path: ../../builders/table_cell
+  header_builder:
+    path: ../../../builders/header
+  vertically_centered_text_builder:
+    path: ../../../builders/vertically_centered_text
+  tappable:
+    path: ../../../lib/tappable
   spaced_list_view_builder:
     path: ../../../builders/spaced_list_view
   view_stream_builder_builder:

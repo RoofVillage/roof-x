@@ -12,14 +12,14 @@ const darkGreen = Color.fromRGBO(110, 145, 52, 1);
 const red = Color.fromRGBO(221, 72, 36, 1);
 
 const white = Color.fromRGBO(255, 255, 255, 1);
-const whiteMid = Color.fromRGBO(248, 244, 241, 1);
-// const whiteDark = Color.fromRGBO(255, 255, 255, 1);
+const whiteMid = Color.fromRGBO(247, 244, 241, 1);
+// const whiteDark = Color.fromRGBO(235, 229, 226, 1);
 
 const grayLight = Color.fromRGBO(221, 221, 221, 1);
 const grayMidLight = Color.fromRGBO(189, 189, 189, 1);
 const grayMidDark = Color.fromRGBO(150, 150, 150, 1);
 const grayDark = Color.fromRGBO(114, 114, 114, 1);
 
-const blackLight = Color.fromRGBO(48, 48, 48, 1);
-const blackMid = Color.fromRGBO(34, 34, 34, 1);
-const black = Color.fromRGBO(21, 21, 21, 1);
+const blackLight = Color.fromRGBO(51, 48, 45, 1);
+const blackMid = Color.fromRGBO(38, 36, 34, 1);
+const black = Color.fromRGBO(24, 23, 22, 1);

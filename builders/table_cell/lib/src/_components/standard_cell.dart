@@ -36,7 +36,7 @@ class _StandardCellState extends State<StandardCell> with Tappable {
           child: widget.child,
           decoration: BoxDecoration(
             border: Border(
-              bottom: BorderSide(color: theme.color.stroke.light),
+              bottom: BorderSide(color: theme.color.stroke.medium),
             ),
           ),
         ),

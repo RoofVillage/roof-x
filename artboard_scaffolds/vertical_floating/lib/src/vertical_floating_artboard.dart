@@ -19,7 +19,7 @@ mixin VerticalFloatingArtboardState<T extends VerticalFloatingArtboard>
       color: theme.color.background.general,
       borderRadius: BorderRadius.vertical(top: theme.radius.max),
       boxShadow: [
-        theme.shadow.medium,
+        theme.shadow.large,
       ],
     );
 

@@ -95,7 +95,7 @@ class HomeCell extends StatelessWidget {
         margin: EdgeInsets.only(top: theme.distance.spacing.vertical.large),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(theme.radius.medium),
-          border: Border.all(color: theme.color.stroke.light),
+          border: Border.all(color: theme.color.stroke.medium),
           color: theme.color.background.raised,
         ),
         child: bodyColumn,

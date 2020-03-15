@@ -77,6 +77,6 @@ class RoofTextColor extends SemanticTextColor<RoofThemeOption> {
   @override
   Color get generalSecondary => forThemeOption({
         RoofThemeOption.light: colors.grayMidDark,
-        RoofThemeOption.dark: colors.grayMidDark,
+        RoofThemeOption.dark: colors.grayDark,
       });
 }

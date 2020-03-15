@@ -123,7 +123,7 @@ class LeaseCell extends StatelessWidget {
         ),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(theme.radius.medium),
-          border: Border.all(color: theme.color.stroke.light),
+          border: Border.all(color: theme.color.stroke.medium),
           color: theme.color.background.raised,
         ),
         child: bodyColumn,

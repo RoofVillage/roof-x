@@ -47,7 +47,7 @@ class AlertCell extends StatelessWidget with VerticallyCenteredTextBuilder {
       default:
         textColor = theme.color.text.generalSecondary;
         iconColor = theme.color.icon.generalSecondary;
-        strokeColor = theme.color.stroke.light;
+        strokeColor = theme.color.stroke.medium;
         break;
     }
 

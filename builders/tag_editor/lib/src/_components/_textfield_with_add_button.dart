@@ -82,7 +82,7 @@ class TextFieldWithAddButton extends StatelessWidget {
       ),
       decoration: BoxDecoration(
         border: Border(
-          bottom: BorderSide(color: theme.color.stroke.light),
+          bottom: BorderSide(color: theme.color.stroke.medium),
         ),
       ),
       child: Row(
