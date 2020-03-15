@@ -160,6 +160,10 @@ class WalletDashboardVerticalFullscreenArtboard
                 date: transfer.date,
                 sender: transfer.sender,
                 receiver: transfer.receiver,
+                paymentStatus: transfer.paymentStatus
+                    .toString()
+                    .split('PaymentStatus.')
+                    .last,
                 note: transfer.note,
                 onTap: () => print(
                   'goto transfer view for transfer w/ amount: ${transfer.amount}',

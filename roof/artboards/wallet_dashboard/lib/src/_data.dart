@@ -1,6 +1,41 @@
 import 'dart:async';
 
+import 'dart:math';
+
+import 'package:faker/faker.dart';
+
 mixin WalletDashboardArtboardData {
+  static _randomTransferCell({PaymentStatus paymentStatus}) {
+    String sender;
+    String receiver;
+
+    if (Random().nextBool()) {
+      sender = faker.person.name();
+    } else {
+      receiver = faker.person.name();
+    }
+
+    return Transfer(
+      amount: (Random().nextInt(299) * 10).toDouble(),
+      sender: sender,
+      receiver: receiver,
+      date: DateTime.now(),
+      note: faker.lorem.words(Random().nextInt(12)).join(" "),
+      paymentStatus: paymentStatus,
+    );
+  }
+
+  static _randomPaymentStatus() {
+    final notProcessingStatuses = PaymentStatus.values
+        .where(
+          (value) => value != PaymentStatus.processing,
+        )
+        .toList();
+    return notProcessingStatuses[Random().nextInt(
+      notProcessingStatuses.length,
+    )];
+  }
+
   final walletOverviewStream = Stream.value(
     WalletOverview(
       balance: 850000,
@@ -9,80 +44,15 @@ mixin WalletDashboardArtboardData {
   );
 
   final transfersStream = Stream.value(
-    RecentTransfersView([
-      Transfer(
-        amount: 12.69,
-        sender: 'Jo',
-        date: DateTime.now(),
-        note: 'Take this bread and buy some bread',
+    RecentTransfersView(
+      List.generate(
+        20,
+        (index) => _randomTransferCell(
+          paymentStatus:
+              index < 4 ? PaymentStatus.processing : _randomPaymentStatus(),
+        ),
       ),
-      Transfer(
-        amount: 2015,
-        receiver: 'Mills',
-        date: DateTime.now(),
-        note: 'Enjoy your rent ya fuckin asshole',
-      ),
-      Transfer(
-        amount: 420,
-        sender: 'Mills',
-        date: DateTime.now(),
-        note: 'Refund a bitch',
-      ),
-      Transfer(
-        amount: 12.69,
-        sender: 'Jo',
-        date: DateTime.now(),
-        note: 'Take this bread and buy some bread',
-      ),
-      Transfer(
-        amount: 2015,
-        receiver: 'Mills',
-        date: DateTime.now(),
-        note: 'Enjoy your rent ya fuckin asshole',
-      ),
-      Transfer(
-        amount: 420,
-        sender: 'Mills',
-        date: DateTime.now(),
-        note: 'Refund a bitch',
-      ),
-      Transfer(
-        amount: 12.69,
-        sender: 'Jo',
-        date: DateTime.now(),
-        note: 'Take this bread and buy some bread',
-      ),
-      Transfer(
-        amount: 2015,
-        receiver: 'Mills',
-        date: DateTime.now(),
-        note: 'Enjoy your rent ya fuckin asshole',
-      ),
-      Transfer(
-        amount: 420,
-        sender: 'Mills',
-        date: DateTime.now(),
-        note: 'Refund a bitch',
-      ),
-      Transfer(
-        amount: 12.69,
-        sender: 'Jo',
-        date: DateTime.now(),
-        note: 'Take this bread and buy some bread',
-      ),
-      Transfer(
-        amount: 2015,
-        receiver: 'Mills',
-        date: DateTime.now(),
-        note: 'Enjoy your rent ya fuckin asshole',
-      ),
-      Transfer(
-        amount: 420,
-        sender: 'Mills',
-        date: DateTime.now(),
-        note: 'Refund a bitch',
-      ),
-    ]),
+    ),
   );
 }
 
@@ -93,22 +63,28 @@ class RecentTransfersView {
 }
 
 class Transfer {
+  final String domain;
   final double amount;
   final String sender;
   final String receiver;
   final DateTime date;
   final String note;
+  final PaymentStatus paymentStatus;
 
   // sender/receiver only supplied if they are not the current user
 
   Transfer({
+    this.domain,
     this.amount,
     this.sender,
     this.receiver,
     this.date,
     this.note,
+    this.paymentStatus,
   });
 }
+
+enum PaymentStatus { processed, failed, processing }
 
 class WalletOverview {
   final double balance; // in USD?

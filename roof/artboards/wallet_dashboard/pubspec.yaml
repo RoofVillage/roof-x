@@ -6,6 +6,7 @@ environment:
   sdk: ">=2.2.2 <3.0.0"
 
 dependencies:
+  faker: ^1.2.1
   flutter:
     sdk: flutter
   app_data:
@@ -114,6 +115,8 @@ dependency_overrides:
     path: ../../../icons/small
   icon_button_builder:
     path: ../../../builders/icon_button
+  vertically_centered_text_builder:
+    path: ../../../builders/vertically_centered_text
   choose_wallet_verification_type_artboard:
     path: ../choose_wallet_verification_type
   choose_business_type_artboard:

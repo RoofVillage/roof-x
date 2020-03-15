@@ -143,7 +143,7 @@ class TransferCell extends StatelessWidget
           break;
         case "failed":
           paymentStatusText = Text(
-            'failed',
+            'FAILED',
             style: theme.typography.detailHeavy.textStyle(
               color: theme.color.text.bad,
             ),
