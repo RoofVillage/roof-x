@@ -22,5 +22,5 @@ class RoofLabelTypography extends SemanticTypography {
   FontWeight get fontWeight => fw.medium;
 
   @override
-  double get letterSpacing => 1;
+  double get letterSpacing => null;
 }

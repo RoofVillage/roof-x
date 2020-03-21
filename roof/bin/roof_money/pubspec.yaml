@@ -77,6 +77,8 @@ dependency_overrides:
     path: ../../../artboard_templates/vertical_floating/spaced_column
   landlord_nav_drawer_artboard:
     path: ../../artboards/landlord_nav_drawer
+  verify_personal_wallet_artboard:
+    path: ../../artboards/verify_personal_wallet2
   stream_list_view_vertical_full_screen_artboard_template:
     path: ../../../artboard_templates/vertical_full_screen/stream_list_view
   scroll_view_vertical_full_screen_artboard_template:

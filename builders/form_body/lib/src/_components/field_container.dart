@@ -17,7 +17,7 @@ class FieldContainer extends StatelessWidget {
       top: _verticalSpacing,
     );
 
-    final backgroundColor = theme.color.background.general;
+    final backgroundColor = theme.color.background.raised;
 
     return Container(
       margin: margin,

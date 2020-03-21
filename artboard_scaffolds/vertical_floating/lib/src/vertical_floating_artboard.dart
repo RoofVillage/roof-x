@@ -17,7 +17,7 @@ mixin VerticalFloatingArtboardState<T extends VerticalFloatingArtboard>
 
     final decoration = BoxDecoration(
       color: theme.color.background.general,
-      borderRadius: BorderRadius.vertical(top: theme.radius.max),
+      borderRadius: BorderRadius.all(theme.radius.max),
       boxShadow: [
         theme.shadow.large,
       ],

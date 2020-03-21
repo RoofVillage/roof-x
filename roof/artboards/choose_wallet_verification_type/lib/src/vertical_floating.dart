@@ -3,6 +3,7 @@ import 'package:choose_business_type_artboard/index.dart';
 import 'package:flutter/material.dart';
 import 'package:navigator/index.dart';
 import 'package:spaced_column_vertical_floating_artboard_template/index.dart';
+import 'package:verify_personal_wallet_artboard/index.dart';
 
 class ChooseWalletVerificationTypeVerticalFloatingArtboard
     extends SpacedColumnVerticalFloatingArtboard
@@ -15,7 +16,8 @@ class ChooseWalletVerificationTypeVerticalFloatingArtboard
       (context) => [
             buildSecondaryCenterButton(
               context,
-              onTap: () => print('person'),
+              onTap: () => ArtboardNavigator.of(context)
+                  .goTo(VerifyPersonalWalletVerticalFloatingArtboard()),
               text: "As a person",
             ),
             buildSecondaryCenterButton(

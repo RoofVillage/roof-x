@@ -19,8 +19,8 @@ class RoofSubtitleTypography extends SemanticTypography {
   double get fontSize => fs.medium;
 
   @override
-  FontWeight get fontWeight => fw.thick;
+  FontWeight get fontWeight => fw.medium;
 
   @override
-  double get letterSpacing => 1;
+  double get letterSpacing => null;
 }

@@ -16,15 +16,17 @@ class FormEmailTextFieldData extends FormTextFieldData {
     double size,
     bool isVisible,
     bool autofocus,
+    bool isRequired,
     String exceptionTitle,
   }) : super(
           title: title,
-          placeholder: placeholder,
+          placeholder: placeholder ?? 'name@email.com',
           initialValue: initialValue,
           autofocus: autofocus,
           keyboardType: TextInputType.emailAddress,
           size: size,
           isVisible: isVisible,
+          min: isRequired == true ? 1 : null,
           exceptionTitle: exceptionTitle,
         );
 

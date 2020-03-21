@@ -7,7 +7,7 @@ class AddProfileVerticalFloatingArtboard
     extends SpacedColumnVerticalFloatingArtboard
     with SecondaryCenterButtonBuilder {
   @override
-  String get title => "Add a new profile";
+  String get title => "Add a new wallet";
 
   @override
   List<Widget> Function(BuildContext) get buildSpacedColumnChildren =>
@@ -15,12 +15,12 @@ class AddProfileVerticalFloatingArtboard
             buildSecondaryCenterButton(
               context,
               onTap: () => print('Join profile'),
-              text: "Join profile",
+              text: "Join",
             ),
             buildSecondaryCenterButton(
               context,
               onTap: () => print('Create profile'),
-              text: "Create new profile",
+              text: "Create new",
             ),
           ];
 }
