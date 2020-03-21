@@ -11,10 +11,13 @@ mixin DomainsArtboardData {
     return Random.secure().nextBool() ? Random.secure().nextInt(16) : null;
   }
 
-  static List<String> _randomProfileNames = List.generate(
-    Random.secure().nextInt(4) + 1,
-    (_) => faker.company.name(),
-  );
+  static List<String> _randomProfileNames = [
+    faker.person.name(),
+    ...List.generate(
+      1 + Random.secure().nextInt(3),
+      (_) => faker.company.name(),
+    )
+  ];
 
   final profilesStream = Stream.value(
     ServiceProfilesView(

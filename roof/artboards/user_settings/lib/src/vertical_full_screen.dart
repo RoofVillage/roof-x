@@ -43,7 +43,26 @@ class UserSettingsVerticalFullscreenArtboard
       );
 
   @override
-  List<Widget> artboardActionButtons(BuildContext context) => null;
+  List<Widget> artboardActionButtons(BuildContext context) => [
+        buildSecondaryActionIconButton(
+          iconReference: SemanticTheme.of(context).currentThemeOption ==
+                  RoofThemeOption.dark
+              ? SmallIcon.boxUnchecked
+              : SmallIcon.boxChecked,
+          onTap: () => _switchCurrentThemeOption(context),
+        )
+      ];
+
+  _switchCurrentThemeOption(BuildContext context) {
+    final theme = SemanticTheme.of(context);
+
+    SemanticTheme.setThemeOption(
+      context,
+      themeOption: theme.currentThemeOption == RoofThemeOption.dark
+          ? RoofThemeOption.light
+          : RoofThemeOption.dark,
+    );
+  }
 
   // Widget balanceSection(BuildContext context) => buildViewStreamBuilder(
   //       context,
@@ -53,29 +72,23 @@ class UserSettingsVerticalFullscreenArtboard
   //       child: (context, WalletOverview snapshot) {},
   //     );
 
-  Widget themeSettingsSection(BuildContext context) => buildSpacedSliverList(
+  Widget accountActions(BuildContext context) => buildSpacedSliverList(
         children: [
           buildSecondaryCenterButton(
             context,
-            text: "Dark mode",
-            onTap: () => SemanticTheme.setThemeOption(
-              context,
-              themeOption: RoofThemeOption.dark,
-            ),
+            text: "Log out",
+            onTap: () => print('logout'),
           ),
           buildSecondaryCenterButton(
             context,
-            text: "Light mode",
-            onTap: () => SemanticTheme.setThemeOption(
-              context,
-              themeOption: RoofThemeOption.light,
-            ),
+            text: "Delete account",
+            onTap: () => print('delete acct'),
           )
         ],
       );
 
   @override
   List<Widget> children(BuildContext context) {
-    return [themeSettingsSection(context)];
+    return [accountActions(context)];
   }
 }
