@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:roof_table_cell_builder/src/_components/transfer_cell.dart';
+import 'package:roof_types/index.dart';
 
 mixin TransferCellBuilder {
   TransferCell buildTransferCell({
@@ -9,7 +10,7 @@ mixin TransferCellBuilder {
     String sender,
     String receiver,
     String note,
-    String paymentStatus,
+    PaymentStatus paymentStatus,
     void Function() onTap,
   }) =>
       TransferCell(

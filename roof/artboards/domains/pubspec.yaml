@@ -104,8 +104,17 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: master
       path: artboard_templates/vertical_full_screen/scroll_view
+  roof_types:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: roof/types
 
 dependency_overrides:
+  roof_types:
+    path: ../../types
+  verify_personal_wallet_artboard:
+    path: ../verify_personal_wallet
   vertically_centered_text_builder:
     path: ../../../builders/vertically_centered_text
   vertical_full_screen_artboard_scaffold:

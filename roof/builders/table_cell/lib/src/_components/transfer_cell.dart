@@ -4,6 +4,7 @@ import 'package:semantic_theme/index.dart';
 import 'package:table_cell_builder/index.dart';
 import 'package:tag_builder/index.dart';
 import 'package:date/index.dart';
+import 'package:roof_types/index.dart';
 
 class TransferCell extends StatelessWidget
     with TagBuilder, StandardCellBuilder {
@@ -14,7 +15,7 @@ class TransferCell extends StatelessWidget
   final DateTime date;
   final String note;
   final void Function() onTap;
-  final String paymentStatus;
+  final PaymentStatus paymentStatus;
 
   TransferCell({
     @required this.amount,
@@ -131,17 +132,33 @@ class TransferCell extends StatelessWidget
     Widget paymentStatusText;
     if (paymentStatus != null) {
       switch (paymentStatus) {
-        case "processed":
+        case PaymentStatus.processed:
           break;
-        case "processing":
+        case PaymentStatus.pending:
           paymentStatusText = Text(
-            'processing',
+            'pending',
             style: theme.typography.detail.textStyle(
               color: theme.color.text.generalSecondary,
             ),
           );
           break;
-        case "failed":
+        case PaymentStatus.manual:
+          paymentStatusText = Text(
+            'manual',
+            style: theme.typography.detailHeavy.textStyle(
+              color: theme.color.text.generalSecondary,
+            ),
+          );
+          break;
+        case PaymentStatus.cancelled:
+          paymentStatusText = Text(
+            'cancelled',
+            style: theme.typography.detailHeavy.textStyle(
+              color: theme.color.text.warn,
+            ),
+          );
+          break;
+        case PaymentStatus.failed:
           paymentStatusText = Text(
             'FAILED',
             style: theme.typography.detailHeavy.textStyle(

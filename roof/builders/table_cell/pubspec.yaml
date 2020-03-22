@@ -49,8 +49,19 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: master
       path: roof/views
+  roof_types:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: roof/types
 
 dependency_overrides:
+  roof_types:
+    path: ../../types
+  vertically_centered_text_builder:
+    path: ../../../builders/vertically_centered_text
+  tappable:
+    path: ../../../lib/tappable
   table_cell_builder:
     path: ../../../builders/table_cell
   haptics:

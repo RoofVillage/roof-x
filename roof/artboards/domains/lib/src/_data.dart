@@ -3,6 +3,7 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:faker/faker.dart';
+import 'package:roof_types/index.dart';
 
 mixin DomainsArtboardData {
   String get artboardTitle => "Your Wallets";
@@ -36,7 +37,7 @@ mixin DomainsArtboardData {
   static _randomPaymentStatus() {
     final notProcessingStatuses = PaymentStatus.values
         .where(
-          (value) => value != PaymentStatus.processing,
+          (value) => value != PaymentStatus.pending,
         )
         .toList();
     return notProcessingStatuses[Random().nextInt(
@@ -73,7 +74,7 @@ mixin DomainsArtboardData {
         20,
         (index) => _randomTransferCell(
           paymentStatus:
-              index < 4 ? PaymentStatus.processing : _randomPaymentStatus(),
+              index < 4 ? PaymentStatus.pending : _randomPaymentStatus(),
         ),
       ),
     ),
@@ -85,8 +86,6 @@ class ServiceProfilesView {
 
   ServiceProfilesView({this.profiles});
 }
-
-enum PaymentStatus { processed, failed, processing }
 
 class ServiceProfile {
   String name;
