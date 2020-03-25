@@ -15,6 +15,7 @@ import 'package:x_small_icon_library/index.dart';
 import 'package:choose_wallet_verification_type_artboard/index.dart';
 import 'package:button_builder/index.dart';
 import 'package:icon_button_builder/index.dart';
+import 'package:roof_types/index.dart';
 
 import '_data.dart';
 
@@ -160,10 +161,7 @@ class WalletDashboardVerticalFullscreenArtboard
                 date: transfer.date,
                 sender: transfer.sender,
                 receiver: transfer.receiver,
-                paymentStatus: transfer.paymentStatus
-                    .toString()
-                    .split('PaymentStatus.')
-                    .last,
+                paymentStatus: transfer.paymentStatus,
                 note: transfer.note,
                 onTap: () => print(
                   'goto transfer view for transfer w/ amount: ${transfer.amount}',

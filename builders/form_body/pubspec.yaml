@@ -124,6 +124,11 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: master
       path: builders/tag_editor
+  meta_form_artboard_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: builders/meta_form
   icon_picker_builder:
     git:
       url: git@github.com:RoofVillage/roof-x.git
@@ -139,8 +144,17 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: master
       path: semantic_theme
+  key_value_row_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: builders/key_value_row
 
 dependency_overrides:
+  meta_form_artboard_builder:
+    path: ../meta_form
+  form:
+    path: ../../lib/form
   form_submission_exception:
     path: ../../lib/form_submission_exception
   semantic_theme:

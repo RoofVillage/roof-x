@@ -18,6 +18,7 @@ import 'package:roller_column_picker_builder/index.dart';
 import 'package:artboard/index.dart';
 import 'package:period_type/index.dart';
 import 'package:tag_editor_builder/index.dart';
+import 'package:meta_form_artboard_builder/index.dart';
 import '_components/keyboard_accessory_buttons/index.dart';
 import '_components/standard_stream_form.dart';
 import 'form_status.dart';
@@ -94,6 +95,15 @@ mixin FormBodyBuilder implements StatefulWidget {
     List<String> tags,
   });
 
+  MetaFormArtboardBuilder<T> buildMetaForm<T>(
+    BuildContext context, {
+    String title,
+    Future<List<StreamableFormFieldData>> fieldsData,
+    T Function(List<StreamableFormFieldData>) valueFromFieldsData,
+    String submitButtonText,
+    void Function() validateForm,
+  });
+
   Future<T> goTo<T>({
     @required BuildContext context,
     @required Artboard<T> artboard,
@@ -121,6 +131,8 @@ mixin FormBodyBuilder implements StatefulWidget {
         _setupIntervalFrequencyPickerFieldData(context, data: data);
       if (data is FormRollerColumnPickerFieldData)
         _setupRollerColumnPickerFieldData(context, data: data);
+      if (data is MetaFormFieldData)
+        _setupMetaFormFieldData(context, data: data);
       if (data is FormTagFieldData) _setupTagFieldData(context, data: data);
     }
 
@@ -308,6 +320,27 @@ mixin FormBodyBuilder implements StatefulWidget {
       );
       if (newSelectedValue == null) return;
       data.tags = newSelectedValue;
+      form.updateFieldData(data);
+    });
+  }
+
+  void _setupMetaFormFieldData(
+    BuildContext context, {
+    @required MetaFormFieldData data,
+  }) {
+    data.addOnTapListener(() async {
+      final artboard = buildMetaForm(
+        context,
+        title: data.title,
+        fieldsData: data.fieldsData,
+        valueFromFieldsData: data.valueFromFieldsData,
+      );
+      final newFormResult = await goTo(
+        context: context,
+        artboard: artboard,
+      );
+      if (newFormResult == null) return;
+      data.value = newFormResult;
       form.updateFieldData(data);
     });
   }

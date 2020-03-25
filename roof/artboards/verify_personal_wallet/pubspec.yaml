@@ -32,8 +32,17 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: master
       path: builders/spaced_column
+  labeled_value:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: labeled_value
 
 dependency_overrides:
+  meta_form_artboard:
+    path: ../../../artboards/meta_form
+  meta_form_artboard_builder:
+    path: ../../../builders/meta_form
   form:
     path: ../../../lib/form
   form_builder:

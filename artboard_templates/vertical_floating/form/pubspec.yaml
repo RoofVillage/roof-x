@@ -63,6 +63,11 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: master
       path: artboards/icon_picker
+  meta_form_artboard:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: artboards/meta_form
   labeled_icon:
     git:
       url: git@github.com:RoofVillage/roof-x.git
@@ -77,7 +82,7 @@ dependencies:
     git:
       url: git@github.com:RoofVillage/roof-x.git
       ref: master
-      path: frequency    
+      path: frequency
   interval_frequency_picker_builder:
     git:
       url: git@github.com:RoofVillage/roof-x.git
@@ -125,6 +130,12 @@ dependencies:
       path: artboards/tag_editor
 
 dependency_overrides:
+  tappable:
+    path: ../../../lib/tappable
+  vertically_centered_text_builder:
+    path: ../../../builders/vertically_centered_text
+  icon_button_builder:
+    path: ../../../builders/icon_button
   vertical_floating_artboard_scaffold:
     path: ../../../artboard_scaffolds/vertical_floating
   interval_frequency_picker_builder:
@@ -141,6 +152,10 @@ dependency_overrides:
     path: ../../../builders/time_picker
   icon_picker_builder:
     path: ../../../builders/icon_picker
+  meta_form_artboard:
+    path: ../../../artboards/meta_form
+  meta_form_artboard_builder:
+    path: ../../../builders/meta_form
   form_builder:
     path: ../../../builders/form
   form_body_builder:

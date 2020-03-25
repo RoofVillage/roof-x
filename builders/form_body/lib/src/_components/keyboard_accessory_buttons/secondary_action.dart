@@ -9,7 +9,7 @@ class SecondaryActionKeyboardAccessoryButton extends StatelessWidget
     with ActionKeyboardAccessoryButton {
   final String title;
   final void Function() onTap;
-  
+
   SecondaryActionKeyboardAccessoryButton({
     @required this.title,
     @required this.onTap,
@@ -27,14 +27,12 @@ class SecondaryActionKeyboardAccessoryButton extends StatelessWidget
     return buildButton(
       context: context,
       onTap: _onTap,
-      child: Container(
-        color: theme.color.background.actionSecondary,
-        child: Center(
-          child: Text(
-            title,
-            style: theme.typography.button.textStyle(
-              color: theme.color.text.onActionSecondaryBackground,
-            ),
+      backgroundColor: theme.color.background.actionSecondary,
+      child: Center(
+        child: Text(
+          title,
+          style: theme.typography.button.textStyle(
+            color: theme.color.text.onActionSecondaryBackground,
           ),
         ),
       ),

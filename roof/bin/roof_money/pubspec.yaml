@@ -51,6 +51,12 @@ dependencies:
       path: semantic_theme
 
 dependency_overrides:
+  roof_types:
+    path: ../../types
+  meta_form_artboard:
+    path: ../../../artboards/meta_form
+  meta_form_artboard_builder:
+    path: ../../../builders/meta_form
   artboard:
     path: ../../../lib/artboard
   public_activity_artboard:

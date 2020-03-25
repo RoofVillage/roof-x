@@ -87,6 +87,14 @@ class InheritedVerticalFloatingArtboardNavigatorPanel<T>
     super.dispose();
   }
 
+  void completeWith<T>(T result) {
+    widget.artboard.didComplete(result);
+    VerticalFloatingArtboardNavigator.of(
+      context,
+      shouldRebuild: false,
+    ).back(context);
+  }
+
   Widget _navButtonBar(BuildContext context) {
     final theme = SemanticTheme.of(context);
 

@@ -8,16 +8,8 @@ class KeyboardAccessoryShortBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = SemanticTheme.of(context);
-
-    final row = Row(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: children,
-    );
-
     return Container(
-      height: theme.distance.spacing.vertical.large,
-      child: row,
+      child: Row(children: children),
     );
   }
 }

@@ -47,6 +47,7 @@ class StreamFormBloc extends BlocBase {
   }
 
   void updateFieldData(StreamableFormFieldData fieldData) {
+    print('update field ${fieldData.value}');
     _formData.updateFieldData(fieldData);
     update(_formData);
   }

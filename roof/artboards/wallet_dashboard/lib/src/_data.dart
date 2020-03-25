@@ -3,6 +3,7 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:faker/faker.dart';
+import 'package:roof_types/index.dart';
 
 mixin WalletDashboardArtboardData {
   static _randomTransferCell({PaymentStatus paymentStatus}) {
@@ -28,7 +29,7 @@ mixin WalletDashboardArtboardData {
   static _randomPaymentStatus() {
     final notProcessingStatuses = PaymentStatus.values
         .where(
-          (value) => value != PaymentStatus.processing,
+          (value) => value != PaymentStatus.pending,
         )
         .toList();
     return notProcessingStatuses[Random().nextInt(
@@ -49,7 +50,7 @@ mixin WalletDashboardArtboardData {
         20,
         (index) => _randomTransferCell(
           paymentStatus:
-              index < 4 ? PaymentStatus.processing : _randomPaymentStatus(),
+              index < 4 ? PaymentStatus.pending : _randomPaymentStatus(),
         ),
       ),
     ),
@@ -84,8 +85,6 @@ class Transfer {
   });
 }
 
-enum PaymentStatus { processed, failed, processing }
-
 class WalletOverview {
   final double balance; // in USD?
   final WalletStatus status;
@@ -94,12 +93,4 @@ class WalletOverview {
     this.balance,
     this.status,
   });
-}
-
-enum WalletStatus {
-  unverified,
-  verified,
-  retry,
-  suspended,
-  document,
 }

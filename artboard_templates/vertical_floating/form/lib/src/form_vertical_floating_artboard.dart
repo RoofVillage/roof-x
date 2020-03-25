@@ -25,8 +25,9 @@ import 'package:roller_column_picker_builder/index.dart';
 import 'package:roller_column_picker_artboard/index.dart';
 import 'package:tag_editor_artboard/index.dart';
 import 'package:tag_editor_builder/index.dart';
-
 import 'package:period_type/index.dart';
+import 'package:meta_form_artboard/index.dart';
+import 'package:meta_form_artboard_builder/index.dart';
 
 abstract class FormVerticalFloatingArtboard<T> extends StatefulWidget
     with
@@ -127,6 +128,23 @@ abstract class FormVerticalFloatingArtboard<T> extends StatefulWidget
   }) {
     return TagEditorVerticalFloatingArtboard(tags: tags);
   }
+
+  @override
+  MetaFormArtboardBuilder<T> buildMetaForm<T>(
+    BuildContext context, {
+    String title,
+    Future<List<StreamableFormFieldData>> fieldsData,
+    T Function(List<StreamableFormFieldData>) valueFromFieldsData,
+    String submitButtonText,
+    void Function() validateForm,
+  }) =>
+      MetaFormVerticalFloatingArtboard(
+        title: title,
+        fieldsData: fieldsData,
+        valueFromFieldsData: valueFromFieldsData,
+        submitButtonText: submitButtonText,
+        validateForm: validateForm,
+      );
 
   @override
   Future<T> goTo<T>({

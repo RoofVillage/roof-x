@@ -29,6 +29,7 @@ export 'src/data/roller_column_picker_field.dart';
 export 'src/data/tag_field.dart';
 export 'src/data/postal_code_field.dart';
 export 'src/data/short_ssn_field.dart';
+export 'src/data/meta_form_field.dart';
 
 export 'src/options/interval_frequency_option_data.dart';
 export 'src/options/labeled_value.dart';
