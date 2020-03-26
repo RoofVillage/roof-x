@@ -1,3 +1,5 @@
+/// Use ~/types
+@deprecated
 enum PaymentStatus {
   manual,
   cancelled,

@@ -1,4 +1,5 @@
 name: verify_personal_wallet_artboard
+description: Form for verifying a personal wallet with Dwolla.
 version: 1.0.0+1
 
 environment:
@@ -32,21 +33,16 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: master
       path: builders/spaced_column
-  labeled_value:
-    git:
-      url: git@github.com:RoofVillage/roof-x.git
-      ref: master
-      path: labeled_value
 
 dependency_overrides:
-  meta_form_artboard:
-    path: ../../../artboards/meta_form
-  meta_form_artboard_builder:
-    path: ../../../builders/meta_form
   form:
     path: ../../../lib/form
   form_builder:
     path: ../../../builders/form
+  meta_form_artboard:
+    path: ../../../artboards/meta_form
+  meta_form_artboard_builder:
+    path: ../../../builders/meta_form
   spaced_column_builder:
     path: ../../../builders/spaced_column
   spaced_column_vertical_floating_artboard_template:

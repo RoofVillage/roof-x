@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:form_builder/index.dart';
-import 'package:labeled_value/index.dart';
 
 mixin VerifyPersonalWalletArtboardData implements FormBuilder {
   @override
   Future<List<StreamableFormFieldData>> get initialFieldData async => [
-        _test,
         _firstName,
         _lastName,
         _email,
@@ -22,30 +20,6 @@ mixin VerifyPersonalWalletArtboardData implements FormBuilder {
     // TODO: implement submit
     return null;
   }
-
-  final _test = MetaFormFieldData(
-    title: "Biz controller",
-    fieldsData: Future.value(
-      [
-        FormShortTextFieldData(title: 'First name'),
-        FormShortTextFieldData(title: 'Last name'),
-        FormShortTextFieldData(title: 'Title'),
-      ],
-    ),
-    valueFromFieldsData: (data) => Controller(
-      firstName: data[0].value,
-      lastName: data[1].value,
-      title: data[2].value,
-    ),
-    labeledValuesFromValue: (controller) => [
-      LabeledValue(
-        label: 'Name',
-        // TODO: WIP
-        value:
-            "${controller?.firstName} x${controller?.lastName} ${controller?.title}",
-      ),
-    ],
-  );
 
   final _firstName = FormShortTextFieldData(
     title: "First name",
@@ -90,29 +64,4 @@ mixin VerifyPersonalWalletArtboardData implements FormBuilder {
     title: "SSN (last 4 digits)",
     isRequired: true,
   );
-}
-
-class Controller {
-  final String firstName;
-  final String lastName;
-  final String title;
-  // DateTime dateOfBirth;
-  // String ssn;
-  // Address address;
-
-  Controller({
-    this.firstName,
-    this.lastName,
-    this.title,
-  });
-}
-
-class Address {
-  String address1;
-  String address2;
-  String address3;
-  String city;
-  String stateProvinceRegion;
-  String postalCode;
-  String country;
 }

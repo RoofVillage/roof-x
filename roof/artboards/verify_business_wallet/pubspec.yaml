@@ -1,4 +1,5 @@
 name: verify_business_wallet_artboard
+description: Form for verifying a non-sole-proprietorship business wallet with Dwolla. Includes controller and beneficial owner.
 version: 1.0.0+1
 
 environment:
@@ -32,8 +33,34 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: master
       path: builders/spaced_column
+  labeled_value:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: labeled_value
+  dwolla_model:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: model/abstract/dwolla
+  meta_form_artboard:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: artboards/meta_form
+  meta_form_artboard_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: builders/meta_form
 
 dependency_overrides:
+  dwolla_model:
+    path: ../../../model/abstract/dwolla
+  meta_form_artboard:
+    path: ../../../artboards/meta_form
+  meta_form_artboard_builder:
+    path: ../../../builders/meta_form
   form:
     path: ../../../lib/form
   form_builder:

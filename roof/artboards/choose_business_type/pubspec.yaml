@@ -32,8 +32,28 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: master
       path: builders/spaced_column
+  verify_business_wallet_artboard:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: roof/artboards/verify_business_wallet
+  verify_sole_proprietorship_wallet_artboard:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: roof/artboards/verify_business_wallet
 
 dependency_overrides:
+  dwolla_model:
+    path: ../../../model/abstract/dwolla
+  verify_business_wallet_artboard:
+    path: ../verify_business_wallet
+  verify_sole_proprietorship_wallet_artboard:
+    path: ../verify_sole_proprietorship_wallet
+  meta_form_artboard_builder:
+    path: ../../../builders/meta_form
+  meta_form_artboard:
+    path: ../../../artboards/meta_form
   form_builder:
     path: ../../../builders/form
   spaced_column_builder:

@@ -4,6 +4,7 @@ enum _TransferStatusTypeOption {
   processed,
   pending,
   reclaimed,
+  manual,
   cancelled,
   failed
 }
@@ -18,6 +19,8 @@ class TransferStatusType {
         return "Pendng";
       case _TransferStatusTypeOption.reclaimed:
         return "Reclaimed";
+      case _TransferStatusTypeOption.manual:
+        return "Manual";
       case _TransferStatusTypeOption.cancelled:
         return "Cancelled";
       case _TransferStatusTypeOption.failed:
@@ -35,6 +38,8 @@ class TransferStatusType {
         return "Pending. Usually takes 3-5 days.";
       case _TransferStatusTypeOption.reclaimed:
         return "";
+      case _TransferStatusTypeOption.manual:
+        return "Manual";
       case _TransferStatusTypeOption.cancelled:
         return "Cancelled";
       case _TransferStatusTypeOption.failed:
