@@ -4,7 +4,7 @@ import 'package:stream/index.dart';
 import 'package:artboard/index.dart';
 import 'package:vertical_full_screen_artboard_scaffold/index.dart';
 import 'package:device_screen/index.dart';
-import 'package:welcome_artboard/index.dart';
+import 'package:wallets_artboard/index.dart';
 
 import 'bloc.dart';
 import 'data/index.dart';
@@ -22,9 +22,9 @@ class RootWidget extends StatelessWidget {
 
         Artboard startingArtboard;
         if (appState.isInSession) {
-          startingArtboard = WelcomeVerticalFullScreenArtboard();
+          startingArtboard = WalletsVerticalFullscreenArtboard();
         } else {
-          startingArtboard = WelcomeVerticalFullScreenArtboard();
+          startingArtboard = WalletsVerticalFullscreenArtboard();
         }
 
         return VerticalFullScreenArtboardNavigator(artboard: startingArtboard);

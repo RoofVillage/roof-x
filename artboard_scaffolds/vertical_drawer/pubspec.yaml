@@ -43,6 +43,8 @@ dependencies:
 dependency_overrides:
   navigator:
     path: ../../lib/navigator
+  icon_button_builder:
+    path: ../../builders/icon_button
   artboard:
     path: ../../lib/artboard
   semantic_theme:

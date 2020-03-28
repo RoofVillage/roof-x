@@ -47,7 +47,7 @@ class WalletsVerticalFullscreenArtboard
         )
       ];
 
-  Widget profilesSection(BuildContext context) => buildViewStreamBuilder(
+  Widget walletsSection(BuildContext context) => buildViewStreamBuilder(
         context,
         stream: profilesStream,
         loading: SliverToBoxAdapter(),
@@ -127,7 +127,7 @@ class WalletsVerticalFullscreenArtboard
   @override
   List<Widget> children(BuildContext context) {
     return [
-      profilesSection(context),
+      walletsSection(context),
       recentTransfersSection(context),
     ];
   }

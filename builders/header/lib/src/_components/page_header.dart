@@ -19,11 +19,17 @@ class PageHeader extends StatelessWidget {
       style: theme.typography.headingPrimary.textStyle(
         color: theme.color.text.generalPrimary,
       ),
+      maxLines: 2,
+      overflow: TextOverflow.ellipsis,
     );
 
     return Padding(
       child: Row(
-        children: [titleText],
+        children: [
+          Expanded(
+            child: titleText,
+          )
+        ],
       ),
       padding: EdgeInsets.symmetric(
         vertical: theme.distance.padding.vertical.large,

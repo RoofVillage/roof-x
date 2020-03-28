@@ -57,6 +57,8 @@ dependencies:
 dependency_overrides:
   dwolla_model:
     path: ../../../model/dwolla
+  dwolla_types:
+    path: ../../../types/dwolla
   meta_form_artboard:
     path: ../../../artboards/meta_form
   meta_form_artboard_builder:
