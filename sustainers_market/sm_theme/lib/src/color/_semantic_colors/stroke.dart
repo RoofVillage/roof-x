@@ -19,7 +19,12 @@ class SmStrokeColor extends SemanticStrokeColor<SmThemeOption> {
   Color get actionDisabled => colors.brandGreenFade;
 
   @override
-  Color get focus => forThemeOption({
+  Color get strong => forThemeOption({
+        SmThemeOption.dark: Colors.grey,
+      });
+
+  @override
+  Color get medium => forThemeOption({
         SmThemeOption.dark: Colors.grey,
       });
 

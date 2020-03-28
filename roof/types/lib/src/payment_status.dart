@@ -1,4 +1,4 @@
-/// Use ~/types
+/// Use ~/types/dwolla/transfer_status
 @deprecated
 enum PaymentStatus {
   manual,

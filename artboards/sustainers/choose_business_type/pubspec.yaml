@@ -1,0 +1,68 @@
+name: choose_business_type_artboard
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  spaced_column_vertical_floating_artboard_template:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: artboard_templates/vertical_floating/spaced_column
+  app_data:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: app_data
+  button_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: builders/button
+  navigator:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: lib/navigator
+  spaced_column_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: builders/spaced_column
+  verify_business_wallet_artboard:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: artboards/sustainers/verify_business_wallet
+  verify_sole_proprietorship_wallet_artboard:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: artboards/sustainers/verify_sole_proprietorship_wallet
+
+dependency_overrides:
+  dwolla_model:
+    path: ../../../model/dwolla
+  dwolla_types:
+    path: ../../../types/dwolla
+  verify_business_wallet_artboard:
+    path: ../../../artboards/sustainers/verify_business_wallet
+  verify_sole_proprietorship_wallet_artboard:
+    path: ../../../artboards/sustainers/verify_sole_proprietorship_wallet
+  meta_form_artboard_builder:
+    path: ../../../builders/meta_form
+  meta_form_artboard:
+    path: ../../../artboards/meta_form
+  form_builder:
+    path: ../../../builders/form
+  spaced_column_builder:
+    path: ../../../builders/spaced_column
+  spaced_column_vertical_floating_artboard_template:
+    path: ../../../artboard_templates/vertical_floating/spaced_column
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
