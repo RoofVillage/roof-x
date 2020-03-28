@@ -86,6 +86,18 @@ class TransferCell extends StatelessWidget
         break;
     }
 
+    final dateRow = Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        Text(
+          Date.fromDateTime(date).toAgoString,
+          style: theme.typography.detail.textStyle(
+            color: theme.color.text.generalSecondary,
+          ),
+        )
+      ],
+    );
+
     if (transferStatus == TransferStatus.failed)
       amountColor = theme.color.text.generalSecondary;
 
@@ -136,7 +148,7 @@ class TransferCell extends StatelessWidget
         case TransferStatus.pending:
           paymentStatusText = Text(
             'pending',
-            style: theme.typography.detail.textStyle(
+            style: theme.typography.detailHeavy.textStyle(
               color: theme.color.text.generalSecondary,
             ),
           );
@@ -153,13 +165,13 @@ class TransferCell extends StatelessWidget
           paymentStatusText = Text(
             'cancelled',
             style: theme.typography.detailHeavy.textStyle(
-              color: theme.color.text.warn,
+              color: theme.color.text.generalSecondary,
             ),
           );
           break;
         case TransferStatus.failed:
           paymentStatusText = Text(
-            'FAILED',
+            'failed',
             style: theme.typography.detailHeavy.textStyle(
               color: theme.color.text.bad,
             ),
@@ -178,49 +190,40 @@ class TransferCell extends StatelessWidget
     );
 
     final rowSpacer = Container(height: theme.distance.spacing.vertical.min);
-    final columnChildren = <Widget>[mainRow, rowSpacer, secondRow];
+    final columnChildren = <Widget>[
+      mainRow,
+      rowSpacer,
+      secondRow,
+    ];
 
     if (note != null && note.isNotEmpty) {
       final noteRow = Row(
         children: [
           Expanded(
-            child: Text(
-              note,
-              style: theme.typography.body.textStyle(
-                color: theme.color.text.generalPrimary,
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                vertical: theme.distance.padding.vertical.small,
+              ),
+              child: Text(
+                note,
+                style: theme.typography.body.textStyle(
+                  color: theme.color.text.generalPrimary,
+                ),
               ),
             ),
           ),
         ],
       );
-      columnChildren.add(
-        Padding(
-          padding: EdgeInsets.only(
-            top: theme.distance.spacing.vertical.medium,
-          ),
-          child: noteRow,
-        ),
-      );
+      columnChildren.addAll([
+        rowSpacer,
+        noteRow,
+      ]);
     }
 
-    final dateRow = Row(
-      children: [
-        Text(
-          Date.fromDateTime(date).toAgoString,
-          style: theme.typography.detail.textStyle(
-            color: theme.color.text.generalSecondary,
-          ),
-        )
-      ],
-    );
-    columnChildren.add(
-      Padding(
-        padding: EdgeInsets.only(
-          top: theme.distance.spacing.vertical.medium,
-        ),
-        child: dateRow,
-      ),
-    );
+    columnChildren.addAll([
+      rowSpacer,
+      dateRow,
+    ]);
 
     final column = Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,

@@ -25,12 +25,12 @@ class SmStrokeColor extends SemanticStrokeColor<SmThemeOption> {
 
   @override
   Color get medium => forThemeOption({
-        SmThemeOption.dark: Colors.grey,
+        SmThemeOption.dark: Colors.white12,
       });
 
   @override
   Color get light => forThemeOption({
-        SmThemeOption.dark: Colors.white38,
+        SmThemeOption.dark: Colors.white10,
       });
 
   @override

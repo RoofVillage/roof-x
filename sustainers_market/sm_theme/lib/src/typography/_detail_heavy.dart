@@ -19,7 +19,7 @@ class SmDetailHeavyTypography extends SemanticTypography {
   double get fontSize => fs.extraSmall;
 
   @override
-  FontWeight get fontWeight => fw.medium;
+  FontWeight get fontWeight => fw.thick;
 
   @override
   double get letterSpacing => null;
