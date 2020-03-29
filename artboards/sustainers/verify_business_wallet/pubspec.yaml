@@ -67,6 +67,8 @@ dependency_overrides:
     path: ../../../lib/form
   form_builder:
     path: ../../../builders/form
+  us_state_options:
+    path: ../../../types/us_state
   spaced_column_builder:
     path: ../../../builders/spaced_column
   spaced_column_vertical_floating_artboard_template:

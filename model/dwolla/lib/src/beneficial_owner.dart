@@ -14,12 +14,11 @@ class BeneficialOwner {
   BeneficialOwner({
     this.firstName,
     this.lastName,
-    // Social security number (only last 4 digits)
     this.ssn,
     this.dateOfBirth,
     this.address,
     this.passport,
-  }) : assert(ssn.length == 4);
+  });
 
   Map<String, Object> get asMap => {
         'firstName': firstName,

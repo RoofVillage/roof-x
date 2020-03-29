@@ -21,49 +21,28 @@ mixin VerifySoleProprietorshipWalletArtboardData implements FormBuilder {
     return null;
   }
 
-  final _firstName = FormShortTextFieldData(
-    title: "First name",
-    placeholder: "John",
+  final _firstName = FormFirstNameTextFieldData(
     isRequired: true,
   );
-  final _lastName = FormShortTextFieldData(
-    title: "Last name",
-    placeholder: "Boner",
+  final _lastName = FormLastNameTextFieldData(
     isRequired: true,
   );
   final _email = FormEmailTextFieldData(
-    title: "Email",
     isRequired: true,
   );
-  final _address1 = FormShortTextFieldData(
-    title: "Street address",
-    placeholder: "123 Your St.",
+  final _address1 = FormAddressTextFieldData(
     isRequired: true,
   );
-  final _address2 = FormShortTextFieldData(
-    title: "Street address 2",
-    placeholder: "Apt 420"
-  );
-  final _city = FormShortTextFieldData(
-    title: "City",
-    placeholder: "San Francisco",
+  final _address2 = FormAddress2TextFieldData();
+  final _city = FormCityTextFieldData(
     isRequired: true,
   );
-  final _state = FormShortTextFieldData(
-    title: "State",
-    placeholder: "CA",
+  final _state = FormUsStateTextFieldData();
+  final _postalCode = FormUsZipCodeTextFieldData(
     isRequired: true,
   );
-  final _postalCode = FormIntegerTextFieldData(
-    title: "Postal code",
-    placeholder: "12345",
-    isRequired: true,
-  );
-  final _dob = FormDatePickerFieldData(
-    title: "Date of birth",
-  );
+  final _dob = FormDateOfBirthFieldData();
   final _last4Ssn = FormShortSsnFieldData(
-    title: "SSN (last 4 digits)",
     isRequired: true,
   );
 }

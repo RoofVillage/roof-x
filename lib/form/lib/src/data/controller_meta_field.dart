@@ -1,0 +1,71 @@
+import 'package:dwolla_model/index.dart';
+import 'package:form/index.dart';
+import 'package:form/src/data/date_of_birth_field.dart';
+import 'package:labeled_value/index.dart';
+
+import 'meta_form_field.dart';
+
+class ControllerMetaFieldData extends MetaFormFieldData<Controller> {
+  static _firstName(String initialValue, bool isRequired) =>
+      FormFirstNameTextFieldData(
+        initialValue: initialValue,
+        isRequired: isRequired,
+      );
+  static _lastName(String initialValue, bool isRequired) =>
+      FormLastNameTextFieldData(
+        initialValue: initialValue,
+        isRequired: isRequired,
+      );
+  static _title(String initialValue, bool isRequired) => FormShortTextFieldData(
+        title: 'Title',
+        placeholder: 'CEO',
+        initialValue: initialValue,
+        isRequired: isRequired,
+      );
+  static _dateOfBirth(DateTime initialValue) => FormDateOfBirthFieldData(
+        initialValue: initialValue,
+      );
+  static _address(Address initialValue) => AddressMetaFieldData(
+        initialValue: initialValue,
+      );
+
+  static _fieldsData(Controller initialValue, bool isRequired) => Future.value([
+        _firstName(initialValue.firstName, isRequired),
+        _lastName(initialValue.lastName, isRequired),
+        _title(initialValue.title, isRequired),
+        _dateOfBirth(initialValue.dateOfBirth),
+        _address(initialValue.address),
+      ]);
+
+  static final Controller Function(List<StreamableFormFieldData<dynamic>>)
+      _valueFromFieldsData =
+      (List<StreamableFormFieldData<dynamic>> fieldsData) => Controller(
+            firstName: (fieldsData[0] as FormFirstNameTextFieldData).value,
+            lastName: (fieldsData[1] as FormLastNameTextFieldData).value,
+            title: (fieldsData[2] as FormShortTextFieldData).value,
+            dateOfBirth: (fieldsData[3] as FormDateOfBirthFieldData).value,
+            address: (fieldsData[4] as AddressMetaFieldData).value,
+          );
+
+  static final List<LabeledValue<String>> Function(Controller)
+      _labeledValuesFromValue = (Controller controller) {
+    return [
+      LabeledValue(
+        label: 'Name',
+        value: '${controller.firstName} ${controller.lastName}',
+      )
+    ];
+  };
+
+  ControllerMetaFieldData({
+    Controller initialValue,
+    bool isRequired,
+    bool isVisible,
+  }) : super(
+          title: 'Address',
+          fieldsData: _fieldsData(initialValue, isRequired),
+          valueFromFieldsData: _valueFromFieldsData,
+          labeledValuesFromValue: _labeledValuesFromValue,
+          isVisible: isVisible,
+        );
+}

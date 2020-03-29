@@ -8,8 +8,6 @@ class FormShortSsnFieldData extends FormTextFieldData {
   static const _maxLength = 4;
 
   FormShortSsnFieldData({
-    String title,
-    String placeholder,
     String initialValue,
     double size,
     bool isVisible,
@@ -17,8 +15,8 @@ class FormShortSsnFieldData extends FormTextFieldData {
     bool isRequired,
     String exceptionTitle,
   }) : super(
-          title: title,
-          placeholder: placeholder,
+          title: 'SSN (last 4)',
+          placeholder: '0123',
           initialValue: initialValue,
           autofocus: autofocus,
           keyboardType: TextInputType.numberWithOptions(

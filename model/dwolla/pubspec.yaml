@@ -16,7 +16,7 @@ dependencies:
 
 dependency_overrides:
   dwolla_types:
-    path: ../../../types/dwolla
+    path: ../../types/dwolla
 
 dev_dependencies:
   flutter_test:

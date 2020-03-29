@@ -19,7 +19,6 @@ class Controller {
     this.lastName,
     this.title,
     this.dateOfBirth,
-    // Social security number (only last 4 digits)
     this.ssn,
     this.address,
     this.passport,
