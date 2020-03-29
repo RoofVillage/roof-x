@@ -7,11 +7,7 @@ mixin VerifyPersonalWalletArtboardData implements FormBuilder {
         _firstName,
         _lastName,
         _email,
-        _address1,
-        _address2,
-        _city,
-        _state,
-        _postalCode,
+        _address,
         _dob,
         _last4Ssn,
       ];
@@ -30,15 +26,7 @@ mixin VerifyPersonalWalletArtboardData implements FormBuilder {
   final _email = FormEmailTextFieldData(
     isRequired: true,
   );
-  final _address1 = FormAddressTextFieldData(
-    isRequired: true,
-  );
-  final _address2 = FormAddress2TextFieldData();
-  final _city = FormCityTextFieldData(
-    isRequired: true,
-  );
-  final _state = FormUsStateTextFieldData();
-  final _postalCode = FormUsZipCodeTextFieldData(
+  static final _address = AddressMetaFieldData(
     isRequired: true,
   );
   final _dob = FormDateOfBirthFieldData();

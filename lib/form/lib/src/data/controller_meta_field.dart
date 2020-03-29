@@ -75,7 +75,7 @@ class ControllerMetaFieldData extends MetaFormFieldData<Controller> {
     bool isRequired,
     bool isVisible,
   }) : super(
-          title: 'Controller',
+          title: 'Business Controller',
           initialValue: initialValue,
           fieldsData: _fieldsData(initialValue, isRequired ?? false),
           valueFromFieldsData: _valueFromFieldsData,

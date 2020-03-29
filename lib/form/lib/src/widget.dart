@@ -9,7 +9,6 @@ import 'data/form.dart';
 
 class StreamFormBuilder<T extends StreamFormBloc> extends StatelessWidget {
   final _FieldBuilder buildField;
-
   final _FormSectionHeaderBuilder buildSectionHeader;
 
   Widget get _empty => Container();

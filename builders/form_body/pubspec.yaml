@@ -149,12 +149,19 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: master
       path: builders/key_value_row
+  header_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: builders/header
 
 dependency_overrides:
+  header_builder:
+    path: ../header
   haptics:
     path: ../../lib/haptics
   key_value_row_builder:
-    path: ../../builders/key_value_row
+    path: ../key_value_row
   meta_form_artboard_builder:
     path: ../meta_form
   dwolla_model:

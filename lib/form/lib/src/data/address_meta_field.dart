@@ -85,11 +85,12 @@ class AddressMetaFieldData extends MetaFormFieldData<Address> {
   };
 
   AddressMetaFieldData({
+    String title,
     Address initialValue,
     bool isRequired,
     bool isVisible,
   }) : super(
-          title: 'Address',
+          title: title ?? 'Address',
           initialValue: initialValue,
           fieldsData: _fieldsData(initialValue, isRequired ?? false),
           valueFromFieldsData: _valueFromFieldsData,

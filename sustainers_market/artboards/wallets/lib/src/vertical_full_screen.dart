@@ -28,9 +28,8 @@ class WalletsVerticalFullscreenArtboard
         ActionIconButtonBuilder,
         TitleBadgeCellBuilder {
   Widget artboardNavButton(BuildContext context) => buildNavIconButton(
-        iconReference: NavigationIcon.logoHouse,
-        onTap: () => print('house tapped')
-      );
+      iconReference: NavigationIcon.logoHouse,
+      onTap: () => print('house tapped'));
 
   List<Widget> artboardActionButtons(BuildContext context) => [
         buildSecondaryActionIconButton(
@@ -97,6 +96,7 @@ class WalletsVerticalFullscreenArtboard
         final header = buildSectionHeader(
           text: 'Recent',
           horizontalGutter: horizontalGutter(context),
+          isNewSection: true,
         );
 
         final cells = snapshot.transfers

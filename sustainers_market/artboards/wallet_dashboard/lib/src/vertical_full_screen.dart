@@ -152,6 +152,7 @@ class WalletDashboardVerticalFullscreenArtboard
         final header = buildSectionHeader(
           text: 'Recent',
           horizontalGutter: horizontalGutter(context),
+          isNewSection: true,
         );
         final cells = snapshot.transfers
             .map(

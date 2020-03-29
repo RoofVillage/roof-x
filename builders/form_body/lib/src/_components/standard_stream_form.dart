@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:form/index.dart';
 import 'package:form_body_builder/src/_components/fields/interval_frequency_picker_field.dart';
 import 'package:form_body_builder/src/_components/fields/meta_form_field.dart';
+import 'package:header_builder/index.dart';
 import 'package:labeled_icon/index.dart';
 import 'package:frequency/index.dart';
 import 'package:keyboard_accessory/index.dart';
@@ -23,7 +24,7 @@ enum KeyboardAccessoryState { hideKeyboard, submit }
 
 class StandardStreamForm
     extends StreamForm<StreamableFormFieldData, StreamableFormSectionHeaderData>
-    with KeyboardAccessoryBarBuilder {
+    with KeyboardAccessoryBarBuilder, SectionHeaderBuilder {
   static const _hideKeyboardTitle = "Hide keyboard";
   static const _doneKeyboardTitle = "Done";
 
@@ -35,7 +36,10 @@ class StandardStreamForm
         .where((data) => data.isVisible)
         .whereType<FormTextFieldData>()
         .toList();
-    final allTextAreaData = allFieldData.whereType<FormTextAreaData>().toList();
+    final allTextAreaData = allFieldData
+        .where((data) => data.isVisible)
+        .whereType<FormTextAreaData>()
+        .toList();
     List<FormCompositionFieldData> allCompositionFieldData = [];
     allCompositionFieldData.addAll(allTextFieldData);
     allCompositionFieldData.addAll(allTextAreaData);
@@ -247,6 +251,16 @@ class StandardStreamForm
         title: fieldData.title,
         labeledValues: fieldData.labeledValues,
         onTap: fieldData.onTap,
+      );
+
+  @override
+  Widget buildFormSectionHeader({
+    BuildContext context,
+    StreamableFormSectionHeaderData headerData,
+    int sectionIndex,
+  }) =>
+      buildSectionHeader(
+        text: headerData.title,
       );
 
   @override

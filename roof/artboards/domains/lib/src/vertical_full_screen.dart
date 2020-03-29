@@ -100,6 +100,7 @@ class DomainsVerticalFullscreenArtboard
         final header = buildSectionHeader(
           text: 'Recent',
           horizontalGutter: horizontalGutter(context),
+          isNewSection: true,
         );
 
         final cells = snapshot.transfers
@@ -111,7 +112,7 @@ class DomainsVerticalFullscreenArtboard
                 sender: transfer.sender,
                 receiver: transfer.receiver,
                 note: transfer.note,
-                paymentStatus: transfer.paymentStatus,
+                transferStatus: transfer.paymentStatus,
                 onTap: () => print(
                   'goto transfer view for transfer w/ amount: ${transfer.amount}',
                 ),

@@ -41,7 +41,6 @@ class StandardStreamTable extends StreamTable<StreamableTableRowData,
   Widget buildSectionHeader({
     StreamableTableSectionHeaderData headerData,
     int sectionIndex,
-  }) {
-    return TableSectionHeaderA(title: headerData.title);
-  }
+  }) =>
+      TableSectionHeaderA(title: headerData.title);
 }

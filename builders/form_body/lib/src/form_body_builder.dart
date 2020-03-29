@@ -144,7 +144,7 @@ mixin FormBodyBuilder implements StatefulWidget {
     return Future.wait(
       form.formData.fieldData
           .where(
-            (data) => data.isVisible,
+            (data) => data.isVisible == true,
           )
           .map(
             (data) async => await data.validate(),
@@ -448,7 +448,6 @@ mixin FormBodyBuilderState<T extends FormBodyBuilder> implements State<T> {
     }
 
     final fieldData = await widget.initialFieldData;
-
     if (fieldData.isNotEmpty) {
       return StreamableFormData.withFields(
         fieldData: fieldData,
@@ -483,7 +482,7 @@ mixin FormBodyBuilderState<T extends FormBodyBuilder> implements State<T> {
       }
       formSubmitState = FormSubmitStatus.exception;
     });
-    triggerHapticWith(HapticOption.medium);
+    triggerHaptic(HapticOption.medium);
   }
 
   void _clearExceptions(BuildContext context) {

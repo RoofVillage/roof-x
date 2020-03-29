@@ -3,20 +3,34 @@ import 'package:form_builder/index.dart';
 
 mixin VerifyBusinessWalletArtboardData implements FormBuilder {
   @override
-  Future<List<StreamableFormFieldData>> get initialFieldData async {
+  get initialSectionData async {
     return [
-      _firstName,
-      _lastName,
-      _email,
-      _address1,
-      _address2,
-      _city,
-      _state,
-      _postalCode,
-      _dob,
-      _last4Ssn,
-      _controller,
-      _beneficialOwnerDocument,
+      StreamableFormSectionData(
+        fieldData: [
+          _firstName,
+          _lastName,
+          _email,
+          _address,
+          _dob,
+          _last4Ssn,
+        ],
+      ),
+      StreamableFormSectionData(
+        headerData: StreamableFormSectionHeaderData(
+          title: 'Businesss Controller',
+        ),
+        fieldData: [
+          _controller,
+        ],
+      ),
+      StreamableFormSectionData(
+        headerData: StreamableFormSectionHeaderData(
+          title: 'Beneficial Owner',
+        ),
+        fieldData: [
+          _hasBeneficialOwner,
+        ],
+      )
     ];
   }
 
@@ -25,7 +39,19 @@ mixin VerifyBusinessWalletArtboardData implements FormBuilder {
     return null;
   }
 
-  final _firstName = FormFirstNameTextFieldData(
+  @override
+  void setupFields(
+    BuildContext context, {
+    List<StreamableFormFieldData> fieldData,
+  }) =>
+      _hasBeneficialOwner.addOnChangedListener(_toggleBeneficialOwnerField);
+
+  void _toggleBeneficialOwnerField(bool hasBeneficialOwner) =>
+      hasBeneficialOwner
+          ? form.insertFieldData(_beneficialOwner, after: _hasBeneficialOwner)
+          : form.removeFieldData(_beneficialOwner);
+
+  static final _firstName = FormFirstNameTextFieldData(
     isRequired: true,
   );
   final _lastName = FormLastNameTextFieldData(
@@ -34,25 +60,21 @@ mixin VerifyBusinessWalletArtboardData implements FormBuilder {
   final _email = FormEmailTextFieldData(
     isRequired: true,
   );
-  final _address1 = FormAddressTextFieldData(
-    isRequired: true,
-  );
-  final _address2 = FormAddress2TextFieldData();
-  final _city = FormCityTextFieldData(
-    isRequired: true,
-  );
-  final _state = FormUsStateTextFieldData();
-  final _postalCode = FormUsZipCodeTextFieldData(
-    isRequired: true,
-  );
   final _dob = FormDateOfBirthFieldData();
   final _last4Ssn = FormShortSsnFieldData(
+    isRequired: true,
+  );
+  static final _address = AddressMetaFieldData(
+    title: 'Business Address',
     isRequired: true,
   );
   final _controller = ControllerMetaFieldData(
     isRequired: true,
   );
-  final _beneficialOwnerDocument = BeneficialOwnerMetaFieldData(
+  final _hasBeneficialOwner = FormSwitchFieldData(
+    title: 'At least one person owns 25% or more of this business',
+  );
+  final _beneficialOwner = BeneficialOwnerMetaFieldData(
     isRequired: true,
   );
 }

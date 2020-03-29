@@ -10,10 +10,16 @@ class StreamableFormSectionData extends StreamableData {
 
   final List<StreamableFormFieldData> fieldData;
 
-  StreamableFormSectionData(
-      {this.headerData, this.fieldData, this.fieldHorizontalSpacing});
+  StreamableFormSectionData({
+    this.headerData,
+    this.fieldData,
+    this.fieldHorizontalSpacing,
+  });
 
-  void replace({@required int index, StreamableFormFieldData fieldData}) {
+  void replace({
+    @required int index,
+    StreamableFormFieldData fieldData,
+  }) {
     final currentFieldDataAtIndex = this.fieldData[index];
 
     if (currentFieldDataAtIndex == null) return;
@@ -23,7 +29,10 @@ class StreamableFormSectionData extends StreamableData {
     addFieldData(fieldData: fieldData, index: index);
   }
 
-  void addFieldData({@required StreamableFormFieldData fieldData, int index}) {
+  void addFieldData({
+    @required StreamableFormFieldData fieldData,
+    int index,
+  }) {
     if (this.fieldData.contains(fieldData)) {
       fieldData.isVisible = true;
     } else {
@@ -31,8 +40,10 @@ class StreamableFormSectionData extends StreamableData {
     }
   }
 
-  void batchAddFieldData(
-      {@required List<StreamableFormFieldData> fieldData, int index}) {
+  void batchAddFieldData({
+    @required List<StreamableFormFieldData> fieldData,
+    int index,
+  }) {
     List<StreamableFormFieldData> fieldsToInsert = [];
     for (final data in fieldData) {
       if (this.fieldData.contains(data)) {
@@ -50,8 +61,9 @@ class StreamableFormSectionData extends StreamableData {
   }
 
   int indexOfFieldData(StreamableFormFieldData fieldData) {
-    final dataIndex =
-        this.fieldData.indexWhere((row) => row.key == fieldData.key);
+    final dataIndex = this.fieldData.indexWhere(
+          (row) => row.key == fieldData.key,
+        );
     return dataIndex;
   }
 }
