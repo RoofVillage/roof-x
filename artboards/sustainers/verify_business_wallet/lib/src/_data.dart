@@ -12,7 +12,7 @@ mixin VerifyBusinessWalletArtboardData implements FormBuilder {
           _email,
           _address,
           _dob,
-          _last4Ssn,
+          _ein,
         ],
       ),
       StreamableFormSectionData(
@@ -61,7 +61,7 @@ mixin VerifyBusinessWalletArtboardData implements FormBuilder {
     isRequired: true,
   );
   final _dob = FormDateOfBirthFieldData();
-  final _last4Ssn = FormShortSsnFieldData(
+  final _ein = FormEinFieldData(
     isRequired: true,
   );
   static final _address = AddressMetaFieldData(

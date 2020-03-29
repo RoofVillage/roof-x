@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:mask/index.dart';
 
 import 'text_field.dart';
 
@@ -16,12 +17,11 @@ class FormShortSsnFieldData extends FormTextFieldData {
     String exceptionTitle,
   }) : super(
           title: 'SSN (last 4)',
+          mask: MaskOption.shortSsn,
           placeholder: '0123',
           initialValue: initialValue,
           autofocus: autofocus,
-          keyboardType: TextInputType.numberWithOptions(
-            decimal: true,
-          ),
+          keyboardType: TextInputType.number,
           size: size,
           isVisible: isVisible,
           exceptionTitle: exceptionTitle,

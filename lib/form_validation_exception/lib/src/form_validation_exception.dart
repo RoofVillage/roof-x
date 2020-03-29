@@ -12,7 +12,11 @@ class FormValidationException implements Exception {
       );
 
   factory FormValidationException.badSsn() => FormValidationException(
-        "Looks like this social security number isn't valid. Reach out to us if you think we've got it wrong.",
+        "Looks like this social security number (SSN) isn't valid. Reach out to us if you think we've got it wrong.",
+      );
+
+  factory FormValidationException.badEin() => FormValidationException(
+        "Looks like this employer identificiation number (EIN) isn't valid. Reach out to us if you think we've got it wrong.",
       );
 
   factory FormValidationException.longPassword({@required int max}) =>

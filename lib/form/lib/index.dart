@@ -42,6 +42,7 @@ export 'src/data/date_of_birth_field.dart';
 export 'src/data/address_meta_field.dart';
 export 'src/data/controller_meta_field.dart';
 export 'src/data/beneficial_owner_meta_field.dart';
+export 'src/data/ein_field.dart';
 
 export 'src/options/interval_frequency_option_data.dart';
 export 'src/options/labeled_value.dart';

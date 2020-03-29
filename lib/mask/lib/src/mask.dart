@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:mask/src/_ein_string_mask.dart';
+import 'package:mask/src/_short_ssn_string_mask.dart';
 import 'package:mask/src/_ssn_string_mask.dart';
 
 import 'option.dart';
@@ -27,6 +29,12 @@ String applyMask(
       break;
     case MaskOption.ssn:
       mask = SsnStringMask();
+      break;
+    case MaskOption.shortSsn:
+      mask = ShortSsnStringMask();
+      break;
+    case MaskOption.ein:
+      mask = EinStringMask();
   }
 
   return mask.apply(text, isEditing);
