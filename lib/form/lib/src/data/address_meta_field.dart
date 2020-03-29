@@ -54,12 +54,18 @@ class AddressMetaFieldData extends MetaFormFieldData<Address> {
 
   static final List<LabeledValue<String>> Function(Address)
       _labeledValuesFromValue = (Address address) {
-    final labeledValues = <LabeledValue<String>>[
-      LabeledValue(
-        label: 'Address',
-        value: address?.address1 ?? 'No address',
-      )
-    ];
+    if (address == null) return [];
+
+    final labeledValues = <LabeledValue<String>>[];
+
+    if (address?.address1 != null) {
+      labeledValues.add(
+        LabeledValue(
+          label: 'Address',
+          value: address.address1,
+        ),
+      );
+    }
     if (address?.address2 != null) {
       labeledValues.add(
         LabeledValue(value: address.address2),

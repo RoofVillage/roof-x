@@ -49,13 +49,23 @@ class BeneficialOwnerMetaFieldData extends MetaFormFieldData<BeneficialOwner> {
             address: (fieldsData[4] as AddressMetaFieldData)?.value,
           );
   static final List<LabeledValue<String>> Function(BeneficialOwner)
-      _labeledValuesFromValue = (BeneficialOwner beneficialOwner) => [
-            LabeledValue(
-              label: 'Name',
-              value:
-                  '${beneficialOwner?.firstName} ${beneficialOwner?.lastName}',
-            )
-          ];
+      _labeledValuesFromValue = (BeneficialOwner beneficialOwner) {
+    if (beneficialOwner?.firstName == null && beneficialOwner?.lastName == null)
+      return [];
+
+    String nameString = beneficialOwner?.firstName ?? '';
+    if (beneficialOwner?.lastName != null) {
+      nameString += nameString.isNotEmpty ? ' ' : '';
+      nameString += beneficialOwner.lastName;
+    }
+
+    return [
+      LabeledValue(
+        label: 'Name',
+        value: nameString,
+      )
+    ];
+  };
 
   BeneficialOwnerMetaFieldData({
     BeneficialOwner initialValue,

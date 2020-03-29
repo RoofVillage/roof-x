@@ -151,8 +151,18 @@ dependencies:
       path: builders/key_value_row
 
 dependency_overrides:
+  haptics:
+    path: ../../lib/haptics
+  key_value_row_builder:
+    path: ../../builders/key_value_row
   meta_form_artboard_builder:
     path: ../meta_form
+  dwolla_model:
+    path: ../../model/dwolla
+  us_state_options:
+    path: ../../types/us_state
+  dwolla_types:
+    path: ../../types/dwolla
   form:
     path: ../../lib/form
   form_submission_exception:

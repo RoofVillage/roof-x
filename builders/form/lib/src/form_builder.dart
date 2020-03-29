@@ -98,6 +98,7 @@ mixin FormBuilderState<T extends FormBuilder>
       Padding(
         padding: EdgeInsets.symmetric(
           vertical: theme.distance.spacing.vertical.large,
+          horizontal: theme.distance.gutter.horizontal.medium,
         ),
         child: buildFormBody(context),
       ),

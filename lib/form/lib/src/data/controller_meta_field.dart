@@ -52,12 +52,23 @@ class ControllerMetaFieldData extends MetaFormFieldData<Controller> {
             address: (fieldsData[4] as AddressMetaFieldData)?.value,
           );
   static final List<LabeledValue<String>> Function(Controller)
-      _labeledValuesFromValue = (Controller controller) => [
-            LabeledValue(
-              label: 'Name',
-              value: '${controller?.firstName} ${controller?.lastName}',
-            )
-          ];
+      _labeledValuesFromValue = (Controller controller) {
+    if (controller?.firstName == null && controller?.lastName == null)
+      return [];
+
+    String nameString = controller?.firstName ?? '';
+    if (controller?.lastName != null) {
+      nameString += nameString.isNotEmpty ? ' ' : '';
+      nameString += controller.lastName;
+    }
+
+    return [
+      LabeledValue(
+        label: 'Name',
+        value: nameString,
+      )
+    ];
+  };
 
   ControllerMetaFieldData({
     Controller initialValue,

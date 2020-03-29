@@ -9,12 +9,14 @@ mixin KeyValueRowBuilder {
     String value,
     TextStyle titleStyle,
     TextStyle valueStyle,
+    bool rightAlignValue,
   }) {
     return KeyValueRow(
       title: title,
       value: value,
       titleStyle: titleStyle,
       valueStyle: valueStyle,
+      rightAlignValue: rightAlignValue,
     );
   }
 }

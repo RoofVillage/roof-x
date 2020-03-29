@@ -7,14 +7,13 @@ class FieldContainer extends StatelessWidget {
   FieldContainer({this.child});
 
   final double _minHeight = 55.0;
-  final double _verticalSpacing = 1;
 
   @override
   Widget build(BuildContext context) {
     final theme = SemanticTheme.of(context);
 
     final margin = EdgeInsets.only(
-      top: _verticalSpacing,
+      top: theme.distance.spacing.vertical.min,
     );
 
     final backgroundColor = theme.color.background.raised;
@@ -30,6 +29,7 @@ class FieldContainer extends StatelessWidget {
       ),
       decoration: BoxDecoration(
         color: backgroundColor,
+        borderRadius: BorderRadius.all(theme.radius.small),
       ),
       child: Center(child: child),
     );
