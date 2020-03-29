@@ -168,7 +168,7 @@ class _FieldBodyState extends State<_FieldBody> {
         textInputAction: widget.textInputAction,
         keyboardType: widget.keyboardType,
         style: theme.typography.body.textStyle(
-          color: theme.color.text.generalPrimary,
+          color: theme.color.text.inputActive,
         ),
         textAlign: TextAlign.right,
         decoration: decoration,

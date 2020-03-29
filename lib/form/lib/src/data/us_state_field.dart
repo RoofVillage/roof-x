@@ -4,15 +4,15 @@ import 'package:us_state_options/index.dart';
 
 class FormUsStateTextFieldData
     extends FormRollerColumnPickerFieldData<UsStateOption> {
-  static _labeledValueFromUsStateOption(UsStateOption option) => LabeledValue(
-        label: option.toAbbreviatedString(),
-        value: option,
-      );
-
-  @override
-  buildOptions() => UsStateOption.options.map(
-        (option) => _labeledValueFromUsStateOption(option),
-      );
+  static final List<LabeledValue<UsStateOption>> usStateOptions =
+      UsStateOption.options
+          .map(
+            (option) => LabeledValue(
+              label: option.toAbbreviatedString(),
+              value: option,
+            ),
+          )
+          .toList();
 
   FormUsStateTextFieldData({
     String initialValue,
@@ -20,11 +20,7 @@ class FormUsStateTextFieldData
     bool isVisible,
   }) : super(
           title: 'State',
-          selectedValue: _labeledValueFromUsStateOption(
-            initialValue != null
-                ? UsStateOption.fromString(initialValue)
-                : UsStateOption.options.first,
-          ),
+          options: usStateOptions,
           size: size,
           isVisible: isVisible,
         );

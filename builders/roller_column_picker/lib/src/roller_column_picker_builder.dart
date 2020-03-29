@@ -9,7 +9,7 @@ mixin RollerColumnPickerArtboardBuilder<T>
     implements Artboard<LabeledValue<T>> {
   LabeledValue<T> get selectedValue;
   List<LabeledValue<T>> get options => [];
-  bool get canRollover => false;
+  bool get infiniteScroll => false;
 }
 
 mixin RollerColumnPickerArtboardBuilderState<T,
@@ -19,17 +19,15 @@ mixin RollerColumnPickerArtboardBuilderState<T,
   LabeledValue<T> get selectedValue => _selectedValue;
   set selectedValue(LabeledValue<T> newValue) => _selectedValue = newValue;
 
-  Widget buildRollerColumnPicker(BuildContext context) {
-    return RollerColumnPicker<T>(
-      selectedValue: widget.selectedValue,
-      options: widget.options,
-      canRollover: widget.canRollover,
-      onChanged: _onChanged,
-    );
-  }
+  Widget buildRollerColumnPicker(BuildContext context) => RollerColumnPicker<T>(
+        selectedValue: widget.selectedValue,
+        options: widget.options,
+        infiniteScroll: widget.infiniteScroll,
+        onChanged: _onChanged,
+      );
 
   void _onChanged(LabeledValue<T> newValue) {
-    triggerHapticWith(HapticOption.click);
+    triggerHaptic(HapticOption.click);
     selectedValue = newValue;
   }
 }

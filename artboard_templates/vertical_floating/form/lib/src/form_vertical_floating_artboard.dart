@@ -45,13 +45,12 @@ abstract class FormVerticalFloatingArtboard<T> extends StatefulWidget
     @required Date selectedDate,
     Date startBound,
     Date endBound,
-  }) {
-    return DatePickerVerticalFloatingArtboard(
-      selectedDate: selectedDate,
-      startBound: startBound,
-      endBound: endBound,
-    );
-  }
+  }) =>
+      DatePickerVerticalFloatingArtboard(
+        selectedDate: selectedDate,
+        startBound: startBound,
+        endBound: endBound,
+      );
 
   @override
   OptionPickerArtboardBuilder buildOptionPicker(
@@ -61,15 +60,14 @@ abstract class FormVerticalFloatingArtboard<T> extends StatefulWidget
     List<LabeledValue> selectedOptions,
     @required List<LabeledValue> options,
     bool isMultiSelect,
-  }) {
-    return OptionPickerVerticalFloatingArtboard(
-      title: title,
-      emptyText: emptyText,
-      selectedOptions: selectedOptions,
-      options: options,
-      isMultiSelect: isMultiSelect,
-    );
-  }
+  }) =>
+      OptionPickerVerticalFloatingArtboard(
+        title: title,
+        emptyText: emptyText,
+        selectedOptions: selectedOptions,
+        options: options,
+        isMultiSelect: isMultiSelect,
+      );
 
   @override
   IconPickerArtboardBuilder buildIconPicker(
@@ -77,23 +75,21 @@ abstract class FormVerticalFloatingArtboard<T> extends StatefulWidget
     String title,
     LabeledIcon selectedOption,
     @required List<LabeledIcon> options,
-  }) {
-    return IconPickerVerticalFloatingArtboard(
-      title: title,
-      selectedOption: selectedOption,
-      options: options,
-    );
-  }
+  }) =>
+      IconPickerVerticalFloatingArtboard(
+        title: title,
+        selectedOption: selectedOption,
+        options: options,
+      );
 
   @override
   TimePickerArtboardBuilder buildTimePicker(
     BuildContext context, {
     TimeOfDay selectedTime,
-  }) {
-    return TimePickerVerticalFloatingArtboard(
-      initialValue: selectedTime,
-    );
-  }
+  }) =>
+      TimePickerVerticalFloatingArtboard(
+        initialValue: selectedTime,
+      );
 
   @override
   IntervalFrequencyPickerArtboardBuilder buildIntervalFrequencyPicker(
@@ -101,33 +97,32 @@ abstract class FormVerticalFloatingArtboard<T> extends StatefulWidget
     Frequency selectedSchedule,
     List<LabeledValue<int>> intervalList,
     List<LabeledValue<PeriodType>> periodList,
-  }) {
-    return IntervalFrequencyPickerVerticalFloatingArtboard(
-      selectedValue: selectedSchedule,
-      intervalList: intervalList,
-      periodList: periodList,
-    );
-  }
+  }) =>
+      IntervalFrequencyPickerVerticalFloatingArtboard(
+        selectedValue: selectedSchedule,
+        intervalList: intervalList,
+        periodList: periodList,
+      );
 
   @override
   RollerColumnPickerArtboardBuilder<T> buildRollerColumnPicker<T>(
     BuildContext context, {
     LabeledValue<T> selectedValue,
     List<LabeledValue<T>> options,
-  }) {
-    return RollerColumnPickerVerticalFloatingArtboard(
-      selectedValue: selectedValue,
-      options: options,
-    );
-  }
+    bool infiniteScroll,
+  }) =>
+      RollerColumnPickerVerticalFloatingArtboard(
+        selectedValue: selectedValue,
+        options: options,
+        infiniteScroll: infiniteScroll,
+      );
 
   @override
   TagEditorArtboardBuilder buildTagEditor(
     BuildContext context, {
     List<String> tags,
-  }) {
-    return TagEditorVerticalFloatingArtboard(tags: tags);
-  }
+  }) =>
+      TagEditorVerticalFloatingArtboard(tags: tags);
 
   @override
   MetaFormArtboardBuilder<T> buildMetaForm<T>(
@@ -150,17 +145,15 @@ abstract class FormVerticalFloatingArtboard<T> extends StatefulWidget
   Future<T> goTo<T>({
     @required BuildContext context,
     @required Artboard<T> artboard,
-  }) async {
-    return await ArtboardNavigator.of(context).goTo<T>(artboard);
-  }
+  }) async =>
+      await ArtboardNavigator.of(context).goTo<T>(artboard);
 
   @override
   void onFocusChanged({
     @required BuildContext context,
     @required bool isInFocus,
-  }) {
-    ArtboardNavigator.of(context).toggleNavButtonsHidden(isInFocus);
-  }
+  }) =>
+      ArtboardNavigator.of(context).toggleNavButtonsHidden(isInFocus);
 }
 
 class _FormVerticalFloatingArtboardState

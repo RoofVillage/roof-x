@@ -181,7 +181,7 @@ class StandardStreamForm
         onTap: fieldData.onTap,
       );
 
-  Widget buildRollerColumnPicker<T>({
+  Widget buildRollerColumnPickerField<T>({
     FormRollerColumnPickerFieldData<T> fieldData,
     int fieldIndex,
     int sectionIndex,
@@ -313,7 +313,7 @@ class StandardStreamForm
         sectionIndex: sectionIndex,
       );
     } else if (fieldData is FormRollerColumnPickerFieldData) {
-      fieldBody = buildRollerColumnPicker(
+      fieldBody = buildRollerColumnPickerField(
         fieldData: fieldData,
         fieldIndex: fieldIndex,
         sectionIndex: sectionIndex,

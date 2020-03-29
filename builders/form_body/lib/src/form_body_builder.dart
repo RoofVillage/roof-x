@@ -88,6 +88,7 @@ mixin FormBodyBuilder implements StatefulWidget {
     BuildContext context, {
     LabeledValue<T> selectedValue,
     List<LabeledValue<T>> options,
+    bool infiniteScroll,
   });
 
   TagEditorArtboardBuilder buildTagEditor(
@@ -293,7 +294,8 @@ mixin FormBodyBuilder implements StatefulWidget {
       final artboard = buildRollerColumnPicker(
         context,
         selectedValue: data.value,
-        options: data.buildOptions(),
+        options: data.options,
+        infiniteScroll: data.infiniteScroll,
       );
       final newSelectedValue = await goTo(
         context: context,

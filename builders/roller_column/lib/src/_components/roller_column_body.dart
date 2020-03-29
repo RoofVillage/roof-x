@@ -3,19 +3,19 @@ import 'package:labeled_value/index.dart';
 import 'package:semantic_theme/index.dart';
 
 class RollerColumnBody<T> extends StatelessWidget {
-  /// Builds a column of widgets from a [list] of int values repeated three times to allow simulated infinite scrolling, with the [selectedValue] highlighted.
+  /// Builds a column of widgets from a [children] of int values repeated three times to allow simulated infinite scrolling, with the [selectedValue] highlighted.
 
   final LabeledValue<T> selectedValue;
-  final List<LabeledValue<T>> list;
-  final bool canRollover;
+  final List<LabeledValue<T>> children;
+  final int segmentCount;
   final CrossAxisAlignment crossAxisAlignment;
 
   RollerColumnBody({
     @required this.selectedValue,
-    @required this.list,
+    @required this.children,
     this.crossAxisAlignment,
-    canRollover,
-  }) : this.canRollover = canRollover ?? false;
+    int segmentCount,
+  }) : this.segmentCount = segmentCount ?? 1;
 
   final double _stepHeight = 40;
 
@@ -31,21 +31,21 @@ class RollerColumnBody<T> extends StatelessWidget {
       color: theme.color.text.generalSecondary,
     );
 
-    final widgetsLength = list.length * (canRollover ? 3 : 1);
+    final widgetsLength = children.length * segmentCount;
 
     List<Widget> widgets = [];
 
     for (var i = 0; i < widgetsLength; i++) {
-      final j = i % list.length;
+      final j = i % children.length;
 
       final style =
-          (list[j].value == selectedValue.value) ? activeStyle : inactiveStyle;
+          (children[j].value == selectedValue.value) ? activeStyle : inactiveStyle;
 
       widgets.add(
         Container(
           height: _stepHeight,
           child: Text(
-            list[j].label,
+            children[j].label,
             textAlign: TextAlign.end,
             style: style,
           ),

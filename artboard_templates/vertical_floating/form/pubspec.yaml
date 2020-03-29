@@ -130,6 +130,8 @@ dependencies:
       path: artboards/tag_editor
 
 dependency_overrides:
+  roller_column_picker_artboard:
+    path: ../../../artboards/roller_column_picker
   tappable:
     path: ../../../lib/tappable
   vertically_centered_text_builder:

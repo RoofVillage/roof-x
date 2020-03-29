@@ -130,7 +130,7 @@ class _TextFieldComponent extends StatelessWidget {
     final textField = TextField(
       maxLines: null,
       style: theme.typography.body.textStyle(
-        color: theme.color.text.generalPrimary,
+        color: theme.color.text.inputActive,
       ),
       textInputAction: TextInputAction.done,
       decoration: textFieldDecoration,

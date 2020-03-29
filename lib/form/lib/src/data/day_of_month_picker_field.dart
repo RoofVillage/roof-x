@@ -5,8 +5,7 @@ import 'roller_column_picker_field.dart';
 
 class FormDayOfMonthPickerFieldData
     extends FormRollerColumnPickerFieldData<int> {
-  @override
-  List<LabeledValue<int>> buildOptions() {
+  static List<LabeledValue<int>> buildDayOfMonthOptions() {
     final List<LabeledValue<int>> _daysList = [];
 
     for (int i = 0; i < 30; i++) {
@@ -30,11 +29,7 @@ class FormDayOfMonthPickerFieldData
     bool isVisible,
   }) : super(
           title: title,
-          selectedValue: selectedDay ??
-              LabeledValue(
-                label: "on the " + ordinalSuffixString(1),
-                value: 0,
-              ),
+          options: buildDayOfMonthOptions(),
           size: size,
           isVisible: isVisible,
         );

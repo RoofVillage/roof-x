@@ -40,6 +40,8 @@ dependency_overrides:
     path: ../../semantic_theme
   roller_column_builder:
     path: ../roller_column
+  haptics:
+    path: ../../lib/haptics
 
 dev_dependencies:
   flutter_test:

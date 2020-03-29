@@ -5,14 +5,17 @@ import 'package:roller_column_picker_builder/index.dart';
 import 'package:labeled_value/index.dart';
 
 class RollerColumnPickerVerticalFloatingArtboard<T>
-    extends EmptyVerticalFloatingArtboard<LabeledValue<T>> with RollerColumnPickerArtboardBuilder<T> {
+    extends EmptyVerticalFloatingArtboard<LabeledValue<T>>
+    with RollerColumnPickerArtboardBuilder<T> {
   final LabeledValue<T> selectedValue;
   final List<LabeledValue<T>> options;
+  bool infiniteScroll;
 
   RollerColumnPickerVerticalFloatingArtboard({
     this.selectedValue,
     this.options,
-  });
+    bool infiniteScroll,
+  }) : this.infiniteScroll = infiniteScroll ?? false;
 
   _RollerColumnPickerVerticalFloatingArtboardState<T> createState() =>
       _RollerColumnPickerVerticalFloatingArtboardState<T>();

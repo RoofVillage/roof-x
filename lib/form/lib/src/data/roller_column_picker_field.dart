@@ -4,18 +4,22 @@ import 'package:labeled_value/index.dart';
 
 import '_mixins/on_tap_listener_adder.dart';
 
-class FormRollerColumnPickerFieldData<T> extends StreamableFormFieldData<LabeledValue<T>> with OnTapListenerAdder {
-  List<LabeledValue<T>> buildOptions() => null;
-  bool canRollover = false;
+class FormRollerColumnPickerFieldData<T>
+    extends StreamableFormFieldData<LabeledValue<T>> with OnTapListenerAdder {
+  final List<LabeledValue<T>> options;
+  final bool infiniteScroll;
 
   FormRollerColumnPickerFieldData({
     String title,
-    @required LabeledValue<T> selectedValue,
+    LabeledValue<T> selectedValue,
+    @required this.options,
     double size,
     bool isVisible,
-  }) : super(
+    bool infiniteScroll,
+  })  : this.infiniteScroll = infiniteScroll ?? false,
+        super(
           title: title,
-          initialValue: selectedValue,
+          initialValue: selectedValue ?? options.first,
           size: size,
           isVisible: isVisible,
         );

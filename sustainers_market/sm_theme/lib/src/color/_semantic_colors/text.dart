@@ -39,19 +39,13 @@ class SmTextColor extends SemanticTextColor<SmThemeOption> {
       });
 
   @override
-  Color get inputActive => forThemeOption({
-        SmThemeOption.dark: Colors.grey,
-      });
+  Color get inputActive => colors.white1;
 
   @override
-  Color get inputDisabled => forThemeOption({
-        SmThemeOption.dark: Colors.grey,
-      });
+  Color get inputDisabled => inputActive.withOpacity(.35);
 
   @override
-  Color get inputPlaceholder => forThemeOption({
-        SmThemeOption.dark: Colors.grey,
-      });
+  Color get inputPlaceholder => inputActive.withOpacity(.2);
 
   @override
   Color get warn => forThemeOption({

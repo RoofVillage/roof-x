@@ -8,14 +8,14 @@ class RollerColumnPicker<T> extends StatefulWidget {
   final LabeledValue<T> selectedValue;
   final List<LabeledValue<T>> options;
   final Function(LabeledValue<T>) onChanged;
-  final bool canRollover;
+  final bool infiniteScroll;
 
   RollerColumnPicker({
     this.selectedValue,
     this.options,
     this.onChanged,
-    canRollover,
-  }) : this.canRollover = canRollover ?? false;
+    bool infiniteScroll,
+  }) : this.infiniteScroll = infiniteScroll ?? false;
 
   RollerColumnPickerState<T> createState() => RollerColumnPickerState<T>();
 }
@@ -40,7 +40,7 @@ class RollerColumnPickerState<T> extends State<RollerColumnPicker<T>>
       list: widget.options,
       selectedValue: _selectedValue,
       onChange: _onChange,
-      canRollover: widget.canRollover,
+      infiniteScroll: widget.infiniteScroll,
     );
     return Container(
       padding: EdgeInsets.symmetric(
