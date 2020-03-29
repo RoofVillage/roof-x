@@ -58,7 +58,7 @@ class AddressMetaFieldData extends MetaFormFieldData<Address> {
 
     final labeledValues = <LabeledValue<String>>[];
 
-    if (address?.address1 != null) {
+    if (address.address1?.isNotEmpty ?? false) {
       labeledValues.add(
         LabeledValue(
           label: 'Address',
@@ -66,17 +66,17 @@ class AddressMetaFieldData extends MetaFormFieldData<Address> {
         ),
       );
     }
-    if (address?.address2 != null) {
+    if (address.address2?.isNotEmpty ?? false) {
       labeledValues.add(
         LabeledValue(value: address.address2),
       );
     }
-    if (address?.city != null) {
+    if (address.city?.isNotEmpty ?? false) {
       labeledValues.add(
         LabeledValue(value: address.city),
       );
     }
-    if (address?.stateProvinceRegion != null) {
+    if (address.stateProvinceRegion?.isNotEmpty ?? false) {
       labeledValues.add(
         LabeledValue(value: address.stateProvinceRegion),
       );

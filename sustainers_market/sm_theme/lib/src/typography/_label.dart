@@ -22,5 +22,5 @@ class SmLabelTypography extends SemanticTypography {
   FontWeight get fontWeight => fw.thick;
 
   @override
-  double get letterSpacing => 1;
+  double get letterSpacing => 0;
 }

@@ -5,6 +5,7 @@ import 'package:key_value_row_builder/index.dart';
 import 'package:labeled_value/index.dart';
 import 'package:semantic_theme/index.dart';
 import 'package:tag_builder/index.dart';
+import 'package:x_small_icon_library/index.dart';
 
 class MetaFormField extends StatelessWidget
     with TagBuilder, KeyValueRowBuilder {
@@ -58,10 +59,26 @@ class MetaFormField extends StatelessWidget
       columnChildren.add(row);
     }
 
+    final rightArrow = Padding(
+      padding: EdgeInsets.only(
+        left: theme.distance.spacing.horizontal.small,
+      ),
+      child: XSmallIcon.rightArrow.buildWidget(
+        color: theme.color.icon.generalSecondary,
+      ),
+    );
+
     final fieldBody = Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: columnChildren,
+      child: Row(
+        children: [
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: columnChildren,
+            ),
+          ),
+          rightArrow,
+        ],
       ),
     );
 
@@ -71,6 +88,9 @@ class MetaFormField extends StatelessWidget
         action: onTap,
       ),
       child: Container(
+        padding: EdgeInsets.symmetric(
+          vertical: theme.distance.padding.vertical.small,
+        ),
         child: fieldBody,
       ),
     );
