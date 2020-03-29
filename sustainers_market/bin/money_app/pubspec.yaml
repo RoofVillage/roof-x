@@ -101,6 +101,8 @@ dependency_overrides:
     path: ../../../builders/view_stream_builder
   sm_theme:
     path: ../../sm_theme
+  us_state_options:
+    path: ../../../types/us_state
   artboard:
     path: ../../../lib/artboard
   services_artboard:

@@ -18,7 +18,7 @@ class MetaFormField extends StatelessWidget with TagBuilder {
   @override
   Widget build(BuildContext context) {
     // TODO: WIP
-    Widget fieldBody = Text(labeledValues?.first?.value ?? 'nothin');
+    Widget fieldBody = Text(labeledValues.isNotEmpty ? labeledValues?.first?.value ?? 'nothin' : 'nothin');
 
     return PickerField(
       name: title,

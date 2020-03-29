@@ -25,26 +25,30 @@ class AddressMetaFieldData extends MetaFormFieldData<Address> {
         initialValue: initialValue,
         isRequired: isRequired,
       );
-
-  static _fieldsData(Address initialValue, bool isRequired) => Future.value([
-        _address1(initialValue.address1, isRequired),
-        _address2(initialValue.address2),
-        _city(initialValue.city, isRequired),
-        _state(initialValue.stateProvinceRegion),
-        _postalCode(initialValue.postalCode, isRequired),
+  static Future<List<StreamableFormFieldData>> _fieldsData(
+    Address initialValue,
+    bool isRequired,
+  ) =>
+      Future.value([
+        _address1(initialValue?.address1, isRequired),
+        _address2(initialValue?.address2),
+        _city(initialValue?.city, isRequired),
+        _state(initialValue?.stateProvinceRegion),
+        _postalCode(initialValue?.postalCode, isRequired),
       ]);
-
-  static final Address Function(List<StreamableFormFieldData<dynamic>>)
-      _valueFromFieldsData =
-      (List<StreamableFormFieldData<dynamic>> fieldsData) => Address(
-            address1: (fieldsData[0] as FormAddressTextFieldData).value,
-            address2: (fieldsData[1] as FormAddress2TextFieldData).value,
-            city: (fieldsData[2] as FormCityTextFieldData).value,
+  static final Address Function(List<StreamableFormFieldData>)
+      _valueFromFieldsData = (
+    List<StreamableFormFieldData> fieldsData,
+  ) =>
+          Address(
+            address1: (fieldsData[0] as FormAddressTextFieldData)?.value,
+            address2: (fieldsData[1] as FormAddress2TextFieldData)?.value,
+            city: (fieldsData[2] as FormCityTextFieldData)?.value,
             stateProvinceRegion: (fieldsData[3] as FormUsStateTextFieldData)
-                .value
-                .value
-                .toAbbreviatedString(),
-            postalCode: (fieldsData[4] as FormUsZipCodeTextFieldData).value,
+                ?.value
+                ?.value
+                ?.toAbbreviatedString(),
+            postalCode: (fieldsData[4] as FormUsZipCodeTextFieldData)?.value,
             country: 'US',
           );
 
@@ -53,20 +57,20 @@ class AddressMetaFieldData extends MetaFormFieldData<Address> {
     final labeledValues = <LabeledValue<String>>[
       LabeledValue(
         label: 'Address',
-        value: address.address1,
+        value: address?.address1 ?? 'No address',
       )
     ];
-    if (address.address2 != null) {
+    if (address?.address2 != null) {
       labeledValues.add(
         LabeledValue(value: address.address2),
       );
     }
-    if (address.city != null) {
+    if (address?.city != null) {
       labeledValues.add(
         LabeledValue(value: address.city),
       );
     }
-    if (address.stateProvinceRegion != null) {
+    if (address?.stateProvinceRegion != null) {
       labeledValues.add(
         LabeledValue(value: address.stateProvinceRegion),
       );
@@ -79,9 +83,9 @@ class AddressMetaFieldData extends MetaFormFieldData<Address> {
     bool isRequired,
     bool isVisible,
   }) : super(
-          initialValue: initialValue,
           title: 'Address',
-          fieldsData: _fieldsData(initialValue, isRequired),
+          initialValue: initialValue,
+          fieldsData: _fieldsData(initialValue, isRequired ?? false),
           valueFromFieldsData: _valueFromFieldsData,
           labeledValuesFromValue: _labeledValuesFromValue,
           isVisible: isVisible,

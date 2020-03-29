@@ -25,45 +25,48 @@ class ControllerMetaFieldData extends MetaFormFieldData<Controller> {
   static _dateOfBirth(DateTime initialValue) => FormDateOfBirthFieldData(
         initialValue: initialValue,
       );
-  static _address(Address initialValue) => AddressMetaFieldData(
+  static _address(Address initialValue, bool isRequired) =>
+      AddressMetaFieldData(
         initialValue: initialValue,
+        isRequired: isRequired,
       );
 
-  static _fieldsData(Controller initialValue, bool isRequired) => Future.value([
-        _firstName(initialValue.firstName, isRequired),
-        _lastName(initialValue.lastName, isRequired),
-        _title(initialValue.title, isRequired),
-        _dateOfBirth(initialValue.dateOfBirth),
-        _address(initialValue.address),
+  static Future<List<StreamableFormFieldData>> _fieldsData(
+    Controller initialValue,
+    bool isRequired,
+  ) =>
+      Future.value([
+        _firstName(initialValue?.firstName, isRequired),
+        _lastName(initialValue?.lastName, isRequired),
+        _title(initialValue?.title, isRequired),
+        _dateOfBirth(initialValue?.dateOfBirth),
+        _address(initialValue?.address, isRequired),
       ]);
-
   static final Controller Function(List<StreamableFormFieldData<dynamic>>)
       _valueFromFieldsData =
       (List<StreamableFormFieldData<dynamic>> fieldsData) => Controller(
-            firstName: (fieldsData[0] as FormFirstNameTextFieldData).value,
-            lastName: (fieldsData[1] as FormLastNameTextFieldData).value,
-            title: (fieldsData[2] as FormShortTextFieldData).value,
-            dateOfBirth: (fieldsData[3] as FormDateOfBirthFieldData).value,
-            address: (fieldsData[4] as AddressMetaFieldData).value,
+            firstName: (fieldsData[0] as FormFirstNameTextFieldData)?.value,
+            lastName: (fieldsData[1] as FormLastNameTextFieldData)?.value,
+            title: (fieldsData[2] as FormShortTextFieldData)?.value,
+            dateOfBirth: (fieldsData[3] as FormDateOfBirthFieldData)?.value,
+            address: (fieldsData[4] as AddressMetaFieldData)?.value,
           );
-
   static final List<LabeledValue<String>> Function(Controller)
-      _labeledValuesFromValue = (Controller controller) {
-    return [
-      LabeledValue(
-        label: 'Name',
-        value: '${controller.firstName} ${controller.lastName}',
-      )
-    ];
-  };
+      _labeledValuesFromValue = (Controller controller) => [
+            LabeledValue(
+              label: 'Name',
+              value: '${controller?.firstName} ${controller?.lastName}',
+            )
+          ];
 
   ControllerMetaFieldData({
     Controller initialValue,
     bool isRequired,
     bool isVisible,
   }) : super(
-          title: 'Address',
-          fieldsData: _fieldsData(initialValue, isRequired),
+          title: 'Controller',
+          initialValue: initialValue,
+          fieldsData: _fieldsData(initialValue, isRequired ?? false),
           valueFromFieldsData: _valueFromFieldsData,
           labeledValuesFromValue: _labeledValuesFromValue,
           isVisible: isVisible,

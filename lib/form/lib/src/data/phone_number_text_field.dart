@@ -14,15 +14,16 @@ class FormPhoneNumberTextFieldData extends FormTextFieldData {
     bool autofocus,
     String exceptionTitle,
   }) : super(
-            mask: MaskOption.phoneNumber,
-            title: 'Phone number',
-            placeholder: '(123) 456-7890',
-            initialValue: initialValue,
-            autofocus: autofocus,
-            keyboardType: TextInputType.phone,
-            size: size,
-            isVisible: isVisible,
-            exceptionTitle: exceptionTitle);
+          mask: MaskOption.phoneNumber,
+          title: 'Phone number',
+          placeholder: '(123) 456-7890',
+          initialValue: initialValue,
+          autofocus: autofocus,
+          keyboardType: TextInputType.phone,
+          size: size,
+          isVisible: isVisible,
+          exceptionTitle: exceptionTitle,
+        );
 
   Future<void> validate() async {
     if (value.length < 5) {
