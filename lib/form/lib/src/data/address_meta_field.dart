@@ -1,6 +1,5 @@
 import 'package:dwolla_model/index.dart';
 import 'package:form/index.dart';
-import 'package:labeled_value/index.dart';
 
 import 'meta_form_field.dart';
 
@@ -52,35 +51,23 @@ class AddressMetaFieldData extends MetaFormFieldData<Address> {
             country: 'US',
           );
 
-  static final List<LabeledValue<String>> Function(Address)
-      _labeledValuesFromValue = (Address address) {
+  static final List<String> Function(Address) _displayValues = (
+    Address address,
+  ) {
     if (address == null) return [];
 
-    final labeledValues = <LabeledValue<String>>[];
+    final labeledValues = <String>[];
 
-    if (address.address1?.isNotEmpty ?? false) {
-      labeledValues.add(
-        LabeledValue(
-          label: 'Address',
-          value: address.address1,
-        ),
-      );
-    }
-    if (address.address2?.isNotEmpty ?? false) {
-      labeledValues.add(
-        LabeledValue(value: address.address2),
-      );
-    }
-    if (address.city?.isNotEmpty ?? false) {
-      labeledValues.add(
-        LabeledValue(value: address.city),
-      );
-    }
-    if (address.stateProvinceRegion?.isNotEmpty ?? false) {
-      labeledValues.add(
-        LabeledValue(value: address.stateProvinceRegion),
-      );
-    }
+    if (address.address1?.isNotEmpty ?? false)
+      labeledValues.add(address.address1);
+    if (address.address2?.isNotEmpty ?? false)
+      labeledValues.add(address.address2);
+    if (address.city?.isNotEmpty ?? false) labeledValues.add(address.city);
+    if (address.stateProvinceRegion?.isNotEmpty ?? false)
+      labeledValues.add(address.stateProvinceRegion);
+    if (address.postalCode?.isNotEmpty ?? false)
+      labeledValues.add(address.postalCode);
+
     return labeledValues;
   };
 
@@ -94,7 +81,7 @@ class AddressMetaFieldData extends MetaFormFieldData<Address> {
           initialValue: initialValue,
           fieldsData: _fieldsData(initialValue, isRequired ?? false),
           valueFromFieldsData: _valueFromFieldsData,
-          labeledValuesFromValue: _labeledValuesFromValue,
+          displayValues: _displayValues,
           isVisible: isVisible,
         );
 }

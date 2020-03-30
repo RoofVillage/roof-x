@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:form_body_builder/src/_components/fields/_widgets/index.dart';
 import 'package:haptics/index.dart';
 import 'package:key_value_row_builder/index.dart';
-import 'package:labeled_value/index.dart';
 import 'package:semantic_theme/index.dart';
 import 'package:tag_builder/index.dart';
 import 'package:x_small_icon_library/index.dart';
@@ -10,12 +9,12 @@ import 'package:x_small_icon_library/index.dart';
 class MetaFormField extends StatelessWidget
     with TagBuilder, KeyValueRowBuilder {
   final String title;
-  final List<LabeledValue<String>> labeledValues;
+  final List<String> displayValues;
   final VoidCallback onTap;
 
   MetaFormField({
     @required this.title,
-    this.labeledValues,
+    this.displayValues,
     this.onTap,
   });
 
@@ -25,38 +24,35 @@ class MetaFormField extends StatelessWidget
 
     final List<Widget> columnChildren = [];
 
-    final label = FieldLabel(labelText: title);
+    final label = Padding(
+      padding: EdgeInsets.only(
+        right: theme.distance.spacing.horizontal.small,
+      ),
+      child: FieldLabel(labelText: title),
+    );
 
-    if (labeledValues != null && labeledValues.isNotEmpty) {
-      columnChildren.add(label);
-
-      final rows = labeledValues
-          .map((labeledValue) => buildKeyValueRow(
-                context,
-                title: labeledValue.label ?? '',
-                value: labeledValue.value ?? '',
-                rightAlignValue: true,
-              ))
+    if (displayValues?.isNotEmpty ?? false) {
+      final texts = displayValues
+          .map(
+            (value) => Text(
+              value,
+              style: theme.typography.body.textStyle(
+                color: theme.color.text.inputActive,
+              ),
+              textAlign: TextAlign.right,
+            ),
+          )
           .toList();
-      columnChildren.addAll(rows);
+      columnChildren.addAll(texts);
     } else {
       final emptyText = Text(
         'Not set',
         style: theme.typography.body.textStyle(
           color: theme.color.text.inputPlaceholder,
         ),
+        textAlign: TextAlign.right,
       );
-      final row = Row(
-        children: [
-          Expanded(
-            child: label,
-          ),
-          emptyText
-        ],
-        crossAxisAlignment: CrossAxisAlignment.baseline,
-        textBaseline: TextBaseline.alphabetic,
-      );
-      columnChildren.add(row);
+      columnChildren.add(emptyText);
     }
 
     final rightArrow = Padding(
@@ -71,9 +67,10 @@ class MetaFormField extends StatelessWidget
     final fieldBody = Container(
       child: Row(
         children: [
+          label,
           Expanded(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.end,
               children: columnChildren,
             ),
           ),

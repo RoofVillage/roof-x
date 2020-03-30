@@ -1,7 +1,6 @@
 import 'package:dwolla_model/index.dart';
 import 'package:form/index.dart';
 import 'package:form/src/data/date_of_birth_field.dart';
-import 'package:labeled_value/index.dart';
 
 import 'meta_form_field.dart';
 
@@ -40,16 +39,19 @@ class BeneficialOwnerMetaFieldData extends MetaFormFieldData<BeneficialOwner> {
         _address(initialValue?.address, isRequired),
       ]);
   static final BeneficialOwner Function(List<StreamableFormFieldData<dynamic>>)
-      _valueFromFieldsData =
-      (List<StreamableFormFieldData<dynamic>> fieldsData) => BeneficialOwner(
+      _valueFromFieldsData = (
+    List<StreamableFormFieldData<dynamic>> fieldsData,
+  ) =>
+          BeneficialOwner(
             firstName: (fieldsData[0] as FormFirstNameTextFieldData)?.value,
             lastName: (fieldsData[1] as FormLastNameTextFieldData)?.value,
             ssn: (fieldsData[2] as FormFullSsnFieldData)?.value,
             dateOfBirth: (fieldsData[3] as FormDateOfBirthFieldData)?.value,
             address: (fieldsData[4] as AddressMetaFieldData)?.value,
           );
-  static final List<LabeledValue<String>> Function(BeneficialOwner)
-      _labeledValuesFromValue = (BeneficialOwner beneficialOwner) {
+          
+  static final List<String> Function(BeneficialOwner) _displayValues =
+      (BeneficialOwner beneficialOwner) {
     if (beneficialOwner?.firstName == null && beneficialOwner?.lastName == null)
       return [];
 
@@ -59,12 +61,7 @@ class BeneficialOwnerMetaFieldData extends MetaFormFieldData<BeneficialOwner> {
       nameString += beneficialOwner.lastName;
     }
 
-    return [
-      LabeledValue(
-        label: 'Name',
-        value: nameString,
-      )
-    ];
+    return [nameString];
   };
 
   BeneficialOwnerMetaFieldData({
@@ -76,7 +73,7 @@ class BeneficialOwnerMetaFieldData extends MetaFormFieldData<BeneficialOwner> {
           initialValue: initialValue,
           fieldsData: _fieldsData(initialValue, isRequired ?? false),
           valueFromFieldsData: _valueFromFieldsData,
-          labeledValuesFromValue: _labeledValuesFromValue,
+          displayValues: _displayValues,
           isVisible: isVisible,
         );
 }

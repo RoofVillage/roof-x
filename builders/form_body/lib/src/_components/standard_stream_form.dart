@@ -249,7 +249,7 @@ class StandardStreamForm
   }) =>
       MetaFormField(
         title: fieldData.title,
-        labeledValues: fieldData.labeledValues,
+        displayValues: fieldData.labeledValues,
         onTap: fieldData.onTap,
       );
 

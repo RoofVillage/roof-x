@@ -1,7 +1,6 @@
 import 'package:dwolla_model/index.dart';
 import 'package:form/index.dart';
 import 'package:form/src/data/date_of_birth_field.dart';
-import 'package:labeled_value/index.dart';
 
 import 'meta_form_field.dart';
 
@@ -51,8 +50,9 @@ class ControllerMetaFieldData extends MetaFormFieldData<Controller> {
             dateOfBirth: (fieldsData[3] as FormDateOfBirthFieldData)?.value,
             address: (fieldsData[4] as AddressMetaFieldData)?.value,
           );
-  static final List<LabeledValue<String>> Function(Controller)
-      _labeledValuesFromValue = (Controller controller) {
+  static final List<String> Function(Controller) _displayValues = (
+    Controller controller,
+  ) {
     if (controller?.firstName == null && controller?.lastName == null)
       return [];
 
@@ -62,12 +62,7 @@ class ControllerMetaFieldData extends MetaFormFieldData<Controller> {
       nameString += controller.lastName;
     }
 
-    return [
-      LabeledValue(
-        label: 'Name',
-        value: nameString,
-      )
-    ];
+    return [nameString];
   };
 
   ControllerMetaFieldData({
@@ -79,7 +74,7 @@ class ControllerMetaFieldData extends MetaFormFieldData<Controller> {
           initialValue: initialValue,
           fieldsData: _fieldsData(initialValue, isRequired ?? false),
           valueFromFieldsData: _valueFromFieldsData,
-          labeledValuesFromValue: _labeledValuesFromValue,
+          displayValues: _displayValues,
           isVisible: isVisible,
         );
 }
