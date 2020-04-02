@@ -1,7 +1,9 @@
+import 'package:button_builder/index.dart';
 import 'package:flutter/material.dart';
 import 'package:form/index.dart';
 import 'package:form_body_builder/src/_components/fields/interval_frequency_picker_field.dart';
 import 'package:form_body_builder/src/_components/fields/meta_form_field.dart';
+import 'package:form_body_builder/src/_components/removable_field_container.dart';
 import 'package:header_builder/index.dart';
 import 'package:labeled_icon/index.dart';
 import 'package:frequency/index.dart';
@@ -17,14 +19,17 @@ import 'fields/date_picker_field.dart';
 import 'fields/time_picker_field.dart';
 import 'fields/option_picker_field.dart';
 import 'fields/icon_picker_field.dart';
+import 'package:semantic_theme/index.dart';
 import 'fields/roller_column_picker_field.dart';
 import 'fields/tag_field.dart';
 
 enum KeyboardAccessoryState { hideKeyboard, submit }
 
-class StandardStreamForm
-    extends StreamForm<StreamableFormFieldData, StreamableFormSectionHeaderData>
-    with KeyboardAccessoryBarBuilder, SectionHeaderBuilder {
+class StandardStreamForm extends StreamForm
+    with
+        KeyboardAccessoryBarBuilder,
+        SectionHeaderBuilder,
+        SecondaryCenterButtonBuilder {
   static const _hideKeyboardTitle = "Hide keyboard";
   static const _doneKeyboardTitle = "Done";
 
@@ -153,24 +158,26 @@ class StandardStreamForm
     int fieldIndex,
     int sectionIndex,
   }) =>
-      OptionPickerField(
+      OptionPickerField<T>(
         title: fieldData.title,
         emptyText: fieldData.emptyText,
         isMultiSelect: fieldData.isMultiSelect,
-        selectedOptions: fieldData.selectedOptions?.map((option) {
-          return LabeledValue(
-            label: option.label,
-            value: option.value,
-          );
-        })?.toList(),
-        options: fieldData.options?.map(
-          (option) {
-            return LabeledValue(
-              label: option.label,
-              value: option.value,
-            );
-          },
-        )?.toList(),
+        selectedOptions: fieldData.selectedOptions
+            ?.map(
+              (option) => LabeledValue(
+                label: option.label,
+                value: option.value,
+              ),
+            )
+            ?.toList(),
+        options: fieldData.options
+            ?.map(
+              (option) => LabeledValue(
+                label: option.label,
+                value: option.value,
+              ),
+            )
+            ?.toList(),
         onTap: fieldData.onTap,
       );
 
@@ -253,20 +260,37 @@ class StandardStreamForm
         onTap: fieldData.onTap,
       );
 
-  @override
-  Widget buildFormSectionHeader({
+  Widget buildFormSectionHeader<T extends StreamableFormSectionHeaderData>({
     BuildContext context,
-    StreamableFormSectionHeaderData headerData,
+    T headerData,
     int sectionIndex,
   }) =>
       buildSectionHeader(
-        text: headerData.title,
+        title: headerData.title,
+        subtitle: headerData.subtitle,
       );
 
   @override
-  Widget buildField({
+  Widget buildFormSectionButton<T extends StreamableFormSectionButtonData>({
+    T buttonData,
+    int sectionIndex,
     BuildContext context,
-    StreamableFormFieldData fieldData,
+  }) =>
+      Padding(
+        padding: EdgeInsets.only(
+          top: SemanticTheme.of(context).distance.spacing.vertical.small,
+        ),
+        child: buildSecondaryCenterButton(
+          context,
+          onTap: buttonData.onTap,
+          text: buttonData.text,
+        ),
+      );
+
+  @override
+  Widget buildField<T extends StreamableFormFieldData>({
+    BuildContext context,
+    T fieldData,
     StreamableFormData formData,
     int fieldIndex,
     int sectionIndex,
@@ -346,9 +370,14 @@ class StandardStreamForm
       );
     }
 
-    return FieldContainer(
-      child: fieldBody,
-    );
+    return fieldData.isRemovable
+        ? RemovableFieldContainer(
+            child: fieldBody,
+            onRemove: () => bloc.removeFieldData(fieldData),
+          )
+        : FieldContainer(
+            child: fieldBody,
+          );
   }
 
   void resignFocus(BuildContext context) {

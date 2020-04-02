@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:form/index.dart';
 import 'package:stream/index.dart';
 import 'package:typedefs/index.dart';
 
@@ -47,7 +48,6 @@ class StreamFormBloc extends BlocBase {
   }
 
   void updateFieldData(StreamableFormFieldData fieldData) {
-    print('update field ${fieldData.value}');
     _formData.updateFieldData(fieldData);
     update(_formData);
   }
@@ -188,6 +188,13 @@ class StreamFormBloc extends BlocBase {
     _formData.removeFieldData(fieldData);
 
     //Post a message that the form changed.
+    _inForm.add(_formData);
+  }
+
+  void batchRemoveFieldData(List<StreamableFormFieldData> fieldData) {
+    for (final _data in fieldData) {
+      _formData.removeFieldData(_data);
+    }
     _inForm.add(_formData);
   }
 

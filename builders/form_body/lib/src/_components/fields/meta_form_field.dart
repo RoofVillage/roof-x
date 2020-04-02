@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:form_body_builder/src/_components/fields/_widgets/index.dart';
 import 'package:haptics/index.dart';
-import 'package:key_value_row_builder/index.dart';
 import 'package:semantic_theme/index.dart';
 import 'package:tag_builder/index.dart';
 import 'package:x_small_icon_library/index.dart';
 
 class MetaFormField extends StatelessWidget
-    with TagBuilder, KeyValueRowBuilder {
+    with TagBuilder {
   final String title;
   final List<String> displayValues;
   final VoidCallback onTap;

@@ -331,12 +331,14 @@ mixin FormBodyBuilder implements StatefulWidget {
     @required MetaFormFieldData data,
   }) {
     data.addOnTapListener(() async {
+      print('tap');
       final artboard = buildMetaForm(
         context,
         title: data.title,
         fieldsData: data.fieldsData,
         valueFromFieldsData: data.valueFromFieldsData,
       );
+      print('artboard $artboard');
       final newFormResult = await goTo(
         context: context,
         artboard: artboard,

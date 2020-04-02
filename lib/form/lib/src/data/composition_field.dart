@@ -33,6 +33,7 @@ abstract class FormCompositionFieldData
     String initialValue,
     double size,
     bool isVisible,
+    bool isRemovable,
     String exceptionTitle,
   })  : autofocus = autofocus ?? false,
         placeholder = placeholder ?? "",
@@ -43,6 +44,7 @@ abstract class FormCompositionFieldData
           title: title,
           initialValue: initialValue ?? "",
           size: size,
+          isRemovable: isRemovable,
           isVisible: isVisible,
         );
 

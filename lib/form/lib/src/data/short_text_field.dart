@@ -11,6 +11,7 @@ class FormShortTextFieldData extends FormTextFieldData {
     bool isVisible,
     bool autofocus,
     bool isRequired,
+    bool isRemovable,
     String exceptionTitle,
   }) : super(
           title: title,
@@ -21,6 +22,7 @@ class FormShortTextFieldData extends FormTextFieldData {
           isVisible: isVisible,
           max: _shortTextFieldMaxLength,
           min: isRequired == true ? 1 : null,
+          isRemovable: isRemovable,
           exceptionTitle: exceptionTitle,
         );
 }

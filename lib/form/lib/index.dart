@@ -5,6 +5,7 @@ export 'src/data/field.dart';
 export 'src/data/section.dart';
 export 'src/data/form.dart';
 export 'src/data/section_header.dart';
+export 'src/data/section_button.dart';
 export 'src/data/option_picker_field.dart';
 export 'src/data/icon_option_picker_field.dart';
 export 'src/data/property_icon_option_picker_field.dart';

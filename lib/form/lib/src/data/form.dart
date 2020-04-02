@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:form/index.dart';
 import 'package:stream/index.dart';
 
 import 'section.dart';
@@ -197,7 +198,11 @@ class StreamableFormData extends StreamableData {
     @required int index,
     StreamableFormSectionData sectionData,
   }) {
-    this.sectionData.replaceRange(index, index + 1, [sectionData]);
+    this.sectionData.replaceRange(
+      index,
+      index + 1,
+      [sectionData],
+    );
   }
 
   void _addFieldDataAt(
@@ -207,7 +212,9 @@ class StreamableFormData extends StreamableData {
     if (formLocation.fieldIndex < 0) return;
     final sectionData = this.sectionData[formLocation.sectionIndex];
     sectionData.addFieldData(
-        fieldData: fieldData, index: formLocation.fieldIndex);
+      fieldData: fieldData,
+      index: formLocation.fieldIndex,
+    );
   }
 
   void _batchAddFieldDataAt(
@@ -217,7 +224,9 @@ class StreamableFormData extends StreamableData {
     if (formLocation.fieldIndex < 0) return;
     final sectionData = this.sectionData[formLocation.sectionIndex];
     sectionData.batchAddFieldData(
-        fieldData: fieldData, index: formLocation.fieldIndex);
+      fieldData: fieldData,
+      index: formLocation.fieldIndex,
+    );
   }
 
   void _addSectionDataAt(

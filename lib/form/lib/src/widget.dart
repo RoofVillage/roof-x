@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:form/src/data/section_button.dart';
 import 'package:stream/index.dart';
 
 import 'bloc.dart';
@@ -10,6 +11,7 @@ import 'data/form.dart';
 class StreamFormBuilder<T extends StreamFormBloc> extends StatelessWidget {
   final _FieldBuilder buildField;
   final _FormSectionHeaderBuilder buildSectionHeader;
+  final _FormSectionButtonBuilder buildSectionButton;
 
   Widget get _empty => Container();
 
@@ -17,6 +19,7 @@ class StreamFormBuilder<T extends StreamFormBloc> extends StatelessWidget {
     Key key,
     @required this.buildField,
     this.buildSectionHeader,
+    this.buildSectionButton,
   }) : super(key: key);
 
   Widget build(BuildContext context) {
@@ -30,7 +33,6 @@ class StreamFormBuilder<T extends StreamFormBloc> extends StatelessWidget {
           );
 
         return _createForm(
-          bloc: formBloc,
           context: context,
           formData: snapshot.data,
         );
@@ -39,7 +41,6 @@ class StreamFormBuilder<T extends StreamFormBloc> extends StatelessWidget {
   }
 
   Widget _createForm({
-    @required T bloc,
     @required BuildContext context,
     @required StreamableFormData formData,
   }) {
@@ -65,6 +66,14 @@ class StreamFormBuilder<T extends StreamFormBloc> extends StatelessWidget {
       );
 
       rows.addAll(sectionRows);
+
+      final sectionButton = _createSectionButton(
+        sectionData: sectionData,
+        sectionIndex: i,
+        context: context,
+      );
+
+      rows.add(sectionButton);
     }
 
     final form = Column(
@@ -81,13 +90,31 @@ class StreamFormBuilder<T extends StreamFormBloc> extends StatelessWidget {
     @required BuildContext context,
   }) {
     final shouldShowSectionHeader = sectionData.headerData != null &&
-        sectionData.fieldData.isNotEmpty &&
+        (sectionData.fieldData.isNotEmpty || sectionData.buttonData != null) &&
         buildSectionHeader != null;
 
     if (!shouldShowSectionHeader) return _empty;
 
     return buildSectionHeader(
           headerData: sectionData.headerData,
+          sectionIndex: sectionIndex,
+          context: context,
+        ) ??
+        _empty;
+  }
+
+  Widget _createSectionButton({
+    @required StreamableFormSectionData sectionData,
+    @required int sectionIndex,
+    @required BuildContext context,
+  }) {
+    final shouldShowSectionButton =
+        sectionData.buttonData != null && buildSectionButton != null;
+
+    if (!shouldShowSectionButton) return _empty;
+
+    return buildSectionButton(
+          buttonData: sectionData.buttonData,
           sectionIndex: sectionIndex,
           context: context,
         ) ??
@@ -164,14 +191,14 @@ class StreamFormBuilder<T extends StreamFormBloc> extends StatelessWidget {
     );
   }
 
-  Widget _createField({
-    @required StreamableFormFieldData fieldData,
+  Widget _createField<T extends StreamableFormFieldData>({
+    @required T fieldData,
     @required StreamableFormData formData,
     @required int fieldIndex,
     @required int sectionIndex,
     @required BuildContext context,
   }) {
-    final field = buildField(
+    final field = buildField<T>(
           fieldData: fieldData,
           formData: formData,
           fieldIndex: fieldIndex,
@@ -190,8 +217,8 @@ class StreamFormBuilder<T extends StreamFormBloc> extends StatelessWidget {
   }
 }
 
-typedef _FieldBuilder = Widget Function({
-  @required StreamableFormFieldData fieldData,
+typedef _FieldBuilder = Widget Function<T extends StreamableFormFieldData>({
+  @required T fieldData,
   @required StreamableFormData formData,
   @required int fieldIndex,
   @required int sectionIndex,
@@ -200,6 +227,12 @@ typedef _FieldBuilder = Widget Function({
 
 typedef _FormSectionHeaderBuilder = Widget Function({
   @required StreamableFormSectionHeaderData headerData,
+  @required int sectionIndex,
+  @required BuildContext context,
+});
+
+typedef _FormSectionButtonBuilder = Widget Function({
+  @required StreamableFormSectionButtonData buttonData,
   @required int sectionIndex,
   @required BuildContext context,
 });

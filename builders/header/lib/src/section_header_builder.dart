@@ -4,13 +4,15 @@ import '_components/section_header.dart';
 
 mixin SectionHeaderBuilder {
   SectionHeader buildSectionHeader({
-    @required String text,
+    @required String title,
+    String subtitle,
     double horizontalGutter,
-    bool isNewSection,
+    bool withPadding,
   }) =>
       SectionHeader(
-        text: text,
+        title: title,
+        subtitle: subtitle,
         horizontalGutter: horizontalGutter,
-        isNewSection: isNewSection,
+        withPadding: withPadding,
       );
 }

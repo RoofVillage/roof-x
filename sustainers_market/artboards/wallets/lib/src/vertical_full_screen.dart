@@ -94,9 +94,8 @@ class WalletsVerticalFullscreenArtboard
           empty: SliverToBoxAdapter(child: Text('empty')),
           child: (context, RecentTransfersView snapshot) {
         final header = buildSectionHeader(
-          text: 'Recent',
+          title: 'Recent',
           horizontalGutter: horizontalGutter(context),
-          isNewSection: true,
         );
 
         final cells = snapshot.transfers

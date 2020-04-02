@@ -25,11 +25,21 @@ mixin VerifyBusinessWalletArtboardData implements FormBuilder {
       ),
       StreamableFormSectionData(
         headerData: StreamableFormSectionHeaderData(
-          title: 'Beneficial Owner',
+          title: 'Beneficial Owners',
+          subtitle:
+              'Provide information for anyone who owns at least 25% of this business.',
         ),
         fieldData: [
-          _hasBeneficialOwner,
+          _hasNoBeneficialOwner,
+          _beneficialOwnerField(removable: true),
         ],
+        buttonData: StreamableFormSectionButtonData(
+          text: 'Add',
+          onTap: () => form.insertFieldData(
+            _beneficialOwnerField(removable: true),
+            after: form.formData.sectionData.last.fieldData.last,
+          ),
+        ),
       )
     ];
   }
@@ -44,12 +54,24 @@ mixin VerifyBusinessWalletArtboardData implements FormBuilder {
     BuildContext context, {
     List<StreamableFormFieldData> fieldData,
   }) =>
-      _hasBeneficialOwner.addOnChangedListener(_toggleBeneficialOwnerField);
+      _hasNoBeneficialOwner.addOnChangedListener(_toggleBeneficialOwnerField);
 
-  void _toggleBeneficialOwnerField(bool hasBeneficialOwner) =>
-      hasBeneficialOwner
-          ? form.insertFieldData(_beneficialOwner, after: _hasBeneficialOwner)
-          : form.removeFieldData(_beneficialOwner);
+  void _toggleBeneficialOwnerField(bool hasNoBeneficialOwner) {
+    if (hasNoBeneficialOwner) {
+      form.batchRemoveFieldData(
+        form.formData.sectionData.last.fieldData
+            .where(
+              (fieldData) => fieldData != _hasNoBeneficialOwner,
+            )
+            .toList(),
+      );
+    }
+  }
+
+  _beneficialOwnerField({bool removable}) => BeneficialOwnerMetaFieldData(
+        isRequired: true,
+        isRemovable: removable ?? false,
+      );
 
   static final _firstName = FormFirstNameTextFieldData(
     isRequired: true,
@@ -71,10 +93,7 @@ mixin VerifyBusinessWalletArtboardData implements FormBuilder {
   final _controller = ControllerMetaFieldData(
     isRequired: true,
   );
-  final _hasBeneficialOwner = FormSwitchFieldData(
-    title: 'At least one person owns 25% or more of this business',
-  );
-  final _beneficialOwner = BeneficialOwnerMetaFieldData(
-    isRequired: true,
+  final _hasNoBeneficialOwner = FormSwitchFieldData(
+    title: 'No single person owns 25% or more of this business',
   );
 }

@@ -18,6 +18,7 @@ class MetaFormFieldData<T> extends StreamableFormFieldData<T>
     String title,
     double size,
     bool isVisible,
+    bool isRemovable,
     bool isEnabled,
   })  : _displayValues = displayValues,
         super(
@@ -26,6 +27,7 @@ class MetaFormFieldData<T> extends StreamableFormFieldData<T>
           isVisible: isVisible,
           initialValue: initialValue,
           isEnabled: isEnabled,
+          isRemovable: isRemovable,
         );
 
   get labeledValues => _displayValues(value);

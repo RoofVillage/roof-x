@@ -67,6 +67,7 @@ class BeneficialOwnerMetaFieldData extends MetaFormFieldData<BeneficialOwner> {
   BeneficialOwnerMetaFieldData({
     BeneficialOwner initialValue,
     bool isRequired,
+    bool isRemovable,
     bool isVisible,
   }) : super(
           title: 'Beneficial Owner',
@@ -75,5 +76,6 @@ class BeneficialOwnerMetaFieldData extends MetaFormFieldData<BeneficialOwner> {
           valueFromFieldsData: _valueFromFieldsData,
           displayValues: _displayValues,
           isVisible: isVisible,
+          isRemovable: isRemovable,
         );
 }

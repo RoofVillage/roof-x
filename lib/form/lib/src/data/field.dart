@@ -6,6 +6,7 @@ import 'package:stream/index.dart';
 abstract class StreamableFormFieldData<T> extends StreamableData {
   final double size;
   final String title;
+  final bool isRemovable;
 
   ValueChanged<T> get onChanged => (value) {
         for (final listener in _onChangedListeners) listener(value);
@@ -39,10 +40,12 @@ abstract class StreamableFormFieldData<T> extends StreamableData {
   StreamableFormFieldData({
     @required this.title,
     T initialValue,
+    bool isRemovable,
     double size,
     bool isEnabled,
     bool isVisible,
   })  : size = size ?? 1,
+        isRemovable = isRemovable ?? false,
         isEnabled = isEnabled ?? true,
         value = initialValue,
         _isInFocus = false,
