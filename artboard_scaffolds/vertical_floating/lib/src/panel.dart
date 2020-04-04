@@ -116,23 +116,26 @@ class InheritedVerticalFloatingArtboardNavigatorPanel<T>
       left: 0,
       right: 0,
       bottom: 0,
-      child: Container(
-        padding: EdgeInsets.symmetric(
-          horizontal: theme.distance.gutter.horizontal.medium,
-        ),
-        decoration: BoxDecoration(
-          color: theme.color.background.general,
-          border: Border(
-            top: BorderSide(
-              color: theme.color.stroke.light,
+      child: GestureDetector(
+        onTap: () => null, // block onTap from propagating to parent
+        child: Container(
+          padding: EdgeInsets.symmetric(
+            horizontal: theme.distance.gutter.horizontal.medium,
+          ),
+          decoration: BoxDecoration(
+            color: theme.color.background.general,
+            border: Border(
+              top: BorderSide(
+                color: theme.color.stroke.light,
+              ),
             ),
           ),
-        ),
-        child: Column(
-          crossAxisAlignment: crossAxisAlignment,
-          children: [
-            _navButton(context),
-          ],
+          child: Column(
+            crossAxisAlignment: crossAxisAlignment,
+            children: [
+              _navButton(context),
+            ],
+          ),
         ),
       ),
     );

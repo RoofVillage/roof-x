@@ -25,8 +25,8 @@ class VerticalFloatingRoute<T> extends ModalRoute<T> {
 
   @override
   Animation<double> get animation => CurvedAnimation(
-        curve: theme.curve.hurried,
-        reverseCurve: theme.curve.hurried,
+        curve: theme.curve.enter,
+        reverseCurve: theme.curve.exit,
         parent: controller,
       );
 
