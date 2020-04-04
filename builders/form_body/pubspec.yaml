@@ -170,6 +170,10 @@ dependency_overrides:
     path: ../header
   haptics:
     path: ../../lib/haptics
+  button_builder:
+    path: ../../builders/button
+  vertically_centered_text_builder:
+    path: ../../builders/vertically_centered_text
   key_value_row_builder:
     path: ../key_value_row
   meta_form_artboard_builder:
@@ -182,6 +186,8 @@ dependency_overrides:
     path: ../../types/dwolla
   form:
     path: ../../lib/form
+  tappable:
+    path: ../../lib/tappable
   form_submission_exception:
     path: ../../lib/form_submission_exception
   semantic_theme:

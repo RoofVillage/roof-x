@@ -5,7 +5,7 @@ import 'package:stream/index.dart';
 class StreamableFormSectionButtonData extends StreamableData {
   final String text;
   final SmallIcon icon;
-  final VoidCallback onTap;
+  final void Function() onTap;
 
   StreamableFormSectionButtonData({
     @required this.text,

@@ -10,6 +10,9 @@ import '_utils/location.dart';
 class StreamableFormData extends StreamableData {
   final List<StreamableFormSectionData> sectionData;
   final Widget submitKeyboardAccessory;
+  final double sectionVerticalSpacing;
+  final double fieldVerticalSpacing;
+  final double fieldHorizontalSpacing;
   final canSubmitWithKeyboardRaised;
 
   List<StreamableFormFieldData> get fieldData => sectionData
@@ -20,23 +23,25 @@ class StreamableFormData extends StreamableData {
 
   StreamableFormData({
     this.sectionData,
+    this.fieldHorizontalSpacing,
+    this.fieldVerticalSpacing,
     this.submitKeyboardAccessory,
+    this.sectionVerticalSpacing,
     this.canSubmitWithKeyboardRaised,
   });
 
   StreamableFormData.withFields({
     List<StreamableFormFieldData> fieldData,
-    double fieldHorizontalSpacing,
-    bool canSubmitWithKeyboardRaised,
-    Widget submitKeyboardAccessory,
-  })  : sectionData = [
+    this.fieldHorizontalSpacing,
+    this.fieldVerticalSpacing,
+    this.sectionVerticalSpacing,
+    this.canSubmitWithKeyboardRaised,
+    this.submitKeyboardAccessory,
+  }) : sectionData = [
           StreamableFormSectionData(
             fieldData: fieldData ?? [],
-            fieldHorizontalSpacing: fieldHorizontalSpacing ?? 0,
           )
-        ],
-        canSubmitWithKeyboardRaised = canSubmitWithKeyboardRaised,
-        submitKeyboardAccessory = submitKeyboardAccessory;
+        ];
 
   void updateFieldData(StreamableFormFieldData fieldData) {
     final formLocation = formLocationOfFieldData(fieldData);

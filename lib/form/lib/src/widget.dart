@@ -50,6 +50,12 @@ class StreamFormBuilder<T extends StreamFormBloc> extends StatelessWidget {
     for (var i = 0; i < formData.sectionData.length; i++) {
       final sectionData = formData.sectionData[i];
 
+      if (i > 0) {
+        rows.add(
+          Container(height: formData.sectionVerticalSpacing),
+        );
+      }
+
       final sectionHeader = _createSectionHeader(
         sectionData: sectionData,
         sectionIndex: i,
@@ -132,8 +138,12 @@ class StreamFormBuilder<T extends StreamFormBloc> extends StatelessWidget {
     double percentRowFilled = 0;
     var rowChildren = <Widget>[];
 
-    final spacing = sectionData.fieldHorizontalSpacing;
-    final space = Container(width: spacing);
+    final horizontalSpacer = Container(
+      width: formData.fieldHorizontalSpacing,
+    );
+    final verticalSpacer = Container(
+      height: formData.fieldVerticalSpacing,
+    );
 
     for (var i = 0; i < sectionData.fieldData.length; i++) {
       final fieldData = sectionData.fieldData[i];
@@ -150,7 +160,7 @@ class StreamFormBuilder<T extends StreamFormBloc> extends StatelessWidget {
       double percentRowWillFill = percentRowFilled + fieldData.fieldSize;
 
       if (percentRowWillFill <= 1) {
-        if (percentRowFilled > 0) rowChildren.add(space);
+        if (percentRowFilled > 0) rowChildren.add(horizontalSpacer);
         rowChildren.add(field);
 
         if (percentRowWillFill == 1) {
@@ -177,6 +187,14 @@ class StreamFormBuilder<T extends StreamFormBloc> extends StatelessWidget {
 
         final row = Row(children: rowChildren);
         rows.add(row);
+      } else {
+        rows.add(
+          Row(
+            children: [
+              verticalSpacer,
+            ],
+          ),
+        );
       }
     }
 

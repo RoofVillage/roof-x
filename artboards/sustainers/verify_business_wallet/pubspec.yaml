@@ -67,6 +67,10 @@ dependency_overrides:
     path: ../../../lib/form
   form_builder:
     path: ../../../builders/form
+  header_builder:
+    path: ../../../builders/header
+  form_body_builder:
+    path: ../../../builders/form_body
   us_state_options:
     path: ../../../types/us_state
   spaced_column_builder:

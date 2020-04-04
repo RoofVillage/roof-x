@@ -1,0 +1,1 @@
+const double minFieldHeight = 55;

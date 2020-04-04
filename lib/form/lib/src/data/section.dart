@@ -6,7 +6,6 @@ import 'field.dart';
 import 'section_header.dart';
 
 class StreamableFormSectionData extends StreamableData {
-  final double fieldHorizontalSpacing;
   final StreamableFormSectionHeaderData headerData;
 
   final List<StreamableFormFieldData> fieldData;
@@ -16,7 +15,6 @@ class StreamableFormSectionData extends StreamableData {
     this.headerData,
     this.fieldData,
     this.buttonData,
-    this.fieldHorizontalSpacing,
   });
 
   void replace({
@@ -59,14 +57,11 @@ class StreamableFormSectionData extends StreamableData {
   }
 
   void removeFieldDataAtIndex(int index) {
-    print('removeFieldDataAtIndex $index');
     fieldData[index].isVisible = false;
-    this.fieldData.forEach((data) => print('data for field ${data.value}'));
     this.fieldData.removeAt(index);
   }
 
   int indexOfFieldData(StreamableFormFieldData fieldData) {
-    print('indexOfFieldData ${this.fieldData} $fieldData');
     final dataIndex = this.fieldData.indexWhere(
           (row) => row.key == fieldData.key,
         );

@@ -70,7 +70,7 @@ class BeneficialOwnerMetaFieldData extends MetaFormFieldData<BeneficialOwner> {
     bool isRemovable,
     bool isVisible,
   }) : super(
-          title: 'Beneficial Owner',
+          title: 'Business Owner',
           initialValue: initialValue,
           fieldsData: _fieldsData(initialValue, isRequired ?? false),
           valueFromFieldsData: _valueFromFieldsData,

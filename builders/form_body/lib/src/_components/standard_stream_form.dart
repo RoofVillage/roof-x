@@ -268,6 +268,7 @@ class StandardStreamForm extends StreamForm
       buildSectionHeader(
         title: headerData.title,
         subtitle: headerData.subtitle,
+        withPadding: false,
       );
 
   @override

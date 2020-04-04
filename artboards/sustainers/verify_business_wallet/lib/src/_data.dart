@@ -3,8 +3,16 @@ import 'package:form_builder/index.dart';
 
 mixin VerifyBusinessWalletArtboardData implements FormBuilder {
   @override
-  get initialSectionData async {
-    return [
+  Future<List<StreamableFormSectionData>> buildInitialSectionData(
+    BuildContext context,
+  ) async =>
+      [
+        _businessInfoSection,
+        _controllerSection,
+        _beneficialOwnerSection(context),
+      ];
+
+  StreamableFormSectionData get _businessInfoSection =>
       StreamableFormSectionData(
         fieldData: [
           _firstName,
@@ -14,64 +22,55 @@ mixin VerifyBusinessWalletArtboardData implements FormBuilder {
           _dob,
           _ein,
         ],
-      ),
-      StreamableFormSectionData(
+      );
+
+  StreamableFormSectionData get _controllerSection => StreamableFormSectionData(
         headerData: StreamableFormSectionHeaderData(
-          title: 'Businesss Controller',
+          title: 'Business Controller',
+          subtitle: 'Someone with the responsibility to manage or direct this business.'
         ),
         fieldData: [
           _controller,
         ],
-      ),
+      );
+
+  StreamableFormSectionData _beneficialOwnerSection(BuildContext context) =>
       StreamableFormSectionData(
         headerData: StreamableFormSectionHeaderData(
-          title: 'Beneficial Owners',
+          title: 'Business Owners',
           subtitle:
-              'Provide information for anyone who owns at least 25% of this business.',
+              'Add information for every individual who owns at least 25% of this business.',
         ),
         fieldData: [
-          _hasNoBeneficialOwner,
-          _beneficialOwnerField(removable: true),
+          BeneficialOwnerMetaFieldData(),
         ],
         buttonData: StreamableFormSectionButtonData(
-          text: 'Add',
+          text: 'Add another',
           onTap: () => form.insertFieldData(
-            _beneficialOwnerField(removable: true),
+            _beneficialOwnerField(context, removable: true),
             after: form.formData.sectionData.last.fieldData.last,
           ),
         ),
-      )
-    ];
+      );
+
+  BeneficialOwnerMetaFieldData _beneficialOwnerField(
+    BuildContext context, {
+    bool removable,
+  }) {
+    final field = BeneficialOwnerMetaFieldData(
+      isRequired: true,
+      isRemovable: removable ?? false,
+    );
+
+    setupFieldDataOnTapListeners(context, fieldData: [field]);
+
+    return field;
   }
 
   Future<void> submit(BuildContext context) {
     // TODO: implement submit
     return null;
   }
-
-  @override
-  void setupFields(
-    BuildContext context, {
-    List<StreamableFormFieldData> fieldData,
-  }) =>
-      _hasNoBeneficialOwner.addOnChangedListener(_toggleBeneficialOwnerField);
-
-  void _toggleBeneficialOwnerField(bool hasNoBeneficialOwner) {
-    if (hasNoBeneficialOwner) {
-      form.batchRemoveFieldData(
-        form.formData.sectionData.last.fieldData
-            .where(
-              (fieldData) => fieldData != _hasNoBeneficialOwner,
-            )
-            .toList(),
-      );
-    }
-  }
-
-  _beneficialOwnerField({bool removable}) => BeneficialOwnerMetaFieldData(
-        isRequired: true,
-        isRemovable: removable ?? false,
-      );
 
   static final _firstName = FormFirstNameTextFieldData(
     isRequired: true,
@@ -92,8 +91,5 @@ mixin VerifyBusinessWalletArtboardData implements FormBuilder {
   );
   final _controller = ControllerMetaFieldData(
     isRequired: true,
-  );
-  final _hasNoBeneficialOwner = FormSwitchFieldData(
-    title: 'No single person owns 25% or more of this business',
   );
 }

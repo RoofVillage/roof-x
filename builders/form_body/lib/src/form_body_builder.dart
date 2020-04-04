@@ -19,23 +19,34 @@ import 'package:artboard/index.dart';
 import 'package:period_type/index.dart';
 import 'package:tag_editor_builder/index.dart';
 import 'package:meta_form_artboard_builder/index.dart';
+import 'package:semantic_theme/index.dart';
 import '_components/keyboard_accessory_buttons/index.dart';
 import '_components/standard_stream_form.dart';
 import 'form_status.dart';
 
 mixin FormBodyBuilder implements StatefulWidget {
+  /// Use buildInitialFieldData
+  @deprecated
   Future<List<StreamableFormFieldData>> get initialFieldData async =>
       Future.value([]);
 
+  Future<List<StreamableFormFieldData>> buildInitialFieldData(
+          BuildContext context) async =>
+      Future.value([]);
+
+  /// Use buildInitialSectionData
+  @deprecated
   Future<List<StreamableFormSectionData>> get initialSectionData async =>
+      Future.value([]);
+
+  Future<List<StreamableFormSectionData>> buildInitialSectionData(
+          BuildContext context) async =>
       Future.value([]);
 
   Future<StreamableFormData> get initialFormData => null;
 
   String get submitButtonText;
   bool get canSubmitWithKeyboardRaised => true;
-
-  double get fieldHorizontalSpacing => 1.0;
 
   StreamFormBloc get form => _form.bloc;
 
@@ -115,29 +126,44 @@ mixin FormBodyBuilder implements StatefulWidget {
     @required bool isInFocus,
   });
 
-  void _setup(
+  void setupFieldDataOnTapListeners(
     BuildContext context, {
     @required List<StreamableFormFieldData> fieldData,
   }) async {
     for (final data in fieldData) {
       if (data is FormDatePickerFieldData)
-        _setupDateFieldData(context, data: data);
+        data.addOnTapListener(
+          _dateFieldOnTap(context, data),
+        );
       if (data is FormOptionPickerFieldData)
-        _setupOptionPickerFieldData(context, data: data);
+        data.addOnTapListener(
+          _optionPickerFieldOnTap(context, data),
+        );
       if (data is FormIconPickerFieldData)
-        _setupIconPickerFieldData(context, data: data);
+        data.addOnTapListener(
+          _iconPickerFieldOnTap(context, data),
+        );
       if (data is FormTimePickerFieldData)
-        _setupTimePickerFieldData(context, data: data);
+        data.addOnTapListener(
+          _timePickerFieldOnTap(context, data),
+        );
       if (data is FormIntervalFrequencyPickerFieldData)
-        _setupIntervalFrequencyPickerFieldData(context, data: data);
+        data.addOnTapListener(
+          _intervalFrequencyPickerFieldOnTap(context, data),
+        );
       if (data is FormRollerColumnPickerFieldData)
-        _setupRollerColumnPickerFieldData(context, data: data);
+        data.addOnTapListener(
+          _rollerColumnPickerFieldOnTap(context, data),
+        );
+      if (data is FormTagFieldData)
+        data.addOnTapListener(
+          _tagFieldOnTap(context, data),
+        );
       if (data is MetaFormFieldData)
-        _setupMetaFormFieldData(context, data: data);
-      if (data is FormTagFieldData) _setupTagFieldData(context, data: data);
+        data.addOnTapListener(
+          _metaFormFieldOnTap(context, data),
+        );
     }
-
-    setupFields(context, fieldData: fieldData);
   }
 
   Future<void> _validateFields() async {
@@ -152,202 +178,192 @@ mixin FormBodyBuilder implements StatefulWidget {
     );
   }
 
-  void _setupDateFieldData(
-    BuildContext context, {
-    @required FormDatePickerFieldData data,
-  }) {
-    data.addOnTapListener(() async {
-      final artboard = buildDatePicker(
-        context,
-        selectedDate: data.value,
-      );
-      final time = await goTo<Date>(
-        context: context,
-        artboard: artboard,
-      );
-      if (time == null) return;
-      data.value = time;
-      form.updateFieldData(data);
-    });
-  }
+  Function _dateFieldOnTap(
+    BuildContext context,
+    FormDatePickerFieldData data,
+  ) =>
+      () async {
+        final artboard = buildDatePicker(
+          context,
+          selectedDate: data.value,
+        );
+        final time = await goTo<Date>(
+          context: context,
+          artboard: artboard,
+        );
+        if (time == null) return;
+        data.value = time;
+        form.updateFieldData(data);
+      };
 
-  void _setupIconPickerFieldData(
-    BuildContext context, {
-    @required FormIconPickerFieldData data,
-  }) {
-    data.addOnTapListener(() async {
-      final artboard = buildIconPicker(
-        context,
-        title: data.title,
-        options: data.options
+  Function _optionPickerFieldOnTap<T>(
+    BuildContext context,
+    FormOptionPickerFieldData data,
+  ) =>
+      () async {
+        final convertedOptions = data.options
+            ?.map((option) => LabeledValue(
+                  label: option.label,
+                  value: option.value,
+                ))
+            ?.toList();
+        final convertedSelectedOptions = data.selectedOptions
+            ?.map((option) => LabeledValue(
+                  label: option.label,
+                  value: option.value,
+                ))
+            ?.toList();
+        final artboard = buildOptionPicker(
+          context,
+          title: data.title,
+          selectedOptions: convertedSelectedOptions,
+          options: convertedOptions,
+        );
+        final newSelectedOptions = await goTo<List<LabeledValue>>(
+          context: context,
+          artboard: artboard,
+        );
+        if (newSelectedOptions == null) return;
+        data.selectedOptions = newSelectedOptions
             .map(
-              (option) => LabeledIcon(icon: option.icon),
+              (option) => FormLabeledValue(
+                label: option.label,
+                value: option.value,
+              ),
             )
-            .toList(),
-        selectedOption: data.selectedOption != null
-            ? LabeledIcon(icon: data.selectedOption.icon)
-            : null,
-      );
-      final newSelectedOption = await goTo<LabeledIcon>(
-        context: context,
-        artboard: artboard,
-      );
-      if (newSelectedOption == null) return;
-      data.selectedOption = FormLabeledIcon(
-        icon: newSelectedOption.icon,
-      );
-      form.updateFieldData(data);
-    });
-  }
+            .toList();
+        form.updateFieldData(data);
+      };
 
-  void _setupOptionPickerFieldData<T>(
-    BuildContext context, {
-    @required FormOptionPickerFieldData data,
-  }) {
-    data.addOnTapListener(() async {
-      final convertedOptions = data.options
-          ?.map((option) => LabeledValue(
-                label: option.label,
-                value: option.value,
-              ))
-          ?.toList();
-      final convertedSelectedOptions = data.selectedOptions
-          ?.map((option) => LabeledValue(
-                label: option.label,
-                value: option.value,
-              ))
-          ?.toList();
-      final artboard = buildOptionPicker(
-        context,
-        title: data.title,
-        selectedOptions: convertedSelectedOptions,
-        options: convertedOptions,
-      );
-      final newSelectedOptions = await goTo<List<LabeledValue>>(
-        context: context,
-        artboard: artboard,
-      );
-      if (newSelectedOptions == null) return;
-      data.selectedOptions = newSelectedOptions
-          .map(
-            (option) => FormLabeledValue(
-              label: option.label,
-              value: option.value,
-            ),
-          )
-          .toList();
-      form.updateFieldData(data);
-    });
-  }
+  Function _iconPickerFieldOnTap(
+    BuildContext context,
+    FormIconPickerFieldData data,
+  ) =>
+      () async {
+        final artboard = buildIconPicker(
+          context,
+          title: data.title,
+          options: data.options
+              .map(
+                (option) => LabeledIcon(icon: option.icon),
+              )
+              .toList(),
+          selectedOption: data.selectedOption != null
+              ? LabeledIcon(icon: data.selectedOption.icon)
+              : null,
+        );
+        final newSelectedOption = await goTo<LabeledIcon>(
+          context: context,
+          artboard: artboard,
+        );
+        if (newSelectedOption == null) return;
+        data.selectedOption = FormLabeledIcon(
+          icon: newSelectedOption.icon,
+        );
+        form.updateFieldData(data);
+      };
 
-  void _setupTimePickerFieldData(
-    BuildContext context, {
-    @required FormTimePickerFieldData data,
-  }) {
-    data.addOnTapListener(() async {
-      final artboard = buildTimePicker(
-        context,
-        selectedTime: data.value,
-      );
-      final newSelectedTime = await goTo<TimeOfDay>(
-        context: context,
-        artboard: artboard,
-      );
-      if (newSelectedTime == null) return;
-      data.value = newSelectedTime;
-      form.updateFieldData(data);
-    });
-  }
+  Function _timePickerFieldOnTap(
+    BuildContext context,
+    FormTimePickerFieldData data,
+  ) =>
+      () async {
+        final artboard = buildTimePicker(
+          context,
+          selectedTime: data.value,
+        );
+        final newSelectedTime = await goTo<TimeOfDay>(
+          context: context,
+          artboard: artboard,
+        );
+        if (newSelectedTime == null) return;
+        data.value = newSelectedTime;
+        form.updateFieldData(data);
+      };
 
-  void _setupIntervalFrequencyPickerFieldData(
-    BuildContext context, {
-    @required FormIntervalFrequencyPickerFieldData data,
-  }) {
-    data.addOnTapListener(() async {
-      final artboard = buildIntervalFrequencyPicker(
-        context,
-        selectedSchedule: Frequency(
-          interval: data.value?.interval,
-          frequency: data.value?.frequency,
-        ),
-        periodList: data.periodList,
-        intervalList: data.intervalList,
-      );
-      final newSelectedSchedule = await goTo<Frequency>(
-        context: context,
-        artboard: artboard,
-      );
-      if (newSelectedSchedule == null) return;
-      data.value = FormIntervalFrequencyOptionData(
-        frequency: newSelectedSchedule.frequency,
-        interval: newSelectedSchedule.interval,
-      );
-      form.updateFieldData(data);
-    });
-  }
+  Function _intervalFrequencyPickerFieldOnTap(
+    BuildContext context,
+    FormIntervalFrequencyPickerFieldData data,
+  ) =>
+      () async {
+        final artboard = buildIntervalFrequencyPicker(
+          context,
+          selectedSchedule: Frequency(
+            interval: data.value?.interval,
+            frequency: data.value?.frequency,
+          ),
+          periodList: data.periodList,
+          intervalList: data.intervalList,
+        );
+        final newSelectedSchedule = await goTo<Frequency>(
+          context: context,
+          artboard: artboard,
+        );
+        if (newSelectedSchedule == null) return;
+        data.value = FormIntervalFrequencyOptionData(
+          frequency: newSelectedSchedule.frequency,
+          interval: newSelectedSchedule.interval,
+        );
+        form.updateFieldData(data);
+      };
 
-  void _setupRollerColumnPickerFieldData(
-    BuildContext context, {
-    @required FormRollerColumnPickerFieldData data,
-  }) {
-    data.addOnTapListener(() async {
-      final artboard = buildRollerColumnPicker(
-        context,
-        selectedValue: data.value,
-        options: data.options,
-        infiniteScroll: data.infiniteScroll,
-      );
-      final newSelectedValue = await goTo(
-        context: context,
-        artboard: artboard,
-      );
-      if (newSelectedValue == null) return;
-      data.value = newSelectedValue;
-      form.updateFieldData(data);
-    });
-  }
+  Function _rollerColumnPickerFieldOnTap(
+    BuildContext context,
+    FormRollerColumnPickerFieldData data,
+  ) =>
+      () async {
+        final artboard = buildRollerColumnPicker(
+          context,
+          selectedValue: data.value,
+          options: data.options,
+          infiniteScroll: data.infiniteScroll,
+        );
+        final newSelectedValue = await goTo(
+          context: context,
+          artboard: artboard,
+        );
+        if (newSelectedValue == null) return;
+        data.value = newSelectedValue;
+        form.updateFieldData(data);
+      };
 
-  void _setupTagFieldData(
-    BuildContext context, {
-    @required FormTagFieldData data,
-  }) {
-    data.addOnTapListener(() async {
-      final artboard = buildTagEditor(
-        context,
-        tags: data.tags,
-      );
-      final newSelectedValue = await goTo(
-        context: context,
-        artboard: artboard,
-      );
-      if (newSelectedValue == null) return;
-      data.tags = newSelectedValue;
-      form.updateFieldData(data);
-    });
-  }
+  Function _tagFieldOnTap(
+    BuildContext context,
+    FormTagFieldData data,
+  ) =>
+      () async {
+        final artboard = buildTagEditor(
+          context,
+          tags: data.tags,
+        );
+        final newSelectedValue = await goTo(
+          context: context,
+          artboard: artboard,
+        );
+        if (newSelectedValue == null) return;
+        data.tags = newSelectedValue;
+        form.updateFieldData(data);
+      };
 
-  void _setupMetaFormFieldData(
-    BuildContext context, {
-    @required MetaFormFieldData data,
-  }) {
-    data.addOnTapListener(() async {
-      print('tap');
-      final artboard = buildMetaForm(
-        context,
-        title: data.title,
-        fieldsData: data.fieldsData,
-        valueFromFieldsData: data.valueFromFieldsData,
-      );
-      print('artboard $artboard');
-      final newFormResult = await goTo(
-        context: context,
-        artboard: artboard,
-      );
-      if (newFormResult == null) return;
-      data.value = newFormResult;
-      form.updateFieldData(data);
-    });
-  }
+  Function _metaFormFieldOnTap(
+    BuildContext context,
+    MetaFormFieldData data,
+  ) =>
+      () async {
+        final artboard = buildMetaForm(
+          context,
+          title: data.title,
+          fieldsData: data.fieldsData,
+          valueFromFieldsData: data.valueFromFieldsData,
+        );
+        final newFormResult = await goTo(
+          context: context,
+          artboard: artboard,
+        );
+        if (newFormResult == null) return;
+        data.value = newFormResult;
+        form.updateFieldData(data);
+      };
 
   void disposeOfForm() => _form.dispose();
 }
@@ -440,20 +456,34 @@ mixin FormBodyBuilderState<T extends FormBodyBuilder> implements State<T> {
     final formData = await widget.initialFormData;
     if (formData != null) return formData;
 
-    final sectionData = await widget.initialSectionData;
+    final theme = SemanticTheme.of(context);
+
+    final _sectionData = await widget.initialSectionData;
+    final _builtSectionData = await widget.buildInitialSectionData(context);
+    final sectionData =
+        (_sectionData?.isNotEmpty ?? false) ? _sectionData : _builtSectionData;
     if (sectionData.isNotEmpty) {
       return StreamableFormData(
         sectionData: sectionData,
+        fieldHorizontalSpacing: theme.distance.spacing.horizontal.min,
+        fieldVerticalSpacing: theme.distance.spacing.vertical.min,
+        sectionVerticalSpacing: theme.distance.spacing.vertical.large,
         submitKeyboardAccessory: _buildSubmitKeyboardAccessory(context),
         canSubmitWithKeyboardRaised: widget.canSubmitWithKeyboardRaised,
       );
     }
 
-    final fieldData = await widget.initialFieldData;
+    final _fieldData = await widget.initialFieldData;
+    final _builtFieldData = await widget.buildInitialFieldData(context);
+    final fieldData =
+        (_fieldData?.isNotEmpty ?? false) ? _fieldData : _builtFieldData;
+
     if (fieldData.isNotEmpty) {
       return StreamableFormData.withFields(
         fieldData: fieldData,
-        fieldHorizontalSpacing: widget.fieldHorizontalSpacing,
+        fieldHorizontalSpacing: theme.distance.spacing.horizontal.min,
+        fieldVerticalSpacing: theme.distance.spacing.vertical.min,
+        sectionVerticalSpacing: theme.distance.spacing.vertical.large,
         submitKeyboardAccessory: _buildSubmitKeyboardAccessory(context),
         canSubmitWithKeyboardRaised: widget.canSubmitWithKeyboardRaised,
       );
@@ -467,7 +497,8 @@ mixin FormBodyBuilderState<T extends FormBodyBuilder> implements State<T> {
     @required List<StreamableFormFieldData> fieldData,
   }) {
     if (_hasSetUp) return;
-    widget._setup(context, fieldData: fieldData);
+    widget.setupFieldDataOnTapListeners(context, fieldData: fieldData);
+    widget.setupFields(context, fieldData: fieldData);
     _hasSetUp = true;
   }
 

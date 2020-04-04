@@ -5,8 +5,7 @@ import 'package:semantic_theme/index.dart';
 import 'package:tag_builder/index.dart';
 import 'package:x_small_icon_library/index.dart';
 
-class MetaFormField extends StatelessWidget
-    with TagBuilder {
+class MetaFormField extends StatelessWidget with TagBuilder {
   final String title;
   final List<String> displayValues;
   final VoidCallback onTap;
@@ -83,7 +82,7 @@ class MetaFormField extends StatelessWidget
         HapticOption.light,
         action: onTap,
       ),
-      child: Container(
+      child: Padding(
         padding: EdgeInsets.symmetric(
           vertical: theme.distance.padding.vertical.small,
         ),
