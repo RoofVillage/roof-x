@@ -17,7 +17,7 @@ dependencies:
     git:
       url: git@github.com:RoofVillage/roof-x.git
       ref: master
-      path: types/lease_preview
+      path: model/objects/lease_preview
 
 dependency_overrides:
   frequency_type:
