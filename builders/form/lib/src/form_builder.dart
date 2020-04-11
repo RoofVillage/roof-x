@@ -86,9 +86,7 @@ mixin FormBuilderState<T extends FormBuilder>
     if (headerWidgets.isNotEmpty) {
       formWidgets.add(
         Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: theme.distance.padding.horizontal.medium,
-          ),
+          padding: EdgeInsets.only(top: theme.distance.gutter.vertical.medium),
           child: Column(
             children: headerWidgets,
           ),
@@ -100,6 +98,7 @@ mixin FormBuilderState<T extends FormBuilder>
       Padding(
         padding: EdgeInsets.symmetric(
           vertical: theme.distance.spacing.vertical.large,
+          horizontal: theme.distance.gutter.horizontal.medium,
         ),
         child: buildFormBody(context),
       ),

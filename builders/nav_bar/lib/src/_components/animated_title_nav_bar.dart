@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter/services.dart';
-import 'package:inherited_scroll_controller_builder/index.dart';
 import 'package:semantic_theme/index.dart';
 
 import '_widgets/nav_title_baseline.dart';
 
 class AnimatedTitleNavBar extends StatefulWidget {
+  final ScrollController scrollController;
   final List<Widget> actionButtons;
   final Widget navButton;
   final String title;
+  final bool hideOnScroll;
 
   AnimatedTitleNavBar({
+    @required this.scrollController,
     this.actionButtons,
     this.navButton,
     this.title,
+    this.hideOnScroll,
   });
 
   @override
@@ -23,49 +25,74 @@ class AnimatedTitleNavBar extends StatefulWidget {
 
 class _AnimatedTitleNavBarState extends State<AnimatedTitleNavBar> {
   final _containerKey = GlobalKey();
-  final _opacityChangeScrollDistance = 30;
 
-  ScrollController _scrollController;
-  double _opacity = 0;
-  double _containerHeight = 100;
+  // titleCanShow pattern prevents titleVisible being set to true while scrollPosition is near 0, and scroll direction is up. This is intended to allow adequate scroll distance for the navBar to hide on initial scroll-up before title becomes visible.
+  bool _transitionCanStart = true;
+  bool _titleVisible = true;
+  double _transitionValue = 0;
+  double _containerHeight;
 
-  double get _opacityChangeStartOffset =>
-      _containerHeight - _opacityChangeScrollDistance;
+  double get _transitionOffset => _containerHeight * 1.5;
 
   @override
   void initState() {
+    if (widget.hideOnScroll == true) {
+      _transitionCanStart = false;
+      _titleVisible = false;
+      widget.scrollController.addListener(() => _onScroll());
+    }
+
     SchedulerBinding.instance.addPostFrameCallback(
       (_) => _setContainerHeight(),
     );
     super.initState();
   }
 
-  @override
-  didChangeDependencies() {
-    _scrollController = InheritedScrollController.of(context);
-    assert(_scrollController != null);
+  void _onScroll() {
+    double newTransitionValue;
+    bool newTitleVisible;
+    bool newTransitionCanStart;
 
-    _scrollController.addListener(() => _updateOpacityOnScroll());
-    super.didChangeDependencies();
-  }
+    final scrollPosition = widget.scrollController.offset;
 
-  void _updateOpacityOnScroll() {
-    double newOpacity;
-
-    if (_scrollController.offset < _opacityChangeStartOffset) {
-      newOpacity = 0;
-    } else if (_scrollController.offset < _containerHeight) {
-      newOpacity = (_scrollController.offset - _opacityChangeStartOffset) /
-          _opacityChangeScrollDistance;
-    } else if (_opacity != 1) {
-      newOpacity = 1;
+    if (scrollPosition >= _transitionOffset) {
+      newTransitionCanStart = true;
+    } else if (scrollPosition <= 0) {
+      newTransitionCanStart = false;
     }
 
-    if (newOpacity != null) {
-      setState(() {
-        _opacity = newOpacity;
-      });
+    if (scrollPosition >= _transitionOffset) {
+      newTransitionValue = 1;
+    } else if (scrollPosition <= 0) {
+      newTransitionValue = 0;
+    } else if (_transitionCanStart == true) {
+      newTransitionValue = scrollPosition / _transitionOffset;
     }
+
+    if (scrollPosition < _containerHeight)
+      newTitleVisible = false;
+    else if (_transitionCanStart) newTitleVisible = true;
+
+    if (newTransitionValue == null &&
+        newTransitionCanStart == null &&
+        newTitleVisible == null &&
+        newTransitionValue == _transitionValue &&
+        newTransitionCanStart == _transitionCanStart &&
+        newTitleVisible == _titleVisible) return;
+
+    setState(() {
+      if (newTransitionValue != _transitionValue &&
+          newTransitionValue != null) {
+        _transitionValue = newTransitionValue;
+      }
+      if (newTransitionCanStart != _transitionCanStart &&
+          newTransitionCanStart != null) {
+        _transitionCanStart = newTransitionCanStart;
+      }
+      if (newTitleVisible != _titleVisible && newTitleVisible != null) {
+        _titleVisible = newTitleVisible;
+      }
+    });
   }
 
   void _setContainerHeight() {
@@ -82,12 +109,6 @@ class _AnimatedTitleNavBarState extends State<AnimatedTitleNavBar> {
   Widget build(BuildContext context) {
     final theme = SemanticTheme.of(context);
 
-    if (theme.systemUiStyle.systemUiOverlayStyle.value != null) {
-      SystemChrome.setSystemUIOverlayStyle(
-        theme.systemUiStyle.systemUiOverlayStyle.value,
-      );
-    }
-
     final List<Widget> rowChildren = [];
 
     if (widget.navButton != null) {
@@ -100,8 +121,10 @@ class _AnimatedTitleNavBarState extends State<AnimatedTitleNavBar> {
     }
 
     if (widget.title != null) {
-      final opacityTitle = Opacity(
-        opacity: _opacity,
+      final opacityTitle = AnimatedOpacity(
+        opacity: _titleVisible ? 1 : 0,
+        curve: theme.curve.normal,
+        duration: theme.duration.medium,
         child: NavTitleBaseline(
           text: Text(
             widget.title,
@@ -117,6 +140,10 @@ class _AnimatedTitleNavBarState extends State<AnimatedTitleNavBar> {
       rowChildren.add(
         Expanded(child: opacityTitle),
       );
+    } else {
+      rowChildren.add(Expanded(
+        child: Container(),
+      ));
     }
 
     if (widget.actionButtons != null) {
@@ -145,6 +172,21 @@ class _AnimatedTitleNavBarState extends State<AnimatedTitleNavBar> {
 
     final safeAreaTop = MediaQuery.of(context).padding.top;
 
+    final shadow = theme.shadow.appBar;
+
+    List<BoxShadow> opacityAdjustedShadow;
+    if (shadow != null) {
+      opacityAdjustedShadow = [
+        BoxShadow(
+          color:
+              shadow.color.withOpacity(shadow.color.opacity * _transitionValue),
+          blurRadius: shadow.blurRadius,
+          spreadRadius: shadow.spreadRadius,
+          offset: shadow.offset,
+        )
+      ];
+    }
+
     return Container(
       key: _containerKey,
       padding: EdgeInsets.fromLTRB(
@@ -154,7 +196,8 @@ class _AnimatedTitleNavBarState extends State<AnimatedTitleNavBar> {
         theme.distance.gutter.vertical.small,
       ),
       decoration: BoxDecoration(
-        color: theme.color.background.generalSecondary,
+        color: theme.color.background.general,
+        boxShadow: opacityAdjustedShadow,
       ),
       child: itemRow,
     );

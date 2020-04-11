@@ -75,10 +75,14 @@ dependencies:
       path: roof/builders/table_cell
 
 dependency_overrides:
+  nav_button_builder:
+    path: ../../../builders/nav_button
   landlord_nav_drawer_artboard:
     path: ../landlord_nav_drawer
   roof_table_cell_builder:
     path: ../../builders/table_cell
+  header_builder:
+    path: ../../../builders/header
   spaced_list_view_builder:
     path: ../../../builders/spaced_list_view
   view_stream_builder_builder:

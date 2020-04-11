@@ -1,0 +1,85 @@
+name: verify_business_wallet_artboard
+description: Form for verifying a non-sole-proprietorship business wallet with Dwolla. Includes controller and beneficial owner.
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  form_vertical_floating_artboard_template:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: artboard_templates/vertical_floating/form
+  app_data:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: app_data
+  button_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: builders/button
+  navigator:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: lib/navigator
+  spaced_column_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: builders/spaced_column
+  labeled_value:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: labeled_value
+  dwolla_model:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: model/dwolla
+  meta_form_artboard:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: artboards/meta_form
+  meta_form_artboard_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: builders/meta_form
+
+dependency_overrides:
+  dwolla_model:
+    path: ../../../model/dwolla
+  dwolla_types:
+    path: ../../../types/dwolla
+  meta_form_artboard:
+    path: ../../../artboards/meta_form
+  meta_form_artboard_builder:
+    path: ../../../builders/meta_form
+  form:
+    path: ../../../lib/form
+  form_builder:
+    path: ../../../builders/form
+  header_builder:
+    path: ../../../builders/header
+  form_body_builder:
+    path: ../../../builders/form_body
+  us_state_options:
+    path: ../../../types/us_state
+  spaced_column_builder:
+    path: ../../../builders/spaced_column
+  spaced_column_vertical_floating_artboard_template:
+    path: ../../../artboard_templates/vertical_floating/spaced_column
+  form_vertical_floating_artboard_template:
+    path: ../../../artboard_templates/vertical_floating/form
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

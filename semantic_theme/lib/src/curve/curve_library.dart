@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 abstract class SemanticCurveLibrary {
-  Curve get normal => Curves.linearToEaseOut;
+  Curve get normal => Curves.easeOut;
   Curve get hurried => Curves.easeOutCirc;
-  Curve get delayed => Curves.easeInCirc;
-  Curve get enter => Curves.easeInQuad;
-  Curve get exit => Curves.easeInQuad;
+  Curve get delayed => Curves.easeInQuad;
+  Curve get enter => Curves.easeOutQuart;
+  Curve get exit => Curves.easeInQuart;
 }

@@ -1,0 +1,167 @@
+name: user_settings_artboard
+description: Page for user-scoped settings, user funding sources, user actions.
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.2.2 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  app_data:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: app_data
+  roof_theme:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: roof/roof_theme
+  navigator:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: lib/navigator
+  commands:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: roof/commands
+  scroll_view_vertical_full_screen_artboard_template:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: artboard_templates/vertical_full_screen/scroll_view
+  choose_wallet_verification_type_artboard:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: roof/artboards/choose_wallet_verification_type
+  views:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: roof/views
+  view_stream_builder_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: builders/view_stream_builder
+  spaced_list_view_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: builders/spaced_list_view
+  spaced_sliver_list_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: builders/spaced_sliver_list
+  semantic_theme:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: semantic_theme
+  navigation_icon_library:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: icons/navigation
+  standard_icon_library:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: icons/standard
+  small_icon_library:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: icons/small
+  roof_table_cell_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: roof/builders/table_cell
+  table_cell_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: builders/table_cell
+  button_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: builders/button
+  header_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: builders/header
+  icon_button_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: builders/icon_button
+  landlord_nav_drawer_artboard:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: roof/artboards/landlord_nav_drawer
+  balance_actions_artboard:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: roof/artboards/balance_actions
+
+dependency_overrides:
+  roof_theme:
+    path: ../../roof_theme
+  small_icon_library:
+    path: ../../../icons/small
+  icon_button_builder:
+    path: ../../../builders/icon_button
+  choose_wallet_verification_type_artboard:
+    path: ../choose_wallet_verification_type
+  choose_business_type_artboard:
+    path: ../choose_business_type
+  landlord_nav_drawer_artboard:
+    path: ../landlord_nav_drawer
+  balance_actions_artboard:
+    path: ../balance_actions
+  roof_table_cell_builder:
+    path: ../../builders/table_cell
+  table_cell_builder:
+    path: ../../../builders/table_cell
+  header_builder:
+    path: ../../../builders/header
+  button_builder:
+    path: ../../../builders/button
+  spaced_list_view_builder:
+    path: ../../../builders/spaced_list_view
+  spaced_sliver_list_builder:
+    path: ../../../builders/spaced_sliver_list
+  spaced_column_builder:
+    path: ../../../builders/spaced_column
+  view_stream_builder_builder:
+    path: ../../../builders/view_stream_builder
+  commands:
+    path: ../../commands
+  views:
+    path: ../../views
+  scroll_view_vertical_full_screen_artboard_template:
+    path: ../../../artboard_templates/vertical_full_screen/scroll_view
+  vertical_full_screen_artboard_scaffold:
+    path: ../../../artboard_scaffolds/vertical_full_screen
+  tappable:
+    path: ../../../lib/tappable
+  spaced_column_vertical_floating_artboard_template:
+    path: ../../../artboard_templates/vertical_floating/spaced_column
+  nav_vertical_drawer_artboard_template:
+    path: ../../../artboard_templates/vertical_drawer/nav_drawer
+  vertical_drawer_artboard_scaffold:
+    path: ../../../artboard_scaffolds/vertical_drawer
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

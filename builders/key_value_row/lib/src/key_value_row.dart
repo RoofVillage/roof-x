@@ -6,12 +6,14 @@ class KeyValueRow extends StatelessWidget {
   final String value;
   final TextStyle titleStyle;
   final TextStyle valueStyle;
+  final bool rightAlignValue;
 
   KeyValueRow({
     this.title,
     this.value,
     this.titleStyle,
     this.valueStyle,
+    this.rightAlignValue,
   });
 
   final double _minTitleWidth = 110;
@@ -44,6 +46,7 @@ class KeyValueRow extends StatelessWidget {
             theme.typography.body.textStyle(
               color: theme.color.text.generalPrimary,
             ),
+        textAlign: rightAlignValue ? TextAlign.right : TextAlign.start,
         maxLines: 2,
         overflow: TextOverflow.ellipsis,
       ),

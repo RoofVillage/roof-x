@@ -1,0 +1,41 @@
+name: header_builder
+description: Text headers.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  haptics:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: lib/haptics
+  standard_icon_library:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: icons/standard
+  nav_button_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: builders/nav_button
+  semantic_theme:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: semantic_theme
+
+dependency_overrides:
+  semantic_theme:
+    path: ../../semantic_theme
+  nav_button_builder:
+    path: ../nav_button
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

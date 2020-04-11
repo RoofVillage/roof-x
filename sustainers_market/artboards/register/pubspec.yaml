@@ -41,6 +41,14 @@ dependency_overrides:
     path: ../../../builders/form
   navigator:
     path: ../../../lib/navigator
+  form:
+    path: ../../../lib/form
+  us_state_options:
+    path: ../../../types/us_state
+  dwolla_model:
+    path: ../../../model/dwolla
+  dwolla_types:
+    path: ../../../types/dwolla
 
 dev_dependencies:
   flutter_test:

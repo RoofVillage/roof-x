@@ -8,11 +8,11 @@ class RoofGutterDistance extends SemanticSymmetryDistance {
 }
 
 class _Horizontal extends SemanticDistance {
-  double get min => distance.b;
-  double get small => distance.c;
-  double get medium => distance.d;
-  double get large => distance.e;
-  double get max => distance.f;
+  double get min => distance.a;
+  double get small => distance.b;
+  double get medium => distance.c;
+  double get large => distance.d;
+  double get max => distance.e;
 }
 
 class _Vertical extends SemanticDistance {

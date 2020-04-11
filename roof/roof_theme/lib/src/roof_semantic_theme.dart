@@ -7,7 +7,7 @@ import 'package:roof_theme/src/color/roof_color_library.dart';
 import 'package:roof_theme/src/curve/roof_curve_library.dart';
 import 'package:roof_theme/src/duration/roof_duration_library.dart';
 import 'package:roof_theme/src/distance/roof_distance_library.dart';
-import 'package:roof_theme/src/radius/roof_duration_library.dart';
+import 'package:roof_theme/src/radius/roof_radius_library.dart';
 import 'package:roof_theme/src/roof_theme_option.dart';
 import 'package:roof_theme/src/shadow/roof_shadow_library.dart';
 import 'package:roof_theme/src/system_ui_style/roof_system_ui_style.dart';
@@ -25,21 +25,28 @@ class RoofSemanticTheme extends SemanticThemeData<RoofThemeOption> {
   Future<RoofThemeOption> loadThemeOption() async {
     final String key = await stringForKey(themeOptionKey);
 
-    switch (key) {
-      case "light":
-        return RoofThemeOption.light;
-      case "dark":
-        return RoofThemeOption.dark;
-      default:
-        return currentThemeOption;
+    for (RoofThemeOption option in RoofThemeOption.values) {
+      if (key == option.toString()) return option;
     }
+    return currentThemeOption;
   }
 
   @override
   void themeOptionDidChange(RoofThemeOption themeOption) {
+    String string;
+
+    switch (themeOption) {
+      case RoofThemeOption.light:
+        string = RoofThemeOption.light.toString();
+        break;
+      case RoofThemeOption.dark:
+        string = RoofThemeOption.dark.toString();
+        break;
+    }
+
     saveString(
       key: themeOptionKey,
-      string: themeOption.toString(),
+      string: string,
     );
   }
 
@@ -62,7 +69,8 @@ class RoofSemanticTheme extends SemanticThemeData<RoofThemeOption> {
   SemanticShadowLibrary get shadow => RoofShadowLibrary(currentThemeOption);
 
   @override
-  SemanticTypographyLibrary get typography => RoofTypographyLibrary();
+  SemanticTypographyLibrary get typography =>
+      RoofTypographyLibrary(currentThemeOption);
 
   @override
   SemanticSystemUiStyle get systemUiStyle =>

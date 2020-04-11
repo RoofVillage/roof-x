@@ -1,48 +1,128 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
-import 'package:navigation_icon_library/index.dart';
-import 'package:semantic_theme/index.dart';
+import 'dart:math';
+
+import 'package:faker/faker.dart';
+import 'package:roof_types/index.dart';
 
 mixin DomainsArtboardData {
-  List<Widget> artboardActionButtons(BuildContext context) => [
-        NavigationIcon.add.buildWidget(
-          color: SemanticTheme.of(context).color.icon.nav,
+  String get artboardTitle => "Your Wallets";
+
+  static int _randomNotificationCount() {
+    return Random.secure().nextBool() ? Random.secure().nextInt(16) : null;
+  }
+
+  static List<String> _randomProfileNames = [
+    faker.person.name(),
+    ...List.generate(
+      1 + Random.secure().nextInt(3),
+      (_) => faker.company.name(),
+    )
+  ];
+
+  final profilesStream = Stream.value(
+    ServiceProfilesView(
+      profiles: _randomProfileNames
+          .map(
+            (name) => ServiceProfile(
+              name: name,
+              notificationCount: _randomNotificationCount(),
+              ownerIsInScope: _randomProfileNames.first == name,
+            ),
+          )
+          .toList(),
+    ),
+  );
+
+  static _randomPaymentStatus() {
+    final notProcessingStatuses = PaymentStatus.values
+        .where(
+          (value) => value != PaymentStatus.pending,
         )
-      ];
+        .toList();
+    return notProcessingStatuses[Random().nextInt(
+      notProcessingStatuses.length,
+    )];
+  }
 
-  String get artboardTitle => "Your landlord profiles";
+  static _randomTransferCell({PaymentStatus paymentStatus}) {
+    String sender;
+    String receiver;
 
-  final stream = Stream.value(
-    LandlordProfilesView([
-      LandlordProfile("Mills Rentals", 7),
-      LandlordProfile("Dallas Crash Pads", null),
-      LandlordProfile("GN Company", 2),
-      LandlordProfile("Mills Rentals", 7),
-      LandlordProfile("Dallas Crash Pads", null),
-      LandlordProfile("GN Company", 2),
-      LandlordProfile("Mills Rentals", 7),
-      LandlordProfile("Dallas Crash Pads", null),
-      LandlordProfile("GN Company", 2),
-      LandlordProfile("Mills Rentals", 7),
-      LandlordProfile("Dallas Crash Pads", null),
-      LandlordProfile("GN Company", 2),
-    ]),
+    if (Random().nextBool()) {
+      sender = faker.person.name();
+    } else {
+      receiver = faker.person.name();
+    }
+
+    return Transfer(
+      amount: (Random().nextInt(299) * 10).toDouble(),
+      domain: _randomProfileNames[Random().nextInt(
+        _randomProfileNames.length,
+      )],
+      sender: sender,
+      receiver: receiver,
+      date: DateTime.now(),
+      note: faker.lorem.words(Random().nextInt(12)).join(" "),
+      paymentStatus: paymentStatus,
+    );
+  }
+
+  final transfersStream = Stream.value(
+    RecentTransfersView(
+      List.generate(
+        20,
+        (index) => _randomTransferCell(
+          paymentStatus:
+              index < 4 ? PaymentStatus.pending : _randomPaymentStatus(),
+        ),
+      ),
+    ),
   );
 }
 
-class LandlordProfilesView {
-  List<LandlordProfile> profiles;
+class ServiceProfilesView {
+  List<ServiceProfile> profiles;
 
-  LandlordProfilesView(this.profiles);
+  ServiceProfilesView({this.profiles});
 }
 
-class LandlordProfile {
+class ServiceProfile {
   String name;
   int notificationCount;
+  bool ownerIsInScope;
 
-  LandlordProfile(
+  ServiceProfile({
     this.name,
     this.notificationCount,
-  );
+    this.ownerIsInScope,
+  });
+}
+
+class RecentTransfersView {
+  List<Transfer> transfers;
+
+  RecentTransfersView(this.transfers);
+}
+
+class Transfer {
+  final String domain;
+  final double amount;
+  final String sender;
+  final String receiver;
+  final DateTime date;
+  final String note;
+  final PaymentStatus paymentStatus;
+
+  // sender/receiver only supplied if they are not the current user
+
+  Transfer({
+    this.domain,
+    this.amount,
+    this.sender,
+    this.receiver,
+    this.date,
+    this.note,
+    this.paymentStatus,
+  });
 }

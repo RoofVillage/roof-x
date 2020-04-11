@@ -1,0 +1,23 @@
+name: dwolla_model
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  dwolla_types:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: types/dwolla
+
+dependency_overrides:
+  dwolla_types:
+    path: ../../types/dwolla
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

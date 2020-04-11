@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:button_builder/src/types/index.dart';
 import 'package:semantic_theme/index.dart';
+import 'package:tappable/index.dart';
+import 'package:vertically_centered_text_builder/index.dart';
 import 'package:x_small_icon_library/index.dart';
 import 'package:button_status_option/index.dart';
 
@@ -46,7 +48,7 @@ class SecondaryCenterButton extends StatefulWidget with CenteredStyleButton {
 }
 
 class _SecondaryCenterButton extends State<SecondaryCenterButton>
-    with CenteredStyleButtonState {
+    with VerticallyCenteredTextBuilder, Tappable, CenteredStyleButtonState {
   @override
   Widget build(BuildContext context) => buildButton(context);
 

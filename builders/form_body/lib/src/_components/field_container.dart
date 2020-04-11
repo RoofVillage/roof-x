@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:form_body_builder/src/_components/utils/min_field_height.dart';
 import 'package:semantic_theme/index.dart';
 
 class FieldContainer extends StatelessWidget {
@@ -6,32 +7,23 @@ class FieldContainer extends StatelessWidget {
 
   FieldContainer({this.child});
 
-  final double _minHeight = 55.0;
-  final double _verticalSpacing = 1;
-
   @override
   Widget build(BuildContext context) {
     final theme = SemanticTheme.of(context);
 
-    final margin = EdgeInsets.only(
-      top: _verticalSpacing,
-    );
-
-    final backgroundColor = theme.color.background.inputForeground;
-
     return Container(
-      margin: margin,
       padding: EdgeInsets.symmetric(
         vertical: theme.distance.padding.vertical.min,
         horizontal: theme.distance.padding.horizontal.medium,
       ),
       constraints: BoxConstraints(
-        minHeight: _minHeight,
+        minHeight: minFieldHeight,
       ),
       decoration: BoxDecoration(
-        color: backgroundColor,
+        color: theme.color.background.raised,
+        borderRadius: BorderRadius.all(theme.radius.small),
       ),
-      child: Center(child: child),
+      child: Center(child: child),  
     );
   }
 }

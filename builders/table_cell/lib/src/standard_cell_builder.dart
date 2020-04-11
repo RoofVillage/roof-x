@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '_components/standard_cell.dart';
+
+import './_components/standard_cell.dart';
 
 mixin StandardCellBuilder {
   StandardCell buildStandardCell({

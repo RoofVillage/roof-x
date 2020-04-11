@@ -47,6 +47,7 @@ class SemanticInheritedTheme<T> extends State<SemanticTheme<T>> {
       widget.themeData.build(_currentThemeOption);
 
   void _initializeCurrentThemeOption() async {
+    print('initialize');
     final T themeOption = await widget.themeData.loadThemeOption() ??
         widget.themeData.currentThemeOption;
 

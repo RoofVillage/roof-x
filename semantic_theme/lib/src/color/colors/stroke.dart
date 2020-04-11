@@ -9,5 +9,6 @@ abstract class SemanticStrokeColor<T> extends SemanticColor<T>
   SemanticStrokeColor(T currentThemeOption) : super(currentThemeOption);
 
   Color get light;
-  Color get focus;
+  Color get medium;
+  Color get strong;
 }

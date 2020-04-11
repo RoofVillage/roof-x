@@ -4,10 +4,10 @@ import '_components/view_stream_builder.dart';
 mixin ViewStreamBuilderBuilder {
   ViewStreamBuilder<T> buildViewStreamBuilder<T>(
     BuildContext context, {
-    Stream stream,
+    @required Stream<T> stream,
     Widget loading,
     Widget empty,
-    Widget Function(BuildContext, T) child,
+    @required Widget Function(BuildContext, T) child,
   }) {
     return ViewStreamBuilder<T>(
       stream: stream,

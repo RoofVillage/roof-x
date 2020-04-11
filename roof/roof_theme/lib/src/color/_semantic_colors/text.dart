@@ -9,22 +9,28 @@ class RoofTextColor extends SemanticTextColor<RoofThemeOption> {
   RoofTextColor(RoofThemeOption currentThemeOption) : super(currentThemeOption);
 
   @override
-  Color get action => colors.brandBlue;
+  Color get action => forThemeOption({
+        RoofThemeOption.light: colors.brandBlue,
+        RoofThemeOption.dark: colors.brandBlueAccent,
+      });
 
   @override
   Color get actionDisabled => colors.brandBlueFade;
 
   @override
-  Color get onActionPrimaryBackground => colors.white1;
+  Color get onActionPrimaryBackground => colors.white;
 
   @override
-  Color get onActionSecondaryBackground => colors.brandBlue;
+  Color get onActionSecondaryBackground => forThemeOption({
+        RoofThemeOption.light: colors.brandBlue,
+        RoofThemeOption.dark: colors.brandBlueAccent,
+      });
 
   @override
-  Color get onActionDisabledBackground => colors.white2;
+  Color get onActionDisabledBackground => colors.whiteMid;
 
   @override
-  Color get onNotifyBackground => colors.white1;
+  Color get onNotifyBackground => colors.white;
 
   @override
   Color get bad => colors.red;
@@ -40,20 +46,20 @@ class RoofTextColor extends SemanticTextColor<RoofThemeOption> {
 
   @override
   Color get inputActive => forThemeOption({
-        RoofThemeOption.light: colors.gray4,
-        RoofThemeOption.dark: colors.gray1,
+        RoofThemeOption.light: colors.grayDark,
+        RoofThemeOption.dark: colors.grayLight,
       });
 
   @override
   Color get inputDisabled => forThemeOption({
-        RoofThemeOption.light: colors.gray2,
-        RoofThemeOption.dark: colors.gray3,
+        RoofThemeOption.light: colors.grayMidLight,
+        RoofThemeOption.dark: colors.grayMidDark,
       });
 
   @override
   Color get inputPlaceholder => forThemeOption({
-        RoofThemeOption.light: colors.gray1,
-        RoofThemeOption.dark: colors.gray4,
+        RoofThemeOption.light: colors.grayLight,
+        RoofThemeOption.dark: colors.grayDark,
       });
 
   @override
@@ -64,13 +70,13 @@ class RoofTextColor extends SemanticTextColor<RoofThemeOption> {
 
   @override
   Color get generalPrimary => forThemeOption({
-        RoofThemeOption.light: colors.gray3,
-        RoofThemeOption.dark: colors.gray1,
+        RoofThemeOption.light: colors.black,
+        RoofThemeOption.dark: colors.grayLight,
       });
 
   @override
   Color get generalSecondary => forThemeOption({
-        RoofThemeOption.light: colors.gray2,
-        RoofThemeOption.dark: colors.gray3,
+        RoofThemeOption.light: colors.grayMidDark,
+        RoofThemeOption.dark: colors.grayDark,
       });
 }

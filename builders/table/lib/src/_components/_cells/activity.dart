@@ -158,7 +158,7 @@ class _CellDivider extends StatelessWidget {
         top: theme.distance.spacing.vertical.small,
       ),
       height: 1,
-      decoration: BoxDecoration(color: theme.color.stroke.light),
+      decoration: BoxDecoration(color: theme.color.stroke.medium),
     );
   }
 }

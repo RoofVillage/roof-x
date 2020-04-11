@@ -58,7 +58,7 @@ class _LoadMoreCellState extends State<LoadMoreCell> {
         ),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(theme.radius.medium),
-          color: theme.color.background.generalPrimary,
+          color: theme.color.background.raised,
         ),
         child: Center(
           child: loading ? loadingIcon : loadMoreIcon,

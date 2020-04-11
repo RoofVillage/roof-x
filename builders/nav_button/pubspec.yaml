@@ -14,16 +14,16 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: master
       path: lib/haptics
+  x_small_icon_library:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: icons/x_small
   navigation_icon_library:
     git:
       url: git@github.com:RoofVillage/roof-x.git
       ref: master
       path: icons/navigation
-  typedefs:
-    git:
-      url: git@github.com:RoofVillage/roof-x.git
-      ref: master
-      path: lib/typedefs
   semantic_theme:
     git:
       url: git@github.com:RoofVillage/roof-x.git
@@ -33,6 +33,8 @@ dependencies:
 dependency_overrides:
   semantic_theme:
     path: ../../semantic_theme
+  haptics:
+    path: ../../lib/haptics
 
 dev_dependencies:
   flutter_test:

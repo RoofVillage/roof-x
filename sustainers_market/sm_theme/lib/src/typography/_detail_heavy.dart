@@ -7,17 +7,19 @@ import '../_constants/_font_size.dart' as fs;
 import '../_constants/_font_weight.dart' as fw;
 
 class SmDetailHeavyTypography extends SemanticTypography {
+  SmDetailHeavyTypography(currentThemeOption) : super(currentThemeOption);
+
   @override
   String get fontFamily => ff.circular;
 
   @override
-  String get fontFamilyFallback => null;
+  List<String> get fontFamilyFallback => null;
 
   @override
   double get fontSize => fs.extraSmall;
 
   @override
-  FontWeight get fontWeight => fw.medium;
+  FontWeight get fontWeight => fw.thick;
 
   @override
   double get letterSpacing => null;

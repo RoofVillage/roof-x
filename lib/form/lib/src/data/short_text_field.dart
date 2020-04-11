@@ -1,6 +1,8 @@
 import 'text_field.dart';
 
 class FormShortTextFieldData extends FormTextFieldData {
+  static const _shortTextFieldMaxLength = 40;
+
   FormShortTextFieldData({
     String title,
     String placeholder,
@@ -8,6 +10,8 @@ class FormShortTextFieldData extends FormTextFieldData {
     double size,
     bool isVisible,
     bool autofocus,
+    bool isRequired,
+    bool isRemovable,
     String exceptionTitle,
   }) : super(
           title: title,
@@ -16,7 +20,9 @@ class FormShortTextFieldData extends FormTextFieldData {
           autofocus: autofocus,
           size: size,
           isVisible: isVisible,
-          max: 40,
+          max: _shortTextFieldMaxLength,
+          min: isRequired == true ? 1 : null,
+          isRemovable: isRemovable,
           exceptionTitle: exceptionTitle,
         );
 }

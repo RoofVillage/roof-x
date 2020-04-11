@@ -30,7 +30,7 @@ class StandardTabBar extends StatelessWidget {
     return Container(
       alignment: Alignment(-1, 0),
       decoration: BoxDecoration(
-        border: Border(bottom: BorderSide(color: theme.color.stroke.light)),
+        border: Border(bottom: BorderSide(color: theme.color.stroke.medium)),
       ),
       child: TabBar(
         tabs: tabWidgets,

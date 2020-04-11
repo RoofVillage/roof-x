@@ -37,7 +37,7 @@ class TextFieldWithAddButton extends StatelessWidget {
           autofocus: true,
           controller: controller,
           style: theme.typography.body.textStyle(
-            color: theme.color.text.generalPrimary,
+            color: theme.color.text.inputActive,
           ),
           decoration: decoration,
         ),
@@ -82,7 +82,7 @@ class TextFieldWithAddButton extends StatelessWidget {
       ),
       decoration: BoxDecoration(
         border: Border(
-          bottom: BorderSide(color: theme.color.stroke.light),
+          bottom: BorderSide(color: theme.color.stroke.medium),
         ),
       ),
       child: Row(

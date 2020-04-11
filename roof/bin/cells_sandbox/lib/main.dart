@@ -128,7 +128,7 @@ class CellsSandbox extends StatelessWidget with KeyValueBuilder {
     );
 
     return Scaffold(
-      backgroundColor: theme.color.background.generalSecondary,
+      backgroundColor: theme.color.background.general,
       body: ListView(
         children: [
           standardThreadCell,

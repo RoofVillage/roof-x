@@ -51,7 +51,7 @@ class _ThreadListViewState extends State<ThreadListView> {
       padding: EdgeInsets.symmetric(
         horizontal: theme.distance.padding.horizontal.small,
       ),
-      color: theme.color.background.generalSecondary,
+      color: theme.color.background.general,
       child: ListView(
         reverse: true,
         controller: _controller,

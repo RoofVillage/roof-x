@@ -9,7 +9,7 @@ class RollerColumn<T> extends StatefulWidget {
   final LabeledValue<T> selectedValue;
   final List<LabeledValue<T>> list;
   final void Function(LabeledValue<T>) onChange;
-  final bool canRollover;
+  final bool infiniteScroll;
   final int optionsVisible;
   final CrossAxisAlignment crossAxisAlignment;
 
@@ -17,7 +17,7 @@ class RollerColumn<T> extends StatefulWidget {
     this.selectedValue,
     this.list,
     this.onChange,
-    this.canRollover,
+    this.infiniteScroll,
     this.optionsVisible,
     this.crossAxisAlignment,
   });
@@ -28,11 +28,12 @@ class RollerColumn<T> extends StatefulWidget {
 
 class _RollerColumnState<T> extends State<RollerColumn<T>> {
   final double _stepHeight = 40;
+  final _delayBeforeSnap = Duration(milliseconds: 50);
 
   int _stepsVisible;
   double _boundaryOffset;
   ScrollController _scrollController;
-  bool _canRollover;
+  bool _infiniteScroll;
   LabeledValue<T> _selectedValue;
 
   @override
@@ -43,9 +44,9 @@ class _RollerColumnState<T> extends State<RollerColumn<T>> {
     _selectedValue = widget.selectedValue ?? widget.list.first;
 
     if (widget.list.length < _stepsVisible) {
-      _canRollover = false;
+      _infiniteScroll = false;
     } else {
-      _canRollover = widget.canRollover ?? true;
+      _infiniteScroll = widget.infiniteScroll ?? true;
     }
 
     double initialOffset = _stepHeight *
@@ -54,7 +55,7 @@ class _RollerColumnState<T> extends State<RollerColumn<T>> {
             .toList()
             .indexOf(_selectedValue.value);
 
-    if (_canRollover) {
+    if (_infiniteScroll) {
       initialOffset += _stepHeight * widget.list.length - _boundaryOffset;
     }
 
@@ -70,12 +71,12 @@ class _RollerColumnState<T> extends State<RollerColumn<T>> {
   }
 
   void _handleRollover() {
-    if (!_canRollover) return;
+    if (!_infiniteScroll) return;
 
     final double segmentHeight = widget.list.length * _stepHeight;
 
     /*
-    If _canRollover == true, column is divided into three repeated segments. 
+    If _infiniteScroll == true, column is divided into three repeated segments. 
     To create perceived infinite scroll, adjust controller position to keep scroll window in the middle segment.
     */
     if (_scrollController.offset > segmentHeight * 2)
@@ -85,10 +86,10 @@ class _RollerColumnState<T> extends State<RollerColumn<T>> {
   }
 
   int _getNearestStepIndex() {
-    for (int i = 0; i < widget.list.length * (_canRollover ? 3 : 1); i++) {
+    for (int i = 0; i < widget.list.length * (_infiniteScroll ? 3 : 1); i++) {
       double stepCenter = _stepHeight * (i - .5);
 
-      if (_canRollover) stepCenter -= _boundaryOffset;
+      if (_infiniteScroll) stepCenter -= _boundaryOffset;
 
       final offsetFromStepCenter =
           (stepCenter - _scrollController.offset).abs();
@@ -99,16 +100,14 @@ class _RollerColumnState<T> extends State<RollerColumn<T>> {
   }
 
   void _snapScroll() {
-    final theme = SemanticTheme.of(context);
-
     if (_scrollController.offset % _stepHeight == 0) return;
 
-    final delayBeforeSnap = Duration(milliseconds: 50);
+    final theme = SemanticTheme.of(context);
 
-    Future.delayed(delayBeforeSnap, () {
+    Future.delayed(_delayBeforeSnap, () {
       double targetOffset = _getNearestStepIndex() * _stepHeight;
 
-      if (_canRollover) targetOffset -= _boundaryOffset;
+      if (_infiniteScroll) targetOffset -= _boundaryOffset;
 
       _scrollController.animateTo(
         targetOffset,
@@ -123,7 +122,7 @@ class _RollerColumnState<T> extends State<RollerColumn<T>> {
         widget.list[_getNearestStepIndex() % widget.list.length];
 
     if (newValue != _selectedValue) {
-      triggerHapticWith(HapticOption.click);
+      triggerHaptic(HapticOption.click);
       setState(() {
         _selectedValue = newValue;
       });
@@ -135,10 +134,7 @@ class _RollerColumnState<T> extends State<RollerColumn<T>> {
 
   @override
   Widget build(BuildContext context) {
-    double verticalPadding = 0;
-    if (!_canRollover) {
-      verticalPadding = _boundaryOffset;
-    }
+    final double verticalPadding = _infiniteScroll ? 0 : _boundaryOffset;
 
     return Container(
       height: _stepsVisible * _stepHeight,
@@ -161,10 +157,11 @@ class _RollerColumnState<T> extends State<RollerColumn<T>> {
             vertical: verticalPadding,
           ),
           children: [
+            // TODO convert to customScrollView using slivers instead of single RollerColumnBody
             RollerColumnBody(
               selectedValue: _selectedValue,
-              list: widget.list,
-              canRollover: _canRollover,
+              children: widget.list,
+              segmentCount: _infiniteScroll ? 3 : 1,
               crossAxisAlignment: widget.crossAxisAlignment,
             )
           ],

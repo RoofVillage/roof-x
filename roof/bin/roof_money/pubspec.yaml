@@ -1,0 +1,362 @@
+name: roof_money
+description: Roof client app for managing payments.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  roof_theme:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: roof_theme
+  public_activity_artboard:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: roof/artboards/public_activity
+  wallet_dashboard_artboard:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: roof/artboards/wallet_dashboard_artboard
+  vertical_full_screen_artboard_scaffold:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: artboard_scaffolds/vertical_full_screen
+  artboard:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: lib/artboard
+  device_screen:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: lib/device_screen
+  commands:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: roof/commands
+  semantic_theme:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: semantic_theme
+
+dependency_overrides:
+  roof_types:
+    path: ../../types
+  meta_form_artboard:
+    path: ../../../artboards/meta_form
+  meta_form_artboard_builder:
+    path: ../../../builders/meta_form
+  artboard:
+    path: ../../../lib/artboard
+  public_activity_artboard:
+    path: ../../artboards/public_activity
+  domains_artboard:
+    path: ../../artboards/domains
+  choose_wallet_verification_type_artboard:
+    path: ../../artboards/choose_wallet_verification_type
+  choose_business_type_artboard:
+    path: ../../artboards/choose_business_type
+  properties_artboard:
+    path: ../../artboards/properties
+  wallet_dashboard_artboard:
+    path: ../../artboards/wallet_dashboard
+  add_profile_artboard:
+    path: ../../artboards/add_profile
+  header_builder:
+    path: ../../../builders/header
+  roof_table_cell_builder:
+    path: ../../builders/table_cell
+  nav_vertical_drawer_artboard_template:
+    path: ../../../artboard_templates/vertical_drawer/nav_drawer
+  spaced_column_vertical_floating_artboard_template:
+    path: ../../../artboard_templates/vertical_floating/spaced_column
+  landlord_nav_drawer_artboard:
+    path: ../../artboards/landlord_nav_drawer
+  verify_personal_wallet_artboard:
+    path: ../../artboards/verify_personal_wallet
+  stream_list_view_vertical_full_screen_artboard_template:
+    path: ../../../artboard_templates/vertical_full_screen/stream_list_view
+  scroll_view_vertical_full_screen_artboard_template:
+    path: ../../../artboard_templates/vertical_full_screen/scroll_view
+  vertical_full_screen_artboard_scaffold:
+    path: ../../../artboard_scaffolds/vertical_full_screen
+  vertical_drawer_artboard_scaffold:
+    path: ../../../artboard_scaffolds/vertical_drawer
+  vertical_floating_artboard_scaffold:
+    path: ../../../artboard_scaffolds/vertical_floating
+  horizontal_floating_artboard_scaffold:
+    path: ../../../artboard_scaffolds/horizontal_floating
+  roof_theme:
+    path: ../../roof_theme
+  actor_reference:
+    path: ../../../model/properties/actor_reference
+  app_data:
+    path: ../../../app_data
+  billing:
+    path: ../../../model/properties/billing
+  billing_status_type:
+    path: ../../../types/billing_status
+  billing_type:
+    path: ../../../types/billing
+  blossm_command:
+    path: ../../../blossm_command
+  blossm_view_store:
+    path: ../../../blossm_view_store
+  button_builder:
+    path: ../../../builders/button
+  button_status_option:
+    path: ../../../options/button_status
+  cache:
+    path: ../../../lib/cache
+  challenge_artboard:
+    path: ../../artboards/challenge
+  commands:
+    path: ../../commands
+  context:
+    path: ../../../model/abstract/context
+  context_type:
+    path: ../../../types/context
+  date:
+    path: ../../../lib/date
+  date_picker_artboard:
+    path: ../../../artboards/date_picker
+  date_picker_builder:
+    path: ../../../builders/date_picker
+  decorated_text:
+    path: ../../../lib/decorated_text
+  device_screen:
+    path: ../../../lib/device_screen
+  disk:
+    path: ../../../lib/disk
+  domain_type:
+    path: ../../../types/domain
+  email_category_type:
+    path: ../../../types/email_category
+  empty_table_vertical_full_screen_artboard_template:
+    path: ../../../artboard_templates/vertical_full_screen/empty_table
+  empty_vertical_floating_artboard_template:
+    path: ../../../artboard_templates/vertical_floating/empty
+  fee_payer_type:
+    path: ../../../types/fee_payer
+  form:
+    path: ../../../lib/form
+  form_body_builder:
+    path: ../../../builders/form_body
+  view_stream_builder_builder:
+    path: ../../../builders/view_stream_builder
+  form_builder:
+    path: ../../../builders/form
+  form_validation_exception:
+    path: ../../../lib/form_validation_exception
+  form_vertical_floating_artboard_template:
+    path: ../../../artboard_templates/vertical_floating/form
+  frequency:
+    path: ../../../frequency
+  haptics:
+    path: ../../../lib/haptics
+  icon_picker_artboard:
+    path: ../../../artboards/icon_picker
+  icon_picker_builder:
+    path: ../../../builders/icon_picker
+  icon_reference:
+    path: ../../../icons/icon_reference
+  image_picker_builder:
+    path: ../../../builders/image_picker
+  interval:
+    path: ../../../lib/interval
+  interval_frequency_picker_artboard:
+    path: ../../../artboards/interval_frequency_picker
+  interval_frequency_picker_builder:
+    path: ../../../builders/interval_frequency_picker
+  invoice_options:
+    path: ../../../types/invoice
+  key:
+    path: ../../../model/key
+  key_value_builder:
+    path: ../../../builders/key_value
+  key_value_row_builder:
+    path: ../../../builders/key_value_row
+  keyboard_accessory:
+    path: ../../../lib/keyboard_accessory
+  keyboard_accessory_bar_builder:
+    path: ../../../builders/keyboard_accessory_bar
+  labeled_icon:
+    path: ../../../labeled_icon
+  labeled_value:
+    path: ../../../labeled_value
+  lease_status:
+    path: ../../../types/lease
+  mappable:
+    path: ../../../model/mixins/mappable
+  mask:
+    path: ../../../lib/mask
+  model_object:
+    path: ../../../model/abstract/model_object
+  model_object_cache:
+    path: ../../../model/object_cache
+  name_context:
+    path: ../../../model/properties/name_context
+  name_contract:
+    path: ../../../model/properties/name_contract
+  name_defining_object:
+    path: ../../../model/mixins/name_defining_object
+  name_domain:
+    path: ../../../model/properties/name_domain
+  name_payment_profile:
+    path: ../../../model/properties/name_payment_profile
+  name_user:
+    path: ../../../model/properties/name_user
+  nav_bar_builder:
+    path: ../../../builders/nav_bar
+  nav_button_builder:
+    path: ../../../builders/nav_button
+  icon_button_builder:
+    path: ../../../builders/icon_button
+  navigation_icon_library:
+    path: ../../../icons/navigation
+  navigator:
+    path: ../../../lib/navigator
+  network:
+    path: ../../../lib/network
+  tappable:
+    path: ../../../lib/tappable
+  user_settings_artboard:
+    path: ../../artboards/user_settings
+  notification_category_type:
+    path: ../../../types/notification_category
+  option_picker_artboard:
+    path: ../../../artboards/option_picker
+  option_picker_builder:
+    path: ../../../builders/option_picker
+  ordinal_suffix_string_from_int:
+    path: ../../../lib/ordinal_suffix_string_from_int
+  payment_default:
+    path: ../../../model/properties/payment_default
+  payment_default_type:
+    path: ../../../types/payment_default
+  period_type:
+    path: ../../../types/period
+  phone_number_sign_up_artboard:
+    path: ../../artboards/phone_number_sign_up
+  balance_actions_artboard:
+    path: ../../artboards/balance_actions
+  privacy_type:
+    path: ../../../types/privacy
+  public:
+    path: ../../../model/objects/public
+  request_status:
+    path: ../../../types/request
+  roller_column_builder:
+    path: ../../../builders/roller_column
+  roller_column_picker_artboard:
+    path: ../../../artboards/roller_column_picker
+  roller_column_picker_builder:
+    path: ../../../builders/roller_column_picker
+  secure_storage:
+    path: ../../../lib/secure_storage
+  semantic_theme:
+    path: ../../../semantic_theme
+  session:
+    path: ../../../session
+  sign_up_artboard:
+    path: ../../artboards/sign_up
+  small_icon_library:
+    path: ../../../icons/small
+  sorting:
+    path: ../../../lib/sorting
+  spaced_grid_builder:
+    path: ../../../builders/spaced_grid
+  table_cell_builder:
+    path: ../../../builders/table_cell
+  spaced_list_view_builder:
+    path: ../../../builders/spaced_list_view
+  spaced_sliver_list_builder:
+    path: ../../../builders/spaced_sliver_list
+  standard_icon_library:
+    path: ../../../icons/standard
+  spaced_column_builder:
+    path: ../../../builders/spaced_column
+  stream:
+    path: ../../../lib/stream
+  string_from_enum_string:
+    path: ../../../lib/string_from_enum_string
+  stub:
+    path: ../../../model/objects/stub
+  stub_type:
+    path: ../../../types/stub
+  svg:
+    path: ../../../svg
+  synchronizer:
+    path: ../../../synchronizer
+  table:
+    path: ../../../lib/table
+  table_builder:
+    path: ../../../builders/table
+  tag_builder:
+    path: ../../../builders/tag
+  tag_editor_artboard:
+    path: ../../../artboards/tag_editor
+  tag_editor_builder:
+    path: ../../../builders/tag_editor
+  tag_kind_option:
+    path: ../../../options/tag_kind
+  time_picker_artboard:
+    path: ../../../artboards/time_picker
+  time_picker_builder:
+    path: ../../../builders/time_picker
+  typedefs:
+    path: ../../../lib/typedefs
+  user:
+    path: ../../../model/objects/user
+  user_reference:
+    path: ../../../model/properties/user_reference
+  vertical_floating_artboard_button_option:
+    path: ../../../options/vertical_floating_artboard_button
+  views:
+    path: ../../views
+  vertically_centered_text_builder:
+    path: ../../../builders/vertically_centered_text
+  x_small_icon_library:
+    path: ../../../icons/x_small
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  fonts:
+    - family: RoofXSmallIcons
+      fonts:
+        - asset: packages/x_small_icon_library/ttf/RoofXSmallIcons.ttf
+    - family: RoofSmallIcons
+      fonts:
+        - asset: packages/small_icon_library/ttf/RoofSmallIcons.ttf
+    - family: RoofStandardIcons
+      fonts:
+        - asset: packages/standard_icon_library/ttf/RoofStandardIcons.ttf
+    - family: RoofNavigationIcons
+      fonts:
+        - asset: packages/navigation_icon_library/ttf/RoofNavigationIcons.ttf
+    - family: azo
+      fonts:
+        - asset: packages/roof_theme/fonts/azo/AzoSans-Thin.otf
+          weight: 100
+        - asset: packages/roof_theme/fonts/azo/AzoSans-Light.otf
+          weight: 200
+        - asset: packages/roof_theme/fonts/azo/AzoSans-Regular.otf
+          weight: 300
+        - asset: packages/roof_theme/fonts/azo/AzoSans-Medium.otf
+          weight: 400
+        - asset: packages/roof_theme/fonts/azo/AzoSans-Bold.otf
+          weight: 500

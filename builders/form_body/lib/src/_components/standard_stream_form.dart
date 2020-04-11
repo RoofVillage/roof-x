@@ -1,6 +1,10 @@
+import 'package:button_builder/index.dart';
 import 'package:flutter/material.dart';
 import 'package:form/index.dart';
 import 'package:form_body_builder/src/_components/fields/interval_frequency_picker_field.dart';
+import 'package:form_body_builder/src/_components/fields/meta_form_field.dart';
+import 'package:form_body_builder/src/_components/removable_field_container.dart';
+import 'package:header_builder/index.dart';
 import 'package:labeled_icon/index.dart';
 import 'package:frequency/index.dart';
 import 'package:keyboard_accessory/index.dart';
@@ -15,14 +19,17 @@ import 'fields/date_picker_field.dart';
 import 'fields/time_picker_field.dart';
 import 'fields/option_picker_field.dart';
 import 'fields/icon_picker_field.dart';
+import 'package:semantic_theme/index.dart';
 import 'fields/roller_column_picker_field.dart';
 import 'fields/tag_field.dart';
 
 enum KeyboardAccessoryState { hideKeyboard, submit }
 
-class StandardStreamForm
-    extends StreamForm<StreamableFormFieldData, StreamableFormSectionHeaderData>
-    with KeyboardAccessoryBarBuilder {
+class StandardStreamForm extends StreamForm
+    with
+        KeyboardAccessoryBarBuilder,
+        SectionHeaderBuilder,
+        SecondaryCenterButtonBuilder {
   static const _hideKeyboardTitle = "Hide keyboard";
   static const _doneKeyboardTitle = "Done";
 
@@ -34,7 +41,10 @@ class StandardStreamForm
         .where((data) => data.isVisible)
         .whereType<FormTextFieldData>()
         .toList();
-    final allTextAreaData = allFieldData.whereType<FormTextAreaData>().toList();
+    final allTextAreaData = allFieldData
+        .where((data) => data.isVisible)
+        .whereType<FormTextAreaData>()
+        .toList();
     List<FormCompositionFieldData> allCompositionFieldData = [];
     allCompositionFieldData.addAll(allTextFieldData);
     allCompositionFieldData.addAll(allTextAreaData);
@@ -118,16 +128,15 @@ class StandardStreamForm
     int fieldIndex,
     int sectionIndex,
     BuildContext context,
-  }) {
-    return RoofSwitchField(
-      title: fieldData.title,
-      initialValue: fieldData.value,
-      onChanged: (value) {
-        resignFocus(context);
-        fieldData.onChanged(value);
-      },
-    );
-  }
+  }) =>
+      RoofSwitchField(
+        title: fieldData.title,
+        initialValue: fieldData.value,
+        onChanged: (value) {
+          resignFocus(context);
+          fieldData.onChanged(value);
+        },
+      );
 
   Widget buildDateField({
     FormDatePickerFieldData fieldData,
@@ -135,120 +144,154 @@ class StandardStreamForm
     int fieldIndex,
     int sectionIndex,
     BuildContext context,
-  }) {
-    return DatePickerField(
-      title: fieldData.title,
-      initialValue: fieldData.value,
-      startBound: fieldData.startBound,
-      endBound: fieldData.endBound,
-      onTap: fieldData.onTap,
-    );
-  }
+  }) =>
+      DatePickerField(
+        title: fieldData.title,
+        initialValue: fieldData.value,
+        startBound: fieldData.startBound,
+        endBound: fieldData.endBound,
+        onTap: fieldData.onTap,
+      );
 
-  Widget buildOptionPickerField({
-    FormOptionPickerFieldData fieldData,
+  Widget buildOptionPickerField<T>({
+    FormOptionPickerFieldData<T> fieldData,
     int fieldIndex,
     int sectionIndex,
-  }) {
-    return OptionPickerField(
-      title: fieldData.title,
-      emptyText: fieldData.emptyText,
-      isMultiSelect: fieldData.isMultiSelect,
-      selectedOptions: fieldData.selectedOptions?.map((option) {
-        return LabeledValue(
-          label: option.label,
-          value: option.value,
-        );
-      })?.toList(),
-      options: fieldData.options?.map(
-        (option) {
-          return LabeledValue(
-            label: option.label,
-            value: option.value,
-          );
-        },
-      )?.toList(),
-      onTap: fieldData.onTap,
-    );
-  }
+  }) =>
+      OptionPickerField<T>(
+        title: fieldData.title,
+        emptyText: fieldData.emptyText,
+        isMultiSelect: fieldData.isMultiSelect,
+        selectedOptions: fieldData.selectedOptions
+            ?.map(
+              (option) => LabeledValue(
+                label: option.label,
+                value: option.value,
+              ),
+            )
+            ?.toList(),
+        options: fieldData.options
+            ?.map(
+              (option) => LabeledValue(
+                label: option.label,
+                value: option.value,
+              ),
+            )
+            ?.toList(),
+        onTap: fieldData.onTap,
+      );
 
   Widget buildTimeSelect({
     FormTimePickerFieldData fieldData,
     int fieldIndex,
     int sectionIndex,
-  }) {
-    return TimePickerField(
-      title: fieldData.title,
-      initialValue: fieldData.value,
-      onTap: fieldData.onTap,
-    );
-  }
+  }) =>
+      TimePickerField(
+        title: fieldData.title,
+        initialValue: fieldData.value,
+        onTap: fieldData.onTap,
+      );
 
-  Widget buildRollerColumnPicker({
-    FormRollerColumnPickerFieldData fieldData,
+  Widget buildRollerColumnPickerField<T>({
+    FormRollerColumnPickerFieldData<T> fieldData,
     int fieldIndex,
     int sectionIndex,
-  }) {
-    return RollerColumnPickerField(
-      title: fieldData.title,
-      selectedValue: fieldData.value,
-      onTap: fieldData.onTap,
-    );
-  }
+  }) =>
+      RollerColumnPickerField(
+        title: fieldData.title,
+        selectedValue: fieldData.value,
+        onTap: fieldData.onTap,
+      );
 
   Widget buildIntervalFrequencySelect({
     FormIntervalFrequencyPickerFieldData fieldData,
     int fieldIndex,
     int sectionIndex,
-  }) {
-    return IntervalFrequencyPickerField(
-      title: fieldData.title,
-      selectedValue: Frequency(
-        interval: fieldData.value?.interval,
-        frequency: fieldData.value?.frequency,
-      ),
-      onTap: fieldData.onTap,
-    );
-  }
+  }) =>
+      IntervalFrequencyPickerField(
+        title: fieldData.title,
+        selectedValue: Frequency(
+          interval: fieldData.value?.interval,
+          frequency: fieldData.value?.frequency,
+        ),
+        onTap: fieldData.onTap,
+      );
 
   Widget buildIconOptionPickerField({
     FormIconPickerFieldData fieldData,
     int fieldIndex,
     int sectionIndex,
-  }) {
-    return IconPickerField(
-      title: fieldData.title,
-      selectedOption: fieldData.selectedOption != null
-          ? LabeledIcon(icon: fieldData.selectedOption.icon)
-          : null,
-      options: fieldData.options?.map(
-        (option) {
-          return LabeledIcon(
-            icon: option.icon,
-          );
-        },
-      )?.toList(),
-      onTap: fieldData.onTap,
-    );
-  }
+  }) =>
+      IconPickerField(
+        title: fieldData.title,
+        selectedOption: fieldData.selectedOption != null
+            ? LabeledIcon(icon: fieldData.selectedOption.icon)
+            : null,
+        options: fieldData.options?.map(
+          (option) {
+            return LabeledIcon(
+              icon: option.icon,
+            );
+          },
+        )?.toList(),
+        onTap: fieldData.onTap,
+      );
 
   Widget buildTagEditor({
     FormTagFieldData fieldData,
     int fieldIndex,
     int sectionIndex,
-  }) {
-    return TagField(
-      title: fieldData.title,
-      placeholder: fieldData.placeholder,
-      tags: fieldData.tags,
-      onTap: fieldData.onTap,
-    );
-  }
+  }) =>
+      TagField(
+        title: fieldData.title,
+        placeholder: fieldData.placeholder,
+        tags: fieldData.tags,
+        onTap: fieldData.onTap,
+      );
+
+  Widget buildMetaForm<T>({
+    MetaFormFieldData<T> fieldData,
+    int fieldIndex,
+    int sectionIndex,
+  }) =>
+      MetaFormField(
+        title: fieldData.title,
+        displayValues: fieldData.labeledValues,
+        onTap: fieldData.onTap,
+      );
+
+  Widget buildFormSectionHeader<T extends StreamableFormSectionHeaderData>({
+    BuildContext context,
+    T headerData,
+    int sectionIndex,
+  }) =>
+      buildSectionHeader(
+        title: headerData.title,
+        subtitle: headerData.subtitle,
+        withPadding: false,
+      );
 
   @override
-  Widget buildField({
+  Widget buildFormSectionButton<T extends StreamableFormSectionButtonData>({
+    T buttonData,
+    int sectionIndex,
     BuildContext context,
-    StreamableFormFieldData fieldData,
+  }) =>
+      Padding(
+        padding: EdgeInsets.only(
+          top: SemanticTheme.of(context).distance.spacing.vertical.small,
+        ),
+        child: buildSecondaryCenterButton(
+          context,
+          onTap: buttonData.onTap,
+          text: buttonData.text,
+        ),
+      );
+
+  @override
+  Widget buildField<T extends StreamableFormFieldData>({
+    BuildContext context,
+    T fieldData,
     StreamableFormData formData,
     int fieldIndex,
     int sectionIndex,
@@ -309,7 +352,7 @@ class StandardStreamForm
         sectionIndex: sectionIndex,
       );
     } else if (fieldData is FormRollerColumnPickerFieldData) {
-      fieldBody = buildRollerColumnPicker(
+      fieldBody = buildRollerColumnPickerField(
         fieldData: fieldData,
         fieldIndex: fieldIndex,
         sectionIndex: sectionIndex,
@@ -320,11 +363,22 @@ class StandardStreamForm
         fieldIndex: fieldIndex,
         sectionIndex: sectionIndex,
       );
+    } else if (fieldData is MetaFormFieldData) {
+      fieldBody = buildMetaForm(
+        fieldData: fieldData,
+        fieldIndex: fieldIndex,
+        sectionIndex: sectionIndex,
+      );
     }
 
-    return FieldContainer(
-      child: fieldBody,
-    );
+    return fieldData.isRemovable
+        ? RemovableFieldContainer(
+            child: fieldBody,
+            onRemove: () => bloc.removeFieldData(fieldData),
+          )
+        : FieldContainer(
+            child: fieldBody,
+          );
   }
 
   void resignFocus(BuildContext context) {

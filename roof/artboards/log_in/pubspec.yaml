@@ -49,8 +49,8 @@ dependency_overrides:
     path: ../domains
   form_builder:
     path: ../../../builders/form
-  page_header_builder:
-    path: ../../../builders/page_header
+  header_builder:
+    path: ../../../builders/header
   stream_list_view_vertical_full_screen_artboard_template:
     path: ../../../artboard_templates/vertical_full_screen/stream_list_view
 

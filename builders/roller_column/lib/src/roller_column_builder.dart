@@ -8,16 +8,15 @@ mixin RollerColumnBuilder {
     BuildContext context, {
     @required List<LabeledValue<T>> list,
     LabeledValue<T> selectedValue,
-    bool canRollover,
+    bool infiniteScroll,
     CrossAxisAlignment crossAxisAlignment,
     void Function(LabeledValue<T>) onChange,
-  }) {
-    return RollerColumn<T>(
-      list: list,
-      selectedValue: selectedValue,
-      canRollover: canRollover,
-      crossAxisAlignment: crossAxisAlignment,
-      onChange: onChange,
-    );
-  }
+  }) =>
+      RollerColumn<T>(
+        list: list,
+        selectedValue: selectedValue,
+        infiniteScroll: infiniteScroll,
+        crossAxisAlignment: crossAxisAlignment,
+        onChange: onChange,
+      );
 }

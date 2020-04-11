@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:semantic_theme/index.dart';
 import 'package:standard_icon_library/index.dart';
 import 'package:haptics/index.dart';
+import 'package:tappable/index.dart';
 import 'package:typedefs/index.dart';
 
 mixin ListStyleButton {
@@ -14,16 +15,11 @@ mixin ListStyleButton {
   ColorGetter get badgeTextColor;
 }
 
-mixin ListButtonState {
+mixin ListButtonState<T extends StatefulWidget> on Tappable<T> {
   ListStyleButton get button;
   BuildContext get context;
 
-  bool _tapped = false;
-  double _tappedOpacity = 0.6;
   final double _height = 50;
-  final _tapHapticOption = HapticOption.light;
-
-  void setState(dynamic());
 
   Widget buildButton(BuildContext context) {
     final theme = SemanticTheme.of(context);
@@ -67,15 +63,13 @@ mixin ListButtonState {
       buttonChildren.add(badgeText);
     }
 
-    double opacity = _tapped ? _tappedOpacity : 1;
-
-    return GestureDetector(
-      onTapDown: _onTapDown,
-      onTap: _onTap,
-      onTapUp: _onTapUp,
-      onTapCancel: _onTapCancel,
+    return buildTappedAwareGestureDetector(
+      onTap: () => hapticAction(
+        HapticOption.light,
+        action: () => button.onTap(context),
+      ),
       child: Opacity(
-        opacity: opacity,
+        opacity: tapped ? .7 : 1,
         child: Container(
           color: Colors.transparent,
           height: _height,
@@ -89,22 +83,5 @@ mixin ListButtonState {
         ),
       ),
     );
-  }
-
-  void _onTap() {
-    if (button.onTap != null) button.onTap(context);
-  }
-
-  void _onTapDown(TapDownDetails details) {
-    triggerHapticWith(_tapHapticOption);
-    setState(() => _tapped = true);
-  }
-
-  void _onTapUp(TapUpDetails details) {
-    setState(() => _tapped = false);
-  }
-
-  void _onTapCancel() {
-    setState(() => _tapped = false);
   }
 }

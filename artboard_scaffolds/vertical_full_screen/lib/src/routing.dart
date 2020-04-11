@@ -6,7 +6,7 @@ class VerticalFullScreenRoute<T> extends PageRoute<T> {
   SemanticThemeData theme;
 
   @override
-  Duration get transitionDuration => theme.duration.short;
+  Duration get transitionDuration => theme.duration.long;
 
   @override
   bool get opaque => false;
@@ -21,8 +21,8 @@ class VerticalFullScreenRoute<T> extends PageRoute<T> {
   bool get maintainState => true;
 
   Animation<double> get animation => CurvedAnimation(
-        curve: theme.curve.hurried,
-        reverseCurve: theme.curve.hurried,
+        curve: theme.curve.enter,
+        reverseCurve: theme.curve.exit,
         parent: controller,
       );
 
@@ -31,7 +31,7 @@ class VerticalFullScreenRoute<T> extends PageRoute<T> {
     end: 1,
   );
   final _slideTween = Tween<Offset>(
-    begin: Offset(0.5, 0.0),
+    begin: Offset(1, 0.0),
     end: Offset.zero,
   );
 

@@ -32,4 +32,22 @@ class SmShadowLibrary extends SemanticShadowLibrary {
           offset: Offset(0, 2),
         ),
       });
+
+  @override
+  BoxShadow get appBar => forThemeOption({
+        SmThemeOption.dark: BoxShadow(
+          blurRadius: 18,
+          color: Colors.black.withOpacity(.35),
+          offset: Offset(0, 2),
+        ),
+      });
+
+  @override
+  BoxShadow get card => forThemeOption({
+        SmThemeOption.dark: BoxShadow(
+          blurRadius: 3,
+          color: Colors.black.withOpacity(.35),
+          offset: Offset(0, 1),
+        ),
+      });
 }

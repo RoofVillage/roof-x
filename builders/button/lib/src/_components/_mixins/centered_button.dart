@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:button_builder/index.dart';
 import 'package:semantic_theme/index.dart';
+import 'package:vertically_centered_text_builder/index.dart';
+import 'package:tappable/index.dart';
 import 'package:x_small_icon_library/index.dart';
 import 'package:haptics/index.dart';
 
@@ -13,14 +15,12 @@ mixin CenteredStyleButton {
   XSmallIcon get icon;
 }
 
-mixin CenteredStyleButtonState {
+mixin CenteredStyleButtonState<T extends StatefulWidget>
+    on Tappable<T>, VerticallyCenteredTextBuilder {
   CenteredStyleButton get button;
   BuildContext get context;
 
-  bool _tapped = false;
-  final double _tappedOpacity = 0.75;
   final double _height = 50;
-  final _tapHapticOption = HapticOption.light;
 
   void setState(dynamic());
 
@@ -39,31 +39,28 @@ mixin CenteredStyleButtonState {
       buttonChildren.add(paddedIconWidget);
     }
 
-    final textDecoration = theme.typography.button.textStyle(color: textColor);
-
-    final styledButtonText = Text(
-      button.text,
-      style: textDecoration,
-      textAlign: TextAlign.center,
+    final styledButtonText = buildVerticallyCenteredText(
+      Text(
+        button.text,
+        style: theme.typography.button.textStyle(color: textColor),
+        textAlign: TextAlign.center,
+      ),
     );
-
     buttonChildren.add(styledButtonText);
 
     final decoration = BoxDecoration(
-      border: Border.all(color: button.strokeColor(context)),
+      border: Border.all(color: button.strokeColor(context), width: 2),
       color: button.backgroundColor(context),
       borderRadius: BorderRadius.all(theme.radius.medium),
     );
 
-    double opacity = _tapped ? _tappedOpacity : 1;
-
-    return GestureDetector(
-      onTapDown: _onTapDown,
-      onTap: _onTap,
-      onTapUp: _onTapUp,
-      onTapCancel: _onTapCancel,
+    return buildTappedAwareGestureDetector(
+      onTap: () => hapticAction(
+        HapticOption.light,
+        action: button.onTap,
+      ),
       child: Opacity(
-        opacity: opacity,
+        opacity: tapped ? .7 : 1,
         child: Container(
           height: _height,
           decoration: decoration,
@@ -74,22 +71,5 @@ mixin CenteredStyleButtonState {
         ),
       ),
     );
-  }
-
-  void _onTap() {
-    if (button.onTap != null) button.onTap();
-  }
-
-  void _onTapDown(TapDownDetails details) {
-    triggerHapticWith(_tapHapticOption);
-    setState(() => _tapped = true);
-  }
-
-  void _onTapUp(TapUpDetails details) {
-    setState(() => _tapped = false);
-  }
-
-  void _onTapCancel() {
-    setState(() => _tapped = false);
   }
 }

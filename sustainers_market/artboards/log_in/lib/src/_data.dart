@@ -7,10 +7,10 @@ import 'package:navigator/index.dart';
 
 mixin LogInArtboardData implements FormBuilder {
   @override
-  String get title => "Log in";
+  String get title => 'Log in';
 
   @override
-  String get submitButtonText => "Submit";
+  String get submitButtonText => 'Submit';
 
   @override
   submit(context) async {
@@ -31,7 +31,6 @@ mixin LogInArtboardData implements FormBuilder {
       ];
 
   final _phoneNumberFieldData = FormPhoneNumberTextFieldData(
-    title: "Phone number",
     autofocus: true,
   );
 }

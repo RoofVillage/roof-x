@@ -97,7 +97,7 @@ class _RemoveableAnimatedTagState extends State<_RemoveableAnimatedTag>
       overflow: TextOverflow.fade,
     );
 
-    final backgroundColor = theme.color.background.generalPrimary;
+    final backgroundColor = theme.color.background.raised;
 
     final animatedTextContainer = AnimatedSize(
       vsync: this,

@@ -11,6 +11,14 @@ class FormValidationException implements Exception {
         "Looks like this phone number isn't valid. Reach out to us if you think we've got it wrong.",
       );
 
+  factory FormValidationException.badSsn() => FormValidationException(
+        "Looks like this social security number (SSN) isn't valid. Reach out to us if you think we've got it wrong.",
+      );
+
+  factory FormValidationException.badEin() => FormValidationException(
+        "Looks like this employer identificiation number (EIN) isn't valid. Reach out to us if you think we've got it wrong.",
+      );
+
   factory FormValidationException.longPassword({@required int max}) =>
       FormValidationException(
         "This password is too long. Try something under $max characters.",

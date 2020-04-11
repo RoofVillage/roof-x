@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:key_value_row_builder/index.dart';
-import 'package:stack_vertical_floating_artboard_template/index.dart';
+import 'package:spaced_column_vertical_floating_artboard_template/index.dart';
 import 'package:button_builder/index.dart';
 import 'package:date/index.dart';
 import 'package:mask/index.dart';
@@ -11,7 +11,7 @@ import 'package:interval/index.dart';
 import '_data.dart';
 
 abstract class PropertyInfoVerticalFloatingArtboard
-    extends StackVerticalFloatingArtboard
+    extends SpacedColumnVerticalFloatingArtboard
     with
         SecondaryCenterButtonBuilder,
         LeaseInfoArtboardData,

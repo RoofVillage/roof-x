@@ -10,21 +10,21 @@ class FormEmailTextFieldData extends FormTextFieldData {
       r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$");
 
   FormEmailTextFieldData({
-    String title = "Email",
-    String placeholder,
     String initialValue,
     double size,
     bool isVisible,
     bool autofocus,
+    bool isRequired,
     String exceptionTitle,
   }) : super(
-          title: title,
-          placeholder: placeholder,
+          title: 'Email',
+          placeholder: 'address@email.com',
           initialValue: initialValue,
           autofocus: autofocus,
           keyboardType: TextInputType.emailAddress,
           size: size,
           isVisible: isVisible,
+          min: isRequired == true ? 1 : null,
           exceptionTitle: exceptionTitle,
         );
 

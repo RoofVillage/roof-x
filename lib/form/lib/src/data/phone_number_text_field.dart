@@ -7,24 +7,23 @@ import 'package:form_validation_exception/index.dart';
 import 'text_field.dart';
 
 class FormPhoneNumberTextFieldData extends FormTextFieldData {
-  FormPhoneNumberTextFieldData(
-      {String title = "Phone number",
-      String placeholder,
-      String initialValue,
-      double size,
-      bool isVisible,
-      bool autofocus,
-      String exceptionTitle})
-      : super(
-            mask: MaskOption.phoneNumber,
-            title: title,
-            placeholder: placeholder,
-            initialValue: initialValue,
-            autofocus: autofocus,
-            keyboardType: TextInputType.phone,
-            size: size,
-            isVisible: isVisible,
-            exceptionTitle: exceptionTitle);
+  FormPhoneNumberTextFieldData({
+    String initialValue,
+    double size,
+    bool isVisible,
+    bool autofocus,
+    String exceptionTitle,
+  }) : super(
+          mask: MaskOption.phoneNumber,
+          title: 'Phone number',
+          placeholder: '(123) 456-7890',
+          initialValue: initialValue,
+          autofocus: autofocus,
+          keyboardType: TextInputType.phone,
+          size: size,
+          isVisible: isVisible,
+          exceptionTitle: exceptionTitle,
+        );
 
   Future<void> validate() async {
     if (value.length < 5) {

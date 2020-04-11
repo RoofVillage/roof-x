@@ -1,0 +1,41 @@
+name: icon_button_builder
+description: Builds single-icon buttons.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  haptics:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: lib/haptics
+  small_icon_library:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: icons/small
+  navigation_icon_library:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: icons/navigation
+  semantic_theme:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: semantic_theme
+
+dependency_overrides:
+  semantic_theme:
+    path: ../../semantic_theme
+  haptics:
+    path: ../../lib/haptics
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

@@ -1,0 +1,1 @@
+export 'src/vertically_centered_text_builder.dart';

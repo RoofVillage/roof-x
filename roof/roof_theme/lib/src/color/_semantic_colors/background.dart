@@ -11,10 +11,16 @@ class RoofBackgroundColor extends SemanticBackgroundColor<RoofThemeOption> {
       : super(currentThemeOption);
 
   @override
-  Color get actionPrimary => colors.brandBlue;
+  Color get actionPrimary => forThemeOption({
+    RoofThemeOption.light: colors.brandBlue,
+    RoofThemeOption.dark: colors.brandBlueAccent,
+  });
 
   @override
-  Color get actionSecondary => colors.brandBlue;
+  Color get actionSecondary => forThemeOption({
+    RoofThemeOption.light: Colors.transparent,
+    RoofThemeOption.dark: Colors.transparent,
+  });
 
   @override
   Color get actionDisabled => colors.brandBlueFade;
@@ -23,45 +29,33 @@ class RoofBackgroundColor extends SemanticBackgroundColor<RoofThemeOption> {
   Color get brand => colors.brandRed;
 
   @override
-  Color get generalPrimary => forThemeOption({
-        RoofThemeOption.light: colors.white1,
-        RoofThemeOption.dark: colors.black2,
+  Color get raised => forThemeOption({
+        RoofThemeOption.light: colors.white,
+        RoofThemeOption.dark: colors.blackMid,
       });
 
   @override
-  Color get generalSecondary => forThemeOption({
-        RoofThemeOption.light: colors.white2,
-        RoofThemeOption.dark: colors.black1,
+  Color get general => forThemeOption({
+        RoofThemeOption.light: colors.whiteMid,
+        RoofThemeOption.dark: colors.black,
       });
 
   @override
   Color get neutralContrast => forThemeOption({
-        RoofThemeOption.light: colors.gray2,
-        RoofThemeOption.dark: colors.black3,
+        RoofThemeOption.light: colors.grayMidLight,
+        RoofThemeOption.dark: colors.blackLight,
       });
 
   @override
   Color get inactive => forThemeOption({
-        RoofThemeOption.light: colors.gray1,
-        RoofThemeOption.dark: colors.gray4,
-      });
-
-  @override
-  Color get inputBackground => forThemeOption({
-        RoofThemeOption.light: colors.white2,
-        RoofThemeOption.dark: colors.black3,
-      });
-
-  @override
-  Color get inputForeground => forThemeOption({
-        RoofThemeOption.light: colors.white1,
-        RoofThemeOption.dark: colors.black2,
+        RoofThemeOption.light: colors.grayLight,
+        RoofThemeOption.dark: colors.grayDark,
       });
 
   @override
   Color get scrim => forThemeOption({
         RoofThemeOption.light: Colors.black.withOpacity(0.2),
-        RoofThemeOption.dark: Colors.black.withOpacity(0.1),
+        RoofThemeOption.dark: Colors.black.withOpacity(0.85),
       });
 
   @override

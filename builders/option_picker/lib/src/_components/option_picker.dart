@@ -191,7 +191,7 @@ class _Option<T> extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         border: Border(
-          bottom: BorderSide(color: theme.color.stroke.light),
+          bottom: BorderSide(color: theme.color.stroke.medium),
         ),
       ),
       child: GestureDetector(

@@ -11,33 +11,39 @@ import 'package:roof_theme/src/typography/_subtitle.dart';
 import 'package:roof_theme/src/typography/_title.dart';
 
 class RoofTypographyLibrary extends SemanticTypographyLibrary {
-  @override
-  SemanticTypography get headingPrimary => RoofHeadingPrimaryTypography();
+  RoofTypographyLibrary(currentThemeOption) : super(currentThemeOption);
 
   @override
-  SemanticTypography get headingSecondary => RoofHeadingSecondaryTypography();
+  SemanticTypography get headingPrimary =>
+      RoofHeadingPrimaryTypography(currentThemeOption);
 
   @override
-  SemanticTypography get body => RoofBodyTypography();
+  SemanticTypography get headingSecondary =>
+      RoofHeadingSecondaryTypography(currentThemeOption);
 
   @override
-  SemanticTypography get bodyHeavy => RoofBodyHeavyTypography();
+  SemanticTypography get body => RoofBodyTypography(currentThemeOption);
 
   @override
-  SemanticTypography get detail => RoofDetailTypography();
+  SemanticTypography get bodyHeavy =>
+      RoofBodyHeavyTypography(currentThemeOption);
 
   @override
-  SemanticTypography get detailHeavy => RoofDetailHeavyTypography();
+  SemanticTypography get detail => RoofDetailTypography(currentThemeOption);
 
   @override
-  SemanticTypography get label => RoofLabelTypography();
+  SemanticTypography get detailHeavy =>
+      RoofDetailHeavyTypography(currentThemeOption);
 
   @override
-  SemanticTypography get title => RoofTitleTypography();
+  SemanticTypography get label => RoofLabelTypography(currentThemeOption);
 
   @override
-  SemanticTypography get subtitle => RoofSubtitleTypography();
+  SemanticTypography get title => RoofTitleTypography(currentThemeOption);
 
   @override
-  SemanticTypography get button => RoofButtonTypography();
+  SemanticTypography get subtitle => RoofSubtitleTypography(currentThemeOption);
+
+  @override
+  SemanticTypography get button => RoofButtonTypography(currentThemeOption);
 }

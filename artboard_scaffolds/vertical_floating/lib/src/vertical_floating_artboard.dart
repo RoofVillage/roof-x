@@ -16,36 +16,28 @@ mixin VerticalFloatingArtboardState<T extends VerticalFloatingArtboard>
     final theme = SemanticTheme.of(context);
 
     final decoration = BoxDecoration(
-      color: theme.color.background.inputBackground,
+      color: theme.color.background.general,
       borderRadius: BorderRadius.all(theme.radius.max),
       boxShadow: [
-        theme.shadow.medium,
+        theme.shadow.large,
       ],
     );
 
     final pageContent = Container(
-      padding: EdgeInsets.fromLTRB(
-        0,
-        theme.distance.gutter.vertical.medium,
-        0,
-        theme.distance.gutter.vertical.medium * 4,
+      padding: EdgeInsets.only(
+        top: theme.distance.gutter.vertical.medium,
+        bottom: theme.distance.gutter.vertical.large * 3,
       ),
       child: buildBody(context),
     );
 
     final safeArea = MediaQuery.of(context).padding;
 
-    final margin = EdgeInsets.fromLTRB(
-      theme.distance.gutter.horizontal.medium,
-      theme.distance.gutter.vertical.large,
-      theme.distance.gutter.horizontal.medium,
-      theme.distance.gutter.vertical.medium,
-    );
-    final safeAreaMargin = EdgeInsets.fromLTRB(
-      margin.left,
-      max(margin.top, safeArea.top),
-      margin.right,
-      max(margin.bottom, safeArea.bottom),
+    final safeAreaMargin = EdgeInsets.only(
+      top: max(
+        theme.distance.gutter.vertical.large,
+        safeArea.top,
+      ),
     );
 
     final nonClickableSurface = GestureDetector(

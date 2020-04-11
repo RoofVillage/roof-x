@@ -14,7 +14,7 @@ const white2 = Color.fromRGBO(243, 243, 243, 1);
 
 const black3 = Color.fromRGBO(60, 60, 60, 1);
 const black2 = Color.fromRGBO(32, 32, 32, 1);
-const black1 = Color.fromRGBO(24, 24, 24, 1);
+const black = Color.fromRGBO(24, 24, 24, 1);
 
 const gray1 = Color.fromRGBO(221, 221, 221, 1);
 const gray2 = Color.fromRGBO(189, 189, 189, 1);

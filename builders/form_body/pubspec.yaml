@@ -4,7 +4,7 @@ description: Form functionality for artboards.
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.2.2 <3.0.0"
 
 dependencies:
   flutter:
@@ -29,6 +29,11 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: master
       path: icons/small
+  x_small_icon_library:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: icons/x_small
   mask:
     git:
       url: git@github.com:RoofVillage/roof-x.git
@@ -119,11 +124,21 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: master
       path: builders/tag
+  button_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: builders/button
   tag_editor_builder:
     git:
       url: git@github.com:RoofVillage/roof-x.git
       ref: master
       path: builders/tag_editor
+  meta_form_artboard_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: builders/meta_form
   icon_picker_builder:
     git:
       url: git@github.com:RoofVillage/roof-x.git
@@ -139,8 +154,40 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: master
       path: semantic_theme
+  key_value_row_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: builders/key_value_row
+  header_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: builders/header
 
 dependency_overrides:
+  header_builder:
+    path: ../header
+  haptics:
+    path: ../../lib/haptics
+  button_builder:
+    path: ../../builders/button
+  vertically_centered_text_builder:
+    path: ../../builders/vertically_centered_text
+  key_value_row_builder:
+    path: ../key_value_row
+  meta_form_artboard_builder:
+    path: ../meta_form
+  dwolla_model:
+    path: ../../model/dwolla
+  us_state_options:
+    path: ../../types/us_state
+  dwolla_types:
+    path: ../../types/dwolla
+  form:
+    path: ../../lib/form
+  tappable:
+    path: ../../lib/tappable
   form_submission_exception:
     path: ../../lib/form_submission_exception
   semantic_theme:

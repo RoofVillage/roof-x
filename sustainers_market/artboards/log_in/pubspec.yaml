@@ -46,6 +46,14 @@ dependency_overrides:
     path: ../../commands
   form_builder:
     path: ../../../builders/form
+  form:
+    path: ../../../lib/form
+  us_state_options:
+    path: ../../../types/us_state
+  dwolla_model:
+    path: ../../../model/dwolla
+  dwolla_types:
+    path: ../../../types/dwolla
   navigator:
     path: ../../../lib/navigator
 

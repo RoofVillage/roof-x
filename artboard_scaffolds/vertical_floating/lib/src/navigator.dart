@@ -37,11 +37,17 @@ class VerticalFloatingArtboardNavigator extends StatefulWidget {
 
 class VerticalFloatingInheritedArtboardNavigator
     extends State<VerticalFloatingArtboardNavigator> {
-  bool showsNavButton = true;
-
   List<VerticalFloatingArtboardNavigatorPanel> _floatingArtboardPanels = [];
 
   final _pageController = PageController();
+  final _popMinDragDistanceDelta = 30;
+  final _popMaxDragTimeDelta = 50;
+
+  bool showsNavButton = true;
+  int _initialDragTime;
+  double _initialDragDy;
+  int _timeDelta;
+  double _downDistanceDelta;
 
   @override
   void initState() {
@@ -50,18 +56,10 @@ class VerticalFloatingInheritedArtboardNavigator
     super.initState();
   }
 
-  final _popMinDragDistanceDelta = 50;
-  final _popMaxDragTimeDelta = 70;
-
-  int _initialDragTime;
-  double _initialDragDy;
-
-  int _timeDelta;
-  double _downDistanceDelta;
-
+  // Must drag _popMinDragDistanceDelta in less time than _popMaxDragTimeDelta to pop
   get _shouldPop =>
-      _timeDelta < _popMinDragDistanceDelta &&
-      _downDistanceDelta > _popMaxDragTimeDelta;
+      _timeDelta < _popMaxDragTimeDelta &&
+      _downDistanceDelta > _popMinDragDistanceDelta;
 
   get childrenDelegate => SliverChildBuilderDelegate((
         context,
@@ -152,12 +150,12 @@ class VerticalFloatingInheritedArtboardNavigator
     return Navigator.pop(context, result);
   }
 
-  void _onVerticalDragStart(details) {
+  void _onVerticalDragStart(DragStartDetails details) {
     _initialDragTime = details.sourceTimeStamp.inMilliseconds;
     _initialDragDy = details.globalPosition.dy;
   }
 
-  void _onDragDownUpdate(details) {
+  void _onDragDownUpdate(DragUpdateDetails details) {
     _timeDelta = details.sourceTimeStamp.inMilliseconds - _initialDragTime;
     _downDistanceDelta = details.globalPosition.dy - _initialDragDy;
   }

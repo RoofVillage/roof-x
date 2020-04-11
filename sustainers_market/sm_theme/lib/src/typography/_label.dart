@@ -7,11 +7,13 @@ import '../_constants/_font_size.dart' as fs;
 import '../_constants/_font_weight.dart' as fw;
 
 class SmLabelTypography extends SemanticTypography {
+  SmLabelTypography(currentThemeOption) : super(currentThemeOption);
+
   @override
   String get fontFamily => ff.circular;
 
   @override
-  String get fontFamilyFallback => null;
+  List<String> get fontFamilyFallback => null;
 
   @override
   double get fontSize => fs.extraSmall;
@@ -20,5 +22,5 @@ class SmLabelTypography extends SemanticTypography {
   FontWeight get fontWeight => fw.thick;
 
   @override
-  double get letterSpacing => 1;
+  double get letterSpacing => 0;
 }

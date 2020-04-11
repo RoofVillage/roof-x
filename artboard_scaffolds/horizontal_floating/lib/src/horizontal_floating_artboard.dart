@@ -14,7 +14,7 @@ mixin HorizontalFloatingArtboardState<T extends HorizontalFloatingArtboard>
     final theme = SemanticTheme.of(context);
 
     final decoration = BoxDecoration(
-      color: theme.color.background.generalSecondary,
+      color: theme.color.background.general,
       borderRadius: BorderRadius.all(theme.radius.large),
       boxShadow: [
         theme.shadow.large,

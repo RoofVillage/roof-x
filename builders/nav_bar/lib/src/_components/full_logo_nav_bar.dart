@@ -6,13 +6,12 @@ import 'nav_bar.dart';
 class FullLogoNavBar extends StatelessWidget
     with NavBar, FullLogoNavButtonBuilder {
   final List<Widget> actionButtons;
-  final Function(BuildContext) onLogoTap;
+  final void Function() onLogoTap;
 
   @override
   List<Widget> buildNavigationWidgets(BuildContext context) {
     return [
       buildFullLogoNavButton(
-        context,
         onTap: onLogoTap,
       )
     ];

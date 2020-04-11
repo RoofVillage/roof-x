@@ -1,0 +1,366 @@
+name: app
+description: Delightful renting for roommates and landlords.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  sm_theme:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: sm_theme
+  wallets_artboard:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: sustainers_market/artboards/wallets
+  vertical_full_screen_artboard_scaffold:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: artboard_scaffolds/vertical_full_screen
+  artboard:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: lib/artboard
+  device_screen:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: lib/device_screen
+  commands:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: sustainers_market/commands
+
+dependency_overrides:
+  spaced_sliver_list_builder:
+    path: ../../../builders/spaced_sliver_list
+  scroll_view_vertical_full_screen_artboard_template:
+    path: ../../../artboard_templates/vertical_full_screen/scroll_view
+  commands:
+    path: ../../commands
+  header_builder:
+    path: ../../../builders/header
+  dwolla_types:
+    path: ../../../types/dwolla
+  icon_button_builder:
+    path: ../../../builders/icon_button
+  table_cell_builder:
+    path: ../../../builders/table_cell
+  property:
+    path: ../../../model/objects/property
+  lease_preview:
+    path: ../../../model/objects/lease_preview
+  frequency_type:
+    path: ../../../types/frequency
+  service_dashboard_artboard:
+    path: ../../artboards/service_dashboard
+  user_settings_artboard:
+    path: ../../artboards/user_settings
+  add_wallet_artboard:
+    path: ../../artboards/add_wallet
+  wallet_dashboard_artboard:
+    path: ../../artboards/wallet_dashboard
+  choose_wallet_verification_type_artboard:
+    path: ../../../artboards/sustainers/choose_wallet_verification_type
+  verify_personal_wallet_artboard:
+    path: ../../../artboards/sustainers/verify_personal_wallet
+  balance_actions_artboard:
+    path: ../../../artboards/sustainers/balance_actions
+  verify_business_wallet_artboard:
+    path: ../../../artboards/sustainers/verify_business_wallet
+  verify_sole_proprietorship_wallet_artboard:
+    path: ../../../artboards/sustainers/verify_sole_proprietorship_wallet
+  choose_business_type_artboard:
+    path: ../../../artboards/sustainers/choose_business_type
+  secret_key_artboard:
+    path: ../../artboards/secret_key
+  register_artboard:
+    path: ../../artboards/register
+  log_in_artboard:
+    path: ../../artboards/log_in
+  dwolla_model:
+    path: ../../../model/dwolla
+  auth_verify_code_artboard:
+    path: ../../artboards/auth_verify_code
+  vertical_drawer_artboard_scaffold:
+    path: ../../../artboard_scaffolds/vertical_drawer
+  vertical_full_screen_artboard_scaffold:
+    path: ../../../artboard_scaffolds/vertical_full_screen
+  vertical_floating_artboard_scaffold:
+    path: ../../../artboard_scaffolds/vertical_floating
+  view_stream_builder_builder:
+    path: ../../../builders/view_stream_builder
+  sm_theme:
+    path: ../../sm_theme
+  us_state_options:
+    path: ../../../types/us_state
+  artboard:
+    path: ../../../lib/artboard
+  services_artboard:
+    path: ../../artboards/services
+  wallets_artboard:
+    path: ../../artboards/wallets
+  meta_form_artboard_builder:
+    path: ../../../builders/meta_form
+  meta_form_artboard:
+    path: ../../../artboards/meta_form
+  vertically_centered_text_builder:
+    path: ../../../builders/vertically_centered_text
+  tappable:
+    path: ../../../lib/tappable
+  create_service_artboard:
+    path: ../../artboards/create_service
+  horizontal_floating_artboard_scaffold:
+    path: ../../../artboard_scaffolds/horizontal_floating
+  titled_table_vertical_full_screen_artboard_template:
+    path: ../../../artboard_templates/vertical_full_screen/titled_table
+  actor_reference:
+    path: ../../../model/properties/actor_reference
+  app_data:
+    path: ../../../app_data
+  billing:
+    path: ../../../model/properties/billing
+  billing_status_type:
+    path: ../../../types/billing_status
+  billing_type:
+    path: ../../../types/billing
+  blossm_command:
+    path: ../../../blossm_command
+  blossm_view_store:
+    path: ../../../blossm_view_store
+  button_builder:
+    path: ../../../builders/button
+  spaced_list_view_builder:
+    path: ../../../builders/spaced_list_view
+  button_status_option:
+    path: ../../../options/button_status
+  cache:
+    path: ../../../lib/cache
+  context:
+    path: ../../../model/abstract/context
+  context_type:
+    path: ../../../types/context
+  date:
+    path: ../../../lib/date
+  date_picker_artboard:
+    path: ../../../artboards/date_picker
+  date_picker_builder:
+    path: ../../../builders/date_picker
+  decorated_text:
+    path: ../../../lib/decorated_text
+  device_screen:
+    path: ../../../lib/device_screen
+  disk:
+    path: ../../../lib/disk
+  domain_type:
+    path: ../../../types/domain
+  email_category_type:
+    path: ../../../types/email_category
+  empty_table_vertical_full_screen_artboard_template:
+    path: ../../../artboard_templates/vertical_full_screen/empty_table
+  empty_vertical_floating_artboard_template:
+    path: ../../../artboard_templates/vertical_floating/empty
+  fee_payer_type:
+    path: ../../../types/fee_payer
+  form:
+    path: ../../../lib/form
+  form_body_builder:
+    path: ../../../builders/form_body
+  form_builder:
+    path: ../../../builders/form
+  form_validation_exception:
+    path: ../../../lib/form_validation_exception
+  form_submission_exception:
+    path: ../../../lib/form_submission_exception
+  form_vertical_floating_artboard_template:
+    path: ../../../artboard_templates/vertical_floating/form
+  frequency:
+    path: ../../../frequency
+  haptics:
+    path: ../../../lib/haptics
+  icon_picker_artboard:
+    path: ../../../artboards/icon_picker
+  icon_picker_builder:
+    path: ../../../builders/icon_picker
+  icon_reference:
+    path: ../../../icons/icon_reference
+  image_picker_builder:
+    path: ../../../builders/image_picker
+  interval:
+    path: ../../../lib/interval
+  interval_frequency_picker_artboard:
+    path: ../../../artboards/interval_frequency_picker
+  interval_frequency_picker_builder:
+    path: ../../../builders/interval_frequency_picker
+  invoice_options:
+    path: ../../../types/invoice
+  key:
+    path: ../../../model/key
+  key_value_builder:
+    path: ../../../builders/key_value
+  key_value_row_builder:
+    path: ../../../builders/key_value_row
+  keyboard_accessory:
+    path: ../../../lib/keyboard_accessory
+  keyboard_accessory_bar_builder:
+    path: ../../../builders/keyboard_accessory_bar
+  labeled_icon:
+    path: ../../../labeled_icon
+  labeled_value:
+    path: ../../../labeled_value
+  lease_status:
+    path: ../../../types/lease
+  mappable:
+    path: ../../../model/mixins/mappable
+  mask:
+    path: ../../../lib/mask
+  model_object:
+    path: ../../../model/abstract/model_object
+  model_object_cache:
+    path: ../../../model/object_cache
+  name_context:
+    path: ../../../model/properties/name_context
+  name_contract:
+    path: ../../../model/properties/name_contract
+  name_defining_object:
+    path: ../../../model/mixins/name_defining_object
+  name_domain:
+    path: ../../../model/properties/name_domain
+  name_payment_profile:
+    path: ../../../model/properties/name_payment_profile
+  name_user:
+    path: ../../../model/properties/name_user
+  nav_bar_builder:
+    path: ../../../builders/nav_bar
+  nav_button_builder:
+    path: ../../../builders/nav_button
+  navigation_icon_library:
+    path: ../../../icons/navigation
+  navigator:
+    path: ../../../lib/navigator
+  network:
+    path: ../../../lib/network
+  notification_category_type:
+    path: ../../../types/notification_category
+  option_picker_artboard:
+    path: ../../../artboards/option_picker
+  option_picker_builder:
+    path: ../../../builders/option_picker
+  ordinal_suffix_string_from_int:
+    path: ../../../lib/ordinal_suffix_string_from_int
+  payment_default:
+    path: ../../../model/properties/payment_default
+  payment_default_type:
+    path: ../../../types/payment_default
+  period_type:
+    path: ../../../types/period
+  privacy_type:
+    path: ../../../types/privacy
+  public:
+    path: ../../../model/objects/public
+  request_status:
+    path: ../../../types/request
+  roller_column_builder:
+    path: ../../../builders/roller_column
+  roller_column_picker_artboard:
+    path: ../../../artboards/roller_column_picker
+  roller_column_picker_builder:
+    path: ../../../builders/roller_column_picker
+  secure_storage:
+    path: ../../../lib/secure_storage
+  semantic_theme:
+    path: ../../../semantic_theme
+  session:
+    path: ../../../session
+  small_icon_library:
+    path: ../../../icons/small
+  sorting:
+    path: ../../../lib/sorting
+  spaced_grid_builder:
+    path: ../../../builders/spaced_grid
+  standard_icon_library:
+    path: ../../../icons/standard
+  spaced_column_vertical_floating_artboard_template:
+    path: ../../../artboard_templates/vertical_floating/spaced_column
+  spaced_column_builder:
+    path: ../../../builders/spaced_column
+  stream:
+    path: ../../../lib/stream
+  string_from_enum_string:
+    path: ../../../lib/string_from_enum_string
+  stub:
+    path: ../../../model/objects/stub
+  stub_type:
+    path: ../../../types/stub
+  svg:
+    path: ../../../svg
+  synchronizer:
+    path: ../../../synchronizer
+  table:
+    path: ../../../lib/table
+  table_builder:
+    path: ../../../builders/table
+  tag_builder:
+    path: ../../../builders/tag
+  tag_editor_artboard:
+    path: ../../../artboards/tag_editor
+  tag_editor_builder:
+    path: ../../../builders/tag_editor
+  tag_kind_option:
+    path: ../../../options/tag_kind
+  time_picker_artboard:
+    path: ../../../artboards/time_picker
+  time_picker_builder:
+    path: ../../../builders/time_picker
+  typedefs:
+    path: ../../../lib/typedefs
+  user:
+    path: ../../../model/objects/user
+  user_reference:
+    path: ../../../model/properties/user_reference
+  vertical_floating_artboard_button_option:
+    path: ../../../options/vertical_floating_artboard_button
+  views:
+    path: ../../views
+  x_small_icon_library:
+    path: ../../../icons/x_small
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  fonts:
+    - family: RoofXSmallIcons
+      fonts:
+        - asset: packages/x_small_icon_library/ttf/RoofXSmallIcons.ttf
+    - family: RoofSmallIcons
+      fonts:
+        - asset: packages/small_icon_library/ttf/RoofSmallIcons.ttf
+    - family: RoofStandardIcons
+      fonts:
+        - asset: packages/standard_icon_library/ttf/RoofStandardIcons.ttf
+    - family: RoofNavigationIcons
+      fonts:
+        - asset: packages/navigation_icon_library/ttf/RoofNavigationIcons.ttf
+    - family: circular
+      fonts:
+        - asset: packages/sm_theme/fonts/circular/CircularStd-Book.otf
+          weight: 100
+        - asset: packages/sm_theme/fonts/circular/CircularStd-Book.otf
+          weight: 200
+        - asset: packages/sm_theme/fonts/circular/CircularStd-Medium.otf
+          weight: 300
+        - asset: packages/sm_theme/fonts/circular/CircularStd-Bold.otf
+          weight: 400
+        - asset: packages/sm_theme/fonts/circular/CircularStd-Black.otf
+          weight: 500

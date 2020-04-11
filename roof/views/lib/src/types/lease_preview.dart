@@ -1,5 +1,7 @@
 import 'package:views/src/types/period.dart';
 
+/// deprecated. use ~/types
+@deprecated
 class LeasePreview {
   final String name;
   final double amount;

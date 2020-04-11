@@ -1,0 +1,40 @@
+name: spaced_column_vertical_floating_artboard_template
+description: An vertical floating frame with body and a spaced column for building a widget hierarchy in.
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  artboard:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: lib/artboard
+  vertical_floating_artboard_scaffold:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: artboard_scaffolds/vertical_floating
+  spaced_column_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: builders/spaced_column
+  semantic_theme:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: semantic_theme
+
+dependency_overrides:
+  vertical_floating_artboard_scaffold:
+    path: ../../../artboard_scaffolds/vertical_floating
+  spaced_column_builder:
+    path: ../../../builders/spaced_column
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

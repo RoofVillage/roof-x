@@ -1,0 +1,177 @@
+name: wallets_artboard
+description: Allows the user to see their wallets and enter one or create a new one.
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.2.2 <3.0.0"
+
+dependencies:
+  faker: ^1.2.1
+  flutter:
+    sdk: flutter
+  app_data:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: app_data
+  navigator:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: lib/navigator
+  commands:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: roof/commands
+  stream_list_view_vertical_full_screen_artboard_template:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: artboard_templates/vertical_full_screen/stream_list_view
+  views:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: roof/views
+  view_stream_builder_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: builders/view_stream_builder
+  spaced_sliver_list_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: builders/spaced_sliver_list
+  spaced_list_view_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: builders/spaced_list_view
+  header_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: builders/header
+  semantic_theme:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: semantic_theme
+  navigation_icon_library:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: icons/navigation
+  standard_icon_library:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: icons/standard
+  small_icon_library:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: icons/small
+  table_cell_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: builders/table_cell
+  icon_button_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: builders/icon_button
+  transfer_status_type:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: types/transfer_status
+  scroll_view_vertical_full_screen_artboard_template:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: artboard_templates/vertical_full_screen/scroll_view
+  dwolla_types:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: types/dwolla
+
+dependency_overrides:
+  frequency_type:
+    path: ../../../types/frequency
+  lease_preview:
+    path: ../../../model/objects/lease_preview
+  property:
+    path: ../../../model/objects/property
+  dwolla_types:
+    path: ../../../types/dwolla
+  dwolla_model:
+    path: ../../../model/dwolla
+  meta_form_artboard_builder:
+    path: ../../../builders/meta_form
+  meta_form_artboard:
+    path: ../../../artboards/meta_form
+  verify_business_wallet_artboard:
+    path: ../../../artboards/sustainers/verify_business_wallet
+  verify_sole_proprietorship_wallet_artboard:
+    path: ../../../artboards/sustainers/verify_sole_proprietorship_wallet
+  verify_personal_wallet_artboard:
+    path: ../../../artboards/sustainers/verify_personal_wallet
+  vertically_centered_text_builder:
+    path: ../../../builders/vertically_centered_text
+  vertical_full_screen_artboard_scaffold:
+    path: ../../../artboard_scaffolds/vertical_full_screen
+  wallet_dashboard_artboard:
+    path: ../wallet_dashboard
+  user_settings_artboard:
+    path: ../user_settings
+  transfer_status_type:
+    path: ../../../types/transfer_status
+  tappable:
+    path: ../../../lib/tappable
+  choose_wallet_verification_type_artboard:
+    path: ../../../artboards/sustainers/choose_wallet_verification_type
+  choose_business_type_artboard:
+    path: ../../../artboards/sustainers/choose_business_type
+  balance_actions_artboard:
+    path: ../../../artboards/sustainers/balance_actions
+  small_icon_library:
+    path: ../../../icons/small
+  add_wallet_artboard:
+    path: ../add_wallet
+  spaced_column_vertical_floating_artboard_template:
+    path: ../../../artboard_templates/vertical_floating/spaced_column
+  table_cell_builder:
+    path: ../../../builders/table_cell
+  header_builder:
+    path: ../../../builders/header
+  icon_button_builder:
+    path: ../../../builders/icon_button
+  spaced_list_view_builder:
+    path: ../../../builders/spaced_list_view
+  spaced_sliver_list_builder:
+    path: ../../../builders/spaced_sliver_list
+  spaced_column_builder:
+    path: ../../../builders/spaced_column
+  view_stream_builder_builder:
+    path: ../../../builders/view_stream_builder
+  commands:
+    path: ../../commands
+  views:
+    path: ../../views
+  stream_list_view_vertical_full_screen_artboard_template:
+    path: ../../../artboard_templates/vertical_full_screen/stream_list_view
+  nav_vertical_drawer_artboard_template:
+    path: ../../../artboard_templates/vertical_drawer/nav_drawer
+  vertical_drawer_artboard_scaffold:
+    path: ../../../artboard_scaffolds/vertical_drawer
+  scroll_view_vertical_full_screen_artboard_template:
+    path: ../../../artboard_templates/vertical_full_screen/scroll_view
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

@@ -7,11 +7,13 @@ import '../_constants/_font_size.dart' as fs;
 import '../_constants/_font_weight.dart' as fw;
 
 class RoofDetailHeavyTypography extends SemanticTypography {
+  RoofDetailHeavyTypography(currentThemeOption) : super(currentThemeOption);
+
   @override
   String get fontFamily => ff.azo;
 
   @override
-  String get fontFamilyFallback => null;
+  List<String> get fontFamilyFallback => null;
 
   @override
   double get fontSize => fs.extraSmall;

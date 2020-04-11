@@ -13,3 +13,7 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: master
       path: icons/icon_reference
+
+dependency_overrides:
+  standard_icon_library:
+    path: ../standard

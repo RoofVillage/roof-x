@@ -29,11 +29,11 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: master
       path: options/vertical_floating_artboard_button
-  nav_button_builder:
+  icon_button_builder:
     git:
       url: git@github.com:RoofVillage/roof-x.git
       ref: master
-      path: builders/nav_button
+      path: builders/icon_button
   navigation_icon_library:
     git:
       url: git@github.com:RoofVillage/roof-x.git
@@ -50,8 +50,8 @@ dependency_overrides:
     path: ../../lib/artboard
   navigator:
     path: ../../lib/navigator
-  nav_button_builder:
-    path: ../../builders/nav_button
+  icon_button_builder:
+    path: ../../builders/icon_button
   semantic_theme:
     path: ../../semantic_theme
 

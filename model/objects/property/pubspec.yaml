@@ -1,0 +1,30 @@
+name: property
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  string_from_enum_string:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: lib/string_from_enum_string
+  lease_preview:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: types/lease_preview
+
+dependency_overrides:
+  frequency_type:
+    path: ../../../types/frequency
+  lease_preview:
+    path: ../lease_preview
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

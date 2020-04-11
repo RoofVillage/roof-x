@@ -64,8 +64,8 @@ dependency_overrides:
     path: ../../artboards/properties
   domains_artboard:
     path: ../../artboards/domains
-  page_header_builder:
-    path: ../../../builders/page_header
+  header_builder:
+    path: ../../../builders/header
   roof_table_cell_builder:
     path: ../../builders/table_cell
   nav_vertical_drawer_artboard_template:
@@ -100,8 +100,6 @@ dependency_overrides:
     path: ../../../blossm_view_store
   button_builder:
     path: ../../../builders/button
-  inherited_scroll_controller_builder:
-    path: ../../../builders/inherited_scroll_controller
   button_status_option:
     path: ../../../options/button_status
   cache:
@@ -262,8 +260,8 @@ dependency_overrides:
     path: ../../../builders/spaced_list_view
   standard_icon_library:
     path: ../../../icons/standard
-  standard_stack_builder:
-    path: ../../../builders/standard_stack
+  spaced_column_builder:
+    path: ../../../builders/spaced_column
   stream:
     path: ../../../lib/stream
   string_from_enum_string:

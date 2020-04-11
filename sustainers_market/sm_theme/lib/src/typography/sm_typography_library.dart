@@ -11,33 +11,38 @@ import 'package:sm_theme/src/typography/_subtitle.dart';
 import 'package:sm_theme/src/typography/_title.dart';
 
 class SmTypographyLibrary extends SemanticTypographyLibrary {
-  @override
-  SemanticTypography get headingPrimary => SmHeadingPrimaryTypography();
+  SmTypographyLibrary(currentThemeOption) : super(currentThemeOption);
 
   @override
-  SemanticTypography get headingSecondary => SmHeadingSecondaryTypography();
+  SemanticTypography get headingPrimary =>
+      SmHeadingPrimaryTypography(currentThemeOption);
 
   @override
-  SemanticTypography get body => SmBodyTypography();
+  SemanticTypography get headingSecondary =>
+      SmHeadingSecondaryTypography(currentThemeOption);
 
   @override
-  SemanticTypography get bodyHeavy => SmBodyHeavyTypography();
+  SemanticTypography get body => SmBodyTypography(currentThemeOption);
 
   @override
-  SemanticTypography get detail => SmDetailTypography();
+  SemanticTypography get bodyHeavy => SmBodyHeavyTypography(currentThemeOption);
 
   @override
-  SemanticTypography get detailHeavy => SmDetailHeavyTypography();
+  SemanticTypography get detail => SmDetailTypography(currentThemeOption);
 
   @override
-  SemanticTypography get label => SmLabelTypography();
+  SemanticTypography get detailHeavy =>
+      SmDetailHeavyTypography(currentThemeOption);
 
   @override
-  SemanticTypography get title => SmTitleTypography();
+  SemanticTypography get label => SmLabelTypography(currentThemeOption);
 
   @override
-  SemanticTypography get subtitle => SmSubtitleTypography();
+  SemanticTypography get title => SmTitleTypography(currentThemeOption);
 
   @override
-  SemanticTypography get button => SmButtonTypography();
+  SemanticTypography get subtitle => SmSubtitleTypography(currentThemeOption);
+
+  @override
+  SemanticTypography get button => SmButtonTypography(currentThemeOption);
 }

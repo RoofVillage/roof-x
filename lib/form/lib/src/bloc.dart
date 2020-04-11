@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:form/index.dart';
 import 'package:stream/index.dart';
 import 'package:typedefs/index.dart';
 
@@ -67,9 +68,22 @@ class StreamFormBloc extends BlocBase {
     _inForm.add(_formData);
   }
 
-  void insertFieldData(StreamableFormFieldData fieldData) {
+  void insertFieldData(
+    StreamableFormFieldData fieldData, {
+    StreamableFormFieldData before,
+    StreamableFormFieldData after,
+  }) {
+    assert(before == null || after == null,
+        'Cannot provide arguments for both before and after.');
+
     _addValueChangedStreamToField(fieldData);
-    _formData.addFieldData(fieldData);
+    if (before != null) {
+      _formData.addFieldDataBefore(fieldData, before);
+    } else if (after != null) {
+      _formData.addFieldDataAfter(fieldData, after);
+    } else {
+      _formData.addFieldData(fieldData);
+    }
     _inForm.add(_formData);
   }
 
@@ -80,30 +94,40 @@ class StreamFormBloc extends BlocBase {
     _inForm.add(_formData);
   }
 
-  void insertFieldDataBefore(StreamableFormFieldData fieldData,
-      StreamableFormFieldData beforeFieldData) {
+  @deprecated // use insertFieldData
+  void insertFieldDataBefore(
+    StreamableFormFieldData fieldData, {
+    StreamableFormFieldData beforeFieldData,
+  }) {
     _addValueChangedStreamToField(fieldData);
     _formData.addFieldDataBefore(fieldData, beforeFieldData);
     _inForm.add(_formData);
   }
 
-  void batchInsertFieldDataBefore(List<StreamableFormFieldData> fieldData,
-      StreamableFormFieldData beforeFieldData) {
+  void batchInsertFieldDataBefore(
+    List<StreamableFormFieldData> fieldData, {
+    StreamableFormFieldData beforeFieldData,
+  }) {
     if (fieldData.isEmpty) return;
     for (final data in fieldData) _addValueChangedStreamToField(data);
     _formData.batchAddFieldDataBefore(fieldData, beforeFieldData);
     _inForm.add(_formData);
   }
 
-  void insertFieldDataAfter(StreamableFormFieldData fieldData,
-      StreamableFormFieldData afterFieldData) async {
+  @deprecated // use insertFieldData
+  void insertFieldDataAfter(
+    StreamableFormFieldData fieldData, {
+    StreamableFormFieldData afterFieldData,
+  }) async {
     _addValueChangedStreamToField(fieldData);
     _formData.addFieldDataAfter(fieldData, afterFieldData);
     _inForm.add(_formData);
   }
 
-  void batchInsertFieldDataAfter(List<StreamableFormFieldData> fieldData,
-      StreamableFormFieldData afterFieldData) {
+  void batchInsertFieldDataAfter(
+    List<StreamableFormFieldData> fieldData, {
+    StreamableFormFieldData afterFieldData,
+  }) {
     if (fieldData.isEmpty) return;
     for (final data in fieldData) _addValueChangedStreamToField(data);
     _formData.batchAddFieldDataAfter(fieldData, afterFieldData);
@@ -164,6 +188,13 @@ class StreamFormBloc extends BlocBase {
     _formData.removeFieldData(fieldData);
 
     //Post a message that the form changed.
+    _inForm.add(_formData);
+  }
+
+  void batchRemoveFieldData(List<StreamableFormFieldData> fieldData) {
+    for (final _data in fieldData) {
+      _formData.removeFieldData(_data);
+    }
     _inForm.add(_formData);
   }
 

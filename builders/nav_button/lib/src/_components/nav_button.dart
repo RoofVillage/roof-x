@@ -1,22 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:haptics/index.dart';
 import 'package:semantic_theme/index.dart';
-import 'package:typedefs/index.dart';
 
 mixin NavButton implements StatelessWidget {
-  ContextPasser get onTap;
+  void Function() get onTap;
 
   Widget buildIcon(BuildContext context) => null;
-
-  final _tapHapticOption = HapticOption.light;
 
   @override
   Widget build(BuildContext context) {
     final theme = SemanticTheme.of(context);
 
     return GestureDetector(
-      onTapDown: (details) => _fireHaptic(),
-      onTap: () => onTap(context),
+      onTap: () => hapticAction(
+        HapticOption.light,
+        action: onTap,
+      ),
       child: Container(
         padding: EdgeInsets.symmetric(
           horizontal: theme.distance.padding.horizontal.small,
@@ -25,9 +24,5 @@ mixin NavButton implements StatelessWidget {
         child: buildIcon(context),
       ),
     );
-  }
-
-  void _fireHaptic() {
-    if (onTap != null) triggerHapticWith(_tapHapticOption);
   }
 }

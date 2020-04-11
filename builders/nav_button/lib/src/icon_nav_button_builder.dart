@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:navigation_icon_library/index.dart';
-import 'package:typedefs/index.dart';
 
 import '_components/icon.dart';
 
 mixin IconNavButtonBuilder {
-  IconNavButton buildIconNavButton(
-    BuildContext context, {
+  /// Deprecated: use IconButton builder package
+  @deprecated
+  IconNavButton buildIconNavButton({
     @required NavigationIcon iconReference,
-    @required ContextPasser onTap,
+    @required void Function() onTap,
   }) {
     return IconNavButton(
       onTap: onTap,

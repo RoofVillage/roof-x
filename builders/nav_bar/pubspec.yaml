@@ -29,19 +29,12 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: master
       path: semantic_theme
-  inherited_scroll_controller_builder:
-    git:
-      url: git@github.com:RoofVillage/roof-x.git
-      ref: master
-      path: builders/inherited_scroll_controller
 
 dependency_overrides:
   semantic_theme:
     path: ../../semantic_theme
   nav_button_builder:
     path: ../nav_button
-  inherited_scroll_controller_builder:
-    path: ../inherited_scroll_controller
 
 dev_dependencies:
   flutter_test:

@@ -1,5 +1,7 @@
-import 'package:views/src/types/lease_preview.dart';
+import 'package:views/src/model/objects/lease_preview.dart';
 
+/// deprecated. use ~/types
+@deprecated
 class Property {
   final String address;
   final String unit;

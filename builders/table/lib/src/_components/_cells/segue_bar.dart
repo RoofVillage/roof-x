@@ -104,7 +104,7 @@ class _AuxiliaryTextWidget extends StatelessWidget {
         horizontal: theme.distance.padding.horizontal.small,
       ),
       decoration: BoxDecoration(
-        color: theme.color.background.generalPrimary,
+        color: theme.color.background.raised,
         borderRadius: BorderRadius.all(
           Radius.circular(borderRadius),
         ),

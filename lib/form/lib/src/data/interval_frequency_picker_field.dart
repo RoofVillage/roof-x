@@ -9,13 +9,13 @@ import '../options/interval_frequency_option_data.dart';
 class FormIntervalFrequencyPickerFieldData
     extends StreamableFormFieldData<FormIntervalFrequencyOptionData>
     with OnTapListenerAdder {
-  List<LabeledValue<int>> intervalList = [
+  final List<LabeledValue<int>> intervalList = [
     LabeledValue<int>(label: toIntervalString(0), value: 0),
     LabeledValue<int>(label: toIntervalString(1), value: 1),
     LabeledValue<int>(label: toIntervalString(2), value: 2)
   ];
 
-  List<LabeledValue<PeriodType>> periodList = [
+  final List<LabeledValue<PeriodType>> periodList = [
     LabeledValue<PeriodType>(
       label: "day",
       value: PeriodType.fromString("daily"),

@@ -4,16 +4,19 @@ import 'package:flutter/material.dart';
 
 import 'text_field.dart';
 
-class IntegerFormTextFieldData extends FormTextFieldData {
-  IntegerFormTextFieldData({
+class FormIntegerTextFieldData extends FormTextFieldData {
+  FormIntegerTextFieldData({
     String title,
     String placeholder,
     String initialValue,
     double size,
-    bool isVisible,
+    bool isRequired,
     bool autofocus,
     String exceptionTitle,
+    double min,
+    double max,
     double maxValue,
+    bool isVisible,
   }) : super(
           title: title,
           placeholder: placeholder,
@@ -26,6 +29,7 @@ class IntegerFormTextFieldData extends FormTextFieldData {
           isVisible: isVisible,
           exceptionTitle: exceptionTitle,
           maxValue: maxValue,
+          min: isRequired == true ? 1 : null,
         );
 
   Future<void> validate() async {}

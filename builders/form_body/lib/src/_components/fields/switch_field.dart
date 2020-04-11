@@ -1,5 +1,6 @@
 import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
+import 'package:form_body_builder/src/_components/fields/_widgets/index.dart';
 import 'package:haptics/index.dart';
 import 'package:semantic_theme/index.dart';
 
@@ -31,17 +32,16 @@ class _RoofSwitchFieldState extends State<RoofSwitchField>
 
   initState() {
     isOn = widget.initialValue;
-
-    controller = AnimationController(
-      duration: SemanticTheme.of(context).duration.short,
-      vsync: this,
-    );
-
     super.initState();
   }
 
   @override
   void didChangeDependencies() {
+    controller = AnimationController(
+      duration: SemanticTheme.of(context).duration.short,
+      vsync: this,
+    );
+
     final theme = SemanticTheme.of(context);
 
     isOnColor = theme.color.background.actionPrimary;
@@ -66,25 +66,20 @@ class _RoofSwitchFieldState extends State<RoofSwitchField>
 
   @override
   Widget build(BuildContext context) {
-    final theme = SemanticTheme.of(context);
-
     isOn ? controller.forward() : controller.reverse();
 
     final labelContainer = Expanded(
-      child: Text(
-        widget.title,
-        maxLines: labelMaxLines,
-        style: theme.typography.title.textStyle(
-          color: theme.color.text.generalSecondary,
-        ),
-      ),
+      child: FieldLabel(labelText: widget.title),
     );
 
     final switchColor = animation.value;
     final switchButton = _RoofAnimatedSwitch(isOn: isOn, color: switchColor);
 
     return GestureDetector(
-      onTap: _onTap,
+      onTap: () => hapticAction(
+        HapticOption.light,
+        action: _setIsOn,
+      ),
       child: Container(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -94,8 +89,7 @@ class _RoofSwitchFieldState extends State<RoofSwitchField>
     );
   }
 
-  void _onTap() {
-    triggerHapticWith(HapticOption.light);
+  void _setIsOn() {
     widget.onChanged(!isOn);
     setState(() {
       isOn = !isOn;

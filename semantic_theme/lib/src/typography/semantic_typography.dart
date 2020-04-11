@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:semantic_theme/src/_utils/theme_option_dependent.dart';
+import 'package:semantic_theme/src/_utils/value_for_theme_option.dart';
 
-abstract class SemanticTypography {
+abstract class SemanticTypography<T> extends ThemeOptionDependent<T>
+    with ValueForThemeOption<T> {
+  SemanticTypography(T currentThemeOption) : super(currentThemeOption);
+
   double get fontSize;
   FontWeight get fontWeight;
   String get fontFamily;
-  String get fontFamilyFallback;
+  List<String> get fontFamilyFallback;
   double get letterSpacing;
 
   TextStyle textStyle({

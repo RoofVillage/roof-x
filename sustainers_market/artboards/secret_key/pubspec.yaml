@@ -33,15 +33,15 @@ dependencies:
       url: git@github.com:RoofVillage/roof-x.git
       ref: master
       path: sustainers_market/commands
-  stack_vertical_floating_artboard_template:
+  spaced_column_vertical_floating_artboard_template:
     git:
       url: git@github.com:RoofVillage/roof-x.git
       ref: master
-      path: artboard_templates/vertical_floating/stack
+      path: artboard_templates/vertical_floating/spaced_column
 
 dependency_overrides:
-  stack_vertical_floating_artboard_template:
-    path: ../../../artboard_templates/vertical_floating/stack
+  spaced_column_vertical_floating_artboard_template:
+    path: ../../../artboard_templates/vertical_floating/spaced_column
   commands:
     path: ../../commands
   button_builder:

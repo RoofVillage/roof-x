@@ -48,13 +48,11 @@ class _SpacedListViewState extends State<SpacedListView> {
           : [paddedButton, ...spacedChildren];
     }
 
-    print('building with controller ${widget.scrollController}');
-
     return Container(
       padding: EdgeInsets.symmetric(
         horizontal: theme.distance.gutter.horizontal.medium,
       ),
-      color: theme.color.background.generalSecondary,
+      color: theme.color.background.general,
       child: ListView(
         controller: widget.scrollController,
         padding: EdgeInsets.only(

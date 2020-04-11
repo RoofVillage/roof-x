@@ -1,0 +1,72 @@
+name: meta_form_artboard_builder
+description: Form vertical floating artboard that can return a form result as a fieldData.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.2.2 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  form_vertical_floating_artboard_template:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: artboard_templates/vertical_floating/form
+  haptics:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: lib/haptics
+  small_icon_library:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: icons/small
+  artboard:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: lib/artboard
+  navigator:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: lib/navigator
+  labeled_icon:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: labeled_icon
+  tag_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: builders/tag
+  semantic_theme:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: semantic_theme
+  form_builder:
+    git:
+      url: git@github.com:RoofVillage/roof-x.git
+      ref: master
+      path: builders/form
+
+dependency_overrides:
+  meta_form_artboard:
+    path: ../../artboards/meta_form
+  form_vertical_floating_artboard_template:
+    path: ../../artboard_templates/vertical_floating/form
+  form_builder:
+    path: ../form
+  semantic_theme:
+    path: ../../semantic_theme
+  tag_builder:
+    path: ../tag
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
